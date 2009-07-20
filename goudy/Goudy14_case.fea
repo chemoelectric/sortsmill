@@ -1,0 +1,32 @@
+# Copyright (c) 2009 Barry Schwartz
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+feature case {
+  lookup lining_figures;
+  sub [\hyphen \uni00AD \uni2010 \uni2011] by [\hyphen.uppercase \uni00AD.uppercase \uni2010.uppercase \uni2011.uppercase];
+  sub [\endash \emdash \afii00208] by [\endash.uppercase \emdash.uppercase \afii00208.uppercase];
+  sub [\parenleft \parenright] by [\parenleft.uppercase \parenright.uppercase];
+  sub [\bracketleft \bracketright] by [\bracketleft.uppercase \bracketright.uppercase];
+  sub [\braceleft \braceright] by [\braceleft.uppercase \braceright.uppercase];
+} case;
+
+# local variables:
+# mode: fundamental
+# end:

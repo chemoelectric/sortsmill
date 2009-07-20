@@ -1,0 +1,290 @@
+# Copyright (c) 2009 Barry Schwartz
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+# TODO: More sophisticated handling of periodcentered, and maybe make
+# this behavior Catalan-specific.
+
+lookup smcpLowercasetoSmallCapitalsinL {
+
+    sub \periodcentered by \periodcentered.sc;
+    sub \ldot by \ldot.sc;
+
+    sub \a by \a.sc ;
+    sub \b by \b.sc ;
+    sub \c by \c.sc ;
+    sub \d by \d.sc ;
+    sub \e by \e.sc ;
+    sub \f by \f.sc ;
+    sub \g by \g.sc ;
+    sub \h by \h.sc ;
+    sub \i by \i.sc ;
+    sub \j by \j.sc ;
+    sub \k by \k.sc ;
+    sub \l by \l.sc ;
+    sub \m by \m.sc ;
+    sub \n by \n.sc ;
+    sub \o by \o.sc ;
+    sub \p by \p.sc ;
+    sub \q by \q.sc ;
+    sub \r by \r.sc ;
+    sub \s by \s.sc ;
+    sub \t by \t.sc ;
+    sub \u by \u.sc ;
+    sub \v by \v.sc ;
+    sub \w by \w.sc ;
+    sub \x by \x.sc ;
+    sub \y by \y.sc ;
+    sub \z by \z.sc ;
+
+    sub \ae by \ae.sc ;
+    sub \oe by \oe.sc ;
+    sub \thorn by \thorn.sc ;
+    sub \eth by \eth.sc ;
+    sub \dcroat by \dcroat.sc ;
+    sub \hbar by \hbar.sc ;
+    sub \tbar by \tbar.sc ;
+    sub \lslash by \lslash.sc ;
+    sub \aogonek by \aogonek.sc ;
+    sub \eogonek by \eogonek.sc ;
+    sub \iogonek by \iogonek.sc ;
+    sub \uogonek by \uogonek.sc ;
+
+    sub \eacute by \eacute.sc ;
+    sub \egrave by \egrave.sc ;
+    sub \ecircumflex by \ecircumflex.sc ;
+    sub \edieresis by \edieresis.sc ;
+    sub \ntilde by \ntilde.sc ;
+    sub \ecaron by \ecaron.sc ;
+    sub \ebreve by \ebreve.sc ;
+    sub \aacute by \aacute.sc ;
+    sub \acircumflex by \acircumflex.sc ;
+    sub \ccircumflex by \ccircumflex.sc ;
+    sub \gcircumflex by \gcircumflex.sc ;
+    sub \hcircumflex by \hcircumflex.sc ;
+    sub \gbreve by \gbreve.sc ;
+    sub \ccaron by \ccaron.sc ;
+    sub \cacute by \cacute.sc ;
+    sub \abreve by \abreve.sc ;
+    sub \iacute by \iacute.sc ;
+    sub \icircumflex by \icircumflex.sc ;
+    sub \idieresis by \idieresis.sc ;
+    sub \igrave by \igrave.sc ;
+    sub \atilde by \atilde.sc ;
+    sub \adieresis by \adieresis.sc ;
+    sub \agrave by \agrave.sc ;
+    sub \jcircumflex by \jcircumflex.sc ;
+    sub \nacute by \nacute.sc ;
+    sub \ncaron by \ncaron.sc ;
+    sub \ocircumflex by \ocircumflex.sc ;
+    sub \odieresis by \odieresis.sc ;
+    sub \ograve by \ograve.sc ;
+    sub \oacute by \oacute.sc ;
+    sub \otilde by \otilde.sc ;
+    sub \rcaron by \rcaron.sc ;
+    sub \racute by \racute.sc ;
+    sub \scircumflex by \scircumflex.sc ;
+    sub \sacute by \sacute.sc ;
+    sub \scaron by \scaron.sc ;
+    sub \obreve by \obreve.sc ;
+    sub \ubreve by \ubreve.sc ;
+    sub \utilde by \utilde.sc ;
+    sub \wcircumflex by \wcircumflex.sc ;
+    sub \ycircumflex by \ycircumflex.sc ;
+    sub \zacute by \zacute.sc ;
+    sub \zcaron by \zcaron.sc ;
+    sub \uacute by \uacute.sc ;
+    sub \udieresis by \udieresis.sc ;
+    sub \ucircumflex by \ucircumflex.sc ;
+    sub \yacute by \yacute.sc ;
+    sub \ydieresis by \ydieresis.sc ;
+    sub \ccedilla by \ccedilla.sc ;
+    sub \scedilla by \scedilla.sc ;
+    sub \zdotaccent by \zdotaccent.sc ;
+    sub \edotaccent by \edotaccent.sc ;
+    sub \gdotaccent by \gdotaccent.sc ;
+    sub \itilde by \itilde.sc ;
+    sub \aring by \aring.sc ;
+    sub \ibreve by \ibreve.sc ;
+    sub \uring by \uring.sc ;
+    sub \cdotaccent by \cdotaccent.sc ;
+    sub \ugrave by \ugrave.sc ;
+    sub \kcommaaccent by \kcommaaccent.sc ;
+    sub \lcommaaccent by \lcommaaccent.sc ;
+    sub \rcommaaccent by \rcommaaccent.sc ;
+    sub \uni0163 by \uni0163.sc ;
+    sub \gcommaaccent by \gcommaaccent.sc ;
+    sub \imacron by \imacron.sc ;
+    sub \amacron by \amacron.sc ;
+    sub \emacron by \emacron.sc ;
+    sub \omacron by \omacron.sc ;
+    sub \umacron by \umacron.sc ;
+    sub \ncommaaccent by \ncommaaccent.sc ;
+    sub \lacute by \lacute.sc ;
+    sub \lcaron by \lcaron.sc ;
+    sub \uni021B by \uni021B.sc ;
+    sub \uni0219 by \uni0219.sc ;
+    sub \tcaron by \tcaron.sc ;
+    sub \ohungarumlaut by \ohungarumlaut.sc ;
+    sub \uhungarumlaut by \uhungarumlaut.sc ;
+    sub \dcaron by \dcaron.sc ;
+    sub \i.TRK by \i.TRK.sc ;
+
+} smcpLowercasetoSmallCapitalsinL;
+
+lookup c2scCapitalstoSmallCapitalsinLa {
+
+    sub \periodcentered by \periodcentered.sc;
+    sub \Ldot by \ldot.sc;
+
+    sub \A by \a.sc ;
+    sub \B by \b.sc ;
+    sub \C by \c.sc ;
+    sub \D by \d.sc ;
+    sub \E by \e.sc ;
+    sub \F by \f.sc ;
+    sub \G by \g.sc ;
+    sub \H by \h.sc ;
+    sub \I by \i.sc ;
+    sub \J by \j.sc ;
+    sub \K by \k.sc ;
+    sub \L by \l.sc ;
+    sub \M by \m.sc ;
+    sub \N by \n.sc ;
+    sub \O by \o.sc ;
+    sub \P by \p.sc ;
+    sub \Q by \q.sc ;
+    sub \R by \r.sc ;
+    sub \S by \s.sc ;
+    sub \T by \t.sc ;
+    sub \U by \u.sc ;
+    sub \V by \v.sc ;
+    sub \W by \w.sc ;
+    sub \X by \x.sc ;
+    sub \Y by \y.sc ;
+    sub \Z by \z.sc ;
+
+    sub \AE by \ae.sc ;
+    sub \OE by \oe.sc ;
+    sub \Thorn by \thorn.sc ;
+    sub \Eth by \eth.sc ;
+    sub \Dcroat by \dcroat.sc ;
+    sub \Hbar by \hbar.sc ;
+    sub \Tbar by \tbar.sc ;
+    sub \Lslash by \lslash.sc ;
+    sub \Aogonek by \aogonek.sc ;
+    sub \Eogonek by \eogonek.sc ;
+    sub \Iogonek by \iogonek.sc ;
+    sub \Uogonek by \uogonek.sc ;
+
+    sub \Eacute by \eacute.sc ;
+    sub \Egrave by \egrave.sc ;
+    sub \Ecircumflex by \ecircumflex.sc ;
+    sub \Edieresis by \edieresis.sc ;
+    sub \Ntilde by \ntilde.sc ;
+    sub \Ecaron by \ecaron.sc ;
+    sub \Ebreve by \ebreve.sc ;
+    sub \Aacute by \aacute.sc ;
+    sub \Acircumflex by \acircumflex.sc ;
+    sub \Ccircumflex by \ccircumflex.sc ;
+    sub \Gcircumflex by \gcircumflex.sc ;
+    sub \Hcircumflex by \hcircumflex.sc ;
+    sub \Gbreve by \gbreve.sc ;
+    sub \Ccaron by \ccaron.sc ;
+    sub \Cacute by \cacute.sc ;
+    sub \Abreve by \abreve.sc ;
+    sub \Iacute by \iacute.sc ;
+    sub \Icircumflex by \icircumflex.sc ;
+    sub \Idieresis by \idieresis.sc ;
+    sub \Igrave by \igrave.sc ;
+    sub \Atilde by \atilde.sc ;
+    sub \Adieresis by \adieresis.sc ;
+    sub \Agrave by \agrave.sc ;
+    sub \Jcircumflex by \jcircumflex.sc ;
+    sub \Nacute by \nacute.sc ;
+    sub \Ncaron by \ncaron.sc ;
+    sub \Ocircumflex by \ocircumflex.sc ;
+    sub \Odieresis by \odieresis.sc ;
+    sub \Ograve by \ograve.sc ;
+    sub \Oacute by \oacute.sc ;
+    sub \Otilde by \otilde.sc ;
+    sub \Rcaron by \rcaron.sc ;
+    sub \Racute by \racute.sc ;
+    sub \Scircumflex by \scircumflex.sc ;
+    sub \Sacute by \sacute.sc ;
+    sub \Scaron by \scaron.sc ;
+    sub \Obreve by \obreve.sc ;
+    sub \Ubreve by \ubreve.sc ;
+    sub \Utilde by \utilde.sc ;
+    sub \Wcircumflex by \wcircumflex.sc ;
+    sub \Ycircumflex by \ycircumflex.sc ;
+    sub \Zacute by \zacute.sc ;
+    sub \Zcaron by \zcaron.sc ;
+    sub \Uacute by \uacute.sc ;
+    sub \Udieresis by \udieresis.sc ;
+    sub \Ucircumflex by \ucircumflex.sc ;
+    sub \Yacute by \yacute.sc ;
+    sub \Ydieresis by \ydieresis.sc ;
+    sub \Ccedilla by \ccedilla.sc ;
+    sub \Scedilla by \scedilla.sc ;
+    sub \Zdotaccent by \zdotaccent.sc ;
+    sub \Edotaccent by \edotaccent.sc ;
+    sub \Gdotaccent by \gdotaccent.sc ;
+    sub \Itilde by \itilde.sc ;
+    sub \Aring by \aring.sc ;
+    sub \Ibreve by \ibreve.sc ;
+    sub \Uring by \uring.sc ;
+    sub \Cdotaccent by \cdotaccent.sc ;
+    sub \Ugrave by \ugrave.sc ;
+    sub \Kcommaaccent by \kcommaaccent.sc ;
+    sub \Lcommaaccent by \lcommaaccent.sc ;
+    sub \Rcommaaccent by \rcommaaccent.sc ;
+    sub \uni0162 by \uni0163.sc ;
+    sub \Gcommaaccent by \gcommaaccent.sc ;
+    sub \Imacron by \imacron.sc ;
+    sub \Amacron by \amacron.sc ;
+    sub \Emacron by \emacron.sc ;
+    sub \Omacron by \omacron.sc ;
+    sub \Umacron by \umacron.sc ;
+    sub \Ncommaaccent by \ncommaaccent.sc ;
+    sub \Lacute by \lacute.sc ;
+    sub \Lcaron by \lcaron.sc ;
+    sub \uni021A by \uni021B.sc ;
+    sub \uni0218 by \uni0219.sc ;
+    sub \Tcaron by \tcaron.sc ;
+    sub \Ohungarumlaut by \ohungarumlaut.sc ;
+    sub \Uhungarumlaut by \uhungarumlaut.sc ;
+    sub \Dcaron by \dcaron.sc ;
+
+    sub ampersand by ampersand.sc;
+
+} c2scCapitalstoSmallCapitalsinLa;
+
+feature smcp {
+    lookup smcpLowercasetoSmallCapitalsinL;
+} smcp;
+
+feature c2sc {
+   lookup c2scCapitalstoSmallCapitalsinLa;
+} c2sc;
+
+
+# local variables:
+# mode: fundamental
+# end:

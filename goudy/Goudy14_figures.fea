@@ -1,0 +1,140 @@
+# Copyright (c) 2009 Barry Schwartz
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+#-----------------------------------------------------------------------
+
+@OLDSTYLE_FIGURES = [ zero one two three four five six seven eight nine ];
+@LINING_FIGURES = [ zero.lining one.lining two.lining three.lining four.lining five.lining six.lining seven.lining eight.lining nine.lining ];
+
+@NUMERATOR_FIGURES = [
+  zero.lining.numer
+  one.lining.numer
+  two.lining.numer
+  three.lining.numer
+  four.lining.numer
+  five.lining.numer
+  six.lining.numer
+  seven.lining.numer
+  eight.lining.numer
+  nine.lining.numer
+];
+
+@DENOMINATOR_FIGURES = [
+  zero.lining.denom
+  one.lining.denom
+  two.lining.denom
+  three.lining.denom
+  four.lining.denom
+  five.lining.denom
+  six.lining.denom
+  seven.lining.denom
+  eight.lining.denom
+  nine.lining.denom
+];
+
+@INFERIOR_FIGURES = [
+  zero.lining.sub
+  one.lining.sub
+  two.lining.sub
+  three.lining.sub
+  four.lining.sub
+  five.lining.sub
+  six.lining.sub
+  seven.lining.sub
+  eight.lining.sub
+  nine.lining.sub
+];
+
+@SUPERIOR_FIGURES = [
+  zero.lining.sup
+  one.lining.sup
+  two.lining.sup
+  three.lining.sup
+  four.lining.sup
+  five.lining.sup
+  six.lining.sup
+  seven.lining.sup
+  eight.lining.sup
+  nine.lining.sup
+];
+
+#-----------------------------------------------------------------------
+
+lookup numerators {
+  sub @OLDSTYLE_FIGURES by @NUMERATOR_FIGURES;
+  sub [\comma \period] by [\comma.numer \period.numer];
+  sub \slash by \fraction;
+} numerators;
+
+lookup denominators {
+  sub @OLDSTYLE_FIGURES by @DENOMINATOR_FIGURES;
+  sub [\comma \period] by [\comma.denom \period.denom];
+} denominators;
+
+feature numr {
+  lookup numerators;
+  sub [\period \comma] by [\period.numer \comma.numer];
+} numr;
+
+feature dnom {
+  lookup denominators;
+  sub [\period \comma] by [\period.denom \comma.denom];
+} dnom;
+
+feature frac {
+  lookup numerators;
+  sub [\fraction @DENOMINATOR_FIGURES \comma.denom \period.denom]
+      [@NUMERATOR_FIGURES \comma.numer \period.numer]'
+      by [@DENOMINATOR_FIGURES \comma.denom \period.denom];
+} frac;
+
+feature sups {
+  sub @OLDSTYLE_FIGURES by @SUPERIOR_FIGURES;
+  sub [\period \comma] by [\period.sup \comma.sup];
+  sub [\parenleft \parenright] by [\parenleft.sup \parenright.sup];
+  sub [\bracketleft \bracketright] by [\bracketleft.sup \bracketright.sup];
+  sub \dollar by \dollar.lining.sup;
+} sups;
+
+feature subs {
+  sub @OLDSTYLE_FIGURES by @INFERIOR_FIGURES;
+  sub [\period \comma] by [\period.sub \comma.sub];
+  sub [\parenleft \parenright] by [\parenleft.sub \parenright.sub];
+  sub [\bracketleft \bracketright] by [\bracketleft.sub \bracketright.sub];
+  sub \dollar by \dollar.lining.sub;
+} subs;
+
+#-----------------------------------------------------------------------
+
+lookup lining_figures {
+  sub \figuredash by \figuredash.uppercase;
+  sub \dollar by \dollar.lining;
+  sub @OLDSTYLE_FIGURES by @LINING_FIGURES;
+} lining_figures;
+
+feature lnum {
+  lookup lining_figures;
+} lnum;
+
+#-----------------------------------------------------------------------
+
+# local variables:
+# mode: fundamental
+# end:
