@@ -33,7 +33,7 @@ import math
 #
 # Our principles of spacing and kerning:
 #
-#   1. Spacing is nearly the same as designing serifs.
+#   1. Spacing is closely related to designing serifs.
 #
 #       1a. The designer’s control over spacing should
 #           resemble control over the extents of serifs.
@@ -675,7 +675,11 @@ fontforge.registerMenuItem((lambda _, glyph: populate_with_spacing_anchors(glyph
                            None, "Glyph", "None",
                            "Populate with spacing anchors")
 
-## This facility is confusing and likely unnecessary.
+## This facility is confusing, error prone, and likely unnecessary.
+## Instead of lining up signatures at an angle, better to imagine
+## italics on rectangular bodies with chamfers and kerns, and line up
+## signatures vertically
+##
 ## More experience with slanted fonts is needed, however,
 ## before we remove this.
 ##
