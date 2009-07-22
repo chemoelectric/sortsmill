@@ -75,70 +75,18 @@ class anchor_name:
                 self.is_special_case = ("s" in modifiers[1:])
 
 
-def spacing_anchors_are_slanted(glyph):
-    if glyph.persistent == None:
-        glyph.persistent = {}
-    if "spacing_anchors_slanted" not in glyph.persistent:
-        glyph.persistent["spacing_anchors_slanted"] = False
-    return glyph.persistent["spacing_anchors_slanted"]
-
-
-def unslant_points_list(points_list, slant_angle, sp_offset):
-    shear_factor = math.tan(math.radians(slant_angle))
-    for i in range(0, len(points_list)):
-        (name, base, x, y) = points_list[i]
-        a_name = anchor_name(name)
-        if a_name.is_spacing:
-            dx = round(y * shear_factor)
-            x += dx - sp_offset
-            points_list[i] = (name, base, x, y)
-
-
-def slant_points_list(points_list, slant_angle, sp_offset):
-    shear_factor = math.tan(math.radians(slant_angle))
-    for i in range(0, len(points_list)):
-        (name, base, x, y) = points_list[i]
-        a_name = anchor_name(name)
-        if a_name.is_spacing:
-            dx = round(y * shear_factor)
-            x += -dx + sp_offset
-            points_list[i] = (name, base, x, y)
-
-
-def unslant_spacing_anchors(glyph):
-    if spacing_anchors_are_slanted(glyph):
-        points_list = list(glyph.anchorPoints)
-        unslant_points_list(points_list, glyph.font.italicangle, spacing_offset(glyph.font))
-        glyph.anchorPoints = tuple(points_list)
-    glyph.persistent["spacing_anchors_slanted"] = False
-
-
-def slant_spacing_anchors(glyph):
-    if not spacing_anchors_are_slanted(glyph):
-        points_list = list(glyph.anchorPoints)
-        slant_points_list(points_list, glyph.font.italicangle, spacing_offset(glyph.font))
-        glyph.anchorPoints = tuple(points_list)
-    glyph.persistent["spacing_anchors_slanted"] = True
-
-
 def left_signature(glyph, tolerance = anchor_tolerance):
-    if spacing_anchors_are_slanted(glyph):
-        shear_factor = math.tan(math.radians(glyph.font.italicangle))
-    else:
-        shear_factor = 0
     points = []
     x_min = sys.maxint
     for (name, kind, x, y) in glyph.anchorPoints:
-        dx = round(y * shear_factor)
-        sheared_x = x + dx
         a_name = anchor_name(name)
         if a_name.side == "l":
             if a_name.is_special_case:
-                points.append((sheared_x, y, a_name.spacing_name))
+                points.append((x, y, a_name.spacing_name))
             else:
-                points.append((sheared_x, y, None))
+                points.append((x, y, None))
                 if not a_name.is_kerning_only:
-                    x_min = min(x_min, sheared_x)
+                    x_min = min(x_min, x)
     if x_min == sys.maxint:
         points = ()
     else:
@@ -157,23 +105,17 @@ def left_signature(glyph, tolerance = anchor_tolerance):
 
 
 def right_signature(glyph, tolerance = anchor_tolerance):
-    if spacing_anchors_are_slanted(glyph):
-        shear_factor = math.tan(math.radians(glyph.font.italicangle))
-    else:
-        shear_factor = 0
     points = []
     x_max = -sys.maxint
     for (name, kind, x, y) in glyph.anchorPoints:
-        dx = round(y * shear_factor)
-        sheared_x = x + dx
         a_name = anchor_name(name)
         if a_name.side == "r":
             if a_name.is_special_case:
-                points.append((sheared_x, y, a_name.spacing_name))
+                points.append((x, y, a_name.spacing_name))
             else:
-                points.append((sheared_x, y, None))
+                points.append((x, y, None))
                 if not a_name.is_kerning_only:
-                    x_max = max(x_max, sheared_x)
+                    x_max = max(x_max, x)
     if x_max == -sys.maxint:
         points = ()
     else:
@@ -452,17 +394,10 @@ def print_kerning_feature_file(file, font):
 
 def copy_spacing_anchors(*glyphs):
     for glyph in glyphs:
-        slant_angle = glyph.font.italicangle
-        sp_offset = spacing_offset(glyph.font)
-        if glyph.persistent == None:
-            glyph.persistent = {}
-        glyph.persistent["spacing_anchors_slanted"] = True
         anchors = {}
         for (glyph_name, (_, _, _, _, dx, dy)) in glyph.references:
             referenced_glyph = glyph.font[glyph_name]
             points_list = list(referenced_glyph.anchorPoints)
-            if not spacing_anchors_are_slanted(referenced_glyph):
-                slant_points_list(points_list, slant_angle, sp_offset)
             for (name, _, x, y) in points_list:
                 a_name = anchor_name(name)
                 if a_name.side == "l":
@@ -480,58 +415,32 @@ def copy_spacing_anchors(*glyphs):
 ###########################################################################
 
 
-def spacing_offset(font):
-    if font.persistent == None:
-        font.persistent = {}
-    try:
-        offset = font.persistent["spacing_offset"]
-        if offset == None:
-            offset = 0
-    except KeyError:
-        offset = 0
-    return offset
-
-
 def left_spacing(glyph):
-    if spacing_anchors_are_slanted(glyph):
-        shear_factor = math.tan(math.radians(glyph.font.italicangle))
-    else:
-        shear_factor = 0
     spacing = None
-    sheared_least_x = None
+    least_x = None
     for a in glyph.anchorPoints:
         a_name = anchor_name(a[0])
         x = a[2]
-        dx = round(a[3] * shear_factor)
         if (a_name.side == "l"
             and not a_name.is_kerning_only
             and not a_name.is_special_case):
-            if sheared_least_x == None or x + dx < sheared_least_x:
-                sheared_least_x = x + dx
-    if sheared_least_x != None and spacing_anchors_are_slanted(glyph):
-        sheared_least_x -= spacing_offset(glyph.font)
-    return sheared_least_x
+            if least_x == None or x < least_x:
+                least_x = x
+    return least_x
 
 
 def right_spacing(glyph):
-    if spacing_anchors_are_slanted(glyph):
-        shear_factor = math.tan(math.radians(glyph.font.italicangle))
-    else:
-        shear_factor = 0
     spacing = None
-    sheared_greatest_x = None
+    greatest_x = None
     for a in glyph.anchorPoints:
         a_name = anchor_name(a[0])
         x = a[2]
-        dx = round(a[3] * shear_factor)
         if (a_name.side == "r"
             and not a_name.is_kerning_only
             and not a_name.is_special_case):
-            if sheared_greatest_x == None or sheared_greatest_x < x + dx:
-                sheared_greatest_x = x + dx
-    if sheared_greatest_x != None and spacing_anchors_are_slanted(glyph):
-        sheared_greatest_x -= spacing_offset(glyph.font)
-    return sheared_greatest_x
+            if greatest_x == None or greatest_x < x:
+                greatest_x = x
+    return greatest_x
 
 
 ###########################################################################
@@ -567,7 +476,7 @@ def there_is_such_an_anchor(glyph, side, spacing_name):
     return False
 
 
-def populate_side_with_anchors(glyph, side, x_pos):
+def populate_side_with_anchors(glyph, side, x):
 
     font = glyph.font
 
@@ -578,19 +487,10 @@ def populate_side_with_anchors(glyph, side, x_pos):
     create_missing_anchor_classes(glyph.font, heights.keys())
 
     if heights != None:
-        if spacing_anchors_are_slanted(glyph):
-            shear_factor = math.tan(math.radians(glyph.font.italicangle))
-        else:
-            shear_factor = 0
         for spacing_name in heights:
             if not there_is_such_an_anchor(glyph, side, spacing_name):
                 h = heights[spacing_name]
-                dx = round(h * shear_factor)
                 name = side + ";" + spacing_name
-                if spacing_anchors_are_slanted(glyph):
-                    x = x_pos - dx + spacing_offset(font)
-                else:
-                    x = x_pos - dx
                 glyph.anchorPoints += ((name, "base", x, h),)
 
 
@@ -650,15 +550,6 @@ def generate_kerning_and_read_features(suffix, font):
     readfeatures.erase_and_read_features(None, font)
 
 
-def toggle_spacing_anchor_angle(glyph):
-    if glyph.persistent == None:
-        glyph.persistent = {}
-    if spacing_anchors_are_slanted(glyph):
-        unslant_spacing_anchors(glyph)
-    else:
-        slant_spacing_anchors(glyph)
-
-
 def something_is_selected(bitbucket, font):
     for g in font.selection.byGlyphs:
         return True
@@ -674,20 +565,6 @@ fontforge.registerMenuItem((lambda _, glyph: populate_with_spacing_anchors(glyph
                            (lambda _, glyph: spacing_anchor_heights_are_given(glyph.font)),
                            None, "Glyph", "None",
                            "Populate with spacing anchors")
-
-## This facility is confusing, error prone, and likely unnecessary.
-## Instead of lining up signatures at an angle, better to imagine
-## italics on rectangular bodies with chamfers and kerns, and line up
-## signatures vertically
-##
-## More experience with slanted fonts is needed, however,
-## before we remove this.
-##
-#fontforge.registerMenuItem((lambda _, glyph: toggle_spacing_anchor_angle(glyph)),
-#                           (lambda _, glyph: glyph.font.italicangle != 0),
-#                           None, "Glyph", "None",
-#                           "Toggle spacing-anchor angle")
-
 
 fontforge.registerMenuItem((lambda _, font: space_selected_by_anchors(font)),
                            something_is_selected, None, "Font", "None",
