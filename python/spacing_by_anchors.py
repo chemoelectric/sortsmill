@@ -38,6 +38,15 @@ import math
 #       1a. The designer’s control over spacing should
 #           resemble control over the extents of serifs.
 #
+#       1b. Therefore we let the designer specify points
+#           representing distances from the glyph.
+#
+#       1c. One point on the left and one on the right
+#           will define the left and right side bearings,
+#           respectively. (There is some arbitrariness
+#           to the choice; kerning is more fundamental
+#           than spacing.)
+#
 #   2. A certain part of the space around a glyph is
 #      as if it were part of that glyph.
 #

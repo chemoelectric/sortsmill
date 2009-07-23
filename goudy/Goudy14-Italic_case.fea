@@ -25,6 +25,8 @@ feature case {
   sub [\parenleft \parenright] by [\parenleft.uppercase \parenright.uppercase];
   sub [\bracketleft \bracketright] by [\bracketleft.uppercase \bracketright.uppercase];
   sub [\braceleft \braceright] by [\braceleft.uppercase \braceright.uppercase];
+  sub [\guillemotleft \guillemotright] by [\guillemotleft.uppercase \guillemotright.uppercase];
+  sub [\guilsinglleft \guilsinglright] by [\guilsinglleft.uppercase \guilsinglright.uppercase];
 } case;
 
 # local variables:
