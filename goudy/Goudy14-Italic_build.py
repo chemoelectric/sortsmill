@@ -86,7 +86,6 @@ def build_glyphs(bitbucket, f):
                                                'o'  : 450,  # like the letter o
                                                'bl' : 40,   # baseline
                                                'lo' : -420 } # descenders
-    #f.persistent["spacing_offset"] = -64
 
     build_several_space_glyphs(f, emsize = 2048, spacesize = 437,
                                thinspacesize = 2048 / 6,

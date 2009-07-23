@@ -556,6 +556,14 @@ def something_is_selected(bitbucket, font):
     return False
 
 
+#### This will require a new fontforge feature.
+#
+#fontforge.registerMenuItem((lambda _, glyph: set_anchors_read_only(glyph, True)),
+##                           glyph_has_spacing_anchors,
+#                           True,
+#                           None, "Glyph", "None",
+#                           "Set spacing anchors read-only")
+
 fontforge.registerMenuItem(space_glyph_by_anchors,
                            glyph_has_spacing_anchors,
                            None, "Glyph", "None",
