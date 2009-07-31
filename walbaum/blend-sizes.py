@@ -78,12 +78,11 @@ def glyphs_have_compatible_contours(glyphs):
             for j in range(0, len(c1)):
                 if c1[j].on_curve != c2[j].on_curve:
                     return False
-            return True
     else:
         for g in glyphs[1:]:
             if not glyphs_have_compatible_contours(glyphs[0], g):
                 return False
-        return True
+    return True
 
 def insert_redundant_control_points(contour):
 
@@ -114,6 +113,8 @@ if __name__ == "__main__":
 
     import sys
 
+    fontforge.loadPrefs()
+
     result_font = sys.argv[1]
     font1 = sys.argv[2]
     font2 = sys.argv[3]
@@ -121,6 +122,15 @@ if __name__ == "__main__":
 
     f1 = fontforge.open(font1)
     f2 = fontforge.open(font2)
+
+    # There may end up being special cases where the following
+    # canonicalization doesn't do the correct thing. Let's deal with
+    # that problem if it crops up.
+    for f in [f1, f2]:
+        f.selection.all()
+        f.canonicalContours()
+        f.canonicalStart()
+
     match1 = re.match('([^0-9]*)([0-9]+)(.*)', f1.fontname)
     match2 = re.match('([^0-9]*)([0-9]+)(.*)', f2.fontname)
 
