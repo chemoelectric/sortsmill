@@ -21,10 +21,20 @@
 # THE SOFTWARE.
 
 import fontforge
+import re
 
 #--------------------------------------------------------------------------
 
 def blend_fonts(blended_font, fonts_to_blend, blender):
+
+    height1 = f1.ascent + f1.descent
+    height2 = f2.ascent + f2.descent
+    (new_height, _) = blender([(f.ascent + f.descent, 0) for f in fonts_to_blend])
+    (blended_font.ascent, _) = blender([(f.ascent, 0) for f in fonts_to_blend])
+    blended_font.descent = new_height - blended_font.ascent
+
+    (blended_font.italicangle, _) = blender([(f.italicangle, 0) for f in fonts_to_blend])
+
     for glyph_name in fonts_to_blend[0]:
         if glyphs_are_blendable(fonts_to_blend, glyph_name):
             g = blended_font.createChar(fontforge.unicodeFromName(glyph_name), glyph_name)
@@ -44,7 +54,6 @@ def blend_glyphs(blended_glyph, glyphs, blender):
             blended_contour += fontforge.point(x, y, layer0[i][j].on_curve)
         blended_contour.simplify(0) # Remove redundant off-curve control points.
         blended_layer += blended_contour
-    print blended_layer
     blended_glyph.foreground = blended_layer
 
 def glyphs_are_blendable(fonts, glyph_name):
@@ -66,6 +75,9 @@ def glyphs_have_compatible_contours(glyphs):
             c2 = insert_redundant_control_points(layer2[i])
             if c1.closed != c2.closed or len(c1) != len(c2):
                 return False
+            for j in range(0, len(c1)):
+                if c1[j].on_curve != c2[j].on_curve:
+                    return False
             return True
     else:
         for g in glyphs[1:]:
@@ -105,17 +117,32 @@ if __name__ == "__main__":
     result_font = sys.argv[1]
     font1 = sys.argv[2]
     font2 = sys.argv[3]
-    coefficient = float(sys.argv[4])
-
-    blender = lambda p: (coefficient * p[0][0] + (1.0 - coefficient) * p[1][0],
-                         coefficient * p[0][1] + (1.0 - coefficient) * p[1][1])
+    design_size = sys.argv[4]
 
     f1 = fontforge.open(font1)
     f2 = fontforge.open(font2)
+    match1 = re.match('([^0-9]*)([0-9]+)(.*)', f1.fontname)
+    match2 = re.match('([^0-9]*)([0-9]+)(.*)', f2.fontname)
+
+    design_size1 = match1.group(2)
+    design_size2 = match2.group(2)
+    b = (float(design_size) - float(design_size1)) / (float(design_size2) - float(design_size1))
+    a = 1.0 - b
+
+    blender = lambda p: (a*p[0][0] + b*p[1][0], a*p[0][1] + b*p[1][1])
+
     f = fontforge.font()
     f.encoding = 'Unicode'
-    f.fontname = result_font
+    f.fontname = match1.group(1) + design_size + match1.group(3)
+    f.familyname = match1.group(1) + design_size
+    m = re.match('(.*)' + design_size1 + '(.*)', f1.fullname)
+    f.fullname = m.group(1) + design_size + m.group(2)
+    f.copyright = f1.copyright
+    f.weight = f1.weight
+    f.version = f1.version
+
     blend_fonts(f, [f1, f2], blender)
-    f.save()
+
+    f.save(result_font)
 
 #--------------------------------------------------------------------------
