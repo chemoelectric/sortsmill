@@ -5,7 +5,7 @@ FamilyName: Goudy14
 Weight: Medium
 Copyright: Copyright (c) 2009 Barry Schwartz\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the "Software"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE.\n
 UComments: "2009-6-24: Created." 
-Version: 001.001
+Version: 001.002
 ItalicAngle: 0
 UnderlinePosition: -203
 UnderlineWidth: 101
@@ -15,14 +15,13 @@ LayerCount: 3
 Layer: 0 0 "Back"  1
 Layer: 1 0 "Fore"  0
 Layer: 2 0 "backup"  1
-NeedsXUIDChange: 1
 XUID: [1021 658 797806517 2347079]
 FSType: 0
 OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1245830276
-ModificationTime: 1248387331
+ModificationTime: 1249167180
 PfmFamily: 17
 TTFWeight: 500
 TTFWidth: 5
@@ -395,7 +394,7 @@ NameList: Adobe Glyph List
 DisplaySize: -72
 AntiAlias: 1
 FitToEm: 1
-WinInfo: 64 8 5
+WinInfo: 65536 8 5
 BeginPrivate: 11
 BlueValues 44 [-62 11 845 911 928 982 1439 1482 1529 1556]
 OtherBlues 11 [-423 -390]
@@ -2763,7 +2762,7 @@ EndChar
 StartChar: L
 Encoding: 76 76 38
 Width: 1235
-Flags: HMWO
+Flags: HMW
 PickledData: "(dp1
 S'spacing_anchors_slanted'
 p2
@@ -4558,13 +4557,13 @@ StartChar: f_b
 Encoding: 65544 -1 62
 Width: 1713
 VWidth: 0
-Flags: HMW
+Flags: MWO
 PickledData: "(dp1
 S'spacing_anchors_slanted'
 p2
 I00
 s."
-HStem: -23 74<1058.27 1349.68> -10 78<116.523 211.918> -7 50<419.16 534.449> 778 79<59.1703 220.796 372.796 642.661> 795 110<1031.13 1301.04> 1402 102<539.958 758.323> 1516 20G<874.5 908.5>
+HStem: -23 74<1058.27 1349.68> -7 50<419.16 534.449> 778 79<59.1703 220.796 372.796 642.661> 795 110<1031.13 1301.04> 1402 102<539.958 758.323> 1516 20G<874.5 908.5>
 VStem: 223 142<73.9939 777.967 857.483 1127> 744 165<176.065 657.406> 763 146<217.52 719.547 769.007 1374.18> 1499 134<277.76 577.607>
 AnchorPoint: "l;t" 60 1150 basechar 0
 AnchorPoint: "l;hi" 120 1500 basechar 0
@@ -4575,9 +4574,9 @@ AnchorPoint: "r;o" 1713 450 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-58 798 m 0x5760
+58 798 m 0
  58 850 72 858 138 858 c 0
- 164 858 200 857 213 857 c 0x5760
+ 164 858 200 857 213 857 c 0
  223 857 229 863 229 886 c 0
  229 1308 534 1504 689 1504 c 0
  717 1504 762 1499 782 1499 c 0
@@ -4587,12 +4586,12 @@ SplineSet
  909 779 911 769 924 769 c 0
  952 769 981 905 1237 905 c 0
  1522 905 1633 675 1633 482 c 0
- 1633 373 1574 165 1446 68 c 0x4f60
+ 1633 373 1574 165 1446 68 c 0
  1371 11 1276 -23 1161 -23 c 0
  971 -23 876 96 861 96 c 0
  839 96 811 -34 760 -34 c 0
  739 -34 735 -27 735 -9 c 0
- 735 41 744 146 744 159 c 0x87a0
+ 735 41 744 146 744 159 c 0
  744 315 762 468 762 700 c 0
  762 864 763 1146 763 1258 c 0
  763 1402 661 1402 614 1402 c 0
@@ -4609,7 +4608,7 @@ SplineSet
  365 265 l 2
  365 62 406 63 502 43 c 0
  534 36 535 23 535 9 c 0
- 535 1 534 -7 513 -7 c 0x3760
+ 535 1 534 -7 513 -7 c 0
  507 -7 404 7 356 7 c 0
  294 7 177 -10 155 -10 c 0
  137 -10 115 0 115 22 c 0
@@ -4618,14 +4617,14 @@ SplineSet
  223 237 221 351 221 736 c 0
  221 772 217 778 188 778 c 0
  166 778 140 776 105 776 c 0
- 63 776 58 785 58 798 c 0x5760
-909 271 m 2x8fa0
+ 63 776 58 785 58 798 c 0
+909 271 m 2
  909 224 1000 51 1208 51 c 0
  1406 51 1499 208 1499 379 c 0
  1499 578 1372 795 1138 795 c 0
  1078 795 1018 774 974 737 c 0
  914 687 909 666 909 642 c 2
- 909 271 l 2x8fa0
+ 909 271 l 2
 EndSplineSet
 Ligature2: "liga subtable" f b
 LCarets2: 1 0 
