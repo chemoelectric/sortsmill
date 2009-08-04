@@ -35,6 +35,7 @@ def point_list_to_contour(point_list, is_closed, is_quadratic):
     return c
 
 def make_pin(glyph):
+    glyph.preserveLayerAsUndo()
     new_layer = fontforge.layer()
     layer = glyph.layers[glyph.activeLayer]
     for contour in layer:
@@ -70,9 +71,9 @@ def points_are_selected(glyph):
 ## Leave this disabled unless there comes to be some way to save
 ## "undo" information.
 ##
-#fontforge.registerMenuItem((lambda _, glyph: make_pin(glyph)),
-#                           (lambda _, glyph: points_are_selected(glyph)),
-#                           None, "Glyph", "None",
-#                           "Turn points into pins")
+fontforge.registerMenuItem((lambda _, glyph: make_pin(glyph)),
+                           (lambda _, glyph: points_are_selected(glyph)),
+                           None, "Glyph", "None",
+                           "Turn points into pins")
 
 #--------------------------------------------------------------------------
