@@ -22,7 +22,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1249677682
-ModificationTime: 1250224548
+ModificationTime: 1250229554
 OS2TypoAscent: 0
 OS2TypoAOffset: 1
 OS2TypoDescent: 0
@@ -60,7 +60,7 @@ NameList: Adobe Glyph List
 DisplaySize: -72
 AntiAlias: 1
 FitToEm: 1
-WinInfo: 65560 8 6
+WinInfo: 88 8 6
 BeginPrivate: 9
 BlueValues 35 [-48 0 788 835 1365 1416 1483 1486]
 OtherBlues 11 [-539 -530]
@@ -78,7 +78,7 @@ Grid
 -1359.90039062 1365 m 1
  3186.90039062 1365 l 1
 EndSplineSet
-BeginChars: 65601 150
+BeginChars: 65601 151
 
 StartChar: i
 Encoding: 105 105 0
@@ -5264,20 +5264,24 @@ StartChar: slash
 Encoding: 47 47 137
 Width: 851
 VWidth: 1000
-Flags: W
-VStem: 40 119<-373.859 -311>
+Flags: WO
+HStem: -530 21G<-10 92.279> 1464 20G<715.721 818>
 LayerCount: 3
+Back
+SplineSet
+44.2340171479 -382 m 5
+ 722.698100966 1483.52561559 l 5
+ 818.232919464 1483.61814326 l 5
+ 139.20347914 -382 l 5
+ 44.2340171479 -382 l 5
+EndSplineSet
 Fore
 SplineSet
-40 -348 m 0
- 40 -329 62 -279 79 -232 c 2
- 79 -232 703 1454 708 1469 c 0
- 718 1499 731 1505 768 1505 c 0
- 787 1505 811 1502 811 1481 c 0
- 811 1462 792 1418 782 1391 c 2
- 159 -311 l 2
- 136 -374 126 -375 95 -375 c 0
- 71 -375 40 -374 40 -348 c 0
+-10 -530 m 1
+ 723 1484 l 1
+ 818 1484 l 1
+ 85 -530 l 1
+ -10 -530 l 1
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" fraction
 Substitution2: "numerators subtable" fraction
@@ -5285,20 +5289,26 @@ EndChar
 
 StartChar: fraction
 Encoding: 8260 8260 138
-Width: 490
-VWidth: 0
-Flags: HWO
+Width: 851
+VWidth: 1000
+Flags: WO
+HStem: 1345 20G<926.992 1054>
 LayerCount: 3
+Back
+SplineSet
+-14.5817581425 0 m 5
+ 940.690123807 1365 l 5
+ 1050.23834718 1365 l 5
+ 94.4555359241 0 l 5
+ -14.5817581425 0 l 5
+EndSplineSet
 Fore
 SplineSet
--288 -147 m 0
- -288 -115 511 1071 647 1273 c 0
- 648 1275 683 1331 701 1331 c 0
- 715 1331 738 1315 738 1305 c 0
- 738 1291 728 1271 721 1261 c 0
- -244 -180 -209 -175 -233 -183 c 0
- -240 -185 -247 -187 -254 -187 c 0
- -287 -187 -288 -168 -288 -147 c 0
+-83 -97 m 1
+ 941 1365 l 1
+ 1054 1365 l 1
+ 30 -97 l 1
+ -83 -97 l 1
 EndSplineSet
 EndChar
 
@@ -5661,6 +5671,22 @@ SplineSet
  472 -16 238 -14 126 36 c 0
  75 58 76 66 64 158 c 0
  57 209 48 262 48 272 c 0
+EndSplineSet
+EndChar
+
+StartChar: bar
+Encoding: 124 124 150
+Width: 851
+VWidth: 1000
+Flags: HW
+LayerCount: 3
+Fore
+SplineSet
+393 -425 m 1
+ 392 1561 l 1
+ 482 1561 l 1
+ 482 -425 l 1
+ 393 -425 l 1
 EndSplineSet
 EndChar
 EndChars
