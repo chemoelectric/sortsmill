@@ -81,47 +81,33 @@
 
 lookup numerators {
   sub @REGULAR_FIGURES by @NUMERATOR_FIGURES;
-  sub [\comma \period] by [\comma.numer \period.numer];
   sub \slash by \fraction;
 } numerators;
 
 lookup denominators {
   sub @REGULAR_FIGURES by @DENOMINATOR_FIGURES;
-  sub [\comma \period] by [\comma.denom \period.denom];
 } denominators;
 
-#feature numr {
-#  lookup numerators;
-#  sub [\period \comma] by [\period.numer \comma.numer];
-#} numr;
+feature numr {
+  lookup numerators;
+} numr;
 
-#feature dnom {
-#  lookup denominators;
-#  sub [\period \comma] by [\period.denom \comma.denom];
-#} dnom;
+feature dnom {
+  lookup denominators;
+} dnom;
 
-#feature frac {
-#  lookup numerators;
-#  sub [\fraction @DENOMINATOR_FIGURES \comma.denom \period.denom]
-#      [@NUMERATOR_FIGURES \comma.numer \period.numer]'
-#      by [@DENOMINATOR_FIGURES \comma.denom \period.denom];
-#} frac;
+feature frac {
+  lookup numerators;
+  sub [\fraction @DENOMINATOR_FIGURES] @NUMERATOR_FIGURES' by @DENOMINATOR_FIGURES;
+} frac;
 
-#feature sups {
-#  sub @REGULAR_FIGURES by @SUPERIOR_FIGURES;
-#  sub [\period \comma] by [\period.sup \comma.sup];
-#  sub [\parenleft \parenright] by [\parenleft.sup \parenright.sup];
-#  sub [\bracketleft \bracketright] by [\bracketleft.sup \bracketright.sup];
-#  sub \dollar by \dollar.sup;
-#} sups;
+feature sups {
+  sub @REGULAR_FIGURES by @SUPERIOR_FIGURES;
+} sups;
 
-#feature subs {
-#  sub @REGULAR_FIGURES by @INFERIOR_FIGURES;
-#  sub [\period \comma] by [\period.sub \comma.sub];
-#  sub [\parenleft \parenright] by [\parenleft.sub \parenright.sub];
-#  sub [\bracketleft \bracketright] by [\bracketleft.sub \bracketright.sub];
-#  sub \dollar by \dollar.sub;
-#} subs;
+feature subs {
+  sub @REGULAR_FIGURES by @INFERIOR_FIGURES;
+} subs;
 
 #-----------------------------------------------------------------------
 
