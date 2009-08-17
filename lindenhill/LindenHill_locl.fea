@@ -18,26 +18,31 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-languagesystem DFLT dflt;
-languagesystem latn dflt;
+lookup turkish {
 
-# Turkish, Azeri, Crimean Tatar
-languagesystem latn TRK;
-languagesystem latn AZE;
-languagesystem latn CRT;
+  # Replace the dotted 'i' with an equivalent glyph that does not
+  # get replaced with f-ligatures.  See http://typophile.com/node/17787
+  sub i by i.TRK;
 
-# Useful for spacing and kerning of capitals.
-# Comment this out for production.
-#include(CAPS.fea)
+} turkish;
 
-include(LindenHill_locl.fea)
-include(LindenHill_figures.fea)
-include(LindenHill_sc.fea)
-#include(LindenHill_case.fea)
-#include(LindenHill_salt.fea)
-include(LindenHill_liga.fea)
-include(LindenHill_cpsp.fea)
-include(LindenHill_generated_kerning.fea)
+
+feature locl {
+
+  script latn;
+
+  language TRK exclude_dflt;
+  lookup turkish;  
+
+  language AZE exclude_dflt;
+  lookup turkish;  
+
+  language CRT exclude_dflt;
+  lookup turkish;  
+
+} locl;
+
+
 
 # local variables:
 # mode: fundamental

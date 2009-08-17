@@ -76,12 +76,12 @@ def build_glyphs(bitbucket, f):
 
     if f.persistent == None:
         f.persistent = {}
-#    f.persistent['spacing_anchor_heights'] = { 'hi' : 1500, # caps and ascenders
+    f.persistent['spacing_anchor_heights'] = { 'hi' : 1400, # caps and ascenders
 #                                               't'  : 1150, # top diacritics
-#                                               'x'  : 850,  # ex-height
-#                                               'o'  : 450,  # like the letter o
-#                                               'bl' : 40,   # baseline
-#                                               'lo' : -420 } # descenders
+                                               'x'  : 770,  # ex-height
+                                               'o'  : 400,  # like the letter o
+                                               'bl' : 30,   # baseline
+                                               'lo' : -500 } # descenders
 
     build_several_space_glyphs(f, emsize = 2048, spacesize = 400,
                                thinspacesize = 2048 / 6,
@@ -238,9 +238,9 @@ def build_glyphs(bitbucket, f):
 
     #--------------------------------------------------------------------------
 
-#    f.selection.all()
-#    spacing_by_anchors.space_selected_by_anchors(f)
-#    f.selection.none()
+    f.selection.all()
+    spacing_by_anchors.space_selected_by_anchors(f)
+    f.selection.none()
 
     rules = cap_spacing.cap_spacing(f, caps, 0.015)
     cpsp = open('LindenHill_cpsp.fea', 'w')
@@ -249,8 +249,6 @@ def build_glyphs(bitbucket, f):
     print >> cpsp, '} cpsp;'
     cpsp.close()
 
-#    generate_kerning_and_read_features(None, f)
-    import readfeatures
-    readfeatures.erase_and_read_features(None, f)
+    generate_kerning_and_read_features(None, f)
 
     #--------------------------------------------------------------------------
