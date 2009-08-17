@@ -22,7 +22,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1249677682
-ModificationTime: 1250500401
+ModificationTime: 1250500723
 OS2TypoAscent: 0
 OS2TypoAOffset: 1
 OS2TypoDescent: 0
@@ -54,23 +54,24 @@ Lookup: 260 0 0 "spacing anchors"  {"spacing anchors-1"  } []
 Lookup: 257 0 0 "'cpsp' Capital Spacing in Latin lookup 1"  {"'cpsp' Capital Spacing in Latin lookup 1 subtable"  } ['cpsp' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
 Lookup: 258 0 0 "generated_kerning"  {"generated_kerning per glyph data 0"  "generated_kerning kerning class 1"  } ['kern' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
 DEI: 91125
-KernClass2: 9 8 "generated_kerning kerning class 1" 
+KernClass2: 9 9 "generated_kerning kerning class 1" 
  1 x
  1 c
- 1 l
- 2 m 
  3 e o
- 13 n napostrophe
+ 1 l
+ 1 m
  1 v
  3 w y
+ 13 n napostrophe
  1 c
  3 e o
+ 1 j
  1 l
  1 x
  1 v
  1 w
  1 y
- 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -30 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -20 {} 0 {} 0 {} -35 {} -35 {} -35 {} 0 {} 0 {} -20 {} 0 {} 0 {} -30 {} -30 {} -30 {} 0 {} 0 {} -20 {} 0 {} 0 {} -70 {} 0 {} -80 {} 0 {} 0 {} 0 {} -20 {} -30 {} -50 {} -80 {} -60 {} 0 {} 0 {} -20 {} 0 {} 0 {} -70 {} -90 {} -80 {} 0 {} -40 {} -50 {} -20 {} 0 {} 0 {} 0 {} 0 {} 0 {} -40 {} -80 {} -20 {} 0 {} 0 {} 0 {} 0 {}
+ 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -30 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -20 {} -10 {} 0 {} 0 {} -35 {} -35 {} -35 {} 0 {} 0 {} 0 {} -10 {} -20 {} -30 {} -50 {} -80 {} -60 {} 0 {} 0 {} -20 {} -10 {} 0 {} 0 {} -30 {} -30 {} -30 {} 0 {} 0 {} -20 {} -10 {} 0 {} 0 {} -70 {} 0 {} -80 {} 0 {} -40 {} -50 {} 0 {} -20 {} 0 {} 0 {} 0 {} 0 {} 0 {} -40 {} -80 {} 0 {} -20 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -20 {} -10 {} 0 {} 0 {} -70 {} -90 {} -80 {}
 ChainSub2: coverage "'frac' Diagonal Fractions in Latin lookup 3 subtable"  0 0 0 1
  1 1 0
   Coverage: 109 zero.numer one.numer two.numer three.numer four.numer five.numer six.numer seven.numer eight.numer nine.numer
@@ -134,7 +135,7 @@ StartChar: i
 Encoding: 105 105 0
 Width: 552
 VWidth: 0
-Flags: HMWO
+Flags: HMW
 HStem: 0 65<68 204.381 351.47 512> 812 20G<293.5 350> 1125 178<255.958 379.445>
 VStem: 206 144<68.8509 723.992> 230 174<1147.86 1276.19>
 AnchorPoint: "l;bl" 0 30 basechar 0
@@ -174,19 +175,19 @@ EndChar
 
 StartChar: j
 Encoding: 106 106 1
-Width: 532
+Width: 522
 VWidth: 0
-Flags: HMW
+Flags: HMWO
 HStem: -534 92<-6 150.898> 807 20G<263.5 330> 1125 178<235.958 359.445>
 VStem: 186 144<-368.625 719.978> 210 174<1147.86 1276.19>
-AnchorPoint: "r;o" 532 400 basechar 0
+AnchorPoint: "r;o" 522 400 basechar 0
 AnchorPoint: "r;hi" 412 1400 basechar 0
-AnchorPoint: "r;x" 532 770 basechar 0
-AnchorPoint: "r;bl" 532 30 basechar 0
-AnchorPoint: "l;o" 0 400 basechar 0
+AnchorPoint: "r;x" 522 770 basechar 0
+AnchorPoint: "r;bl" 522 30 basechar 0
+AnchorPoint: "l;o" 10 400 basechar 0
 AnchorPoint: "l;hi" 160 1400 basechar 0
 AnchorPoint: "l;x" 0 770 basechar 0
-AnchorPoint: "l;bl" 0 30 basechar 0
+AnchorPoint: "l;bl" 10 30 basechar 0
 AnchorPoint: "l;k;lo" -150 -500 basechar 0
 AnchorPoint: "r;lo" 372 -500 basechar 0
 LayerCount: 3
@@ -7751,19 +7752,19 @@ EndChar
 
 StartChar: ij
 Encoding: 307 307 224
-Width: 1084
+Width: 1074
 VWidth: 0
 Flags: HW
 AnchorPoint: "r;hi" 964 1400 basechar 0
 AnchorPoint: "l;x" 0 770 basechar 0
-AnchorPoint: "r;bl" 1084 30 basechar 0
+AnchorPoint: "r;bl" 1074 30 basechar 0
 AnchorPoint: "l;k;lo" 402 -500 basechar 0
 AnchorPoint: "r;lo" 924 -500 basechar 0
-AnchorPoint: "r;o" 1084 400 basechar 0
+AnchorPoint: "r;o" 1074 400 basechar 0
 AnchorPoint: "l;o" 0 400 basechar 0
 AnchorPoint: "l;hi" 180 1400 basechar 0
 AnchorPoint: "l;bl" 0 30 basechar 0
-AnchorPoint: "r;x" 1084 770 basechar 0
+AnchorPoint: "r;x" 1074 770 basechar 0
 LayerCount: 3
 Fore
 Refer: 1 106 N 1 0 0 1 552 0 2
