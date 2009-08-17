@@ -83,7 +83,7 @@ def build_glyphs(bitbucket, f):
                                                'bl' : 30,   # baseline
                                                'lo' : -500 } # descenders
 
-    build_several_space_glyphs(f, emsize = 2048, spacesize = 400,
+    build_several_space_glyphs(f, emsize = 2048, spacesize = 380,
                                thinspacesize = 2048 / 6,
                                hairspacesize = 2048 / 10,
                                tabwidth = f['zero.lining'].width)
