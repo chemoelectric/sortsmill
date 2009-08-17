@@ -366,36 +366,38 @@ def print_kerning_feature_file(file, font):
     right_signatures = right_groups.keys()
     left_signatures = left_groups.keys()
 
-    print >> file, "lookup generated_kerning {"
-    print >> file
-    print_kerning_class_definitions(file, right_groups, "r")
-    print >> file
-    print_kerning_class_definitions(file, left_groups, "l")
-    print >> file
-
     if font.temporary == None:
         font.temporary = {}
     if "kern-cache" not in font.temporary:
         font.temporary["kern-cache"] = {}
-
     kernings = calculate_group_kernings(right_signatures, left_signatures,
                                         right_groups, left_groups,
                                         cache = font.temporary["kern-cache"],
                                         rounding_function = rounding_function,
                                         tolerance = tolerance)
     kernings = join_groups(kernings)
-    for (obj1, obj2, k) in kernings:
-        print >> file, "pos",
-        print >> file, obj1.notation(right_groups, "r"),
-        print >> file, obj2.notation(left_groups, "l"),
-        print >> file, str(k) + ";"
 
-    print >> file
-    print >> file, "} generated_kerning;"
-    print >> file
-    print >> file, "feature kern {"
-    print >> file, "  lookup generated_kerning;"
-    print >> file, "} kern;"
+    if kernings != []:
+
+        print >> file, "lookup generated_kerning {"
+        print >> file
+        print_kerning_class_definitions(file, right_groups, "r")
+        print >> file
+        print_kerning_class_definitions(file, left_groups, "l")
+        print >> file
+
+        for (obj1, obj2, k) in kernings:
+            print >> file, "pos",
+            print >> file, obj1.notation(right_groups, "r"),
+            print >> file, obj2.notation(left_groups, "l"),
+            print >> file, str(k) + ";"
+
+        print >> file
+        print >> file, "} generated_kerning;"
+        print >> file
+        print >> file, "feature kern {"
+        print >> file, "  lookup generated_kerning;"
+        print >> file, "} kern;"
 
 
 ###########################################################################
@@ -421,7 +423,7 @@ def copy_spacing_anchors(*glyphs):
             glyph.anchorPoints += ((name, "base", x, y),)
 
 
-###########################################################################
+###########################################################################            
 
 
 def left_spacing(glyph):
@@ -511,6 +513,38 @@ def populate_with_spacing_anchors(glyph):
 ###########################################################################
 
 
+def selected_spacing_anchors(glyph):
+    selected_points = []
+    for a in glyph.anchorPointsWithSel:
+        if a[4]:
+            a_name = anchor_name(a[0])
+            if a_name.side in 'lr':
+                selected_points.append(a)
+    return selected_points
+
+
+# TODO: Make this preserve modifiers other than 'k;'.
+def set_spacing_anchors_read_only(glyph, kerning_only):
+    spacing_anchors = []
+    for a in glyph.anchorPointsWithSel:
+        if a[4]:
+            a_name = anchor_name(a[0])
+            if a_name.side in 'lr':
+                if kerning_only:
+                    new_name = a_name.side + ';k;' + a_name.spacing_name
+                else:
+                    new_name = a_name.side + ';' + a_name.spacing_name
+                spacing_anchors.append((new_name,) + a[1:])
+            else:
+                spacing_anchors.append(a)
+        else:
+            spacing_anchors.append(a)
+    glyph.anchorPointsWithSel = spacing_anchors
+
+
+###########################################################################
+
+
 def glyph_has_spacing_anchors(bitbucket, glyph):
     return left_spacing(glyph) != None and right_spacing(glyph) != None
 
@@ -565,13 +599,15 @@ def something_is_selected(bitbucket, font):
     return False
 
 
-#### This will require a new fontforge feature.
-#
-#fontforge.registerMenuItem((lambda _, glyph: set_anchors_read_only(glyph, True)),
-##                           glyph_has_spacing_anchors,
-#                           True,
-#                           None, "Glyph", "None",
-#                           "Set spacing anchors read-only")
+fontforge.registerMenuItem((lambda _, glyph: set_spacing_anchors_read_only(glyph, True)),
+                           (lambda _, glyph: selected_spacing_anchors(glyph) != []),
+                           None, "Glyph", "None",
+                           "Make spacing anchors kerning-only")
+
+fontforge.registerMenuItem((lambda _, glyph: set_spacing_anchors_read_only(glyph, False)),
+                           (lambda _, glyph: selected_spacing_anchors(glyph) != []),
+                           None, "Glyph", "None",
+                           "Make spacing anchors non-kerning-only")
 
 fontforge.registerMenuItem(space_glyph_by_anchors,
                            glyph_has_spacing_anchors,
