@@ -68,12 +68,20 @@ def points_are_selected(glyph):
                 return True
     return False
 
-## Leave this disabled unless there comes to be some way to save
-## "undo" information.
-##
 fontforge.registerMenuItem((lambda _, glyph: make_pin(glyph)),
                            (lambda _, glyph: points_are_selected(glyph)),
                            None, "Glyph", "None",
                            "Turn points into pins")
+
+#--------------------------------------------------------------------------
+
+def reautohint(f):
+    for g in f.glyphs():
+        if not g.manualHints:
+            g.autoHint()
+
+fontforge.registerMenuItem((lambda _, font: reautohint(font)),
+                           None, None, "Font", "None",
+                           "Re-autohint autohintable glyphs")
 
 #--------------------------------------------------------------------------
