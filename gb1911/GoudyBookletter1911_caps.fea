@@ -20,19 +20,20 @@
 
 @uppercase = [A-Z];
 @lowercase = [a-z];
-@open = [A.open-Z.open];
+@smallcaps = [a.sc-z.sc];
+@uppercase.open = [A.open-Z.open];
 
 feature titl {
-  sub @uppercase by @open;
+  sub @uppercase by @uppercase.open;
 } titl;
 
-#feature smcp {
-#    lookup smcpLowercasetoSmallCapitalsinL;
-#} smcp;
+feature smcp {
+  sub @lowercase by @smallcaps;
+} smcp;
 
-#feature c2sc {
-#   lookup c2scCapitalstoSmallCapitalsinLa;
-#} c2sc;
+feature c2sc {
+  sub @uppercase by @smallcaps;
+} c2sc;
 
 
 # local variables:
