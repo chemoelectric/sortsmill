@@ -21,11 +21,16 @@
 @uppercase = [A-Z];
 @lowercase = [a-z];
 @smallcaps = [a.sc-z.sc];
+@uppercase.title = [A.title-Z.title];
 @uppercase.open = [A.open-Z.open];
 
 feature titl {
-  sub @uppercase by @uppercase.open;
+  sub @uppercase by @uppercase.title;
 } titl;
+
+feature ss01 {
+  sub @uppercase.title by @uppercase.open;
+} ss01;
 
 feature smcp {
   sub @lowercase by @smallcaps;
