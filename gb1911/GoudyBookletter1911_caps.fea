@@ -26,10 +26,12 @@
 
 feature titl {
   sub @uppercase by @uppercase.title;
+  sub ampersand by ampersand.title;
 } titl;
 
 feature ss01 {
   sub @uppercase.title by @uppercase.open;
+  sub ampersand.title by ampersand.open;
 } ss01;
 
 feature smcp {
