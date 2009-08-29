@@ -21,18 +21,6 @@
 @uppercase = [A-Z];
 @lowercase = [a-z];
 @smallcaps = [a.sc-z.sc];
-@uppercase.title = [A.title-Z.title];
-@uppercase.open = [A.open-Z.open];
-
-feature titl {
-  sub @uppercase by @uppercase.title;
-  sub ampersand by ampersand.title;
-} titl;
-
-feature ss01 {
-  sub @uppercase.title by @uppercase.open;
-  sub ampersand.title by ampersand.open;
-} ss01;
 
 feature smcp {
   sub @lowercase by @smallcaps;
