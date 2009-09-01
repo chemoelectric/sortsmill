@@ -74,6 +74,11 @@ for sfd_path in sys.argv[1:]:
         if f.getLookupInfo(lookup)[0] == 'gpos_mark2base':
             f.removeLookup(lookup)
 
+    f.selection.all()
+    f.canonicalStart()
+    f.canonicalContours()
+    f.selection.none()
+
     font_file = f.fontname + font_extension
     print "Generating", font_file
     f.generate(font_file, flags = generation_flags, layer = layer_to_use)
