@@ -164,7 +164,8 @@ def apply_license(font, license_notice, license_url, copyright_year, copyright_h
         font.fullname = name_prefix + ' ' + font.fullname
         sfnt_names = font.sfnt_names
         for (lang, name_id, name) in sfnt_names:
-            if name_id in ['Family', 'Preferred Family', 'WWS Family']:
+            if (name_id in ['Family', 'Preferred Family', 'WWS Family'] and
+                name[:len(name_prefix) + 1] != name_prefix + ' '):
                 font.appendSFNTName(lang, name_id, name_prefix + ' ' + name)
     font.copyright = copyright_notice(copyright_year, copyright_holder)
     font.appendSFNTName('English (US)', 'Copyright', font.copyright)

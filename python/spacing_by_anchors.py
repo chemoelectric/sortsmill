@@ -518,7 +518,7 @@ def selected_spacing_anchors(glyph):
     for a in glyph.anchorPointsWithSel:
         if a[4]:
             a_name = anchor_name(a[0])
-            if a_name.side in 'lr':
+            if a_name.side and a_name.side in 'lr':
                 selected_points.append(a)
     return selected_points
 
