@@ -3252,6 +3252,7 @@ def build_space_glyph(font, glyph_id, width):
         name = name_from_unicode(glyph_id)
         unicode = glyph_id        
     new_glyph = font.createChar(unicode, name)
+    new_glyph.glyphname = name
     new_glyph.clear()
     new_glyph.width = width
 
@@ -3309,6 +3310,7 @@ def build_spacing_marks(font, width):
             spacing_mark = spacing_marks_lookup[combining_mark]
             if spacing_mark != None:
                 new_glyph = font.createChar(fontforge.unicodeFromName(spacing_mark), spacing_mark)
+                new_glyph.glyphname = spacing_mark
                 new_glyph.clear()
                 new_glyph.addReference(combining_mark, transformation)
                 new_glyph.width = width
@@ -3317,6 +3319,7 @@ def build_spacing_marks(font, width):
 def build_accented_glyph_no_spacing(glyphname, base, mark, width = None, rsb = None):
     assert not (width != None and rsb != None)
     new_glyph = base.font.createChar(fontforge.unicodeFromName(glyphname), glyphname)
+    new_glyph.glyphname = glyphname
     new_glyph.clear()
     new_glyph.addReference(base.glyphname)
     new_glyph.appendAccent(name=mark.glyphname)
@@ -3349,6 +3352,7 @@ def build_mark_to_base(glyphname, base, mark, anchor_name):
         new_glyph = base.font[glyphname]
     else:
         new_glyph = base.font.createChar(fontforge.unicodeFromName(glyphname), glyphname)
+    new_glyph.glyphname = glyphname
     for base_anchor in base.anchorPoints:
         if base_anchor[0] == anchor_name:
             break;
@@ -3424,12 +3428,14 @@ class mark_builder:
                 build_accented_glyph_no_spacing(glyphname, base, f[COMMA_ABOVE_RIGHT])
             else:
                 new_glyph = self.mark.font.createChar(fontforge.unicodeFromName(glyphname), glyphname)
+                new_glyph.glyphname = glyphname
                 new_glyph.clear()
                 new_glyph.build()
         elif has_ascender(base) and self.mark.glyphname + ".cap" in f:
             build_accented_glyph_no_spacing(glyphname, base, f[self.mark.glyphname + ".cap"])
         else:
             new_glyph = self.mark.font.createChar(fontforge.unicodeFromName(glyphname), glyphname)
+            new_glyph.glyphname = glyphname
             new_glyph.clear()
             new_glyph.build()
         if glyphname in f:
@@ -3514,6 +3520,7 @@ def build_multigraph(glyphname, components,
 
     f = components[0].font
     new_glyph = f.createChar(fontforge.unicodeFromName(glyphname), glyphname)
+    new_glyph.glyphname = glyphname
     new_glyph.clear()
     new_glyph.addReference(components[0].glyphname)
 
@@ -3541,6 +3548,7 @@ def build_multigraph(glyphname, components,
 def make_glyph_reference(glyphname, original, transformation = None):
     f = original.font
     new_glyph = f.createChar(fontforge.unicodeFromName(glyphname), glyphname)
+    new_glyph.glyphname = glyphname
     new_glyph.clear()
     if transformation != None:
         new_glyph.addReference(original.glyphname, transformation)
@@ -3557,6 +3565,7 @@ def make_turned_glyph(glyphname, original):
     f = original.font
 
     new_glyph = f.createChar(fontforge.unicodeFromName(glyphname), glyphname)
+    new_glyph.glyphname = glyphname
     new_glyph.clear()
 
     (xmin, ymin, xmax, ymax) = original.boundingBox()

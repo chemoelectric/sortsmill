@@ -22,7 +22,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1249677682
-ModificationTime: 1251917466
+ModificationTime: 1251921826
 OS2TypoAscent: 0
 OS2TypoAOffset: 1
 OS2TypoDescent: 0
@@ -36,6 +36,7 @@ HheadAscent: 0
 HheadAOffset: 1
 HheadDescent: 0
 HheadDOffset: 1
+OS2Vendor: 'PfEd'
 Lookup: 3 0 0 "'aalt' Access All Alternates lookup 0"  {"'aalt' Access All Alternates lookup 0 subtable"  } ['aalt' ('DFLT' <'dflt' > ) ]
 Lookup: 3 0 0 "'aalt' Access All Alternates in Latin lookup 0"  {"'aalt' Access All Alternates in Latin lookup 0 subtable"  } ['aalt' ('latn' <'TRK ' 'AZE ' 'CRT ' 'dflt' > ) ]
 Lookup: 1 0 0 "turkish"  {"turkish subtable"  } ['locl' ('latn' <'TRK ' 'AZE ' 'CRT ' > ) ]
@@ -56,12 +57,12 @@ Lookup: 257 0 0 "'cpsp' Capital Spacing in Latin lookup 2"  {"'cpsp' Capital Spa
 Lookup: 258 0 0 "generated_kerning"  {"generated_kerning per glyph data 0"  "generated_kerning kerning class 1"  } ['kern' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
 DEI: 91125
 KernClass2: 22 21 "generated_kerning kerning class 1" 
- 124 r racute rcaron t u uacute ubreve ucircumflex udieresis ugrave uhungarumlaut umacron uring utilde z zacute zcaron zdotaccent
+ 153 r racute rcaron rcommaaccent t u uacute ubreve ucircumflex udieresis ugrave uhungarumlaut umacron uni0163 uni021B uring utilde z zacute zcaron zdotaccent
  10 underscore
  56 f_f_j f_j ij j jcircumflex longs_j longs_longs_j uni0237
  17 longs longs_longs
- 27 s sacute scaron scircumflex
- 35 f_f_k f_k k longs_k longs_longs_k x
+ 44 s sacute scaron scedilla scircumflex uni0219
+ 48 f_f_k f_k k kcommaaccent longs_k longs_longs_k x
  65 a aacute abreve acircumflex adieresis agrave amacron aring atilde
  106 dotlessi f_f_i f_i i i.TRK iacute ibreve icircumflex idieresis igrave imacron itilde longs_i longs_longs_i
  31 f_f_l f_l longs_l longs_longs_l
@@ -69,14 +70,14 @@ KernClass2: 22 21 "generated_kerning kerning class 1"
  1 q
  1 v
  44 w wcircumflex y yacute ycircumflex ydieresis
- 31 g gbreve gcircumflex gdotaccent
+ 44 g gbreve gcircumflex gcommaaccent gdotaccent
  33 b f_b f_f_b longs_b longs_longs_b
- 38 c cacute ccaron ccircumflex cdotaccent
+ 47 c cacute ccaron ccedilla ccircumflex cdotaccent
  200 e eacute ebreve ecaron ecircumflex edieresis edotaccent egrave emacron f_f_thorn f_thorn longs_longs_thorn longs_thorn o oacute obreve ocircumflex odieresis ograve ohungarumlaut omacron otilde p thorn
  1 d
- 8 l lacute
+ 21 l lacute lcommaaccent
  77 f_f_h f_f_hcircumflex f_h f_hcircumflex h hcircumflex longs_h longs_longs_h m
- 34 n nacute napostrophe ncaron ntilde
+ 47 n nacute napostrophe ncaron ncommaaccent ntilde
  65 a aacute abreve acircumflex adieresis agrave amacron aring atilde
  14 h hcircumflex 
  21 j jcircumflex uni0237
@@ -84,16 +85,16 @@ KernClass2: 22 21 "generated_kerning kerning class 1"
  1 x
  113 f f_b f_f f_f_b f_f_h f_f_hcircumflex f_f_i f_f_j f_f_k f_f_l f_f_thorn f_h f_hcircumflex f_i f_j f_k f_l f_thorn
  1 p
- 1 t
- 1 k
- 8 l lacute
+ 17 t uni0163 uni021B
+ 14 k kcommaaccent
+ 21 l lacute lcommaaccent
  10 underscore
  1 b
- 38 c cacute ccaron ccircumflex cdotaccent
+ 47 c cacute ccaron ccedilla ccircumflex cdotaccent
  1 d
  146 e eacute ebreve ecaron ecircumflex edieresis edotaccent egrave emacron o oacute obreve ocircumflex odieresis ograve ohungarumlaut omacron otilde q
- 31 g gbreve gcircumflex gdotaccent
- 27 s sacute scaron scircumflex
+ 44 g gbreve gcircumflex gcommaaccent gdotaccent
+ 44 s sacute scaron scedilla scircumflex uni0219
  1 v
  13 w wcircumflex
  30 y yacute ycircumflex ydieresis
@@ -136,7 +137,7 @@ NameList: Adobe Glyph List
 DisplaySize: -72
 AntiAlias: 1
 FitToEm: 1
-WinInfo: 184 8 6
+WinInfo: 104 8 6
 BeginPrivate: 9
 BlueValues 35 [-48 0 788 835 1365 1416 1469 1486]
 OtherBlues 11 [-539 -530]
@@ -154,8 +155,8 @@ Grid
 -1359.90039062 1365 m 1
  3186.90039062 1365 l 1
 EndSplineSet
-AnchorClass2: "top"  "accent positioning-1" "r;k;lo"  "spacing anchors-1" "l;k;lo"  "spacing anchors-1" "r;lo"  "spacing anchors-1" "l;lo"  "spacing anchors-1" "r;k;o"  "spacing anchors-1" "l;k;o"  "spacing anchors-1" "r;o"  "spacing anchors-1" "l;o"  "spacing anchors-1" "r;k;hi"  "spacing anchors-1" "l;k;hi"  "spacing anchors-1" "r;hi"  "spacing anchors-1" "l;hi"  "spacing anchors-1" "r;k;x"  "spacing anchors-1" "l;k;x"  "spacing anchors-1" "r;x"  "spacing anchors-1" "l;x"  "spacing anchors-1" "r;k;bl"  "spacing anchors-1" "l;k;bl"  "spacing anchors-1" "r;bl"  "spacing anchors-1" "l;bl"  "spacing anchors-1" 
-BeginChars: 65728 531
+AnchorClass2: "cedilla"  "accent positioning-1" "top"  "accent positioning-1" "r;k;lo"  "spacing anchors-1" "l;k;lo"  "spacing anchors-1" "r;lo"  "spacing anchors-1" "l;lo"  "spacing anchors-1" "r;k;o"  "spacing anchors-1" "l;k;o"  "spacing anchors-1" "r;o"  "spacing anchors-1" "l;o"  "spacing anchors-1" "r;k;hi"  "spacing anchors-1" "l;k;hi"  "spacing anchors-1" "r;hi"  "spacing anchors-1" "l;hi"  "spacing anchors-1" "r;k;x"  "spacing anchors-1" "l;k;x"  "spacing anchors-1" "r;x"  "spacing anchors-1" "l;x"  "spacing anchors-1" "r;k;bl"  "spacing anchors-1" "l;k;bl"  "spacing anchors-1" "r;bl"  "spacing anchors-1" "l;bl"  "spacing anchors-1" 
+BeginChars: 65738 568
 
 StartChar: i
 Encoding: 105 105 0
@@ -339,6 +340,7 @@ VWidth: 0
 Flags: HMW
 HStem: 0 65<41 157.366 298.419 459 798.987 930> 747 55<585 689.981 795.465 913> 1465 20G<245 302>
 VStem: 158 144<67.0248 338 410 1384.98>
+AnchorPoint: "cedilla" 493 -190 basechar 0
 AnchorPoint: "l;bl" 5 30 basechar 0
 AnchorPoint: "l;x" 0 770 basechar 0
 AnchorPoint: "l;hi" 0 1400 basechar 0
@@ -421,9 +423,10 @@ StartChar: n
 Encoding: 110 110 6
 Width: 950
 VWidth: 0
-Flags: HMW
+Flags: HMWO
 HStem: 0 65<37 146.264 294.638 439 532 644.424 794.801 914> 695 114<421.132 621.925>
 VStem: 148 144<68.5586 649.199 678 725.828> 647 144<67.8848 668.381>
+AnchorPoint: "cedilla" 481 -190 basechar 0
 AnchorPoint: "top" 479 1000 basechar 0
 AnchorPoint: "l;bl" 0 30 basechar 0
 AnchorPoint: "l;x" 0 770 basechar 0
@@ -722,6 +725,7 @@ VWidth: 0
 Flags: HW
 HStem: -26 123<330.687 633.838> 740 82<289.087 486.288>
 VStem: 50 144<237.318 587.798>
+AnchorPoint: "cedilla" 435 -190 basechar 0
 AnchorPoint: "top" 426 1000 basechar 0
 AnchorPoint: "l;bl" 0 30 basechar 0
 AnchorPoint: "l;x" 40 770 basechar 0
@@ -753,7 +757,7 @@ StartChar: b
 Encoding: 98 98 13
 Width: 1034
 VWidth: 0
-Flags: HMWO
+Flags: HMW
 HStem: -19 74<391.635 695.384> -4 21G<188 208> 706 112<440.528 700.907> 1460 20G<269 320>
 VStem: 176 144<110.615 659.166 689 1381.99> 835 149<233.539 563.75>
 AnchorPoint: "l;bl" 50 30 basechar 0
@@ -900,6 +904,7 @@ VWidth: 0
 Flags: HW
 HStem: -26 69<211.241 438.165> 738 74<270.279 503.335> 815 20G<549.5 617>
 VStem: 104 135<554.325 712.771> 474 151<69.7049 253.763> 551 65<525 690.832 775.013 834>
+AnchorPoint: "cedilla" 358 -190 basechar 0
 AnchorPoint: "top" 354 1000 basechar 0
 AnchorPoint: "l;bl" 10 30 basechar 0
 AnchorPoint: "l;x" 50 770 basechar 0
@@ -1130,6 +1135,7 @@ VWidth: 0
 Flags: HW
 HStem: -23 115<338.838 525.984> 690 98<312 576>
 VStem: 168 144<121.081 690>
+AnchorPoint: "cedilla" 368 -190 basechar 0
 AnchorPoint: "l;bl" 70 30 basechar 0
 AnchorPoint: "l;x" 0 770 basechar 0
 AnchorPoint: "l;o" 30 400 basechar 0
@@ -1414,9 +1420,10 @@ StartChar: C
 Encoding: 67 67 26
 Width: 1552
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -32 90<653.72 1083.05> 1273 97<602.746 1122.05>
 VStem: 80 173<478.741 894.74> 1263 78<1310.23 1383> 1302 66<218.694 392.576 991 1145.17>
+AnchorPoint: "cedilla" 823 -190 basechar 0
 AnchorPoint: "top" 802 1500 basechar 0
 LayerCount: 3
 Fore
@@ -1439,7 +1446,6 @@ SplineSet
  1368 142 1124 -32 823 -32 c 0
  349 -32 80 231 80 644 c 0xe8
 EndSplineSet
-Validated: 1
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" c.sc
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" c.sc
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=11 dy=0 dh=23 dv=0
@@ -1727,9 +1733,10 @@ StartChar: K
 Encoding: 75 75 33
 Width: 1459
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 80<60 208.613 383.185 583 1211.38 1397> 1285 80<21 209.737 381.885 533 851 1025.98 1160.06 1339>
 VStem: 211 166<86.2732 623 719 1280.39>
+AnchorPoint: "cedilla" 743 -190 basechar 0
 LayerCount: 3
 Fore
 SplineSet
@@ -1765,7 +1772,6 @@ SplineSet
  211 1211 l 2
  211 1298 207 1282 20 1285 c 1
 EndSplineSet
-Validated: 1
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" k.sc
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" k.sc
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=11 dy=0 dh=22 dv=0
@@ -1858,9 +1864,10 @@ StartChar: N
 Encoding: 78 78 36
 Width: 1483
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -34 21G<1224.5 1274> 0 80<65 209.432 315.281 495> 1285 80<33 193 1007 1184.57 1291.06 1444>
 VStem: 213 96<86.6719 1149> 1188 96<282 1277.89>
+AnchorPoint: "cedilla" 751 -190 basechar 0
 AnchorPoint: "top" 741 1500 basechar 0
 LayerCount: 3
 Fore
@@ -1892,7 +1899,6 @@ SplineSet
  33 1285 l 1
  31 1365 l 1
 EndSplineSet
-Validated: 1
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" n.sc
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" n.sc
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=11 dy=0 dh=22 dv=0
@@ -2281,9 +2287,10 @@ StartChar: S
 Encoding: 83 83 46
 Width: 1018
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -19 87<232.057 637.12> 1286 96<348.47 702.819> 1378 20G<762 833.604>
 VStem: 110 70<-52.2288 -25.5639> 118 136<939.804 1179.68> 751 167<195.596 433.724> 762 70<1341.04 1394>
+AnchorPoint: "cedilla" 470 -190 basechar 0
 AnchorPoint: "top" 517 1500 basechar 0
 LayerCount: 3
 Fore
@@ -2313,7 +2320,6 @@ SplineSet
  110 -57 l 1
  86 81 58 216 31 349 c 1xd4
 EndSplineSet
-Validated: 1
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" s.sc
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" s.sc
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=7 dy=0 dh=15 dv=0
@@ -2324,9 +2330,10 @@ StartChar: T
 Encoding: 84 84 47
 Width: 1394
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 2 78<452 620.487 795.693 991> 1275 90<208.625 620.292 791.365 1234.39>
 VStem: 111 74<1037 1247.77> 624 166<85.316 1273.04> 1224 74<1040 1207.58>
+AnchorPoint: "cedilla" 710 -190 basechar 0
 AnchorPoint: "top" 704 1500 basechar 0
 LayerCount: 3
 Fore
@@ -2352,7 +2359,6 @@ SplineSet
  186 1275 202 1244 185 1034 c 1
  111 1037 l 1
 EndSplineSet
-Validated: 1
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" t.sc
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" t.sc
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=10 dy=0 dh=21 dv=0
@@ -4236,7 +4242,7 @@ SplineSet
  766.176694772 373.76549747 565.334719335 551.576299376 384 745 c 1
  319 728 251 647 251 524 c 0xbb
 EndSplineSet
-Validated: 524289
+Validated: 1
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" ampersand.sc
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" ampersand.sc
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=13 dy=0 dh=26 dv=0
@@ -4667,7 +4673,7 @@ SplineSet
  753 1157.40039062 624 1268.63964844 498 1268.63964844 c 0
  322 1268.63964844 278 1159.45996094 278 1062.63964844 c 0xd8
 EndSplineSet
-Validated: 524289
+Validated: 1
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" eight.lining eight.sub eight.sup eight.denom eight.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" eight.lining eight.sub eight.sup eight.denom eight.numer
 Substitution2: "lining_figures subtable" eight.lining
@@ -4703,7 +4709,7 @@ SplineSet
  724 534 591 754 427 754 c 0
  357 754 216 673 216 468 c 0
 EndSplineSet
-Validated: 524289
+Validated: 1
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" nine.lining nine.sub nine.sup nine.denom nine.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" nine.lining nine.sub nine.sup nine.denom nine.numer
 Substitution2: "lining_figures subtable" nine.lining
@@ -5031,7 +5037,7 @@ SplineSet
  628 886 524 977 407 977 c 0
  310 977 228 898 228 821 c 0
 EndSplineSet
-Validated: 524289
+Validated: 1
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" six.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" six.denom
 Substitution2: "Single Substitution lookup 4 subtable" six.denom
@@ -5134,7 +5140,7 @@ SplineSet
  575 1200 480 1359 357 1359 c 0
  302 1359 192 1312 192 1144 c 0
 EndSplineSet
-Validated: 524289
+Validated: 1
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" nine.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" nine.denom
 Substitution2: "Single Substitution lookup 4 subtable" nine.denom
@@ -5346,7 +5352,7 @@ SplineSet
  628 386 524 477 407 477 c 0
  310 477 228 398 228 321 c 0
 EndSplineSet
-Validated: 524289
+Validated: 1
 EndChar
 
 StartChar: seven.denom
@@ -5462,7 +5468,7 @@ SplineSet
  575 700 480 859 357 859 c 0
  302 859 192 812 192 644 c 0
 EndSplineSet
-Validated: 524289
+Validated: 1
 EndChar
 
 StartChar: zero.sub
@@ -5671,7 +5677,7 @@ SplineSet
  628 186 524 277 407 277 c 0
  310 277 228 198 228 121 c 0
 EndSplineSet
-Validated: 524289
+Validated: 1
 EndChar
 
 StartChar: seven.sub
@@ -5765,7 +5771,7 @@ SplineSet
  575 500 480 659 357 659 c 0
  302 659 192 612 192 444 c 0
 EndSplineSet
-Validated: 524289
+Validated: 1
 EndChar
 
 StartChar: zero.sup
@@ -5974,7 +5980,7 @@ SplineSet
  628 986 524 1077 407 1077 c 0
  310 1077 228 998 228 921 c 0
 EndSplineSet
-Validated: 524289
+Validated: 1
 EndChar
 
 StartChar: seven.sup
@@ -6068,7 +6074,7 @@ SplineSet
  575 1300 480 1459 357 1459 c 0
  302 1459 192 1412 192 1244 c 0
 EndSplineSet
-Validated: 524289
+Validated: 1
 EndChar
 
 StartChar: slash
@@ -6114,7 +6120,7 @@ SplineSet
  -13.5234375 -145.634765625 l 1
  -83.1513671875 -96.880859375 l 1
 EndSplineSet
-Validated: 524289
+Validated: 1
 EndChar
 
 StartChar: zero.lining
@@ -7026,7 +7032,7 @@ SplineSet
  216.516838037 152 l 1
  72.5606223266 152 l 1
 EndSplineSet
-Validated: 524289
+Validated: 1
 EndChar
 
 StartChar: asciitilde
@@ -7134,7 +7140,7 @@ SplineSet
  855 408.875 820.3515625 361.499023438 460.434570312 1.58203125 c 1
  375.58203125 86.4345703125 l 1
 EndSplineSet
-Validated: 524289
+Validated: 1
 EndChar
 
 StartChar: divide
@@ -7894,7 +7900,7 @@ SplineSet
  459.92578125 1341.74023438 381.740234375 1419.92578125 285 1419.92578125 c 0
  188.259765625 1419.92578125 110.07421875 1341.74023438 110.07421875 1245 c 0
 EndSplineSet
-Validated: 524289
+Validated: 1
 EndChar
 
 StartChar: yen
@@ -8782,7 +8788,7 @@ SplineSet
  148.454229432 -354 134.061549997 -407 77.4503442165 -407 c 0
  35.231817872 -407 17.9606025492 -376.286614173 17.9606025492 -307.414173228 c 0xe0
 EndSplineSet
-Validated: 524289
+Validated: 1
 EndChar
 
 StartChar: Euro
@@ -13116,8 +13122,6 @@ Width: 800
 VWidth: 0
 Flags: HW
 LayerCount: 3
-Fore
-Refer: -1 773 N 1 0 0 1 800 0 2
 EndChar
 
 StartChar: circumflex
@@ -13136,8 +13140,6 @@ Width: 800
 VWidth: 0
 Flags: HW
 LayerCount: 3
-Fore
-Refer: -1 781 N 1 0 0 1 800 0 2
 EndChar
 
 StartChar: hungarumlaut
@@ -13166,8 +13168,6 @@ Width: 800
 VWidth: 0
 Flags: HW
 LayerCount: 3
-Fore
-Refer: -1 777 N 1 0 0 1 800 0 2
 EndChar
 
 StartChar: ring
@@ -13269,7 +13269,7 @@ SplineSet
  114 1456 211 1468 311 1486 c 1
  311 656 l 1
 EndSplineSet
-Validated: 1048577
+Validated: 1
 EndChar
 
 StartChar: Eth
@@ -13309,7 +13309,7 @@ SplineSet
  231 1298 227 1282 40 1285 c 1
  35 1365 l 1xdc
 EndSplineSet
-Validated: 524289
+Validated: 1
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=11 dy=0 dh=22 dv=0
 EndChar
 
@@ -14556,6 +14556,521 @@ Fore
 Refer: 379 -1 N 1 0 0 1 1911 500 2
 Refer: 81 -1 N 1 0 0 1 0 0 2
 Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" f f hcircumflex
+EndChar
+
+StartChar: ccedilla
+Encoding: 231 231 531
+Width: 845
+VWidth: 0
+Flags: HW
+AnchorPoint: "l;x" 40 770 basechar 0
+AnchorPoint: "r;bl" 845 30 basechar 0
+AnchorPoint: "r;o" 810 400 basechar 0
+AnchorPoint: "l;o" 0 400 basechar 0
+AnchorPoint: "l;bl" 0 30 basechar 0
+AnchorPoint: "r;x" 795 770 basechar 0
+LayerCount: 3
+Fore
+Refer: 532 807 N 1 0 0 1 835 0 2
+Refer: 12 99 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni0327
+Encoding: 807 807 532
+Width: 0
+VWidth: 0
+Flags: HMW
+VStem: -393 107<-405.377 -274.408>
+AnchorPoint: "cedilla" -400 -190 mark 0
+LayerCount: 3
+Fore
+SplineSet
+-286 -282 m 0
+ -286 -418 -430 -500 -483 -500 c 0
+ -496 -500 -504 -495 -504 -485 c 0
+ -504 -445 -393 -440 -393 -339 c 0
+ -393 -258 -485 -273 -485 -247 c 0
+ -485 -243 -482 -238 -478 -232 c 2
+ -434 -175 l 2
+ -430 -171 -417 -156 -406 -156 c 0
+ -396 -156 -380 -163 -354 -178 c 0
+ -316 -200 -286 -211 -286 -282 c 0
+EndSplineSet
+EndChar
+
+StartChar: cedilla
+Encoding: 184 184 533
+Width: 800
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 532 807 N 1 0 0 1 800 0 2
+EndChar
+
+StartChar: Ccedilla
+Encoding: 199 199 534
+Width: 1552
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 532 807 N 1 0 0 1 1223 0 2
+Refer: 26 67 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=11 dy=0 dh=23 dv=0
+EndChar
+
+StartChar: Scedilla
+Encoding: 350 350 535
+Width: 1018
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 532 807 N 1 0 0 1 870 0 2
+Refer: 46 83 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=7 dy=0 dh=15 dv=0
+EndChar
+
+StartChar: scedilla
+Encoding: 351 351 536
+Width: 710
+VWidth: 0
+Flags: HW
+AnchorPoint: "l;x" 50 770 basechar 0
+AnchorPoint: "r;bl" 660 30 basechar 0
+AnchorPoint: "r;o" 710 400 basechar 0
+AnchorPoint: "l;o" 0 400 basechar 0
+AnchorPoint: "l;bl" 10 30 basechar 0
+AnchorPoint: "r;x" 710 770 basechar 0
+LayerCount: 3
+Fore
+Refer: 532 807 N 1 0 0 1 758 0 2
+Refer: 16 115 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni0162
+Encoding: 354 354 537
+Width: 1394
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 532 807 N 1 0 0 1 1110 0 2
+Refer: 47 84 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=10 dy=0 dh=21 dv=0
+EndChar
+
+StartChar: uni0163
+Encoding: 355 355 538
+Width: 648
+VWidth: 0
+Flags: HW
+AnchorPoint: "l;x" 0 770 basechar 0
+AnchorPoint: "r;bl" 648 30 basechar 0
+AnchorPoint: "r;o" 648 400 basechar 0
+AnchorPoint: "l;o" 30 400 basechar 0
+AnchorPoint: "l;bl" 70 30 basechar 0
+AnchorPoint: "r;x" 648 770 basechar 0
+LayerCount: 3
+Fore
+Refer: 532 807 N 1 0 0 1 768 0 2
+Refer: 20 116 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: ccedilla.sc
+Encoding: 65728 -1 539
+Width: 829
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 532 807 N 1 0 0 1 812.5 150.467 2
+Refer: 243 -1 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: scedilla.sc
+Encoding: 65729 -1 540
+Width: 652
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 532 807 N 1 0 0 1 721 115.467 2
+Refer: 259 -1 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni0163.sc
+Encoding: 65730 -1 541
+Width: 880
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 532 807 N 1 0 0 1 857.5 167.467 2
+Refer: 260 -1 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: Kcommaaccent
+Encoding: 310 310 542
+Width: 1459
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 543 806 N 1 0 0 1 1143 0 2
+Refer: 33 75 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=11 dy=0 dh=22 dv=0
+EndChar
+
+StartChar: uni0326
+Encoding: 806 806 543
+Width: 0
+VWidth: 0
+Flags: HMWO
+VStem: -393 107<-405.377 -274.408>
+AnchorPoint: "cedilla" -400 -190 mark 0
+LayerCount: 3
+Fore
+SplineSet
+-286 -282 m 0
+ -286 -418 -430 -500 -483 -500 c 0
+ -496 -500 -504 -495 -504 -485 c 0
+ -504 -445 -393 -440 -393 -339 c 0
+ -393 -258 -485 -273 -485 -247 c 0
+ -485 -243 -482 -238 -478 -232 c 2
+ -434 -175 l 2
+ -430 -171 -417 -156 -406 -156 c 0
+ -396 -156 -380 -163 -354 -178 c 0
+ -316 -200 -286 -211 -286 -282 c 0
+EndSplineSet
+EndChar
+
+StartChar: Gcommaaccent
+Encoding: 290 290 544
+Width: 1584
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 543 806 N 1 0 0 1 1200.5 27 2
+Refer: 23 71 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=12 dy=0 dh=24 dv=0
+EndChar
+
+StartChar: kcommaaccent
+Encoding: 311 311 545
+Width: 966
+VWidth: 0
+Flags: HW
+AnchorPoint: "r;hi" 376 1400 basechar 0
+AnchorPoint: "l;x" 0 770 basechar 0
+AnchorPoint: "r;bl" 966 30 basechar 0
+AnchorPoint: "r;o" 946 400 basechar 0
+AnchorPoint: "l;o" 0 400 basechar 0
+AnchorPoint: "l;hi" 0 1400 basechar 0
+AnchorPoint: "l;bl" 5 30 basechar 0
+AnchorPoint: "r;x" 966 770 basechar 0
+LayerCount: 3
+Fore
+Refer: 543 806 N 1 0 0 1 893 0 2
+Refer: 5 107 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: Lcommaaccent
+Encoding: 315 315 546
+Width: 1167
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 543 806 N 1 0 0 1 996.5 75 2
+Refer: 34 76 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=9 dy=0 dh=18 dv=0
+EndChar
+
+StartChar: lcommaaccent
+Encoding: 316 316 547
+Width: 539
+VWidth: 0
+Flags: HW
+AnchorPoint: "r;hi" 509 1400 basechar 0
+AnchorPoint: "l;x" 20 770 basechar 0
+AnchorPoint: "r;bl" 539 30 basechar 0
+AnchorPoint: "r;o" 519 400 basechar 0
+AnchorPoint: "l;o" 20 400 basechar 0
+AnchorPoint: "l;hi" 0 1400 basechar 0
+AnchorPoint: "l;bl" 0 30 basechar 0
+AnchorPoint: "r;x" 509 770 basechar 0
+LayerCount: 3
+Fore
+Refer: 543 806 N 1 0 0 1 664.5 75 2
+Refer: 2 108 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: Ncommaaccent
+Encoding: 325 325 548
+Width: 1483
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 543 806 N 1 0 0 1 1151 0 2
+Refer: 36 78 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=11 dy=0 dh=22 dv=0
+EndChar
+
+StartChar: ncommaaccent
+Encoding: 326 326 549
+Width: 950
+VWidth: 0
+Flags: HW
+AnchorPoint: "l;x" 0 770 basechar 0
+AnchorPoint: "r;bl" 950 30 basechar 0
+AnchorPoint: "r;o" 930 400 basechar 0
+AnchorPoint: "l;o" 0 400 basechar 0
+AnchorPoint: "l;bl" 0 30 basechar 0
+AnchorPoint: "r;x" 860 770 basechar 0
+LayerCount: 3
+Fore
+Refer: 543 806 N 1 0 0 1 881 0 2
+Refer: 6 110 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: Rcommaaccent
+Encoding: 342 342 550
+Width: 1382
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 543 806 N 1 0 0 1 1080 75 2
+Refer: 45 82 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=10 dy=0 dh=21 dv=0
+EndChar
+
+StartChar: rcommaaccent
+Encoding: 343 343 551
+Width: 701
+VWidth: 0
+Flags: HW
+AnchorPoint: "l;x" 0 770 basechar 0
+AnchorPoint: "r;bl" 701 30 basechar 0
+AnchorPoint: "r;o" 701 400 basechar 0
+AnchorPoint: "l;o" 0 400 basechar 0
+AnchorPoint: "l;bl" 0 30 basechar 0
+AnchorPoint: "r;x" 701 770 basechar 0
+LayerCount: 3
+Fore
+Refer: 543 806 N 1 0 0 1 745.5 75 2
+Refer: 15 114 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni0218
+Encoding: 536 536 552
+Width: 1018
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 543 806 N 1 0 0 1 870 0 2
+Refer: 46 83 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=7 dy=0 dh=15 dv=0
+EndChar
+
+StartChar: uni0219
+Encoding: 537 537 553
+Width: 710
+VWidth: 0
+Flags: HW
+AnchorPoint: "l;x" 50 770 basechar 0
+AnchorPoint: "r;bl" 660 30 basechar 0
+AnchorPoint: "r;o" 710 400 basechar 0
+AnchorPoint: "l;o" 0 400 basechar 0
+AnchorPoint: "l;bl" 10 30 basechar 0
+AnchorPoint: "r;x" 710 770 basechar 0
+LayerCount: 3
+Fore
+Refer: 543 806 N 1 0 0 1 758 0 2
+Refer: 16 115 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni021A
+Encoding: 538 538 554
+Width: 1394
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 543 806 N 1 0 0 1 1110 0 2
+Refer: 47 84 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=10 dy=0 dh=21 dv=0
+EndChar
+
+StartChar: uni021B
+Encoding: 539 539 555
+Width: 648
+VWidth: 0
+Flags: HW
+AnchorPoint: "l;x" 0 770 basechar 0
+AnchorPoint: "r;bl" 648 30 basechar 0
+AnchorPoint: "r;o" 648 400 basechar 0
+AnchorPoint: "l;o" 30 400 basechar 0
+AnchorPoint: "l;bl" 70 30 basechar 0
+AnchorPoint: "r;x" 648 770 basechar 0
+LayerCount: 3
+Fore
+Refer: 543 806 N 1 0 0 1 768 0 2
+Refer: 20 116 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: gcommaaccent.sc
+Encoding: 65731 -1 556
+Width: 982
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 543 806 N 1 0 0 1 889.5 56 2
+Refer: 247 -1 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: kcommaaccent.sc
+Encoding: 65732 -1 557
+Width: 996
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 543 806 N 1 0 0 1 895 75 2
+Refer: 251 -1 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: lcommaaccent.sc
+Encoding: 65733 -1 558
+Width: 876
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 543 806 N 1 0 0 1 820.5 75 2
+Refer: 252 -1 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: ncommaaccent.sc
+Encoding: 65734 -1 559
+Width: 944
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 543 806 N 1 0 0 1 873 51 2
+Refer: 254 -1 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: rcommaaccent.sc
+Encoding: 65735 -1 560
+Width: 948
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 543 806 N 1 0 0 1 864.5 75 2
+Refer: 258 -1 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni0219.sc
+Encoding: 65736 -1 561
+Width: 652
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 543 806 N 1 0 0 1 710 23 2
+Refer: 259 -1 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni021B.sc
+Encoding: 65737 -1 562
+Width: 880
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 543 806 N 1 0 0 1 846.5 75 2
+Refer: 260 -1 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni0312
+Encoding: 786 786 563
+Width: 0
+VWidth: 0
+Flags: HMW
+VStem: -493 107<1101.41 1232.38>
+AnchorPoint: "top" -400 1000 mark 0
+LayerCount: 3
+Fore
+SplineSet
+-493 1104 m 0
+ -493 1240 -349 1322 -296 1322 c 0
+ -283 1322 -275 1317 -275 1307 c 0
+ -275 1267 -386 1262 -386 1161 c 0
+ -386 1080 -294 1095 -294 1069 c 0
+ -294 1065 -297 1060 -301 1054 c 2
+ -345 997 l 2
+ -349 993 -362 978 -373 978 c 0
+ -383 978 -399 985 -425 1000 c 0
+ -463 1022 -493 1033 -493 1104 c 0
+EndSplineSet
+EndChar
+
+StartChar: gcommaaccent
+Encoding: 291 291 564
+Width: 913
+VWidth: 0
+Flags: HW
+AnchorPoint: "l;x" 40 770 basechar 0
+AnchorPoint: "r;bl" 893 30 basechar 0
+AnchorPoint: "l;k;lo" -30 -504 basechar 0
+AnchorPoint: "r;lo" 778 -500 basechar 0
+AnchorPoint: "r;o" 893 400 basechar 0
+AnchorPoint: "l;o" 0 400 basechar 0
+AnchorPoint: "l;bl" 0 30 basechar 0
+AnchorPoint: "r;x" 913 770 basechar 0
+LayerCount: 3
+Fore
+Refer: 563 786 N 1 0 0 1 792 0 2
+Refer: 14 103 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: ogonek
+Encoding: 731 731 565
+Width: 800
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: -1 808 N 1 0 0 1 800 0 2
+EndChar
+
+StartChar: uni02BB
+Encoding: 699 699 566
+Width: 800
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 563 786 N 1 0 0 1 800 0 2
+EndChar
+
+StartChar: afii57929
+Encoding: 700 700 567
+Width: 800
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: -1 789 N 1 0 0 1 800 0 2
 EndChar
 EndChars
 EndSplineFont
