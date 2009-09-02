@@ -18,27 +18,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-languagesystem DFLT dflt;
-languagesystem latn dflt;
 
-# Turkish, Azeri, Crimean Tatar
-languagesystem latn TRK;
-languagesystem latn AZE;
-languagesystem latn CRT;
+feature hist {
+   sub \s by \longs;
+} hist;
 
-# Useful for spacing and kerning of capitals.
-# Comment this out for production.
-#include(CAPS.fea)
-
-include(LindenHill_locl.fea)
-include(LindenHill_figures.fea)
-include(LindenHill_sc.fea)
-include(LindenHill_hist.fea)
-#include(LindenHill_case.fea)
-#include(LindenHill_salt.fea)
-include(LindenHill_liga.fea)
-include(LindenHill_cpsp.fea)
-include(LindenHill_generated_kerning.fea)
 
 # local variables:
 # mode: fundamental

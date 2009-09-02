@@ -22,7 +22,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1249677682
-ModificationTime: 1251867939
+ModificationTime: 1251874272
 OS2TypoAscent: 0
 OS2TypoAOffset: 1
 OS2TypoDescent: 0
@@ -48,39 +48,41 @@ Lookup: 1 0 0 "'subs' Subscript in Latin lookup 6"  {"'subs' Subscript in Latin 
 Lookup: 1 0 0 "lining_figures"  {"lining_figures subtable"  } ['lnum' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
 Lookup: 1 0 0 "smcpLowercasetoSmallCapitalsinL"  {"smcpLowercasetoSmallCapitalsinL subtable"  } ['smcp' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
 Lookup: 1 0 0 "c2scCapitalstoSmallCapitalsinLa"  {"c2scCapitalstoSmallCapitalsinLa subtable"  } ['c2sc' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
-Lookup: 4 0 1 "'liga' Standard Ligatures in Latin lookup 10"  {"'liga' Standard Ligatures in Latin lookup 10 subtable"  } ['liga' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
+Lookup: 1 0 0 "'hist' Historical Forms in Latin lookup 10"  {"'hist' Historical Forms in Latin lookup 10 subtable"  } ['hist' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
+Lookup: 4 0 1 "'liga' Standard Ligatures in Latin lookup 11"  {"'liga' Standard Ligatures in Latin lookup 11 subtable"  } ['liga' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
 Lookup: 260 0 0 "accent positioning"  {"accent positioning-1"  } []
 Lookup: 260 0 0 "spacing anchors"  {"spacing anchors-1"  } []
 Lookup: 257 0 0 "'cpsp' Capital Spacing in Latin lookup 2"  {"'cpsp' Capital Spacing in Latin lookup 2 subtable"  } ['cpsp' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
 Lookup: 258 0 0 "generated_kerning"  {"generated_kerning per glyph data 0"  "generated_kerning kerning class 1"  } ['kern' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
 DEI: 91125
-KernClass2: 22 25 "generated_kerning kerning class 1" 
+KernClass2: 22 26 "generated_kerning kerning class 1" 
  124 r racute rcaron t u uacute ubreve ucircumflex udieresis ugrave uhungarumlaut umacron uring utilde z zacute zcaron zdotaccent
  10 underscore
- 34 f_f_j f_j ij j jcircumflex uni0237
- 5 longs
+ 56 f_f_j f_j ij j jcircumflex longs_j longs_longs_j uni0237
+ 17 longs longs_longs
  27 s sacute scaron scircumflex
- 13 f_f_k f_k k x
+ 35 f_f_k f_k k longs_k longs_longs_k x
  65 a aacute abreve acircumflex adieresis agrave amacron aring atilde
- 84 dotlessi f_f_i f_i i i.TRK iacute ibreve icircumflex idieresis igrave imacron itilde
- 9 f_f_l f_l
+ 106 dotlessi f_f_i f_i i i.TRK iacute ibreve icircumflex idieresis igrave imacron itilde longs_i longs_longs_i
+ 31 f_f_l f_l longs_l longs_longs_l
  5 f f_f
  1 q
  1 v
  44 w wcircumflex y yacute ycircumflex ydieresis
  31 g gbreve gcircumflex gdotaccent
- 29 b f_b f_f_b f_f_thorn f_thorn
+ 33 b f_b f_f_b longs_b longs_longs_b
  38 c cacute ccaron ccircumflex cdotaccent
- 152 e eacute ebreve ecaron ecircumflex edieresis edotaccent egrave emacron o oacute obreve ocircumflex odieresis ograve ohungarumlaut omacron otilde p thorn
+ 200 e eacute ebreve ecaron ecircumflex edieresis edotaccent egrave emacron f_f_thorn f_thorn longs_longs_thorn longs_thorn o oacute obreve ocircumflex odieresis ograve ohungarumlaut omacron otilde p thorn
  1 d
  8 l lacute
- 25 f_f_h f_h h hcircumflex m
+ 47 f_f_h f_h h hcircumflex longs_h longs_longs_h m
  34 n nacute napostrophe ncaron ntilde
  65 a aacute abreve acircumflex adieresis agrave amacron aring atilde
  14 h hcircumflex 
+ 113 longs_longs longs_longs_b longs_longs_h longs_longs_i longs_longs_j longs_longs_k longs_longs_l longs_longs_thorn
  10 i i.TRK ij
  19 jcircumflex uni0237
- 5 longs
+ 65 longs longs_b longs_h longs_i longs_j longs_k longs_l longs_thorn
  79 u uacute ubreve ucircumflex udieresis ugrave uhungarumlaut umacron uring utilde
  1 x
  1 p
@@ -100,7 +102,7 @@ KernClass2: 22 25 "generated_kerning kerning class 1"
  1 v
  13 w wcircumflex
  30 y yacute ycircumflex ydieresis
- 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -60 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 155 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 30 {} 155 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 5 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -60 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 5 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 215 {} 40 {} 0 {} 0 {} 0 {} -20 {} 0 {} 0 {} 215 {} 215 {} 215 {} 215 {} 0 {} 0 {} 0 {} 55 {} 35 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -20 {} 0 {} 0 {} 0 {} -20 {} 0 {} -60 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -60 {} 0 {} -20 {} -20 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} 0 {} -30 {} -30 {} 0 {} 0 {} 0 {} -60 {} 0 {} 0 {} 0 {} -20 {} -20 {} 0 {} -10 {} 0 {} -40 {} -40 {} -40 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} 0 {} -30 {} -30 {} 0 {} 0 {} 0 {} -60 {} 0 {} 0 {} 0 {} -20 {} -20 {} 0 {} -10 {} 0 {} -30 {} -30 {} -30 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} 0 {} -10 {} -10 {} -5 {} 0 {} 0 {} -10 {} 0 {} -10 {} -10 {} -10 {} -10 {} 0 {} -10 {} -10 {} -10 {} -10 {} -10 {} 0 {} -20 {} 165 {} 0 {} 0 {} 25 {} 0 {} -20 {} 0 {} 0 {} 165 {} 165 {} 165 {} 165 {} -40 {} -40 {} -50 {} 5 {} 0 {} -40 {} 10 {} -50 {} 0 {} 0 {} 0 {} 0 {} -20 {} 0 {} 0 {} 185 {} 0 {} 0 {} -20 {} 0 {} 0 {} 0 {} -20 {} 30 {} -60 {} -30 {} -30 {} -30 {} 0 {} 0 {} 60 {} 185 {} -30 {} 0 {} 0 {} 30 {} 0 {} -20 {} 0 {} 0 {} 0 {} 0 {} 0 {} -20 {} 0 {} 0 {} 0 {} -20 {} 0 {} -60 {} -40 {} -40 {} -50 {} 0 {} 0 {} -40 {} 0 {} -50 {} 0 {} 0 {} 0 {} 0 {} -20 {} 0 {} 0 {} 0 {} 0 {} 0 {} -20 {} 0 {} 0 {} 0 {} -20 {} 0 {} -60 {} -40 {} -40 {} -80 {} 0 {} 0 {} -40 {} 0 {} -50 {} 0 {} 0 {} 0 {} 0 {} -20 {} 0 {} 0 {} 20 {} 0 {} 0 {} -20 {} 0 {} 0 {} 0 {} -20 {} 0 {} -60 {} -20 {} -20 {} -20 {} 0 {} 0 {} -20 {} 20 {} -20 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} -30 {} -30 {} -30 {} 0 {} -20 {} 0 {} -60 {} 0 {} 0 {} 0 {} -20 {} -20 {} 0 {} -10 {} 0 {} -40 {} -40 {} -40 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -45 {} 0 {} -30 {} -50 {} -5 {} 0 {} 0 {} -60 {} 0 {} -35 {} -35 {} -20 {} -20 {} 0 {} -10 {} -10 {} -50 {} -50 {} -50 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} -30 {} -30 {} -30 {} 0 {} -20 {} 0 {} -60 {} 0 {} 0 {} 0 {} -20 {} -20 {} 0 {} -10 {} 0 {} -50 {} -80 {} -60 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -30 {} 0 {} -30 {} -30 {} -5 {} 0 {} 0 {} -30 {} 0 {} -30 {} -30 {} -20 {} -20 {} 0 {} -10 {} -10 {} -30 {} -30 {} -30 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -30 {} 0 {} -30 {} -30 {} -5 {} 0 {} 0 {} -30 {} 0 {} -20 {} -20 {} -20 {} -20 {} 0 {} -10 {} -10 {} -30 {} -30 {} -30 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -30 {} 0 {} -30 {} -50 {} -5 {} 0 {} 0 {} -60 {} 0 {} -20 {} -20 {} -20 {} -20 {} 0 {} -10 {} -10 {} -70 {} -100 {} -80 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -30 {} 0 {} -30 {} -50 {} -5 {} 0 {} 0 {} -60 {} 0 {} -20 {} -20 {} -20 {} -20 {} 0 {} -10 {} -10 {} -70 {} -90 {} -80 {}
+ 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -60 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 155 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 30 {} 155 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 5 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -60 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 5 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 215 {} 55 {} 40 {} 0 {} 75 {} 0 {} -20 {} 0 {} 0 {} 215 {} 215 {} 215 {} 215 {} 0 {} 0 {} 0 {} 55 {} 35 {} 0 {} 60 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -20 {} 0 {} 0 {} 0 {} -20 {} 0 {} -60 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -60 {} 0 {} -20 {} -20 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} 0 {} -30 {} -30 {} 0 {} 0 {} 0 {} -60 {} 0 {} 0 {} 0 {} -20 {} -20 {} 0 {} -10 {} 0 {} -40 {} -40 {} -40 {} 0 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} 0 {} -30 {} -30 {} 0 {} 0 {} 0 {} -60 {} 0 {} 0 {} 0 {} -20 {} -20 {} 0 {} -10 {} 0 {} -30 {} -30 {} -30 {} 0 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} 0 {} -10 {} -10 {} -5 {} 0 {} 0 {} -10 {} 0 {} -10 {} -10 {} -10 {} -10 {} 0 {} -10 {} -10 {} -10 {} -10 {} -10 {} 0 {} -20 {} 165 {} 5 {} 0 {} 0 {} 25 {} 0 {} -20 {} 0 {} 0 {} 165 {} 165 {} 165 {} 165 {} -40 {} -40 {} -50 {} 5 {} 0 {} -40 {} 10 {} -50 {} 0 {} 0 {} 0 {} 0 {} -20 {} 0 {} 0 {} 0 {} 185 {} 0 {} 0 {} -20 {} 0 {} 0 {} 0 {} -20 {} 30 {} -60 {} -30 {} -30 {} -30 {} 0 {} 0 {} 60 {} 185 {} -30 {} 0 {} 0 {} 30 {} 0 {} -20 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -20 {} 0 {} 0 {} 0 {} -20 {} 0 {} -60 {} -40 {} -40 {} -50 {} 0 {} 0 {} -40 {} 0 {} -50 {} 0 {} 0 {} 0 {} 0 {} -20 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -20 {} 0 {} 0 {} 0 {} -20 {} 0 {} -60 {} -40 {} -40 {} -80 {} 0 {} 0 {} -40 {} 0 {} -50 {} 0 {} 0 {} 0 {} 0 {} -20 {} 0 {} 0 {} 0 {} 20 {} 0 {} 0 {} -20 {} 0 {} 0 {} 0 {} -20 {} 0 {} -60 {} -20 {} -20 {} -20 {} 0 {} 0 {} -20 {} 20 {} -20 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} -30 {} -30 {} -30 {} 0 {} -20 {} 0 {} -60 {} 0 {} 0 {} 0 {} -20 {} -20 {} 0 {} -10 {} 0 {} -40 {} -40 {} -40 {} 0 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -45 {} 0 {} -30 {} -50 {} -5 {} 0 {} 0 {} -60 {} 0 {} -35 {} -35 {} -20 {} -20 {} 0 {} -10 {} -10 {} -50 {} -50 {} -50 {} 0 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} -30 {} -30 {} -30 {} 0 {} -20 {} 0 {} -60 {} 0 {} 0 {} 0 {} -20 {} -20 {} 0 {} -10 {} 0 {} -50 {} -80 {} -60 {} 0 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -30 {} 0 {} -30 {} -30 {} -5 {} 0 {} 0 {} -30 {} 0 {} -30 {} -30 {} -20 {} -20 {} 0 {} -10 {} -10 {} -30 {} -30 {} -30 {} 0 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -30 {} 0 {} -30 {} -30 {} -5 {} 0 {} 0 {} -30 {} 0 {} -20 {} -20 {} -20 {} -20 {} 0 {} -10 {} -10 {} -30 {} -30 {} -30 {} 0 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -30 {} 0 {} -30 {} -50 {} -5 {} 0 {} 0 {} -60 {} 0 {} -20 {} -20 {} -20 {} -20 {} 0 {} -10 {} -10 {} -70 {} -100 {} -80 {} 0 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -30 {} 0 {} -30 {} -50 {} -5 {} 0 {} 0 {} -60 {} 0 {} -20 {} -20 {} -20 {} -20 {} 0 {} -10 {} -10 {} -70 {} -90 {} -80 {}
 ChainSub2: coverage "'frac' Diagonal Fractions in Latin lookup 3 subtable"  0 0 0 1
  1 1 0
   Coverage: 109 zero.numer one.numer two.numer three.numer four.numer five.numer six.numer seven.numer eight.numer nine.numer
@@ -139,7 +141,7 @@ NameList: Adobe Glyph List
 DisplaySize: -72
 AntiAlias: 1
 FitToEm: 1
-WinInfo: 104 8 6
+WinInfo: 65680 8 6
 BeginPrivate: 9
 BlueValues 35 [-48 0 788 835 1365 1416 1469 1486]
 OtherBlues 11 [-539 -530]
@@ -158,7 +160,7 @@ Grid
  3186.90039062 1365 l 1
 EndSplineSet
 AnchorClass2: "top"  "accent positioning-1" "r;k;lo"  "spacing anchors-1" "l;k;lo"  "spacing anchors-1" "r;lo"  "spacing anchors-1" "l;lo"  "spacing anchors-1" "r;k;o"  "spacing anchors-1" "l;k;o"  "spacing anchors-1" "r;o"  "spacing anchors-1" "l;o"  "spacing anchors-1" "r;k;hi"  "spacing anchors-1" "l;k;hi"  "spacing anchors-1" "r;hi"  "spacing anchors-1" "l;hi"  "spacing anchors-1" "r;k;x"  "spacing anchors-1" "l;k;x"  "spacing anchors-1" "r;x"  "spacing anchors-1" "l;x"  "spacing anchors-1" "r;k;bl"  "spacing anchors-1" "l;k;bl"  "spacing anchors-1" "r;bl"  "spacing anchors-1" "l;bl"  "spacing anchors-1" 
-BeginChars: 65711 514
+BeginChars: 65726 529
 
 StartChar: i
 Encoding: 105 105 0
@@ -988,8 +990,9 @@ SplineSet
  229 562 309 530 388 470 c 0
  503 384 615 335 615 205 c 0
 EndSplineSet
-AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" s.sc
-AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" s.sc
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" longs s.sc
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" longs s.sc
+Substitution2: "'hist' Historical Forms in Latin lookup 10 subtable" longs
 Substitution2: "smcpLowercasetoSmallCapitalsinL subtable" s.sc
 EndChar
 
@@ -3212,7 +3215,7 @@ SplineSet
  184 704 l 1
  35 704 l 1
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 10 subtable" f i
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" f i
 LCarets2: 1 0 
 EndChar
 
@@ -3265,7 +3268,7 @@ SplineSet
  184 704 l 1
  35 704 l 1
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 10 subtable" f l
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" f l
 LCarets2: 1 0 
 EndChar
 
@@ -3371,7 +3374,7 @@ SplineSet
  733 1322 668 1223 627 1223 c 4
  592 1223 576 1345 501 1345 c 4
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 10 subtable" f f
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" f f
 LCarets2: 1 0 
 EndChar
 
@@ -3492,7 +3495,7 @@ SplineSet
  664 704 l 5
  328 704 l 5
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 10 subtable" f f i
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" f f i
 LCarets2: 2 0 0 
 EndChar
 
@@ -3614,7 +3617,7 @@ SplineSet
  327 802 l 5
  665 802 l 5
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 10 subtable" f f l
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" f f l
 LCarets2: 2 0 0 
 EndChar
 
@@ -3668,7 +3671,7 @@ SplineSet
  184 704 l 1
  35 704 l 1
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 10 subtable" f j
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" f j
 LCarets2: 1 0 
 EndChar
 
@@ -3742,7 +3745,7 @@ SplineSet
  332 1345 327 1139 327 954 c 2
  327 802 l 1
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 10 subtable" f f j
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" f f j
 LCarets2: 2 0 0 
 EndChar
 
@@ -3802,7 +3805,7 @@ SplineSet
  897 706 812 630 812 630 c 1
  812 200 l 2
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 10 subtable" f b
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" f b
 LCarets2: 1 0 
 EndChar
 
@@ -3881,7 +3884,7 @@ SplineSet
  1377 706 1292 630 1292 630 c 1
  1292 200 l 2
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 10 subtable" f f b
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" f f b
 LCarets2: 2 0 0 
 EndChar
 
@@ -3945,7 +3948,7 @@ SplineSet
  184 704 l 1
  35 704 l 1
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 10 subtable" f h
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" f h
 LCarets2: 1 0 
 EndChar
 
@@ -4028,7 +4031,7 @@ SplineSet
  337 1345 327 1139 327 954 c 2
  327 802 l 1
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 10 subtable" f f h
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" f f h
 LCarets2: 2 0 0 
 EndChar
 
@@ -4098,7 +4101,7 @@ SplineSet
  184 704 l 1
  35 704 l 1xdc
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 10 subtable" f k
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" f k
 LCarets2: 1 0 
 EndChar
 
@@ -4186,7 +4189,7 @@ SplineSet
  337 1345 327 1139 327 954 c 2
  327 802 l 1xb7
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 10 subtable" f f k
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" f f k
 LCarets2: 2 0 0 
 EndChar
 
@@ -13028,8 +13031,8 @@ Encoding: 383 383 495
 Width: 513
 VWidth: 0
 Flags: HW
-HStem: 0 65<37 162.265 310.749 463> 1398 85<378.339 576.5>
-VStem: 164 144<68.4003 1270.53>
+HStem: 0 65<37 162.265 310.749 463> 704 98<79 164> 1398 85<378.339 576.5>
+VStem: 164 144<68.4003 704 802 1264.28>
 AnchorPoint: "r;o" 513 400 basechar 0
 AnchorPoint: "r;k;hi" 728 1400 basechar 0
 AnchorPoint: "r;x" 513 770 basechar 0
@@ -13041,9 +13044,9 @@ AnchorPoint: "l;bl" 0 30 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-164 120 m 2
- 164 1023 l 2
- 164 1134 170 1320 365 1440 c 0
+165 802 m 1
+ 165 1023 l 2
+ 165 1134 170 1320 365 1440 c 0
  414 1470 476 1483 534 1483 c 0
  619 1483 693 1455 693 1408 c 0
  693 1375 628 1276 587 1276 c 0
@@ -13055,8 +13058,11 @@ SplineSet
  37 0 l 1
  35 65 l 1
  137 69 164 54 164 120 c 2
+ 164 704 l 1
+ 50 704 l 1
+ 79 802 l 1
+ 165 802 l 1
 EndSplineSet
-Kerns2: 495 75 "generated_kerning per glyph data 0"  1 60 "generated_kerning per glyph data 0" 
 EndChar
 
 StartChar: tildecomb.cap
@@ -13406,7 +13412,7 @@ StartChar: f_thorn
 Encoding: 65709 -1 512
 Width: 1507
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -530 65<531 666.9 814.42 1003> -25 67<887.941 1182.26> 0 65<55 182.265 329.641 473> 686 120<959.586 1165.31> 704 98<59 184 328 534> 1398 85<398.269 575.5>
 VStem: 184 144<67.7139 704 802 1271.11> 668 144<-460.004 11 88.3012 627.217 656 1320> 1313 144<201.109 524.928>
 AnchorPoint: "r;lo" 1107 -500 basechar 0
@@ -13464,14 +13470,14 @@ SplineSet
  654 -465 668 -461 668 -416 c 2
  668 1320 l 1
 EndSplineSet
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" f thorn
 LCarets2: 1 0 
-Ligature2: "'liga' Standard Ligatures in Latin lookup 10 subtable" f thorn
 EndChar
 
 StartChar: f_f_thorn
 Encoding: 65710 -1 513
 Width: 1987
-Flags: WO
+Flags: HW
 HStem: -530 65<1011 1146.9 1294.42 1483> -25 67<1367.94 1662.26> 0 65<49 181.942 329.088 467 535 662.805 809.641 953> 686 120<1439.59 1645.31> 704 98<59 184 328 664 808 1014> 1345 85<399.98 587.382> 1398 85<879.121 1055.5>
 VStem: 184 144<67.267 704 802 1232.59> 664 144<67.6193 704 802 1263.9> 1148 144<-460.004 11 88.3012 627.217 656 1320> 1793 144<201.109 524.928>
 AnchorPoint: "r;lo" 1587 -500 basechar 0
@@ -13548,8 +13554,996 @@ SplineSet
  337 1345 327 1139 327 954 c 2
  327 802 l 1x8de0
 EndSplineSet
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" f f thorn
 LCarets2: 2 0 0 
-Ligature2: "'liga' Standard Ligatures in Latin lookup 10 subtable" f f thorn
+EndChar
+
+StartChar: longs_i
+Encoding: 65711 -1 514
+Width: 991
+Flags: HMW
+HStem: 0 65<30 161.996 309.244 456 512 648.381 795.47 956> 704 98<74 164> 812 20G<737.5 794> 1406 78<394.625 609.5>
+VStem: 164 144<67.2279 704 802 1257.34> 650 144<68.8509 723.992>
+AnchorPoint: "r;bl" 991 30 basechar 0
+AnchorPoint: "r;x" 961 770 basechar 0
+AnchorPoint: "r;o" 991 400 basechar 0
+AnchorPoint: "l;o" 0 400 basechar 0
+AnchorPoint: "l;hi" 140 1400 basechar 0
+AnchorPoint: "l;x" 0 770 basechar 0
+AnchorPoint: "l;bl" 0 30 basechar 0
+AnchorPoint: "r;hi" 786 1400 basechar 0
+LayerCount: 3
+Fore
+SplineSet
+504 770 m 1
+ 594 784 681 802 794 832 c 1
+ 794 120 l 2
+ 794 54 814 71 956 65 c 1
+ 956 0 l 1
+ 512 0 l 1
+ 512 65 l 1
+ 605 70 650 58 650 113 c 2
+ 650 659 l 2
+ 650 713 642 724 619 724 c 0
+ 609 724 571 720 507 708 c 1
+ 504 770 l 1
+308 704 m 1
+ 308 123 l 2
+ 308 56 319 69 456 65 c 1
+ 456 0 l 1
+ 30 0 l 1
+ 30 65 l 1
+ 132 69 164 54 164 120 c 2
+ 164 704 l 1
+ 50 704 l 1
+ 74 802 l 1
+ 165 802 l 1
+ 165 1066 l 2
+ 165 1281 323 1484 559 1484 c 0
+ 660 1484 754 1452 754 1403 c 0
+ 754 1362 691 1290 643 1290 c 0
+ 617 1290 562 1406 469 1406 c 0
+ 345 1406 307 1212 307 1094 c 2
+ 308 704 l 1
+EndSplineSet
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" longs i
+LCarets2: 1 0 
+EndChar
+
+StartChar: longs_l
+Encoding: 65712 -1 515
+Width: 964
+VWidth: 0
+Flags: HW
+HStem: 0 65<35 162.265 309.641 453 515 645.33 793.508 928> 704 98<74 164> 1398 85<378.339 555.5>
+VStem: 164 144<67.7139 704 802 1271.11> 648 144<67.4204 1320>
+AnchorPoint: "r;o" 954 400 basechar 0
+AnchorPoint: "r;hi" 954 1400 basechar 0
+AnchorPoint: "r;x" 954 770 basechar 0
+AnchorPoint: "r;bl" 964 30 basechar 0
+AnchorPoint: "l;bl" 0 30 basechar 0
+AnchorPoint: "l;x" 0 770 basechar 0
+AnchorPoint: "l;hi" 140 1400 basechar 0
+AnchorPoint: "l;o" 0 400 basechar 0
+LayerCount: 3
+Fore
+SplineSet
+50 704 m 1
+ 74 802 l 1
+ 165 802 l 1
+ 165 1023 l 2
+ 165 1136 170 1320 365 1440 c 0
+ 414 1470 476 1483 534 1483 c 0
+ 577 1483 617 1476 646 1463 c 1
+ 695 1470 743 1477 792 1486 c 1
+ 792 120 l 2
+ 792 60 808 67 928 65 c 1
+ 929 0 l 1
+ 512 0 l 1
+ 515 65 l 1
+ 613 66 648 59 648 121 c 2
+ 648 1320 l 1
+ 620 1296 610 1276 587 1276 c 0
+ 552 1276 536 1398 461 1398 c 0
+ 316 1398 308 1131 308 1074 c 2
+ 308 128 l 2
+ 308 57 316 69 453 65 c 1
+ 456 0 l 1
+ 34 0 l 1
+ 35 65 l 1
+ 137 69 164 54 164 120 c 2
+ 164 704 l 1
+ 50 704 l 1
+EndSplineSet
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" longs l
+LCarets2: 1 0 
+EndChar
+
+StartChar: longs_longs
+Encoding: 65713 -1 516
+Width: 993
+VWidth: 0
+Flags: HW
+HStem: 0 65<29 161.942 309.088 447 518 642.372 790.564 943> 704 98<74 164 554 644> 1345 85<380.068 567.382> 1398 85<858.241 1056.5>
+VStem: 164 144<67.267 704 802 1232.59> 644 144<68.4003 704 802 1260.92>
+AnchorPoint: "r;o" 993 400 basechar 0
+AnchorPoint: "r;k;hi" 1208 1400 basechar 0
+AnchorPoint: "r;x" 993 770 basechar 0
+AnchorPoint: "r;bl" 973 30 basechar 0
+AnchorPoint: "l;bl" 0 30 basechar 0
+AnchorPoint: "l;x" 0 770 basechar 0
+AnchorPoint: "l;hi" 160 1400 basechar 0
+AnchorPoint: "l;o" 0 400 basechar 0
+LayerCount: 3
+Fore
+SplineSet
+645 802 m 1xdc
+ 645 1023 l 2
+ 645 1088 647 1178 686 1265 c 1
+ 667 1242 645 1223 627 1223 c 0
+ 592 1223 590 1345 481 1345 c 0
+ 317 1345 308 1139 308 954 c 2
+ 308 128 l 2
+ 308 57 310 69 447 65 c 1
+ 448 0 l 1
+ 29 0 l 1
+ 29 65 l 1
+ 131 69 164 54 164 120 c 2
+ 164 704 l 1
+ 50 704 l 1
+ 74 802 l 1
+ 165 802 l 1
+ 165 965 l 2
+ 165 1128 183 1269 307 1352 c 0
+ 408 1420 493 1430 562 1430 c 0xec
+ 662 1430 733 1400 733 1355 c 0
+ 733 1350 731 1344 729 1337 c 1
+ 833 1475 963 1483 1014 1483 c 0
+ 1099 1483 1173 1455 1173 1408 c 0
+ 1173 1375 1108 1276 1067 1276 c 0
+ 1032 1276 1016 1398 941 1398 c 0
+ 796 1398 788 1131 788 1074 c 2
+ 788 128 l 2
+ 788 57 806 69 943 65 c 1
+ 943 0 l 1
+ 518 0 l 1
+ 517 65 l 1
+ 619 69 644 54 644 120 c 2
+ 644 704 l 1
+ 530 704 l 1
+ 554 802 l 1
+ 645 802 l 1xdc
+EndSplineSet
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" longs longs
+LCarets2: 1 0 
+EndChar
+
+StartChar: longs_longs_i
+Encoding: 65714 -1 517
+Width: 1471
+VWidth: 0
+Flags: HMW
+HStem: 0 65<29 161.942 309.088 447 510 641.996 789.747 936 992 1128.38 1275.47 1436> 704 98<74 164 554 644> 812 20G<1217.5 1274> 1345 85<376.513 622> 1406 78<870.581 1089.5>
+VStem: 164 144<67.267 704 802 1232.59> 644 144<67.2986 704 802 1251.86> 1130 144<68.8509 723.992>
+AnchorPoint: "r;bl" 1471 30 basechar 0
+AnchorPoint: "r;x" 1441 770 basechar 0
+AnchorPoint: "r;o" 1471 400 basechar 0
+AnchorPoint: "r;hi" 1266 1400 basechar 0
+AnchorPoint: "l;bl" 0 30 basechar 0
+AnchorPoint: "l;x" 0 770 basechar 0
+AnchorPoint: "l;hi" 160 1400 basechar 0
+AnchorPoint: "l;o" 0 400 basechar 0
+LayerCount: 3
+Fore
+SplineSet
+984 770 m 1
+ 1074 784 1161 802 1274 832 c 1
+ 1274 120 l 2
+ 1274 54 1294 71 1436 65 c 1
+ 1436 0 l 1
+ 992 0 l 1
+ 992 65 l 1
+ 1085 70 1130 58 1130 113 c 2
+ 1130 659 l 2
+ 1130 713 1122 724 1099 724 c 0
+ 1089 724 1051 720 987 708 c 1
+ 984 770 l 1
+788 1074 m 2
+ 788 128 l 2
+ 788 57 797 68 936 65 c 1
+ 936 0 l 1
+ 510 0 l 1
+ 510 65 l 1
+ 612 68 644 54 644 120 c 2
+ 644 704 l 1
+ 530 704 l 1
+ 554 802 l 1
+ 645 802 l 1
+ 645 1038 l 2
+ 645 1099 647 1167 692 1265 c 1
+ 673 1242 651 1223 633 1223 c 0
+ 593 1223 578 1345 476 1345 c 0
+ 312 1345 308 1139 308 954 c 2
+ 308 128 l 2
+ 308 57 310 69 447 65 c 1
+ 448 0 l 1
+ 29 0 l 1
+ 29 65 l 1
+ 131 69 164 54 164 120 c 2
+ 164 704 l 1
+ 50 704 l 1
+ 74 802 l 1
+ 165 802 l 1
+ 165 965 l 2
+ 165 1128 183 1269 307 1352 c 0
+ 408 1420 503 1430 572 1430 c 0
+ 672 1430 743 1400 743 1355 c 0
+ 743 1350 741 1344 739 1337 c 1
+ 843 1475 987 1484 1039 1484 c 0
+ 1140 1484 1234 1452 1234 1403 c 0
+ 1234 1362 1171 1290 1123 1290 c 0
+ 1097 1290 1041 1406 950 1406 c 0
+ 820 1406 788 1209 788 1074 c 2
+EndSplineSet
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" longs longs i
+LCarets2: 2 0 0 
+EndChar
+
+StartChar: longs_longs_l
+Encoding: 65715 -1 518
+Width: 1444
+VWidth: 0
+Flags: HW
+HStem: 0 65<29 161.942 309.088 447 515 642.805 789.641 933 995 1125.33 1273.51 1408> 704 98<74 164 554 644> 1345 85<380.068 567.382> 1398 85<859.191 1035.5>
+VStem: 164 144<67.267 704 802 1232.59> 644 144<67.6193 704 802 1263.9> 1128 144<67.4204 1320>
+AnchorPoint: "r;bl" 1444 30 basechar 0
+AnchorPoint: "r;x" 1434 770 basechar 0
+AnchorPoint: "r;hi" 1434 1400 basechar 0
+AnchorPoint: "r;o" 1434 400 basechar 0
+AnchorPoint: "l;o" 0 400 basechar 0
+AnchorPoint: "l;hi" 160 1400 basechar 0
+AnchorPoint: "l;x" 0 770 basechar 0
+AnchorPoint: "l;bl" 0 30 basechar 0
+LayerCount: 3
+Fore
+SplineSet
+645 802 m 1xde
+ 645 1023 l 2
+ 645 1193 679 1242 686 1265 c 1
+ 667 1242 645 1223 627 1223 c 0
+ 592 1223 590 1345 481 1345 c 0
+ 317 1345 308 1139 308 954 c 2
+ 308 128 l 2
+ 308 57 310 69 447 65 c 1
+ 448 0 l 1
+ 29 0 l 1
+ 29 65 l 1
+ 131 69 164 54 164 120 c 2
+ 164 704 l 1
+ 50 704 l 1
+ 74 802 l 1
+ 165 802 l 1
+ 165 965 l 2
+ 165 1128 183 1269 307 1352 c 0
+ 408 1420 493 1430 562 1430 c 0xee
+ 662 1430 733 1400 733 1355 c 0
+ 733 1350 731 1344 729 1337 c 1
+ 769 1392 864 1483 1014 1483 c 0
+ 1057 1483 1097 1476 1126 1463 c 1
+ 1175 1470 1223 1477 1272 1486 c 1
+ 1272 120 l 2
+ 1272 60 1288 67 1408 65 c 1
+ 1409 0 l 1
+ 992 0 l 1
+ 995 65 l 1
+ 1093 66 1128 59 1128 121 c 2
+ 1128 1320 l 1
+ 1100 1296 1090 1276 1067 1276 c 0
+ 1032 1276 1016 1398 941 1398 c 0
+ 796 1398 788 1131 788 1074 c 2
+ 788 128 l 2
+ 788 57 796 69 933 65 c 1
+ 936 0 l 1
+ 514 0 l 1
+ 515 65 l 1
+ 621 67 644 56 644 117 c 2
+ 644 704 l 1
+ 530 704 l 1
+ 554 802 l 1
+ 645 802 l 1xde
+EndSplineSet
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" longs longs l
+LCarets2: 2 0 0 
+EndChar
+
+StartChar: longs_j
+Encoding: 65716 -1 519
+Width: 981
+Flags: HMW
+HStem: -534 92<458 614.898> 0 65<30 161.996 309.244 456> 704 98<74 164> 807 20G<727.5 794> 1406 78<394.625 609.5>
+VStem: 164 144<67.2279 704 802 1257.34> 650 144<-368.625 719.978>
+AnchorPoint: "r;o" 981 400 basechar 0
+AnchorPoint: "r;x" 981 770 basechar 0
+AnchorPoint: "r;bl" 981 30 basechar 0
+AnchorPoint: "l;k;lo" 314 -500 basechar 0
+AnchorPoint: "r;lo" 831 -500 basechar 0
+AnchorPoint: "r;hi" 786 1400 basechar 0
+AnchorPoint: "l;bl" 0 30 basechar 0
+AnchorPoint: "l;x" 0 770 basechar 0
+AnchorPoint: "l;hi" 140 1400 basechar 0
+AnchorPoint: "l;o" 0 400 basechar 0
+LayerCount: 3
+Fore
+SplineSet
+333 -454 m 0
+ 333 -412 398 -354 444 -354 c 0
+ 475 -354 523 -442 555 -442 c 0
+ 624 -442 650 -339 650 -164 c 2
+ 650 636 l 2
+ 650 690 648 720 604 720 c 0
+ 590 720 561 713 514 702 c 1
+ 503 764 l 1
+ 593 779 661 796 794 827 c 1
+ 794 -99 l 2
+ 794 -326 747 -403 678 -454 c 0
+ 677 -455 580 -534 493 -534 c 0
+ 423 -534 333 -484 333 -454 c 0
+308 704 m 1
+ 308 123 l 2
+ 308 56 319 69 456 65 c 1
+ 456 0 l 1
+ 30 0 l 1
+ 30 65 l 1
+ 132 69 164 54 164 120 c 2
+ 164 704 l 1
+ 50 704 l 1
+ 74 802 l 1
+ 165 802 l 1
+ 165 1066 l 2
+ 165 1281 323 1484 559 1484 c 0
+ 660 1484 754 1452 754 1403 c 0
+ 754 1362 691 1290 643 1290 c 0
+ 617 1290 562 1406 469 1406 c 0
+ 345 1406 307 1212 307 1094 c 2
+ 308 704 l 1
+EndSplineSet
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" longs j
+LCarets2: 1 0 
+EndChar
+
+StartChar: longs_longs_j
+Encoding: 65717 -1 520
+Width: 1461
+VWidth: 0
+Flags: HMW
+HStem: -534 92<938 1094.9> 0 65<29 161.942 309.088 447 510 641.996 789.747 936> 704 98<74 164 554 644> 807 20G<1207.5 1274> 1345 85<376.513 622> 1406 78<870.581 1089.5>
+VStem: 164 144<67.267 704 802 1232.59> 644 144<67.2986 704 802 1251.86> 1130 144<-368.625 719.978>
+AnchorPoint: "r;o" 1461 400 basechar 0
+AnchorPoint: "r;x" 1461 770 basechar 0
+AnchorPoint: "r;bl" 1461 30 basechar 0
+AnchorPoint: "l;k;lo" 794 -500 basechar 0
+AnchorPoint: "r;lo" 1311 -500 basechar 0
+AnchorPoint: "r;hi" 1266 1400 basechar 0
+AnchorPoint: "l;bl" 0 30 basechar 0
+AnchorPoint: "l;x" 0 770 basechar 0
+AnchorPoint: "l;hi" 160 1400 basechar 0
+AnchorPoint: "l;o" 0 400 basechar 0
+LayerCount: 3
+Fore
+SplineSet
+813 -454 m 0
+ 813 -412 878 -354 924 -354 c 0
+ 955 -354 1003 -442 1035 -442 c 0
+ 1104 -442 1130 -339 1130 -164 c 2
+ 1130 636 l 2
+ 1130 690 1128 720 1084 720 c 0
+ 1070 720 1041 713 994 702 c 1
+ 983 764 l 1
+ 1073 779 1141 796 1274 827 c 1
+ 1274 -99 l 2
+ 1274 -326 1227 -403 1158 -454 c 0
+ 1157 -455 1060 -534 973 -534 c 0
+ 903 -534 813 -484 813 -454 c 0
+788 1074 m 2
+ 788 128 l 2
+ 788 57 797 68 936 65 c 1
+ 936 0 l 1
+ 510 0 l 1
+ 510 65 l 1
+ 612 68 644 54 644 120 c 2
+ 644 704 l 1
+ 530 704 l 1
+ 554 802 l 1
+ 645 802 l 1
+ 645 1038 l 2
+ 645 1099 647 1167 692 1265 c 1
+ 673 1242 651 1223 633 1223 c 0
+ 593 1223 578 1345 476 1345 c 0
+ 312 1345 308 1139 308 954 c 2
+ 308 128 l 2
+ 308 57 310 69 447 65 c 1
+ 448 0 l 1
+ 29 0 l 1
+ 29 65 l 1
+ 131 69 164 54 164 120 c 2
+ 164 704 l 1
+ 50 704 l 1
+ 74 802 l 1
+ 165 802 l 1
+ 165 965 l 2
+ 165 1128 183 1269 307 1352 c 0
+ 408 1420 503 1430 572 1430 c 0
+ 672 1430 743 1400 743 1355 c 0
+ 743 1350 741 1344 739 1337 c 1
+ 843 1475 987 1484 1039 1484 c 0
+ 1140 1484 1234 1452 1234 1403 c 0
+ 1234 1362 1171 1290 1123 1290 c 0
+ 1097 1290 1041 1406 950 1406 c 0
+ 820 1406 788 1209 788 1074 c 2
+EndSplineSet
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" longs longs j
+LCarets2: 2 0 0 
+EndChar
+
+StartChar: longs_b
+Encoding: 65718 -1 521
+Width: 1506
+Flags: HW
+HStem: -19 74<863.635 1167.38> 0 65<35 162.265 309.641 453> 704 98<74 164> 706 112<912.528 1172.91> 1398 85<378.339 555.5>
+VStem: 164 144<67.7139 704 802 1271.11> 648 144<110.615 659.166 689 1320> 1307 149<233.539 563.75>
+AnchorPoint: "r;o" 1506 400 basechar 0
+AnchorPoint: "r;hi" 906 1400 basechar 0
+AnchorPoint: "r;x" 1466 770 basechar 0
+AnchorPoint: "r;bl" 1466 30 basechar 0
+AnchorPoint: "l;bl" 0 30 basechar 0
+AnchorPoint: "l;x" 0 770 basechar 0
+AnchorPoint: "l;hi" 140 1400 basechar 0
+AnchorPoint: "l;o" 0 400 basechar 0
+LayerCount: 3
+Fore
+SplineSet
+50 704 m 1x6f
+ 74 802 l 1
+ 165 802 l 1x6f
+ 165 1023 l 2
+ 165 1136 170 1320 365 1440 c 0
+ 414 1470 476 1483 534 1483 c 0
+ 577 1483 617 1476 646 1463 c 1
+ 695 1470 743 1477 792 1486 c 1
+ 792 689 l 1
+ 822 711 926 818 1080 818 c 0
+ 1337 818 1456 632 1456 435 c 0
+ 1456 214 1305 -19 1033 -19 c 0x9f
+ 892 -19 789 43 758 43 c 0
+ 728 43 695 -4 665 -4 c 0
+ 655 -4 642 8 642 44 c 0
+ 642 72 648 155 648 318 c 2
+ 648 1320 l 1
+ 620 1296 610 1276 587 1276 c 0
+ 552 1276 536 1398 461 1398 c 0
+ 316 1398 308 1131 308 1074 c 2
+ 308 128 l 2
+ 308 57 316 69 453 65 c 1
+ 456 0 l 1
+ 34 0 l 1
+ 35 65 l 1
+ 137 69 164 54 164 120 c 2
+ 164 704 l 1
+ 50 704 l 1x6f
+792 200 m 2
+ 792 101 911 55 1011 55 c 0
+ 1124 55 1307 100 1307 360 c 0
+ 1307 681 1082 706 1028 706 c 0x9f
+ 877 706 792 630 792 630 c 1
+ 792 200 l 2
+EndSplineSet
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" longs b
+LCarets2: 1 0 
+EndChar
+
+StartChar: longs_longs_b
+Encoding: 65719 -1 522
+Width: 1986
+Flags: HW
+HStem: -19 74<1343.63 1647.38> 0 65<29 161.942 309.088 447 515 642.805 789.641 933> 704 98<74 164 554 644> 706 112<1392.53 1652.91> 1345 85<380.068 567.382> 1398 85<859.191 1035.5>
+VStem: 164 144<67.267 704 802 1232.59> 644 144<67.6193 704 802 1263.9> 1128 144<110.615 659.166 689 1320> 1787 149<233.539 563.75>
+AnchorPoint: "r;o" 1986 400 basechar 0
+AnchorPoint: "r;hi" 1386 1400 basechar 0
+AnchorPoint: "r;x" 1946 770 basechar 0
+AnchorPoint: "r;bl" 1946 30 basechar 0
+AnchorPoint: "l;o" 0 400 basechar 0
+AnchorPoint: "l;hi" 160 1400 basechar 0
+AnchorPoint: "l;x" 0 770 basechar 0
+AnchorPoint: "l;bl" 0 30 basechar 0
+LayerCount: 3
+Fore
+SplineSet
+645 802 m 1x67c0
+ 645 1023 l 2
+ 645 1193 679 1242 686 1265 c 1
+ 667 1242 645 1223 627 1223 c 0
+ 592 1223 590 1345 481 1345 c 0
+ 317 1345 308 1139 308 954 c 2
+ 308 704 l 1
+ 308 128 l 2
+ 308 57 310 69 447 65 c 1
+ 448 0 l 1
+ 29 0 l 1
+ 29 65 l 1
+ 131 69 164 54 164 120 c 2
+ 164 704 l 1
+ 50 704 l 1
+ 74 802 l 1
+ 165 802 l 1
+ 165 965 l 2
+ 165 1128 183 1269 307 1352 c 0
+ 408 1420 493 1430 562 1430 c 0x6bc0
+ 662 1430 733 1400 733 1355 c 0
+ 733 1350 731 1344 729 1337 c 1
+ 769 1392 864 1483 1014 1483 c 0
+ 1057 1483 1097 1476 1126 1463 c 1
+ 1175 1470 1223 1477 1272 1486 c 1
+ 1272 689 l 1
+ 1302 711 1406 818 1560 818 c 0
+ 1817 818 1936 632 1936 435 c 0
+ 1936 214 1785 -19 1513 -19 c 0x97c0
+ 1372 -19 1269 43 1238 43 c 0
+ 1208 43 1175 -4 1145 -4 c 0
+ 1135 -4 1122 8 1122 44 c 0
+ 1122 72 1128 155 1128 318 c 2
+ 1128 1320 l 1
+ 1100 1296 1090 1276 1067 1276 c 0
+ 1032 1276 1016 1398 941 1398 c 0
+ 796 1398 788 1131 788 1074 c 2
+ 788 128 l 2
+ 788 57 796 69 933 65 c 1
+ 936 0 l 1
+ 514 0 l 1
+ 515 65 l 1
+ 621 67 644 56 644 117 c 2
+ 644 704 l 1
+ 530 704 l 1
+ 554 802 l 1
+ 645 802 l 1x67c0
+1272 200 m 2
+ 1272 101 1391 55 1491 55 c 0
+ 1604 55 1787 100 1787 360 c 0
+ 1787 681 1562 706 1508 706 c 0x93c0
+ 1357 706 1272 630 1272 630 c 1
+ 1272 200 l 2
+EndSplineSet
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" longs longs b
+LCarets2: 2 0 0 
+EndChar
+
+StartChar: longs_h
+Encoding: 65720 -1 523
+Width: 1446
+Flags: HW
+HStem: 0 65<35 162.265 309.641 453 532 646.377 793.434 933 1018 1144.43 1292.27 1411> 704 98<74 164 929.821 1103.58> 1398 85<378.339 555.5>
+VStem: 164 144<67.7139 704 802 1271.11> 648 144<68.524 628.855 658 1320> 1147 144<67.5664 655.289>
+AnchorPoint: "r;hi" 851 1400 basechar 0
+AnchorPoint: "r;bl" 1446 30 basechar 0
+AnchorPoint: "r;x" 1336 770 basechar 0
+AnchorPoint: "r;o" 1426 400 basechar 0
+AnchorPoint: "l;bl" 0 30 basechar 0
+AnchorPoint: "l;x" 0 770 basechar 0
+AnchorPoint: "l;hi" 140 1400 basechar 0
+AnchorPoint: "l;o" 0 400 basechar 0
+LayerCount: 3
+Fore
+SplineSet
+50 704 m 1
+ 74 802 l 1
+ 165 802 l 1
+ 165 1023 l 2
+ 165 1136 170 1320 365 1440 c 0
+ 414 1470 476 1483 534 1483 c 0
+ 577 1483 617 1476 646 1463 c 1
+ 695 1470 743 1477 792 1486 c 1
+ 792 658 l 1
+ 846 701 963 809 1095 809 c 0
+ 1288 809 1291 642 1291 480 c 2
+ 1291 124 l 2
+ 1291 57 1300 67 1411 65 c 1
+ 1411 0 l 1
+ 1018 0 l 1
+ 1016 65 l 1
+ 1121 67 1147 60 1147 122 c 2
+ 1147 539 l 2
+ 1147 660 1070 695 1008 695 c 0
+ 904 695 792 595 792 595 c 1
+ 792 113 l 2
+ 792 56 831 71 935 65 c 1
+ 933 0 l 1
+ 532 0 l 1
+ 531 65 l 1
+ 614 67 648 62 648 113 c 2
+ 648 1320 l 1
+ 620 1296 610 1276 587 1276 c 0
+ 552 1276 536 1398 461 1398 c 0
+ 316 1398 308 1131 308 1074 c 2
+ 308 128 l 2
+ 308 57 316 69 453 65 c 1
+ 456 0 l 1
+ 34 0 l 1
+ 35 65 l 1
+ 137 69 164 54 164 120 c 2
+ 164 704 l 1
+ 50 704 l 1
+EndSplineSet
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" longs h
+LCarets2: 1 0 
+EndChar
+
+StartChar: longs_longs_h
+Encoding: 65721 -1 524
+Width: 1926
+Flags: HW
+HStem: 0 65<29 161.942 309.088 447 515 642.805 789.641 933 1007 1127.4 1273.43 1413 1498 1624.43 1772.27 1891> 704 98<74 164 554 644 1409.82 1583.58> 1345 85<380.068 567.382> 1398 85<859.191 1035.5>
+VStem: 164 144<67.267 704 802 1232.59> 644 144<67.6193 704 802 1263.9> 1128 144<68.5299 628.855 658 1320> 1627 144<67.5664 655.289>
+AnchorPoint: "r;hi" 1331 1400 basechar 0
+AnchorPoint: "r;bl" 1926 30 basechar 0
+AnchorPoint: "r;x" 1816 770 basechar 0
+AnchorPoint: "r;o" 1906 400 basechar 0
+AnchorPoint: "l;o" 0 400 basechar 0
+AnchorPoint: "l;hi" 160 1400 basechar 0
+AnchorPoint: "l;x" 0 770 basechar 0
+AnchorPoint: "l;bl" 0 30 basechar 0
+LayerCount: 3
+Fore
+SplineSet
+645 802 m 1xdf
+ 645 1023 l 2
+ 645 1193 679 1242 686 1265 c 1
+ 667 1242 645 1223 627 1223 c 0
+ 592 1223 590 1345 481 1345 c 0
+ 317 1345 308 1139 308 954 c 2
+ 308 704 l 1
+ 308 128 l 2
+ 308 57 310 69 447 65 c 1
+ 448 0 l 1
+ 29 0 l 1
+ 29 65 l 1
+ 131 69 164 54 164 120 c 2
+ 164 704 l 1
+ 50 704 l 1
+ 74 802 l 1
+ 165 802 l 1
+ 165 965 l 2
+ 165 1128 183 1269 307 1352 c 0
+ 408 1420 493 1430 562 1430 c 0xef
+ 662 1430 733 1400 733 1355 c 0
+ 733 1350 731 1344 729 1337 c 1
+ 769 1392 864 1483 1014 1483 c 0
+ 1057 1483 1097 1476 1126 1463 c 1
+ 1175 1470 1223 1477 1272 1486 c 1
+ 1272 658 l 1
+ 1326 701 1443 809 1575 809 c 0
+ 1768 809 1771 642 1771 480 c 2
+ 1771 124 l 2
+ 1771 57 1780 67 1891 65 c 1
+ 1891 0 l 1
+ 1498 0 l 1
+ 1496 65 l 1
+ 1601 67 1627 60 1627 122 c 2
+ 1627 539 l 2
+ 1627 660 1550 695 1488 695 c 0
+ 1384 695 1272 595 1272 595 c 1
+ 1272 113 l 2
+ 1272 56 1311 71 1415 65 c 1
+ 1413 0 l 1
+ 1007 0 l 1
+ 1006 65 l 1
+ 1096 67 1128 57 1128 108 c 2
+ 1128 1320 l 1
+ 1100 1296 1090 1276 1067 1276 c 0
+ 1032 1276 1016 1398 941 1398 c 0
+ 796 1398 788 1131 788 1074 c 2
+ 788 128 l 2
+ 788 57 796 69 933 65 c 1
+ 936 0 l 1
+ 514 0 l 1
+ 515 65 l 1
+ 621 67 644 56 644 117 c 2
+ 644 704 l 1
+ 530 704 l 1
+ 554 802 l 1
+ 645 802 l 1xdf
+EndSplineSet
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" longs longs h
+LCarets2: 2 0 0 
+EndChar
+
+StartChar: longs_k
+Encoding: 65722 -1 525
+Width: 1456
+VWidth: 0
+Flags: HW
+HStem: 0 65<35 162.265 309.641 453 536 647.533 788.419 949 1288.99 1420> 704 98<74 164> 747 55<1075 1179.98 1285.46 1403> 1398 85<378.339 555.5>
+VStem: 164 144<67.7139 704 802 1271.11> 648 144<67.0248 338 410 1320>
+AnchorPoint: "r;o" 1436 400 basechar 0
+AnchorPoint: "r;hi" 866 1400 basechar 0
+AnchorPoint: "r;x" 1456 770 basechar 0
+AnchorPoint: "r;bl" 1456 30 basechar 0
+AnchorPoint: "l;bl" 0 30 basechar 0
+AnchorPoint: "l;x" 0 770 basechar 0
+AnchorPoint: "l;hi" 140 1400 basechar 0
+AnchorPoint: "l;o" 0 400 basechar 0
+LayerCount: 3
+Fore
+SplineSet
+50 704 m 1xdc
+ 74 802 l 1xdc
+ 165 802 l 1
+ 165 1023 l 2
+ 165 1136 170 1320 365 1440 c 0
+ 414 1470 476 1483 534 1483 c 0
+ 577 1483 617 1476 646 1463 c 1
+ 695 1470 743 1477 792 1486 c 1
+ 792 410 l 1
+ 1165 714 l 2
+ 1176 723 1180 729 1180 734 c 0
+ 1180 746 1154 748 1137 748 c 0
+ 1120 748 1099 747 1075 747 c 1
+ 1075 802 l 1
+ 1405 802 l 1
+ 1403 747 l 1xbc
+ 1342 746 1325 753 1261 702 c 2
+ 970 471 l 1
+ 1275 114 l 2
+ 1314 69 1306 65 1367 65 c 2
+ 1421 65 l 1
+ 1420 0 l 1
+ 1178 0 l 1
+ 859 393 l 1
+ 787 338 l 1
+ 787 116 l 2
+ 787 59 806 67 949 65 c 1
+ 951 0 l 1
+ 536 0 l 1
+ 535 65 l 1
+ 638 66 648 59 648 111 c 2
+ 648 1320 l 1
+ 620 1296 610 1276 587 1276 c 0
+ 552 1276 536 1398 461 1398 c 0
+ 316 1398 308 1131 308 1074 c 2
+ 308 128 l 2
+ 308 57 316 69 453 65 c 1
+ 456 0 l 1
+ 34 0 l 1
+ 35 65 l 1
+ 137 69 164 54 164 120 c 2
+ 164 704 l 1
+ 50 704 l 1xdc
+EndSplineSet
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" longs k
+LCarets2: 1 0 
+EndChar
+
+StartChar: longs_longs_k
+Encoding: 65723 -1 526
+Width: 1936
+Flags: HW
+HStem: 0 65<29 161.942 309.088 447 515 642.805 789.641 933 1011 1127.37 1268.42 1429 1768.99 1900> 704 98<74 164 554 644> 747 55<1555 1659.98 1765.46 1883> 1345 85<380.068 567.382> 1398 85<859.191 1035.5>
+VStem: 164 144<67.267 704 802 1232.59> 644 144<67.6193 704 802 1263.9> 1128 144<67.0248 338 410 1320>
+AnchorPoint: "r;o" 1916 400 basechar 0
+AnchorPoint: "r;hi" 1346 1400 basechar 0
+AnchorPoint: "r;x" 1936 770 basechar 0
+AnchorPoint: "r;bl" 1936 30 basechar 0
+AnchorPoint: "l;o" 0 400 basechar 0
+AnchorPoint: "l;hi" 160 1400 basechar 0
+AnchorPoint: "l;x" 0 770 basechar 0
+AnchorPoint: "l;bl" 0 30 basechar 0
+LayerCount: 3
+Fore
+SplineSet
+645 802 m 1xa7
+ 645 1023 l 2
+ 645 1193 679 1242 686 1265 c 1
+ 667 1242 645 1223 627 1223 c 0
+ 592 1223 590 1345 481 1345 c 0
+ 317 1345 308 1139 308 954 c 2
+ 308 128 l 2
+ 308 57 310 69 447 65 c 1
+ 448 0 l 1
+ 29 0 l 1
+ 29 65 l 1
+ 131 69 164 54 164 120 c 2
+ 164 704 l 1
+ 50 704 l 1
+ 74 802 l 1xd7
+ 165 802 l 1
+ 165 965 l 2
+ 165 1128 183 1269 307 1352 c 0
+ 408 1420 493 1430 562 1430 c 0xb7
+ 662 1430 733 1400 733 1355 c 0
+ 733 1350 731 1344 729 1337 c 1
+ 769 1392 864 1483 1014 1483 c 0
+ 1057 1483 1097 1476 1126 1463 c 1
+ 1175 1470 1223 1477 1272 1486 c 1
+ 1272 410 l 1
+ 1645 714 l 2
+ 1656 723 1660 729 1660 734 c 0
+ 1660 746 1634 748 1617 748 c 0
+ 1600 748 1579 747 1555 747 c 1
+ 1555 802 l 1
+ 1885 802 l 1
+ 1883 747 l 1xaf
+ 1822 746 1805 753 1741 702 c 2
+ 1450 471 l 1
+ 1755 114 l 2
+ 1794 69 1786 65 1847 65 c 2
+ 1901 65 l 1
+ 1900 0 l 1
+ 1658 0 l 1
+ 1339 393 l 1
+ 1267 338 l 1
+ 1267 116 l 2
+ 1267 59 1286 67 1429 65 c 1
+ 1431 0 l 1
+ 1011 0 l 1
+ 1010 65 l 1
+ 1113 66 1128 59 1128 111 c 2
+ 1128 1320 l 1
+ 1100 1296 1090 1276 1067 1276 c 0
+ 1032 1276 1016 1398 941 1398 c 0
+ 796 1398 788 1131 788 1074 c 2
+ 788 128 l 2
+ 788 57 796 69 933 65 c 1
+ 936 0 l 1
+ 514 0 l 1
+ 515 65 l 1
+ 621 67 644 56 644 117 c 2
+ 644 704 l 1
+ 530 704 l 1
+ 554 802 l 1xcf
+ 645 802 l 1xa7
+EndSplineSet
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" longs longs k
+LCarets2: 2 0 0 
+EndChar
+
+StartChar: longs_thorn
+Encoding: 65724 -1 527
+Width: 1487
+VWidth: 0
+Flags: HW
+HStem: -530 65<511 646.9 794.42 983> -25 67<867.941 1162.26> 0 65<35 162.265 309.641 453> 686 120<939.586 1145.31> 704 98<74 164> 1398 85<378.339 555.5>
+VStem: 164 144<67.7139 704 802 1271.11> 648 144<-460.004 11 88.3012 627.217 656 1320> 1293 144<201.109 524.928>
+AnchorPoint: "r;lo" 1087 -500 basechar 0
+AnchorPoint: "r;o" 1487 400 basechar 0
+AnchorPoint: "r;x" 1407 770 basechar 0
+AnchorPoint: "r;bl" 1407 30 basechar 0
+AnchorPoint: "l;k;lo" 474 -500 basechar 0
+AnchorPoint: "r;hi" 906 1400 basechar 0
+AnchorPoint: "l;bl" 0 30 basechar 0
+AnchorPoint: "l;x" 0 770 basechar 0
+AnchorPoint: "l;hi" 140 1400 basechar 0
+AnchorPoint: "l;o" 0 400 basechar 0
+LayerCount: 3
+Fore
+SplineSet
+792 112 m 1xd780
+ 792 112 897 42 1040 42 c 0
+ 1242 42 1293 238 1293 346 c 0
+ 1293 534 1165 686 1006 686 c 0
+ 892 686 813 609 792 592 c 1
+ 792 112 l 1xd780
+648 1320 m 1
+ 620 1296 610 1276 587 1276 c 0
+ 552 1276 536 1398 461 1398 c 0
+ 316 1398 308 1131 308 1074 c 2
+ 308 128 l 2
+ 308 57 316 69 453 65 c 1
+ 456 0 l 1
+ 34 0 l 1
+ 35 65 l 1
+ 137 69 164 54 164 120 c 2
+ 164 704 l 1
+ 50 704 l 1
+ 74 802 l 1
+ 165 802 l 1xaf80
+ 165 1023 l 2
+ 165 1136 170 1320 365 1440 c 0
+ 414 1470 476 1483 534 1483 c 0
+ 577 1483 617 1476 646 1463 c 1
+ 695 1470 743 1477 792 1486 c 1
+ 792 656 l 1
+ 792 656 941 806 1097 806 c 0
+ 1291 806 1437 625 1437 412 c 0
+ 1437 162 1281 -25 1046 -25 c 0
+ 902 -25 792 11 792 11 c 1
+ 792 -414 l 2
+ 792 -468 829 -463 984 -465 c 1
+ 983 -530 l 1
+ 511 -530 l 1
+ 509 -465 l 1
+ 634 -465 648 -461 648 -416 c 2
+ 648 1320 l 1
+EndSplineSet
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" longs thorn
+LCarets2: 1 0 
+EndChar
+
+StartChar: longs_longs_thorn
+Encoding: 65725 -1 528
+Width: 1967
+Flags: HWO
+HStem: -530 65<991 1126.9 1274.42 1463> -25 67<1347.94 1642.26> 0 65<29 161.942 309.088 447 515 642.805 789.641 933> 686 120<1419.59 1625.31> 704 98<74 164 554 644> 1345 85<380.068 567.382> 1398 85<859.191 1035.5>
+VStem: 164 144<67.267 704 802 1232.59> 644 144<67.6193 704 802 1263.9> 1128 144<-460.004 11 88.3012 627.217 656 1320> 1773 144<201.109 524.928>
+AnchorPoint: "r;lo" 1567 -500 basechar 0
+AnchorPoint: "r;o" 1967 400 basechar 0
+AnchorPoint: "r;x" 1887 770 basechar 0
+AnchorPoint: "r;bl" 1887 30 basechar 0
+AnchorPoint: "l;k;lo" 954 -500 basechar 0
+AnchorPoint: "r;hi" 1386 1400 basechar 0
+AnchorPoint: "l;o" 0 400 basechar 0
+AnchorPoint: "l;hi" 160 1400 basechar 0
+AnchorPoint: "l;x" 0 770 basechar 0
+AnchorPoint: "l;bl" 0 30 basechar 0
+LayerCount: 3
+Fore
+SplineSet
+645 802 m 1xabe0
+ 645 1023 l 2
+ 645 1193 679 1242 686 1265 c 1
+ 667 1242 645 1223 627 1223 c 0
+ 592 1223 590 1345 481 1345 c 0
+ 317 1345 308 1139 308 954 c 2
+ 308 704 l 1
+ 308 128 l 2
+ 308 57 310 69 447 65 c 1
+ 448 0 l 1
+ 29 0 l 1
+ 29 65 l 1
+ 131 69 164 54 164 120 c 2
+ 164 704 l 1
+ 50 704 l 1
+ 74 802 l 1
+ 165 802 l 1
+ 165 965 l 2
+ 165 1128 183 1269 307 1352 c 0
+ 408 1420 493 1430 562 1430 c 0xade0
+ 662 1430 733 1400 733 1355 c 0
+ 733 1350 731 1344 729 1337 c 1
+ 769 1392 864 1483 1014 1483 c 0
+ 1057 1483 1097 1476 1126 1463 c 1
+ 1175 1470 1223 1477 1272 1486 c 1
+ 1272 656 l 1
+ 1272 656 1421 806 1577 806 c 0
+ 1771 806 1917 625 1917 412 c 0
+ 1917 162 1761 -25 1526 -25 c 0xd3e0
+ 1382 -25 1272 11 1272 11 c 1
+ 1272 -414 l 2
+ 1272 -468 1309 -463 1464 -465 c 1
+ 1463 -530 l 1
+ 991 -530 l 1
+ 989 -465 l 1
+ 1114 -465 1128 -461 1128 -416 c 2
+ 1128 1320 l 1
+ 1100 1296 1090 1276 1067 1276 c 0
+ 1032 1276 1016 1398 941 1398 c 0
+ 796 1398 788 1131 788 1074 c 2
+ 788 128 l 2
+ 788 57 796 69 933 65 c 1
+ 936 0 l 1
+ 514 0 l 1
+ 515 65 l 1
+ 621 67 644 56 644 117 c 2
+ 644 704 l 1
+ 530 704 l 1
+ 554 802 l 1
+ 645 802 l 1xabe0
+1272 112 m 1
+ 1272 112 1377 42 1520 42 c 0
+ 1722 42 1773 238 1773 346 c 0
+ 1773 534 1645 686 1486 686 c 0xd1e0
+ 1372 686 1293 609 1272 592 c 1
+ 1272 112 l 1
+EndSplineSet
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" longs longs thorn
+LCarets2: 2 0 0 
 EndChar
 EndChars
 EndSplineFont
