@@ -22,7 +22,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1249677682
-ModificationTime: 1251867198
+ModificationTime: 1251867939
 OS2TypoAscent: 0
 OS2TypoAOffset: 1
 OS2TypoDescent: 0
@@ -69,7 +69,7 @@ KernClass2: 22 25 "generated_kerning kerning class 1"
  1 v
  44 w wcircumflex y yacute ycircumflex ydieresis
  31 g gbreve gcircumflex gdotaccent
- 11 b f_b f_f_b
+ 29 b f_b f_f_b f_f_thorn f_thorn
  38 c cacute ccaron ccircumflex cdotaccent
  152 e eacute ebreve ecaron ecircumflex edieresis edotaccent egrave emacron o oacute obreve ocircumflex odieresis ograve ohungarumlaut omacron otilde p thorn
  1 d
@@ -92,8 +92,8 @@ KernClass2: 22 25 "generated_kerning kerning class 1"
  38 c cacute ccaron ccircumflex cdotaccent
  1 d
  146 e eacute ebreve ecaron ecircumflex edieresis edotaccent egrave emacron o oacute obreve ocircumflex odieresis ograve ohungarumlaut omacron otilde q
- 25 f f_b f_h f_i f_j f_k f_l
- 39 f_f f_f_b f_f_h f_f_i f_f_j f_f_k f_f_l
+ 33 f f_b f_h f_i f_j f_k f_l f_thorn
+ 49 f_f f_f_b f_f_h f_f_i f_f_j f_f_k f_f_l f_f_thorn
  31 g gbreve gcircumflex gdotaccent
  1 j
  27 s sacute scaron scircumflex
@@ -139,7 +139,7 @@ NameList: Adobe Glyph List
 DisplaySize: -72
 AntiAlias: 1
 FitToEm: 1
-WinInfo: 32 8 6
+WinInfo: 104 8 6
 BeginPrivate: 9
 BlueValues 35 [-48 0 788 835 1365 1416 1469 1486]
 OtherBlues 11 [-539 -530]
@@ -158,7 +158,7 @@ Grid
  3186.90039062 1365 l 1
 EndSplineSet
 AnchorClass2: "top"  "accent positioning-1" "r;k;lo"  "spacing anchors-1" "l;k;lo"  "spacing anchors-1" "r;lo"  "spacing anchors-1" "l;lo"  "spacing anchors-1" "r;k;o"  "spacing anchors-1" "l;k;o"  "spacing anchors-1" "r;o"  "spacing anchors-1" "l;o"  "spacing anchors-1" "r;k;hi"  "spacing anchors-1" "l;k;hi"  "spacing anchors-1" "r;hi"  "spacing anchors-1" "l;hi"  "spacing anchors-1" "r;k;x"  "spacing anchors-1" "l;k;x"  "spacing anchors-1" "r;x"  "spacing anchors-1" "l;x"  "spacing anchors-1" "r;k;bl"  "spacing anchors-1" "l;k;bl"  "spacing anchors-1" "r;bl"  "spacing anchors-1" "l;bl"  "spacing anchors-1" 
-BeginChars: 65709 512
+BeginChars: 65711 514
 
 StartChar: i
 Encoding: 105 105 0
@@ -13325,7 +13325,7 @@ StartChar: eth
 Encoding: 240 240 511
 Width: 935
 VWidth: 0
-Flags: HWO
+Flags: HW
 HStem: -30 83<369.929 627.669> 741 71<345.335 603.572> 1449 20G<180 346.791>
 VStem: 50 163<226.852 591.103> 741 147<212.049 626.192>
 LayerCount: 3
@@ -13400,6 +13400,156 @@ SplineSet
  671.62310791 901.924987793 528 1227 205 1464 c 5
  348 1464 l 5
 EndSplineSet
+EndChar
+
+StartChar: f_thorn
+Encoding: 65709 -1 512
+Width: 1507
+VWidth: 0
+Flags: W
+HStem: -530 65<531 666.9 814.42 1003> -25 67<887.941 1182.26> 0 65<55 182.265 329.641 473> 686 120<959.586 1165.31> 704 98<59 184 328 534> 1398 85<398.269 575.5>
+VStem: 184 144<67.7139 704 802 1271.11> 668 144<-460.004 11 88.3012 627.217 656 1320> 1313 144<201.109 524.928>
+AnchorPoint: "r;lo" 1107 -500 basechar 0
+AnchorPoint: "r;o" 1507 400 basechar 0
+AnchorPoint: "r;x" 1427 770 basechar 0
+AnchorPoint: "r;bl" 1427 30 basechar 0
+AnchorPoint: "l;k;lo" 494 -500 basechar 0
+AnchorPoint: "r;hi" 926 1400 basechar 0
+AnchorPoint: "l;bl" 20 30 basechar 0
+AnchorPoint: "l;x" 0 770 basechar 0
+AnchorPoint: "l;hi" 160 1400 basechar 0
+AnchorPoint: "l;o" 20 400 basechar 0
+LayerCount: 3
+Fore
+SplineSet
+812 112 m 1xd780
+ 812 112 917 42 1060 42 c 0
+ 1262 42 1313 238 1313 346 c 0
+ 1313 534 1185 686 1026 686 c 0
+ 912 686 833 609 812 592 c 1
+ 812 112 l 1xd780
+668 1320 m 1
+ 640 1296 630 1276 607 1276 c 0
+ 572 1276 556 1398 481 1398 c 0
+ 336 1398 327 1131 327 1074 c 2
+ 327 802 l 1
+ 558 802 l 1
+ 534 704 l 1
+ 328 704 l 1
+ 328 128 l 2
+ 328 57 336 69 473 65 c 1
+ 476 0 l 1
+ 54 0 l 1
+ 55 65 l 1
+ 157 69 184 54 184 120 c 2
+ 184 704 l 1
+ 35 704 l 1
+ 59 802 l 1
+ 185 802 l 1xaf80
+ 185 1023 l 2
+ 185 1136 190 1320 385 1440 c 0
+ 434 1470 496 1483 554 1483 c 0
+ 597 1483 637 1476 666 1463 c 1
+ 715 1470 763 1477 812 1486 c 1
+ 812 656 l 1
+ 812 656 961 806 1117 806 c 0
+ 1311 806 1457 625 1457 412 c 0
+ 1457 162 1301 -25 1066 -25 c 0
+ 922 -25 812 11 812 11 c 1
+ 812 -414 l 2
+ 812 -468 849 -463 1004 -465 c 1
+ 1003 -530 l 1
+ 531 -530 l 1
+ 529 -465 l 1
+ 654 -465 668 -461 668 -416 c 2
+ 668 1320 l 1
+EndSplineSet
+LCarets2: 1 0 
+Ligature2: "'liga' Standard Ligatures in Latin lookup 10 subtable" f thorn
+EndChar
+
+StartChar: f_f_thorn
+Encoding: 65710 -1 513
+Width: 1987
+Flags: WO
+HStem: -530 65<1011 1146.9 1294.42 1483> -25 67<1367.94 1662.26> 0 65<49 181.942 329.088 467 535 662.805 809.641 953> 686 120<1439.59 1645.31> 704 98<59 184 328 664 808 1014> 1345 85<399.98 587.382> 1398 85<879.121 1055.5>
+VStem: 184 144<67.267 704 802 1232.59> 664 144<67.6193 704 802 1263.9> 1148 144<-460.004 11 88.3012 627.217 656 1320> 1793 144<201.109 524.928>
+AnchorPoint: "r;lo" 1587 -500 basechar 0
+AnchorPoint: "r;o" 1987 400 basechar 0
+AnchorPoint: "r;x" 1907 770 basechar 0
+AnchorPoint: "r;bl" 1907 30 basechar 0
+AnchorPoint: "l;k;lo" 974 -500 basechar 0
+AnchorPoint: "r;hi" 1406 1400 basechar 0
+AnchorPoint: "l;o" 20 400 basechar 0
+AnchorPoint: "l;hi" 180 1400 basechar 0
+AnchorPoint: "l;x" 0 770 basechar 0
+AnchorPoint: "l;bl" 20 30 basechar 0
+LayerCount: 3
+Fore
+SplineSet
+1292 656 m 1x83e0
+ 1292 656 1441 806 1597 806 c 0
+ 1791 806 1937 625 1937 412 c 0
+ 1937 162 1781 -25 1546 -25 c 0
+ 1402 -25 1292 11 1292 11 c 1
+ 1292 -414 l 2
+ 1292 -468 1329 -463 1484 -465 c 1
+ 1483 -530 l 1
+ 1011 -530 l 1
+ 1009 -465 l 1
+ 1134 -465 1148 -461 1148 -416 c 2
+ 1148 1320 l 1
+ 1120 1296 1110 1276 1087 1276 c 0
+ 1052 1276 1036 1398 961 1398 c 0xd3e0
+ 816 1398 807 1131 807 1074 c 2
+ 807 802 l 1
+ 1038 802 l 1
+ 1014 704 l 1
+ 808 704 l 1
+ 808 128 l 2
+ 808 57 816 69 953 65 c 1
+ 956 0 l 1
+ 534 0 l 1
+ 535 65 l 1
+ 641 67 664 56 664 117 c 2
+ 664 704 l 1
+ 328 704 l 1
+ 328 128 l 2
+ 328 57 330 69 467 65 c 1
+ 468 0 l 1
+ 49 0 l 1
+ 49 65 l 1
+ 151 69 184 54 184 120 c 2
+ 184 704 l 1
+ 35 704 l 1
+ 59 802 l 1
+ 185 802 l 1
+ 185 965 l 2
+ 185 1128 203 1269 327 1352 c 0
+ 428 1420 513 1430 582 1430 c 0xade0
+ 682 1430 753 1400 753 1355 c 0
+ 753 1350 751 1344 749 1337 c 1
+ 789 1392 884 1483 1034 1483 c 0
+ 1077 1483 1117 1476 1146 1463 c 1
+ 1195 1470 1243 1477 1292 1486 c 1
+ 1292 656 l 1x83e0
+1292 112 m 1
+ 1292 112 1397 42 1540 42 c 0
+ 1742 42 1793 238 1793 346 c 0
+ 1793 534 1665 686 1506 686 c 0
+ 1392 686 1313 609 1292 592 c 1
+ 1292 112 l 1
+327 802 m 1x8de0
+ 665 802 l 1
+ 665 1023 l 2
+ 665 1193 699 1242 706 1265 c 1
+ 687 1242 665 1223 647 1223 c 0
+ 612 1223 610 1345 501 1345 c 0
+ 337 1345 327 1139 327 954 c 2
+ 327 802 l 1x8de0
+EndSplineSet
+LCarets2: 2 0 0 
+Ligature2: "'liga' Standard Ligatures in Latin lookup 10 subtable" f f thorn
 EndChar
 EndChars
 EndSplineFont
