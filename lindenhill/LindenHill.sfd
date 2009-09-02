@@ -22,7 +22,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1249677682
-ModificationTime: 1251874272
+ModificationTime: 1251874718
 OS2TypoAscent: 0
 OS2TypoAOffset: 1
 OS2TypoDescent: 0
@@ -75,7 +75,7 @@ KernClass2: 22 26 "generated_kerning kerning class 1"
  200 e eacute ebreve ecaron ecircumflex edieresis edotaccent egrave emacron f_f_thorn f_thorn longs_longs_thorn longs_thorn o oacute obreve ocircumflex odieresis ograve ohungarumlaut omacron otilde p thorn
  1 d
  8 l lacute
- 47 f_f_h f_h h hcircumflex longs_h longs_longs_h m
+ 77 f_f_h f_f_hcircumflex f_h f_hcircumflex h hcircumflex longs_h longs_longs_h m
  34 n nacute napostrophe ncaron ntilde
  65 a aacute abreve acircumflex adieresis agrave amacron aring atilde
  14 h hcircumflex 
@@ -94,8 +94,8 @@ KernClass2: 22 26 "generated_kerning kerning class 1"
  38 c cacute ccaron ccircumflex cdotaccent
  1 d
  146 e eacute ebreve ecaron ecircumflex edieresis edotaccent egrave emacron o oacute obreve ocircumflex odieresis ograve ohungarumlaut omacron otilde q
- 33 f f_b f_h f_i f_j f_k f_l f_thorn
- 49 f_f f_f_b f_f_h f_f_i f_f_j f_f_k f_f_l f_f_thorn
+ 47 f f_b f_h f_hcircumflex f_i f_j f_k f_l f_thorn
+ 65 f_f f_f_b f_f_h f_f_hcircumflex f_f_i f_f_j f_f_k f_f_l f_f_thorn
  31 g gbreve gcircumflex gdotaccent
  1 j
  27 s sacute scaron scircumflex
@@ -160,7 +160,7 @@ Grid
  3186.90039062 1365 l 1
 EndSplineSet
 AnchorClass2: "top"  "accent positioning-1" "r;k;lo"  "spacing anchors-1" "l;k;lo"  "spacing anchors-1" "r;lo"  "spacing anchors-1" "l;lo"  "spacing anchors-1" "r;k;o"  "spacing anchors-1" "l;k;o"  "spacing anchors-1" "r;o"  "spacing anchors-1" "l;o"  "spacing anchors-1" "r;k;hi"  "spacing anchors-1" "l;k;hi"  "spacing anchors-1" "r;hi"  "spacing anchors-1" "l;hi"  "spacing anchors-1" "r;k;x"  "spacing anchors-1" "l;k;x"  "spacing anchors-1" "r;x"  "spacing anchors-1" "l;x"  "spacing anchors-1" "r;k;bl"  "spacing anchors-1" "l;k;bl"  "spacing anchors-1" "r;bl"  "spacing anchors-1" "l;bl"  "spacing anchors-1" 
-BeginChars: 65726 529
+BeginChars: 65728 531
 
 StartChar: i
 Encoding: 105 105 0
@@ -3894,6 +3894,7 @@ Width: 1466
 Flags: HW
 HStem: 0 65<55 182.265 329.641 473 552 666.377 813.434 953 1038 1164.43 1312.27 1431> 704 98<59 184 328 534 949.821 1123.58> 1398 85<398.269 575.5>
 VStem: 184 144<67.7139 704 802 1271.11> 668 144<68.524 628.855 658 1320> 1167 144<67.5664 655.289>
+AnchorPoint: "top" 1031 1500 basechar 0
 AnchorPoint: "r;hi" 871 1400 basechar 0
 AnchorPoint: "r;bl" 1466 30 basechar 0
 AnchorPoint: "r;x" 1356 770 basechar 0
@@ -3955,9 +3956,10 @@ EndChar
 StartChar: f_f_h
 Encoding: 65547 -1 81
 Width: 1946
-Flags: HW
+Flags: HWO
 HStem: 0 65<49 181.942 329.088 467 535 662.805 809.641 953 1027 1147.4 1293.43 1433 1518 1644.43 1792.27 1911> 704 98<59 184 328 664 808 1014 1429.82 1603.58> 1345 85<399.98 587.382> 1398 85<879.121 1055.5>
 VStem: 184 144<67.267 704 802 1232.59> 664 144<67.6193 704 802 1263.9> 1148 144<68.5299 628.855 658 1320> 1647 144<67.5664 655.289>
+AnchorPoint: "top" 1511 1500 basechar 0
 AnchorPoint: "r;hi" 1351 1400 basechar 0
 AnchorPoint: "r;bl" 1946 30 basechar 0
 AnchorPoint: "r;x" 1836 770 basechar 0
@@ -14469,7 +14471,7 @@ EndChar
 StartChar: longs_longs_thorn
 Encoding: 65725 -1 528
 Width: 1967
-Flags: HWO
+Flags: HW
 HStem: -530 65<991 1126.9 1274.42 1463> -25 67<1347.94 1642.26> 0 65<29 161.942 309.088 447 515 642.805 789.641 933> 686 120<1419.59 1625.31> 704 98<74 164 554 644> 1345 85<380.068 567.382> 1398 85<859.191 1035.5>
 VStem: 164 144<67.267 704 802 1232.59> 644 144<67.6193 704 802 1263.9> 1128 144<-460.004 11 88.3012 627.217 656 1320> 1773 144<201.109 524.928>
 AnchorPoint: "r;lo" 1567 -500 basechar 0
@@ -14544,6 +14546,46 @@ SplineSet
 EndSplineSet
 Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" longs longs thorn
 LCarets2: 2 0 0 
+EndChar
+
+StartChar: f_hcircumflex
+Encoding: 65726 -1 529
+Width: 1466
+VWidth: 0
+Flags: HW
+AnchorPoint: "r;hi" 871 1400 basechar 0
+AnchorPoint: "l;x" 0 770 basechar 0
+AnchorPoint: "r;bl" 1466 30 basechar 0
+AnchorPoint: "r;o" 1446 400 basechar 0
+AnchorPoint: "l;o" 20 400 basechar 0
+AnchorPoint: "l;hi" 160 1400 basechar 0
+AnchorPoint: "l;bl" 20 30 basechar 0
+AnchorPoint: "r;x" 1356 770 basechar 0
+LayerCount: 3
+Fore
+Refer: 379 -1 N 1 0 0 1 1431 500 2
+Refer: 80 -1 N 1 0 0 1 0 0 2
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" f hcircumflex
+EndChar
+
+StartChar: f_f_hcircumflex
+Encoding: 65727 -1 530
+Width: 1946
+VWidth: 0
+Flags: HW
+AnchorPoint: "r;hi" 1351 1400 basechar 0
+AnchorPoint: "l;x" 0 770 basechar 0
+AnchorPoint: "r;bl" 1946 30 basechar 0
+AnchorPoint: "r;o" 1926 400 basechar 0
+AnchorPoint: "l;o" 20 400 basechar 0
+AnchorPoint: "l;hi" 180 1400 basechar 0
+AnchorPoint: "l;bl" 20 30 basechar 0
+AnchorPoint: "r;x" 1836 770 basechar 0
+LayerCount: 3
+Fore
+Refer: 379 -1 N 1 0 0 1 1911 500 2
+Refer: 81 -1 N 1 0 0 1 0 0 2
+Ligature2: "'liga' Standard Ligatures in Latin lookup 11 subtable" f f hcircumflex
 EndChar
 EndChars
 EndSplineFont
