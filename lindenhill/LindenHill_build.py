@@ -89,13 +89,13 @@ def build_glyphs(bitbucket, f):
                                tabwidth = f['zero.lining'].width)
     propagate_hyphens(f)
 #    propagate_hyphens(f, '.uppercase')
-#    build_spacing_marks(f, width = 900)
+    build_spacing_marks(f, width = 800)
 
     make_glyph_reference('quotesingle', f['minute'])
     make_glyph_reference('quotedbl', f['second'])
     make_glyph_reference('asciitilde', f['uni2053']) # Swung dash.
     make_glyph_reference('i.TRK', f['i'])
-#    make_glyph_reference('Dcroat', f['Eth'])
+    make_glyph_reference('Dcroat', f['Eth'])
 #    make_glyph_reference('dcroat.sc', f['eth.sc'])
 
     build_multigraph('ellipsis', [f['period'], f['period'], f['period']])
