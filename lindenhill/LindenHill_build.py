@@ -146,8 +146,9 @@ def build_glyphs(bitbucket, f):
 
     for letter in 'aceinorsuyz':
                 build_accented_glyph(letter + 'acute', f[base(letter)], f['acutecomb'])
-    for letter in 'lACEILNORSUYZ':
+    for letter in 'ACEILNORSUYZ':
                 build_accented_glyph(letter + 'acute', f[base(letter)], f['acutecomb.cap'])
+    # build_accented_glyph('lacute', f['l'], f['acutecomb.cap']) <-- We are making this one by hand.
     for letter in 'aceilnorsuyz':
                 build_accented_glyph(letter + 'acute.sc', f[letter + '.sc'], f['acutecomb'])
 
@@ -216,16 +217,12 @@ def build_glyphs(bitbucket, f):
                 build_accented_glyph(letter + 'caron', f[base(letter)], f['uni030C'])
     for letter in 'CDENRTSZ':
                 build_accented_glyph(letter + 'caron', f[base(letter)], f['uni030C.cap'])
-    """
     for letter in 'dLlt':
                 build_accented_glyph(letter + 'caron', f[base(letter)], f['uni0315'])
-    """
 
     for letter in 'cdenrstz':
                 build_accented_glyph(letter + 'caron.sc', f[letter + '.sc'], f['uni030C'])
-    """
     build_accented_glyph('lcaron.sc', f['l.sc'], f['uni0315'])
-    """
 
     #--------------------------------------------------------------------------
 

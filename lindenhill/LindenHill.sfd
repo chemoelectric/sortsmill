@@ -22,7 +22,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1249677682
-ModificationTime: 1251921826
+ModificationTime: 1251942163
 OS2TypoAscent: 0
 OS2TypoAOffset: 1
 OS2TypoDescent: 0
@@ -57,7 +57,7 @@ Lookup: 257 0 0 "'cpsp' Capital Spacing in Latin lookup 2"  {"'cpsp' Capital Spa
 Lookup: 258 0 0 "generated_kerning"  {"generated_kerning per glyph data 0"  "generated_kerning kerning class 1"  } ['kern' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
 DEI: 91125
 KernClass2: 22 21 "generated_kerning kerning class 1" 
- 153 r racute rcaron rcommaaccent t u uacute ubreve ucircumflex udieresis ugrave uhungarumlaut umacron uni0163 uni021B uring utilde z zacute zcaron zdotaccent
+ 160 r racute rcaron rcommaaccent t tcaron u uacute ubreve ucircumflex udieresis ugrave uhungarumlaut umacron uni0163 uni021B uring utilde z zacute zcaron zdotaccent
  10 underscore
  56 f_f_j f_j ij j jcircumflex longs_j longs_longs_j uni0237
  17 longs longs_longs
@@ -74,8 +74,8 @@ KernClass2: 22 21 "generated_kerning kerning class 1"
  33 b f_b f_f_b longs_b longs_longs_b
  47 c cacute ccaron ccedilla ccircumflex cdotaccent
  200 e eacute ebreve ecaron ecircumflex edieresis edotaccent egrave emacron f_f_thorn f_thorn longs_longs_thorn longs_thorn o oacute obreve ocircumflex odieresis ograve ohungarumlaut omacron otilde p thorn
- 1 d
- 21 l lacute lcommaaccent
+ 8 d dcaron
+ 28 l lacute lcaron lcommaaccent
  77 f_f_h f_f_hcircumflex f_h f_hcircumflex h hcircumflex longs_h longs_longs_h m
  47 n nacute napostrophe ncaron ncommaaccent ntilde
  65 a aacute abreve acircumflex adieresis agrave amacron aring atilde
@@ -85,13 +85,13 @@ KernClass2: 22 21 "generated_kerning kerning class 1"
  1 x
  113 f f_b f_f f_f_b f_f_h f_f_hcircumflex f_f_i f_f_j f_f_k f_f_l f_f_thorn f_h f_hcircumflex f_i f_j f_k f_l f_thorn
  1 p
- 17 t uni0163 uni021B
+ 24 t tcaron uni0163 uni021B
  14 k kcommaaccent
- 21 l lacute lcommaaccent
+ 28 l lacute lcaron lcommaaccent
  10 underscore
  1 b
  47 c cacute ccaron ccedilla ccircumflex cdotaccent
- 1 d
+ 8 d dcaron
  146 e eacute ebreve ecaron ecircumflex edieresis edotaccent egrave emacron o oacute obreve ocircumflex odieresis ograve ohungarumlaut omacron otilde q
  44 g gbreve gcircumflex gcommaaccent gdotaccent
  44 s sacute scaron scedilla scircumflex uni0219
@@ -137,7 +137,7 @@ NameList: Adobe Glyph List
 DisplaySize: -72
 AntiAlias: 1
 FitToEm: 1
-WinInfo: 104 8 6
+WinInfo: 65592 8 6
 BeginPrivate: 9
 BlueValues 35 [-48 0 788 835 1365 1416 1469 1486]
 OtherBlues 11 [-539 -530]
@@ -155,8 +155,8 @@ Grid
 -1359.90039062 1365 m 1
  3186.90039062 1365 l 1
 EndSplineSet
-AnchorClass2: "cedilla"  "accent positioning-1" "top"  "accent positioning-1" "r;k;lo"  "spacing anchors-1" "l;k;lo"  "spacing anchors-1" "r;lo"  "spacing anchors-1" "l;lo"  "spacing anchors-1" "r;k;o"  "spacing anchors-1" "l;k;o"  "spacing anchors-1" "r;o"  "spacing anchors-1" "l;o"  "spacing anchors-1" "r;k;hi"  "spacing anchors-1" "l;k;hi"  "spacing anchors-1" "r;hi"  "spacing anchors-1" "l;hi"  "spacing anchors-1" "r;k;x"  "spacing anchors-1" "l;k;x"  "spacing anchors-1" "r;x"  "spacing anchors-1" "l;x"  "spacing anchors-1" "r;k;bl"  "spacing anchors-1" "l;k;bl"  "spacing anchors-1" "r;bl"  "spacing anchors-1" "l;bl"  "spacing anchors-1" 
-BeginChars: 65738 568
+AnchorClass2: "commaright"  "accent positioning-1" "cedilla"  "accent positioning-1" "top"  "accent positioning-1" "r;k;lo"  "spacing anchors-1" "l;k;lo"  "spacing anchors-1" "r;lo"  "spacing anchors-1" "l;lo"  "spacing anchors-1" "r;k;o"  "spacing anchors-1" "l;k;o"  "spacing anchors-1" "r;o"  "spacing anchors-1" "l;o"  "spacing anchors-1" "r;k;hi"  "spacing anchors-1" "l;k;hi"  "spacing anchors-1" "r;hi"  "spacing anchors-1" "l;hi"  "spacing anchors-1" "r;k;x"  "spacing anchors-1" "l;k;x"  "spacing anchors-1" "r;x"  "spacing anchors-1" "l;x"  "spacing anchors-1" "r;k;bl"  "spacing anchors-1" "l;k;bl"  "spacing anchors-1" "r;bl"  "spacing anchors-1" "l;bl"  "spacing anchors-1" 
+BeginChars: 65739 574
 
 StartChar: i
 Encoding: 105 105 0
@@ -259,6 +259,7 @@ VWidth: 0
 Flags: HMW
 HStem: 0 65<55 190.002 339.429 504> 1466 20G<287 337>
 VStem: 193 144<69.5728 1389.98>
+AnchorPoint: "commaright" 509 1340 basechar 0
 AnchorPoint: "top" 187 1500 basechar 0
 AnchorPoint: "l;bl" 0 30 basechar 0
 AnchorPoint: "l;x" 20 770 basechar 0
@@ -423,7 +424,7 @@ StartChar: n
 Encoding: 110 110 6
 Width: 950
 VWidth: 0
-Flags: HMWO
+Flags: HMW
 HStem: 0 65<37 146.264 294.638 439 532 644.424 794.801 914> 695 114<421.132 621.925>
 VStem: 148 144<68.5586 649.199 678 725.828> 647 144<67.8848 668.381>
 AnchorPoint: "cedilla" 481 -190 basechar 0
@@ -678,6 +679,7 @@ VWidth: 0
 Flags: HMW
 HStem: -24 116<361.623 586.277> 37 56<926.388 1013> 746 63<337.983 585.959> 1478 20G<765 858>
 VStem: 50 149<266.492 568.57> 714 144<56.0162 129.669 137.386 658.689 719 1386.99>
+AnchorPoint: "commaright" 1018 1340 basechar 0
 AnchorPoint: "l;bl" 40 30 basechar 0
 AnchorPoint: "l;x" 40 770 basechar 0
 AnchorPoint: "l;hi" 340 1400 basechar 0
@@ -689,23 +691,23 @@ AnchorPoint: "r;o" 1018 400 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-50 378 m 0xbc
- 50 624 254 809 451 809 c 0
- 607 809 714 719 714 719 c 1
- 714 1329 l 2
- 714 1373 707 1387 686 1387 c 0
- 672 1387 633 1378 551 1359 c 1
- 546 1423 l 1
- 646 1442 672 1448 858 1498 c 1
- 858 143 l 2
- 858 78 860 56 884 56 c 0
- 905 56 944 74 1013 93 c 1
- 1013 37 l 1x7c
- 948 19 893 0 719 -54 c 1
- 719 17 721 66 721 96 c 0
- 721 112 721 123 719 130 c 1
- 716 128 606 -24 414 -24 c 0
- 215 -24 50 137 50 378 c 0xbc
+50 378 m 4xbc
+ 50 624 254 809 451 809 c 4
+ 607 809 714 719 714 719 c 5
+ 714 1329 l 6
+ 714 1373 707 1387 686 1387 c 4
+ 672 1387 633 1378 551 1359 c 5
+ 546 1423 l 5
+ 646 1442 672 1448 858 1498 c 5
+ 858 143 l 6
+ 858 78 860 56 884 56 c 4
+ 905 56 944 74 1013 93 c 5
+ 1013 37 l 5x7c
+ 948 19 893 0 719 -54 c 5
+ 719 17 721 66 721 96 c 4
+ 721 112 721 123 719 130 c 5
+ 716 128 606 -24 414 -24 c 4
+ 215 -24 50 137 50 378 c 4xbc
 199 450 m 0
  199 263 320 92 521 92 c 0xbc
  644 92 714 175 714 175 c 1
@@ -1135,6 +1137,7 @@ VWidth: 0
 Flags: HW
 HStem: -23 115<338.838 525.984> 690 98<312 576>
 VStem: 168 144<121.081 690>
+AnchorPoint: "commaright" 488 1340 basechar 0
 AnchorPoint: "cedilla" 368 -190 basechar 0
 AnchorPoint: "l;bl" 70 30 basechar 0
 AnchorPoint: "l;x" 0 770 basechar 0
@@ -1782,9 +1785,10 @@ StartChar: L
 Encoding: 76 76 34
 Width: 1167
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 95<407.844 908.44> 0 80<88 238.734> 1285 80<62 236.343 409.556 586>
 VStem: 240 166<97.0754 1279.61>
+AnchorPoint: "commaright" 749 1340 basechar 0
 AnchorPoint: "top" 317 1500 basechar 0
 LayerCount: 3
 Fore
@@ -1806,7 +1810,6 @@ SplineSet
  240 1216 l 2
  240 1296 192 1281 59 1285 c 1x70
 EndSplineSet
-Validated: 1
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" l.sc
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" l.sc
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=9 dy=0 dh=18 dv=0
@@ -8835,8 +8838,9 @@ StartChar: a.sc
 Encoding: 65602 -1 241
 Width: 930
 VWidth: 0
-Flags: W
+Flags: HWO
 HStem: 0 65<26 144.815 232.032 376 503 638.972 799.897 899> 288 65<336 546> 815 20G<462.311 513.927>
+AnchorPoint: "top" 500 1000 basechar 0
 LayerCount: 3
 Fore
 SplineSet
@@ -8864,7 +8868,6 @@ SplineSet
  451 621 l 1
  336 353 l 1
 EndSplineSet
-Validated: 1
 EndChar
 
 StartChar: b.sc
@@ -9229,9 +9232,10 @@ StartChar: l.sc
 Encoding: 65613 -1 252
 Width: 876
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 65<55 183.822 329.936 727.861> 737 65<38 182.574 329.023 495>
 VStem: 184 144<65.8191 734.258> 743 70<138 250>
+AnchorPoint: "commaright" 638 840 basechar 0
 LayerCount: 3
 Fore
 SplineSet
@@ -9253,7 +9257,6 @@ SplineSet
  184 684 l 2
  184 744 164 734 38 737 c 1
 EndSplineSet
-Validated: 1
 EndChar
 
 StartChar: m.sc
@@ -10373,6 +10376,8 @@ Encoding: 314 314 301
 Width: 539
 VWidth: 0
 Flags: HW
+HStem: 0 65<55 190.002 339.429 504> 1368 72<36 157.005> 1466 20G<287 337>
+VStem: 193 144<69.5728 1389.98>
 AnchorPoint: "r;hi" 509 1400 basechar 0
 AnchorPoint: "l;x" 20 770 basechar 0
 AnchorPoint: "r;bl" 539 30 basechar 0
@@ -10383,8 +10388,25 @@ AnchorPoint: "l;bl" 0 30 basechar 0
 AnchorPoint: "r;x" 509 770 basechar 0
 LayerCount: 3
 Fore
-Refer: 378 -1 N 1 0 0 1 587 500 2
-Refer: 2 108 N 1 0 0 1 0 0 2
+SplineSet
+35 1368 m 1
+ 36 1440 l 1
+ 140 1456 237 1468 337 1486 c 1
+ 337 120 l 2
+ 337 60 366 69 504 65 c 1
+ 504 0 l 1
+ 55 0 l 1
+ 55 65 l 1
+ 153 66 193 59 193 121 c 2
+ 193 1289 l 2
+ 193 1367 191 1390 158 1390 c 0
+ 137 1390 101 1385 35 1368 c 1
+149 1511 m 25
+ 247 1780 l 25
+ 391 1780 l 25
+ 234 1522 l 25
+ 149 1511 l 25
+EndSplineSet
 EndChar
 
 StartChar: Nacute
@@ -11174,8 +11196,8 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 268 769 N 1 0 0 1 871.5 -74 2
-Refer: 241 -1 N 1 0 0 1 0 0 2
+Refer: 268 769 N 1 0 0 1 900 0 2
+Refer: 241 -1 N 1 0 0 1 0 0 3
 EndChar
 
 StartChar: cacute.sc
@@ -11480,8 +11502,8 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 272 770 N 1 0 0 1 846.5 -103 2
-Refer: 241 -1 N 1 0 0 1 0 0 2
+Refer: 272 770 N 1 0 0 1 900 0 2
+Refer: 241 -1 N 1 0 0 1 0 0 3
 EndChar
 
 StartChar: ccircumflex.sc
@@ -14727,7 +14749,7 @@ StartChar: uni0326
 Encoding: 806 806 543
 Width: 0
 VWidth: 0
-Flags: HMWO
+Flags: HMW
 VStem: -393 107<-405.377 -274.408>
 AnchorPoint: "cedilla" -400 -190 mark 0
 LayerCount: 3
@@ -15049,8 +15071,6 @@ Width: 800
 VWidth: 0
 Flags: HW
 LayerCount: 3
-Fore
-Refer: -1 808 N 1 0 0 1 800 0 2
 EndChar
 
 StartChar: uni02BB
@@ -15070,7 +15090,104 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: -1 789 N 1 0 0 1 800 0 2
+Refer: 568 789 N 1 0 0 1 800 0 2
+EndChar
+
+StartChar: uni0315
+Encoding: 789 789 568
+Width: 0
+VWidth: 1500
+Flags: W
+HStem: 1034 350
+VStem: -470 69<1041.92 1084.03>
+AnchorPoint: "commaright" -400 1340 mark 0
+LayerCount: 3
+Fore
+SplineSet
+-470 1044 m 25
+ -434 1384 l 25
+ -305 1369 l 25
+ -401 1034 l 25
+ -470 1044 l 25
+EndSplineSet
+EndChar
+
+StartChar: dcaron
+Encoding: 271 271 569
+Width: 1048
+VWidth: 0
+Flags: HW
+AnchorPoint: "r;hi" 1018 1400 basechar 0
+AnchorPoint: "l;x" 40 770 basechar 0
+AnchorPoint: "r;bl" 1048 30 basechar 0
+AnchorPoint: "r;o" 1018 400 basechar 0
+AnchorPoint: "l;o" 0 400 basechar 0
+AnchorPoint: "l;hi" 340 1400 basechar 0
+AnchorPoint: "l;bl" 40 30 basechar 0
+AnchorPoint: "r;x" 1018 770 basechar 0
+LayerCount: 3
+Fore
+Refer: 568 789 N 1 0 0 1 1418 0 2
+Refer: 11 100 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: Lcaron
+Encoding: 317 317 570
+Width: 1167
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 568 789 N 1 0 0 1 1149 0 2
+Refer: 34 76 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=9 dy=0 dh=18 dv=0
+EndChar
+
+StartChar: lcaron
+Encoding: 318 318 571
+Width: 539
+VWidth: 0
+Flags: HW
+AnchorPoint: "r;hi" 509 1400 basechar 0
+AnchorPoint: "l;x" 20 770 basechar 0
+AnchorPoint: "r;bl" 539 30 basechar 0
+AnchorPoint: "r;o" 519 400 basechar 0
+AnchorPoint: "l;o" 20 400 basechar 0
+AnchorPoint: "l;hi" 0 1400 basechar 0
+AnchorPoint: "l;bl" 0 30 basechar 0
+AnchorPoint: "r;x" 509 770 basechar 0
+LayerCount: 3
+Fore
+Refer: 568 789 N 1 0 0 1 909 0 2
+Refer: 2 108 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: tcaron
+Encoding: 357 357 572
+Width: 648
+VWidth: 0
+Flags: HW
+AnchorPoint: "l;x" 0 770 basechar 0
+AnchorPoint: "r;bl" 648 30 basechar 0
+AnchorPoint: "r;o" 648 400 basechar 0
+AnchorPoint: "l;o" 30 400 basechar 0
+AnchorPoint: "l;bl" 70 30 basechar 0
+AnchorPoint: "r;x" 648 770 basechar 0
+LayerCount: 3
+Fore
+Refer: 568 789 N 1 0 0 1 888 0 2
+Refer: 20 116 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: lcaron.sc
+Encoding: 65738 -1 573
+Width: 876
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 568 789 N 1 0 0 1 1038 -500 2
+Refer: 252 -1 N 1 0 0 1 0 0 2
 EndChar
 EndChars
 EndSplineFont
