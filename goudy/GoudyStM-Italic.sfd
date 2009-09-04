@@ -1,11 +1,11 @@
 SplineFontDB: 3.0
-FontName: Goudy14-Italic
-FullName: Goudy Italic 14pt
-FamilyName: Goudy14
+FontName: GoudyStM-Italic
+FullName: Sorts Mill Goudy Italic
+FamilyName: Sorts Mill Goudy
 Weight: Medium
 Copyright: Copyright (c) 2009 Barry Schwartz\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the "Software"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE.\n
 UComments: "2009-6-24: Created." 
-Version: 001.002
+Version: 002.000
 ItalicAngle: -6
 UnderlinePosition: -203
 UnderlineWidth: 101
@@ -15,13 +15,14 @@ LayerCount: 3
 Layer: 0 0 "Back"  1
 Layer: 1 0 "Fore"  0
 Layer: 2 0 "backup"  1
+NeedsXUIDChange: 1
 XUID: [1021 658 797806517 2347079]
 FSType: 0
 OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1245830276
-ModificationTime: 1249167306
+ModificationTime: 1252037437
 PfmFamily: 17
 TTFWeight: 500
 TTFWidth: 5
@@ -53,10 +54,11 @@ Lookup: 1 0 0 "Single Substitution lookup 6"  {"Single Substitution lookup 6 sub
 Lookup: 1 0 0 "'sups' Superscript in Latin lookup 7"  {"'sups' Superscript in Latin lookup 7 subtable" ("superior" ) } ['sups' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
 Lookup: 1 0 0 "'subs' Subscript in Latin lookup 8"  {"'subs' Subscript in Latin lookup 8 subtable" ("inferior" ) } ['subs' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
 Lookup: 1 0 0 "lining_figures"  {"lining_figures subtable"  } ['case' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) 'lnum' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
-Lookup: 1 0 0 "'case' Case-Sensitive Forms in Latin lookup 10"  {"'case' Case-Sensitive Forms in Latin lookup 10 subtable"  } ['case' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
-Lookup: 1 0 0 "'salt' Stylistic Alternatives in Latin lookup 11"  {"'salt' Stylistic Alternatives in Latin lookup 11 subtable"  } ['salt' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
-Lookup: 4 0 1 "'liga' Standard Ligatures in Latin lookup 12"  {"'liga' Standard Ligatures in Latin lookup 12 subtable"  } ['liga' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
-Lookup: 4 0 0 "'dlig' Discretionary Ligatures in Latin lookup 13"  {"'dlig' Discretionary Ligatures in Latin lookup 13 subtable"  } ['dlig' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
+Lookup: 1 0 0 "'hist' Historical Forms in Latin lookup 10"  {"'hist' Historical Forms in Latin lookup 10 subtable"  } ['hist' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
+Lookup: 1 0 0 "'case' Case-Sensitive Forms in Latin lookup 11"  {"'case' Case-Sensitive Forms in Latin lookup 11 subtable"  } ['case' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
+Lookup: 1 0 0 "'salt' Stylistic Alternatives in Latin lookup 12"  {"'salt' Stylistic Alternatives in Latin lookup 12 subtable"  } ['salt' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
+Lookup: 4 0 1 "'liga' Standard Ligatures in Latin lookup 13"  {"'liga' Standard Ligatures in Latin lookup 13 subtable"  } ['liga' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
+Lookup: 4 0 0 "'dlig' Discretionary Ligatures in Latin lookup 14"  {"'dlig' Discretionary Ligatures in Latin lookup 14 subtable"  } ['dlig' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
 Lookup: 260 0 0 "spacing anchors"  {"spacing anchors-1"  } []
 Lookup: 260 0 0 "accents"  {"accents-1"  } []
 Lookup: 257 0 0 "'cpsp' Capital Spacing in Latin lookup 2"  {"'cpsp' Capital Spacing in Latin lookup 2 subtable"  } ['cpsp' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
@@ -1448,6 +1450,9 @@ SplineSet
  578 170 521 -24 259 -24 c 0
  180 -24 30 2 30 110 c 0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" longs
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" longs
+Substitution2: "'hist' Historical Forms in Latin lookup 10 subtable" longs
 EndChar
 
 StartChar: u
@@ -2158,7 +2163,7 @@ EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" G.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" G.001
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=12 dy=0 dh=24 dv=0
-Substitution2: "'salt' Stylistic Alternatives in Latin lookup 11 subtable" G.001
+Substitution2: "'salt' Stylistic Alternatives in Latin lookup 12 subtable" G.001
 EndChar
 
 StartChar: H
@@ -2334,7 +2339,7 @@ EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" J.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" J.001
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=6 dy=0 dh=12 dv=0
-Substitution2: "'salt' Stylistic Alternatives in Latin lookup 11 subtable" J.001
+Substitution2: "'salt' Stylistic Alternatives in Latin lookup 12 subtable" J.001
 EndChar
 
 StartChar: K
@@ -2933,7 +2938,7 @@ EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" T.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" T.001
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=10 dy=0 dh=21 dv=0
-Substitution2: "'salt' Stylistic Alternatives in Latin lookup 11 subtable" T.001
+Substitution2: "'salt' Stylistic Alternatives in Latin lookup 12 subtable" T.001
 EndChar
 
 StartChar: U
@@ -3252,7 +3257,7 @@ EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Y.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Y.001
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=10 dy=0 dh=21 dv=0
-Substitution2: "'salt' Stylistic Alternatives in Latin lookup 11 subtable" Y.001
+Substitution2: "'salt' Stylistic Alternatives in Latin lookup 12 subtable" Y.001
 EndChar
 
 StartChar: Z
@@ -3420,7 +3425,7 @@ SplineSet
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" hyphen.uppercase
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" hyphen.uppercase
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 10 subtable" hyphen.uppercase
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 11 subtable" hyphen.uppercase
 EndChar
 
 StartChar: colon
@@ -4046,7 +4051,7 @@ SplineSet
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" bullet.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" bullet.001
-Substitution2: "'salt' Stylistic Alternatives in Latin lookup 11 subtable" bullet.001
+Substitution2: "'salt' Stylistic Alternatives in Latin lookup 12 subtable" bullet.001
 EndChar
 
 StartChar: paragraph
@@ -4141,7 +4146,7 @@ SplineSet
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" emdash.uppercase
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" emdash.uppercase
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 10 subtable" emdash.uppercase
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 11 subtable" emdash.uppercase
 EndChar
 
 StartChar: endash
@@ -4170,7 +4175,7 @@ SplineSet
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" endash.uppercase
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" endash.uppercase
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 10 subtable" endash.uppercase
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 11 subtable" endash.uppercase
 EndChar
 
 StartChar: acutecomb
@@ -6294,7 +6299,7 @@ EndSplineSet
 Kerns2: 156 -54 "generated_kerning per glyph data 0"  54 -59 "generated_kerning per glyph data 0"  327 281 "generated_kerning per glyph data 0"  177 109 "generated_kerning per glyph data 0"  39 96 "generated_kerning per glyph data 0"  501 71 "generated_kerning per glyph data 0"  331 27 "generated_kerning per glyph data 0"  346 25 "generated_kerning per glyph data 0"  151 21 "generated_kerning per glyph data 0"  357 1 "generated_kerning per glyph data 0" 
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" bracketleft.uppercase bracketleft.sub bracketleft.sup
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" bracketleft.uppercase bracketleft.sub bracketleft.sup
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 10 subtable" bracketleft.uppercase
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 11 subtable" bracketleft.uppercase
 Substitution2: "'subs' Subscript in Latin lookup 8 subtable" bracketleft.sub
 Substitution2: "'sups' Superscript in Latin lookup 7 subtable" bracketleft.sup
 EndChar
@@ -6973,7 +6978,7 @@ EndSplineSet
 Kerns2: 346 -2 "generated_kerning per glyph data 0"  331 -4 "generated_kerning per glyph data 0"  151 -6 "generated_kerning per glyph data 0"  357 -26 "generated_kerning per glyph data 0"  156 -85 "generated_kerning per glyph data 0"  54 -86 "generated_kerning per glyph data 0"  157 -126 "generated_kerning per glyph data 0"  327 254 "generated_kerning per glyph data 0"  172 99 "generated_kerning per glyph data 0"  177 78 "generated_kerning per glyph data 0"  39 65 "generated_kerning per glyph data 0"  501 44 "generated_kerning per glyph data 0"  153 24 "generated_kerning per glyph data 0"  32 20 "generated_kerning per glyph data 0" 
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" parenleft.uppercase parenleft.sub parenleft.sup
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" parenleft.uppercase parenleft.sub parenleft.sup
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 10 subtable" parenleft.uppercase
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 11 subtable" parenleft.uppercase
 Substitution2: "'subs' Subscript in Latin lookup 8 subtable" parenleft.sub
 Substitution2: "'sups' Superscript in Latin lookup 7 subtable" parenleft.sup
 EndChar
@@ -7261,7 +7266,7 @@ SplineSet
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" parenright.uppercase parenright.sub parenright.sup
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" parenright.uppercase parenright.sub parenright.sup
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 10 subtable" parenright.uppercase
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 11 subtable" parenright.uppercase
 Substitution2: "'subs' Subscript in Latin lookup 8 subtable" parenright.sub
 Substitution2: "'sups' Superscript in Latin lookup 7 subtable" parenright.sup
 EndChar
@@ -7506,7 +7511,7 @@ SplineSet
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" bracketright.uppercase bracketright.sub bracketright.sup
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" bracketright.uppercase bracketright.sub bracketright.sup
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 10 subtable" bracketright.uppercase
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 11 subtable" bracketright.uppercase
 Substitution2: "'subs' Subscript in Latin lookup 8 subtable" bracketright.sub
 Substitution2: "'sups' Superscript in Latin lookup 7 subtable" bracketright.sup
 EndChar
@@ -7627,7 +7632,7 @@ EndSplineSet
 Kerns2: 151 -9 "generated_kerning per glyph data 0"  331 -13 "generated_kerning per glyph data 0"  54 -89 "generated_kerning per glyph data 0"  327 251 "generated_kerning per glyph data 0"  172 96 "generated_kerning per glyph data 0"  177 74 "generated_kerning per glyph data 0"  39 56 "generated_kerning per glyph data 0"  153 21 "generated_kerning per glyph data 0"  32 11 "generated_kerning per glyph data 0" 
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" braceleft.uppercase
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" braceleft.uppercase
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 10 subtable" braceleft.uppercase
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 11 subtable" braceleft.uppercase
 EndChar
 
 StartChar: bar
@@ -7720,7 +7725,7 @@ SplineSet
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" braceright.uppercase
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" braceright.uppercase
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 10 subtable" braceright.uppercase
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 11 subtable" braceright.uppercase
 EndChar
 
 StartChar: asciitilde
@@ -7980,7 +7985,7 @@ Refer: 33 71 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Gcircumflex.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Gcircumflex.001
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=12 dy=0 dh=24 dv=0
-Substitution2: "'salt' Stylistic Alternatives in Latin lookup 11 subtable" Gcircumflex.001
+Substitution2: "'salt' Stylistic Alternatives in Latin lookup 12 subtable" Gcircumflex.001
 EndChar
 
 StartChar: Atilde
@@ -8157,7 +8162,7 @@ Refer: 33 71 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Gdotaccent.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Gdotaccent.001
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=12 dy=0 dh=24 dv=0
-Substitution2: "'salt' Stylistic Alternatives in Latin lookup 11 subtable" Gdotaccent.001
+Substitution2: "'salt' Stylistic Alternatives in Latin lookup 12 subtable" Gdotaccent.001
 EndChar
 
 StartChar: Gbreve
@@ -8189,7 +8194,7 @@ Refer: 33 71 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Gbreve.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Gbreve.001
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=12 dy=0 dh=24 dv=0
-Substitution2: "'salt' Stylistic Alternatives in Latin lookup 11 subtable" Gbreve.001
+Substitution2: "'salt' Stylistic Alternatives in Latin lookup 12 subtable" Gbreve.001
 EndChar
 
 StartChar: Ebreve
@@ -8711,7 +8716,7 @@ Refer: 36 74 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Jcircumflex.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Jcircumflex.001
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=6 dy=0 dh=12 dv=0
-Substitution2: "'salt' Stylistic Alternatives in Latin lookup 11 subtable" Jcircumflex.001
+Substitution2: "'salt' Stylistic Alternatives in Latin lookup 12 subtable" Jcircumflex.001
 EndChar
 
 StartChar: Ntilde
@@ -9121,7 +9126,7 @@ Refer: 51 89 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Ycircumflex.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Ycircumflex.001
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=10 dy=0 dh=21 dv=0
-Substitution2: "'salt' Stylistic Alternatives in Latin lookup 11 subtable" Ycircumflex.001
+Substitution2: "'salt' Stylistic Alternatives in Latin lookup 12 subtable" Ycircumflex.001
 EndChar
 
 StartChar: Ydieresis
@@ -9153,7 +9158,7 @@ Refer: 51 89 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Ydieresis.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Ydieresis.001
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=10 dy=0 dh=21 dv=0
-Substitution2: "'salt' Stylistic Alternatives in Latin lookup 11 subtable" Ydieresis.001
+Substitution2: "'salt' Stylistic Alternatives in Latin lookup 12 subtable" Ydieresis.001
 EndChar
 
 StartChar: Zacute
@@ -9505,7 +9510,7 @@ Refer: 51 89 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Yacute.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Yacute.001
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=10 dy=0 dh=21 dv=0
-Substitution2: "'salt' Stylistic Alternatives in Latin lookup 11 subtable" Yacute.001
+Substitution2: "'salt' Stylistic Alternatives in Latin lookup 12 subtable" Yacute.001
 EndChar
 
 StartChar: ugrave
@@ -9577,7 +9582,7 @@ Fore
 Refer: 55 45 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" uni00AD.uppercase
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" uni00AD.uppercase
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 10 subtable" uni00AD.uppercase
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 11 subtable" uni00AD.uppercase
 EndChar
 
 StartChar: uni2010
@@ -9597,7 +9602,7 @@ Fore
 Refer: 55 45 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" uni2010.uppercase
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" uni2010.uppercase
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 10 subtable" uni2010.uppercase
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 11 subtable" uni2010.uppercase
 EndChar
 
 StartChar: uni2011
@@ -9617,7 +9622,7 @@ Fore
 Refer: 55 45 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" uni2011.uppercase
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" uni2011.uppercase
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 10 subtable" uni2011.uppercase
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 11 subtable" uni2011.uppercase
 EndChar
 
 StartChar: Ccedilla
@@ -10008,7 +10013,7 @@ SplineSet
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" guillemotleft.uppercase
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" guillemotleft.uppercase
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 10 subtable" guillemotleft.uppercase
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 11 subtable" guillemotleft.uppercase
 EndChar
 
 StartChar: guillemotright
@@ -10053,7 +10058,7 @@ SplineSet
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" guillemotright.uppercase
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" guillemotright.uppercase
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 10 subtable" guillemotright.uppercase
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 11 subtable" guillemotright.uppercase
 EndChar
 
 StartChar: guilsinglleft
@@ -10089,7 +10094,7 @@ SplineSet
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" guilsinglleft.uppercase
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" guilsinglleft.uppercase
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 10 subtable" guilsinglleft.uppercase
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 11 subtable" guilsinglleft.uppercase
 EndChar
 
 StartChar: guilsinglright
@@ -10125,7 +10130,7 @@ SplineSet
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" guilsinglright.uppercase
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" guilsinglright.uppercase
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 10 subtable" guilsinglright.uppercase
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 11 subtable" guilsinglright.uppercase
 EndChar
 
 StartChar: logicalnot
@@ -10460,7 +10465,7 @@ Refer: 33 71 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Gcommaaccent.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Gcommaaccent.001
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=12 dy=0 dh=24 dv=0
-Substitution2: "'salt' Stylistic Alternatives in Latin lookup 11 subtable" Gcommaaccent.001
+Substitution2: "'salt' Stylistic Alternatives in Latin lookup 12 subtable" Gcommaaccent.001
 EndChar
 
 StartChar: uni0326
@@ -11586,7 +11591,7 @@ Refer: 46 84 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" uni0162.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" uni0162.001
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=10 dy=0 dh=21 dv=0
-Substitution2: "'salt' Stylistic Alternatives in Latin lookup 11 subtable" uni0162.001
+Substitution2: "'salt' Stylistic Alternatives in Latin lookup 12 subtable" uni0162.001
 EndChar
 
 StartChar: uni021A
@@ -11617,7 +11622,7 @@ Refer: 46 84 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" uni021A.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" uni021A.001
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=10 dy=0 dh=21 dv=0
-Substitution2: "'salt' Stylistic Alternatives in Latin lookup 11 subtable" uni021A.001
+Substitution2: "'salt' Stylistic Alternatives in Latin lookup 12 subtable" uni021A.001
 EndChar
 
 StartChar: uni021B
@@ -11721,7 +11726,7 @@ Refer: 46 84 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Tcaron.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Tcaron.001
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=10 dy=0 dh=21 dv=0
-Substitution2: "'salt' Stylistic Alternatives in Latin lookup 11 subtable" Tcaron.001
+Substitution2: "'salt' Stylistic Alternatives in Latin lookup 12 subtable" Tcaron.001
 EndChar
 
 StartChar: tcaron
@@ -12884,7 +12889,7 @@ EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Tbar.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Tbar.001
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=10 dy=0 dh=21 dv=0
-Substitution2: "'salt' Stylistic Alternatives in Latin lookup 11 subtable" Tbar.001
+Substitution2: "'salt' Stylistic Alternatives in Latin lookup 12 subtable" Tbar.001
 EndChar
 
 StartChar: tbar
@@ -14478,7 +14483,7 @@ SplineSet
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" afii00208.uppercase
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" afii00208.uppercase
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 10 subtable" afii00208.uppercase
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 11 subtable" afii00208.uppercase
 EndChar
 
 StartChar: figuredash
@@ -14588,7 +14593,7 @@ SplineSet
  499 1364 377 1004 377 861 c 0
 EndSplineSet
 Kerns2: 330 -59 "generated_kerning per glyph data 0"  177 114 "generated_kerning per glyph data 0"  168 111 "generated_kerning per glyph data 0"  39 101 "generated_kerning per glyph data 0"  32 56 "generated_kerning per glyph data 0"  501 51 "generated_kerning per glyph data 0"  331 32 "generated_kerning per glyph data 0" 
-Ligature2: "'liga' Standard Ligatures in Latin lookup 12 subtable" f f
+Ligature2: "'liga' Standard Ligatures in Latin lookup 13 subtable" f f
 LCarets2: 1 0 
 EndChar
 
@@ -14657,7 +14662,7 @@ SplineSet
  -55 -377 -82 -366 -82 -333 c 2
  -82 -322 l 2xdd
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 12 subtable" f i
+Ligature2: "'liga' Standard Ligatures in Latin lookup 13 subtable" f i
 LCarets2: 1 0 
 EndChar
 
@@ -14727,7 +14732,7 @@ SplineSet
  141 -356 26 -371 -16 -371 c 0
  -51 -371 -84 -360 -84 -327 c 0
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 12 subtable" f l
+Ligature2: "'liga' Standard Ligatures in Latin lookup 13 subtable" f l
 LCarets2: 1 0 
 EndChar
 
@@ -14817,7 +14822,7 @@ SplineSet
  860 1291 826 1369 704 1369 c 0
  482 1369 372 995 372 861 c 0
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 12 subtable" f f i
+Ligature2: "'liga' Standard Ligatures in Latin lookup 13 subtable" f f i
 LCarets2: 2 0 0 
 EndChar
 
@@ -14971,7 +14976,7 @@ SplineSet
  856 1316 801 1364 681 1364 c 4
  499 1364 376 1003 375 861 c 4
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 12 subtable" f f l
+Ligature2: "'liga' Standard Ligatures in Latin lookup 13 subtable" f f l
 LCarets2: 2 0 0 
 EndChar
 
@@ -15041,7 +15046,7 @@ SplineSet
  1309 109 1133 -28 1007 -28 c 0
  951 -28 883 4 883 164 c 0x7780
 EndSplineSet
-Ligature2: "'dlig' Discretionary Ligatures in Latin lookup 13 subtable" c t
+Ligature2: "'dlig' Discretionary Ligatures in Latin lookup 14 subtable" c t
 LCarets2: 1 0 
 EndChar
 
@@ -15132,7 +15137,7 @@ SplineSet
  1313 582 1304 593 1304 608 c 0
 EndSplineSet
 Kerns2: 164 -10 "generated_kerning per glyph data 0"  327 310 "generated_kerning per glyph data 0"  172 155 "generated_kerning per glyph data 0"  177 133 "generated_kerning per glyph data 0"  168 125 "generated_kerning per glyph data 0"  153 80 "generated_kerning per glyph data 0"  346 54 "generated_kerning per glyph data 0"  151 50 "generated_kerning per glyph data 0" 
-Ligature2: "'dlig' Discretionary Ligatures in Latin lookup 13 subtable" Q u
+Ligature2: "'dlig' Discretionary Ligatures in Latin lookup 14 subtable" Q u
 LCarets2: 1 0 
 EndChar
 
@@ -15209,7 +15214,7 @@ SplineSet
  141 -356 26 -371 -16 -371 c 0,130,-1
  -51 -371 -84 -360 -84 -327 c 0,1,-1
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 12 subtable" f h
+Ligature2: "'liga' Standard Ligatures in Latin lookup 13 subtable" f h
 LCarets2: 1 0 
 EndChar
 
@@ -15309,7 +15314,7 @@ SplineSet
  499 1364 376 1003 375 861 c 0,188,-1
  375 845 389 836 406 836 c 2,175,-1
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 12 subtable" f f h
+Ligature2: "'liga' Standard Ligatures in Latin lookup 13 subtable" f f h
 LCarets2: 2 0 0 
 EndChar
 
@@ -15446,7 +15451,7 @@ SplineSet
  1419 250 1423 232 1423 214 c 0
  1423 138 1300 -9 1225 -9 c 0
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 12 subtable" f k
+Ligature2: "'liga' Standard Ligatures in Latin lookup 13 subtable" f k
 LCarets2: 1 0 
 EndChar
 
@@ -15623,7 +15628,7 @@ SplineSet
  856 1316 801 1364 681 1364 c 0xfa
  499 1364 376 1003 375 861 c 0
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 12 subtable" f f k
+Ligature2: "'liga' Standard Ligatures in Latin lookup 13 subtable" f f k
 LCarets2: 2 0 0 
 EndChar
 
@@ -15695,7 +15700,7 @@ SplineSet
  1029 778 895 758 830 580 c 0
  771 418 748 198 748 178 c 0
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 12 subtable" f b
+Ligature2: "'liga' Standard Ligatures in Latin lookup 13 subtable" f b
 LCarets2: 1 0 
 EndChar
 
@@ -15787,7 +15792,7 @@ SplineSet
  1503 778 1369 758 1304 580 c 0
  1245 418 1222 198 1222 178 c 0
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 12 subtable" f f b
+Ligature2: "'liga' Standard Ligatures in Latin lookup 13 subtable" f f b
 LCarets2: 2 0 0 
 EndChar
 

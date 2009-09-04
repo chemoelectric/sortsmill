@@ -27,11 +27,15 @@ THE SOFTWARE.
 import fontforge
 import sys
 import subprocess
+import licensing
 
 layer_to_use = "Fore"
 unwanted_glyphs = ['DONT_KEEP', 'NOTUSED']
 generation_flags = ("opentype", "round", "glyph-map-file")
 font_extension = ".otf"
+ofl_prefix = 'OFL'
+copyright_year = 2009
+copyright_holder = 'Barry Schwartz (http://crudfactory.com)'
 
 def remove_glyph(glyph):
     sys.stdout.write("(Removing " + glyph.glyphname + ") ")
@@ -41,10 +45,21 @@ def remove_glyph(glyph):
 
 for sfd_path in sys.argv[1:]:
 
+    is_ofl = (sfd_path[:len(ofl_prefix)] == ofl_prefix)
+    if is_ofl:
+        sfd_path = sfd_path[len(ofl_prefix):]
+
     if sfd_path[-4:] != ".sfd":
         sfd_path += ".sfd"
 
     f = fontforge.open(sfd_path)
+
+    if is_ofl:
+        licensing.apply_license(f, licensing.ofl_notice, licensing.ofl_url,
+                                copyright_year, copyright_holder, name_prefix = 'OFL')
+    else:
+        licensing.apply_license(f, licensing.mit_notice, licensing.mit_url,
+                                copyright_year, copyright_holder)
 
     for glyph_name in f:
         for suffix in unwanted_glyphs:
@@ -58,6 +73,11 @@ for sfd_path in sys.argv[1:]:
     for lookup in f.gpos_lookups:
         if f.getLookupInfo(lookup)[0] == 'gpos_mark2base':
             f.removeLookup(lookup)
+
+    f.selection.all()
+    f.canonicalStart()
+    f.canonicalContours()
+    f.selection.none()
 
     font_file = f.fontname + font_extension
     print "Generating", font_file

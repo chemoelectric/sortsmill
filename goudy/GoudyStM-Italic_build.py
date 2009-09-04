@@ -219,7 +219,7 @@ def build_glyphs(bitbucket, f):
     # TODO: Consider making cpsp a contextual positioning feature that
     # detects runs of caps automatically.
     rules = cap_spacing.cap_spacing(f, caps, 0.015)
-    cpsp = open('Goudy14-Italic_cpsp.fea', 'w')
+    cpsp = open('GoudyStM-Italic_cpsp.fea', 'w')
     print >> cpsp, 'feature cpsp {'
     print >> cpsp, rules,
     print >> cpsp, '} cpsp;'

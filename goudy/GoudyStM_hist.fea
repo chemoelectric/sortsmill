@@ -18,25 +18,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-languagesystem DFLT dflt;
-languagesystem latn dflt;
 
-# Turkish, Azeri, Crimean Tatar
-languagesystem latn TRK;
-languagesystem latn AZE;
-languagesystem latn CRT;
+feature hist {
+   sub \s by \longs;
+} hist;
 
-# Useful for spacing and kerning of capitals.
-# Comment this out for production.
-#include(CAPS.fea)
-
-include(Goudy14-Italic_locl.fea)
-include(Goudy14-Italic_figures.fea)
-include(Goudy14-Italic_case.fea)
-include(Goudy14-Italic_salt.fea)
-include(Goudy14-Italic_liga.fea)
-include(Goudy14-Italic_cpsp.fea)
-include(Goudy14-Italic_generated_kerning.fea)
 
 # local variables:
 # mode: fundamental

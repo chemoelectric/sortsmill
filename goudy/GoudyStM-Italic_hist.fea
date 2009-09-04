@@ -18,30 +18,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-languagesystem DFLT dflt;
-languagesystem latn dflt;
 
-## Romanian, Moldovan (not needed, because our cedilla is the same as comma accent).
-#languagesystem latn ROM;
-#languagesystem latn MOL;
+feature hist {
+   sub \s by \longs;
+} hist;
 
-# Turkish, Azeri, Crimean Tatar
-languagesystem latn TRK;
-languagesystem latn AZE;
-languagesystem latn CRT;
-
-# Useful for spacing and kerning of capitals.
-# Comment this out for production.
-#include(CAPS.fea)
-
-include(Goudy14_locl.fea)
-include(Goudy14_figures.fea)
-include(Goudy14_sc.fea)
-include(Goudy14_case.fea)
-include(Goudy14_salt.fea)
-include(Goudy14_liga.fea)
-include(Goudy14_cpsp.fea)
-include(Goudy14_generated_kerning.fea)
 
 # local variables:
 # mode: fundamental
