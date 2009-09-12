@@ -5,7 +5,7 @@ FamilyName: Sorts Mill Goudy
 Weight: Medium
 Copyright: Copyright (c) 2009 Barry Schwartz\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the "Software"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE.\n
 UComments: "2009-6-24: Created." 
-Version: 002.000
+Version: 002.001
 ItalicAngle: -6
 UnderlinePosition: -203
 UnderlineWidth: 101
@@ -15,14 +15,13 @@ LayerCount: 3
 Layer: 0 0 "Back"  1
 Layer: 1 0 "Fore"  0
 Layer: 2 0 "backup"  1
-NeedsXUIDChange: 1
 XUID: [1021 658 797806517 2347079]
 FSType: 0
 OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1245830276
-ModificationTime: 1252037437
+ModificationTime: 1252731572
 PfmFamily: 17
 TTFWeight: 500
 TTFWidth: 5
@@ -410,11 +409,11 @@ NameList: Adobe Glyph List
 DisplaySize: -72
 AntiAlias: 1
 FitToEm: 1
-WinInfo: 32 8 5
+WinInfo: 65536 8 5
 BeginPrivate: 11
 BlueValues 35 [-52 7 835 901 1425 1488 1510 1550]
 OtherBlues 11 [-409 -365]
-FamilyBlues 44 [-62 11 845 911 928 982 1439 1482 1529 1556]
+FamilyBlues 54 [-62 11 845 911 928 982 1439 1482 1504 1511 1529 1556]
 FamilyOtherBlues 11 [-423 -390]
 BlueScale 9 0.0135616
 BlueFuzz 1 0
@@ -426,7 +425,7 @@ StemSnapV 9 [140 175]
 EndPrivate
 TeXData: 1 0 0 223744 111872 74581 443392 -1048576 74581 783286 444596 497025 792723 393216 433062 380633 303038 157286 324010 404750 52429 2506097 1059062 262144
 AnchorClass2: "r;s;dot"  "spacing anchors-1" "l;s;dot"  "spacing anchors-1" "r;s;AE"  "spacing anchors-1" "l;s;AE"  "spacing anchors-1" "r;k;x"  "spacing anchors-1" "l;k;x"  "spacing anchors-1" "r;x"  "spacing anchors-1" "l;x"  "spacing anchors-1" "r;k;t"  "spacing anchors-1" "l;k;t"  "spacing anchors-1" "r;t"  "spacing anchors-1" "l;t"  "spacing anchors-1" "r;k;hi"  "spacing anchors-1" "l;k;hi"  "spacing anchors-1" "r;hi"  "spacing anchors-1" "l;hi"  "spacing anchors-1" "r;k;o"  "spacing anchors-1" "l;k;o"  "spacing anchors-1" "r;o"  "spacing anchors-1" "l;o"  "spacing anchors-1" "r;k;lo"  "spacing anchors-1" "l;k;lo"  "spacing anchors-1" "r;lo"  "spacing anchors-1" "l;lo"  "spacing anchors-1" "r;k;bl"  "spacing anchors-1" "l;k;bl"  "spacing anchors-1" "r;bl"  "spacing anchors-1" "l;bl"  "spacing anchors-1" "right"  "accents-1" "cedilla"  "accents-1" "top"  "accents-1" 
-BeginChars: 65655 511
+BeginChars: 65656 512
 
 StartChar: h
 Encoding: 104 104 0
@@ -454,7 +453,7 @@ AnchorPoint: "r;x" 934 850 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-60 47 m 0
+60 47 m 0x74
  60 103 103 309 119 422 c 0
  141 574 264 1382 264 1397 c 0
  264 1432 244 1444 207 1444 c 0
@@ -466,20 +465,20 @@ SplineSet
  419 1458 297 904 297 718 c 0
  297 705 299 697 305 697 c 0
  326 697 438 871 603 871 c 0
- 745 871 785 764 785 638 c 0
- 785 521 736 319 736 225 c 0
- 736 169 754 132 785 132 c 0
+ 745 871 785 764 785 638 c 0x74
+ 785 521 736 319 736 225 c 0x78
+ 736 169 754 132 785 132 c 0xb4
  818 132 844 151 871 168 c 0
  914 195 939 252 955 252 c 0
  967 252 974 246 974 235 c 0
  974 140 798 -7 708 -7 c 0
- 624 -7 608 96 608 185 c 0
+ 624 -7 608 96 608 185 c 0xb8
  608 312 645 479 645 602 c 0
  645 731 590 762 529 762 c 0
  456 762 339 726 284 584 c 0
  244 481 231 267 203 59 c 0
  195 5 169 -2 126 -2 c 0
- 103 -2 60 6 60 47 c 0
+ 103 -2 60 6 60 47 c 0x74
 EndSplineSet
 EndChar
 
@@ -507,36 +506,36 @@ AnchorPoint: "r;x" 891 850 basechar 0
 LayerCount: 3
 Fore
 SplineSet
--50 -149 m 0
+-50 -149 m 0xea80
  -50 36 147 45 147 57 c 0
  147 70 123 82 123 148 c 0
- 123 246 203 270 203 288 c 0
+ 123 246 203 270 203 288 c 0xea80
  203 305 115 323 115 547 c 0
  115 670 224 875 420 875 c 0
- 506 875 587 822 646 822 c 0
+ 506 875 587 822 646 822 c 0xdc
  702 822 759 866 793 866 c 0
  812 866 851 858 851 814 c 0
  851 791 828 750 777 750 c 0
  723 750 685 765 668 765 c 0
  655 765 644 756 644 747 c 0
- 644 732 680 678 680 588 c 0
+ 644 732 680 678 680 588 c 0xed
  680 458 574 235 387 235 c 0
  292 235 261 262 229 262 c 0
  227 262 204 247 204 193 c 0
  204 20 728 70 728 -178 c 0
  728 -352 575 -400 370 -400 c 0
- 160 -400 -50 -328 -50 -149 c 0
+ 160 -400 -50 -328 -50 -149 c 0xea80
 64 -124 m 0
  64 -279 230 -348 366 -348 c 0
  452 -348 596 -330 596 -216 c 0
  596 -174 533 -128 235 -8 c 0
  184 12 167 28 167 28 c 1
  136 28 64 -42 64 -124 c 0
-237 513 m 0
+237 513 m 0xdd
  237 354 303 282 376 282 c 0
  464 282 562 388 562 577 c 0
  562 741 491 822 416 822 c 0
- 330 822 237 716 237 513 c 0
+ 330 822 237 716 237 513 c 0xdd
 EndSplineSet
 EndChar
 
@@ -666,7 +665,7 @@ AnchorPoint: "r;x" 953 850 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-35 256 m 0
+35 256 m 0x7e
  35 574 301 879 544 879 c 0
  597 879 640 851 697 851 c 0
  704 851 771 1389 771 1404 c 0
@@ -681,12 +680,12 @@ SplineSet
  748 167 752 124 800 124 c 0
  890 124 937 251 970 251 c 0
  986 251 993 242 993 233 c 0
- 993 191 864 -17 731 -17 c 0
+ 993 191 864 -17 731 -17 c 0xbe
  588 -17 634 214 606 214 c 0
  587 214 483 -17 280 -17 c 0
- 106 -17 35 102 35 256 c 0
+ 106 -17 35 102 35 256 c 0x7e
 178 314 m 0
- 178 195 229 103 353 103 c 0
+ 178 195 229 103 353 103 c 0x7e
  426 103 507 141 560 208 c 0
  642 310 672 673 672 754 c 0
  672 809 590 835 534 835 c 0
@@ -1023,12 +1022,12 @@ AnchorPoint: "r;x" 825 850 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-687 -7 m 0
+687 -7 m 0xb8
  570 -7 432 447 367 447 c 0
  362 447 340 432 318 420 c 0
  229 370 241 388 233 327 c 2
  196 59 l 2
- 189 5 157 -2 126 -2 c 0
+ 189 5 157 -2 126 -2 c 0x78
  103 -2 60 6 60 47 c 0
  60 103 99 309 115 422 c 2
  155 694 l 2
@@ -1054,7 +1053,7 @@ SplineSet
  639 238 688 138 723 138 c 0
  795 138 841 252 867 252 c 0
  881 252 885 234 885 216 c 0
- 885 140 762 -7 687 -7 c 0
+ 885 140 762 -7 687 -7 c 0xb8
 EndSplineSet
 EndChar
 
@@ -1115,8 +1114,8 @@ AnchorPoint: "r;x" 1540 850 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-50 660 m 0x6a
- 50 722 168 886 246 886 c 0x6a
+50 660 m 0xaa
+ 50 722 168 886 246 886 c 0xaa
  365 886 330 675 357 675 c 0
  372 675 419 796 609 863 c 0
  661 882 698 885 727 885 c 0
@@ -1125,8 +1124,8 @@ SplineSet
  847 681 848 674 851 674 c 0
  865 674 879 713 928 759 c 0
  990 818 1087 886 1181 886 c 0
- 1343 886 1350 696 1350 669 c 0x5a80
- 1350 576 1309 266 1309 198 c 0x59
+ 1343 886 1350 696 1350 669 c 0x1a80
+ 1350 576 1309 266 1309 198 c 0x19
  1309 145 1327 128 1350 128 c 0x5880
  1387 128 1437 173 1438 174 c 0
  1462 204 1469 232 1500 232 c 0
@@ -1148,7 +1147,7 @@ SplineSet
  160 144 251 471 251 629 c 0
  251 709 218 729 198 729 c 0
  135 729 120 611 74 611 c 0
- 52 611 50 633 50 660 c 0x6a
+ 52 611 50 633 50 660 c 0xaa
 EndSplineSet
 EndChar
 
@@ -1175,12 +1174,12 @@ AnchorPoint: "r;x" 1057 850 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-50 658 m 0xaa
- 50 737 172 891 250 891 c 0xaa
+50 658 m 0x6a
+ 50 737 172 891 250 891 c 0x6a
  368 891 325 675 344 675 c 0
  357 675 370 721 446 779 c 0
  502 822 610 894 696 894 c 0
- 839 894 869 768 869 639 c 0x9a
+ 839 894 869 768 869 639 c 0x1a
  869 496 833 278 833 208 c 0
  833 150 851 136 873 136 c 0
  908 136 954 180 955 181 c 0
@@ -1198,7 +1197,7 @@ SplineSet
  155 144 245 463 245 621 c 0
  245 692 218 734 198 734 c 0
  135 734 113 618 67 618 c 0
- 52 618 50 635 50 658 c 0xaa
+ 52 618 50 635 50 658 c 0x6a
 EndSplineSet
 EndChar
 
@@ -2000,7 +1999,7 @@ AnchorPoint: "r;x" 1283 850 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-40 29 m 0
+40 29 m 0xfc
  40 40 54 56 86 58 c 0
  188 65 195 141 227 334 c 0
  238 404 255 496 269 607 c 2
@@ -2022,8 +2021,8 @@ SplineSet
  439 784 445 782 527 782 c 0
  897 782 911 791 944 832 c 0
  994 894 987 938 1013 938 c 0
- 1031 938 1038 932 1038 915 c 0
- 1038 879 1009 783 998 702 c 0
+ 1031 938 1038 932 1038 915 c 0xfc
+ 1038 879 1009 783 998 702 c 0xfa
  988 631 1003 499 960 499 c 0
  941 499 939 515 939 533 c 0
  939 572 938 631 903 656 c 0
@@ -2037,7 +2036,7 @@ SplineSet
  1213 191 1068 -16 974 -16 c 0
  712 -16 466 6 342 6 c 0
  230 6 212 0 112 0 c 0
- 41 0 40 18 40 29 c 0
+ 41 0 40 18 40 29 c 0xfc
 EndSplineSet
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=9 dy=0 dh=19 dv=0
 EndChar
@@ -3488,20 +3487,20 @@ AnchorPoint: "l;bl" 0 40 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-135 -313 m 0
+135 -313 m 0xa0
  135 -287 180 -263 201 -240 c 0
  240 -197 278 -131 278 -54 c 0
  278 56 165 72 165 115 c 0
  165 121 245 242 282 242 c 0
  323 242 400 178 400 0 c 0
  400 -150 226 -340 164 -340 c 0
- 149 -340 135 -330 135 -313 c 0
-204 753 m 0
+ 149 -340 135 -330 135 -313 c 0xa0
+204 753 m 0xc0
  204 766 333 883 342 883 c 0
  363 883 451 765 451 756 c 0
  451 720 328 622 311 622 c 0
  297 622 272 666 253 685 c 0
- 224 714 204 734 204 753 c 0
+ 224 714 204 734 204 753 c 0xc0
 EndSplineSet
 EndChar
 
@@ -4384,11 +4383,11 @@ AnchorPoint: "top" -450 940 mark 0
 LayerCount: 3
 Fore
 SplineSet
--650 1206 m 4
- -650 1237.29980469 -590.150390625 1310 -547 1310 c 4
- -505.306640625 1310 -465 1254.76171875 -465 1215 c 4
- -465 1167.83789062 -543.043945312 1106 -560 1106 c 4
- -613.638671875 1106 -650 1171.89355469 -650 1206 c 4
+-650 1206 m 0
+ -650 1237.29980469 -590.150390625 1310 -547 1310 c 0
+ -505.306640625 1310 -465 1254.76171875 -465 1215 c 0
+ -465 1167.83789062 -543.043945312 1106 -560 1106 c 0
+ -613.638671875 1106 -650 1171.89355469 -650 1206 c 0
 -333 1206 m 0
  -333 1237.29980469 -273.150390625 1310 -230 1310 c 0
  -188.306640625 1310 -148 1254.76171875 -148 1215 c 0
@@ -6275,7 +6274,7 @@ AnchorPoint: "r;x" 504 850 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-113 -366 m 4
+113 -366 m 0
  113 -348 115 -325 118 -293 c 2
  131 -168 l 2
  165 158 239 762 282 1167 c 0
@@ -6294,7 +6293,7 @@ SplineSet
  433 -324 445 -331 445 -356 c 0
  445 -414 410 -418 338 -418 c 2
  168 -418 l 2
- 126 -418 113 -411 113 -366 c 4
+ 126 -418 113 -411 113 -366 c 0
 EndSplineSet
 Kerns2: 156 -54 "generated_kerning per glyph data 0"  54 -59 "generated_kerning per glyph data 0"  327 281 "generated_kerning per glyph data 0"  177 109 "generated_kerning per glyph data 0"  39 96 "generated_kerning per glyph data 0"  501 71 "generated_kerning per glyph data 0"  331 27 "generated_kerning per glyph data 0"  346 25 "generated_kerning per glyph data 0"  151 21 "generated_kerning per glyph data 0"  357 1 "generated_kerning per glyph data 0" 
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" bracketleft.uppercase bracketleft.sub bracketleft.sup
@@ -12603,7 +12602,7 @@ AnchorPoint: "l;bl" 10 40 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-35 256 m 0
+35 256 m 0x7e
  35 574 301 879 544 879 c 0
  597 879 640 851 697 851 c 0
  702 851 733 1082 733 1097 c 0
@@ -12636,12 +12635,12 @@ SplineSet
  748 167 752 124 800 124 c 0
  890 124 937 251 970 251 c 0
  986 251 993 242 993 233 c 0
- 993 191 864 -17 731 -17 c 0
+ 993 191 864 -17 731 -17 c 0xbe
  588 -17 634 214 606 214 c 0
  587 214 483 -17 280 -17 c 0
- 106 -17 35 102 35 256 c 0
+ 106 -17 35 102 35 256 c 0x7e
 178 314 m 0
- 178 195 229 103 353 103 c 0
+ 178 195 229 103 353 103 c 0x7e
  426 103 507 141 560 208 c 0
  642 310 672 673 672 754 c 0
  672 809 590 835 534 835 c 0
@@ -12675,9 +12674,9 @@ AnchorPoint: "l;bl" 0 40 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-60 47 m 0
+60 47 m 0x7880
  60 103 103 309 119 422 c 1
- 212 1039 214 1051 214 1054 c 0
+ 212 1039 214 1051 214 1054 c 0x7c80
  214 1068 203 1068 183 1068 c 2
  94 1068 l 2
  74 1068 67 1084 67 1102 c 0
@@ -12690,7 +12689,7 @@ SplineSet
  110 1442 97 1446 97 1466 c 0
  97 1477 105 1490 175 1496 c 0
  343 1510 350 1529 395 1529 c 0
- 409 1529 419 1518 419 1504 c 0
+ 409 1529 419 1518 419 1504 c 0x7a
  419 1472 360 1184 360 1170 c 0
  360 1160 365 1154 389 1154 c 0
  563 1155 614 1158 694 1159 c 0
@@ -12702,20 +12701,20 @@ SplineSet
  315 915 297 790 297 718 c 0
  297 705 299 697 305 697 c 0
  326 697 438 871 603 871 c 0
- 745 871 785 764 785 638 c 0
- 785 521 736 319 736 225 c 0
- 736 169 754 132 785 132 c 0
+ 745 871 785 764 785 638 c 0x7c80
+ 785 521 736 319 736 225 c 0x79
+ 736 169 754 132 785 132 c 0xb880
  818 132 844 151 871 168 c 0
  914 195 939 252 955 252 c 0
  967 252 974 246 974 235 c 0
  974 140 798 -7 708 -7 c 0
- 624 -7 608 96 608 185 c 0
+ 624 -7 608 96 608 185 c 0xb9
  608 312 645 479 645 602 c 0
  645 731 590 762 529 762 c 0
  456 762 339 726 284 584 c 0
  244 481 231 267 203 59 c 0
  195 5 169 -2 126 -2 c 0
- 103 -2 60 6 60 47 c 0
+ 103 -2 60 6 60 47 c 0x7880
 EndSplineSet
 EndChar
 
@@ -13034,10 +13033,10 @@ AnchorPoint: "l;o" 40 450 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-40 20 m 0
+40 20 m 0xf8
  40 65 96 38 149 86 c 0
  197 130 187 130 245 580 c 0
- 246 583 247 594 247 597 c 0x78
+ 246 583 247 594 247 597 c 0xf8
  247 605 241 608 236 608 c 0
  233 608 228 607 223 605 c 2
  120 568 l 2
@@ -13054,7 +13053,7 @@ SplineSet
  524 1457 564 1464 600 1464 c 0
  626 1464 643 1455 643 1438 c 0
  643 1386 517 1436 494 1285 c 0
- 494 1282 427 798 427 787 c 0x74
+ 494 1282 427 798 427 787 c 0xf4
  427 779 429 776 434 776 c 0
  438 776 443 778 451 781 c 2
  880 944 l 2
@@ -13070,9 +13069,9 @@ SplineSet
  1186 183 1092 50 1071 32 c 0
  1019 -13 992 -17 946 -17 c 2
  849 -17 l 2
- 671 -17 468 6 346 6 c 0x78
+ 671 -17 468 6 346 6 c 0
  234 6 188 -7 88 -7 c 0
- 51 -7 40 7 40 20 c 0
+ 51 -7 40 7 40 20 c 0xf8
 EndSplineSet
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=9 dy=0 dh=18 dv=0
 EndChar
@@ -13329,7 +13328,7 @@ AnchorPoint: "l;x" 60 850 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-40 29 m 0
+40 29 m 0xfe
  40 40 54 56 86 58 c 0
  188 65 195 141 227 334 c 0
  238 404 255 496 269 607 c 2
@@ -13351,8 +13350,8 @@ SplineSet
  439 784 445 782 527 782 c 0
  897 782 911 791 944 832 c 0
  994 894 987 938 1013 938 c 0
- 1031 938 1038 932 1038 915 c 0
- 1038 879 1009 783 998 702 c 0
+ 1031 938 1038 932 1038 915 c 0xfe
+ 1038 879 1009 783 998 702 c 0xfd
  988 631 1003 499 960 499 c 0
  941 499 939 515 939 533 c 0
  939 572 938 631 903 656 c 0
@@ -13374,7 +13373,7 @@ SplineSet
  862 -22 849 -15 736 -11 c 0
  570 -5 427 6 342 6 c 0
  230 6 212 0 112 0 c 0
- 41 0 40 18 40 29 c 0
+ 41 0 40 18 40 29 c 0xfe
 EndSplineSet
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=9 dy=0 dh=19 dv=0
 EndChar
@@ -14740,14 +14739,14 @@ StartChar: f_f_i
 Encoding: 65539 -1 391
 Width: 1476
 VWidth: 0
-Flags: HW
+Flags: MWO
 PickledData: "(dp1
 S'spacing_anchors_slanted'
 p2
 I00
 s."
-HStem: -368 71<16.5747 88.2961 435.389 560.118> -365 174<-65.2051 3.19699 404.084 462.81> -23 156<1139 1259.91> 770 70<40.3938 230.956 372.165 705.963 840.229 1167.07> 840 20G<1263.5 1294.5> 1369 81<627.11 824.95> 1426 100<1089.77 1266.93>
-VStem: 40 332<782 928> 1090 136<60.654 470.374> 1172 150<590.381 836.454>
+HStem: -368 71<16.5747 88.2961 435.389 560.118> -23 156<1139 1259.91> 770 70<40.3938 230.956 372.165 705.963 840.229 1167.07> 1369 81<627.11 824.95> 1426 100<1089.77 1266.93>
+VStem: 1090 136<60.654 470.374> 1172 150<590.381 836.454>
 AnchorPoint: "r;bl" 1476 40 basechar 0
 AnchorPoint: "r;o" 1476 450 basechar 0
 AnchorPoint: "r;t" 1476 1150 basechar 0
@@ -14762,7 +14761,7 @@ AnchorPoint: "l;hi" 450 1500 basechar 0
 LayerCount: 3
 Fore
 SplineSet
--80 -338 m 0xb940
+-80 -338 m 0xea
  -80 -321 -73 -192 -32 -192 c 0
  2 -192 -8 -229 19 -266 c 0
  29 -280 49 -297 60 -297 c 0
@@ -14777,32 +14776,32 @@ SplineSet
  208 844 221 840 233 840 c 0
  240 840 248 843 250 856 c 0
  273 1031 337 1165 419 1262 c 0
- 494 1351 664 1450 780 1450 c 0xbd40
+ 494 1351 664 1450 780 1450 c 0xf2
  878 1450 958 1398 968 1398 c 0
  988 1398 1085 1526 1246 1526 c 0
  1317 1526 1378 1503 1378 1467 c 0
  1378 1443 1372 1410 1372 1406 c 0
  1369 1376 1344 1328 1326 1328 c 0
- 1282 1328 1294 1426 1128 1426 c 0x3b40
+ 1282 1328 1294 1426 1128 1426 c 0
  930 1426 840 953 840 875 c 0
  840 859 843 841 871 841 c 0
  897 841 1036 845 1120 848 c 0
  1265 853 1245 860 1282 860 c 0
- 1307 860 1322 845 1322 820 c 0x3940
+ 1307 860 1322 845 1322 820 c 0xea
  1322 774 1293 690 1277 588 c 0
  1236 325 1226 270 1226 220 c 0
  1226 149 1246 133 1256 133 c 0
  1316 133 1358 237 1387 237 c 0
  1400 237 1404 224 1404 210 c 0
  1404 118 1226 -23 1168 -23 c 0
- 1110 -23 1090 50 1090 139 c 0x3980
+ 1110 -23 1090 50 1090 139 c 0xec
  1090 294 1172 615 1172 731 c 0
  1172 766 1160 774 1123 774 c 0
  1021 774 1101 775 928 775 c 0
  821 775 832 773 826 736 c 0
  733 107 793 -365 430 -365 c 0
  385 -365 384 -350 384 -323 c 0
- 384 -306 402 -191 443 -191 c 0x7940
+ 384 -306 402 -191 443 -191 c 0
  475 -191 472 -291 530 -291 c 0
  603 -291 624 95 640 228 c 0
  691 656 706 726 706 730 c 0
@@ -14813,7 +14812,7 @@ SplineSet
  320 504 280 -51 235 -162 c 0
  173 -313 49 -368 -18 -368 c 2
  -34 -368 l 2
- -61 -368 -80 -366 -80 -338 c 0xb940
+ -61 -368 -80 -366 -80 -338 c 0xea
 372 861 m 0
  372 845 379 841 396 841 c 0
  459 841 427 840 710 840 c 0
@@ -19762,6 +19761,45 @@ SplineSet
  426 683 416 677 411 672 c 0
  113 422 116 422 107 422 c 0
  93 422 80 445 80 458 c 0
+EndSplineSet
+EndChar
+
+StartChar: .notdef
+Encoding: 65655 -1 511
+Width: 1013
+VWidth: 0
+Flags: HW
+HStem: -29 21G<324 342> 1272 94<365.456 551.382>
+VStem: 339 64<403.79 600.246> 609 152<991.163 1214.77>
+LayerCount: 3
+Fore
+SplineSet
+102 1488 m 25
+ 918 1488 l 25
+ 918 -192 l 25
+ 102 -192 l 25
+ 102 1488 l 25
+207 102 m 0
+ 207 82 243 59 270 27 c 0
+ 292 1 312 -29 336 -29 c 0
+ 348 -29 378 8 403 32 c 0
+ 433 60 472 86 472 106 c 0
+ 472 120 444 148 426 169 c 0
+ 394 207 379 234 362 234 c 0
+ 329 234 324 207 278 173 c 0
+ 269 166 207 126 207 102 c 0
+296 1245 m 0
+ 296 1237 304 1232 314 1232 c 0
+ 347 1232 375 1272 445 1272 c 0
+ 515.048828125 1272 609 1205.62402344 609 1116 c 0
+ 609 984.150390625 339 705.799804688 339 530 c 0
+ 339 466 349 397 390 397 c 0
+ 399 397 409 401 409 417 c 0
+ 409 433 403 463 403 486 c 0
+ 403 599 494 696 639 878 c 0
+ 668 915 761 1001 761 1123 c 0
+ 761 1273 624 1366 504 1366 c 0
+ 392 1366 296 1275 296 1245 c 0
 EndSplineSet
 EndChar
 EndChars
