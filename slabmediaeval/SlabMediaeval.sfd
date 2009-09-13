@@ -23,7 +23,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1252134725
-ModificationTime: 1252826556
+ModificationTime: 1252827568
 OS2TypoAscent: 0
 OS2TypoAOffset: 1
 OS2TypoDescent: 0
@@ -37,6 +37,7 @@ HheadAscent: 0
 HheadAOffset: 1
 HheadDescent: 0
 HheadDOffset: 1
+OS2Vendor: 'PfEd'
 DEI: 91125
 Encoding: UnicodeBmp
 UnicodeInterp: none
@@ -44,7 +45,7 @@ NameList: Adobe Glyph List
 DisplaySize: -72
 AntiAlias: 1
 FitToEm: 1
-WinInfo: 40 8 7
+WinInfo: 24 8 7
 BeginPrivate: 9
 BlueValues 26 [-59 2 956 1008 1391 1472]
 OtherBlues 11 [-460 -439]
@@ -80,7 +81,7 @@ Grid
 -1022 956 m 1
  2647 956 l 1
 EndSplineSet
-BeginChars: 65537 91
+BeginChars: 65537 93
 
 StartChar: a
 Encoding: 97 97 0
@@ -1600,7 +1601,7 @@ StartChar: E
 Encoding: 69 69 30
 Width: 1170
 VWidth: 2048
-Flags: MWO
+Flags: MW
 HStem: 0 134<450 982.18> 0 100<41 240> 720 100<450 881.653> 1282 129<450 978.795> 1311 100<46 240>
 VStem: 240 210<134 720 820 1282> 884 90<565 714.313 825.493 975> 1001 90<1112 1220.42> 1034 76<203.153 357>
 LayerCount: 4
@@ -3856,6 +3857,56 @@ SplineSet
  423 782 478 778 498 1032 c 0
  501 1072 512 1086 524 1086 c 0
  540 1086 559 1062 568 1035 c 0xec
+EndSplineSet
+EndChar
+
+StartChar: quotesingle
+Encoding: 39 39 91
+Width: 476
+VWidth: 0
+Flags: W
+HStem: 984 21G<172.25 211> 1207 235<161.474 276.196>
+VStem: 279 133<1118.84 1326.5>
+LayerCount: 4
+Fore
+SplineSet
+412 1265 m 0
+ 412 1081 236 1013 186 984 c 1
+ 142 1048 l 1
+ 142 1048 279 1117 279 1165 c 0
+ 279 1192 246 1202 231 1207 c 0
+ 182 1225 138 1257 138 1333 c 0
+ 138 1402 196 1442 259 1442 c 0
+ 332 1442 412 1388 412 1265 c 0
+EndSplineSet
+EndChar
+
+StartChar: quotedbl
+Encoding: 34 34 92
+Width: 902
+VWidth: 0
+Flags: W
+HStem: 984 21G<172.25 211 572.25 611> 1207 235<161.474 276.196 561.474 676.196>
+VStem: 279 133<1118.84 1326.5> 679 133<1118.84 1326.5>
+LayerCount: 4
+Fore
+SplineSet
+812 1265 m 0
+ 812 1081 636 1013 586 984 c 1
+ 542 1048 l 1
+ 542 1048 679 1117 679 1165 c 0
+ 679 1192 646 1202 631 1207 c 0
+ 582 1225 538 1257 538 1333 c 0
+ 538 1402 596 1442 659 1442 c 0
+ 732 1442 812 1388 812 1265 c 0
+412 1265 m 0
+ 412 1081 236 1013 186 984 c 1
+ 142 1048 l 1
+ 142 1048 279 1117 279 1165 c 0
+ 279 1192 246 1202 231 1207 c 0
+ 182 1225 138 1257 138 1333 c 0
+ 138 1402 196 1442 259 1442 c 0
+ 332 1442 412 1388 412 1265 c 0
 EndSplineSet
 EndChar
 EndChars
