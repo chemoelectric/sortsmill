@@ -247,9 +247,9 @@ def build_glyphs(bitbucket, f):
     build_multigraph('napostrophe', [f['quoteright'], f['n']])
     build_multigraph('IJ', [f['I'], f['J']])
     build_multigraph('ij', [f['i'], f['j']])
-#    build_multigraph('Ldot', [f['L'], f['periodcentered']])
-#    build_multigraph('ldot', [f['l'], f['periodcentered']])
-#    build_multigraph('ldot.sc', [f['l.sc'], f['periodcentered.sc']])
+    build_multigraph('Ldot', [f['L'], f['periodcentered']])
+    build_multigraph('ldot', [f['l'], f['periodcentered']])
+    build_multigraph('ldot.sc', [f['l.sc'], f['periodcentered.sc']])
 
     #--------------------------------------------------------------------------
 
