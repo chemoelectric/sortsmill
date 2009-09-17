@@ -209,6 +209,12 @@ def build_glyphs(bitbucket, f):
 
     #--------------------------------------------------------------------------
 
+    build_multigraph('quotedblleft', [f['quoteleft'], f['quoteleft']])
+    build_multigraph('quotedblright', [f['quoteright'], f['quoteright']])
+    build_multigraph('quotedblbase', [f['quotesinglbase'], f['quotesinglbase']])
+    build_multigraph('uni201F', [f['quotereversed'], f['quotereversed']])
+    build_multigraph('guillemotleft', [f['guilsinglleft'], f['guilsinglleft']])
+    build_multigraph('guillemotright', [f['guilsinglright'], f['guilsinglright']])
     build_multigraph('napostrophe', [f['quoteright'], f['n']])
     build_multigraph('IJ', [f['I'], f['J']])
     build_multigraph('ij', [f['i'], f['j']])
