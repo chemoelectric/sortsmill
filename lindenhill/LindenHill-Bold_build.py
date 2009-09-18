@@ -183,6 +183,8 @@ def build_glyphs(bitbucket, f):
         build_accented_glyph(letter + 'dotaccent', f[base(letter)], f['uni0307'])
     for letter in 'CEGIZ':
         build_accented_glyph(letter + 'dotaccent', f[base(letter)], f['uni0307.cap'])
+    build_accented_glyph('i', f['dotlessi'], f['uni0307'])
+    build_accented_glyph('j', f['uni0237'], f['uni0307'])
 
     #--------------------------------------------------------------------------
 
