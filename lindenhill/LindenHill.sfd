@@ -70,7 +70,7 @@ KernClass2: 30 26 "generated_kerning kerning class 1"
  6 lslash
  73 a aacute abreve acircumflex adieresis agrave amacron aogonek aring atilde
  31 f_f_l f_l longs_l longs_longs_l
- 135 dotlessi f_f_i f_i i i.ORIGINAL.DONE_KEEP i.TRK iacute ibreve icircumflex idieresis igrave imacron iogonek itilde longs_i longs_longs_i
+ 135 dotlessi f_f_i f_i i i.ORIGINAL.DONT_KEEP i.TRK iacute ibreve icircumflex idieresis igrave imacron iogonek itilde longs_i longs_longs_i
  5 f f_f
  1 q
  1 v
@@ -150,7 +150,7 @@ NameList: Adobe Glyph List
 DisplaySize: -72
 AntiAlias: 1
 FitToEm: 1
-WinInfo: 328 8 6
+WinInfo: 72 8 6
 BeginPrivate: 9
 BlueValues 35 [-48 0 788 835 1365 1416 1469 1498]
 OtherBlues 11 [-539 -530]
@@ -2406,7 +2406,7 @@ LayerCount: 3
 Fore
 SplineSet
 111 1037 m 1
- 119 1114 128 1211 141 1365 c 1
+ 119 1114 128 1211 141 1365 c 5
  1323 1365 l 1
  1305 1177 1304 1104 1298 1038 c 1
  1224 1040 l 1
@@ -17665,11 +17665,11 @@ Refer: 269 768 N 1 0 0 1 915 0 2
 Refer: 261 -1 N 1 0 0 1 0 0 2
 EndChar
 
-StartChar: i.ORIGINAL.DONE_KEEP
+StartChar: i.ORIGINAL.DONT_KEEP
 Encoding: 65754 -1 614
 Width: 542
 VWidth: 0
-Flags: HW
+Flags: HWO
 HStem: 0 65<63 199.381 346.47 507> 708 62<58 169.511> 812 20G<288.5 345> 1125 178<250.958 374.445>
 VStem: 201 144<68.8509 723.992> 225 174<1147.86 1276.19>
 AnchorPoint: "r;o" 542 400 basechar 0
