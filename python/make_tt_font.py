@@ -71,7 +71,7 @@ def generate_tt_font(f, modifier):
 
 #--------------------------------------------------------------------------
 
-if __name__ == "__main__":
+if __name__ == "__main__" and not fontforge.hasUserInterface():
 
     for font_file in sys.argv[1:]:
         f = fontforge.open(font_file)
