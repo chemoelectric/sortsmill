@@ -85,4 +85,6 @@ for sfd_path in sys.argv[1:]:
     print "Validating", font_file
     subprocess.call(["fontlint", font_file])
 
+    f.close()
+
 #--------------------------------------------------------------------------
