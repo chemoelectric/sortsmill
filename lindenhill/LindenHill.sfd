@@ -15,13 +15,14 @@ LayerCount: 3
 Layer: 0 0 "Back"  1
 Layer: 1 0 "Fore"  0
 Layer: 2 0 "backup"  1
+NeedsXUIDChange: 1
 XUID: [1021 658 797806517 427014]
 FSType: 0
 OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1249677682
-ModificationTime: 1253681924
+ModificationTime: 1253775759
 OS2TypoAscent: 0
 OS2TypoAOffset: 1
 OS2TypoDescent: 0
@@ -149,7 +150,7 @@ NameList: Adobe Glyph List
 DisplaySize: -72
 AntiAlias: 1
 FitToEm: 1
-WinInfo: 72 8 6
+WinInfo: 65552 8 6
 BeginPrivate: 9
 BlueValues 35 [-48 0 788 835 1365 1416 1469 1498]
 OtherBlues 11 [-539 -530]
@@ -2396,7 +2397,7 @@ StartChar: T
 Encoding: 84 84 47
 Width: 1394
 VWidth: 0
-Flags: WO
+Flags: W
 HStem: 2 78<452 620.487 795.693 991> 1275 90<208.625 620.292 791.365 1234.39>
 VStem: 111 74<1037 1247.77> 624 166<85.316 1273.04> 1224 74<1040 1207.58>
 AnchorPoint: "cedilla" 710 -190 basechar 0
@@ -5449,10 +5450,29 @@ StartChar: seven.denom
 Encoding: 65567 -1 114
 Width: 734
 VWidth: 0
-Flags: W
+Flags: HWO
 HStem: -14 21G<269 405.5> 706 180<93.1025 243.043> 782 104<183.172 551.988>
 VStem: 552 102<631.53 877>
 LayerCount: 3
+Back
+SplineSet
+76 741 m 4xd0
+ 76 770 84 823 93 874 c 4
+ 95 886 109 886 125 886 c 6xd0
+ 628 886 l 6
+ 650 886 654 886 654 868 c 4
+ 654 742 515 298 497 238 c 5
+ 438 56 l 6
+ 417 -7 417 -14 394 -14 c 6
+ 278 -14 l 6
+ 260 -14 250 -6 250 4 c 4
+ 250 24 335 86 463 435 c 5
+ 522 592 552 729 552 762 c 4
+ 552 779 536 782 515 782 c 4xb0
+ 462 782 319 765 235 749 c 4
+ 137 731 106 706 94 706 c 4
+ 82 706 76 712 76 741 c 4xd0
+EndSplineSet
 Fore
 SplineSet
 76 741 m 0xd0
@@ -5460,19 +5480,18 @@ SplineSet
  95 886 109 886 125 886 c 2xd0
  628 886 l 2
  650 886 654 886 654 868 c 0
- 654 742 515 298 497 238 c 1
+ 654 742 516 298 497 238 c 2
  438 56 l 2
  417 -7 417 -14 394 -14 c 2
  278 -14 l 2
  260 -14 250 -6 250 4 c 0
- 250 24 335 86 463 435 c 1
- 522 592 552 729 552 762 c 0
+ 250 24 334 86 463 435 c 0
+ 521 592 552 729 552 762 c 0
  552 779 536 782 515 782 c 0xb0
  462 782 319 765 235 749 c 0
  137 731 106 706 94 706 c 0
  82 706 76 712 76 741 c 0xd0
 EndSplineSet
-Validated: 1
 EndChar
 
 StartChar: eight.denom
