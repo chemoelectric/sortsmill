@@ -21,9 +21,9 @@
 #-----------------------------------------------------------------------
 
 @REGULAR_FIGURES = [ zero one two three four five six seven eight nine ];
-@OLDSTYLE_FIGURES = @REGULAR_FIGURES;
-@LINING_FIGURES = [ zero.lining one.lining two.lining three.lining four.lining
-                    five.lining six.lining seven.lining eight.lining nine.lining ];
+@LINING_FIGURES = @REGULAR_FIGURES;
+@HANGING_FIGURES = [ zero.hanging one.hanging two.hanging three.hanging four.hanging
+                    five.hanging six.hanging seven.hanging eight.hanging nine.hanging ];
 
 @NUMERATOR_FIGURES = [
   zero.numer
@@ -111,15 +111,16 @@ feature subs {
 
 #-----------------------------------------------------------------------
 
-lookup lining_figures {
-#  sub \figuredash by \figuredash.uppercase;
-  sub \dollar by \dollar.lining;
-  sub @OLDSTYLE_FIGURES by @LINING_FIGURES;
-} lining_figures;
+feature onum {
+  sub \dollar by \dollar.hanging;
+  sub @LINING_FIGURES by @HANGING_FIGURES;
+} onum;
 
-feature lnum {
-   lookup lining_figures;
-} lnum;
+# For override of hanging figures by the "case" feature.
+lookup lining_figures {
+  sub \dollar.hanging by \dollar;
+  sub @HANGING_FIGURES by @LINING_FIGURES;
+} lining_figures;
 
 #-----------------------------------------------------------------------
 

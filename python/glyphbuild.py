@@ -3545,7 +3545,7 @@ def build_multigraph(glyphname, components,
 ###########################################################################
 
 
-def make_glyph_reference(glyphname, original, transformation = None):
+def make_glyph_reference(glyphname, original, transformation = None, copy_spacing_anchors = True):
     f = original.font
     new_glyph = f.createChar(fontforge.unicodeFromName(glyphname), glyphname)
     new_glyph.glyphname = glyphname
@@ -3554,7 +3554,7 @@ def make_glyph_reference(glyphname, original, transformation = None):
         new_glyph.addReference(original.glyphname, transformation)
     else:
         new_glyph.addReference(original.glyphname)
-    if glyph_has_spacing_anchors(None, original):
+    if copy_spacing_anchors and glyph_has_spacing_anchors(None, original):
         spacing_by_anchors.copy_spacing_anchors(new_glyph)
         spacing_by_anchors.space_glyph_by_anchors(None, new_glyph)
     else:

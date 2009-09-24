@@ -21,9 +21,7 @@
 #-----------------------------------------------------------------------
 
 @REGULAR_FIGURES = [ zero one two three four five six seven eight nine ];
-@OLDSTYLE_FIGURES = @REGULAR_FIGURES;
-@LINING_FIGURES = [ zero.lining one.lining two.lining three.lining four.lining
-                    five.lining six.lining seven.lining eight.lining nine.lining ];
+@LINING_FIGURES = @REGULAR_FIGURES;
 
 @NUMERATOR_FIGURES = [
   zero.numer
@@ -108,18 +106,6 @@ feature sups {
 feature subs {
   sub @REGULAR_FIGURES by @INFERIOR_FIGURES;
 } subs;
-
-#-----------------------------------------------------------------------
-
-lookup lining_figures {
-#  sub \figuredash by \figuredash.uppercase;
-  sub \dollar by \dollar.lining;
-  sub @OLDSTYLE_FIGURES by @LINING_FIGURES;
-} lining_figures;
-
-feature lnum {
-   lookup lining_figures;
-} lnum;
 
 #-----------------------------------------------------------------------
 

@@ -86,7 +86,7 @@ def build_glyphs(bitbucket, f):
     build_several_space_glyphs(f, emsize = 2048, spacesize = 380,
                                thinspacesize = 2048 / 6,
                                hairspacesize = 2048 / 10,
-                               tabwidth = f['zero.lining'].width)
+                               tabwidth = f['zero'].width)
     propagate_hyphens(f)
 #    propagate_hyphens(f, '.uppercase')
     build_spacing_marks(f, width = 800)
@@ -103,6 +103,12 @@ def build_glyphs(bitbucket, f):
     make_glyph_reference('uni00B9', f['one.sup'])
     make_glyph_reference('uni00B2', f['two.sup'])
     make_glyph_reference('uni00B3', f['three.sup'])
+    for extension in [('.numer', 500), ('.sub', -200), ('.sup', 600)]:
+        for fig in figures:
+            make_glyph_reference(fig + extension[0],
+                                 f[fig + '.denom'],
+                                 transformation = (1, 0, 0, 1, 0, extension[1]),
+                                 copy_spacing_anchors = False)
     build_multigraph('onequarter', [f['one.numer'], f['fraction'], f['four.denom']])
     build_multigraph('onehalf', [f['one.numer'], f['fraction'], f['two.denom']])
     build_multigraph('threequarters', [f['three.numer'], f['fraction'], f['four.denom']])
