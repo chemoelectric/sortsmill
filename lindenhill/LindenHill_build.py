@@ -75,20 +75,20 @@ def build_glyphs(bitbucket, f):
 
     if f.persistent == None:
         f.persistent = {}
-    f.persistent['spacing_anchor_heights'] = { 'hi' : 1400, # caps and ascenders
-#                                               't'  : 1150, # top diacritics
-                                               'x'  : 770,  # ex-height
-                                               'o'  : 400,  # like the letter o
-                                               'bl' : 30,   # baseline
-                                               'lo' : -500 } # descenders
+    f.persistent['spacing_anchor_heights'] = { 'hi' : 684, # caps and ascenders
+#                                               't'  : ???, # top diacritics
+                                               'x'  : 376,  # ex-height
+                                               'o'  : 195,  # like the letter o
+                                               'bl' : 15,   # baseline
+                                               'lo' : -244 } # descenders
 
-    build_several_space_glyphs(f, emsize = 2048, spacesize = 380,
-                               thinspacesize = 2048 / 6,
-                               hairspacesize = 2048 / 10,
+    build_several_space_glyphs(f, emsize = 1000, spacesize = 185,
+                               thinspacesize = 1000 / 6,
+                               hairspacesize = 1000 / 10,
                                tabwidth = f['zero'].width)
     propagate_hyphens(f)
 #    propagate_hyphens(f, '.uppercase')
-    build_spacing_marks(f, width = 800)
+    build_spacing_marks(f, width = 2 * 195)
 
     make_glyph_reference('quotesingle', f['minute'])
     make_glyph_reference('quotedbl', f['second'])
@@ -102,7 +102,7 @@ def build_glyphs(bitbucket, f):
     make_glyph_reference('uni00B9', f['one.sup'])
     make_glyph_reference('uni00B2', f['two.sup'])
     make_glyph_reference('uni00B3', f['three.sup'])
-    for extension in [('.numer', 500), ('.sub', -200), ('.sup', 600)]:
+    for extension in [('.numer', 244), ('.sub', -98), ('.sup', 293)]:
         for fig in figures:
             make_glyph_reference(fig + extension[0],
                                  f[fig + '.denom'],
