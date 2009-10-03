@@ -85,7 +85,7 @@ def build_glyphs(bitbucket, f):
     build_several_space_glyphs(f, emsize = 1000, spacesize = 185,
                                thinspacesize = 1000 / 6,
                                hairspacesize = 1000 / 10,
-                               tabwidth = f['zero'].width)
+                               tabwidth = f['zero.lining'].width)
     propagate_hyphens(f)
 #    propagate_hyphens(f, '.uppercase')
     build_spacing_marks(f, width = 2 * 195)
@@ -98,6 +98,9 @@ def build_glyphs(bitbucket, f):
     make_glyph_reference('dcroat.sc', f['eth.sc'])
 
     build_multigraph('ellipsis', [f['period'], f['period'], f['period']])
+
+    for fig in figures + ['dollar']:
+        make_glyph_reference(fig, f[fig + '.hanging'])
 
     make_glyph_reference('uni00B9', f['one.sup'])
     make_glyph_reference('uni00B2', f['two.sup'])

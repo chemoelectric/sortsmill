@@ -89,6 +89,7 @@ for sfd_path in sys.argv[1:]:
     f.selection.none()
 
     if tt_match:
+        f.em = 4096
         generate_tt_font(f, 'TT')
     else:
         font_file = f.fontname + font_extension

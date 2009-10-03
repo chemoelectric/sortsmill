@@ -21,9 +21,14 @@
 #-----------------------------------------------------------------------
 
 @REGULAR_FIGURES = [ zero one two three four five six seven eight nine ];
-@LINING_FIGURES = @REGULAR_FIGURES;
+@LINING_FIGURES =  [ zero.lining one.lining two.lining three.lining four.lining
+                     five.lining six.lining seven.lining eight.lining nine.lining ];
 @HANGING_FIGURES = [ zero.hanging one.hanging two.hanging three.hanging four.hanging
-                    five.hanging six.hanging seven.hanging eight.hanging nine.hanging ];
+                     five.hanging six.hanging seven.hanging eight.hanging nine.hanging ];
+
+@REGULAR_FIGURELIKE = [ @REGULAR_FIGURES \dollar ];
+@LINING_FIGURELIKE = [ @LINING_FIGURES \dollar.lining ];
+@HANGING_FIGURELIKE = [ @HANGING_FIGURES \dollar.hanging ];
 
 @NUMERATOR_FIGURES = [
   zero.numer
@@ -111,16 +116,21 @@ feature subs {
 
 #-----------------------------------------------------------------------
 
-feature onum {
-  sub \dollar by \dollar.hanging;
-  sub @LINING_FIGURES by @HANGING_FIGURES;
-} onum;
+#feature onum {
+#  sub @REGULAR_FIGURELIKE by @HANGING_FIGURELIKE;
+#  sub @LINING_FIGURELIKE by @HANGING_FIGURELIKE;
+#} onum;
 
-# For override of hanging figures by the "case" feature.
+# Handles "lnum", and also the override of hanging
+# figures by the "case" feature.
 lookup lining_figures {
-  sub \dollar.hanging by \dollar;
-  sub @HANGING_FIGURES by @LINING_FIGURES;
+  sub @REGULAR_FIGURELIKE by @LINING_FIGURELIKE;
+  sub @HANGING_FIGURELIKE by @LINING_FIGURELIKE;
 } lining_figures;
+
+feature lnum {
+  lookup lining_figures;
+} lnum;
 
 #-----------------------------------------------------------------------
 
