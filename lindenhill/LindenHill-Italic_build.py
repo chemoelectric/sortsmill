@@ -118,11 +118,12 @@ def build_glyphs(bitbucket, f):
 
     for letter in 'GKkLlNnRr':
                 build_accented_glyph(letter + 'commaaccent', f[base(letter)], f['uni0326'])
-    build_accented_glyph('gcommaaccent', f['g'], f['uni0312'])
+    build_accented_glyph('Ncommaaccent.001', f['N.001'], f['uni0326'])
     build_accented_glyph('uni0218', f['S'], f['uni0326'])
     build_accented_glyph('uni0219', f['s'], f['uni0326'])
     build_accented_glyph('uni021A', f['T'], f['uni0326'])
     build_accented_glyph('uni021B', f['t'], f['uni0326'])
+    build_accented_glyph('gcommaaccent', f['g'], f['uni0312'])
 
     #--------------------------------------------------------------------------
 
@@ -144,6 +145,7 @@ def build_glyphs(bitbucket, f):
         build_accented_glyph(letter + 'acute', f[base(letter)], f['acutecomb'])
     for letter in 'ACEILNORSUYZ':
         build_accented_glyph(letter + 'acute', f[base(letter)], f['acutecomb.cap'])
+    build_accented_glyph('Nacute.001', f['N.001'], f['acutecomb.cap'])
     # build_accented_glyph('lacute', f['l'], f['acutecomb.cap']) <-- We are making this one by hand.
 
     #--------------------------------------------------------------------------
@@ -152,6 +154,7 @@ def build_glyphs(bitbucket, f):
         build_accented_glyph(letter + 'tilde', f[base(letter)], f['tildecomb'])
     for letter in 'AINOU':
         build_accented_glyph(letter + 'tilde', f[base(letter)], f['tildecomb.cap'])
+    build_accented_glyph('Ntilde.001', f['N.001'], f['tildecomb.cap'])
 
     #--------------------------------------------------------------------------
 
@@ -201,6 +204,7 @@ def build_glyphs(bitbucket, f):
         build_accented_glyph(letter + 'caron', f[base(letter)], f['uni030C'])
     for letter in 'CDENRTSZ':
         build_accented_glyph(letter + 'caron', f[base(letter)], f['uni030C.cap'])
+    build_accented_glyph('Ncaron.001', f['N.001'], f['uni030C.cap'])
     for letter in 'dLlt':
         build_accented_glyph(letter + 'caron', f[base(letter)], f['uni0315'])
 
