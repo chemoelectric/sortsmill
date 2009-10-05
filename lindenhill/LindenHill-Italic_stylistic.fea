@@ -21,7 +21,9 @@
 
 #-----------------------------------------------------------------------
 
-# Plainer italic caps.
+# "Standard" swash capitals. These designs actually were the "non-swash"
+# capitals for Monotype text fonts, but to reduce confusion we make them
+# an option.
 feature ss01 {
   sub [\N \Ntilde \Nacute \Ncommaaccent \Ncaron] by [\N.001 \Ntilde.001 \Nacute.001 \Ncommaaccent.001 \Ncaron.001];
 } ss01;
