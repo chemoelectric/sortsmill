@@ -1,4 +1,3 @@
-
 # Copyright (c) 2009 Barry Schwartz
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -21,11 +20,34 @@
 
 #-----------------------------------------------------------------------
 
+lookup swsh1 {
+  sub [\A \Agrave \Aacute \Acircumflex \Atilde \Adieresis \Aring \Amacron \Abreve \Aogonek] by
+      [\A.001 \Agrave.001 \Aacute.001 \Acircumflex.001 \Atilde.001 \Adieresis.001 \Aring.001 \Amacron.001 \Abreve.001 \Aogonek.001];
+  sub \B by \B.001;
+  sub [\N \Ntilde \Nacute \Ncommaaccent \Ncaron] by [\N.001 \Ntilde.001 \Nacute.001 \Ncommaaccent.001 \Ncaron.001];
+  sub [\R \Racute \Rcommaaccent \Rcaron] by [\R.001 \Racute.001 \Rcommaaccent.001 \Rcaron.001];
+  sub \Tbar by \Tbar.001;
+  sub [\g \gcircumflex \gbreve \gdotaccent \gcommaaccent] by [\g.001 \gcircumflex.001 \gbreve.001 \gdotaccent.001 \gcommaaccent.001];
+} swsh1;
+
+lookup swsh2 {
+  sub \T from [\T.002 \T.001];
+  sub \uni0162 from [\uni0162.002 \uni0162.001];
+  sub \uni021A from [\uni021A.002 \uni021A.001];
+  sub \Tcaron from [\Tcaron.002 \Tcaron.001];
+} swsh2;
+
+feature swsh {
+  lookup swsh1;
+  lookup swsh2;
+} swsh;
+
 # "Standard" swash capitals. These designs actually were the "non-swash"
 # capitals for Monotype text fonts, but to reduce confusion we make them
 # an option.
 feature ss01 {
   sub [\N \Ntilde \Nacute \Ncommaaccent \Ncaron] by [\N.001 \Ntilde.001 \Nacute.001 \Ncommaaccent.001 \Ncaron.001];
+  sub [\T \uni0162 \uni021A \Tcaron \Tbar] by [\T.001 \uni0162.001 \uni021A.001 \Tcaron.001 \Tbar.001];
 } ss01;
 
 #-----------------------------------------------------------------------
