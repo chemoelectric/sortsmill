@@ -118,6 +118,8 @@ def build_glyphs(bitbucket, f):
 
     for letter in 'GKkLlNnRr':
         build_accented_glyph(letter + 'commaaccent', f[base(letter)], f['uni0326'])
+    for letter in 'k':
+        build_accented_glyph(letter + 'commaaccent.001', f[base(letter) + '.001'], f['uni0326'])
     for letter in 'NR':
         build_accented_glyph(letter + 'commaaccent.001', f[base(letter) + '.001'], f['uni0326'])
     build_accented_glyph('uni0218', f['S'], f['uni0326'])
@@ -151,6 +153,8 @@ def build_glyphs(bitbucket, f):
 
     for letter in 'aceinorsuyz':
         build_accented_glyph(letter + 'acute', f[base(letter)], f['acutecomb'])
+    for letter in 'z':
+        build_accented_glyph(letter + 'acute.001', f[base(letter) + '.001'], f['acutecomb'])
     for letter in 'ACEILNORSUYZ':
         build_accented_glyph(letter + 'acute', f[base(letter)], f['acutecomb.cap'])
     for letter in 'ANR':
@@ -214,7 +218,7 @@ def build_glyphs(bitbucket, f):
 
     for letter in 'cegz':
         build_accented_glyph(letter + 'dotaccent', f[base(letter)], f['uni0307'])
-    for letter in 'g':
+    for letter in 'gz':
         build_accented_glyph(letter + 'dotaccent.001', f[base(letter) + '.001'], f['uni0307'])
     for letter in 'CEGIZ':
         build_accented_glyph(letter + 'dotaccent', f[base(letter)], f['uni0307.cap'])
@@ -226,6 +230,8 @@ def build_glyphs(bitbucket, f):
 
     for letter in 'cenrsz':
         build_accented_glyph(letter + 'caron', f[base(letter)], f['uni030C'])
+    for letter in 'z':
+        build_accented_glyph(letter + 'caron.001', f[base(letter) + '.001'], f['uni030C'])
     for letter in 'CDENRTSZ':
         build_accented_glyph(letter + 'caron', f[base(letter)], f['uni030C.cap'])
     for letter in 'NRT':
