@@ -95,6 +95,7 @@ def build_glyphs(bitbucket, f):
     make_glyph_reference('asciitilde', f['uni2053']) # Swung dash.
     make_glyph_reference('i.TRK', f['i'])
     make_glyph_reference('Dcroat', f['Eth'])
+    make_glyph_reference('Dcroat.001', f['Eth.001'])
 
     build_multigraph('ellipsis', [f['period'], f['period'], f['period']])
 
@@ -234,7 +235,7 @@ def build_glyphs(bitbucket, f):
         build_accented_glyph(letter + 'caron.001', f[base(letter) + '.001'], f['uni030C'])
     for letter in 'CDENRTSZ':
         build_accented_glyph(letter + 'caron', f[base(letter)], f['uni030C.cap'])
-    for letter in 'NRT':
+    for letter in 'DNRT':
         build_accented_glyph(letter + 'caron.001', f[base(letter) + '.001'], f['uni030C.cap'])
     for letter in 'T':
         build_accented_glyph(letter + 'caron.002', f[base(letter) + '.002'], f['uni030C.cap'])
