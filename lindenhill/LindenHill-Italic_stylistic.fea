@@ -24,8 +24,14 @@ lookup swsh1 {
   sub [\A \Agrave \Aacute \Acircumflex \Atilde \Adieresis \Aring \Amacron \Abreve \Aogonek] by
       [\A.001 \Agrave.001 \Aacute.001 \Acircumflex.001 \Atilde.001 \Adieresis.001 \Aring.001 \Amacron.001 \Abreve.001 \Aogonek.001];
   sub \B by \B.001;
+  sub [\C \Cacute \Ccircumflex \Cdotaccent \Ccaron] by
+      [\C.001 \Cacute.001 \Ccircumflex.001 \Cdotaccent.001 \Ccaron.001];
   sub [\D \Dcaron \Dcroat \Eth] by [\D.001 \Dcaron.001 \Dcroat.001 \Eth.001];
+  sub [\E \Egrave \Eacute \Ecircumflex \Edieresis \Emacron \Ebreve \Edotaccent \Eogonek \Ecaron] by
+      [\E.001 \Egrave.001 \Eacute.001 \Ecircumflex.001 \Edieresis.001 \Emacron.001 \Ebreve.001 \Edotaccent.001 \Eogonek.001 \Ecaron.001];
+  sub [\G \Gcircumflex \Gbreve \Gdotaccent \Gcommaaccent] by [\G.001 \Gcircumflex.001 \Gbreve.001 \Gdotaccent.001 \Gcommaaccent.001];
   sub [\N \Ntilde \Nacute \Ncommaaccent \Ncaron] by [\N.001 \Ntilde.001 \Nacute.001 \Ncommaaccent.001 \Ncaron.001];
+  sub \P by \P.001;
   sub [\R \Racute \Rcommaaccent \Rcaron] by [\R.001 \Racute.001 \Rcommaaccent.001 \Rcaron.001];
   sub \Tbar by \Tbar.001;
   sub [\g \gcircumflex \gbreve \gdotaccent \gcommaaccent] by [\g.001 \gcircumflex.001 \gbreve.001 \gdotaccent.001 \gcommaaccent.001];
