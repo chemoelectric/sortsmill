@@ -40,6 +40,7 @@ lookup swsh1 {
 } swsh1;
 
 lookup swsh2 {
+  sub \M from [\M.002 \M.001];
   sub \T from [\T.002 \T.001];
   sub \uni0162 from [\uni0162.002 \uni0162.001];
   sub \uni021A from [\uni021A.002 \uni021A.001];
@@ -55,6 +56,7 @@ feature swsh {
 # capitals for Monotype text fonts, but to reduce confusion we make them
 # an option.
 feature ss01 {
+  sub \M by \M.001;
   sub [\N \Ntilde \Nacute \Ncommaaccent \Ncaron] by [\N.001 \Ntilde.001 \Nacute.001 \Ncommaaccent.001 \Ncaron.001];
   sub [\T \uni0162 \uni021A \Tcaron \Tbar] by [\T.001 \uni0162.001 \uni021A.001 \Tcaron.001 \Tbar.001];
 } ss01;
