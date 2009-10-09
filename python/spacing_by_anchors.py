@@ -54,6 +54,20 @@ import math
 #           only as much as it takes for their surrounding
 #           spaces to touch.
 #
+#  An observation:
+# 
+#      Frederic Goudy's Kennerley Oldstyle fits tightly
+#      with very little kerning; its spacing is its greatest
+#      beauty. Perhaps, instead of viewing spacing by anchors
+#      as the placement of "invisible serifs", one should view
+#      spacing by anchors as marking off a space that, in
+#      something like Kennerley, would be "claimed" by a part
+#      of each letter. Notice, for instance, the bowing out of
+#      the Kennerley v and the Kennerley w; in a more
+#      conventional typeface, we may want to "claim" that
+#      space with anchors indented inwards, rather than with
+#      ink.
+#
 ###########################################################################
 
 
