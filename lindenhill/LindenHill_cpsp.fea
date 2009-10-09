@@ -1,0 +1,60 @@
+# Copyright (c) 2009 Barry Schwartz
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+@CAPS_ET_AL = [
+        A Agrave Aacute Acircumflex Atilde Adieresis Aring Amacron Abreve Aogonek
+        B
+        C Ccedilla Cacute Ccircumflex Cdotaccent Ccaron
+        D Dcaron Dcroat
+        E Egrave Eacute Ecircumflex Edieresis Emacron Ebreve Edotaccent Eogonek Ecaron
+        F
+        G Gcircumflex Gbreve Gdotaccent Gcommaaccent
+        H Hcircumflex Hbar
+        I Igrave Iacute Icircumflex Idieresis Itilde Imacron Ibreve Iogonek
+        J Jcircumflex
+        K Kcommaaccent
+        L Lacute Lcommaaccent Lcaron Ldot Lslash
+        M
+        N Ntilde Nacute Ncommaaccent Ncaron
+        O Ograve Oacute Ocircumflex Otilde Odieresis Oslash Omacron Obreve Ohungarumlaut
+        P
+        Q
+        R Racute Rcommaaccent Rcaron
+        S Sacute Scircumflex Scedilla uni0218 Scaron
+        T uni0162 uni021A Tcaron Tbar
+        U Ugrave Uacute Ucircumflex Udieresis Utilde Umacron Ubreve Uring Uhungarumlaut Uogonek
+        V
+        W Wcircumflex
+        X
+        Y Yacute Ydieresis Ycircumflex
+        Z Zacute Zdotaccent Zcaron
+        IJ AE OE Eth Thorn
+        question questiondown
+        exclam exclamdown
+        ampersand
+        ];
+
+feature cpsp {
+  pos @CAPS_ET_AL <6 0 12 0>;
+} cpsp;
+
+# local variables:
+# mode: fundamental
+# end:

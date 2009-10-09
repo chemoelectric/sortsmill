@@ -31,39 +31,6 @@ def build_glyphs(bitbucket, f):
 
     figures = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
 
-    caps = [
-        'A', 'Agrave', 'Aacute', 'Acircumflex', 'Atilde', 'Adieresis', 'Aring', 'Amacron', 'Abreve', 'Aogonek',
-        'B',
-        'C', 'Ccedilla', 'Cacute', 'Ccircumflex', 'Cdotaccent', 'Ccaron',
-        'D', 'Dcaron', 'Dcroat',
-        'E', 'Egrave', 'Eacute', 'Ecircumflex', 'Edieresis', 'Emacron', 'Ebreve', 'Edotaccent', 'Eogonek', 'Ecaron',
-        'F',
-        'G', 'Gcircumflex', 'Gbreve', 'Gdotaccent', 'Gcommaaccent',
-        'H', 'Hcircumflex', 'Hbar',
-        'I', 'Igrave', 'Iacute', 'Icircumflex', 'Idieresis', 'Itilde', 'Imacron', 'Ibreve', 'Iogonek',
-        'J', 'Jcircumflex',
-        'K', 'Kcommaaccent',
-        'L', 'Lacute', 'Lcommaaccent', 'Lcaron', 'Ldot', 'Lslash',
-        'M',
-        'N', 'Ntilde', 'Nacute', 'Ncommaaccent', 'Ncaron',
-        'O', 'Ograve', 'Oacute', 'Ocircumflex', 'Otilde', 'Odieresis', 'Oslash', 'Omacron', 'Obreve', 'Ohungarumlaut',
-        'P',
-        'Q',
-        'R', 'Racute', 'Rcommaaccent', 'Rcaron',
-        'S', 'Sacute', 'Scircumflex', 'Scedilla', 'uni0218', 'Scaron',
-        'T', 'uni0162', 'uni021A', 'Tcaron', 'Tbar',
-        'U', 'Ugrave', 'Uacute', 'Ucircumflex', 'Udieresis', 'Utilde', 'Umacron', 'Ubreve', 'Uring', 'Uhungarumlaut', 'Uogonek',
-        'V',
-        'W', 'Wcircumflex',
-        'X',
-        'Y', 'Yacute', 'Ydieresis', 'Ycircumflex',
-        'Z', 'Zacute', 'Zdotaccent', 'Zcaron',
-        'IJ', 'AE', 'OE', 'Eth', 'Thorn',
-        'question', 'questiondown',
-        'exclam', 'exclamdown',
-        'ampersand'
-        ]
-
     def base(letter):
         if letter == 'i':
             base = 'dotlessi'
@@ -273,13 +240,6 @@ def build_glyphs(bitbucket, f):
     f.selection.all()
     spacing_by_anchors.space_selected_by_anchors(f)
     f.selection.none()
-
-    rules = cap_spacing.cap_spacing(f, caps, 0.015)
-    cpsp = open('LindenHill_cpsp.fea', 'w')
-    print >> cpsp, 'feature cpsp {'
-    print >> cpsp, rules,
-    print >> cpsp, '} cpsp;'
-    cpsp.close()
 
     generate_kerning_and_read_features(None, f)
 
