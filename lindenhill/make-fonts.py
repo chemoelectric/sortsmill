@@ -86,6 +86,9 @@ for sfd_path in sys.argv[1:]:
     f.selection.all()
     f.canonicalStart()
     f.canonicalContours()
+    if tt_match:
+        f.replaceWithReference()
+        f.correctReferences()
     f.selection.none()
 
     if tt_match:
