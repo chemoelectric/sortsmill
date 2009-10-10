@@ -557,6 +557,24 @@ def set_spacing_anchors_read_only(glyph, kerning_only):
     glyph.anchorPointsWithSel = spacing_anchors
 
 
+def flip_spacing_anchors_left_right(glyph):
+    spacing_anchors = []
+    for a in glyph.anchorPointsWithSel:
+        if a[4]:
+            a_name = anchor_name(a[0])
+            if a_name.side in 'l':
+                new_name = 'r' + a_name.full_name[1:]
+                spacing_anchors.append((new_name,) + a[1:])
+            elif a_name.side in 'r':
+                new_name = 'l' + a_name.full_name[1:]
+                spacing_anchors.append((new_name,) + a[1:])
+            else:
+                spacing_anchors.append(a)
+        else:
+            spacing_anchors.append(a)
+    glyph.anchorPointsWithSel = spacing_anchors
+
+
 ###########################################################################
 
 
@@ -623,6 +641,11 @@ fontforge.registerMenuItem((lambda _, glyph: set_spacing_anchors_read_only(glyph
                            (lambda _, glyph: selected_spacing_anchors(glyph) != []),
                            None, "Glyph", "None",
                            "Make spacing anchors non-kerning-only")
+
+fontforge.registerMenuItem((lambda _, glyph: flip_spacing_anchors_left_right(glyph)),
+                           (lambda _, glyph: selected_spacing_anchors(glyph) != []),
+                           None, "Glyph", "None",
+                           "Flip spacing anchors left-right")
 
 fontforge.registerMenuItem(space_glyph_by_anchors,
                            glyph_has_spacing_anchors,
