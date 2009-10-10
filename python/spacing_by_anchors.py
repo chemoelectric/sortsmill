@@ -520,6 +520,7 @@ def populate_side_with_anchors(glyph, side, x):
 
 
 def populate_with_spacing_anchors(glyph):
+    glyph.preserveLayerAsUndo()
     populate_side_with_anchors(glyph, "l", 0)
     populate_side_with_anchors(glyph, "r", glyph.width)
 
