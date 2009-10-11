@@ -168,8 +168,7 @@ def group_glyphs_by_signature(font, side, signature_function = None, tolerance =
     groups = {}
     for glyph_name in font:
         glyph = font[glyph_name]
-        if (not (side == "r" and variant_root(glyph_name) in ("Ldot", "ldot"))
-            and not glyphbuild.is_genuine_mark(glyph_name)):
+        if not glyphbuild.is_genuine_mark(glyph_name):
             sig = signature_function(glyph, tolerance)
             if sig in groups:
                 groups[sig].append(glyph_name)
