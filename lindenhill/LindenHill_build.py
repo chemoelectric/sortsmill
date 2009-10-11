@@ -43,7 +43,6 @@ def build_glyphs(bitbucket, f):
     if f.persistent == None:
         f.persistent = {}
     f.persistent['spacing_anchor_heights'] = { 'hi' : 684, # caps and ascenders
-#                                               't'  : ???, # top diacritics
                                                'x'  : 376,  # ex-height
                                                'o'  : 195,  # like the letter o
                                                'bl' : 15,   # baseline

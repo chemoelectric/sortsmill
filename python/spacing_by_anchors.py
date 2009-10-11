@@ -540,11 +540,12 @@ def selected_spacing_anchors(glyph):
 
 # TODO: Make this preserve modifiers other than 'k;'.
 def set_spacing_anchors_read_only(glyph, kerning_only):
+    glyph.preserveLayerAsUndo()
     spacing_anchors = []
     for a in glyph.anchorPointsWithSel:
         if a[4]:
             a_name = anchor_name(a[0])
-            if a_name.side in 'lr':
+            if a_name.side and a_name.side in 'lr':
                 if kerning_only:
                     new_name = a_name.side + ';k;' + a_name.spacing_name
                 else:
@@ -558,16 +559,20 @@ def set_spacing_anchors_read_only(glyph, kerning_only):
 
 
 def flip_spacing_anchors_left_right(glyph):
+    glyph.preserveLayerAsUndo()
     spacing_anchors = []
     for a in glyph.anchorPointsWithSel:
         if a[4]:
             a_name = anchor_name(a[0])
-            if a_name.side in 'l':
-                new_name = 'r' + a_name.full_name[1:]
-                spacing_anchors.append((new_name,) + a[1:])
-            elif a_name.side in 'r':
-                new_name = 'l' + a_name.full_name[1:]
-                spacing_anchors.append((new_name,) + a[1:])
+            if a_name.side:
+                if a_name.side in 'l':
+                    new_name = 'r' + a_name.full_name[1:]
+                    spacing_anchors.append((new_name,) + a[1:])
+                elif a_name.side in 'r':
+                    new_name = 'l' + a_name.full_name[1:]
+                    spacing_anchors.append((new_name,) + a[1:])
+                else:
+                    spacing_anchors.append(a)
             else:
                 spacing_anchors.append(a)
         else:
