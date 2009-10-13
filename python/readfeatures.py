@@ -23,7 +23,20 @@ THE SOFTWARE.
 import fontforge
 from os.path import exists
 
-###########################################################################
+#--------------------------------------------------------------------------
+
+def merge_pair_positioning_subtables(font):
+    for lookup in font.gpos_lookups:
+        if font.getLookupInfo(lookup)[0] == 'gpos_pair':
+            subtables = font.getLookupSubtables(lookup)
+            i = 0
+            while i < len(subtables) and font.isKerningClass(subtables[i]):
+                i += 1
+            for subtab in subtables[i + 1:]:
+                if not font.isKerningClass(subtab):
+                    font.mergeLookupSubtables(subtables[i], subtab)
+
+#--------------------------------------------------------------------------
 
 def feature_file_exists(bitbucket, font):
     feature_file_name = font.fontname + "_main.fea"
@@ -32,6 +45,7 @@ def feature_file_exists(bitbucket, font):
 def read_features(bitbucket, font):
     feature_file_name = font.fontname + "_main.fea"
     font.mergeFeature(feature_file_name)
+    merge_pair_positioning_subtables(font)
 
 def erase_and_read_features(bitbucket, font):
     all_lookups = font.gpos_lookups + font.gsub_lookups
@@ -45,4 +59,4 @@ fontforge.registerMenuItem(erase_and_read_features,
                            feature_file_exists, None, "Font", "None",
                            "Delete lookups and read _main feature file")
 
-###########################################################################
+#--------------------------------------------------------------------------
