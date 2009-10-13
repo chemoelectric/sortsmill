@@ -24,6 +24,7 @@ THE SOFTWARE.
 
 import fontforge
 import psMat
+import unicodedata
 import spacing_by_anchors
 from math import pi
 
@@ -3067,7 +3068,6 @@ def composites_with_appended(accent):
 
 ###########################################################################
 
-
 GRAVE = "gravecomb"
 ACUTE = "acutecomb"
 CIRCUMFLEX = "uni0302"
@@ -3107,6 +3107,9 @@ MACRON_BELOW = "uni0331"
 PERIOD_CENTERED = PERIODCENTERED = "periodcentered"
 
 
+"""
+FIX: deprecated stuff
+
 basic_bases = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
                "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
                "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
@@ -3126,9 +3129,7 @@ bottom_marks = [GRAVE_BELOW, ACUTE_BELOW, DOT_BELOW, DIERESIS_BELOW,
 right_side_marks = [COMMA_ABOVE_RIGHT, HORN, PERIOD_CENTERED]
 
 all_marks = top_marks + bottom_marks + right_side_marks
-
-# PERIOD_CENTERED is more properly punctuation than a mark.
-all_genuine_marks = set(all_marks) - set([PERIOD_CENTERED])
+"""
 
 spacing_marks_lookup = {
     GRAVE: "grave",
@@ -3168,10 +3169,8 @@ spacing_marks_lookup = {
     COMMA_ABOVE_RIGHT: "afii57929",
     HORN: None }
 
-
 def is_variant(name, name_to_test):
     return name_to_test[:len(name) + 1] == name + "."
-
 
 def variant_extension(variant_name):
     for i in range(0, len(variant_name) - 1):
@@ -3179,33 +3178,105 @@ def variant_extension(variant_name):
             return variant_name[i + 1:]
     return None
 
-
 def variant_root(variant_name):
     for i in range(0, len(variant_name) - 1):
         if variant_name[i] == ".":
             return variant_name[:i]
     return variant_name
 
-
-def base_name(name):
+def first_name(name):
     for i in range(0, len(name) - 1):
         if name[i] == "_":
             return name[:i]
     return name
 
+def last_name(name):
+    for i in range(len(name) - 1, -1, -1):
+        if name[i] == "_":
+            return name[i + 1:]
+    return name
 
-def is_genuine_mark(name):
-    root = variant_root(name)
-    base = base_name(root)
-    return base in all_genuine_marks
+def unicode_category(glyph_name, ligature_picker = None):
 
+    # [Cc]	Other, Control
+    # [Cf]	Other, Format
+    # [Cn]	Other, Not Assigned (no characters in the file have this property)
+    # [Co]	Other, Private Use
+    # [Cs]	Other, Surrogate
+    # [Ll]	Letter, Lowercase
+    # [Lm]	Letter, Modifier
+    # [Lo]	Letter, Other
+    # [Lt]	Letter, Titlecase
+    # [Lu]	Letter, Uppercase
+    # [Mc]	Mark, Spacing Combining
+    # [Me]	Mark, Enclosing
+    # [Mn]	Mark, Nonspacing
+    # [Nd]	Number, Decimal Digit
+    # [Nl]	Number, Letter
+    # [No]	Number, Other
+    # [Pc]	Punctuation, Connector
+    # [Pd]	Punctuation, Dash
+    # [Pe]	Punctuation, Close
+    # [Pf]	Punctuation, Final quote (may behave like Ps or Pe depending on usage)
+    # [Pi]	Punctuation, Initial quote (may behave like Ps or Pe depending on usage)
+    # [Po]	Punctuation, Other
+    # [Ps]	Punctuation, Open
+    # [Sc]	Symbol, Currency
+    # [Sk]	Symbol, Modifier
+    # [Sm]	Symbol, Math
+    # [So]	Symbol, Other
+    # [Zl]	Separator, Line
+    # [Zp]	Separator, Paragraph
+    # [Zs]	Separator, Space
+
+    root = variant_root(glyph_name)
+    if ligature_picker != None:
+        picked = ligature_picker(root)
+    else:
+        picked = root
+    uni = fontforge.unicodeFromName(picked)
+    if uni < 0:
+        cat = '  '
+    else:
+        cat = unicodedata.category(unichr(uni))
+    return cat
+
+def is_mark(name, ligature_picker = None):
+    return unicode_category(name)[1] == 'M'
+
+def is_letter(name, ligature_picker = None):
+    return unicode_category(name)[1] == 'L'
+
+def is_uppercase(name, ligature_picker = None):
+    return unicode_category(name) == 'Lu'
+    
+def is_lowercase(name, ligature_picker = None):
+    return unicode_category(name) == 'Ll'
+
+def separate_strings(glyph_names, predicates):
+    bins = []
+    remaining = glyph_names
+    for p in predicates:
+        good = []
+        bad = []
+        for g in glyph_names:
+            if p(g):
+                good.append(g)
+            else:
+                bad.append(g)
+        bins.append(good)
+        remaining = bad
+    bins.append(remaining)
+    return bins
+
+"""
+FIX: deprecated stuff
 
 def reference_transformation(glyph, ref_name):
     for r in glyph.references:
         if variant_root(r[0]) == ref_name:
             return r[1]
     raise ValueError
-
 
 def get_base_and_mark(glyph):
     base = mark = None
@@ -3217,7 +3288,6 @@ def get_base_and_mark(glyph):
             base = glyph.references[0][0]
             mark = glyph.references[1][0]
     return (base, mark)
-
 
 ascender_bases = ("b", "d", "f", "h", "k", "l", "germandbls", "thorn", "eth")
 smallcaps_extensions = ("sc", "smcp", "smallcap", "smallcaps")
@@ -3235,14 +3305,13 @@ def has_ascender(glyph):
                 found = True
                 break
     return found
-
+"""
 
 def propagate_hyphens(font, suffix = ""):
     if "hyphen" + suffix in font:
         make_glyph_reference("uni00AD" + suffix, font["hyphen" + suffix]) # soft hyphen
         make_glyph_reference("uni2010" + suffix, font["hyphen" + suffix]) # hyphen
         make_glyph_reference("uni2011" + suffix, font["hyphen" + suffix]) # non-breaking hyphen
-
 
 def build_space_glyph(font, glyph_id, width):
     if type(glyph_id) == type(""):
@@ -3255,7 +3324,6 @@ def build_space_glyph(font, glyph_id, width):
     new_glyph.glyphname = name
     new_glyph.clear()
     new_glyph.width = width
-
 
 def build_several_space_glyphs(font, emsize, spacesize,
                                ensize = None,
@@ -3302,7 +3370,6 @@ def build_several_space_glyphs(font, emsize, spacesize,
     build_space_glyph(font, "uni2060", 0)             # word joiner
     build_space_glyph(font, "uniFEFF", 0) # zero-width non-breaking space
 
-
 def build_spacing_marks(font, width):
     transformation = (1, 0, 0, 1, width, 0)
     for combining_mark in spacing_marks_lookup:
@@ -3314,7 +3381,6 @@ def build_spacing_marks(font, width):
                 new_glyph.clear()
                 new_glyph.addReference(combining_mark, transformation)
                 new_glyph.width = width
-
 
 def build_accented_glyph_no_spacing(glyphname, base, mark, width = None, rsb = None):
     assert not (width != None and rsb != None)
@@ -3333,7 +3399,6 @@ def build_accented_glyph_no_spacing(glyphname, base, mark, width = None, rsb = N
         exact_width = glyph_extent + rsb
         new_glyph.width = round(exact_width, 0)
 
-
 def build_accented_glyph(glyphname, base, mark, width = None, rsb = None):
     build_accented_glyph_no_spacing(glyphname, base, mark, width = width, rsb = rsb)
     glyph = base.font[glyphname]
@@ -3342,7 +3407,6 @@ def build_accented_glyph(glyphname, base, mark, width = None, rsb = None):
         spacing_by_anchors.space_glyph_by_anchors(None, glyph)
     else:
         glyph.width = base.width
-
 
 # A clunky alternative to build_accented_glyph. Useful, for instance,
 # as a workaround for bugs in FontForge's built-in accent-placement
@@ -3366,14 +3430,12 @@ def build_mark_to_base(glyphname, base, mark, anchor_name):
     pen.addComponent(base.glyphname, (1, 0, 0, 1, 0, 0))
     pen.addComponent(mark.glyphname, (1, 0, 0, 1, dx, dy))
 
-
 def remove_anchor_point(glyph, anchor_name):
     new_points = []
     for point in glyph.anchorPoints:
         if point[0] != anchor_name:
             new_points += [point]
     glyph.anchorPoints = new_points
-
 
 def copy_anchor_point(dest_glyph, src_glyph, anchor_name, new_name=None, translation=(0, 0)):
     if new_name == None:
@@ -3385,13 +3447,10 @@ def copy_anchor_point(dest_glyph, src_glyph, anchor_name, new_name=None, transla
             dest_glyph.anchorPoints += (new_point,)
             break
 
-
 ###########################################################################
-
 
 def noop_mark_builder(glyphname, base, mark):
     return                      # No operation.
-
 
 class mark_builder:
 
@@ -3447,7 +3506,6 @@ class mark_builder:
             spacing_by_anchors.copy_spacing_anchors(glyph)
             spacing_by_anchors.space_glyph_by_anchors(None, glyph)
 
-
     def build_glyphs(self):
         f = self.mark.font
         composites = composites_with_appended(self.mark.unicode)
@@ -3481,7 +3539,6 @@ class mark_builder:
             self.new_builder(basename, lambda glyphname, b, m: build_accented_glyph_no_spacing(glyphname, b, m,
                                                                                                width = width, rsb = rsb))
 
-
     def do_not_build(self, basename):
         self.new_builder(basename, noop_mark_builder)
 
@@ -3506,9 +3563,7 @@ class mark_builder_bunch:
         for builder in self.mark_builders.values():
             builder.build_glyphs()
 
-
 ###########################################################################
-
 
 def build_multigraph(glyphname, components,
                      tolerance = None,
@@ -3541,9 +3596,7 @@ def build_multigraph(glyphname, components,
     else:
         new_glyph.width = offset + components[-1].width
 
-
 ###########################################################################
-
 
 def make_glyph_reference(glyphname, original, transformation = None, copy_spacing_anchors = True):
     f = original.font
@@ -3559,7 +3612,6 @@ def make_glyph_reference(glyphname, original, transformation = None, copy_spacin
         spacing_by_anchors.space_glyph_by_anchors(None, new_glyph)
     else:
         new_glyph.width = original.width
-
 
 def make_turned_glyph(glyphname, original):
     f = original.font
@@ -3577,6 +3629,5 @@ def make_turned_glyph(glyphname, original):
     new_glyph.unlinkRef()
     new_glyph.left_side_bearing = original.right_side_bearing
     new_glyph.width = original.width
-
 
 ###########################################################################

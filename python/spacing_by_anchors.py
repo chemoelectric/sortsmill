@@ -70,12 +70,9 @@ import math
 #
 ###########################################################################
 
-
 anchor_tolerance = 5
 
-
 ###########################################################################
-
 
 class anchor_name:
 
@@ -96,7 +93,6 @@ class anchor_name:
                 self.side = modifiers[0]
                 self.is_kerning_only = ("k" in modifiers[1:])
                 self.is_special_case = ("s" in modifiers[1:])
-
 
 def left_signature(glyph, tolerance = anchor_tolerance):
     points = []
@@ -126,7 +122,6 @@ def left_signature(glyph, tolerance = anchor_tolerance):
             i += 1
     return tuple(points)
 
-
 def right_signature(glyph, tolerance = anchor_tolerance):
     points = []
     x_max = -sys.maxint
@@ -155,9 +150,15 @@ def right_signature(glyph, tolerance = anchor_tolerance):
             i += 1
     return tuple(points)
 
-
-def group_glyphs_by_signature(font, side, signature_function = None, tolerance = anchor_tolerance):
+def group_glyphs_by_signature(font, side,
+                              glyph_set = None,
+                              include_marks = False,
+                              signature_function = None,
+                              tolerance = anchor_tolerance):
     assert side == "l" or side == "r"
+
+    if glyph_set == None:
+        glyph_set = set(font)
 
     if signature_function == None:
         if side == "l":
@@ -166,9 +167,9 @@ def group_glyphs_by_signature(font, side, signature_function = None, tolerance =
             signature_function = right_signature
 
     groups = {}
-    for glyph_name in font:
+    for glyph_name in set(glyph_set) - set([".notdef"]):
         glyph = font[glyph_name]
-        if not glyphbuild.is_genuine_mark(glyph_name):
+        if include_marks or not glyphbuild.is_mark(glyph_name):
             sig = signature_function(glyph, tolerance)
             if sig in groups:
                 groups[sig].append(glyph_name)
@@ -178,24 +179,22 @@ def group_glyphs_by_signature(font, side, signature_function = None, tolerance =
         groups[sig].sort()
     return groups
 
-
-def name_of_group(group, side):
+def name_of_group(group, side, subtable_ident):
     assert len(group) != 0
     assert side == "l" or side == "r"
 
     if len(group) == 1:
         prefix = "\\"
     else:
-        prefix = "@" + side + "_"
+        prefix = "@" + side + str(subtable_ident) + "_"
     return prefix + group[0]
 
-
-def print_kerning_class_definitions(file, groups, side):
+def print_kerning_class_definitions(file, groups, side, subtable_ident):
     assert side == "l" or side == "r"
     for sig in groups:
         group = groups[sig]
         if len(group) != 1:            
-            file.write(name_of_group(group, side) + " = [")
+            file.write(name_of_group(group, side, subtable_ident) + " = [")
             for i in range(0, len(group) - 1):
                 file.write("\\" + group[i] + " ")
                 if (i + 1) % 6 == 0:
@@ -203,7 +202,6 @@ def print_kerning_class_definitions(file, groups, side):
                     print >> file, "    ",
             file.write("\\" + group[-1] + "];")
             print >> file
-
 
 def calculate_kerning(sig1, sig2, tolerance = anchor_tolerance,
                       rounding_function = round):
@@ -227,7 +225,6 @@ def calculate_kerning(sig1, sig2, tolerance = anchor_tolerance,
         if kerning == None or kerning < k:
             kerning = k
     return kerning
-
 
 class kerning_object:
 
@@ -278,19 +275,18 @@ class kerning_object:
         else:
             return hash(self.bunch)
 
-    def notation(self, groups, side):
+    def notation(self, groups, side, subtable_ident):
         if self.signature != None:
-            n = name_of_group(groups[self.signature], side)
+            n = name_of_group(groups[self.signature], side, subtable_ident)
         else:
             n = "["
             for i in range(0, len(self.bunch) - 1):
-                n += name_of_group(groups[self.bunch[i]], side) + " "
-            n += name_of_group(groups[self.bunch[len(self.bunch) - 1]], side) + "]"
+                n += name_of_group(groups[self.bunch[i]], side, subtable_ident) + " "
+            n += name_of_group(groups[self.bunch[len(self.bunch) - 1]], side, subtable_ident) + "]"
         return n
 
     def is_singleton(self, groups, side):
         return self.signature != None and len(groups[self.signature]) == 1
-
 
 def calculate_group_kernings(signatures1, signatures2, right_groups, left_groups,
                              cache = None, rounding_function = round,
@@ -304,17 +300,15 @@ def calculate_group_kernings(signatures1, signatures2, right_groups, left_groups
                 try:
                     k = cache[key]
                 except KeyError:
-                    k = calculate_kerning(sig1, sig2,
-                                          rounding_function = rounding_function)
+                    k = calculate_kerning(sig1, sig2, rounding_function = rounding_function)
                     cache[key] = k
             else:
-                k = calculate_kerning(sig1, sig2, rounding_function)
+                k = calculate_kerning(sig1, sig2, rounding_function = rounding_function)
 
             if k != None and k != 0:
                 kernings.append((kerning_object(signature = sig1),
                                  kerning_object(signature = sig2), k))
     return kernings
-
 
 def categorize_kernings(kernings, element_no):
     result = {}
@@ -324,7 +318,6 @@ def categorize_kernings(kernings, element_no):
         except KeyError:
             result[k[element_no]] = [k]
     return result
-    
 
 def join_groups(kernings):
     all_the_joined_kernings = []
@@ -359,7 +352,6 @@ def join_groups(kernings):
 
     return all_the_joined_kernings
 
-
 def print_kerning_feature_file(file, font):
 
     if font.persistent == None:
@@ -367,54 +359,66 @@ def print_kerning_feature_file(file, font):
 
     if "spacing_anchor_tolerance" not in font.persistent:
         font.persistent["spacing_anchor_tolerance"] = str(anchor_tolerance)
-    if "kerning_rounding_function" not in font.persistent:
-        font.persistent["kerning_rounding_function"] = "round"
-
-    tolerance = eval(font.persistent["spacing_anchor_tolerance"])
-    rounding_function = eval(font.persistent["kerning_rounding_function"])
-
-    right_groups = group_glyphs_by_signature(font, "r", tolerance = tolerance)
-    left_groups = group_glyphs_by_signature(font, "l", tolerance = tolerance)
-
-    right_signatures = right_groups.keys()
-    left_signatures = left_groups.keys()
+    if "kerning_rounding" not in font.persistent:
+        font.persistent["kerning_rounding"] = 'round'
+    if "kerning_sets" not in font.persistent:
+        font.persistent["kerning_sets"] = [(set(font), set(font))]
 
     if font.temporary == None:
         font.temporary = {}
-    if "kern-cache" not in font.temporary:
+    if 'kern-cache' not in font.temporary or font.temporary['kern-cache'] == None:
         font.temporary["kern-cache"] = {}
-    kernings = calculate_group_kernings(right_signatures, left_signatures,
-                                        right_groups, left_groups,
-                                        cache = font.temporary["kern-cache"],
-                                        rounding_function = rounding_function,
-                                        tolerance = tolerance)
-    kernings = join_groups(kernings)
 
-    if kernings != []:
+    tolerance = eval(font.persistent['spacing_anchor_tolerance'])
+    rounding_function = eval(font.persistent['kerning_rounding'])
 
-        print >> file, "lookup generated_kerning {"
-        print >> file
-        print_kerning_class_definitions(file, right_groups, "r")
-        print >> file
-        print_kerning_class_definitions(file, left_groups, "l")
-        print >> file
+    subtables = []
+    for (left_glyphs, right_glyphs) in font.persistent["kerning_sets"]:
 
-        for (obj1, obj2, k) in kernings:
-            print >> file, "pos",
-            print >> file, obj1.notation(right_groups, "r"),
-            print >> file, obj2.notation(left_groups, "l"),
-            print >> file, str(k) + ";"
+        # Note that right signatures are taken from "left_glyphs", and
+        # left signatures are taken from "right_glyphs".
+        right_groups = group_glyphs_by_signature(font, "r", glyph_set = left_glyphs, tolerance = tolerance)
+        left_groups = group_glyphs_by_signature(font, "l", glyph_set = right_glyphs, tolerance = tolerance)
 
-        print >> file
-        print >> file, "} generated_kerning;"
-        print >> file
+        right_signatures = right_groups.keys()
+        left_signatures = left_groups.keys()
+        
+        kernings = calculate_group_kernings(right_signatures, left_signatures,
+                                            right_groups, left_groups,
+                                            cache = font.temporary["kern-cache"],
+                                            rounding_function = rounding_function,
+                                            tolerance = tolerance)
+        kernings = join_groups(kernings)
+
+        if kernings != []:
+            subtables.append((right_groups, left_groups, kernings))
+
+    if subtables != []:
+
         print >> file, "feature kern {"
-        print >> file, "  lookup generated_kerning;"
+        print >> file
+
+        for i in range(0, len(subtables)):
+            (right_groups, left_groups, kernings) = subtables[i]
+            print_kerning_class_definitions(file, right_groups, "r", i + 1)
+            print >> file
+            print_kerning_class_definitions(file, left_groups, "l", i + 1)
+            print >> file
+
+        for i in range(0, len(subtables)):
+            if 0 < i:
+                print >> file, "subtable;"
+                print >> file
+            (right_groups, left_groups, kernings) = subtables[i]
+            for (obj1, obj2, k) in kernings:
+                print >> file, "pos",
+                print >> file, obj1.notation(right_groups, "r", i + 1),
+                print >> file, obj2.notation(left_groups, "l", i + 1),
+                print >> file, str(k) + ";"
+            print >> file
         print >> file, "} kern;"
 
-
 ###########################################################################
-
 
 def copy_spacing_anchors(*glyphs):
     for glyph in glyphs:
@@ -435,9 +439,7 @@ def copy_spacing_anchors(*glyphs):
             glyphbuild.remove_anchor_point(glyph, name)
             glyph.anchorPoints += ((name, "base", x, y),)
 
-
 ###########################################################################            
-
 
 def left_spacing(glyph):
     spacing = None
@@ -452,7 +454,6 @@ def left_spacing(glyph):
                 least_x = x
     return least_x
 
-
 def right_spacing(glyph):
     spacing = None
     greatest_x = None
@@ -466,9 +467,7 @@ def right_spacing(glyph):
                 greatest_x = x
     return greatest_x
 
-
 ###########################################################################
-
 
 def create_missing_anchor_classes(font, spacing_names):
     lookup_name = "spacing anchors"
@@ -485,12 +484,10 @@ def create_missing_anchor_classes(font, spacing_names):
             if full_name not in font.getLookupSubtableAnchorClasses(subtable_name):
                 font.addAnchorClass(subtable_name, full_name)
 
-
 def spacing_anchor_heights_are_given(font):
     return (font.persistent != None
             and "spacing_anchor_heights" in font.persistent
             and font.persistent["spacing_anchor_heights"] != None)
-
 
 def there_is_such_an_anchor(glyph, side, spacing_name):
     for a in glyph.anchorPoints:
@@ -498,7 +495,6 @@ def there_is_such_an_anchor(glyph, side, spacing_name):
         if a_name.side == side and a_name.spacing_name == spacing_name:
             return True
     return False
-
 
 def populate_side_with_anchors(glyph, side, x):
 
@@ -517,15 +513,12 @@ def populate_side_with_anchors(glyph, side, x):
                 name = side + ";" + spacing_name
                 glyph.anchorPoints += ((name, "base", x, h),)
 
-
 def populate_with_spacing_anchors(glyph):
     glyph.preserveLayerAsUndo()
     populate_side_with_anchors(glyph, "l", 0)
     populate_side_with_anchors(glyph, "r", glyph.width)
 
-
 ###########################################################################
-
 
 def selected_spacing_anchors(glyph):
     selected_points = []
@@ -535,7 +528,6 @@ def selected_spacing_anchors(glyph):
             if a_name.side and a_name.side in 'lr':
                 selected_points.append(a)
     return selected_points
-
 
 # TODO: Make this preserve modifiers other than 'k;'.
 def set_spacing_anchors_read_only(glyph, kerning_only):
@@ -555,7 +547,6 @@ def set_spacing_anchors_read_only(glyph, kerning_only):
         else:
             spacing_anchors.append(a)
     glyph.anchorPointsWithSel = spacing_anchors
-
 
 def flip_spacing_anchors_left_right(glyph):
     glyph.preserveLayerAsUndo()
@@ -578,13 +569,10 @@ def flip_spacing_anchors_left_right(glyph):
             spacing_anchors.append(a)
     glyph.anchorPointsWithSel = spacing_anchors
 
-
 ###########################################################################
-
 
 def glyph_has_spacing_anchors(bitbucket, glyph):
     return left_spacing(glyph) != None and right_spacing(glyph) != None
-
 
 def space_glyph_by_anchors(bitbucket, glyph):
     lspace = left_spacing(glyph)
@@ -610,12 +598,10 @@ def space_glyph_by_anchors(bitbucket, glyph):
                 if refs_changed:
                     g.references = tuple(references)
 
-
 def space_selected_by_anchors(font):
     for glyph in font.selection.byGlyphs:
-        if not glyphbuild.is_genuine_mark(glyph.glyphname):
+        if not glyphbuild.is_mark(glyph.glyphname):
             space_glyph_by_anchors(None, glyph)
-
 
 def generate_kerning_feature_file(suffix, font):
     if suffix == None:
@@ -624,17 +610,31 @@ def generate_kerning_feature_file(suffix, font):
     print_kerning_feature_file(f, font)
     f.close()
 
-
 def generate_kerning_and_read_features(suffix, font):
     generate_kerning_feature_file(suffix, font)
     readfeatures.erase_and_read_features(None, font)
-
 
 def something_is_selected(bitbucket, font):
     for g in font.selection.byGlyphs:
         return True
     return False
 
+def clear_kern_cache(font):
+    font.temporary['kern-cache'] = {}
+
+def kern_cache_has_contents(font):
+    return (font.temporary != None and
+            'kern-cache' in font.temporary and
+            font.temporary['kern-cache'] != None and
+            font.temporary['kern-cache'] != {})
+
+def clear_persistent_and_kern_cache(font):
+    font.persistent = None
+    if kern_cache_has_contents(font):
+        clear_kern_cache(font)
+
+def has_persistent(font):
+    return font.persistent not in (None, {})
 
 fontforge.registerMenuItem((lambda _, glyph: set_spacing_anchors_read_only(glyph, True)),
                            (lambda _, glyph: selected_spacing_anchors(glyph) != []),
@@ -674,5 +674,14 @@ fontforge.registerMenuItem(generate_kerning_and_read_features,
                            "Font", "None",
                            "Generate kerning and read features")
 
+fontforge.registerMenuItem((lambda _, font: clear_kern_cache(font)),
+                           (lambda _, font: kern_cache_has_contents(font)),
+                           None, "Font", "None",
+                           "Clear kerning cache")
+
+fontforge.registerMenuItem((lambda _, font: clear_persistent_and_kern_cache(font)),
+                           (lambda _, font: has_persistent(font)),
+                           None, "Font", "None",
+                           "Clear persistent data")
 
 ###########################################################################

@@ -24,6 +24,7 @@ THE SOFTWARE.
 
 import fontforge
 import spacing_by_anchors
+from glyphbuild import unicode_category, last_name, separate_strings
 
 def build_glyphs(bitbucket, f):
 
@@ -47,6 +48,23 @@ def build_glyphs(bitbucket, f):
                                                'o'  : 195,  # like the letter o
                                                'bl' : 15,   # baseline
                                                'lo' : -244 } # descenders
+
+    all_glyphs = set(f) - set(['.notdef'])
+    (smallcaps, uppercase, lowercase, remaining) = \
+        tuple(separate_strings(all_glyphs, [
+                (lambda s: s[-3:] == '.sc'),
+                (lambda s: is_uppercase(s, last_name)),
+                (lambda s: is_lowercase(s, last_name)),
+                ]))
+    f.persistent["kerning_sets"] = [
+        (remaining, all_glyphs),
+        (uppercase, all_glyphs),
+        (smallcaps, uppercase + smallcaps + remaining),
+        (lowercase, uppercase + lowercase + remaining),
+        ]
+#    f.persistent['kerning_rounding'] = 'round'
+    f.persistent['kerning_rounding'] = '(lambda x: int(round(x/5.0)) * 5)'
+#    f.persistent['kerning_rounding'] = '(lambda x: x if abs(x) < 10 else int(round(x/5.0))*5)'
 
     build_several_space_glyphs(f, emsize = 1000, spacesize = 185,
                                thinspacesize = 1000 / 6,
