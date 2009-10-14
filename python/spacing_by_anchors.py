@@ -70,9 +70,11 @@ import math
 #
 ###########################################################################
 
+#--------------------------------------------------------------------------
+
 anchor_tolerance = 5
 
-###########################################################################
+#--------------------------------------------------------------------------
 
 class anchor_name:
 
@@ -418,7 +420,7 @@ def print_kerning_feature_file(file, font):
             print >> file
         print >> file, "} kern;"
 
-###########################################################################
+#--------------------------------------------------------------------------
 
 def copy_spacing_anchors(*glyphs):
     for glyph in glyphs:
@@ -439,7 +441,7 @@ def copy_spacing_anchors(*glyphs):
             glyphbuild.remove_anchor_point(glyph, name)
             glyph.anchorPoints += ((name, "base", x, y),)
 
-###########################################################################            
+#--------------------------------------------------------------------------
 
 def left_spacing(glyph):
     spacing = None
@@ -467,7 +469,7 @@ def right_spacing(glyph):
                 greatest_x = x
     return greatest_x
 
-###########################################################################
+#--------------------------------------------------------------------------
 
 def create_missing_anchor_classes(font, spacing_names):
     lookup_name = "spacing anchors"
@@ -518,7 +520,7 @@ def populate_with_spacing_anchors(glyph):
     populate_side_with_anchors(glyph, "l", 0)
     populate_side_with_anchors(glyph, "r", glyph.width)
 
-###########################################################################
+#--------------------------------------------------------------------------
 
 def selected_spacing_anchors(glyph):
     selected_points = []
@@ -569,7 +571,7 @@ def flip_spacing_anchors_left_right(glyph):
             spacing_anchors.append(a)
     glyph.anchorPointsWithSel = spacing_anchors
 
-###########################################################################
+#--------------------------------------------------------------------------
 
 def glyph_has_spacing_anchors(bitbucket, glyph):
     return left_spacing(glyph) != None and right_spacing(glyph) != None
@@ -684,4 +686,4 @@ fontforge.registerMenuItem((lambda _, font: clear_persistent_and_kern_cache(font
                            None, "Font", "None",
                            "Clear persistent data")
 
-###########################################################################
+#--------------------------------------------------------------------------

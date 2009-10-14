@@ -3259,14 +3259,14 @@ def separate_strings(glyph_names, predicates):
     for p in predicates:
         good = []
         bad = []
-        for g in glyph_names:
+        for g in remaining:
             if p(g):
                 good.append(g)
             else:
                 bad.append(g)
-        bins.append(good)
+        bins.append(set(good))
         remaining = bad
-    bins.append(remaining)
+    bins.append(set(remaining))
     return bins
 
 """

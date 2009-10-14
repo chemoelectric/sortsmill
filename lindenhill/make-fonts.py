@@ -31,6 +31,7 @@ import subprocess
 import licensing
 
 from make_tt_font import generate_tt_font
+from readfeatures import merge_pair_positioning_subtables
 
 layer_to_use = "Fore"
 unwanted_glyphs = ['DONT_KEEP', 'NOTUSED']
@@ -90,6 +91,8 @@ for sfd_path in sys.argv[1:]:
         f.replaceWithReference()
         f.correctReferences()
     f.selection.none()
+
+    merge_pair_positioning_subtables(f)
 
     if tt_match:
         generate_tt_font(f, 'TT')

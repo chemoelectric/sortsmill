@@ -45,7 +45,10 @@ def feature_file_exists(bitbucket, font):
 def read_features(bitbucket, font):
     feature_file_name = font.fontname + "_main.fea"
     font.mergeFeature(feature_file_name)
-    merge_pair_positioning_subtables(font)
+#    merge_pair_positioning_subtables(font) # FIX/TODO: This seems to trigger a metrics view bug in FontForge.
+#                                           # I need to investigate and report. Meanwhile, put the call in
+#                                           # make-fonts.py, or just not bother.
+
 
 def erase_and_read_features(bitbucket, font):
     all_lookups = font.gpos_lookups + font.gsub_lookups

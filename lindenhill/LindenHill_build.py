@@ -59,8 +59,8 @@ def build_glyphs(bitbucket, f):
     f.persistent["kerning_sets"] = [
         (remaining, all_glyphs),
         (uppercase, all_glyphs),
-        (smallcaps, uppercase + smallcaps + remaining),
-        (lowercase, uppercase + lowercase + remaining),
+        (smallcaps, uppercase | smallcaps | remaining),
+        (lowercase, uppercase | lowercase | remaining),
         ]
     f.persistent['kerning_rounding'] = '(lambda x: int(round(x/5.0)) * 5)'
 #    f.persistent['kerning_rounding'] = '(lambda x: x if abs(x) < 10 else int(round(x/5.0))*5)'
