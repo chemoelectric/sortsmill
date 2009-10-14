@@ -534,7 +534,7 @@ def selected_spacing_anchors(glyph):
 # TODO: Make this preserve modifiers other than 'k;'.
 def set_spacing_anchors_read_only(glyph, kerning_only):
     glyph.preserveLayerAsUndo()
-    spacing_anchors = []
+    anchor_points = []
     for a in glyph.anchorPointsWithSel:
         if a[4]:
             a_name = anchor_name(a[0])
@@ -543,40 +543,68 @@ def set_spacing_anchors_read_only(glyph, kerning_only):
                     new_name = a_name.side + ';k;' + a_name.spacing_name
                 else:
                     new_name = a_name.side + ';' + a_name.spacing_name
-                spacing_anchors.append((new_name,) + a[1:])
+                anchor_points.append((new_name,) + a[1:])
             else:
-                spacing_anchors.append(a)
+                anchor_points.append(a)
         else:
-            spacing_anchors.append(a)
-    glyph.anchorPointsWithSel = spacing_anchors
+            anchor_points.append(a)
+    glyph.anchorPointsWithSel = anchor_points
 
 def flip_spacing_anchors_left_right(glyph):
     glyph.preserveLayerAsUndo()
-    spacing_anchors = []
+    anchor_points = []
     for a in glyph.anchorPointsWithSel:
         if a[4]:
             a_name = anchor_name(a[0])
             if a_name.side:
                 if a_name.side in 'l':
                     new_name = 'r' + a_name.full_name[1:]
-                    spacing_anchors.append((new_name,) + a[1:])
+                    anchor_points.append((new_name,) + a[1:])
                 elif a_name.side in 'r':
                     new_name = 'l' + a_name.full_name[1:]
-                    spacing_anchors.append((new_name,) + a[1:])
+                    anchor_points.append((new_name,) + a[1:])
                 else:
-                    spacing_anchors.append(a)
+                    anchor_points.append(a)
             else:
-                spacing_anchors.append(a)
+                anchor_points.append(a)
         else:
-            spacing_anchors.append(a)
-    glyph.anchorPointsWithSel = spacing_anchors
+            anchor_points.append(a)
+    glyph.anchorPointsWithSel = anchor_points
+
+def spread_spacing_anchors(amount, glyph):
+    glyph.preserveLayerAsUndo()
+    none_selected = (selected_spacing_anchors(glyph) == [])
+    anchor_points = []
+    for a in glyph.anchorPointsWithSel:
+        if none_selected or a[4]:
+            a_name = anchor_name(a[0])
+            if a_name.side:
+                if a_name.side in 'l':
+                    anchor_points.append(a[:2] + (a[2] - amount,) + a[3:])
+                elif a_name.side in 'r':
+                    anchor_points.append(a[:2] + (a[2] + amount,) + a[3:])
+                else:
+                    anchor_points.append(a)
+            else:
+                anchor_points.append(a)
+        else:
+            anchor_points.append(a)
+    glyph.anchorPointsWithSel = anchor_points
+
+def spread_spacing_anchors_of_selected_glyphs(amount, font):
+    for glyph in font.selection.byGlyphs:
+        spread_spacing_anchors(amount, glyph)
 
 #--------------------------------------------------------------------------
 
-def glyph_has_spacing_anchors(bitbucket, glyph):
+def glyph_has_spacing_anchors(bitbucket, glyph = None):
+    if glyph == None:
+        glyph = bitbucket
     return left_spacing(glyph) != None and right_spacing(glyph) != None
 
-def space_glyph_by_anchors(bitbucket, glyph):
+def space_glyph_by_anchors(bitbucket, glyph = None):
+    if glyph == None:
+        glyph = bitbucket
     lspace = left_spacing(glyph)
     rspace = right_spacing(glyph)
     if lspace != None and rspace != None:
@@ -616,7 +644,9 @@ def generate_kerning_and_read_features(suffix, font):
     generate_kerning_feature_file(suffix, font)
     readfeatures.erase_and_read_features(None, font)
 
-def something_is_selected(bitbucket, font):
+def something_is_selected(bitbucket, font = None):
+    if font == None:
+        font = bitbucket
     for g in font.selection.byGlyphs:
         return True
     return False
@@ -653,6 +683,42 @@ fontforge.registerMenuItem((lambda _, glyph: flip_spacing_anchors_left_right(gly
                            None, "Glyph", "None",
                            "Flip spacing anchors left-right")
 
+fontforge.registerMenuItem(spread_spacing_anchors, glyph_has_spacing_anchors,
+                           5, "Glyph", "None",
+                           "Spread spacing anchors by 5")
+
+fontforge.registerMenuItem(spread_spacing_anchors, glyph_has_spacing_anchors,
+                           10, "Glyph", "None",
+                           "Spread spacing anchors by 10")
+
+fontforge.registerMenuItem(spread_spacing_anchors, glyph_has_spacing_anchors,
+                           -5, "Glyph", "None",
+                           "Spread spacing anchors by -5")
+
+fontforge.registerMenuItem(spread_spacing_anchors, glyph_has_spacing_anchors,
+                           -10, "Glyph", "None",
+                           "Spread spacing anchors by -10")
+
+fontforge.registerMenuItem(spread_spacing_anchors_of_selected_glyphs,
+                           something_is_selected,
+                           5, "Font", "None",
+                           "Spread spacing anchors by 5")
+
+fontforge.registerMenuItem(spread_spacing_anchors_of_selected_glyphs,
+                           something_is_selected,
+                           10, "Font", "None",
+                           "Spread spacing anchors by 10")
+
+fontforge.registerMenuItem(spread_spacing_anchors_of_selected_glyphs,
+                           something_is_selected,
+                           -5, "Font", "None",
+                           "Spread spacing anchors by -5")
+
+fontforge.registerMenuItem(spread_spacing_anchors_of_selected_glyphs,
+                           something_is_selected,
+                           -10, "Font", "None",
+                           "Spread spacing anchors by -10")
+
 fontforge.registerMenuItem(space_glyph_by_anchors,
                            glyph_has_spacing_anchors,
                            None, "Glyph", "None",
@@ -672,8 +738,8 @@ fontforge.registerMenuItem(generate_kerning_feature_file,
                            "Generate kerning feature file")
 
 fontforge.registerMenuItem(generate_kerning_and_read_features,
-                           readfeatures.feature_file_exists, None,
-                           "Font", "None",
+                           readfeatures.feature_file_exists,
+                           None, "Font", "None",
                            "Generate kerning and read features")
 
 fontforge.registerMenuItem((lambda _, font: clear_kern_cache(font)),
