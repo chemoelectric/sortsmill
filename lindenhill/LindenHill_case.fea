@@ -18,15 +18,23 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+lookup case_substitutions {
+  sub [\parenleft \parenright] by [\parenleft.uppercase \parenright.uppercase];
+  sub [\slash \backslash] by [\slash.uppercase \backslash.uppercase];
+} case_substitutions;
+
+lookup case_positioning {
+  pos [\guillemotleft \guillemotright \guilsinglleft \guilsinglright] <0 90 0 0>;
+  pos [\bracketleft \bracketright] <0 50 0 0>;
+  pos [\braceleft \braceright] <0 50 0 0>;
+  pos [\bar \brokenbar \less \equal \greater] <0 50 0 0>;
+  pos [\logicalnot \plus \minus \plusminus \divide \multiply] <0 50 0 0>;
+} case_positioning;
+
 feature case {
   lookup lining_figures;
-#  sub [\hyphen \uni00AD \uni2010 \uni2011] by [\hyphen.uppercase \uni00AD.uppercase \uni2010.uppercase \uni2011.uppercase];
-#  sub [\endash \emdash \afii00208] by [\endash.uppercase \emdash.uppercase \afii00208.uppercase];
-#  sub [\parenleft \parenright] by [\parenleft.uppercase \parenright.uppercase];
-#  sub [\bracketleft \bracketright] by [\bracketleft.uppercase \bracketright.uppercase];
-#  sub [\braceleft \braceright] by [\braceleft.uppercase \braceright.uppercase];
-#  sub [\guillemotleft \guillemotright] by [\guillemotleft.uppercase \guillemotright.uppercase];
-#  sub [\guilsinglleft \guilsinglright] by [\guilsinglleft.uppercase \guilsinglright.uppercase];
+  lookup case_substitutions;
+  lookup case_positioning;
 } case;
 
 # local variables:

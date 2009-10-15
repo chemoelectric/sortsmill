@@ -50,17 +50,22 @@ def build_glyphs(bitbucket, f):
                                                'lo' : -244 } # descenders
 
     all_glyphs = set(f) - set(['.notdef'])
-    (smallcaps, uppercase, lowercase, remaining) = \
+    (smallcaps, uppercase, lowercase, fraction_bar, numerators, denominators, remaining) = \
         tuple(separate_strings(all_glyphs, [
                 (lambda s: s[-3:] == '.sc'),
                 (lambda s: is_uppercase(s, last_name)),
                 (lambda s: is_lowercase(s, last_name)),
+                (lambda s: s == 'fraction'),
+                (lambda s: s[-6:] == '.numer'),
+                (lambda s: s[-6:] == '.denom'),
                 ]))
     f.persistent["kerning_sets"] = [
-        (remaining, all_glyphs),
-        (uppercase, all_glyphs),
+        (remaining, uppercase | lowercase | smallcaps | remaining),
+        (uppercase, uppercase | lowercase | smallcaps | remaining),
         (smallcaps, uppercase | smallcaps | remaining),
         (lowercase, uppercase | lowercase | remaining),
+        (numerators, fraction_bar),
+        (fraction_bar, denominators),
         ]
     f.persistent['kerning_rounding'] = '(lambda x: int(round(x/5.0)) * 5)'
 #    f.persistent['kerning_rounding'] = '(lambda x: x if abs(x) < 10 else int(round(x/5.0))*5)'
@@ -88,7 +93,8 @@ def build_glyphs(bitbucket, f):
     make_glyph_reference('uni00B9', f['one.sup'])
     make_glyph_reference('uni00B2', f['two.sup'])
     make_glyph_reference('uni00B3', f['three.sup'])
-    for extension in [('.numer', 244), ('.sub', -98), ('.sup', 293)]:
+#    for extension in [('.numer', 244), ('.sub', -98), ('.sup', 293)]:
+    for extension in [('.sub', -98), ('.sup', 293)]:
         for fig in figures:
             make_glyph_reference(fig + extension[0],
                                  f[fig + '.denom'],
@@ -241,9 +247,9 @@ def build_glyphs(bitbucket, f):
     build_multigraph('napostrophe', [f['quoteright'], f['n']])
     build_multigraph('IJ', [f['I'], f['J']])
     build_multigraph('ij', [f['i'], f['j']])
-    build_multigraph('Ldot', [f['L'], f['periodcentered']])
+#    build_multigraph('Ldot', [f['L'], f['periodcentered']]) # Done by hand.
     build_multigraph('ldot', [f['l'], f['periodcentered']])
-    build_multigraph('ldot.sc', [f['l.sc'], f['periodcentered.sc']])
+#    build_multigraph('ldot.sc', [f['l.sc'], f['periodcentered.sc']]) # Done by hand.
 
     #--------------------------------------------------------------------------
 
