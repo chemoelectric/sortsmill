@@ -21,84 +21,108 @@
 #--------------------------------------------------------------------------
 
 @a.upper = [Aacute    Acircumflex    Abreve    Atilde    Adieresis    Agrave    Aring    Amacron    Aogonek];
+@a.c2    = [Aacute.c2 Acircumflex.c2 Abreve.c2 Atilde.c2 Adieresis.c2 Agrave.c2 Aring.c2 Amacron.c2 Aogonek.c2];
 @a.lower = [aacute    acircumflex    abreve    atilde    adieresis    agrave    aring    amacron    aogonek];
-@a.small = [aacute.sc acircumflex.sc abreve.sc atilde.sc adieresis.sc agrave.sc aring.sc amacron.sc aogonek.sc];
+@a.sc    = [aacute.sc acircumflex.sc abreve.sc atilde.sc adieresis.sc agrave.sc aring.sc amacron.sc aogonek.sc];
 
 @c.upper = [Ccircumflex    Ccaron    Cacute    Cdotaccent    Ccedilla];
+@c.c2    = [Ccircumflex.c2 Ccaron.c2 Cacute.c2 Cdotaccent.c2 Ccedilla.c2];
 @c.lower = [ccircumflex    ccaron    cacute    cdotaccent    ccedilla];
-@c.small = [ccircumflex.sc ccaron.sc cacute.sc cdotaccent.sc ccedilla.sc];
+@c.sc    = [ccircumflex.sc ccaron.sc cacute.sc cdotaccent.sc ccedilla.sc];
 
 @d.upper = [Dcaron    Dcroat];
+@d.c2    = [Dcaron.c2 Dcroat.c2];
 @d.lower = [dcaron    dcroat];
-@d.small = [dcaron.sc dcroat.sc];
+@d.sc    = [dcaron.sc dcroat.sc];
 
 @e.upper = [Eacute    Egrave    Ecircumflex    Edieresis    Ecaron    Ebreve    Edotaccent    Emacron    Eogonek];
+@e.c2    = [Eacute.c2 Egrave.c2 Ecircumflex.c2 Edieresis.c2 Ecaron.c2 Ebreve.c2 Edotaccent.c2 Emacron.c2 Eogonek.c2];
 @e.lower = [eacute    egrave    ecircumflex    edieresis    ecaron    ebreve    edotaccent    emacron    eogonek];
-@e.small = [eacute.sc egrave.sc ecircumflex.sc edieresis.sc ecaron.sc ebreve.sc edotaccent.sc emacron.sc eogonek.sc];
+@e.sc    = [eacute.sc egrave.sc ecircumflex.sc edieresis.sc ecaron.sc ebreve.sc edotaccent.sc emacron.sc eogonek.sc];
 
 @g.upper = [Gcircumflex    Gbreve    Gdotaccent    Gcommaaccent];
+@g.c2    = [Gcircumflex.c2 Gbreve.c2 Gdotaccent.c2 Gcommaaccent.c2];
 @g.lower = [gcircumflex    gbreve    gdotaccent    gcommaaccent];
-@g.small = [gcircumflex.sc gbreve.sc gdotaccent.sc gcommaaccent.sc];
+@g.sc    = [gcircumflex.sc gbreve.sc gdotaccent.sc gcommaaccent.sc];
 
 @h.upper = [Hcircumflex    Hbar];
+@h.c2    = [Hcircumflex.c2 Hbar.c2];
 @h.lower = [hcircumflex    hbar];
-@h.small = [hcircumflex.sc hbar.sc];
+@h.sc    = [hcircumflex.sc hbar.sc];
 
 @i.upper = [Iacute    Icircumflex    Idieresis    Igrave    Itilde    Ibreve    Imacron    Iogonek];
+@i.c2    = [Iacute.c2 Icircumflex.c2 Idieresis.c2 Igrave.c2 Itilde.c2 Ibreve.c2 Imacron.c2 Iogonek.c2];
 @i.lower = [iacute    icircumflex    idieresis    igrave    itilde    ibreve    imacron    iogonek];
-@i.small = [iacute.sc icircumflex.sc idieresis.sc igrave.sc itilde.sc ibreve.sc imacron.sc iogonek.sc];
+@i.sc    = [iacute.sc icircumflex.sc idieresis.sc igrave.sc itilde.sc ibreve.sc imacron.sc iogonek.sc];
 
 @j.upper = [Jcircumflex];
+@j.c2    = [Jcircumflex.c2];
 @j.lower = [jcircumflex];
-@j.small = [jcircumflex.sc];
+@j.sc    = [jcircumflex.sc];
 
 @k.upper = [Kcommaaccent];
+@k.c2    = [Kcommaaccent.c2];
 @k.lower = [kcommaaccent];
-@k.small = [kcommaaccent.sc];
+@k.sc    = [kcommaaccent.sc];
 
 @l.upper = [Lcommaaccent    Lacute    Lcaron    Ldot    Lslash];
+@l.c2    = [Lcommaaccent.c2 Lacute.c2 Lcaron.c2 Ldot.c2 Lslash.c2];
 @l.lower = [lcommaaccent    lacute    lcaron    ldot    lslash];
-@l.small = [lcommaaccent.sc lacute.sc lcaron.sc ldot.sc lslash.sc];
+@l.sc    = [lcommaaccent.sc lacute.sc lcaron.sc ldot.sc lslash.sc];
 
 @n.upper = [Ntilde    Nacute    Ncaron    Ncommaaccent];
+@n.c2    = [Ntilde.c2 Nacute.c2 Ncaron.c2 Ncommaaccent.c2];
 @n.lower = [ntilde    nacute    ncaron    ncommaaccent];
-@n.small = [ntilde.sc nacute.sc ncaron.sc ncommaaccent.sc];
+@n.sc    = [ntilde.sc nacute.sc ncaron.sc ncommaaccent.sc];
 
 @o.upper = [Ocircumflex    Odieresis    Ograve    Oacute    Otilde    Obreve    Omacron    Ohungarumlaut    Oslash];
+@o.c2    = [Ocircumflex.c2 Odieresis.c2 Ograve.c2 Oacute.c2 Otilde.c2 Obreve.c2 Omacron.c2 Ohungarumlaut.c2 Oslash.c2];
 @o.lower = [ocircumflex    odieresis    ograve    oacute    otilde    obreve    omacron    ohungarumlaut    oslash];
-@o.small = [ocircumflex.sc odieresis.sc ograve.sc oacute.sc otilde.sc obreve.sc omacron.sc ohungarumlaut.sc oslash.sc];
+@o.sc    = [ocircumflex.sc odieresis.sc ograve.sc oacute.sc otilde.sc obreve.sc omacron.sc ohungarumlaut.sc oslash.sc];
 
 @r.upper = [Rcaron    Racute    Rcommaaccent];
+@r.c2    = [Rcaron.c2 Racute.c2 Rcommaaccent.c2];
 @r.lower = [rcaron    racute    rcommaaccent];
-@r.small = [rcaron.sc racute.sc rcommaaccent.sc];
+@r.sc    = [rcaron.sc racute.sc rcommaaccent.sc];
 
 @s.upper = [Scircumflex    Sacute    Scaron    Scedilla    uni0218];
+@s.c2    = [Scircumflex.c2 Sacute.c2 Scaron.c2 Scedilla.c2 uni0218.c2];
 @s.lower = [scircumflex    sacute    scaron    scedilla    uni0219];
-@s.small = [scircumflex.sc sacute.sc scaron.sc scedilla.sc uni0219.sc];
+@s.sc    = [scircumflex.sc sacute.sc scaron.sc scedilla.sc uni0219.sc];
 
 @t.upper = [Tcaron    uni0162    uni021A    Tbar];
+@t.c2    = [Tcaron.c2 uni0162.c2 uni021A.c2 Tbar.c2];
 @t.lower = [tcaron    uni0163    uni021B    tbar];
-@t.small = [tcaron.sc uni0163.sc uni021B.sc tbar.sc];
+@t.sc    = [tcaron.sc uni0163.sc uni021B.sc tbar.sc];
 
 @u.upper = [Ubreve    Utilde    Uacute    Udieresis    Ucircumflex    Uring    Ugrave    Umacron    Uhungarumlaut    Uogonek];
+@u.c2    = [Ubreve.c2 Utilde.c2 Uacute.c2 Udieresis.c2 Ucircumflex.c2 Uring.c2 Ugrave.c2 Umacron.c2 Uhungarumlaut.c2 Uogonek.c2];
 @u.lower = [ubreve    utilde    uacute    udieresis    ucircumflex    uring    ugrave    umacron    uhungarumlaut    uogonek];
-@u.small = [ubreve.sc utilde.sc uacute.sc udieresis.sc ucircumflex.sc uring.sc ugrave.sc umacron.sc uhungarumlaut.sc uogonek.sc];
+@u.sc    = [ubreve.sc utilde.sc uacute.sc udieresis.sc ucircumflex.sc uring.sc ugrave.sc umacron.sc uhungarumlaut.sc uogonek.sc];
 
 @w.upper = [Wcircumflex];
+@w.c2    = [Wcircumflex.c2];
 @w.lower = [wcircumflex];
-@w.small = [wcircumflex.sc];
+@w.sc    = [wcircumflex.sc];
 
 @y.upper = [Ycircumflex    Yacute    Ydieresis];
+@y.c2    = [Ycircumflex.c2 Yacute.c2 Ydieresis.c2];
 @y.lower = [ycircumflex    yacute    ydieresis];
-@y.small = [ycircumflex.sc yacute.sc ydieresis.sc];
+@y.sc    = [ycircumflex.sc yacute.sc ydieresis.sc];
 
 @z.upper = [Zacute    Zcaron    Zdotaccent];
+@z.c2    = [Zacute.c2 Zcaron.c2 Zdotaccent.c2];
 @z.lower = [zacute    zcaron    zdotaccent];
-@z.small = [zacute.sc zcaron.sc zdotaccent.sc];
+@z.sc    = [zacute.sc zcaron.sc zdotaccent.sc];
 
-@uppercase = [A-Z       @a.upper @c.upper @d.upper @e.upper @g.upper @h.upper @i.upper @j.upper @k.upper @l.upper @n.upper @o.upper @r.upper @s.upper @t.upper @u.upper @w.upper @y.upper @z.upper];
-@lowercase = [a-z       @a.lower @c.lower @d.lower @e.lower @g.lower @h.lower @i.lower @j.lower @k.lower @l.lower @n.lower @o.lower @r.lower @s.lower @t.lower @u.lower @w.lower @y.lower @z.lower];
-@smallcaps = [a.sc-z.sc @a.small @c.small @d.small @e.small @g.small @h.small @i.small @j.small @k.small @l.small @n.small @o.small @r.small @s.small @t.small @u.small @w.small @y.small @z.small];
+@uppercase = [A-Z @a.upper @c.upper @d.upper @e.upper @g.upper @h.upper @i.upper @j.upper @k.upper
+                  @l.upper @n.upper @o.upper @r.upper @s.upper @t.upper @u.upper @w.upper @y.upper @z.upper];
+@capssmall = [A.c2-Z.c2 @a.c2 @c.c2 @d.c2 @e.c2 @g.c2 @h.c2 @i.c2 @j.c2 @k.c2
+                  @l.c2 @n.c2 @o.c2 @r.c2 @s.c2 @t.c2 @u.c2 @w.c2 @y.c2 @z.c2];
+@lowercase = [a-z @a.lower @c.lower @d.lower @e.lower @g.lower @h.lower @i.lower @j.lower @k.lower
+                  @l.lower @n.lower @o.lower @r.lower @s.lower @t.lower @u.lower @w.lower @y.lower @z.lower];
+@smallcaps = [a.sc-z.sc @a.sc @c.sc @d.sc @e.sc @g.sc @h.sc @i.sc @j.sc @k.sc
+                  @l.sc @n.sc @o.sc @r.sc @s.sc @t.sc @u.sc @w.sc @y.sc @z.sc];
 
 #--------------------------------------------------------------------------
 
@@ -110,10 +134,10 @@ feature smcp {
 } smcp;
 
 feature c2sc {
-  sub @uppercase by @smallcaps;
-  sub ampersand by ampersand.sc;
-  sub [AE OE Thorn Eth] by [ae.sc oe.sc thorn.sc eth.sc];
-  sub periodcentered by periodcentered.sc;
+  sub @uppercase by @capssmall;
+  sub ampersand by ampersand.c2;
+  sub [AE OE Thorn Eth] by [AE.c2 OE.c2 Thorn.c2 Eth.c2];
+  sub periodcentered by periodcentered.c2;
 } c2sc;
 
 #--------------------------------------------------------------------------

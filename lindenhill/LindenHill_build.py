@@ -50,9 +50,10 @@ def build_glyphs(bitbucket, f):
                                                'lo' : -244 } # descenders
 
     all_glyphs = set(f) - set(['.notdef'])
-    (smallcaps, uppercase, lowercase, fraction_bar, numerators, denominators, remaining) = \
+    (smallcaps, capssmall, uppercase, lowercase, fraction_bar, numerators, denominators, remaining) = \
         tuple(separate_strings(all_glyphs, [
                 (lambda s: s[-3:] == '.sc'),
+                (lambda s: s[-3:] == '.c2'),
                 (lambda s: is_uppercase(s, last_name)),
                 (lambda s: is_lowercase(s, last_name)),
                 (lambda s: s == 'fraction'),
@@ -60,9 +61,9 @@ def build_glyphs(bitbucket, f):
                 (lambda s: s[-6:] == '.denom'),
                 ]))
     f.persistent["kerning_sets"] = [
-        (remaining, uppercase | lowercase | smallcaps | remaining),
+        (remaining, uppercase | lowercase | smallcaps | capssmall | remaining),
         (uppercase, uppercase | lowercase | smallcaps | remaining),
-        (smallcaps, uppercase | smallcaps | remaining),
+        (smallcaps, uppercase | smallcaps | capssmall | remaining),
         (lowercase, uppercase | lowercase | remaining),
         (numerators, fraction_bar),
         (fraction_bar, denominators),
@@ -103,6 +104,21 @@ def build_glyphs(bitbucket, f):
     build_multigraph('onequarter', [f['one.numer'], f['fraction'], f['four.denom']])
     build_multigraph('onehalf', [f['one.numer'], f['fraction'], f['two.denom']])
     build_multigraph('threequarters', [f['three.numer'], f['fraction'], f['four.denom']])
+
+    for g in f:
+        if g[-3:] == '.sc':
+            if g == 'periodcentered.sc':
+                make_glyph_reference(g[:-3] + '.c2', f[g])
+            elif g == 'uni0163.sc':
+                make_glyph_reference('uni0162.c2', f[g])
+            elif g == 'uni0219.sc':
+                make_glyph_reference('uni0218.c2', f[g])
+            elif g == 'uni021B.sc':
+                make_glyph_reference('uni021A.c2', f[g])
+            elif g in ('ae.sc', 'oe.sc'):
+                make_glyph_reference(g[:-3].upper() + '.c2', f[g])
+            else:
+                make_glyph_reference(g[:-3].capitalize() + '.c2', f[g])
 
     #--------------------------------------------------------------------------
 
