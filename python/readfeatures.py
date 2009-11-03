@@ -53,7 +53,7 @@ def read_features(bitbucket, font):
 def erase_and_read_features(bitbucket, font):
     all_lookups = font.gpos_lookups + font.gsub_lookups
     for lookup in all_lookups:
-        if font.getLookupInfo(lookup)[0] <> 'gpos_mark2base':
+        if font.getLookupInfo(lookup)[0] != 'gpos_mark2base':
             font.removeLookup(lookup)
     read_features(bitbucket, font)
     font.buildOrReplaceAALTFeatures()
