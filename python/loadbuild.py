@@ -43,7 +43,7 @@ def build_file_exists(bitbucket, font):
 def load_build(bitbucket, font):
     build_file_name = font.fontname + "_build.py"
     f = open(build_file_name)
-    exec f
+    exec(f)
     f.close()
     build_glyphs(bitbucket, font)
 
