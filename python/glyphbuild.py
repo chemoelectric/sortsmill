@@ -26,6 +26,7 @@ import fontforge
 import psMat
 import unicodedata
 import spacing_by_anchors
+import sys
 from math import pi
 
 ###########################################################################
@@ -870,25 +871,21 @@ aglfn = {
     0x03B6:'zeta', 'zeta':0x03B6,
 }
 
-
 def name_from_unicode(u):
-    if aglfn.has_key(u):
+    if u in aglfn:
         return aglfn[u]
     else:
         return "uni" + "%04X" % u
 
-
 def unicode_from_name(n):
-    if aglfn.has_key(n):
+    if n in aglfn:
         return aglfn[n]
     elif n[:3] == "uni":
         return int(n[3:], 16)
     elif n[0] == "u":
         return int(n[1:], 16)
 
-
 ###########################################################################
-
 
 glyph_components = {
     0x00A8:(0x0020,0x0308,),
@@ -3237,8 +3234,10 @@ def unicode_category(glyph_name, ligature_picker = None):
     uni = fontforge.unicodeFromName(picked)
     if uni < 0:
         cat = '  '
-    else:
+    elif sys.version_info[0] <= 2:
         cat = unicodedata.category(unichr(uni))
+    else:
+        cat = unicodedata.category(chr(uni))
     return cat
 
 def is_mark(name, ligature_picker = None):
@@ -3402,7 +3401,7 @@ def build_accented_glyph_no_spacing(glyphname, base, mark, width = None, rsb = N
 def build_accented_glyph(glyphname, base, mark, width = None, rsb = None):
     build_accented_glyph_no_spacing(glyphname, base, mark, width = width, rsb = rsb)
     glyph = base.font[glyphname]
-    if glyph_has_spacing_anchors(None, base):
+    if spacing_by_anchors.glyph_has_spacing_anchors(None, base):
         spacing_by_anchors.copy_spacing_anchors(glyph)
         spacing_by_anchors.space_glyph_by_anchors(None, glyph)
     else:
@@ -3554,7 +3553,7 @@ class mark_builder_bunch:
             if m in font:
                 self.mark_builders[m] = mark_builder(font[m], included_variants, post_processor)
             else:
-                print "Warning: mark", m, "is not present in the font."
+                print("Warning: mark " + m + " is not present in the font.")
 
     def __getitem__(self, mark):
         return self.mark_builders[mark]
@@ -3582,8 +3581,8 @@ def build_multigraph(glyphname, components,
     offset = 0
     for i in range(1, len(components)):
         offset += components[i - 1].width
-        sig1 = right_signature(components[i - 1], tolerance)
-        sig2 = left_signature(components[i], tolerance)
+        sig1 = spacing_by_anchors.right_signature(components[i - 1], tolerance)
+        sig2 = spacing_by_anchors.left_signature(components[i], tolerance)
         kerning = spacing_by_anchors.calculate_kerning(sig1, sig2, tolerance = tolerance,
                                                        rounding_function = rounding_function)
         if kerning != None:
@@ -3591,7 +3590,7 @@ def build_multigraph(glyphname, components,
         new_glyph.addReference(components[i].glyphname, psMat.translate(offset, 0))
 
     spacing_by_anchors.copy_spacing_anchors(new_glyph)
-    if glyph_has_spacing_anchors(None, new_glyph):
+    if spacing_by_anchors.glyph_has_spacing_anchors(None, new_glyph):
         spacing_by_anchors.space_glyph_by_anchors(None, new_glyph)
     else:
         new_glyph.width = offset + components[-1].width
@@ -3607,7 +3606,7 @@ def make_glyph_reference(glyphname, original, transformation = None, copy_spacin
         new_glyph.addReference(original.glyphname, transformation)
     else:
         new_glyph.addReference(original.glyphname)
-    if copy_spacing_anchors and glyph_has_spacing_anchors(None, original):
+    if copy_spacing_anchors and spacing_by_anchors.glyph_has_spacing_anchors(None, original):
         spacing_by_anchors.copy_spacing_anchors(new_glyph)
         spacing_by_anchors.space_glyph_by_anchors(None, new_glyph)
     else:

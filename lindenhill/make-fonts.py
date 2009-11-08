@@ -98,9 +98,9 @@ for sfd_path in sys.argv[1:]:
         generate_tt_font(f, 'TT')
     else:
         font_file = f.fontname + font_extension
-        print "Generating", font_file
+        print("Generating", font_file)
         f.generate(font_file, flags = generation_flags, layer = layer_to_use)
-        print "Validating", font_file
+        print("Validating", font_file)
         subprocess.call(["fontlint", font_file])
 
     f.close()

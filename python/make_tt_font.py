@@ -40,7 +40,9 @@ def modify_names(f, modifier):
     f.familyname = f.familyname + ' ' + modifier
     f.fullname = f.fullname + ' ' + modifier
     sfnt_names = f.sfnt_names
+    print("<<<<<<<<<<<<",sfnt_names)
     for (lang, name_id, name) in sfnt_names:
+        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", (lang, name_id, name))
         if (name_id in ['Family', 'Preferred Family', 'WWS Family'] and
             name[- (len(modifier) + 1):] != ' ' + modifier):
             f.appendSFNTName(lang, name_id, name + ' ' + modifier)
@@ -63,15 +65,20 @@ def generate_tt_font(f, modifier):
     f.selection.none()
 
     ttf_file = f.fontname + font_extension
-    print "Generating", ttf_file
+    print("Generating " + ttf_file)
     f.generate(ttf_file, flags = generation_flags)
-    print "Validating", ttf_file
+    print("Validating " + ttf_file)
     subprocess.call(["fontlint", ttf_file])
     
 
 #--------------------------------------------------------------------------
 
-if __name__ == "__main__" and not fontforge.hasUserInterface():
+# If someone runs some script by using "fontforge -script", then name
+# may be "__main__" and fontforge won't have a user interface, but
+# also the |sys| module will not yet have an |argv| attribute. Weed
+# out that case.  Perhaps fontforge should handle the situation
+# better. (5 Nov 2009)
+if __name__ == "__main__" and not fontforge.hasUserInterface() and hasattr(sys, 'argv'):
 
     for font_file in sys.argv[1:]:
         f = fontforge.open(font_file)

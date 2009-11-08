@@ -97,8 +97,9 @@ class anchor_name:
                 self.is_special_case = ("s" in modifiers[1:])
 
 def left_signature(glyph, tolerance = anchor_tolerance):
+    arbitrary_big_integer = sys.maxsize
     points = []
-    x_min = sys.maxint
+    x_min = arbitrary_big_integer
     for (name, kind, x, y) in glyph.anchorPoints:
         a_name = anchor_name(name)
         if a_name.side == "l":
@@ -108,10 +109,13 @@ def left_signature(glyph, tolerance = anchor_tolerance):
                 points.append((x, y, None))
                 if not a_name.is_kerning_only:
                     x_min = min(x_min, x)
-    if x_min == sys.maxint:
+    if x_min == arbitrary_big_integer:
         points = ()
     else:
-        points.sort(key = lambda (x, y, special_case_name): (y, x, special_case_name))
+        def key(p):
+            (x, y, special_case_name) = p
+            return (y, x, special_case_name)
+        points.sort(key = key)
         for i in range(0, len(points)):
             points[i] = (points[i][0] - x_min, points[i][1], points[i][2])
         i = 1
@@ -125,8 +129,9 @@ def left_signature(glyph, tolerance = anchor_tolerance):
     return tuple(points)
 
 def right_signature(glyph, tolerance = anchor_tolerance):
+    arbitrary_big_integer = sys.maxsize
     points = []
-    x_max = -sys.maxint
+    x_max = -arbitrary_big_integer
     for (name, kind, x, y) in glyph.anchorPoints:
         a_name = anchor_name(name)
         if a_name.side == "r":
@@ -136,10 +141,13 @@ def right_signature(glyph, tolerance = anchor_tolerance):
                 points.append((x, y, None))
                 if not a_name.is_kerning_only:
                     x_max = max(x_max, x)
-    if x_max == -sys.maxint:
+    if x_max == -arbitrary_big_integer:
         points = ()
     else:
-        points.sort(key = lambda (x, y, special_case_name): (y, x, special_case_name))
+        def key(p):
+            (x, y, special_case_name) = p
+            return (y, x, special_case_name)
+        points.sort(key = key)
         for i in range(0, len(points)):
             points[i] = (points[i][0] - x_max, points[i][1], points[i][2])
         i = 1
@@ -200,10 +208,8 @@ def print_kerning_class_definitions(file, groups, side, subtable_ident):
             for i in range(0, len(group) - 1):
                 file.write("\\" + group[i] + " ")
                 if (i + 1) % 6 == 0:
-                    print >> file
-                    print >> file, "    ",
-            file.write("\\" + group[-1] + "];")
-            print >> file
+                    file.write("\n     ")
+            file.write("\\" + group[-1] + "];\n")
 
 def calculate_kerning(sig1, sig2, tolerance = anchor_tolerance,
                       rounding_function = round):
@@ -397,28 +403,26 @@ def print_kerning_feature_file(file, font):
 
     if subtables != []:
 
-        print >> file, "feature kern {"
-        print >> file
+        file.write("feature kern {\n")
 
         for i in range(0, len(subtables)):
             (right_groups, left_groups, kernings) = subtables[i]
             print_kerning_class_definitions(file, right_groups, "r", i + 1)
-            print >> file
+            file.write('\n')
             print_kerning_class_definitions(file, left_groups, "l", i + 1)
-            print >> file
+            file.write('\n')
 
         for i in range(0, len(subtables)):
             if 0 < i:
-                print >> file, "subtable;"
-                print >> file
+                file.write("subtable;\n")
             (right_groups, left_groups, kernings) = subtables[i]
             for (obj1, obj2, k) in kernings:
-                print >> file, "pos",
-                print >> file, obj1.notation(right_groups, "r", i + 1),
-                print >> file, obj2.notation(left_groups, "l", i + 1),
-                print >> file, str(k) + ";"
-            print >> file
-        print >> file, "} kern;"
+                file.write("pos ")
+                file.write(obj1.notation(right_groups, "r", i + 1) + " ")
+                file.write(obj2.notation(left_groups, "l", i + 1) + " ")
+                file.write(str(k) + ";\n")
+            file.write("\n")
+        file.write("} kern;\n")
 
 #--------------------------------------------------------------------------
 

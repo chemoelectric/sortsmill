@@ -23,30 +23,17 @@ THE SOFTWARE.
 import fontforge
 import os
 from os.path import exists
-
-
-def revised_fontname(fontname):
-    s = ""
-    for c in fontname:
-        if c == "-":
-            s += "_"
-        else:
-            s += c
-    return s
-
+from imp import reload
 
 def build_file_exists(bitbucket, font):
     build_file_name = font.fontname + "_build.py"
     return exists(build_file_name)
 
-
 def load_build(bitbucket, font):
-    build_file_name = font.fontname + "_build.py"
-    f = open(build_file_name)
-    exec(f)
-    f.close()
-    build_glyphs(bitbucket, font)
-
+    module_name = font.fontname + "_build"
+    module = __import__(module_name)
+    reload(module)
+    module.build_glyphs(bitbucket, font)
 
 fontforge.registerMenuItem(load_build, build_file_exists,
                            None, "Font", "None", "Build glyphs")

@@ -24,7 +24,8 @@ THE SOFTWARE.
 
 import fontforge
 import spacing_by_anchors
-from glyphbuild import unicode_category, last_name, separate_strings
+from glyphbuild import *
+from spacing_by_anchors import *
 
 def build_glyphs(bitbucket, f):
 
