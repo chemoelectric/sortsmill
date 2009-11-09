@@ -40,9 +40,7 @@ def modify_names(f, modifier):
     f.familyname = f.familyname + ' ' + modifier
     f.fullname = f.fullname + ' ' + modifier
     sfnt_names = f.sfnt_names
-    print("<<<<<<<<<<<<",sfnt_names)
     for (lang, name_id, name) in sfnt_names:
-        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", (lang, name_id, name))
         if (name_id in ['Family', 'Preferred Family', 'WWS Family'] and
             name[- (len(modifier) + 1):] != ' ' + modifier):
             f.appendSFNTName(lang, name_id, name + ' ' + modifier)
