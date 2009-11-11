@@ -26,8 +26,12 @@ THE SOFTWARE.
 
 import fontforge
 import sys
+import re
 import subprocess
 import licensing
+
+from make_tt_font import generate_tt_font
+from readfeatures import merge_pair_positioning_subtables
 
 layer_to_use = "Fore"
 unwanted_glyphs = ['DONT_KEEP', 'NOTUSED']
@@ -48,6 +52,12 @@ for sfd_path in sys.argv[1:]:
     is_ofl = (sfd_path[:len(ofl_prefix)] == ofl_prefix)
     if is_ofl:
         sfd_path = sfd_path[len(ofl_prefix):]
+
+    tt_match = re.match('(^.*)TT(-[^-]*)?$', sfd_path)
+    if tt_match:
+        sfd_path = tt_match.group(1)
+        if tt_match.group(2):
+            sfd_path += tt_match.group(2)
 
     if sfd_path[-4:] != ".sfd":
         sfd_path += ".sfd"
@@ -77,12 +87,22 @@ for sfd_path in sys.argv[1:]:
     f.selection.all()
     f.canonicalStart()
     f.canonicalContours()
+    if tt_match:
+        f.replaceWithReference()
+        f.correctReferences()
     f.selection.none()
 
-    font_file = f.fontname + font_extension
-    print "Generating", font_file
-    f.generate(font_file, flags = generation_flags, layer = layer_to_use)
-    print "Validating", font_file
-    subprocess.call(["fontlint", font_file])
+    merge_pair_positioning_subtables(f)
+
+    if tt_match:
+        generate_tt_font(f, 'TT')
+    else:
+        font_file = f.fontname + font_extension
+        print("Generating", font_file)
+        f.generate(font_file, flags = generation_flags, layer = layer_to_use)
+        print("Validating", font_file)
+        subprocess.call(["fontlint", font_file])
+
+    f.close()
 
 #--------------------------------------------------------------------------

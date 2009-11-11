@@ -24,7 +24,6 @@ THE SOFTWARE.
 
 import fontforge
 
-
 def cap_spacing(font, caps_names, expansion):
 
     advance_widths = {}
