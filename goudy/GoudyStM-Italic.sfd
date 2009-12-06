@@ -7,8 +7,8 @@ Copyright: Copyright (c) 2009 Barry Schwartz\n\nPermission is hereby granted, fr
 UComments: "2009-6-24: Created." 
 Version: 002.001
 ItalicAngle: -6
-UnderlinePosition: -99.1211
-UnderlineWidth: 49.3164
+UnderlinePosition: -99
+UnderlineWidth: 49
 Ascent: 777
 Descent: 223
 LayerCount: 3
@@ -22,7 +22,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1245830276
-ModificationTime: 1260051209
+ModificationTime: 1260062870
 PfmFamily: 17
 TTFWeight: 500
 TTFWidth: 5
@@ -415,15 +415,15 @@ NameList: Adobe Glyph List
 DisplaySize: -72
 AntiAlias: 1
 FitToEm: 1
-WinInfo: 8216 8 5
+WinInfo: 64 8 5
 BeginPrivate: 11
 BlueValues 31 [-25 3 408 440 696 727 737 757]
 OtherBlues 11 [-200 -178]
 FamilyBlues 47 [-30 5 413 445 453 479 703 724 734 738 747 760]
 FamilyOtherBlues 11 [-207 -190]
-BlueScale 9 0.0135616
+BlueScale 9 0.0282857
 BlueFuzz 1 0
-BlueShift 1 2
+BlueShift 1 7
 StdHW 4 [44]
 StdVW 4 [68]
 StemSnapH 4 [44]
@@ -492,13 +492,13 @@ StartChar: g
 Encoding: 103 103 1
 Width: 435
 VWidth: 0
-Flags: W
+Flags: MW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
 I00
 s."
-HStem: -195 25<109.645 251.621> 115 23<151.048 217.8> 366 57<326.383 413.734> 374 27<314.004 359.376> 401 26<167.499 237.53>
+HStem: -195 25<109.645 251.621> 115 23<151.048 217.8> 401 26<167.499 237.53>
 VStem: -24 55<-119.84 -12.7819> 56 60<166.307 344.097> 99 1<94 141> 274 58<204.837 368.079> 291 64<-147.481 -76.4659>
 AnchorPoint: "top" 232 459 basechar 0
 AnchorPoint: "l;bl" 0 20 basechar 0
@@ -512,36 +512,36 @@ AnchorPoint: "r;x" 435 415 basechar 0
 LayerCount: 3
 Fore
 SplineSet
--24 -73 m 0xd540
+-24 -73 m 0xf5
  -24 17 72 22 72 28 c 0
  72 34 60 40 60 72 c 0
- 60 120 99 132 99 141 c 0xd540
+ 60 120 99 132 99 141 c 0xf5
  99 149 56 158 56 267 c 0
- 56 327 109 427 205 427 c 0xde
- 247 427 286 401 315 401 c 0xd6
+ 56 327 109 427 205 427 c 0
+ 247 427 286 401 315 401 c 0
  342 401 370 423 387 423 c 0
  396 423 416 418 416 397 c 0
- 416 386 404 366 379 366 c 0xe6
+ 416 386 404 366 379 366 c 0
  353 366 334 374 326 374 c 0
  320 374 314 369 314 365 c 0
- 314 358 332 331 332 287 c 0xd680
+ 314 358 332 331 332 287 c 0xfa
  332 224 280 115 189 115 c 0
  143 115 128 128 112 128 c 0
  111 128 100 120 100 94 c 0
  100 10 355 34 355 -87 c 0
  355 -172 281 -195 181 -195 c 0
- 78 -195 -24 -160 -24 -73 c 0xd540
+ 78 -195 -24 -160 -24 -73 c 0xf5
 31 -61 m 0
  31 -137 113 -170 179 -170 c 0
  221 -170 291 -161 291 -105 c 0
  291 -84 261 -63 115 -4 c 0
  90 6 82 14 82 14 c 1
  67 14 31 -21 31 -61 c 0
-116 250 m 0xce80
+116 250 m 0xfa
  116 172 148 138 184 138 c 0
  227 138 274 190 274 282 c 0
  274 362 240 401 203 401 c 0
- 161 401 116 349 116 250 c 0xce80
+ 161 401 116 349 116 250 c 0xfa
 EndSplineSet
 EndChar
 
@@ -1994,7 +1994,7 @@ StartChar: D
 Encoding: 68 68 30
 Width: 767
 VWidth: 997
-Flags: W
+Flags: HMW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
@@ -2002,6 +2002,7 @@ I00
 s."
 HStem: -5 21G<35.5 52> 0 34<176.214 397.097> 672 42<76.7185 161.547 258.594 485.613>
 VStem: 641 92<304.719 533.77>
+DStem2: 97 116 172 71 0.130736 0.991417<-67.3702 -45 518 539>
 AnchorPoint: "l;bl" 0 20 basechar 0
 AnchorPoint: "l;o" 20 220 basechar 0
 AnchorPoint: "l;hi" 54 732 basechar 0
@@ -2048,14 +2049,15 @@ EndChar
 StartChar: E
 Encoding: 69 69 31
 Width: 631
-Flags: W
+Flags: MW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
 I00
 s."
-HStem: 0 28<20.0044 76.9365> 3 37<178.903 365.45> 342 40<214.374 437.146> 667 39<250.094 544.735>
-VStem: 131 83<200.135 341.71> 167 72<540.083 619.764> 458 29<244.727 317.557>
+HStem: 0 40<178.235 371.033> 342 40<214.374 437.146> 667 39<250.094 544.735>
+VStem: 458 29<244.727 317.557>
+DStem2: 131 296 174 77 0.123567 0.992336<-237.79 -134.452 38.5395 56.6618 98.3515 109.49 314.023 366.63>
 AnchorPoint: "l;x" 29 415 basechar 0
 AnchorPoint: "l;t" 39 562 basechar 0
 AnchorPoint: "l;hi" 68 732 basechar 0
@@ -2070,10 +2072,10 @@ AnchorPoint: "r;x" 626 415 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-20 14 m 0xb6
+20 14 m 0
  20 19 26 27 42 28 c 0
  92 31 95 69 111 163 c 0
- 116 197 124 242 131 296 c 2xba
+ 116 197 124 242 131 296 c 2
  167 599 l 2
  168 608 168 615 168 620 c 0
  168 701 92 663 92 693 c 0
@@ -2087,8 +2089,8 @@ SplineSet
  576 556 601 595 569 632 c 0
  564 638 532 663 464 664 c 0
  384 665 367 667 310 667 c 0
- 248 667 249 659 239 599 c 0xb6
- 235 571 214 409 214 396 c 0xba
+ 248 667 249 659 239 599 c 0
+ 235 571 214 409 214 396 c 0
  214 383 217 382 257 382 c 0
  438 382 445 386 461 406 c 0
  485 436 482 458 495 458 c 0
@@ -2105,9 +2107,9 @@ SplineSet
  549 40 556 139 582 139 c 0
  587 139 592 135 592 125 c 0
  592 93 522 -8 476 -8 c 0
- 348 -8 228 3 167 3 c 0x76
+ 348 -8 228 3 167 3 c 0
  112 3 104 0 55 0 c 0
- 20 0 20 9 20 14 c 0xb6
+ 20 0 20 9 20 14 c 0
 EndSplineSet
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=9 dv=0
 EndChar
@@ -2486,14 +2488,14 @@ EndChar
 StartChar: L
 Encoding: 76 76 38
 Width: 583
-Flags: W
+Flags: MW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
 I00
 s."
-HStem: 3 35<24.1199 84.38 179.007 369.336> 687 32<72.6924 147.726>
-VStem: 133 37<66 111>
+HStem: -3 41<21.8707 86.6377 176.521 373.534> 687 32<72.6924 147.726>
+DStem2: 133 377 170 93 0.131799 0.991276<-238.092 0 256.598 290.994>
 AnchorPoint: "r;s;dot" 441 332 basechar 0
 AnchorPoint: "l;o" 20 220 basechar 0
 AnchorPoint: "l;hi" 54 732 basechar 0
@@ -2540,14 +2542,14 @@ StartChar: M
 Encoding: 77 77 39
 Width: 910
 VWidth: 2
-Flags: W
+Flags: MW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
 I00
 s."
-HStem: -4 26<822.224 887.961> -2 36<20.7675 80.6145> 3 21G<444.5 458.5> 680 32<53.1412 135.33 830.897 890.576>
-VStem: 20 123<5 101> 175 30<408.29 492.975> 733 70<155.125 504.693>
+HStem: 1 28<153.384 228.756 813.298 872.581> 3 21G<444.5 458.5> 680 32<53.1412 135.33 830.897 890.576>
+VStem: 733 70<155.125 504.693>
 AnchorPoint: "l;bl" 0 20 basechar 0
 AnchorPoint: "l;o" 29 220 basechar 0
 AnchorPoint: "l;hi" 34 732 basechar 0
@@ -2559,10 +2561,60 @@ AnchorPoint: "r;hi" 911 732 basechar 0
 AnchorPoint: "r;t" 911 562 basechar 0
 AnchorPoint: "r;x" 896 415 basechar 0
 LayerCount: 3
+Back
+SplineSet
+20 10 m 4
+ 20 22 23 20 58 34 c 4
+ 97 49 103 105 125 225 c 4
+ 139 299 175 458 175 519 c 4
+ 175 533 174 547 174 562 c 4
+ 174 605 157 637 144 655 c 4
+ 127 677 112 680 83 680 c 4
+ 79 680 71 680 68 680 c 4
+ 62 680 53 683 53 695 c 4
+ 53 711 102 712 124 712 c 6
+ 130 712 l 6
+ 157 712 175 713 194 713 c 4
+ 217 713 224 690 272 571 c 4
+ 353 370 468 126 475 126 c 4
+ 482 126 531 221 636 432 c 4
+ 655 470 685 526 709 577 c 4
+ 755 674 759 708 782 708 c 4
+ 785 708 800 708 812 708 c 4
+ 830 708 861 712 867 712 c 4
+ 884 712 891 705 891 698 c 4
+ 891 693 883 684 877 683 c 4
+ 843 676 822 694 808 564 c 4
+ 803 518 803 484 803 454 c 6
+ 803 376 l 6
+ 803 322 801 270 801 234 c 4
+ 801 209 799 234 799 106 c 4
+ 799 37 817 27 873 22 c 4
+ 882 21 888 15 888 10 c 4
+ 888 -1 878 -4 860 -4 c 4
+ 836 -4 799 1 756 1 c 4
+ 728 1 709 -4 673 -4 c 4
+ 659 -4 652 3 652 8 c 4
+ 652 31 702 14 718 66 c 4
+ 732 113 733 356 733 390 c 4
+ 733 499 729 505 727 505 c 4
+ 721 505 707 486 688 449 c 6
+ 542 166 l 6
+ 460 7 468 3 449 3 c 4
+ 440 3 424 38 247 440 c 4
+ 224 493 224 493 219 493 c 4
+ 214 493 206 459 205 449 c 4
+ 188 307 143 131 143 71 c 4
+ 143 11 230 39 230 10 c 4
+ 230 -1 217 -2 209 -2 c 4
+ 175 -2 130 1 116 1 c 4
+ 104 1 87 -2 43 -2 c 4
+ 31 -2 20 0 20 10 c 4
+EndSplineSet
 Fore
 SplineSet
-20 10 m 0x5e
- 20 22 23 20 58 34 c 0x5e
+20 10 m 0xb0
+ 20 22 23 20 58 34 c 0
  97 49 103 105 125 225 c 0
  139 299 175 458 175 519 c 0
  175 533 174 547 174 562 c 0
@@ -2587,27 +2639,29 @@ SplineSet
  803 376 l 2
  803 322 801 270 801 234 c 0
  801 209 799 234 799 106 c 0
- 799 37 817 27 873 22 c 0
+ 799 48.0250576112 812 32 849 25 c 0
+ 856 24 864.052127156 22.7989172182 873 22 c 0
  882 21 888 15 888 10 c 0
  888 -1 878 -4 860 -4 c 0
- 836 -4 799 1 756 1 c 0
- 728 1 709 -4 673 -4 c 0x9e
+ 836 -4 799 1 756 1 c 0xb0
+ 728 1 709 -4 673 -4 c 0
  659 -4 652 3 652 8 c 0
  652 31 702 14 718 66 c 0
  732 113 733 356 733 390 c 0
  733 499 729 505 727 505 c 0
  721 505 707 486 688 449 c 2
  542 166 l 2
- 460 7 468 3 449 3 c 0x3e
+ 460 7 468 3 449 3 c 0x70
  440 3 424 38 247 440 c 0
  224 493 224 493 219 493 c 0
  214 493 206 459 205 449 c 0
  188 307 143 131 143 71 c 0
- 143 11 230 39 230 10 c 0
+ 143 41.2298898445 164 33 186 29 c 0
+ 208 25 230 24.6111134248 230 10 c 0
  230 -1 217 -2 209 -2 c 0
  175 -2 130 1 116 1 c 0
  104 1 87 -2 43 -2 c 0
- 31 -2 20 0 20 10 c 0x5e
+ 31 -2 20 0 20 10 c 0xb0
 EndSplineSet
 Kerns2: 164 -32 "generated_kerning per glyph data 0" 
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=7 dy=0 dh=14 dv=0
@@ -2617,14 +2671,13 @@ StartChar: N
 Encoding: 78 78 40
 Width: 804
 VWidth: 2
-Flags: W
+Flags: MW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
 I00
 s."
-HStem: -5 20G<31.5 48.5 194 210 585.5 603.5> 683 29<733.154 784.951>
-VStem: 20 124<4 120.5> 166 31<429.338 535.321> 669 27<495.777 617.25>
+HStem: -6 21G<31.5 48.5 194 210 585.5 603.5> -2 30<156.375 222.188> 683 29<733.154 784.951>
 AnchorPoint: "cedilla" 349 -79 basechar 0
 AnchorPoint: "top" 422 723 basechar 0
 AnchorPoint: "l;bl" 0 20 basechar 0
@@ -2638,9 +2691,43 @@ AnchorPoint: "r;hi" 804 732 basechar 0
 AnchorPoint: "r;t" 794 562 basechar 0
 AnchorPoint: "r;x" 775 415 basechar 0
 LayerCount: 3
+Back
+SplineSet
+20 6 m 4
+ 20 22 43 15 62 32 c 4
+ 101 65 102 117 129 292 c 4
+ 141 369 166 503 166 571 c 4
+ 166 624 144 636 117 661 c 4
+ 88 688 28 661 28 691 c 4
+ 28 703 53 710 95 710 c 4
+ 108 710 123 707 137 707 c 4
+ 142 707 159 708 167 708 c 4
+ 190 708 190 702 216 666 c 4
+ 587 153 575 127 591 127 c 4
+ 621 127 669 611 669 616 c 4
+ 669 700 588 664 588 702 c 4
+ 588 710 597 712 613 712 c 4
+ 625 712 662 708 689 708 c 4
+ 731 708 740 712 759 712 c 4
+ 780 712 785 709 785 698 c 4
+ 785 689 768 687 755 683 c 4
+ 716 671 705 615 696 538 c 4
+ 660 232 624 48 618 21 c 4
+ 617 15 610 -6 597 -6 c 4
+ 574 -6 546 72 395 290 c 4
+ 275 463 243 502 232 524 c 4
+ 227 534 218 536 216 536 c 4
+ 209 536 201 530 197 489 c 4
+ 174 266 144 162 144 79 c 4
+ 144 10 224 35 224 7 c 4
+ 224 -4 213 -5 207 -5 c 4
+ 181 -5 197 -2 107 -2 c 4
+ 72 -2 55 -5 42 -5 c 4
+ 21 -5 20 2 20 6 c 4
+EndSplineSet
 Fore
 SplineSet
-20 6 m 0
+20 6 m 0x60
  20 22 43 15 62 32 c 0
  101 65 102 117 129 292 c 0
  141 369 166 503 166 571 c 0
@@ -2660,17 +2747,18 @@ SplineSet
  785 689 768 687 755 683 c 0
  716 671 705 615 696 538 c 0
  660 232 624 48 618 21 c 0
- 617 15 610 -6 597 -6 c 0
+ 617 15 610 -6 597 -6 c 0xa0
  574 -6 546 72 395 290 c 0
  275 463 243 502 232 524 c 0
  227 534 218 536 216 536 c 0
  209 536 201 530 197 489 c 0
  174 266 144 162 144 79 c 0
- 144 10 224 35 224 7 c 0
+ 144 44.5000003303 164 34 183 28 c 0
+ 203 22 224 21.000000134 224 7 c 0
  224 -4 213 -5 207 -5 c 0
  181 -5 197 -2 107 -2 c 0
  72 -2 55 -5 42 -5 c 0
- 21 -5 20 2 20 6 c 0
+ 21 -5 20 2 20 6 c 0x60
 EndSplineSet
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=6 dy=0 dh=12 dv=0
 EndChar
@@ -2719,14 +2807,15 @@ EndChar
 StartChar: P
 Encoding: 80 80 42
 Width: 576
-Flags: W
+Flags: MW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
 I00
 s."
-HStem: -4 20G<43 55.5 224.5 240.5> 331 17<243.551 335.81> 684 26<67.1118 139.45 246.041 352.362>
-VStem: 87 76<41.5779 238.193> 114 59<111.851 338.26> 458 79<452.837 615.337>
+HStem: 2 24<19.5533 67.0213> 330.606 17.0898<244.431 335.618> 684 33<65.5203 142.886 257.645 372.71>
+VStem: 457.891 79.1006<452.763 615.201>
+DStem2: 114 292 173 160 0.121054 0.992646<-237.012 -203.638 346.07 380.81>
 AnchorPoint: "r;s;AE" 303 -73 basechar 0
 AnchorPoint: "l;x" 29 415 basechar 0
 AnchorPoint: "l;t" 39 562 basechar 0
@@ -2739,10 +2828,36 @@ AnchorPoint: "r;hi" 522 732 basechar 0
 AnchorPoint: "r;t" 576 562 basechar 0
 AnchorPoint: "r;x" 532 415 basechar 0
 LayerCount: 3
-Fore
+Back
 SplineSet
-20 10 m 0xf4
- 20 38 69 4 87 78 c 0xf4
+19.4150390625 10.294921875 m 4xf4
+ 19.4150390625 38.126953125 69.7080078125 3.947265625 87.2861328125 77.677734375 c 4xf4
+ 91.6796875 96.232421875 102.421875 199.747070312 113.65234375 292.032226562 c 4
+ 113.65234375 292.520507812 151.73828125 587.9296875 151.73828125 635.78125 c 4
+ 151.73828125 659.21875 143.92578125 688.02734375 83.3798828125 690.46875 c 4
+ 69.7080078125 690.95703125 65.3134765625 697.79296875 65.3134765625 704.140625 c 4
+ 65.3134765625 711.953125 72.1494140625 715.859375 88.26171875 715.859375 c 4
+ 121.46484375 715.859375 228.3984375 710 245 710 c 4
+ 287.96875 710 318.2421875 716.8359375 353.3984375 716.8359375 c 4
+ 461.30859375 716.8359375 536.991210938 662.63671875 536.991210938 550.8203125 c 4
+ 536.991210938 469.766601562 491.581054688 381.875976562 409.55078125 347.208007812 c 4
+ 380.7421875 335.000976562 345.5859375 330.606445312 303.59375 330.606445312 c 4
+ 266.484375 330.606445312 235.234375 338.418945312 235.234375 347.208007812 c 4
+ 235.234375 348.672851562 235.234375 349.161132812 238.1640625 349.161132812 c 4
+ 243.046875 349.161132812 256.23046875 347.696289062 292.8515625 347.696289062 c 4
+ 358.28125 347.696289062 457.890625 415.079101562 457.890625 540.079101562 c 4
+ 457.890625 611.85546875 415.8984375 641.15234375 386.6015625 659.70703125 c 4
+ 356.328125 678.75 321.171875 683.6328125 294.31640625 683.6328125 c 4
+ 243.046875 683.6328125 248.41796875 677.7734375 244.51171875 668.0078125 c 4
+ 226.4453125 621.1328125 226.4453125 603.06640625 172.734375 160.197265625 c 4xec
+ 171.26953125 147.990234375 162.48046875 90.373046875 162.48046875 80.607421875 c 4
+ 162.48046875 18.107421875 253.7890625 29.826171875 253.7890625 10.294921875 c 4
+ 253.7890625 -0.935546875 246.46484375 -4.841796875 235.234375 -4.841796875 c 4
+ 214.7265625 -4.841796875 183.4765625 2.482421875 131.71875 2.482421875 c 4
+ 118.53515625 2.482421875 60.4306640625 -3.865234375 51.1533203125 -3.865234375 c 4
+ 35.5283203125 -3.865234375 19.4150390625 0.529296875 19.4150390625 10.294921875 c 4xf4
+20 10 m 0
+ 20 38 69 4 87 78 c 0
  91 97 103 200 114 292 c 0
  114 292 152 588 152 636 c 0
  152 659 144 688 83 690 c 0
@@ -2760,13 +2875,45 @@ SplineSet
  458 612 416 641 387 660 c 0
  357 679 321 684 294 684 c 0
  243 684 249 678 245 668 c 0
- 227 621 227 603 173 160 c 0xec
+ 227 621 227 603 173 160 c 0
  172 148 163 91 163 81 c 0
  163 19 254 30 254 10 c 0
+ 254 -1 246 -5 235 -5 c 1
+ 214 6.0246978262 184 1.71463105293 132 2 c 1
+ 119 2 60 -4 51 -4 c 0
+ 35 -4 20 0 20 10 c 0
+EndSplineSet
+Fore
+SplineSet
+19 10 m 0
+ 19 22 30 23 44 26 c 0
+ 59 29 78 39 87 78 c 0
+ 91 97 103 200 114 292 c 0
+ 114 292 152 588 152 636 c 0
+ 152 659 144 688 83 690 c 0
+ 69 690 65 698 65 704 c 0
+ 65 712 72 716 88 716 c 0
+ 121 716 228 710 245 710 c 0
+ 288 710 318 717 353 717 c 0
+ 461 717 537 663 537 551 c 0
+ 537 470 492 382 410 347 c 0
+ 381 335 346 331 304 331 c 0
+ 267 331 235 338 235 347 c 0
+ 235 348 235 349 238 349 c 0
+ 243 349 256 348 293 348 c 0
+ 358 348 458 415 458 540 c 0
+ 458 612 416 641 387 660 c 0
+ 357 679 321 684 294 684 c 0
+ 283 684 274 684 268 683 c 0
+ 251 682 246 683 235 638 c 0
+ 230 618 226 589 218 529 c 0
+ 209 459 196 348 173 160 c 0
+ 172 148 162 91 162 81 c 0
+ 162 19 254 30 254 10 c 0
  254 -1 246 -5 235 -5 c 0
  214 -5 184 2 132 2 c 0
  119 2 60 -4 51 -4 c 0
- 35 -4 20 0 20 10 c 0xf4
+ 35 -4 19 0 19 10 c 0
 EndSplineSet
 Kerns2: 151 -54 "generated_kerning per glyph data 0"  283 -273 "generated_kerning per glyph data 0" 
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=9 dv=0
@@ -2956,14 +3103,15 @@ StartChar: T
 Encoding: 84 84 46
 Width: 692
 VWidth: 2
-Flags: W
+Flags: MWO
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
 I00
 s."
-HStem: -1 20G<201.5 219 393 411> 654 52<100.327 329.988 406.375 624.029>
-VStem: 261 81<40.8906 252.954> 330 65<467.813 647.25> 632 46<553.637 641.662>
+HStem: 4 26<178.385 242.249> 654 52<100.327 329.988 406.375 624.029>
+VStem: 632 46<553.637 641.662>
+DStem2: 261 93 342 86 0.125603 0.992081<-38.0721 3.22927 458.307 560.669>
 AnchorPoint: "r;s;AE" 447 -73 basechar 0
 AnchorPoint: "top" 373 723 basechar 0
 AnchorPoint: "cedilla" 283 -79 basechar 0
@@ -2978,9 +3126,37 @@ AnchorPoint: "r;hi" 692 732 basechar 0
 AnchorPoint: "r;t" 692 562 basechar 0
 AnchorPoint: "r;x" 590 415 basechar 0
 LayerCount: 3
+Back
+SplineSet
+29 573 m 4xd8
+ 29 604 41 602 61 680 c 4
+ 67 702 77 706 107 706 c 4
+ 177 706 144 703 365 703 c 4
+ 535 703 612 707 646 707 c 4
+ 674 707 674 696 674 687 c 4
+ 674 629 678 595 678 576 c 4
+ 678 555 668 553 659 553 c 4
+ 643 553 652 562 632 617 c 4
+ 621 648 607 650 483 650 c 6
+ 438 650 l 6
+ 400 650 406 643 395 538 c 4xd8
+ 372 317 342 137 342 86 c 4
+ 342 5 428 45 428 13 c 4
+ 428 1 419 -2 403 -2 c 4
+ 383 -2 340 4 296 4 c 4
+ 264 4 228 -1 210 -1 c 4
+ 193 -1 178 2 178 13 c 4
+ 178 42 226 15 250 52 c 4
+ 257 63 259 78 261 93 c 4xe8
+ 275 198 330 628 330 638 c 4
+ 330 654 314 654 259 654 c 4
+ 120 654 108 643 87 620 c 4
+ 56 584 67 551 42 551 c 4
+ 32 551 29 562 29 573 c 4xd8
+EndSplineSet
 Fore
 SplineSet
-29 573 m 0xd8
+29 573 m 0
  29 604 41 602 61 680 c 0
  67 702 77 706 107 706 c 0
  177 706 144 703 365 703 c 0
@@ -2991,20 +3167,21 @@ SplineSet
  643 553 652 562 632 617 c 0
  621 648 607 650 483 650 c 2
  438 650 l 2
- 400 650 406 643 395 538 c 0xd8
+ 400 650 406 643 395 538 c 0
  372 317 342 137 342 86 c 0
  342 5 428 45 428 13 c 0
  428 1 419 -2 403 -2 c 0
  383 -2 340 4 296 4 c 0
  264 4 228 -1 210 -1 c 0
  193 -1 178 2 178 13 c 0
- 178 42 226 15 250 52 c 0
- 257 63 259 78 261 93 c 0xe8
+ 178 29 192 28 209 30 c 0
+ 224 32 239 35 250 52 c 0
+ 257 63 259 78 261 93 c 0
  275 198 330 628 330 638 c 0
  330 654 314 654 259 654 c 0
  120 654 108 643 87 620 c 0
  56 584 67 551 42 551 c 0
- 32 551 29 562 29 573 c 0xd8
+ 32 551 29 562 29 573 c 0
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" T.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" T.001
@@ -4088,7 +4265,7 @@ StartChar: daggerdbl
 Encoding: 8225 8225 69
 Width: 580
 VWidth: 0
-Flags: WO
+Flags: W
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
@@ -4885,7 +5062,7 @@ StartChar: gcircumflex
 Encoding: 285 285 93
 Width: 435
 VWidth: 0
-Flags: W
+Flags: HW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
@@ -4943,7 +5120,7 @@ StartChar: gbreve
 Encoding: 287 287 95
 Width: 435
 VWidth: 0
-Flags: W
+Flags: HW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
@@ -6141,7 +6318,7 @@ StartChar: gdotaccent
 Encoding: 289 289 139
 Width: 435
 VWidth: 0
-Flags: W
+Flags: HW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
@@ -8190,7 +8367,7 @@ StartChar: Ecircumflex
 Encoding: 202 202 184
 Width: 631
 VWidth: 0
-Flags: W
+Flags: HW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
@@ -8348,7 +8525,7 @@ StartChar: Edieresis
 Encoding: 203 203 189
 Width: 631
 VWidth: 0
-Flags: W
+Flags: HW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
@@ -8478,7 +8655,7 @@ StartChar: Ebreve
 Encoding: 276 276 193
 Width: 631
 VWidth: 0
-Flags: W
+Flags: HW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
@@ -8509,7 +8686,7 @@ StartChar: Edotaccent
 Encoding: 278 278 194
 Width: 631
 VWidth: 0
-Flags: W
+Flags: HW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
@@ -8540,7 +8717,7 @@ StartChar: Ecaron
 Encoding: 282 282 195
 Width: 631
 VWidth: 0
-Flags: W
+Flags: HW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
@@ -8659,7 +8836,7 @@ StartChar: Eacute
 Encoding: 201 201 199
 Width: 631
 VWidth: 0
-Flags: W
+Flags: HW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
@@ -8783,7 +8960,7 @@ StartChar: Egrave
 Encoding: 200 200 203
 Width: 631
 VWidth: 0
-Flags: W
+Flags: HW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
@@ -9036,7 +9213,7 @@ StartChar: Ntilde
 Encoding: 209 209 211
 Width: 804
 VWidth: 0
-Flags: W
+Flags: HW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
@@ -9067,7 +9244,7 @@ StartChar: Nacute
 Encoding: 323 323 212
 Width: 804
 VWidth: 0
-Flags: W
+Flags: HW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
@@ -9632,7 +9809,7 @@ StartChar: Ncaron
 Encoding: 327 327 230
 Width: 804
 VWidth: 0
-Flags: W
+Flags: HW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
@@ -10899,7 +11076,7 @@ StartChar: Lcommaaccent
 Encoding: 315 315 266
 Width: 583
 VWidth: 0
-Flags: W
+Flags: HW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
@@ -11233,7 +11410,7 @@ StartChar: gcommaaccent
 Encoding: 291 291 282
 Width: 435
 VWidth: 0
-Flags: W
+Flags: HW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
@@ -11687,7 +11864,7 @@ StartChar: Emacron
 Encoding: 274 274 293
 Width: 631
 VWidth: 0
-Flags: W
+Flags: HW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
@@ -11859,7 +12036,7 @@ StartChar: Ncommaaccent
 Encoding: 325 325 299
 Width: 804
 VWidth: 0
-Flags: W
+Flags: HW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
@@ -11943,7 +12120,7 @@ StartChar: Lacute
 Encoding: 313 313 302
 Width: 583
 VWidth: 0
-Flags: W
+Flags: HW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
@@ -11975,7 +12152,7 @@ StartChar: Lcaron
 Encoding: 317 317 303
 Width: 583
 VWidth: 0
-Flags: W
+Flags: HW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
@@ -12036,7 +12213,7 @@ StartChar: uni0162
 Encoding: 354 354 305
 Width: 692
 VWidth: 0
-Flags: W
+Flags: HW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
@@ -12069,7 +12246,7 @@ StartChar: uni021A
 Encoding: 538 538 306
 Width: 692
 VWidth: 0
-Flags: W
+Flags: HW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
@@ -12179,7 +12356,7 @@ StartChar: Tcaron
 Encoding: 356 356 310
 Width: 692
 VWidth: 0
-Flags: W
+Flags: HW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
@@ -12449,7 +12626,7 @@ StartChar: Dcaron
 Encoding: 270 270 320
 Width: 767
 VWidth: 0
-Flags: W
+Flags: HW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
@@ -12480,7 +12657,7 @@ StartChar: dcaron
 Encoding: 271 271 321
 Width: 494
 VWidth: 0
-Flags: W
+Flags: HW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
@@ -12509,14 +12686,15 @@ StartChar: cent
 Encoding: 162 162 322
 Width: 417
 VWidth: 0
-Flags: W
+Flags: MW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
 I00
 s."
 HStem: -19 50<230.014 305.316>
-VStem: 32 73<109.925 267.359> 181 35<-101.871 -19.261> 196 35<43.0022 107.2> 231 35<310.8 375.998> 239 35<426.947 490.928>
+VStem: 32 73<109.925 267.359>
+DStem2: 196 58 231 45 0.110086 0.993922<-158.898 -79.0355 -15.5188 324.636 377.315 437.149>
 AnchorPoint: "l;bl" 10 20 basechar 0
 AnchorPoint: "l;o" 0 220 basechar 0
 AnchorPoint: "l;x" 49 415 basechar 0
@@ -12524,9 +12702,44 @@ AnchorPoint: "r;bl" 406 20 basechar 0
 AnchorPoint: "r;o" 408 220 basechar 0
 AnchorPoint: "r;x" 418 415 basechar 0
 LayerCount: 3
+Back
+SplineSet
+32 159 m 4xe0
+ 32 273 98 379 200 416 c 4
+ 236 429 236 417 239 445 c 6
+ 243 481 l 6
+ 243 487 250 491 258 491 c 4
+ 277 491 280 485 280 481 c 4
+ 280 475 274 441 274 436 c 4
+ 274 418 325 436 370 409 c 4
+ 376 405 380 404 380 387 c 4
+ 380 387 378 305 362 305 c 4
+ 343 305 358 331 290 369 c 4
+ 279 375 277 376 274 376 c 4xe4
+ 271 376 268 373 266 356 c 6xc8
+ 231 45 l 6xd0
+ 231 44 230 42 230 41 c 4
+ 230 35 234 31 246 31 c 4
+ 320 31 362 83 374 83 c 4
+ 379 83 383 79 383 74 c 4
+ 383 62 330 -7 236 -19 c 4
+ 217 -21 224 -16 216 -91 c 4
+ 215 -100 205 -102 195 -102 c 4
+ 183 -102 181 -97 181 -90 c 4
+ 181 -79 187 -28 187 -24 c 4
+ 187 -14 177 -26 133 -9 c 4
+ 69 15 32 73 32 159 c 4xe0
+105 199 m 4
+ 105 94 179 43 189 43 c 4
+ 192 43 195 46 196 58 c 6
+ 231 374 l 6
+ 231 377 231 379 231 381 c 4xd8
+ 231 388 229 388 217 388 c 4
+ 173 388 105 314 105 199 c 4
+EndSplineSet
 Fore
 SplineSet
-32 159 m 0xe0
+32 159 m 0
  32 273 98 379 200 416 c 0
  236 429 236 417 239 445 c 2
  243 481 l 2
@@ -12537,9 +12750,9 @@ SplineSet
  376 405 380 404 380 387 c 0
  380 387 378 305 362 305 c 0
  343 305 358 331 290 369 c 0
- 279 375 277 376 274 376 c 0xe4
- 271 376 268 373 266 356 c 2xc8
- 231 45 l 2xd0
+ 279 375 277 376 274 376 c 0
+ 271 376 268 373 266 356 c 2
+ 231 45 l 2
  231 44 230 42 230 41 c 0
  230 35 234 31 246 31 c 0
  320 31 362 83 374 83 c 0
@@ -12550,12 +12763,12 @@ SplineSet
  183 -102 181 -97 181 -90 c 0
  181 -79 187 -28 187 -24 c 0
  187 -14 177 -26 133 -9 c 0
- 69 15 32 73 32 159 c 0xe0
+ 69 15 32 73 32 159 c 0
 105 199 m 0
  105 94 179 43 189 43 c 0
  192 43 195 46 196 58 c 2
  231 374 l 2
- 231 377 231 379 231 381 c 0xd8
+ 231 377 231 379 231 381 c 0
  231 388 229 388 217 388 c 0
  173 388 105 314 105 199 c 0
 EndSplineSet
@@ -13588,7 +13801,7 @@ StartChar: Ldot
 Encoding: 319 319 340
 Width: 590
 VWidth: 0
-Flags: W
+Flags: HW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
@@ -13819,14 +14032,15 @@ StartChar: Eogonek
 Encoding: 280 280 345
 Width: 631
 VWidth: 0
-Flags: W
+Flags: MW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
 I00
 s."
-HStem: -195 38<434.511 491.762> -5 45<177.331 416.26> 0 28<20.0044 76.9365> 342 40<214.374 437.146> 667 39<250.094 544.735>
-VStem: 131 83<200.135 341.71> 167 72<540.083 619.764> 362 58<-145.472 -69.3928> 458 29<244.727 317.557>
+HStem: -195 38<434.511 491.762> -5 45<177.331 416.26> 342 40<214.374 437.146> 667 39<250.094 544.735>
+VStem: 362 58<-145.472 -69.3928> 458 29<244.727 317.557>
+DStem2: 131 296 174 77 0.123567 0.992336<-237.79 -134.452 38.5395 56.6618 98.3515 109.49 314.023 366.63>
 AnchorPoint: "r;x" 626 415 basechar 0
 AnchorPoint: "r;t" 631 562 basechar 0
 AnchorPoint: "r;hi" 631 732 basechar 0
@@ -13840,10 +14054,10 @@ AnchorPoint: "l;x" 29 415 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-20 14 m 0xbb80
+20 14 m 0
  20 19 26 27 42 28 c 0
  92 31 95 69 111 163 c 0
- 116 197 124 242 131 296 c 2xbd80
+ 116 197 124 242 131 296 c 2
  167 599 l 2
  168 608 168 615 168 620 c 0
  168 701 92 663 92 693 c 0
@@ -13857,7 +14071,7 @@ SplineSet
  576 556 601 595 569 632 c 0
  564 638 532 663 464 664 c 0
  384 665 367 667 310 667 c 0
- 248 667 249 659 239 599 c 0xbb80
+ 248 667 249 659 239 599 c 0
  235 571 214 409 214 396 c 0
  214 383 217 382 257 382 c 0
  438 382 445 386 461 406 c 0
@@ -13882,10 +14096,10 @@ SplineSet
  524 -153 483 -195 437 -195 c 0
  386 -195 362 -169 362 -129 c 0
  362 -72 421 -33 421 -19 c 0
- 421 -11 414 -7 359 -5 c 0xdd80
+ 421 -11 414 -7 359 -5 c 0
  278 -2 209 3 167 3 c 0
  112 3 104 0 55 0 c 0
- 20 0 20 9 20 14 c 0xbb80
+ 20 0 20 9 20 14 c 0
 EndSplineSet
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=9 dv=0
 EndChar
@@ -16153,15 +16367,14 @@ StartChar: f_k
 Encoding: 65545 -1 397
 Width: 714
 VWidth: 0
-Flags: W
+Flags: MW
 PickledData: "(dp0
 Vspacing_anchors_slanted
 p1
 I00
 s."
-HStem: -181 41<-16.5 47.6377> -4 70<592.174 641.076> 380 32<20.0676 115.999 182.266 293.688> 412 20G<596.5 630> 698 46<296.078 383.312>
-VStem: 116 56<202.473 377.831> 292 66<-0.65033 78.9444> 386 25<607.992 678> 552 100<352.556 396.345>
-DStem2: 319 205 397 293 0.147979 0.988991<39.0309 353.923>
+HStem: -181 41<-16.5 47.6377> -4 70<592.174 641.076> 379 35<20.0953 115.999 182.266 293.759> 698 46<296.078 383.312>
+DStem2: 76 68 147 116 0.131304 0.991342<-172.09 56.907 275.311 310.836> 319 205 397 293 0.147979 0.988991<39.0309 353.923>
 AnchorPoint: "r;x" 666 415 basechar 0
 AnchorPoint: "r;t" 656 562 basechar 0
 AnchorPoint: "r;hi" 626 732 basechar 0
@@ -16247,7 +16460,8 @@ SplineSet
  294 382 287 379 281 379 c 0
  228 379 219 380 192 380 c 0
  175 380 176 362 172 333 c 0
- 150 174 138 -28 113 -81 c 0
+ 162.388794566 263.537197091 155 186 147 116 c 0
+ 137 26 127.078175643 -51.1542676364 113 -81 c 0
  69 -174 13 -181 -8 -181 c 0
  -25 -181 -41 -176 -41 -160 c 0
  -41 -152 -36 -90 -16 -90 c 0
