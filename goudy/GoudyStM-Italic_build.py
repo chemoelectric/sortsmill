@@ -23,7 +23,8 @@ THE SOFTWARE.
 """
 
 import fontforge
-import spacing_by_anchors
+from spacing_by_anchors import *
+from glyphbuild import *
 
 def build_glyphs(bitbucket, f):
 
@@ -80,20 +81,20 @@ def build_glyphs(bitbucket, f):
 
     if f.persistent == None:
         f.persistent = {}
-    f.persistent['spacing_anchor_heights'] = { 'hi' : 1500, # caps and ascenders
-                                               't'  : 1150, # top diacritics
-                                               'x'  : 850,  # ex-height
-                                               'o'  : 450,  # like the letter o
-                                               'bl' : 40,   # baseline
-                                               'lo' : -420 } # descenders
+    f.persistent['spacing_anchor_heights'] = { 'hi' : 732, # caps and ascenders
+                                               't'  : 562, # top diacritics
+                                               'x'  : 415,  # ex-height
+                                               'o'  : 220,  # like the letter o
+                                               'bl' : 20,   # baseline
+                                               'lo' : -205 } # descenders
 
-    build_several_space_glyphs(f, emsize = 2048, spacesize = 437,
-                               thinspacesize = 2048 / 6,
-                               hairspacesize = 2048 / 10,
+    build_several_space_glyphs(f, emsize = 1000, spacesize = 213,
+                               thinspacesize = 1000 / 6,
+                               hairspacesize = 1000 / 10,
                                tabwidth = f['zero.lining'].width)
     propagate_hyphens(f)
     propagate_hyphens(f, '.uppercase')
-    build_spacing_marks(f, width = 900)
+    build_spacing_marks(f, width = 439)
 
     make_glyph_reference('quotesingle', f['quoteright'])
     make_glyph_reference('quotedbl', f['quotedblright'])
@@ -108,11 +109,11 @@ def build_glyphs(bitbucket, f):
     make_glyph_reference('uni00B3', f['three.lining.sup'])
     for g in f:
         if g[-4:] == '.sup':
-            make_glyph_reference(g[:-4] + '.sub', f[g], (1, 0, 0, 1, 0, -1448))
+            make_glyph_reference(g[:-4] + '.sub', f[g], (1, 0, 0, 1, 0, -707))
     for g in lining_figures + ['comma', 'period']:
-        make_glyph_reference(g + '.numer', f[g + '.sup'], (1, 0, 0, 1, 0, -362))
+        make_glyph_reference(g + '.numer', f[g + '.sup'], (1, 0, 0, 1, 0, -177))
     for g in lining_figures + ['comma', 'period']:
-        make_glyph_reference(g + '.denom', f[g + '.sup'], (1, 0, 0, 1, 0, -790))
+        make_glyph_reference(g + '.denom', f[g + '.sup'], (1, 0, 0, 1, 0, -386))
     build_multigraph('onequarter', [f['one.lining.numer'], f['fraction'], f['four.lining.denom']])
     build_multigraph('onehalf', [f['one.lining.numer'], f['fraction'], f['two.lining.denom']])
     build_multigraph('threequarters', [f['three.lining.numer'], f['fraction'], f['four.lining.denom']])
@@ -204,6 +205,7 @@ def build_glyphs(bitbucket, f):
 
     #--------------------------------------------------------------------------
 
+    build_multigraph('ellipsis', [f['period'], f['period'], f['period']])
     build_multigraph('napostrophe', [f['quoteright'], f['n']])
     build_multigraph('IJ', [f['I'], f['J']])
     build_multigraph('ij', [f['i'], f['j']])
@@ -215,15 +217,6 @@ def build_glyphs(bitbucket, f):
     f.selection.all()
     spacing_by_anchors.space_selected_by_anchors(f)
     f.selection.none()
-
-    # TODO: Consider making cpsp a contextual positioning feature that
-    # detects runs of caps automatically.
-    rules = cap_spacing.cap_spacing(f, caps, 0.015)
-    cpsp = open('GoudyStM-Italic_cpsp.fea', 'w')
-    print >> cpsp, 'feature cpsp {'
-    print >> cpsp, rules,
-    print >> cpsp, '} cpsp;'
-    cpsp.close()
 
     generate_kerning_and_read_features(None, f)
 
