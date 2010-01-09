@@ -232,6 +232,7 @@ def build_glyphs(bitbucket, f):
 
     #--------------------------------------------------------------------------
 
+    build_multigraph('ellipsis', [f['period'], f['period'], f['period']])
     build_multigraph('napostrophe', [f['quoteright'], f['n']])
     build_multigraph('IJ', [f['I'], f['J']])
     build_multigraph('ij', [f['i'], f['j']])
@@ -244,18 +245,6 @@ def build_glyphs(bitbucket, f):
     f.selection.all()
     spacing_by_anchors.space_selected_by_anchors(f)
     f.selection.none()
-
-#    # FIX/TODO: Do we want to implement this differently??????????????????????????????????????????????????????????????
-#    rules = cap_spacing.cap_spacing(f, caps, 0.015)
-#    print(rules)
-#    cpsp = open('GoudyStM_cpsp.fea', 'w')
-##    print >> cpsp, 'feature cpsp {'
-##    print >> cpsp, rules,
-##    print >> cpsp, '} cpsp;'
-#    print('feature cpsp {', file = cpsp)
-#    print(rules, file = cpsp, end = ' ')
-#    print('} cpsp;', file = cpsp)
-#    cpsp.close()
 
     generate_kerning_and_read_features(None, f)
 
