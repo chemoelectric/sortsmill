@@ -24,6 +24,7 @@ THE SOFTWARE.
 
 #--------------------------------------------------------------------------
 
+import os
 import shelve
 
 #--------------------------------------------------------------------------
@@ -35,6 +36,9 @@ def create_temporary(font):
 def db_open(font, flag = 'r'):
     if font.temporary is None or 'db' not in font.temporary or font.temporary['db'] is None:
         db_name = font.fontname + '.db'
+        if flag not in ('c', 'n') and not os.path.exists(db_name):
+            db = shelve.open(db_name, flag = 'c')
+            db.close()
         db = shelve.open(db_name, flag = flag)
         create_temporary(font)
         font.temporary['db'] = db
