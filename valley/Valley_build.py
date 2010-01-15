@@ -20,19 +20,20 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+import font_db
 import fontforge
-import spacing_by_anchors
-
+from glyphbuild import *
+from spacing_by_anchors import *
 
 def build_glyphs(bitbucket, f):
 
-    if f.persistent == None:
-        f.persistent = {}
-    f.persistent['spacing_anchor_heights'] = { 'hi' : 1350,
-                                               'x'  : 852,
-                                               'o'  : 453,
-                                               'bl' : 40,
-                                               'lo' : -420 }
+    db = font_db.db_create(f)
+
+    db['spacing_anchor_heights'] = { 'hi' : 1350,
+                                     'x'  : 852,
+                                     'o'  : 453,
+                                     'bl' : 40,
+                                     'lo' : -420 }
 
     propagate_hyphens(f)
 
@@ -44,3 +45,9 @@ def build_glyphs(bitbucket, f):
     f.selection.none()
 
     generate_kerning_and_read_features(None, f)
+
+    #--------------------------------------------------------------------------
+
+    font_db.db_close(f)
+
+    #--------------------------------------------------------------------------

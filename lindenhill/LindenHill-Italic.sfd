@@ -22,7 +22,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1249677682
-ModificationTime: 1255052355
+ModificationTime: 1263542202
 PfmFamily: 17
 TTFWeight: 400
 TTFWidth: 5
@@ -61,32 +61,38 @@ Lookup: 4 0 0 "'dlig' Discretionary Ligatures in Latin lookup 13"  {"'dlig' Disc
 Lookup: 260 0 0 "accent positioning"  {"accent positioning-1"  } []
 Lookup: 260 0 0 "spacing anchors"  {"spacing anchors-1"  } []
 Lookup: 257 0 0 "'cpsp' Capital Spacing in Latin lookup 2"  {"'cpsp' Capital Spacing in Latin lookup 2 subtable"  } ['cpsp' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
-Lookup: 258 0 0 "generated_kerning"  {"generated_kerning per glyph data 0"  "generated_kerning kerning class 1"  } ['kern' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
+Lookup: 258 0 0 "'kern' Horizontal Kerning in Latin lookup 3"  {"'kern' Horizontal Kerning in Latin lookup 3 per glyph data 0"  "'kern' Horizontal Kerning in Latin lookup 3 kerning class 1"  } ['kern' ('latn' <'dflt' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
 DEI: 91125
-KernClass2: 13 11 "generated_kerning kerning class 1" 
+KernClass2: 16 14 "'kern' Horizontal Kerning in Latin lookup 3 kerning class 1" 
  27 guillemotleft guilsinglleft
  14 guillemotright
  14 guilsinglright
- 6 lslash
  37 napostrophe quotedblright quoteright 
  44 quotedblleft quoteleft quotereversed uni201F
+ 7 uni0307
  31 aogonek iogonek iogonek.dotless
- 68 eogonek f_f_thorn f_thorn longs_longs_thorn longs_thorn oslash thorn
+ 6 lslash
+ 20 eogonek oslash thorn
  27 quotedblbase quotesinglbase
  6 dcroat
  4 hbar
+ 27 f_f_thorn longs_longs_thorn
+ 19 f_thorn longs_thorn
  6 lacute
- 17 f_f_thorn f_thorn
+ 10 f_f_thorn 
+ 17 longs_longs_thorn
  27 guillemotleft guilsinglleft
  29 guillemotright guilsinglright
  13 lacute lslash
  27 quotedblbase quotesinglbase
  21 dcroat eogonek oslash
+ 7 uni0307
+ 7 f_thorn
  36 napostrophe quotedblright quoteright
  44 quotedblleft quoteleft quotereversed uni201F
  4 tbar
  7 uogonek
- 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} -113 {} 0 {} -124 {} 0 {} -124 {} -136 {} 0 {} 0 {} 0 {} 0 {} -69 {} -87 {} 0 {} -98 {} 0 {} -98 {} -110 {} 0 {} 0 {} 0 {} 0 {} -68 {} -86 {} 0 {} -97 {} 0 {} -97 {} -109 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -44 {} -62 {} 0 {} -73 {} 0 {} -73 {} -85 {} 0 {} 0 {} 0 {} 0 {} -31 {} -49 {} 0 {} -60 {} 0 {} -60 {} -72 {} 0 {} 0 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -15 {} -5 {} 0 {} -10 {} 0 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} -15 {} -5 {} 0 {} -10 {} -44 {} -62 {} 0 {} -73 {} 0 {} -73 {} -85 {} -15 {} -5 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} -15 {} -15 {} -15 {} -15 {} -15 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} -10 {} -10 {} -10 {} 0 {} -15 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} -10 {} -10 {} -10 {} -14 {} -14 {}
+ 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} -113 {} 0 {} -124 {} 0 {} 0 {} 0 {} -124 {} -136 {} 0 {} 0 {} 0 {} 0 {} 0 {} -69 {} -87 {} 0 {} -98 {} 0 {} 0 {} 0 {} -98 {} -110 {} 0 {} 0 {} 0 {} 0 {} 0 {} -68 {} -86 {} 0 {} -97 {} 0 {} 0 {} 0 {} -97 {} -109 {} 0 {} 0 {} 0 {} 0 {} 0 {} -44 {} -62 {} 0 {} -73 {} 0 {} 0 {} 0 {} -73 {} -85 {} 0 {} 0 {} 0 {} 0 {} 0 {} -31 {} -49 {} 0 {} -60 {} 0 {} 0 {} 0 {} -60 {} -72 {} 0 {} 0 {} 0 {} 0 {} -78 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -78 {} 0 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} 0 {} -15 {} -5 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -10 {} -14 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} 0 {} 0 {} -10 {} 0 {} 0 {} 0 {} -10 {} 0 {} 0 {} -15 {} -5 {} 0 {} -10 {} 0 {} -44 {} -62 {} 0 {} -73 {} 0 {} 0 {} -10 {} -73 {} -85 {} -15 {} -5 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} 0 {} -15 {} -15 {} -10 {} -15 {} -15 {} -15 {} -15 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} -10 {} -10 {} 0 {} -15 {} 0 {} -10 {} 0 {} 0 {} 0 {} -10 {} 0 {} 0 {} -283 {} -10 {} 0 {} 0 {} -15 {} -5 {} 0 {} -10 {} 0 {} 0 {} 0 {} -10 {} 0 {} 0 {} -284 {} -10 {} 0 {} 0 {} -15 {} -5 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} 0 {} -10 {} -14 {} -10 {} -10 {} -10 {} -14 {} -14 {}
 ChainSub2: coverage "'frac' Diagonal Fractions in Latin lookup 3 subtable"  0 0 0 1
  1 1 0
   Coverage: 109 zero.numer one.numer two.numer three.numer four.numer five.numer six.numer seven.numer eight.numer nine.numer
@@ -96,38 +102,13 @@ ChainSub2: coverage "'frac' Diagonal Fractions in Latin lookup 3 subtable"  0 0 
 EndFPST
 LangName: 1033 
 OtfFeatName: 'ss01'  1033 "Standard swash" 
-PickledData: "(dp1
-S'spacing_anchor_tolerance'
-p2
-S'5'
-sS'spacing_anchor_heights'
-p3
-(dp4
-S'bl'
-p5
-I15
-sS'x'
-I376
-sS'hi'
-p6
-I684
-sS'o'
-I195
-sS'lo'
-p7
-I-244
-ssS'kerning_rounding_function'
-p8
-S'round'
-p9
-s."
 Encoding: UnicodeBmp
 UnicodeInterp: none
 NameList: Adobe Glyph List
 DisplaySize: -72
 AntiAlias: 1
 FitToEm: 1
-WinInfo: 65624 8 6
+WinInfo: 32 8 6
 BeginPrivate: 11
 BlueValues 31 [-23 0 385 408 667 688 702 712]
 OtherBlues 11 [-263 -258]
@@ -161,8 +142,8 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 241 775 N 1 0 0 1 341 0 2
 Refer: 178 305 N 1 0 0 1 0 0 2
+Refer: 241 775 N 1 0 0 1 122 0 2
 Layer: 2
 SplineSet
 137.6953125 629.8828125 m 0
@@ -196,8 +177,8 @@ VWidth: 0
 Flags: HMW
 LayerCount: 3
 Fore
-Refer: 241 775 N 1 0 0 1 351 0 2
 Refer: 179 567 N 1 0 0 1 0 0 2
+Refer: 241 775 N 1 0 0 1 132 0 2
 Layer: 2
 SplineSet
 147.4609375 629.8828125 m 0
@@ -2297,7 +2278,7 @@ SplineSet
  257 650 163 565 163 443 c 0
  163 365 201 281 304 281 c 0
 EndSplineSet
-Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=5 dy=0 dh=11 dv=0
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=5 dy=0 dh=10 dv=0
 EndChar
 
 StartChar: R
@@ -2612,7 +2593,7 @@ SplineSet
  638 122 640 137 654 137 c 0
  665 137 667 125 667 113 c 0xb8
 EndSplineSet
-Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=6 dy=0 dh=12 dv=0
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=5 dy=0 dh=11 dv=0
 EndChar
 
 StartChar: Y
@@ -8281,23 +8262,24 @@ EndChar
 
 StartChar: uni0307
 Encoding: 775 775 241
-Width: 0
+Width: 103
 VWidth: 0
-Flags: W
-HStem: 583 85<-196.197 -139.249>
-VStem: -204 74<592.945 660.364>
-AnchorPoint: "r;hi" -116 684 basechar 0
-AnchorPoint: "l;hi" -219 684 basechar 0
-AnchorPoint: "top" -195 488 mark 0
+Flags: HW
+HStem: 583 85<22.803 79.751>
+VStem: 15 74<592.945 660.364>
+AnchorPoint: "r;hi" 103 684 basechar 0
+AnchorPoint: "l;hi" 0 684 basechar 0
+AnchorPoint: "top" 24 488 mark 0
 LayerCount: 3
 Fore
 SplineSet
--204 630 m 0
- -204 639 -185 668 -162 668 c 0
- -147 668 -130 644 -130 625 c 0
- -130 605 -162 583 -170 583 c 0
- -186 583 -204 611 -204 630 c 0
+15 630 m 0
+ 15 639 34 668 57 668 c 0
+ 72 668 89 644 89 625 c 0
+ 89 605 57 583 49 583 c 0
+ 33 583 15 611 15 630 c 0
 EndSplineSet
+Kerns2: 462 -166 "'kern' Horizontal Kerning in Latin lookup 3 per glyph data 0"  420 -68 "'kern' Horizontal Kerning in Latin lookup 3 per glyph data 0"  406 -88 "'kern' Horizontal Kerning in Latin lookup 3 per glyph data 0" 
 EndChar
 
 StartChar: uni0308
@@ -9377,8 +9359,8 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 241 775 N 1 0 0 1 398 0 2
 Refer: 12 99 N 1 0 0 1 0 0 2
+Refer: 241 775 N 1 0 0 1 179 0 2
 EndChar
 
 StartChar: edotaccent
@@ -9388,8 +9370,8 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 241 775 N 1 0 0 1 398 0 2
 Refer: 10 101 N 1 0 0 1 0 0 2
+Refer: 241 775 N 1 0 0 1 179 0 2
 EndChar
 
 StartChar: gdotaccent
@@ -9399,8 +9381,8 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 241 775 N 1 0 0 1 416 0 2
 Refer: 14 103 N 1 0 0 1 0 0 2
+Refer: 241 775 N 1 0 0 1 197 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" gdotaccent.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" gdotaccent.001
 Substitution2: "swsh1 subtable" gdotaccent.001
@@ -9413,8 +9395,8 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 241 775 N 1 0 0 1 443 0 2
 Refer: 42 122 N 1 0 0 1 0 0 2
+Refer: 241 775 N 1 0 0 1 224 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" zdotaccent.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" zdotaccent.001
 Substitution2: "swsh1 subtable" zdotaccent.001
@@ -10378,7 +10360,7 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 241 775 N 1 0 0 1 390 0 2
+Refer: 241 775 N 1 0 0 1 171 0 2
 EndChar
 
 StartChar: macron
@@ -12042,7 +12024,7 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 433 806 N 1 0 0 1 558 0 2
+Refer: 433 806 N 1 0 0 1 558 3 2
 Refer: 33 75 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=5 dy=0 dh=11 dv=0
 EndChar
@@ -12869,7 +12851,7 @@ SplineSet
  18 0 l 1
  17 32 l 1
 EndSplineSet
-Kerns2: 475 -25 "generated_kerning per glyph data 0" 
+Kerns2: 475 -25 "'kern' Horizontal Kerning in Latin lookup 3 per glyph data 0"  241 -291 "'kern' Horizontal Kerning in Latin lookup 3 per glyph data 0" 
 EndChar
 
 StartChar: iogonek
@@ -12887,8 +12869,8 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 250 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 241 775 N 1 0 0 1 330.855 -137 2
 Refer: 504 -1 N 1 0 0 1 0 0 2
+Refer: 241 775 N 1 0 0 1 111.855 -137 2
 EndChar
 
 StartChar: Iogonek
@@ -14888,8 +14870,8 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 241 775 N 1 0 0 1 435 0 2
 Refer: 534 -1 N 1 0 0 1 0 0 2
+Refer: 241 775 N 1 0 0 1 216 0 2
 EndChar
 
 StartChar: gcommaaccent.001
@@ -15281,8 +15263,8 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 241 775 N 1 0 0 1 449 0 2
 Refer: 545 -1 N 1 0 0 1 0 0 2
+Refer: 241 775 N 1 0 0 1 230 0 2
 EndChar
 
 StartChar: zcaron.001

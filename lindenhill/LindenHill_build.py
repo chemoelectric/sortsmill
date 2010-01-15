@@ -22,8 +22,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
+import font_db
 import fontforge
-import spacing_by_anchors
 from glyphbuild import *
 from spacing_by_anchors import *
 
@@ -42,13 +42,13 @@ def build_glyphs(bitbucket, f):
             base = letter
         return base    
 
-    if f.persistent == None:
-        f.persistent = {}
-    f.persistent['spacing_anchor_heights'] = { 'hi' : 684, # caps and ascenders
-                                               'x'  : 376,  # ex-height
-                                               'o'  : 195,  # like the letter o
-                                               'bl' : 15,   # baseline
-                                               'lo' : -244 } # descenders
+    db = font_db.db_create(f)
+
+    db['spacing_anchor_heights'] = { 'hi' : 684, # caps and ascenders
+                                     'x'  : 376,  # ex-height
+                                     'o'  : 195,  # like the letter o
+                                     'bl' : 15,   # baseline
+                                     'lo' : -244 } # descenders
 
     all_glyphs = set(f) - set(['.notdef'])
     (smallcaps, capssmall, uppercase, lowercase, fraction_bar, numerators, denominators, remaining) = \
@@ -61,7 +61,7 @@ def build_glyphs(bitbucket, f):
                 (lambda s: s[-6:] == '.numer'),
                 (lambda s: s[-6:] == '.denom'),
                 ]))
-    f.persistent["kerning_sets"] = [
+    db["kerning_sets"] = [
         (remaining, uppercase | lowercase | smallcaps | capssmall | remaining),
         (uppercase, uppercase | lowercase | smallcaps | remaining),
         (smallcaps, uppercase | smallcaps | capssmall | remaining),
@@ -69,8 +69,8 @@ def build_glyphs(bitbucket, f):
         (numerators, fraction_bar),
         (fraction_bar, denominators),
         ]
-    f.persistent['kerning_rounding'] = '(lambda x: int(round(x/5.0)) * 5)'
-#    f.persistent['kerning_rounding'] = '(lambda x: x if abs(x) < 10 else int(round(x/5.0))*5)'
+    db['kerning_rounding'] = '(lambda x: int(round(x/5.0)) * 5)'
+#    db['kerning_rounding'] = '(lambda x: x if abs(x) < 10 else int(round(x/5.0))*5)'
 
     build_several_space_glyphs(f, emsize = 1000, spacesize = 185,
                                thinspacesize = 1000 / 6,
@@ -271,9 +271,13 @@ def build_glyphs(bitbucket, f):
     #--------------------------------------------------------------------------
 
     f.selection.all()
-    spacing_by_anchors.space_selected_by_anchors(f)
+    space_selected_by_anchors(f)
     f.selection.none()
 
     generate_kerning_and_read_features(None, f)
+
+    #--------------------------------------------------------------------------
+
+    font_db.db_close(f)
 
     #--------------------------------------------------------------------------

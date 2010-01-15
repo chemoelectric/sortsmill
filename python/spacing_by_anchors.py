@@ -22,12 +22,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
+import font_db
 import fontforge
-import psMat
 import glyphbuild
+import math
+import psMat
 import readfeatures
 import sys
-import math
 
 ###########################################################################
 #
@@ -362,38 +363,34 @@ def join_groups(kernings):
 
 def print_kerning_feature_file(file, font):
 
-    if font.persistent == None:
-        font.persistent = {}
+    db = font_db.db_open(font, flag = 'c')
 
-    if "spacing_anchor_tolerance" not in font.persistent:
-        font.persistent["spacing_anchor_tolerance"] = str(anchor_tolerance)
-    if "kerning_rounding" not in font.persistent:
-        font.persistent["kerning_rounding"] = 'round'
-    if "kerning_sets" not in font.persistent:
-        font.persistent["kerning_sets"] = [(set(font), set(font))]
+    font_db.db_init_binding(font, 'spacing_anchor_tolerance', str(anchor_tolerance))
+    font_db.db_init_binding(font, 'kerning_rounding', 'round')
+    font_db.db_init_binding(font, 'kerning_sets', [(set(font), set(font))])
 
     if font.temporary == None:
         font.temporary = {}
     if 'kern-cache' not in font.temporary or font.temporary['kern-cache'] == None:
-        font.temporary["kern-cache"] = {}
+        font.temporary['kern-cache'] = {}
 
-    tolerance = eval(font.persistent['spacing_anchor_tolerance'])
-    rounding_function = eval(font.persistent['kerning_rounding'])
+    tolerance = eval(db['spacing_anchor_tolerance'])
+    rounding_function = eval(db['kerning_rounding'])
 
     subtables = []
-    for (left_glyphs, right_glyphs) in font.persistent["kerning_sets"]:
+    for (left_glyphs, right_glyphs) in db['kerning_sets']:
 
         # Note that right signatures are taken from "left_glyphs", and
         # left signatures are taken from "right_glyphs".
-        right_groups = group_glyphs_by_signature(font, "r", glyph_set = left_glyphs, tolerance = tolerance)
-        left_groups = group_glyphs_by_signature(font, "l", glyph_set = right_glyphs, tolerance = tolerance)
+        right_groups = group_glyphs_by_signature(font, 'r', glyph_set = left_glyphs, tolerance = tolerance)
+        left_groups = group_glyphs_by_signature(font, 'l', glyph_set = right_glyphs, tolerance = tolerance)
 
         right_signatures = right_groups.keys()
         left_signatures = left_groups.keys()
         
         kernings = calculate_group_kernings(right_signatures, left_signatures,
                                             right_groups, left_groups,
-                                            cache = font.temporary["kern-cache"],
+                                            cache = font.temporary['kern-cache'],
                                             rounding_function = rounding_function,
                                             tolerance = tolerance)
         kernings = join_groups(kernings)
@@ -403,26 +400,29 @@ def print_kerning_feature_file(file, font):
 
     if subtables != []:
 
-        file.write("feature kern {\n")
+        file.write('feature kern {\n')
 
         for i in range(0, len(subtables)):
             (right_groups, left_groups, kernings) = subtables[i]
-            print_kerning_class_definitions(file, right_groups, "r", i + 1)
+            print_kerning_class_definitions(file, right_groups, 'r', i + 1)
             file.write('\n')
-            print_kerning_class_definitions(file, left_groups, "l", i + 1)
+            print_kerning_class_definitions(file, left_groups, 'l', i + 1)
             file.write('\n')
 
         for i in range(0, len(subtables)):
             if 0 < i:
-                file.write("subtable;\n")
+                file.write('subtable;\n')
             (right_groups, left_groups, kernings) = subtables[i]
             for (obj1, obj2, k) in kernings:
-                file.write("pos ")
-                file.write(obj1.notation(right_groups, "r", i + 1) + " ")
-                file.write(obj2.notation(left_groups, "l", i + 1) + " ")
-                file.write(str(k) + ";\n")
-            file.write("\n")
-        file.write("} kern;\n")
+                file.write('pos ')
+                file.write(obj1.notation(right_groups, 'r', i + 1) + ' ')
+                file.write(obj2.notation(left_groups, 'l', i + 1) + ' ')
+                file.write(str(k) + ';\n')
+            file.write('\n')
+        file.write('} kern;\n')
+
+    font_db.db_close(font)
+    font_db.db_open(font)
 
 #--------------------------------------------------------------------------
 
@@ -434,16 +434,16 @@ def copy_spacing_anchors(*glyphs):
             points_list = list(referenced_glyph.anchorPoints)
             for (name, _, x, y) in points_list:
                 a_name = anchor_name(name)
-                if a_name.side == "l":
+                if a_name.side == 'l':
                     if name not in anchors or x + dx < anchors[name][0]:
                         anchors[name] = (x + dx, y + dy)
-                elif a_name.side == "r":
+                elif a_name.side == 'r':
                     if name not in anchors or anchors[name][0] < x + dx:
                         anchors[name] = (x + dx, y + dy)
         for name in anchors:
             (x, y) = anchors[name]
             glyphbuild.remove_anchor_point(glyph, name)
-            glyph.anchorPoints += ((name, "base", x, y),)
+            glyph.anchorPoints += ((name, 'base', x, y),)
 
 #--------------------------------------------------------------------------
 
@@ -453,7 +453,7 @@ def left_spacing(glyph):
     for a in glyph.anchorPoints:
         a_name = anchor_name(a[0])
         x = a[2]
-        if (a_name.side == "l"
+        if (a_name.side == 'l'
             and not a_name.is_kerning_only
             and not a_name.is_special_case):
             if least_x == None or x < least_x:
@@ -466,7 +466,7 @@ def right_spacing(glyph):
     for a in glyph.anchorPoints:
         a_name = anchor_name(a[0])
         x = a[2]
-        if (a_name.side == "r"
+        if (a_name.side == 'r'
             and not a_name.is_kerning_only
             and not a_name.is_special_case):
             if greatest_x == None or greatest_x < x:
@@ -476,24 +476,23 @@ def right_spacing(glyph):
 #--------------------------------------------------------------------------
 
 def create_missing_anchor_classes(font, spacing_names):
-    lookup_name = "spacing anchors"
-    subtable_name = "spacing anchors-1"
+    lookup_name = 'spacing anchors'
+    subtable_name = 'spacing anchors-1'
 
     if lookup_name not in font.gpos_lookups:
-        font.addLookup(lookup_name, "gpos_mark2base", (), ())
+        font.addLookup(lookup_name, 'gpos_mark2base', (), ())
     if subtable_name not in font.getLookupSubtables(lookup_name):
         font.addLookupSubtable(lookup_name, subtable_name)
 
     for spc_name in spacing_names:
-        for prefix in ("l;", "r;", "l;k;", "r;k;"):
+        for prefix in ('l;', 'r;', 'l;k;', 'r;k;'):
             full_name = prefix + spc_name
             if full_name not in font.getLookupSubtableAnchorClasses(subtable_name):
                 font.addAnchorClass(subtable_name, full_name)
 
 def spacing_anchor_heights_are_given(font):
-    return (font.persistent != None
-            and "spacing_anchor_heights" in font.persistent
-            and font.persistent["spacing_anchor_heights"] != None)
+    db = font_db.db_open(font)
+    return 'spacing_anchor_heights' in db and db['spacing_anchor_heights'] != None
 
 def there_is_such_an_anchor(glyph, side, spacing_name):
     for a in glyph.anchorPoints:
@@ -505,10 +504,8 @@ def there_is_such_an_anchor(glyph, side, spacing_name):
 def populate_side_with_anchors(glyph, side, x):
 
     font = glyph.font
-
-    if font.persistent == None:
-        font.persistent = {}
-    heights = font.persistent["spacing_anchor_heights"]
+    db = font_db.db_open(font)
+    heights = db['spacing_anchor_heights']
 
     create_missing_anchor_classes(glyph.font, heights.keys())
 
@@ -516,13 +513,13 @@ def populate_side_with_anchors(glyph, side, x):
         for spacing_name in heights:
             if not there_is_such_an_anchor(glyph, side, spacing_name):
                 h = heights[spacing_name]
-                name = side + ";" + spacing_name
-                glyph.anchorPoints += ((name, "base", x, h),)
+                name = side + ';' + spacing_name
+                glyph.anchorPoints += ((name, 'base', x, h),)
 
 def populate_with_spacing_anchors(glyph):
     glyph.preserveLayerAsUndo()
-    populate_side_with_anchors(glyph, "l", 0)
-    populate_side_with_anchors(glyph, "r", glyph.width)
+    populate_side_with_anchors(glyph, 'l', 0)
+    populate_side_with_anchors(glyph, 'r', glyph.width)
 
 #--------------------------------------------------------------------------
 
@@ -639,8 +636,8 @@ def space_selected_by_anchors(font):
 
 def generate_kerning_feature_file(suffix, font):
     if suffix == None:
-        suffix = "_generated_kerning.fea"
-    f = open(font.fontname + suffix, "w")
+        suffix = '_generated_kerning.fea'
+    f = open(font.fontname + suffix, 'w')
     print_kerning_feature_file(f, font)
     f.close()
 
@@ -664,96 +661,83 @@ def kern_cache_has_contents(font):
             font.temporary['kern-cache'] != None and
             font.temporary['kern-cache'] != {})
 
-def clear_persistent_and_kern_cache(font):
-    font.persistent = None
-    if kern_cache_has_contents(font):
-        clear_kern_cache(font)
-
-def has_persistent(font):
-    return font.persistent not in (None, {})
-
 fontforge.registerMenuItem((lambda _, glyph: set_spacing_anchors_read_only(glyph, True)),
                            (lambda _, glyph: selected_spacing_anchors(glyph) != []),
-                           None, "Glyph", "None",
-                           "Make spacing anchors kerning-only")
+                           None, 'Glyph', 'None',
+                           'Make spacing anchors kerning-only')
 
 fontforge.registerMenuItem((lambda _, glyph: set_spacing_anchors_read_only(glyph, False)),
                            (lambda _, glyph: selected_spacing_anchors(glyph) != []),
-                           None, "Glyph", "None",
-                           "Make spacing anchors non-kerning-only")
+                           None, 'Glyph', 'None',
+                           'Make spacing anchors non-kerning-only')
 
 fontforge.registerMenuItem((lambda _, glyph: flip_spacing_anchors_left_right(glyph)),
                            (lambda _, glyph: selected_spacing_anchors(glyph) != []),
-                           None, "Glyph", "None",
-                           "Flip spacing anchors left-right")
+                           None, 'Glyph', 'None',
+                           'Flip spacing anchors left-right')
 
 fontforge.registerMenuItem(spread_spacing_anchors, glyph_has_spacing_anchors,
-                           5, "Glyph", "None",
-                           "Spread spacing anchors by 5")
+                           5, 'Glyph', 'None',
+                           'Spread spacing anchors by 5')
 
 fontforge.registerMenuItem(spread_spacing_anchors, glyph_has_spacing_anchors,
-                           10, "Glyph", "None",
-                           "Spread spacing anchors by 10")
+                           10, 'Glyph', 'None',
+                           'Spread spacing anchors by 10')
 
 fontforge.registerMenuItem(spread_spacing_anchors, glyph_has_spacing_anchors,
-                           -5, "Glyph", "None",
-                           "Spread spacing anchors by -5")
+                           -5, 'Glyph', 'None',
+                           'Spread spacing anchors by -5')
 
 fontforge.registerMenuItem(spread_spacing_anchors, glyph_has_spacing_anchors,
-                           -10, "Glyph", "None",
-                           "Spread spacing anchors by -10")
+                           -10, 'Glyph', 'None',
+                           'Spread spacing anchors by -10')
 
 fontforge.registerMenuItem(spread_spacing_anchors_of_selected_glyphs,
                            something_is_selected,
-                           5, "Font", "None",
-                           "Spread spacing anchors by 5")
+                           5, 'Font', 'None',
+                           'Spread spacing anchors by 5')
 
 fontforge.registerMenuItem(spread_spacing_anchors_of_selected_glyphs,
                            something_is_selected,
-                           10, "Font", "None",
-                           "Spread spacing anchors by 10")
+                           10, 'Font', 'None',
+                           'Spread spacing anchors by 10')
 
 fontforge.registerMenuItem(spread_spacing_anchors_of_selected_glyphs,
                            something_is_selected,
-                           -5, "Font", "None",
-                           "Spread spacing anchors by -5")
+                           -5, 'Font', 'None',
+                           'Spread spacing anchors by -5')
 
 fontforge.registerMenuItem(spread_spacing_anchors_of_selected_glyphs,
                            something_is_selected,
-                           -10, "Font", "None",
-                           "Spread spacing anchors by -10")
+                           -10, 'Font', 'None',
+                           'Spread spacing anchors by -10')
 
 fontforge.registerMenuItem(space_glyph_by_anchors,
                            glyph_has_spacing_anchors,
-                           None, "Glyph", "None",
-                           "Space by anchors")
+                           None, 'Glyph', 'None',
+                           'Space by anchors')
 
 fontforge.registerMenuItem((lambda _, glyph: populate_with_spacing_anchors(glyph)),
                            (lambda _, glyph: spacing_anchor_heights_are_given(glyph.font)),
-                           None, "Glyph", "None",
-                           "Populate with spacing anchors")
+                           None, 'Glyph', 'None',
+                           'Populate with spacing anchors')
 
 fontforge.registerMenuItem((lambda _, font: space_selected_by_anchors(font)),
-                           something_is_selected, None, "Font", "None",
-                           "Space selected glyphs by anchors")
+                           something_is_selected, None, 'Font', 'None',
+                           'Space selected glyphs by anchors')
 
 fontforge.registerMenuItem(generate_kerning_feature_file,
-                           None, None, "Font", "None",
-                           "Generate kerning feature file")
+                           None, None, 'Font', 'None',
+                           'Generate kerning feature file')
 
 fontforge.registerMenuItem(generate_kerning_and_read_features,
                            readfeatures.feature_file_exists,
-                           None, "Font", "None",
-                           "Generate kerning and read features")
+                           None, 'Font', 'None',
+                           'Generate kerning and read features')
 
 fontforge.registerMenuItem((lambda _, font: clear_kern_cache(font)),
                            (lambda _, font: kern_cache_has_contents(font)),
-                           None, "Font", "None",
-                           "Clear kerning cache")
-
-fontforge.registerMenuItem((lambda _, font: clear_persistent_and_kern_cache(font)),
-                           (lambda _, font: has_persistent(font)),
-                           None, "Font", "None",
-                           "Clear persistent data")
+                           None, 'Font', 'None',
+                           'Clear kerning cache')
 
 #--------------------------------------------------------------------------

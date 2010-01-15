@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
+import font_db
 import fontforge
 from spacing_by_anchors import *
 from glyphbuild import *
@@ -79,14 +80,14 @@ def build_glyphs(bitbucket, f):
             base = letter
         return base    
 
-    if f.persistent == None:
-        f.persistent = {}
-    f.persistent['spacing_anchor_heights'] = { 'hi' : 732, # caps and ascenders
-                                               't'  : 562, # top diacritics
-                                               'x'  : 415,  # ex-height
-                                               'o'  : 220,  # like the letter o
-                                               'bl' : 20,   # baseline
-                                               'lo' : -205 } # descenders
+    db = font_db.db_create(f)
+
+    db['spacing_anchor_heights'] = { 'hi' : 732, # caps and ascenders
+                                     't'  : 562, # top diacritics
+                                     'x'  : 415,  # ex-height
+                                     'o'  : 220,  # like the letter o
+                                     'bl' : 20,   # baseline
+                                     'lo' : -205 } # descenders
 
     build_several_space_glyphs(f, emsize = 1000, spacesize = 213,
                                thinspacesize = 1000 / 6,
@@ -219,5 +220,9 @@ def build_glyphs(bitbucket, f):
     f.selection.none()
 
     generate_kerning_and_read_features(None, f)
+
+    #--------------------------------------------------------------------------
+
+    font_db.db_close(f)
 
     #--------------------------------------------------------------------------
