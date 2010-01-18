@@ -26,6 +26,7 @@ import font_db
 import fontforge
 import glyphbuild
 import math
+import os
 import psMat
 import readfeatures
 import sys
@@ -491,8 +492,12 @@ def create_missing_anchor_classes(font, spacing_names):
                 font.addAnchorClass(subtable_name, full_name)
 
 def spacing_anchor_heights_are_given(font):
-    db = font_db.db_open(font)
-    return 'spacing_anchor_heights' in db and db['spacing_anchor_heights'] != None
+    if os.path.exists(db_file_name(font)):
+        db = font_db.db_open(font)
+        result = 'spacing_anchor_heights' in db and db['spacing_anchor_heights'] != None
+    else:
+        result = False
+    return result
 
 def there_is_such_an_anchor(glyph, side, spacing_name):
     for a in glyph.anchorPoints:
