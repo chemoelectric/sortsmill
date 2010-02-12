@@ -18,27 +18,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-languagesystem DFLT dflt;
-languagesystem latn dflt;
 
-# Turkish, Azeri, Crimean Tatar
-languagesystem latn TRK;
-languagesystem latn AZE;
-languagesystem latn CRT;
+feature salt {
+  sub \K by \K.001;
+} salt;
 
-# Useful for spacing and kerning of capitals.
-# Comment this out for production.
-#include(CAPS.fea)
-
-include(WalbaumStM_locl.fea)
-include(WalbaumStM_figures.fea)
-#include(WalbaumStM_sc.fea)
-#include(WalbaumStM_hist.fea)
-#include(WalbaumStM_case.fea)
-include(WalbaumStM_salt.fea)
-#include(WalbaumStM_liga.fea)
-#include(WalbaumStM_cpsp.fea)
-#include(WalbaumStM_generated_kerning.fea)
 
 # local variables:
 # mode: fundamental
