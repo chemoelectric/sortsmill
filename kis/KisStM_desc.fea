@@ -18,28 +18,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-languagesystem DFLT dflt;
-languagesystem latn dflt;
 
-# Turkish, Azeri, Crimean Tatar
-#languagesystem latn TRK;
-#languagesystem latn AZE;
-#languagesystem latn CRT;
+# Long descenders.
+feature ss01 {
+  sub [g j p q y] by [g.ld j.ld p.ld q.ld y.ld];
+} ss01;
 
-# Useful for spacing and kerning of capitals.
-# Comment this out for production.
-#include(CAPS.fea)
-
-include(KisStM_locl.fea)
-include(KisStM_desc.fea)
-#include(KisStM_figures.fea)
-#include(KisStM_sc.fea)
-#include(KisStM_hist.fea)
-#include(KisStM_case.fea)
-#include(KisStM_salt.fea)
-#include(KisStM_liga.fea)
-#include(KisStM_cpsp.fea)
-include(KisStM_generated_kerning.fea)
 
 # local variables:
 # mode: fundamental
