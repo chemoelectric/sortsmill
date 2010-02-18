@@ -88,9 +88,9 @@ def build_glyphs(bitbucket, f):
 #    for fig in figures:
 #        make_glyph_reference(fig, f[fig + '.h'])
 
-#    make_glyph_reference('quotesingle', f['minute'])
-#    make_glyph_reference('quotedbl', f['second'])
-#    make_glyph_reference('asciitilde', f['uni2053']) # Swung dash.
+    make_glyph_reference('quotesingle', f['minute'])
+    make_glyph_reference('quotedbl', f['second'])
+    make_glyph_reference('asciitilde', f['uni2053']) # Swung dash.
     make_glyph_reference('i.TRK', f['i'])
 #    make_glyph_reference('Dcroat', f['Eth'])
 #    make_glyph_reference('dcroat.sc', f['eth.sc'])
