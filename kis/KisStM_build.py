@@ -185,10 +185,11 @@ def build_glyphs(bitbucket, f):
 #
 #    #--------------------------------------------------------------------------
 #
-#    for letter in 'aeouy':
-#        build_accented_glyph(letter + 'dieresis', f[base(letter)], f['uni0308'])
-#    for letter in 'AEIOUY':
+    for letter in 'aeouy':
+        build_accented_glyph(letter + 'dieresis', f[base(letter)], f['uni0308'])
+    for letter in 'AEIOUY':
 #        build_accented_glyph(letter + 'dieresis', f[base(letter)], f['uni0308.cap'])
+        build_accented_glyph(letter + 'dieresis', f[base(letter)], f['uni0308'])
 #    for letter in 'aeiouy':
 #        build_accented_glyph(letter + 'dieresis.sc', f[letter + '.sc'], f['uni0308'])
 #    for letter in 'i':
@@ -282,7 +283,7 @@ def build_glyphs(bitbucket, f):
 #    space_selected_by_anchors(f)
 #    f.selection.none()
 
-#    generate_kerning_and_read_features(None, f)
+    generate_kerning_and_read_features(None, f)
 
     #--------------------------------------------------------------------------
 
