@@ -36,7 +36,7 @@ def create_temporary(font):
 def db_file_name(font):
     return font.fontname + '.db'
 
-def db_open(font, flag = 'r'):
+def db_open(font, flag = 'c'):
     if font.temporary is None or 'db' not in font.temporary or font.temporary['db'] is None:
         db_name = db_file_name(font)
         if flag not in ('c', 'n') and not os.path.exists(db_name):

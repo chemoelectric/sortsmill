@@ -47,11 +47,12 @@ def build_glyphs(bitbucket, f):
 
     db = font_db.db_create(f)
 
-#    db['spacing_anchor_heights'] = { 'hi' : 684, # caps and ascenders
-#                                     'x'  : 376,  # ex-height
-#                                     'o'  : 195,  # like the letter o
-#                                     'bl' : 15,   # baseline
-#                                     'lo' : -244 } # descenders
+    db['spacing_anchor_heights'] = { 'hi' : 610, # caps and ascenders
+                                     'x'  : 385,  # ex-height
+                                     'o'  : 200,  # like the letter o
+                                     'bl' : 10,   # baseline
+                                     'lo' : -200, # descenders
+                                     }
 
 #    all_glyphs = set(f) - set(['.notdef'])
 #    (smallcaps, capssmall, uppercase, lowercase, fraction_bar, numerators, denominators, remaining) = \
@@ -242,6 +243,7 @@ def build_glyphs(bitbucket, f):
     build_accented_glyph('i', f['dotlessi'], f['uni0307'])
     build_accented_glyph('iogonek', f['iogonek.dotless'], f['uni0307'])
     build_accented_glyph('j', f['uni0237'], f['uni0307'])
+    build_accented_glyph('j.ld', f['uni0237.ld'], f['uni0307'])
 
     #--------------------------------------------------------------------------
 
@@ -285,9 +287,9 @@ def build_glyphs(bitbucket, f):
 
     #--------------------------------------------------------------------------
 
-#    f.selection.all()
-#    space_selected_by_anchors(f)
-#    f.selection.none()
+    f.selection.all()
+    space_selected_by_anchors(f)
+    f.selection.none()
 
     generate_kerning_and_read_features(None, f)
 
