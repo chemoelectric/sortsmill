@@ -88,8 +88,6 @@ def build_glyphs(bitbucket, f):
 #    for fig in figures:
 #        make_glyph_reference(fig, f[fig + '.h'])
 
-    make_glyph_reference('quotesingle', f['minute'])
-    make_glyph_reference('quotedbl', f['second'])
     make_glyph_reference('asciitilde', f['uni2053']) # Swung dash.
     make_glyph_reference('i.TRK', f['i'])
     make_glyph_reference('Dcroat', f['Eth'])
@@ -192,12 +190,12 @@ def build_glyphs(bitbucket, f):
         build_accented_glyph(letter + 'dieresis', f[base(letter)], f['uni0308'])
     for letter in 'AEIOUY':
         build_accented_glyph(letter + 'dieresis', f[base(letter)], f['uni0308.cap'])
+    for letter in 'i':
+        build_accented_glyph(letter + 'dieresis', f[base(letter)], f['uni0308.narrow'])
     for letter in 'y':
         build_accented_glyph(letter + 'dieresis.ld', f[base(letter) + '.ld'], f['uni0308'])
 #    for letter in 'aeiouy':
 #        build_accented_glyph(letter + 'dieresis.sc', f[letter + '.sc'], f['uni0308'])
-#    for letter in 'i':
-#        build_accented_glyph(letter + 'dieresis', f[base(letter)], f['uni0308.narrow'])
 
     #--------------------------------------------------------------------------
 
@@ -242,7 +240,7 @@ def build_glyphs(bitbucket, f):
 #        build_accented_glyph(letter + 'dotaccent.sc', f[letter + '.sc'], f['uni0307'])
 #    build_accented_glyph('i.TRK.sc', f['i.sc'], f['uni0307'])
     build_accented_glyph('i', f['dotlessi'], f['uni0307'])
-#    build_accented_glyph('iogonek', f['iogonek.dotless'], f['uni0307'])
+    build_accented_glyph('iogonek', f['iogonek.dotless'], f['uni0307'])
     build_accented_glyph('j', f['uni0237'], f['uni0307'])
 
     #--------------------------------------------------------------------------
@@ -251,9 +249,9 @@ def build_glyphs(bitbucket, f):
         build_accented_glyph(letter + 'caron', f[base(letter)], f['uni030C'])
     for letter in 'CDENRTSZ':
         build_accented_glyph(letter + 'caron', f[base(letter)], f['uni030C.cap'])
-#    for letter in 'dLlt':
-#        build_accented_glyph(letter + 'caron', f[base(letter)], f['uni0315'])
-#
+    for letter in 'dLlt':
+        build_accented_glyph(letter + 'caron', f[base(letter)], f['uni0315'])
+
 #    for letter in 'cdenrstz':
 #        build_accented_glyph(letter + 'caron.sc', f[letter + '.sc'], f['uni030C'])
 #    build_accented_glyph('lcaron.sc', f['l.sc'], f['uni0315'])
@@ -266,7 +264,7 @@ def build_glyphs(bitbucket, f):
         build_accented_glyph(letter + 'macron', f[base(letter)], f['uni0304.cap'])
 #    for letter in 'aeiou':
 #        build_accented_glyph(letter + 'macron.sc', f[letter + '.sc'], f['uni0304'])
-#
+
     #--------------------------------------------------------------------------
 
     for letter in 'ou':
@@ -275,8 +273,8 @@ def build_glyphs(bitbucket, f):
         build_accented_glyph(letter + 'hungarumlaut', f[base(letter)], f['uni030B.cap'])
 #    for letter in 'ou':
 #        build_accented_glyph(letter + 'hungarumlaut.sc', f[letter + '.sc'], f['uni030B'])
-#
-#    #--------------------------------------------------------------------------
+
+    #--------------------------------------------------------------------------
 
     build_multigraph('napostrophe', [f['quoteright'], f['n']])
     build_multigraph('IJ', [f['I'], f['J']])
