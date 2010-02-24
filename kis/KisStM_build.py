@@ -47,7 +47,8 @@ def build_glyphs(bitbucket, f):
 
     db = font_db.db_create(f)
 
-    db['spacing_anchor_heights'] = { 'hi' : 610, # caps and ascenders
+    db['spacing_anchor_heights'] = { 'hi2' : 670, # caps and ascenders,
+                                     'hi' : 610,  # caps and ascenders,
                                      'x'  : 385,  # ex-height
                                      'o'  : 200,  # like the letter o
                                      'bl' : 10,   # baseline
