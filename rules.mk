@@ -20,6 +20,7 @@
 
 PYTHON   = python
 MAKEFONT = ${PYTHON} make-fonts.py
+FONTS_DESTDIR = `echo ${SORTSMILL_FONTS_DESTDIR}`
 
 OFL%.otf              : %.sfd  ; ${MAKEFONT} $(basename $@)
 %.otf                 : %.sfd  ; ${MAKEFONT} $(basename $@)

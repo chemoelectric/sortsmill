@@ -20,10 +20,15 @@
 
 include ../rules.mk
 
-all : otf ofl_otf ttf ofl_ttf
+OTF     = KisStM.otf KisStM-Italic.otf
+OFL_OTF = OFLKisStM.otf OFLKisStM-Italic.otf
+TTF     = KisStMTT.ttf KisStMTT-Italic.ttf
+OFL_TTF = OFLKisStMTT.ttf OFLKisStMTT-Italic.ttf
 
-otf     : KisStM.otf KisStM-Italic.otf
-ofl_otf : OFLKisStM.otf OFLKisStM-Italic.otf
-ttf     : KisStMTT.ttf KisStMTT-Italic.ttf
-ofl_ttf : OFLKisStMTT.ttf OFLKisStMTT-Italic.ttf
+ALL = ${OTF} ${OFL_OTF} ${TTF} ${OFL_TTF}
 
+all : ${ALL}
+
+install: ${ALL}
+	cp -v $^ ${FONTS_DESTDIR}
+	fc-cache -r -v ${FONTS_DESTDIR}
