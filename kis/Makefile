@@ -30,5 +30,5 @@ ALL = ${OTF} ${OFL_OTF} ${TTF} ${OFL_TTF}
 all : ${ALL}
 
 install: ${ALL}
-	cp -v $^ ${FONTS_DESTDIR}
-	fc-cache -r -v ${FONTS_DESTDIR}
+	${CP} $^ ${FONTS_DESTDIR}
+	${FC_CACHE} ${FONTS_DESTDIR}
