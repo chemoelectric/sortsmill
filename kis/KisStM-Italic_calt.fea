@@ -18,29 +18,19 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-languagesystem DFLT dflt;
-languagesystem latn dflt;
 
-# Turkish, Azeri, Crimean Tatar
-#languagesystem latn TRK;
-#languagesystem latn AZE;
-#languagesystem latn CRT;
+feature calt {
 
-# Useful for spacing and kerning of capitals.
-# Comment this out for production.
-#include(CAPS.fea)
+  sub [g gcircumflex gbreve gdotaccent gcommaaccent]
+      [j jcircumflex uni0237 f]'
+      by [j.001 jcircumflex.001 uni0237.001 f.001];
 
-include(KisStM-Italic_locl.fea)
-include(KisStM-Italic_desc.fea)
-#include(KisStM-Italic_figures.fea)
-#include(KisStM-Italic_sc.fea)
-#include(KisStM-Italic_hist.fea)
-#include(KisStM-Italic_case.fea)
-#include(KisStM-Italic_salt.fea)
-include(KisStM-Italic_calt.fea)
-#include(KisStM-Italic_liga.fea)
-#include(KisStM-Italic_cpsp.fea)
-include(KisStM-Italic_generated_kerning.fea)
+  sub [g.ld gcircumflex.ld gbreve.ld gdotaccent.ld gcommaaccent.ld]
+      [j.ld jcircumflex.ld uni0237.ld f.ld y.ld yacute.ld ydieresis.ld ycircumflex.ld]'
+      by [j.002 jcircumflex.002 uni0237.002 f.001 y.001 yacute.001 ydieresis.001 ycircumflex.001];
+
+} calt;
+
 
 # local variables:
 # mode: fundamental
