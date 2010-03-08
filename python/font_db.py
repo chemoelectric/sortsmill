@@ -51,9 +51,17 @@ def db_create(font):
     return db_open(font, flag = 'c')
 
 def db_close(font):
-    if 'db' in font.temporary and font.temporary['db'] is not None:
+    if font.temporary is not None and 'db' in font.temporary and font.temporary['db'] is not None:
         font.temporary['db'].close()
         font.temporary['db'] = None
+
+def db_exists(font):
+    return os.path.exists(db_file_name(font))
+
+def db_remove(font):
+    if db_exists(font):
+        db_close(font)
+        os.remove(db_file_name(font))
 
 def db_init_binding(font, key, default_value):
     db = db_open(font)

@@ -658,13 +658,21 @@ def something_is_selected(bitbucket, font = None):
     return False
 
 def clear_kern_cache(font):
-    font.temporary['kern-cache'] = {}
+    if kern_cache_has_contents(font):
+        font.temporary['kern-cache'] = {}
 
 def kern_cache_has_contents(font):
     return (font.temporary != None and
             'kern-cache' in font.temporary and
             font.temporary['kern-cache'] != None and
             font.temporary['kern-cache'] != {})
+
+def clear_cached_data(font):
+    clear_kern_cache(font)
+    font_db.db_remove(font)
+
+def cached_data_exists(font):
+    return kern_cache_has_contents(font) or font_db.db_exists(font)
 
 fontforge.registerMenuItem((lambda _, glyph: set_spacing_anchors_read_only(glyph, True)),
                            (lambda _, glyph: selected_spacing_anchors(glyph) != []),
@@ -740,9 +748,9 @@ fontforge.registerMenuItem(generate_kerning_and_read_features,
                            None, 'Font', 'None',
                            'Generate kerning and read features')
 
-fontforge.registerMenuItem((lambda _, font: clear_kern_cache(font)),
-                           (lambda _, font: kern_cache_has_contents(font)),
+fontforge.registerMenuItem((lambda _, font: clear_cached_data(font)),
+                           (lambda _, font: cached_data_exists(font)),
                            None, 'Font', 'None',
-                           'Clear kerning cache')
+                           'Clear cached data')
 
 #--------------------------------------------------------------------------
