@@ -3231,7 +3231,7 @@ def unicode_category(glyph_name, ligature_picker = None):
         picked = ligature_picker(root)
     else:
         picked = root
-    uni = fontforge.unicodeFromName(picked)
+    uni = preferred_unicode(picked)
     if uni < 0:
         cat = '  '
     elif sys.version_info[0] <= 2:
@@ -3315,7 +3315,7 @@ def propagate_hyphens(font, suffix = ""):
 def build_space_glyph(font, glyph_id, width):
     if type(glyph_id) == type(""):
         name = glyph_id
-        unicode = fontforge.unicodeFromName(name)
+        unicode = preferred_unicode(name)
     else:
         name = name_from_unicode(glyph_id)
         unicode = glyph_id        
@@ -3375,7 +3375,7 @@ def build_spacing_marks(font, width):
         if combining_mark in font:
             spacing_mark = spacing_marks_lookup[combining_mark]
             if spacing_mark != None:
-                new_glyph = font.createChar(fontforge.unicodeFromName(spacing_mark), spacing_mark)
+                new_glyph = font.createChar(preferred_unicode(spacing_mark), spacing_mark)
                 new_glyph.glyphname = spacing_mark
                 new_glyph.clear()
                 new_glyph.addReference(combining_mark, transformation)
@@ -3383,7 +3383,7 @@ def build_spacing_marks(font, width):
 
 def build_accented_glyph_no_spacing(glyphname, base, mark, width = None, rsb = None):
     assert not (width != None and rsb != None)
-    new_glyph = base.font.createChar(fontforge.unicodeFromName(glyphname), glyphname)
+    new_glyph = base.font.createChar(preferred_unicode(glyphname), glyphname)
     new_glyph.glyphname = glyphname
     new_glyph.clear()
     new_glyph.addReference(base.glyphname)
@@ -3414,7 +3414,7 @@ def build_mark_to_base(glyphname, base, mark, anchor_name):
     if glyphname in base.font:
         new_glyph = base.font[glyphname]
     else:
-        new_glyph = base.font.createChar(fontforge.unicodeFromName(glyphname), glyphname)
+        new_glyph = base.font.createChar(preferred_unicode(glyphname), glyphname)
     new_glyph.glyphname = glyphname
     for base_anchor in base.anchorPoints:
         if base_anchor[0] == anchor_name:
@@ -3485,14 +3485,14 @@ class mark_builder:
             if variant_extension(base.glyphname):
                 build_accented_glyph_no_spacing(glyphname, base, f[COMMA_ABOVE_RIGHT])
             else:
-                new_glyph = self.mark.font.createChar(fontforge.unicodeFromName(glyphname), glyphname)
+                new_glyph = self.mark.font.createChar(preferred_unicode(glyphname), glyphname)
                 new_glyph.glyphname = glyphname
                 new_glyph.clear()
                 new_glyph.build()
         elif has_ascender(base) and self.mark.glyphname + ".cap" in f:
             build_accented_glyph_no_spacing(glyphname, base, f[self.mark.glyphname + ".cap"])
         else:
-            new_glyph = self.mark.font.createChar(fontforge.unicodeFromName(glyphname), glyphname)
+            new_glyph = self.mark.font.createChar(preferred_unicode(glyphname), glyphname)
             new_glyph.glyphname = glyphname
             new_glyph.clear()
             new_glyph.build()
@@ -3564,6 +3564,12 @@ class mark_builder_bunch:
 
 ###########################################################################
 
+def remove_overlap(glyph):        
+    if glyph.selfIntersects():
+        glyph.unlinkRef()
+        glyph.removeOverlap()
+        glyph.autoHint()
+
 def build_multigraph(glyphname, components,
                      tolerance = None,
                      rounding_function = round):
@@ -3573,7 +3579,7 @@ def build_multigraph(glyphname, components,
         tolerance = spacing_by_anchors.anchor_tolerance
 
     f = components[0].font
-    new_glyph = f.createChar(fontforge.unicodeFromName(glyphname), glyphname)
+    new_glyph = f.createChar(preferred_unicode(glyphname), glyphname)
     new_glyph.glyphname = glyphname
     new_glyph.clear()
     new_glyph.addReference(components[0].glyphname)
@@ -3595,11 +3601,13 @@ def build_multigraph(glyphname, components,
     else:
         new_glyph.width = offset + components[-1].width
 
+    remove_overlap(new_glyph)
+
 ###########################################################################
 
 def make_glyph_reference(glyphname, original, transformation = None, copy_spacing_anchors = True):
     f = original.font
-    new_glyph = f.createChar(fontforge.unicodeFromName(glyphname), glyphname)
+    new_glyph = f.createChar(preferred_unicode(glyphname), glyphname)
     new_glyph.glyphname = glyphname
     new_glyph.clear()
     if transformation != None:
@@ -3615,7 +3623,7 @@ def make_glyph_reference(glyphname, original, transformation = None, copy_spacin
 def make_turned_glyph(glyphname, original):
     f = original.font
 
-    new_glyph = f.createChar(fontforge.unicodeFromName(glyphname), glyphname)
+    new_glyph = f.createChar(preferred_unicode(glyphname), glyphname)
     new_glyph.glyphname = glyphname
     new_glyph.clear()
 
@@ -3628,5 +3636,14 @@ def make_turned_glyph(glyphname, original):
     new_glyph.unlinkRef()
     new_glyph.left_side_bearing = original.right_side_bearing
     new_glyph.width = original.width
+
+###########################################################################
+
+def preferred_unicode(glyphname):
+    if '_' in glyphname:
+        uni = -1
+    else:
+        uni = fontforge.unicodeFromName(glyphname)
+    return uni
 
 ###########################################################################
