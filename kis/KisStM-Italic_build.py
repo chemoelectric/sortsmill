@@ -304,6 +304,12 @@ def build_glyphs(bitbucket, f):
     build_multigraph('f_k', [f['f'], f['k']])
     build_multigraph('f_l', [f['f'], f['l']])
 
+    build_multigraph('f_f_b', [f['f_f'], f['b']])
+    build_multigraph('f_f_h', [f['f_f'], f['h']])
+    build_multigraph('f_f_hcircumflex', [f['f_f'], f['hcircumflex']])
+    build_multigraph('f_f_k', [f['f_f'], f['k']])
+    build_multigraph('f_f_l', [f['f_f'], f['l']])
+
     build_multigraph('f_b.ld', [f['f.ld'], f['b']])
     build_multigraph('f_h.ld', [f['f.ld'], f['h']])
     build_multigraph('f_hcircumflex.ld', [f['f.ld'], f['hcircumflex']])
