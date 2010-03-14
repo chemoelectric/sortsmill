@@ -322,10 +322,6 @@ def build_glyphs(bitbucket, f):
     build_multigraph('f_f_k.ld', [f['f_f.ld'], f['k']])
     build_multigraph('f_f_l.ld', [f['f_f.ld'], f['l']])
 
-##    build_multigraph('Ldot', [f['L'], f['periodcentered']]) # Done by hand.
-#    build_multigraph('ldot', [f['l'], f['periodcentered']])
-##    build_multigraph('ldot.sc', [f['l.sc'], f['periodcentered.sc']]) # Done by hand.
-
     #--------------------------------------------------------------------------
 
     f.selection.all()
