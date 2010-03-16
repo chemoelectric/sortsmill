@@ -246,6 +246,25 @@ def build_glyphs(bitbucket, f):
     build_accented_glyph('j', f['uni0237'], f['uni0307'])
     build_accented_glyph('j.ld', f['uni0237.ld'], f['uni0307'])
 
+#     # Dot accents needed for Old Irish texts.
+#     build_accented_glyph('uni1E02', f['B'], f['uni0307.cap'])
+#     build_accented_glyph('uni1E03', f['b'], f['uni0307.cap'])
+#     build_accented_glyph('uni1E0A', f['D'], f['uni0307.cap'])
+#     build_accented_glyph('uni1E0B', f['d'], f['uni0307.cap'])
+#     build_accented_glyph('uni1E1E', f['F'], f['uni0307.cap'])
+#     build_accented_glyph('uni1E1F', f['f'], f['uni0307.cap'])
+#     build_accented_glyph('uni1E22', f['H'], f['uni0307.cap'])
+#     build_accented_glyph('uni1E23', f['h'], f['uni0307.cap'])
+#     build_accented_glyph('uni1E40', f['M'], f['uni0307.cap'])
+#     build_accented_glyph('uni1E41', f['m'], f['uni0307'])
+#     build_accented_glyph('uni1E56', f['P'], f['uni0307.cap'])
+#     build_accented_glyph('uni1E57', f['p'], f['uni0307'])
+#     build_accented_glyph('uni1E57.ld', f['p.ld'], f['uni0307'])
+#     build_accented_glyph('uni1E60', f['S'], f['uni0307.cap'])
+#     build_accented_glyph('uni1E61', f['s'], f['uni0307'])
+#     build_accented_glyph('uni1E6A', f['T'], f['uni0307.cap'])
+#     build_accented_glyph('uni1E6B', f['t'], f['uni0307'])
+
     #--------------------------------------------------------------------------
 
     for letter in 'cenrsz':
