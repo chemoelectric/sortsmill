@@ -24,20 +24,20 @@
 
 @ogoneks = [aogonek iogonek iogonek.dotless uogonek];
 
-@f_short = [f];
-@f_short_new = [f.001];
-@f_long = [f.ld];
-@f_long_new = [f.001];
+@f_short = [f uni1E1F];
+@f_short_new = [f.001 uni1E1F.001];
+@f_long = [f.ld uni1E1F.ld];
+@f_long_new = [f.001 uni1E1F.001];
 
 @j_short = [j jcircumflex uni0237];
 @j_short_new = [j.001 jcircumflex.001 uni0237.001];
 @j_long = [j.ld jcircumflex.ld uni0237.ld];
 @j_long_new = [j.002 jcircumflex.002 uni0237.002];
 
-@p_short = [p thorn];
-@p_short_new = [p.001 thorn.001];
-@p_long = [p.ld thorn.ld];
-@p_long_new = [p.002 thorn.002];
+@p_short = [p thorn uni1E57];
+@p_short_new = [p.001 thorn.001 uni1E57.001];
+@p_long = [p.ld thorn.ld uni1E57.ld];
+@p_long_new = [p.002 thorn.002 uni1E57.002];
 
 @y_long = [y.ld yacute.ld ydieresis.ld ycircumflex.ld];
 @y_long_new = [y.001 yacute.001 ydieresis.001 ycircumflex.001];
