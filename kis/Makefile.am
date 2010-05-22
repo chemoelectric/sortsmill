@@ -26,9 +26,10 @@ TTF     = KisStMTT.ttf KisStMTT-Italic.ttf
 OFL_TTF = OFLKisStMTT.ttf OFLKisStMTT-Italic.ttf
 
 ALL = ${OTF} ${OFL_OTF} ${TTF} ${OFL_TTF}
+MOSTLYCLEANFILES = ${ALL}
 
 all : ${ALL}
 
-install: ${ALL}
-	${CP} $^ ${FONTS_DESTDIR}
-	${FC_CACHE} ${FONTS_DESTDIR}
+install : ${ALL}
+	${CP} $^ ${FONTSDIR}
+	${FC_CACHE} ${FONTSDIR}

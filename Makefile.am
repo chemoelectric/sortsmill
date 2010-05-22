@@ -18,23 +18,30 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-PYTHON    = @python@
-PYTHONDIR = @python_dir@
-MAKEFONT  = PYTHONPATH="${PYTHONDIR}$(if ${PYTHONPATH},:${PYTHONPATH})" ${PYTHON} make-fonts.py
-CP        = cp -v
-FC_CACHE  = fc-cache -r -v
-FONTSDIR  = ${datarootdir}/fonts
+include rules.mk
 
-OFL%.otf              : %.sfd  ; ${MAKEFONT} $(basename $@)
-%.otf                 : %.sfd  ; ${MAKEFONT} $(basename $@)
-OFL%TT.ttf            : %.sfd  ; ${MAKEFONT} $(basename $@)
-%TT.ttf               : %.sfd  ; ${MAKEFONT} $(basename $@)
+.PHONY: all complete incomplete
+all: complete
+complete: ${COMPLETE}
+incomplete: ${INCOMPLETE}
 
-# Is there a more general and simple way to handle the following
-# within make?
-OFL%TT-Italic.ttf     : %-Italic.sfd  ; ${MAKEFONT} $(basename $@)
-%TT-Italic.ttf        : %-Italic.sfd  ; ${MAKEFONT} $(basename $@)
-OFL%TT-Bold.ttf       : %-Bold.sfd  ; ${MAKEFONT} $(basename $@)
-%TT-Bold.ttf          : %-Bold.sfd  ; ${MAKEFONT} $(basename $@)
-OFL%TT-BoldItalic.ttf : %-BoldItalic.sfd  ; ${MAKEFONT} $(basename $@)
-%TT-BoldItalic.ttf    : %-BoldItalic.sfd  ; ${MAKEFONT} $(basename $@)
+COMPLETE =
+INCOMPLETE = ${KIS_FONTS}
+MOSTLYCLEANFILES = ${COMPLETE} ${INCOMPLETE}
+
+KIS_FONTS = \
+	kis/KisStM.otf kis/KisStMTT.ttf kis/OFLKisStM.otf kis/OFLKisStMTT.ttf \
+	kis/KisStM-Italic.otf kis/KisStMTT-Italic.ttf kis/OFLKisStM-Italic.otf kis/OFLKisStMTT-Italic.ttf \
+	kis/KisStM-Bold.otf kis/KisStMTT-Bold.ttf kis/OFLKisStM-Bold.otf kis/OFLKisStMTT-Bold.ttf
+
+${KIS_FONTS}:
+	(cd kis; $(MAKE) $(basename $<))
+
+.PHONY: install install-complete install-incomplete
+install: install-complete
+install-complete: ${COMPLETE}
+	${CP} $^ ${FONTSDIR}
+	${FC_CACHE} ${FONTSDIR}
+install-incomplete: ${INCOMPLETE}
+	${CP} $^ ${FONTSDIR}
+	${FC_CACHE} ${FONTSDIR}
