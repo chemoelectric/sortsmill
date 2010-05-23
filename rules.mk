@@ -21,9 +21,22 @@
 PYTHON    = @python@
 PYTHONDIR = @python_dir@
 MAKEFONT  = PYTHONPATH="${PYTHONDIR}$(if ${PYTHONPATH},:${PYTHONPATH})" ${PYTHON} make-fonts.py
-CP        = cp -v
-FC_CACHE  = fc-cache -r -v
-FONTSDIR  = ${datarootdir}/fonts
+
+fontsdir   = ${datarootdir}/fonts
+
+nullify  =
+opentype = ${1}
+truetype = $(foreach f, ${1}, $(shell echo ${f} | sed -e 's/\(.*\)\(-.*\)\.otf/\1TT\2.ttf/;s/\(.*\)\.otf/\1TT.ttf/'))
+mit      = ${1}
+ofl      = $(foreach f, ${1}, OFL${f})
+
+expand_fonts = \
+	$(call @mit_func@, $(call @opentype_func@, ${1})) \
+	$(call @ofl_func@, $(call @opentype_func@, ${1})) \
+	$(call @mit_func@, $(call @truetype_func@, ${1})) \
+	$(call @ofl_func@, $(call @truetype_func@, ${1}))
+list_fonts        = $(call expand_fonts, $(shell cat ${1}))
+list_fonts_in_dir = $(addprefix ${1}/, $(call expand_fonts, $(shell cat ${1}/fonts)))
 
 OFL%.otf              : %.sfd  ; ${MAKEFONT} $(basename $@)
 %.otf                 : %.sfd  ; ${MAKEFONT} $(basename $@)

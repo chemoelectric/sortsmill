@@ -18,5 +18,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-include ../rules.mk
-include ../dir.mk
+FONTS = $(call list_fonts, fonts)
+
+MOSTLYCLEANFILES = ${FONTS}
+fonts_DATA       = ${FONTS}

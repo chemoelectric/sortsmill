@@ -20,28 +20,12 @@
 
 include rules.mk
 
-.PHONY: all complete incomplete
-all: complete
-complete: ${COMPLETE}
-incomplete: ${INCOMPLETE}
+FAMILIES = goudy kis
 
-COMPLETE =
-INCOMPLETE = ${KIS_FONTS}
-MOSTLYCLEANFILES = ${COMPLETE} ${INCOMPLETE}
+FONTS = $(foreach fam, ${FAMILIES}, $(call list_fonts_in_dir, ${fam}))
 
-KIS_FONTS = \
-	kis/KisStM.otf kis/KisStMTT.ttf kis/OFLKisStM.otf kis/OFLKisStMTT.ttf \
-	kis/KisStM-Italic.otf kis/KisStMTT-Italic.ttf kis/OFLKisStM-Italic.otf kis/OFLKisStMTT-Italic.ttf \
-	kis/KisStM-Bold.otf kis/KisStMTT-Bold.ttf kis/OFLKisStM-Bold.otf kis/OFLKisStMTT-Bold.ttf
+MOSTLYCLEANFILES = ${FONTS}
+fonts_DATA       = ${FONTS}
 
-${KIS_FONTS}:
-	(cd kis; $(MAKE) $(basename $<))
-
-.PHONY: install install-complete install-incomplete
-install: install-complete
-install-complete: ${COMPLETE}
-	${CP} $^ ${FONTSDIR}
-	${FC_CACHE} ${FONTSDIR}
-install-incomplete: ${INCOMPLETE}
-	${CP} $^ ${FONTSDIR}
-	${FC_CACHE} ${FONTSDIR}
+${FONTS}:
+	$(foreach f, ${FONTS}, ${MAKE} -C $(dir ${f}) $(notdir ${f}) ;)
