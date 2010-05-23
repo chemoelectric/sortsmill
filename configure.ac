@@ -28,6 +28,15 @@ AM_INIT_AUTOMAKE
 python_dir=`pwd`/python
 AC_SUBST(python_dir)
 
+AC_ARG_ENABLE(families,
+        [AS_HELP_STRING([--enable-families=FAM1,FAM2,...],
+                        [build the listed font families (default is --enable-families=goudy)])],
+        [build_families=${enableval}],
+        [build_families=goudy])
+test x"${build_families}" = x"no" && build_families=
+build_families="`echo ${build_families} | sed -e 's/,/ /g'`"
+AC_SUBST(build_families)
+
 AC_ARG_ENABLE(opentype,
         [AS_HELP_STRING([--disable-opentype],
                         [do not build PostScript-flavored OpenType fonts (default is to build them)])],

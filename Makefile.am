@@ -20,7 +20,7 @@
 
 include rules.mk
 
-FAMILIES = goudy kis
+FAMILIES = @build_families@
 
 FONTS = $(foreach fam, ${FAMILIES}, $(call list_fonts_in_dir, ${fam}))
 
