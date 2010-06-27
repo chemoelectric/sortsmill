@@ -18,6 +18,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+lookup romanian {
+
+ sub scedilla by uni0219;
+ sub uni0163 by uni021B;
+
+} romanian;
+
+
 lookup turkish {
 
   # Replace the dotted 'i' with an equivalent glyph that does not
@@ -31,14 +39,20 @@ feature locl {
 
   script latn;
 
+  language ROM exclude_dflt;
+  lookup romanian;
+
+  language MOL exclude_dflt;
+  lookup romanian;
+
   language TRK exclude_dflt;
-  lookup turkish;  
+  lookup turkish;
 
   language AZE exclude_dflt;
-  lookup turkish;  
+  lookup turkish;
 
   language CRT exclude_dflt;
-  lookup turkish;  
+  lookup turkish;
 
 } locl;
 
