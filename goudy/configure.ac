@@ -1,3 +1,6 @@
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
 # Copyright (c) 2010 Barry Schwartz
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -18,18 +21,24 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-ACLOCAL_AMFLAGS = -I m4 --install
+AC_PREREQ([2.65])
+AC_INIT([sortsmill-goudy], [3.1], [http://code.google.com/p/sortsmill/issues/])
+AM_INIT_AUTOMAKE([foreign])
 
-include sortsmill-rules.am
+AC_SORTSMILL_PREREQUISITES
+AM_INIT_SORTSMILL
 
-FONTS = GoudyStM GoudyStM-Italic
+# Checks for programs.
+AC_PROG_MAKE_SET
 
-fontsdir = ${datarootdir}/fonts
-fonts_DATA = $(call expand_fonts, ${FONTS})
+# Checks for libraries.
 
-EXTRA_DIST = \
-	$(addsuffix .sfd, ${FONTS}) \
-	$(addsuffix _build.py, ${FONTS}) \
-	$(addsuffix _*.fea, ${FONTS})
+# Checks for header files.
 
-MOSTLYCLEANFILES = ${fonts_DATA}
+# Checks for typedefs, structures, and compiler characteristics.
+
+# Checks for library functions.
+
+
+AC_CONFIG_FILES([Makefile])
+AC_OUTPUT
