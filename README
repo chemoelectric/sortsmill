@@ -1,14 +1,10 @@
-The 'python' subdirectory contains Python scripts for FontForge. The
-author uses them by making ~/.FontForge/python be a symbolic link to
-the directory (in a local Mercurial repository); scripted menu options
-will appear in the 'Tools' menus of the font and glyph dialogs. He
-also has ~/.FontForge/python in his PYTHONPATH, so the scripts can be
-imported into Python programs.
+Sorts Mill is developing a packaging system based on GNU Autotools,
+and also is reorganizing. A lot of things are changing, therefore.
 
-Other subdirectories contain 'source code' for font families:
-typically FontForge .sfd files, Adobe feature files, Python scripts,
-and Makefiles.
+The 'tools' subdirectory contains Python scripts for FontForge. There
+is Python code that adds stuff to the "Tools" menus in an interactive
+FontForge session, and there is code that is run from the command line
+or a Makefile to generate fonts from "source code". Some code does both.
 
-
-
+Other subdirectories contain "source code" for font families.
 
