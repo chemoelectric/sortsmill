@@ -19,7 +19,7 @@
 # THE SOFTWARE.
 
 aclocaldir = ${datadir}/aclocal
-aclocal_DATA = sortsmill.m4
+aclocal_DATA = ${srcdir}/sortsmill.m4
 
 sortsmillmoduledir = ${pythondir}/sortsmill
 sortsmillmodule_PYTHON = __init__.py cap_spacing.py glyphbuild.py		\
