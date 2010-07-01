@@ -102,24 +102,24 @@ AC_REQUIRE([AC_PROG_FONTLINT])])
 
 # AM_INIT_SORTSMILL
 # -----------------
-m4_define([AM_INIT_SORTSMILL],
-[m4_syscmd(echo > sortsmill-rules.am '# generated automatically by autoconf
+AC_DEFUN([AM_INIT_SORTSMILL],
+[
+AC_SUBST([nullify],[])
+AC_SUBST([opentype],['$(foreach f, ${1}, ${f}.otf)'])
+AC_SUBST([truetype],['$(foreach f, ${1}, $(shell echo ${f} | sed -e "/-/{s/\(.*\)\(-.*\)/\1TT\2.ttf/; p; d};s/\(.*\)/\1TT.ttf/"))'])
+AC_SUBST([mit],['${1}'])
+AC_SUBST([ofl],['$(foreach f, ${1}, OFL${f})'])
 
-MAKEFONTS = make-fonts
-DISTCLEANFILES = sortsmill-rules.am
+AC_SUBST([MAKEFONTS],[make-fonts])
 
-nullify  =
-opentype = $(foreach f, ${1}, ${f}.otf)
-truetype = $(foreach f, ${1}, $(shell echo ${f} | sed -e "/-/{s/\(.*\)\(-.*\)/\1TT\2.ttf/; p; d};s/\(.*\)/\1TT.ttf/"))
-mit      = ${1}
-ofl      = $(foreach f, ${1}, OFL${f})
+AC_SUBST([expand_fonts],[' \
+	$(call ${mit_func}, $(call ${opentype_func}, ${1})) \
+	$(call ${ofl_func}, $(call ${opentype_func}, ${1})) \
+	$(call ${mit_func}, $(call ${truetype_func}, ${1})) \
+	$(call ${ofl_func}, $(call ${truetype_func}, ${1}))'])
 
-expand_fonts = \
-	$(call @mit_func@, $(call @opentype_func@, ${1})) \
-	$(call @ofl_func@, $(call @opentype_func@, ${1})) \
-	$(call @mit_func@, $(call @truetype_func@, ${1})) \
-	$(call @ofl_func@, $(call @truetype_func@, ${1}))
-
+AM_SUBST_NOTMAKE(sortsmill_rules)
+AC_SUBST([sortsmill_rules],['
 OFL%.otf              : %.sfd  ; ${MAKEFONTS} $(basename [$]@)
 %.otf                 : %.sfd  ; ${MAKEFONTS} $(basename [$]@)
 OFL%TT.ttf            : %.sfd  ; ${MAKEFONTS} $(basename [$]@)
@@ -134,5 +134,5 @@ OFL%TT-Bold.ttf       : %-Bold.sfd  ; ${MAKEFONTS} $(basename [$]@)
 OFL%TT-BoldItalic.ttf : %-BoldItalic.sfd  ; ${MAKEFONTS} $(basename [$]@)
 %TT-BoldItalic.ttf    : %-BoldItalic.sfd  ; ${MAKEFONTS} $(basename [$]@)
 '
-)
+])
 ])
