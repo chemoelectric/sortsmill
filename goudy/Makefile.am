@@ -20,9 +20,11 @@
 
 ACLOCAL_AMFLAGS = -I m4 --install
 
-include sortsmill-rules.am
+@sortsmill_rules@
 
 FONTS = GoudyStM GoudyStM-Italic
+FEA_GoudyStM = main locl figures sc hist case salt liga cpsp generated_kerning
+FEA_GoudyStM_Italic = main locl figures hist case salt liga cpsp generated_kerning
 
 fontsdir = ${datarootdir}/fonts
 fonts_DATA = $(call expand_fonts, ${FONTS})
@@ -30,6 +32,7 @@ fonts_DATA = $(call expand_fonts, ${FONTS})
 EXTRA_DIST = \
 	$(addsuffix .sfd, ${FONTS}) \
 	$(addsuffix _build.py, ${FONTS}) \
-	$(addsuffix _*.fea, ${FONTS})
+	$(patsubst %, GoudyStM_%.fea, ${FEA_GoudyStM}) \
+	$(patsubst %, GoudyStM-Italic_%.fea, ${FEA_GoudyStM_Italic})
 
 MOSTLYCLEANFILES = ${fonts_DATA}

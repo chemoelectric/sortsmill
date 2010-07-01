@@ -20,9 +20,12 @@
 
 ACLOCAL_AMFLAGS = -I m4 --install
 
-include sortsmill-rules.am
+@sortsmill_rules@
 
 FONTS = KisStM KisStM-Italic KisStM-Bold
+FEA_KisStM = main locl desc liga generated_kerning
+FEA_KisStM_Italic = main locl desc calt liga generated_kerning
+FEA_KisStM_Bold = main locl desc generated_kerning
 
 fontsdir = ${datarootdir}/fonts
 fonts_DATA = $(call expand_fonts, ${FONTS})

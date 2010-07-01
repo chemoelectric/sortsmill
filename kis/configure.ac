@@ -21,8 +21,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-AC_PREREQ([2.65])
-AC_INIT([sortsmill-kis], [1.0], [http://code.google.com/p/sortsmill/issues/])
+AC_PREREQ(2.65)
+AC_INIT([sortsmill-kis],[1.0],[http://code.google.com/p/sortsmill/issues/])
 AM_INIT_AUTOMAKE([foreign])
 
 AC_SORTSMILL_PREREQUISITES
