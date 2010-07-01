@@ -106,7 +106,7 @@ m4_define([AM_INIT_SORTSMILL],
 [m4_syscmd(echo > sortsmill-rules.am '# generated automatically by autoconf
 
 MAKEFONTS = make-fonts
-DISTCLEANFILES = sortsmill-rules.in
+DISTCLEANFILES = sortsmill-rules.am
 
 nullify  =
 opentype = $(foreach f, ${1}, ${f}.otf)
