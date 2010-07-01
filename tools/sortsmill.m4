@@ -102,12 +102,11 @@ AC_REQUIRE([AC_PROG_FONTLINT])])
 
 # AM_INIT_SORTSMILL
 # -----------------
-AC_DEFUN([AM_INIT_SORTSMILL],
-[
-m4_syscmd(echo > sortsmill-rules.am '# generated automatically by configure
+m4_define([AM_INIT_SORTSMILL],
+[m4_syscmd(echo > sortsmill-rules.am '# generated automatically by autoconf
 
 MAKEFONTS = make-fonts
-DISTCLEANFILES = sortsmill-rules.am
+DISTCLEANFILES = sortsmill-rules.in
 
 nullify  =
 opentype = $(foreach f, ${1}, ${f}.otf)
@@ -136,4 +135,3 @@ OFL%TT-BoldItalic.ttf : %-BoldItalic.sfd  ; ${MAKEFONTS} $(basename [$]@)
 %TT-BoldItalic.ttf    : %-BoldItalic.sfd  ; ${MAKEFONTS} $(basename [$]@)
 '
 )
-])
