@@ -135,3 +135,4 @@ OFL%TT-BoldItalic.ttf : %-BoldItalic.sfd  ; ${MAKEFONTS} $(basename [$]@)
 %TT-BoldItalic.ttf    : %-BoldItalic.sfd  ; ${MAKEFONTS} $(basename [$]@)
 '
 )
+])
