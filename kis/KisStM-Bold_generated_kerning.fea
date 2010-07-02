@@ -1,0 +1,564 @@
+feature kern {
+@r1_E = [\E \Eacute \Ebreve \Ecaron \Ecircumflex \Edieresis 
+     \Edotaccent \Egrave \Emacron];
+@r1_t = [\t \tcaron \uni0163 \uni021B \uni1E6B];
+@r1_z = [\z \zacute \zcaron \zdotaccent];
+@r1_g = [\g \gbreve \gcircumflex \gcommaaccent \gdotaccent];
+@r1_O = [\O \Oacute \Obreve \Ocircumflex \Odieresis \Ograve 
+     \Ohungarumlaut \Omacron \Oslash \Otilde];
+@r1_s = [\s \sacute \scaron \scedilla \scircumflex \uni0219 
+     \uni1E61];
+@r1_C = [\C \Cacute \Ccaron \Ccedilla \Ccircumflex \Cdotaccent];
+@r1_P = [\P \uni1E56];
+@r1_L = [\L \Lacute \Lcaron \Lcommaaccent \Lslash];
+@r1_T = [\T \Tcaron \uni0162 \uni021A \uni1E6A];
+@r1_y.ld = [\y.ld \yacute.ld \ycircumflex.ld \ydieresis.ld];
+@r1_k = [\k \kcommaaccent];
+@r1_l = [\l \lacute \lcaron \lcommaaccent];
+@r1_dotlessi = [\dotlessi \i \i.TRK \iacute \ibreve \icircumflex 
+     \idieresis \igrave \imacron \itilde];
+@r1_S = [\S \Sacute \Scaron \Scedilla \Scircumflex \uni0218 
+     \uni1E60];
+@r1_g.ld = [\g.ld \gcircumflex.ld \gcommaaccent.ld \gdotaccent.ld];
+@r1_F = [\F \uni1E1E];
+@r1_p = [\p \p.ld \uni1E57 \uni1E57.ld];
+@r1_ij = [\ij \j \j.ld \jcircumflex \jcircumflex.ld \uni0237 
+     \uni0237.ld];
+@r1_I = [\I \Iacute \Ibreve \Icircumflex \Idieresis \Idotaccent 
+     \Igrave \Imacron \Itilde];
+@r1_W = [\W \Wcircumflex];
+@r1_a = [\a \aacute \abreve \acircumflex \adieresis \agrave 
+     \amacron \aring \atilde];
+@r1_R = [\R \Racute \Rcaron \Rcommaaccent];
+@r1_N = [\N \Nacute \Ncaron \Ncommaaccent \Ntilde];
+@r1_U = [\U \Uacute \Ubreve \Ucircumflex \Udieresis \Ugrave 
+     \Uhungarumlaut \Umacron \Uring \Utilde];
+@r1_v = [\v \w \wcircumflex];
+@r1_B = [\B \uni1E02];
+@r1_D = [\D \Dcaron \uni1E0A];
+@r1_m = [\m \n \nacute \napostrophe \ncaron \ncommaaccent 
+     \ntilde \uni1E41];
+@r1_G = [\G \Gbreve \Gcircumflex \Gcommaaccent \Gdotaccent];
+@r1_iogonek = [\iogonek \iogonek.dotless];
+@r1_f = [\f \uni1E1F];
+@r1_M = [\M \uni1E40];
+@r1_A = [\A \Aacute \Abreve \Acircumflex \Adieresis \Agrave 
+     \Amacron \Aring \Atilde];
+@r1_Dcroat = [\Dcroat \Eth];
+@r1_r = [\r \racute \rcaron \rcommaaccent];
+@r1_acute = [\acute \acutecomb \acutecomb.cap \afii00208 \afii299 \afii300 
+     \afii301 \afii57929 \afii61664 \ampersand \asciicircum \asciitilde 
+     \asterisk \backslash \breve \brokenbar \bullet \caron 
+     \cedilla \cent \circumflex \colon \comma \copyright 
+     \currency \dagger \daggerdbl \degree \dieresis \divide 
+     \dollar \dollar.DONT_KEEP \dotaccent \eight \ellipsis \emdash 
+     \endash \equal \exclam \exclamdown \five \four 
+     \fraction \grave \gravecomb \gravecomb.cap \greater \guillemotleft 
+     \guillemotright \guilsinglleft \guilsinglright \hungarumlaut \hyphen \less 
+     \logicalnot \macron \minus \minute \multiply \nine 
+     \numbersign \ogonek \one \ordfeminine \ordmasculine \paragraph 
+     \parenleft \parenright \percent \period \periodcentered \plus 
+     \plusminus \question \questiondown \quotedbl \quotedblbase \quotedblleft 
+     \quotedblright \quoteleft \quotereversed \quoteright \quotesinglbase \quotesingle 
+     \registered \ring \second \section \semicolon \seven 
+     \six \slash \space \sterling \three \tilde 
+     \tildecomb \tildecomb.cap \two \underscore \uni00A0 \uni00AD 
+     \uni02BB \uni02C0 \uni02C8 \uni0302 \uni0302.ascend \uni0302.cap 
+     \uni0304 \uni0304.cap \uni0306 \uni0306.cap \uni0307 \uni0307.cap 
+     \uni0308 \uni0308.cap \uni0308.narrow \uni030A \uni030A.cap \uni030B 
+     \uni030B.cap \uni030C \uni030C.cap \uni0312 \uni0315 \uni0326 
+     \uni0327 \uni2000 \uni2001 \uni2002 \uni2003 \uni2004 
+     \uni2005 \uni2006 \uni2007 \uni2008 \uni2009 \uni200A 
+     \uni200B \uni2010 \uni2011 \uni201F \uni202F \uni203E 
+     \uni2053 \uni205F \uni2060 \uniFEFF \zero];
+@r1_h = [\h \hbar \hcircumflex \uni1E23];
+@r1_d = [\d \dcaron \uni1E0B];
+@r1_IJ = [\IJ \J \Jcircumflex];
+@r1_Y = [\Y \Yacute \Ycircumflex \Ydieresis];
+@r1_c = [\c \cacute \ccaron \ccedilla \ccircumflex \cdotaccent];
+@r1_K = [\K \Kcommaaccent];
+@r1_e = [\e \eacute \ebreve \ecaron \ecircumflex \edieresis 
+     \edotaccent \egrave \emacron];
+@r1_b = [\b \thorn \thorn.ld \uni1E03];
+@r1_Z = [\Z \Zacute \Zcaron \Zdotaccent];
+@r1_y = [\y \yacute \ycircumflex \ydieresis];
+@r1_o = [\o \oacute \obreve \ocircumflex \odieresis \ograve 
+     \ohungarumlaut \omacron \otilde];
+@r1_H = [\H \Hcircumflex \uni1E22];
+@r1_u = [\u \uacute \ubreve \ucircumflex \udieresis \ugrave 
+     \uhungarumlaut \umacron \uring \utilde];
+
+@l1_Y = [\Y \Yacute \Ycircumflex \Ydieresis];
+@l1_y.ld = [\y.ld \yacute.ld \ycircumflex.ld \ydieresis.ld];
+@l1_K = [\K \Kcommaaccent];
+@l1_F = [\F \R \Racute \Rcaron \Rcommaaccent \uni1E1E];
+@l1_eng = [\eng \eng.ld \m \n \nacute \napostrophe 
+     \ncaron \ncommaaccent \ntilde \uni1E41];
+@l1_C = [\C \Cacute \Ccaron \Ccedilla \Ccircumflex \Cdotaccent];
+@l1_t = [\t \tcaron \uni0163 \uni021B \uni1E6B];
+@l1_Z = [\Z \Zacute \Zcaron \Zdotaccent];
+@l1_E = [\E \Eacute \Ebreve \Ecaron \Ecircumflex \Edieresis 
+     \Edotaccent \Egrave \Emacron \Eogonek];
+@l1_J = [\J \Jcircumflex];
+@l1_P = [\P \uni1E56];
+@l1_a = [\a \aacute \abreve \acircumflex \adieresis \agrave 
+     \amacron \aring \atilde];
+@l1_u = [\u \uacute \ubreve \ucircumflex \udieresis \ugrave 
+     \uhungarumlaut \umacron \uogonek \uring \utilde];
+@l1_A = [\A \Aacute \Abreve \Acircumflex \Adieresis \Agrave 
+     \Amacron \Aring \Atilde];
+@l1_z = [\z \zacute \zcaron \zdotaccent];
+@l1_p = [\p \p.ld \uni1E57 \uni1E57.ld];
+@l1_iogonek = [\iogonek \iogonek.dotless];
+@l1_N = [\N \Nacute \Ncaron \Ncommaaccent \Ntilde];
+@l1_D = [\D \Dcaron \uni1E0A];
+@l1_j = [\j \jcircumflex \uni0237];
+@l1_o = [\o \oacute \obreve \ocircumflex \odieresis \ograve 
+     \ohungarumlaut \omacron \otilde];
+@l1_h = [\h \hbar \hcircumflex \uni1E23];
+@l1_r = [\r \racute \rcaron \rcommaaccent];
+@l1_Eng = [\Eng \Eng.ld \I \Iacute \Ibreve \Icircumflex 
+     \Idieresis \Idotaccent \Igrave \Imacron \Itilde];
+@l1_M = [\M \uni1E40];
+@l1_y = [\y \yacute \ycircumflex \ydieresis];
+@l1_T = [\T \Tcaron \uni0162 \uni021A \uni1E6A];
+@l1_c = [\c \cacute \ccaron \ccedilla \ccircumflex \cdotaccent];
+@l1_H = [\H \Hcircumflex \uni1E22];
+@l1_G = [\G \Gbreve \Gcircumflex \Gcommaaccent \Gdotaccent];
+@l1_L = [\L \Lacute \Lcaron \Lcommaaccent \Lslash];
+@l1_g.ld = [\g.ld \gcircumflex.ld \gcommaaccent.ld \gdotaccent.ld];
+@l1_f = [\f \uni1E1F];
+@l1_l = [\l \lacute \lcaron \lcommaaccent];
+@l1_j.ld = [\j.ld \jcircumflex.ld \uni0237.ld];
+@l1_O = [\O \Oacute \Obreve \Ocircumflex \Odieresis \Ograve 
+     \Ohungarumlaut \Omacron \Oslash \Otilde];
+@l1_v = [\v \w \wcircumflex];
+@l1_Dcroat = [\Dcroat \Eth];
+@l1_eogonek = [\eogonek \oe];
+@l1_d = [\d \dcaron \dcroat \uni1E0B];
+@l1_e = [\e \eacute \ebreve \ecaron \ecircumflex \edieresis 
+     \edotaccent \egrave \emacron];
+@l1_ae = [\ae \aogonek];
+@l1_W = [\W \Wcircumflex];
+@l1_dotlessi = [\dotlessi \i \i.TRK \iacute \ibreve \icircumflex 
+     \idieresis \igrave \imacron \itilde];
+@l1_b = [\b \uni1E03];
+@l1_s = [\s \sacute \scaron \scedilla \scircumflex \uni0219 
+     \uni1E61];
+@l1_acute = [\acute \acutecomb \acutecomb.cap \afii00208 \afii299 \afii300 
+     \afii301 \afii57929 \afii61664 \ampersand \asciicircum \asciitilde 
+     \asterisk \backslash \breve \brokenbar \bullet \caron 
+     \cedilla \cent \circumflex \colon \comma \copyright 
+     \currency \dagger \daggerdbl \degree \dieresis \divide 
+     \dollar \dollar.DONT_KEEP \dotaccent \eight \ellipsis \emdash 
+     \endash \equal \exclam \exclamdown \five \four 
+     \fraction \grave \gravecomb \gravecomb.cap \greater \guillemotleft 
+     \guillemotright \guilsinglleft \guilsinglright \hungarumlaut \hyphen \less 
+     \logicalnot \macron \minus \minute \multiply \nine 
+     \numbersign \ogonek \one \ordfeminine \ordmasculine \paragraph 
+     \parenleft \parenright \percent \period \periodcentered \plus 
+     \plusminus \question \questiondown \quotedbl \quotedblbase \quotedblleft 
+     \quotedblright \quoteleft \quotereversed \quoteright \quotesinglbase \quotesingle 
+     \registered \ring \second \section \semicolon \seven 
+     \six \slash \space \sterling \three \tilde 
+     \tildecomb \tildecomb.cap \two \underscore \uni00A0 \uni00AD 
+     \uni02BB \uni02C0 \uni02C8 \uni0302 \uni0302.ascend \uni0302.cap 
+     \uni0304 \uni0304.cap \uni0306 \uni0306.cap \uni0307 \uni0307.cap 
+     \uni0308 \uni0308.cap \uni0308.narrow \uni030A \uni030A.cap \uni030B 
+     \uni030B.cap \uni030C \uni030C.cap \uni0312 \uni0315 \uni0326 
+     \uni0327 \uni2000 \uni2001 \uni2002 \uni2003 \uni2004 
+     \uni2005 \uni2006 \uni2007 \uni2008 \uni2009 \uni200A 
+     \uni200B \uni2010 \uni2011 \uni201F \uni202F \uni203E 
+     \uni2053 \uni205F \uni2060 \uniFEFF \zero];
+@l1_U = [\U \Uacute \Ubreve \Ucircumflex \Udieresis \Ugrave 
+     \Uhungarumlaut \Umacron \Uogonek \Uring \Utilde];
+@l1_k = [\k \kcommaaccent];
+@l1_thorn = [\thorn \thorn.ld];
+@l1_S = [\S \Sacute \Scaron \Scedilla \Scircumflex \uni0218 
+     \uni1E60];
+@l1_g = [\g \gbreve \gcircumflex \gcommaaccent \gdotaccent];
+@l1_B = [\B \uni1E02];
+@l1_q = [\q \q.ld];
+
+pos [\Eng \Eng.ld] @l1_J 12;
+pos \Q \Iogonek 18;
+pos [\bar \q.ld \q @r1_iogonek \braceleft \bracketleft \bracketright] @l1_j.ld 20;
+pos \Q @l1_y 26;
+pos \braceright @l1_J 29;
+pos @r1_f \braceleft 34;
+pos \Q @l1_g 36;
+pos \longs \braceleft 36;
+pos [\Eogonek @r1_g] @l1_J 43;
+pos \Iogonek @l1_J 46;
+pos @r1_f [\Q \OE @l1_O @l1_G] 47;
+pos \longs [\Q \OE @l1_O @l1_G] 49;
+pos \uogonek @l1_J 52;
+pos \Q [@l1_j \bar @l1_p @l1_thorn @l1_iogonek \bracketleft \braceright \bracketright] 54;
+pos [@r1_ij \eng \eng.ld @r1_g.ld] @l1_J 55;
+pos \eogonek @l1_J 59;
+pos \aogonek @l1_J 69;
+pos \Q @l1_j.ld 74;
+pos @r1_f @l1_Z 79;
+pos \longs @l1_Z 81;
+pos @r1_f @l1_S 83;
+pos \longs @l1_S 85;
+pos [\bar \q.ld \q @r1_iogonek \braceleft \bracketleft \bracketright] @l1_J 91;
+pos @r1_f [\bracketleft \braceright \bracketright @l1_P @l1_F @l1_Dcroat @l1_E @l1_B @l1_D \Tbar @l1_T] 97;
+pos \longs [\bracketleft \braceright \bracketright @l1_P @l1_F @l1_Dcroat @l1_E @l1_B @l1_D \Tbar @l1_T] 99;
+pos \Q @l1_J 145;
+pos @r1_a [@l1_r @l1_f @l1_eng \ldot \kgreenlandic @l1_h @l1_l \lslash @l1_k @l1_M @l1_N @l1_A \x \X \Aogonek \tbar @l1_s @l1_Dcroat @l1_D \AE @l1_g] -1;
+pos [@r1_W @r1_a] [@l1_P @l1_F \Hbar @l1_K @l1_H @l1_Eng \Ldot @l1_E @l1_B @l1_L \Iogonek \IJ] -1;
+pos @r1_W [@l1_J \Thorn @l1_U \Tbar @l1_T \yen @l1_W @l1_Y \V] -1;
+pos \ldot [\Q @l1_C \OE @l1_O @l1_G] -242;
+pos \ldot @l1_v -240;
+pos \ldot [\braceright \bracketright] -228;
+pos \ldot @l1_o -226;
+pos \ldot [\oslash @l1_e @l1_c] -222;
+pos \ldot [\eth @l1_eogonek] -221;
+pos \ldot [@l1_q @l1_u @l1_d \braceleft] -210;
+pos \ldot @l1_z -205;
+pos \V \AE -205;
+pos \ldot @l1_thorn -201;
+pos \ldot @l1_S -200;
+pos \ldot [@l1_j.ld @l1_j \bar @l1_p @l1_iogonek \bracketleft @l1_dotlessi \Thorn @l1_l \lslash @l1_k @l1_Eng @l1_M @l1_N \x \X @l1_t @l1_Z @l1_s @l1_Dcroat @l1_E @l1_B @l1_D @l1_L @l1_b @l1_ae @l1_a @l1_g \Iogonek @l1_U \yen @l1_Y \V \ij \IJ] -192;
+pos @r1_W \AE -182;
+pos \V \Aogonek -167;
+pos \V @l1_o -150;
+pos @r1_W \Aogonek -149;
+pos \V [\oslash @l1_e @l1_c] -146;
+pos \V @l1_eogonek -145;
+pos @r1_F \AE -144;
+pos \V @l1_g -140;
+pos [@r1_y.ld @r1_IJ @r1_y] \AE -139;
+pos \V @l1_A -137;
+pos \V [@l1_Dcroat @l1_D @l1_ae @l1_q @l1_d] -134;
+pos @r1_Y [\Aogonek \AE] -130;
+pos \V @l1_s -129;
+pos @r1_r @l1_T -128;
+pos \V \x -127;
+pos \yen [\Aogonek \AE] -125;
+pos \V @l1_a -124;
+pos @r1_W @l1_A -119;
+pos @r1_A [@l1_W @l1_Y \V] -118;
+pos \V [@l1_j.ld @l1_j @l1_p @l1_iogonek @l1_g.ld @l1_y.ld \at @l1_r @l1_f @l1_eng \longs @l1_dotlessi \kgreenlandic \tbar \germandbls @l1_t @l1_z @l1_u @l1_y @l1_v \ij] -116;
+pos @r1_A \yen -115;
+pos @r1_F \Aogonek -115;
+pos @r1_Y @l1_A -113;
+pos \Ldot [@l1_J \V] -112;
+pos @r1_P \AE -110;
+pos [\Aogonek @r1_L] \V -108;
+pos @r1_L [\Tbar @l1_T] -108;
+pos \Aogonek [\yen @l1_W @l1_Y] -108;
+pos @r1_W [@l1_j.ld @l1_j @l1_dotlessi \ij] -108;
+pos \yen @l1_A -108;
+pos @r1_T @l1_c -107;
+pos @r1_A @l1_J -106;
+pos [\Aogonek @r1_iogonek @r1_A] @l1_T -104;
+pos @r1_T [@l1_iogonek @l1_A \Aogonek \AE] -104;
+pos \bracketleft @l1_Y -103;
+pos \Tbar [@l1_e @l1_c] -102;
+pos \Tbar @l1_eogonek -101;
+pos @r1_g.ld \AE -101;
+pos @r1_IJ [@l1_thorn \bracketleft \bracketright] -101;
+pos @r1_T @l1_g -101;
+pos \Tbar [@l1_j.ld @l1_j @l1_iogonek @l1_dotlessi @l1_A \Aogonek \AE \ij] -99;
+pos [\Aogonek @r1_ij @r1_iogonek @r1_A @r1_dotlessi] \Tbar -99;
+pos [@r1_y.ld @r1_IJ @r1_y \Thorn] \Aogonek -97;
+pos \bracketleft \V -97;
+pos \Tbar @l1_g -96;
+pos [\eng \eng.ld \aogonek @r1_m \lslash] @l1_T -95;
+pos @r1_L @l1_W -95;
+pos \bracketleft \yen -93;
+pos @r1_P \Aogonek -91;
+pos [\eogonek \aogonek \oe @r1_R] \Tbar -90;
+pos [\oslash @r1_R] \V -90;
+pos @r1_R [@l1_J @l1_T \yen @l1_W @l1_Y] -90;
+pos [@r1_T \Tbar] @l1_d -90;
+pos @r1_T [@l1_j.ld @l1_j @l1_p @l1_r @l1_eng @l1_dotlessi @l1_s @l1_ae @l1_q @l1_eogonek \oslash @l1_e @l1_o \ij] -90;
+pos \aogonek @l1_Y -89;
+pos @r1_A [@l1_y.ld @l1_y] -88;
+pos @r1_T \x -88;
+pos @r1_IJ \eth -87;
+pos [\oslash @r1_o \Ldot @r1_L] @l1_Y -86;
+pos @r1_W @l1_o -86;
+pos [\ldot \uogonek @r1_ij \eogonek \oslash @r1_o \Ldot @r1_b @r1_p \ae \oe @r1_e @r1_a \kgreenlandic @r1_k @r1_h @r1_l @r1_dotlessi @r1_u @r1_d \dcroat] @l1_T -86;
+pos @r1_F @l1_A -85;
+pos @r1_T @l1_a -85;
+pos [@r1_e @r1_a] \Tbar -85;
+pos \Tbar [@l1_s @l1_ae @l1_q \oslash @l1_o] -85;
+pos [\V @r1_T \Tbar] \eth -85;
+pos [\eogonek @r1_b @r1_p \ae \oe] @l1_Y -85;
+pos @r1_o \V -85;
+pos [\ldot @r1_ij \Ldot @r1_dotlessi] @l1_W -83;
+pos \Tbar \x -83;
+pos \Thorn \AE -83;
+pos \aogonek \V -83;
+pos \yen [\longs \germandbls] -83;
+pos @r1_g.ld \Aogonek -82;
+pos @r1_W [\oslash @l1_e @l1_c] -82;
+pos [\ldot \uogonek \eng \eng.ld \oslash @r1_o \Ldot @r1_b @r1_p \ae \kgreenlandic @r1_k @r1_h @r1_m @r1_l \lslash @r1_u @r1_d \dcroat] \Tbar -81;
+pos @r1_F \ldot -81;
+pos \Aogonek [@l1_y.ld @l1_y] -81;
+pos @r1_W [\eth @l1_eogonek] -81;
+pos \Tbar @l1_a -80;
+pos @r1_Y @l1_o -80;
+pos [@r1_e @r1_a] @l1_Y -80;
+pos @r1_K [@l1_y.ld @l1_y] -79;
+pos [\eogonek @r1_b @r1_p \ae \oe] \V -79;
+pos \aogonek \yen -79;
+pos [@r1_y.ld @r1_y @r1_v @r1_g @r1_g.ld @r1_c \Thorn @r1_s \x \bar \q.ld \q \at @r1_z \tbar @r1_t] @l1_T -77;
+pos \longs @l1_U -77;
+pos \bracketleft @l1_W -77;
+pos @r1_T [@l1_g.ld @l1_y.ld \at @l1_f \longs \kgreenlandic \tbar \germandbls @l1_t @l1_z @l1_u @l1_y @l1_v] -77;
+pos [\uogonek \eng \eng.ld @r1_iogonek \kgreenlandic @r1_k @r1_h @r1_m @r1_dotlessi @r1_u] @l1_Y -76;
+pos [\oslash @r1_o \longs \Ldot @r1_L \germandbls] \yen -76;
+pos @r1_Y [\oslash @l1_e @l1_c] -76;
+pos @r1_W @l1_g -76;
+pos @r1_Y [\eth @l1_eogonek] -75;
+pos [\eogonek @r1_b @r1_p \ae \oe] \yen -75;
+pos \yen @l1_o -75;
+pos [\ldot \at] \AE -74;
+pos [@r1_e @r1_a] \V -74;
+pos [\Tbar @r1_R] [@l1_y.ld @l1_y] -72;
+pos \Ldot @l1_U -72;
+pos [\Uogonek \Tbar @r1_U] [\longs \germandbls] -72;
+pos [\Uogonek @r1_U] [@l1_A \Aogonek \AE] -72;
+pos \Tbar [@l1_p @l1_g.ld \at @l1_r @l1_f @l1_eng \kgreenlandic \tbar @l1_t @l1_z @l1_u @l1_v] -72;
+pos [@r1_y.ld @r1_y @r1_v @r1_r @r1_g @r1_g.ld @r1_c \Thorn @r1_s \x \bar \q.ld \q \at @r1_z \tbar @r1_t] \Tbar -72;
+pos [@r1_y.ld @r1_y] \X -71;
+pos \germandbls \V -71;
+pos \yen [\oslash @l1_e @l1_c] -71;
+pos @r1_g.ld \X -70;
+pos @r1_Y @l1_g -70;
+pos \yen [\eth @l1_eogonek] -70;
+pos \oslash @l1_W -70;
+pos [@r1_e @r1_a] \yen -70;
+pos [\uogonek \eng \eng.ld @r1_iogonek \kgreenlandic @r1_k @r1_h @r1_m @r1_dotlessi @r1_u] \V -70;
+pos @r1_W [@l1_Dcroat @l1_D @l1_ae @l1_q @l1_d] -70;
+pos [@r1_y.ld @r1_y @r1_v @r1_r @r1_g @r1_ij @r1_g.ld @r1_f \longs @r1_c \Thorn @r1_s \x \q.ld \q \bracketright \at @r1_z \tbar @r1_t] @l1_Y -67;
+pos [@r1_y.ld @r1_IJ @r1_y \Thorn] @l1_A -67;
+pos [\uogonek \eng \eng.ld @r1_iogonek \kgreenlandic @r1_k @r1_h @r1_m @r1_dotlessi @r1_u] \yen -66;
+pos @r1_W @l1_s -65;
+pos @r1_IJ \braceleft -65;
+pos @r1_o @l1_W -65;
+pos \yen @l1_g -65;
+pos @r1_Y [@l1_Dcroat @l1_D @l1_ae @l1_q @l1_d] -64;
+pos @r1_v [\ldot \X \Aogonek \AE] -63;
+pos [\V @r1_T \Tbar] \braceleft -63;
+pos \aogonek @l1_W -63;
+pos @r1_W \x -63;
+pos \braceright [\Tbar @l1_T @l1_Y] -62;
+pos @r1_P @l1_A -61;
+pos [@r1_y.ld @r1_y @r1_v \braceright @r1_r @r1_g @r1_ij @r1_g.ld @r1_Dcroat @r1_D @r1_f \longs @r1_c \Thorn @r1_s \x \q.ld \q \bracketright \at @r1_z \tbar @r1_t] \V -61;
+pos @r1_W @l1_a -60;
+pos @r1_K [@l1_g.ld \at] -59;
+pos @r1_Y @l1_s -59;
+pos \yen [@l1_Dcroat @l1_D @l1_ae @l1_q @l1_d] -59;
+pos [\eogonek @r1_b @r1_p \ae \oe] @l1_W -59;
+pos @r1_A [@l1_g.ld \at] -57;
+pos [@r1_y.ld @r1_y @r1_v \braceright @r1_r @r1_g @r1_ij @r1_g.ld @r1_Dcroat @r1_D @r1_f @r1_c \Thorn @r1_s \x \q.ld \q \bracketright \at @r1_z \tbar @r1_t] \yen -57;
+pos @r1_Y \x -57;
+pos @r1_N \bracketright -56;
+pos \X @l1_y -55;
+pos [\ldot \at] \Aogonek -55;
+pos @r1_W @l1_M -55;
+pos [\Eng \Eng.ld] \bracketright -54;
+pos @r1_L [@l1_v \Euro] -54;
+pos @r1_Y @l1_a -54;
+pos \yen @l1_s -54;
+pos [\Aogonek \bracketleft @r1_A @r1_R \germandbls] @l1_U -54;
+pos [\V @r1_Y \yen @r1_T \Tbar] @l1_M -54;
+pos [@r1_e @r1_a] @l1_W -54;
+pos [\Aogonek @r1_R] [@l1_g.ld \at] -54;
+pos @r1_IJ \Euro -52;
+pos \yen \x -52;
+pos \Thorn \X -52;
+pos [@r1_v @r1_g.ld] @l1_A -52;
+pos @r1_F @l1_o -52;
+pos @r1_W [@l1_p @l1_g.ld @l1_y.ld \at @l1_r @l1_f @l1_eng \longs \kgreenlandic \tbar \germandbls @l1_t @l1_z @l1_u @l1_y @l1_v \braceleft] -52;
+pos @r1_r [\ldot @l1_A \Aogonek \Ldot \AE] -51;
+pos \germandbls @l1_W -51;
+pos @r1_W [\Euro \Q @l1_C \OE @l1_O @l1_G] -51;
+pos [@r1_P @r1_r] \X -51;
+pos [\V \Aogonek @r1_T \Tbar @r1_K @r1_A @r1_R] [\Q @l1_C \OE @l1_O @l1_G] -50;
+pos [\uogonek \eng \eng.ld \kgreenlandic @r1_k @r1_h @r1_m @r1_u] @l1_W -50;
+pos [@r1_O \Q] [\ldot \Aogonek \AE \Tbar @l1_T \yen @l1_Y \V] -50;
+pos \X @l1_y.ld -50;
+pos [\V \Aogonek @r1_T \Tbar @r1_ij @r1_iogonek @r1_K @r1_A @r1_R @r1_dotlessi] \Euro -50;
+pos \yen @l1_a -49;
+pos [\Aogonek @r1_K @r1_A @r1_R \X] @l1_v -48;
+pos @r1_F [\oslash @l1_e] -48;
+pos [@r1_F \Ldot] @l1_c -48;
+pos @r1_F [\eth @l1_eogonek] -47;
+pos @r1_Y [@l1_j.ld @l1_j @l1_p @l1_iogonek @l1_g.ld @l1_y.ld \at @l1_r @l1_f @l1_eng \longs @l1_dotlessi \kgreenlandic \tbar \germandbls @l1_t @l1_z @l1_u @l1_y @l1_v \Euro \Q @l1_C \OE @l1_O @l1_G \braceleft \ij] -46;
+pos @r1_P \ldot -45;
+pos @r1_F @l1_M -45;
+pos [@r1_v @r1_g.ld] \Ldot -45;
+pos [@r1_O \at \Q] \X -43;
+pos @r1_r [\longs \germandbls] -42;
+pos @r1_F @l1_g -42;
+pos [\yen \X] [@l1_g.ld \at \Euro \Q @l1_C \OE @l1_O @l1_G] -41;
+pos \yen [@l1_j.ld @l1_j @l1_p @l1_iogonek @l1_y.ld @l1_r @l1_f @l1_eng @l1_dotlessi \kgreenlandic \tbar @l1_t @l1_z @l1_u @l1_y @l1_v \braceleft \ij] -41;
+pos [@r1_y.ld @r1_y @r1_v \braceright @r1_r @r1_O @r1_g @r1_g.ld @r1_Dcroat @r1_D @r1_f \longs @r1_c \Thorn @r1_s \x \q.ld \q \bracketright \at @r1_z \tbar @r1_t \Q] @l1_W -41;
+pos @r1_F \lslash -39;
+pos @r1_M [@l1_J @l1_U \Tbar @l1_T \yen @l1_W @l1_Y \V] -37;
+pos [\Uogonek @r1_U \braceleft \bracketleft] @l1_M -36;
+pos [@r1_y.ld \Aogonek @r1_y @r1_v \braceright @r1_r @r1_O @r1_g \uogonek @r1_ij \eng \eng.ld @r1_g.ld @r1_Dcroat @r1_D \oslash @r1_o \Ldot @r1_L @r1_b @r1_p \ae \oe @r1_c @r1_e \Thorn @r1_s \x @r1_a \at @r1_z @r1_A @r1_R \kgreenlandic @r1_k @r1_M @r1_h @r1_m @r1_l \lslash @r1_dotlessi \tbar @r1_t @r1_u @r1_d \dcroat] \braceright -36;
+pos [@r1_F \braceleft \bracketleft] [@l1_ae @l1_q @l1_d] -36;
+pos [@r1_Dcroat @r1_D \braceleft \bracketleft] [\Aogonek \AE] -36;
+pos [@r1_b @r1_p] @l1_U -36;
+pos @r1_p @l1_J -36;
+pos [@r1_Dcroat @r1_D \bracketleft] \X -36;
+pos [\braceleft \bracketleft] [@l1_y.ld \at @l1_r @l1_f @l1_eng \longs @l1_dotlessi \kgreenlandic @l1_A \x \tbar \germandbls @l1_t @l1_s @l1_a @l1_z \eth @l1_eogonek \oslash @l1_e @l1_c @l1_o @l1_v \Euro \Q @l1_C \OE @l1_O @l1_G \braceleft \ij] -36;
+pos \bracketleft [\Thorn \Hbar @l1_K @l1_H @l1_Eng @l1_N \Ldot @l1_L \Iogonek \IJ] -36;
+pos [\Uogonek @r1_U] [@l1_Dcroat @l1_D] -36;
+pos [\Ldot \braceleft \bracketleft] @l1_u -36;
+pos @r1_F [@l1_thorn @l1_h @l1_l @l1_k] -36;
+pos [@r1_Dcroat @r1_D] [\ldot \Tbar @l1_T @l1_Y] -36;
+pos [@r1_y.ld \Aogonek @r1_y @r1_v \braceright @r1_r @r1_O @r1_g \Iogonek \uogonek @r1_ij \eng \eng.ld @r1_g.ld @r1_Dcroat @r1_D \oslash \eth @r1_o \Ldot @r1_L @r1_b @r1_p \ae \oe @r1_c @r1_e \Thorn @r1_s \x @r1_a \at @r1_z @r1_K @r1_A @r1_R \kgreenlandic @r1_k @r1_M \Hbar @r1_H @r1_I @r1_h @r1_m @r1_l \lslash @r1_dotlessi \tbar @r1_t @r1_u \Euro @r1_C @r1_d \dcroat] \bracketright -36;
+pos @r1_IJ \X -35;
+pos @r1_W \X -34;
+pos [@r1_P @r1_y.ld \Aogonek @r1_y @r1_r @r1_g @r1_K @r1_A @r1_R \X] @l1_o -34;
+pos [\V \Uogonek @r1_F @r1_Y \yen @r1_T \Tbar @r1_U \braceleft] \X -33;
+pos \germandbls [\braceright \bracketright \Tbar @l1_T @l1_Y] -33;
+pos @r1_K [@l1_J @l1_U \Tbar @l1_T \yen @l1_W @l1_Y \V] -32;
+pos @r1_f [@l1_j.ld @l1_j @l1_iogonek @l1_dotlessi @l1_A \X \Aogonek \AE \ij] -32;
+pos \eogonek \bracketright -32;
+pos [\eogonek @r1_K] \braceright -32;
+pos \Aogonek @l1_J -31;
+pos [\Uogonek @r1_F @r1_U] @l1_s -31;
+pos [@r1_P @r1_y.ld \Aogonek @r1_y @r1_r @r1_g @r1_f @r1_K @r1_A @r1_R \X \tbar \Euro] @l1_e -30;
+pos @r1_g [@l1_j @l1_iogonek @l1_dotlessi \ldot @l1_A \X \Aogonek \Ldot \AE \ij] -30;
+pos [@r1_P @r1_y.ld \Aogonek @r1_y @r1_r @r1_g @r1_K @r1_A @r1_R \X] \oslash -30;
+pos [@r1_P @r1_y.ld \Aogonek @r1_y @r1_r @r1_g \eng \eng.ld @r1_f \longs @r1_K @r1_A @r1_R \X \kgreenlandic \Hbar @r1_H @r1_h @r1_m \tbar \Euro \AE \germandbls] @l1_c -30;
+pos [@r1_S \oslash \eth] [\ldot \X \Aogonek \AE] -29;
+pos @r1_k @l1_c -29;
+pos [\Uogonek @r1_F @r1_U \oslash] \x -29;
+pos \oslash @l1_r -29;
+pos [\kgreenlandic @r1_k] [\oslash @l1_e @l1_o] -29;
+pos @r1_N @l1_thorn -29;
+pos [@r1_P @r1_y.ld \Aogonek @r1_y @r1_r @r1_g @r1_K @r1_A @r1_R \X \kgreenlandic @r1_k] \eth -29;
+pos [@r1_P @r1_y.ld \Aogonek @r1_y @r1_r @r1_g @r1_f @r1_K @r1_A @r1_R \X \kgreenlandic @r1_k \tbar \Euro] @l1_eogonek -29;
+pos @r1_M [@l1_g.ld @l1_y.ld \at \eth @l1_eogonek \oslash @l1_e @l1_c @l1_o @l1_v \Euro \Q @l1_C \OE @l1_O @l1_G] -28;
+pos @r1_g @l1_j.ld -28;
+pos [\braceleft \bracketleft @r1_M] @l1_y -28;
+pos [\uogonek \eng \eng.ld \aogonek \kgreenlandic @r1_k @r1_h @r1_m @r1_u] @l1_U -27;
+pos [\Eng \Eng.ld @r1_L] @l1_thorn -27;
+pos [@r1_f \Thorn] \Ldot -27;
+pos @r1_g.ld [@l1_j.ld @l1_j @l1_iogonek @l1_dotlessi \ij] -27;
+pos [@r1_P @r1_y.ld @r1_IJ @r1_y @r1_v @r1_r @r1_g @r1_g.ld @r1_f \Thorn] @l1_M -27;
+pos @r1_S @l1_A -27;
+pos [@r1_v @r1_g.ld] [\eth @l1_eogonek \oslash @l1_e @l1_c @l1_o] -27;
+pos [\Thorn \kgreenlandic @r1_k @r1_m @r1_dotlessi @r1_u] @l1_J -27;
+pos @r1_F @l1_a -26;
+pos [\ldot @r1_O @r1_Dcroat @r1_D \oslash \eth \at \Q] @l1_A -25;
+pos [\Uogonek @r1_P @r1_y.ld @r1_y @r1_U @r1_v @r1_r @r1_g @r1_g.ld @r1_f] @l1_g -24;
+pos @r1_o [@l1_r \ldot @l1_A \x \X \Aogonek \AE] -24;
+pos [@r1_P @r1_y.ld @r1_y @r1_v @r1_r @r1_O @r1_g @r1_g.ld @r1_Dcroat @r1_D @r1_f \oslash \eth @r1_o \longs \Thorn \at \Q] @l1_N -23;
+pos \longs [@l1_iogonek @l1_A \X \Aogonek @l1_L \AE @l1_g] -23;
+pos \x [\eth @l1_eogonek \oslash @l1_e @l1_c @l1_o] -23;
+pos \aogonek [\braceright \bracketright @l1_y] -22;
+pos [@r1_P @r1_y.ld @r1_IJ @r1_y @r1_v @r1_r @r1_g @r1_g.ld @r1_f] \lslash -21;
+pos \aogonek @l1_v -21;
+pos @r1_N [@l1_j.ld @l1_j @l1_p @l1_iogonek \bracketleft @l1_g.ld @l1_y.ld \at @l1_r @l1_f @l1_eng \longs @l1_dotlessi \ldot \kgreenlandic @l1_h @l1_l \lslash @l1_k @l1_A \x \X \Aogonek \tbar \germandbls @l1_t @l1_s @l1_Dcroat @l1_D \AE @l1_b @l1_ae @l1_a @l1_z @l1_g @l1_q @l1_u @l1_d @l1_y \eth @l1_eogonek \oslash @l1_e @l1_c @l1_o @l1_v \Euro \Q @l1_C \OE @l1_O @l1_G \braceleft \ij] -20;
+pos [@r1_S @r1_N] @l1_M -20;
+pos \V [@l1_thorn \ldot @l1_h @l1_l \lslash @l1_k] -19;
+pos @r1_W @l1_Z -19;
+pos [\Uogonek @r1_F \Eng \Eng.ld @r1_U \eogonek @r1_L \ae \oe] @l1_r -18;
+pos [\Uogonek @r1_P @r1_y.ld @r1_y \Eng \Eng.ld @r1_U @r1_v @r1_r @r1_g @r1_g.ld] @l1_ae -18;
+pos [\Uogonek \Eng \Eng.ld @r1_U] @l1_a -18;
+pos [\Uogonek @r1_F \Aogonek \Eng \Eng.ld @r1_U \Iogonek \aogonek @r1_K @r1_A @r1_R \X @r1_M \Hbar @r1_H @r1_I \AE] @l1_u -18;
+pos [\Uogonek @r1_F \Eng \Eng.ld @r1_U \Iogonek \aogonek \Hbar @r1_H @r1_I \AE] @l1_y.ld -18;
+pos [@r1_P \Eogonek @r1_G \AE @r1_E \OE] \bracketright -18;
+pos [\ldot @r1_P @r1_y.ld @r1_y @r1_v @r1_r @r1_O @r1_Dcroat \eth @r1_L @r1_c @r1_G \x @r1_z \AE @r1_E \OE] @l1_J -18;
+pos [@r1_P \Eogonek \eth @r1_G \AE @r1_E \OE] [\braceright \Tbar @l1_T \yen @l1_W @l1_Y \V] -18;
+pos [@r1_P @r1_y.ld @r1_y @r1_v \braceright @r1_r @r1_O @r1_g @r1_g.ld @r1_Dcroat @r1_D \eogonek \oslash \eth @r1_o \Ldot @r1_L @r1_b @r1_p \ae \oe @r1_c \Thorn \at \Q] [@l1_E @l1_B] -18;
+pos [\Eng \Eng.ld \eogonek \Ldot @r1_Z @r1_L @r1_b @r1_p \ae \oe] \x -18;
+pos [\ldot @r1_P @r1_y.ld @r1_y @r1_v \braceright @r1_r @r1_O @r1_g @r1_g.ld @r1_Dcroat @r1_D \eogonek @r1_f \oslash \eth @r1_o \longs \Ldot @r1_L @r1_b @r1_p \ae \oe @r1_c \Thorn \at \Q] [\Hbar @l1_K @l1_H] -18;
+pos [\Uogonek @r1_F \Eng \Eng.ld @r1_U \Iogonek \eogonek \oe \Hbar @r1_H @r1_I] \Euro -18;
+pos [\Eng \Eng.ld \braceright @r1_O @r1_Dcroat @r1_D \eogonek \oslash \eth @r1_o \longs \Ldot @r1_Z @r1_L @r1_b @r1_p \ae \oe @r1_c \at \Q] @l1_M -18;
+pos [\braceright \eogonek \Ldot @r1_Z @r1_L @r1_b @r1_p \ae \oe @r1_c] @l1_N -18;
+pos [\Uogonek @r1_P @r1_y.ld @r1_Y \yen @r1_IJ @r1_y \Eng \Eng.ld @r1_U @r1_v @r1_r @r1_g @r1_g.ld @r1_f \Thorn] [@l1_l @l1_k] -18;
+pos [@r1_P @r1_y.ld @r1_y @r1_v \braceright @r1_r @r1_O @r1_g @r1_g.ld @r1_Dcroat @r1_D \eogonek @r1_f \oslash \eth @r1_o \Ldot @r1_L @r1_b @r1_p \ae \oe @r1_c \Thorn \at \Q] @l1_L -18;
+pos [\Uogonek @r1_P @r1_y.ld @r1_Y \yen @r1_y \Eng \Eng.ld @r1_U @r1_v @r1_r @r1_g @r1_g.ld @r1_D @r1_f @r1_Z @r1_L @r1_c \Thorn] @l1_h -18;
+pos [@r1_P @r1_y.ld @r1_IJ @r1_y \Eng \Eng.ld @r1_v \braceright @r1_r @r1_O @r1_g @r1_g.ld @r1_Dcroat @r1_D \eogonek \oslash \eth @r1_o \Ldot @r1_L @r1_b @r1_p \ae \oe @r1_c \Thorn \at \Q] @l1_Dcroat -18;
+pos [\Uogonek @r1_F \Eng \Eng.ld @r1_U \Iogonek \Hbar @r1_H @r1_I] [@l1_g.ld \at @l1_v \Q @l1_C \OE @l1_O @l1_G] -18;
+pos [\Uogonek @r1_Y \yen \Eng \Eng.ld @r1_U \Thorn] \lslash -18;
+pos [\ldot @r1_P \braceright @r1_O @r1_Dcroat @r1_D \eogonek \oslash \eth @r1_o \longs \Ldot @r1_L @r1_b @r1_p \ae \oe @r1_c \at \Q] \Ldot -18;
+pos [\Uogonek @r1_Y \yen @r1_IJ \Eng \Eng.ld @r1_U \braceright \eogonek @r1_f @r1_Z @r1_L @r1_b @r1_p \ae \oe @r1_c] \ldot -18;
+pos [\Uogonek @r1_F \Eng \Eng.ld @r1_U \eogonek @r1_L \oe] [@l1_f \tbar] -18;
+pos [\Eng \Eng.ld \braceright \eogonek \Ldot @r1_Z @r1_L @r1_b @r1_p \ae \oe @r1_c] [@l1_A \X \Aogonek \AE] -18;
+pos [\Eng \Eng.ld] [\bracketleft @l1_s] -18;
+pos [\Uogonek \Eng \Eng.ld @r1_U \Iogonek \Hbar @r1_H @r1_I \tbar @r1_t] [\eth \oslash @l1_o] -18;
+pos [\Uogonek @r1_F \Eng \Eng.ld @r1_U \Iogonek \Hbar @r1_H @r1_I \AE] @l1_y -18;
+pos [\Uogonek \Eng \Eng.ld @r1_U \Iogonek @r1_I @r1_t] @l1_c -18;
+pos [\Uogonek @r1_P @r1_y.ld \Aogonek @r1_y \Eng \Eng.ld @r1_U @r1_v @r1_r @r1_g \Iogonek \eng \eng.ld @r1_g.ld @r1_f \x @r1_K @r1_A @r1_R \X \kgreenlandic @r1_k @r1_M \Hbar @r1_H @r1_I @r1_h @r1_m \tbar @r1_t \Euro] @l1_d -18;
+pos [@r1_F \Eng \Eng.ld @r1_L] [\longs \germandbls @l1_b] -18;
+pos [\V \Uogonek @r1_F @r1_Y \yen @r1_T \Tbar \Eng \Eng.ld @r1_U @r1_N \Ldot \braceleft \bracketleft] @l1_Z -18;
+pos [\Uogonek @r1_P @r1_y.ld \Aogonek @r1_y \Eng \Eng.ld @r1_U @r1_v @r1_r @r1_g \Iogonek @r1_g.ld \x @r1_K @r1_A @r1_R \X \kgreenlandic @r1_k @r1_M \Hbar @r1_H @r1_I \tbar @r1_t] @l1_q -18;
+pos [\ldot @r1_P @r1_y.ld @r1_y @r1_v \braceright @r1_r @r1_O @r1_g @r1_g.ld @r1_Dcroat @r1_D \eogonek \oslash \eth @r1_o \Ldot @r1_L @r1_b @r1_p \ae \oe @r1_c \Thorn \at \Q] [@l1_P @l1_F] -18;
+pos [@r1_P @r1_y.ld @r1_y @r1_v \braceright @r1_r @r1_O @r1_g @r1_g.ld @r1_Dcroat @r1_D \eogonek @r1_f \oslash \eth @r1_o \longs \Ldot @r1_L @r1_b @r1_p \ae \oe @r1_c \Thorn \at \Q] [@l1_Eng \IJ] -18;
+pos [@r1_P @r1_y.ld @r1_y @r1_v \braceright @r1_r @r1_O @r1_g @r1_g.ld @r1_Dcroat @r1_D \eogonek @r1_f \oslash \eth @r1_o \longs \Ldot @r1_L @r1_b @r1_p \ae \oe @r1_c \Thorn \at] \Iogonek -18;
+pos [@r1_P @r1_y.ld @r1_y \Eng \Eng.ld @r1_v \braceright @r1_r @r1_O @r1_g @r1_g.ld @r1_Dcroat @r1_D \eogonek \oslash \eth @r1_o \Ldot @r1_L @r1_b @r1_p \ae \oe @r1_c \Thorn \at \Q] @l1_D -18;
+pos [\Uogonek @r1_P @r1_y.ld @r1_Y \yen @r1_y @r1_U @r1_v @r1_r @r1_g @r1_g.ld @r1_f \Thorn] @l1_thorn -18;
+pos @r1_F \bar -18;
+pos [@r1_P @r1_y.ld @r1_y @r1_v \braceright @r1_r @r1_O \Eogonek @r1_g @r1_ij @r1_g.ld @r1_Dcroat @r1_D \eogonek @r1_f \oslash \eth @r1_o @r1_L \ae \oe @r1_c @r1_e @r1_G \Thorn @r1_s \x @r1_a \q.ld \q @r1_iogonek \bracketright \at @r1_z @r1_dotlessi \tbar @r1_t \AE @r1_E \OE \Q] @l1_U -18;
+pos [\Eng \Eng.ld \Ldot \braceleft \bracketleft] @l1_g -18;
+pos [\Uogonek \Eng \Eng.ld @r1_U \Iogonek \Hbar @r1_H @r1_I @r1_t] [@l1_eogonek @l1_e] -18;
+pos [\Uogonek @r1_F \Eng \Eng.ld @r1_U \Ldot] @l1_iogonek -18;
+pos [\Uogonek @r1_F \Eng \Eng.ld @r1_U @r1_L] [@l1_p @l1_eng \kgreenlandic @l1_t] -18;
+pos [\Uogonek @r1_F \Aogonek \Eng \Eng.ld @r1_U \Iogonek @r1_K @r1_A @r1_R \X @r1_M \Hbar @r1_H @r1_I] \braceleft -18;
+pos [\Uogonek @r1_F \Eng \Eng.ld @r1_U] [@l1_j.ld @l1_j @l1_dotlessi @l1_z \ij] -18;
+pos @r1_Z [@l1_J \braceright \bracketright @l1_r @l1_f @l1_eng \longs \kgreenlandic @l1_P @l1_F \Hbar @l1_K @l1_H @l1_Eng \tbar \germandbls \Ldot @l1_Dcroat @l1_E @l1_B @l1_D @l1_L \Iogonek \Euro @l1_U \Tbar @l1_T \yen @l1_W @l1_Y \V \IJ] -17;
+pos @r1_IJ @l1_S -16;
+pos @r1_W @l1_S -15;
+pos \Thorn @l1_g -15;
+pos [\Eogonek \eogonek \oslash @r1_o @r1_Z @r1_L @r1_b @r1_p \ae \oe @r1_E \OE] @l1_y -14;
+pos [\V \Uogonek @r1_P @r1_F @r1_y.ld @r1_Y \yen @r1_T @r1_y \Tbar \Eng \Eng.ld @r1_U @r1_v @r1_r @r1_g @r1_g.ld @r1_N \braceleft \bracketleft] @l1_S -14;
+pos @r1_s @l1_thorn -14;
+pos [\Aogonek \Iogonek @r1_K @r1_A @r1_R \X @r1_M \Hbar @r1_H @r1_I] @l1_z -13;
+pos [@r1_e @r1_a] [@l1_y \Euro] -13;
+pos [@r1_P @r1_y.ld @r1_y @r1_v \braceright @r1_r @r1_O @r1_g @r1_g.ld @r1_Dcroat @r1_D \eogonek @r1_f @r1_S \oslash \eth @r1_o \longs \Ldot @r1_Z @r1_L @r1_b @r1_p \ae \oe @r1_c @r1_e \Thorn \at \Q] @l1_s -13;
+pos \x @l1_thorn -13;
+pos @r1_e [@l1_r @l1_f \ldot @l1_P @l1_F \Hbar @l1_K @l1_H @l1_Eng @l1_M @l1_N @l1_A \x \X \Aogonek \tbar \Ldot @l1_Dcroat @l1_E @l1_B @l1_D @l1_L \AE \Iogonek \IJ] -13;
+pos \x @l1_S -12;
+pos [\Eogonek \eogonek \oslash @r1_o \Ldot @r1_Z @r1_b @r1_p \ae \oe @r1_e @r1_a \AE @r1_E \OE] @l1_v -12;
+pos @r1_S [@l1_thorn @l1_h @l1_l \lslash @l1_k] -11;
+pos [@r1_P @r1_y.ld @r1_IJ @r1_y @r1_v \braceright @r1_r @r1_O @r1_g @r1_g.ld @r1_Dcroat @r1_D @r1_f @r1_S \eth \longs @r1_c \Thorn \at \Q] \x -11;
+pos @r1_S @l1_N -10;
+pos \germandbls [@l1_y.ld @l1_u @l1_y @l1_v] -10;
+pos \V [\bracketleft \bracketright @l1_b] -10;
+pos [\ldot @r1_W @r1_T \Tbar \longs \Ldot @r1_B @r1_G \braceleft \bracketleft] \ldot -9;
+pos @r1_B [\braceright @l1_r @l1_f \tbar \Tbar @l1_T] -9;
+pos [\Eogonek \uogonek \eng \eng.ld \eogonek \oslash @r1_o @r1_Z @r1_L @r1_b @r1_p \ae \oe @r1_e @r1_B @r1_a @r1_iogonek \kgreenlandic @r1_k @r1_h @r1_m @r1_l \lslash @r1_dotlessi @r1_u @r1_E \OE @r1_d \dcroat] [@l1_y.ld @l1_u] -9;
+pos [\uogonek \aogonek \Thorn @r1_l \lslash @r1_u] [@l1_d @l1_c] -9;
+pos [\uogonek \eng \eng.ld \aogonek @r1_B \kgreenlandic @r1_k @r1_h @r1_m @r1_l \lslash @r1_u @r1_d \dcroat] \Euro -9;
+pos [\uogonek \eng \eng.ld @r1_f \aogonek \Thorn @r1_h @r1_m @r1_l \lslash @r1_u] [@l1_q \eth \oslash @l1_o] -9;
+pos \Thorn @l1_S -9;
+pos [@r1_f \Thorn] @l1_ae -9;
+pos [\uogonek \eng \eng.ld \aogonek \Thorn @r1_h @r1_m @r1_l \lslash @r1_u] [@l1_eogonek @l1_e] -9;
+pos [\uogonek \eng \eng.ld \aogonek \kgreenlandic @r1_k @r1_h @r1_m @r1_l \lslash @r1_u] [@l1_g.ld \at @l1_z \Q @l1_C \OE @l1_O @l1_G \braceleft] -9;
+pos [\ldot \eogonek \oslash @r1_o \Ldot @r1_b @r1_p \ae \oe @r1_e @r1_B] \kgreenlandic -9;
+pos [\Uogonek @r1_Y \yen @r1_U] [\bracketleft @l1_b] -9;
+pos [@r1_W \Aogonek @r1_T \Tbar \braceright @r1_O \Eogonek \Iogonek \uogonek @r1_ij \eng \eng.ld @r1_Dcroat @r1_D \eogonek \oslash \eth @r1_o \longs \aogonek \Ldot @r1_Z @r1_b @r1_p \ae \oe @r1_c @r1_e @r1_B @r1_G @r1_a \at @r1_z @r1_K @r1_A @r1_R \X \kgreenlandic @r1_k @r1_M \Hbar @r1_H @r1_I @r1_h @r1_m @r1_l \lslash @r1_dotlessi \tbar @r1_t @r1_u \Euro \AE \germandbls @r1_E @r1_C \OE @r1_d \dcroat] @l1_thorn -9;
+pos [\uogonek \eng \eng.ld @r1_B @r1_iogonek \kgreenlandic @r1_k @r1_h @r1_m @r1_l \lslash @r1_dotlessi @r1_u @r1_d \dcroat] [@l1_y @l1_v] -9;
+pos [@r1_B @r1_d \dcroat] [@l1_J @l1_U \yen @l1_W @l1_Y \V] -9;
+pos [\ldot @r1_W @r1_T \Tbar \braceright @r1_O @r1_Dcroat \eogonek \oslash \eth @r1_o \longs \Ldot @r1_b @r1_p \ae \oe @r1_e @r1_B @r1_G \braceleft \bracketleft \at \Q] @l1_h -9;
+pos [@r1_B @r1_G] [@l1_P @l1_F \Hbar @l1_K @l1_H @l1_Eng @l1_M @l1_N @l1_A \x \X \Aogonek @l1_s \Ldot @l1_Dcroat @l1_E @l1_B @l1_D @l1_L \AE \Iogonek \IJ] -9;
+pos [\Uogonek @r1_Y \yen @r1_U @r1_B \X] \bracketright -9;
+pos [@r1_W @r1_T \Tbar \braceright @r1_O @r1_Dcroat @r1_D \eogonek \oslash \eth @r1_o \longs \Ldot @r1_Z @r1_L @r1_b @r1_p \ae \oe @r1_c @r1_e @r1_B @r1_G \braceleft \bracketleft \at \Q] [@l1_l \lslash @l1_k] -9;
+pos @r1_S @l1_g -8;
+pos [\Aogonek \Iogonek \uogonek \eng \eng.ld \aogonek @r1_K @r1_A @r1_R \X \kgreenlandic @r1_k @r1_M \Hbar @r1_H @r1_I @r1_h @r1_m @r1_l \lslash \tbar @r1_t @r1_u \Euro] @l1_S -8;
+pos [@r1_P @r1_y.ld @r1_y @r1_v @r1_r @r1_g @r1_g.ld @r1_f \Thorn] @l1_a -8;
+pos @r1_IJ @l1_N -7;
+pos [@r1_IJ \braceright @r1_O @r1_Dcroat @r1_D \eogonek \oslash \eth @r1_o @r1_Z @r1_L @r1_b @r1_p \ae \oe @r1_c @r1_e @r1_B @r1_G \at] @l1_g -6;
+pos @r1_W @l1_N -6;
+pos [@r1_S @r1_s] [@l1_P @l1_F \Hbar @l1_K @l1_H @l1_Eng \Ldot @l1_Dcroat @l1_E @l1_B @l1_D @l1_L \Iogonek \IJ] -5;
+pos @r1_S [@l1_J \braceright \bracketright @l1_U \Tbar @l1_T \yen @l1_W @l1_Y \V] -5;
+pos [\V \Uogonek @r1_F @r1_Y \yen @r1_T \Tbar \Eng \Eng.ld @r1_U @r1_N @r1_s \braceleft] @l1_N -5;
+pos @r1_s [@l1_j.ld @l1_j @l1_iogonek @l1_dotlessi \ldot @l1_h @l1_l \lslash @l1_k @l1_M @l1_A \x \X \Aogonek @l1_s \AE @l1_ae @l1_a @l1_S @l1_g @l1_q @l1_d \eth @l1_eogonek \oslash @l1_e @l1_c @l1_o \ij] -5;
+pos \x [\ldot @l1_h @l1_l \lslash @l1_k @l1_P @l1_F \Hbar @l1_K @l1_H @l1_Eng @l1_M @l1_N @l1_A \x \X \Aogonek @l1_s \Ldot @l1_Dcroat @l1_E @l1_B @l1_D @l1_L \AE @l1_ae @l1_a @l1_g \Iogonek \IJ] -4;
+pos @r1_S [@l1_j.ld @l1_j @l1_iogonek @l1_dotlessi @l1_ae @l1_a @l1_S @l1_q @l1_d \eth @l1_eogonek \oslash @l1_e @l1_c @l1_o \ij] -2;
+pos @r1_IJ [\braceright @l1_P @l1_F \Hbar @l1_K @l1_H @l1_Eng \Ldot @l1_E @l1_B @l1_L \Iogonek @l1_U \Tbar @l1_T \yen @l1_W @l1_Y \V \IJ] -2;
+
+} kern;
