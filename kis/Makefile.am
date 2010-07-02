@@ -33,6 +33,8 @@ fonts_DATA = $(call expand_fonts, ${FONTS})
 EXTRA_DIST = \
 	$(addsuffix .sfd, ${FONTS}) \
 	$(addsuffix _build.py, ${FONTS}) \
-	$(addsuffix _*.fea, ${FONTS})
+	${FEA_KisStM:%=KisStM_%.fea} \
+	${FEA_KisStM_Italic:%=KisStM-Italic_%.fea} \
+	${FEA_KisStM_Bold:%=KisStM-Bold_%.fea}
 
 MOSTLYCLEANFILES = ${fonts_DATA}
