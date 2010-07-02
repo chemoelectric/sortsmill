@@ -111,6 +111,7 @@ AC_SUBST([mit],['${1}'])
 AC_SUBST([ofl],['$(foreach f, ${1}, OFL${f})'])
 
 AC_SUBST([MAKEFONTS],[make-fonts])
+AC_SUBST([MKFONT],['${MAKEFONTS} --input-directory=${srcdir} --output-directory=${builddir}'])
 
 AC_SUBST([expand_fonts],[' \
 	$(call ${mit_func}, $(call ${opentype_func}, ${1})) \
@@ -120,19 +121,19 @@ AC_SUBST([expand_fonts],[' \
 
 AM_SUBST_NOTMAKE(sortsmill_rules)
 AC_SUBST([sortsmill_rules],['
-OFL%.otf              : %.sfd  ; ${MAKEFONTS} $(basename [$]@)
-%.otf                 : %.sfd  ; ${MAKEFONTS} $(basename [$]@)
-OFL%TT.ttf            : %.sfd  ; ${MAKEFONTS} $(basename [$]@)
-%TT.ttf               : %.sfd  ; ${MAKEFONTS} $(basename [$]@)
+OFL%.otf              : %.sfd  ; ${MKFONT} $(basename [$]@)
+%.otf                 : %.sfd  ; ${MKFONT} $(basename [$]@)
+OFL%TT.ttf            : %.sfd  ; ${MKFONT} $(basename [$]@)
+%TT.ttf               : %.sfd  ; ${MKFONT} $(basename [$]@)
 
 # Is there a more general and simple way to handle the following
 # within make?
-OFL%TT-Italic.ttf     : %-Italic.sfd  ; ${MAKEFONTS} $(basename [$]@)
-%TT-Italic.ttf        : %-Italic.sfd  ; ${MAKEFONTS} $(basename [$]@)
-OFL%TT-Bold.ttf       : %-Bold.sfd  ; ${MAKEFONTS} $(basename [$]@)
-%TT-Bold.ttf          : %-Bold.sfd  ; ${MAKEFONTS} $(basename [$]@)
-OFL%TT-BoldItalic.ttf : %-BoldItalic.sfd  ; ${MAKEFONTS} $(basename [$]@)
-%TT-BoldItalic.ttf    : %-BoldItalic.sfd  ; ${MAKEFONTS} $(basename [$]@)
+OFL%TT-Italic.ttf     : %-Italic.sfd  ; ${MKFONT} $(basename [$]@)
+%TT-Italic.ttf        : %-Italic.sfd  ; ${MKFONT} $(basename [$]@)
+OFL%TT-Bold.ttf       : %-Bold.sfd  ; ${MKFONT} $(basename [$]@)
+%TT-Bold.ttf          : %-Bold.sfd  ; ${MKFONT} $(basename [$]@)
+OFL%TT-BoldItalic.ttf : %-BoldItalic.sfd  ; ${MKFONT} $(basename [$]@)
+%TT-BoldItalic.ttf    : %-BoldItalic.sfd  ; ${MKFONT} $(basename [$]@)
 '
 ])
 ])

@@ -37,7 +37,7 @@ from sortsmill import readfeatures
 
 layer_to_use = "Fore"
 unwanted_glyphs = ['DONT_KEEP', 'NOTUSED']
-generation_flags = ("opentype", "round", "glyph-map-file")
+generation_flags = ("opentype", "round")
 font_extension = ".otf"
 ofl_prefix = 'OFL'
 
@@ -48,14 +48,14 @@ def remove_glyph(glyph):
 #--------------------------------------------------------------------------
 
 parser = optparse.OptionParser(usage='\n    %prog FONTNAME...\n    %prog [OPTIONS] FONTNAME...')
-parser.add_option('-C', '--working-directory', dest='working_dir', metavar='DIR', help='change to directory')
+parser.add_option('-C', '--input-directory', dest='input_dir', metavar='DIR', help='where to read source files')
 parser.add_option('--output-directory', dest='output_dir', metavar='DIR', help='where to put generated fonts')
 (options, args) = parser.parse_args()
 
-working_dir = os.path.abspath(options.working_dir if options.working_dir else '.')
+input_dir = os.path.abspath(options.input_dir if options.input_dir else '.')
 output_dir = os.path.abspath(options.output_dir if options.output_dir else '.')
 
-os.chdir(working_dir)
+os.chdir(input_dir)
 
 for sfd_path in args:
 
