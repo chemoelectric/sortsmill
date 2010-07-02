@@ -32,7 +32,7 @@ fonts_DATA = $(call expand_fonts, ${FONTS})
 EXTRA_DIST = \
 	$(addsuffix .sfd, ${FONTS}) \
 	$(addsuffix _build.py, ${FONTS}) \
-	$(patsubst %, GoudyStM_%.fea, ${FEA_GoudyStM}) \
-	$(patsubst %, GoudyStM-Italic_%.fea, ${FEA_GoudyStM_Italic})
+	${FEA_GoudyStM:%=GoudyStM_%.fea} \
+	${FEA_GoudyStM_Italic:%=GoudyStM-Italic_%.fea}
 
 MOSTLYCLEANFILES = ${fonts_DATA}
