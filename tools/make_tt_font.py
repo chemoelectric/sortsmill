@@ -25,9 +25,10 @@ THE SOFTWARE.
 #--------------------------------------------------------------------------
 
 import fontforge
-import sys
-import subprocess
+import os.path
 import re
+import subprocess
+import sys
 
 font_extension = '.ttf'
 name_modifier = 'TT'
@@ -53,7 +54,7 @@ def modify_postscript_name(ps_name, modifier):
         new_name = ps_name + modifier
     return new_name
 
-def generate_tt_font(f, modifier):
+def generate_tt_font(f, modifier, output_dir = None):
 
     modify_names(f, modifier)
 
@@ -62,7 +63,11 @@ def generate_tt_font(f, modifier):
     f.autoInstr()
     f.selection.none()
 
-    ttf_file = f.fontname + font_extension
+    if output_dir:
+        ttf_file = os.path.join(output_dir, f.fontname + font_extension)
+    else:
+        ttf_file = f.fontname + font_extension
+
     print("Generating " + ttf_file)
     f.generate(ttf_file, flags = generation_flags)
     print("Validating " + ttf_file)

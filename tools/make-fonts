@@ -25,13 +25,15 @@ THE SOFTWARE.
 #--------------------------------------------------------------------------
 
 import fontforge
-import sys
+import optparse
+import os.path
 import re
 import subprocess
+import sys
 
 from sortsmill import licensing
-from sortsmill.make_tt_font import generate_tt_font
-from sortsmill.readfeatures import merge_pair_positioning_subtables
+from sortsmill import make_tt_font
+from sortsmill import readfeatures
 
 layer_to_use = "Fore"
 unwanted_glyphs = ['DONT_KEEP', 'NOTUSED']
@@ -45,7 +47,11 @@ def remove_glyph(glyph):
 
 #--------------------------------------------------------------------------
 
-for sfd_path in sys.argv[1:]:
+parser = optparse.OptionParser(usage='\n    %prog FONTNAME...\n    %prog [OPTIONS] FONTNAME...')
+parser.add_option('--output-directory', dest='output_dir', metavar='DIR', help='where to put the fonts')
+(options, args) = parser.parse_args()
+
+for sfd_path in args:
 
     is_ofl = (sfd_path[:len(ofl_prefix)] == ofl_prefix)
     if is_ofl:
@@ -88,12 +94,15 @@ for sfd_path in sys.argv[1:]:
         f.correctReferences()
     f.selection.none()
 
-    merge_pair_positioning_subtables(f)
+    readfeatures.merge_pair_positioning_subtables(f)
 
     if tt_match:
-        generate_tt_font(f, 'TT')
+        make_tt_font.generate_tt_font(f, 'TT', output_dir = options.output_dir)
     else:
-        font_file = f.fontname + font_extension
+        if options.output_dir:
+            font_file = os.path.join(options.output_dir, f.fontname + font_extension)
+        else:
+            font_file = f.fontname + font_extension
         print("Generating", font_file)
         f.generate(font_file, flags = generation_flags, layer = layer_to_use)
         print("Validating", font_file)
