@@ -25,8 +25,8 @@ AC_PREREQ(2.65)
 AC_INIT([sortsmill-kis],[1.0],[http://code.google.com/p/sortsmill/issues/])
 AM_INIT_AUTOMAKE([foreign])
 
-AC_SORTSMILL_PREREQUISITES
-AM_INIT_SORTSMILL
+STM_SORTSMILL_PREREQUISITES
+STM_INIT_SORTSMILL
 
 # Checks for programs.
 AC_PROG_MAKE_SET

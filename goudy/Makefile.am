@@ -26,10 +26,11 @@ FONTS = GoudyStM GoudyStM-Italic
 FEA_GoudyStM = main locl figures sc hist case salt liga cpsp generated_kerning
 FEA_GoudyStM_Italic = main locl figures hist case salt liga cpsp generated_kerning
 
-fontsdir = ${datarootdir}/fonts
 fonts_DATA = $(call expand_fonts, ${FONTS})
 
 EXTRA_DIST = \
+	COPYING INSTALL \
+	OFL/OFL-FAQ.txt OFL/OFL.txt OFL/FONTLOG.txt \
 	$(addsuffix .sfd, ${FONTS}) \
 	$(addsuffix _build.py, ${FONTS}) \
 	${FEA_GoudyStM:%=GoudyStM_%.fea} \

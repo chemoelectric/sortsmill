@@ -27,10 +27,11 @@ FEA_KisStM = main locl desc liga generated_kerning
 FEA_KisStM_Italic = main locl desc calt liga generated_kerning
 FEA_KisStM_Bold = main locl desc generated_kerning
 
-fontsdir = ${datarootdir}/fonts
 fonts_DATA = $(call expand_fonts, ${FONTS})
 
 EXTRA_DIST = \
+	COPYING INSTALL \
+	OFL/OFL-FAQ.txt OFL/OFL.txt \
 	$(addsuffix .sfd, ${FONTS}) \
 	$(addsuffix _build.py, ${FONTS}) \
 	${FEA_KisStM:%=KisStM_%.fea} \

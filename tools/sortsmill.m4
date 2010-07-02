@@ -20,9 +20,9 @@
 
 #serial 1
 
-# AC_SORTSMILL_DISABLE_OPENTYPE
-# -----------------------------
-AC_DEFUN([AC_SORTSMILL_DISABLE_OPENTYPE],
+# STM_DISABLE_OPENTYPE
+# --------------------
+AC_DEFUN([STM_DISABLE_OPENTYPE],
 [AC_ARG_ENABLE(opentype,
         [AS_HELP_STRING([--disable-opentype],
                         [do not build PostScript-flavored OpenType fonts (default is to build them)])],
@@ -32,9 +32,9 @@ opentype_func=nullify
 test x"${build_opentype}" = x"yes" && opentype_func=opentype
 AC_SUBST(opentype_func)])
 
-# AC_SORTSMILL_DISABLE_TRUETYPE
-# -----------------------------
-AC_DEFUN([AC_SORTSMILL_DISABLE_TRUETYPE],
+# STM_DISABLE_TRUETYPE
+# --------------------
+AC_DEFUN([STM_DISABLE_TRUETYPE],
 [AC_ARG_ENABLE(truetype,
         [AS_HELP_STRING([--disable-truetype],
                         [do not build TrueType fonts (default is to build them)])],
@@ -44,9 +44,9 @@ truetype_func=nullify
 test x"${build_truetype}" = x"yes" && truetype_func=truetype
 AC_SUBST(truetype_func)])
 
-# AC_SORTSMILL_ENABLE_OFL
-# -----------------------
-AC_DEFUN([AC_SORTSMILL_ENABLE_OFL],
+# STM_ENABLE_OFL
+# --------------
+AC_DEFUN([STM_ENABLE_OFL],
 [AC_ARG_ENABLE(ofl,
         [AS_HELP_STRING([--enable-ofl],
                         [build SIL Open Font License versions of fonts (default is not to build them)])],
@@ -56,9 +56,9 @@ ofl_func=nullify
 test x"${build_ofl}" = x"yes" && ofl_func=ofl
 AC_SUBST(ofl_func)])
 
-# AC_SORTSMILL_DISABLE_MIT
-# ------------------------
-AC_DEFUN([AC_SORTSMILL_DISABLE_MIT],
+# STM_DISABLE_MIT
+# ---------------
+AC_DEFUN([STM_DISABLE_MIT],
 [AC_ARG_ENABLE(mit,
         [AS_HELP_STRING([--disable-mit],
                         [do not build MIT-license versions of fonts (default is to build them)])],
@@ -68,23 +68,23 @@ mit_func=nullify
 test x"${build_mit}" = x"yes" && mit_func=mit
 AC_SUBST(mit_func)])
 
-# AC_SORTSMILL_ENABLES
-# --------------------
-AC_DEFUN([AC_SORTSMILL_ENABLES],
-[AC_SORTSMILL_DISABLE_OPENTYPE
-AC_SORTSMILL_DISABLE_TRUETYPE
-AC_SORTSMILL_ENABLE_OFL
-AC_SORTSMILL_DISABLE_MIT])
+# STM_SORTSMILL_ENABLES
+# ---------------------
+AC_DEFUN([STM_SORTSMILL_ENABLES],
+[STM_DISABLE_OPENTYPE
+STM_DISABLE_TRUETYPE
+STM_ENABLE_OFL
+STM_DISABLE_MIT])
 
-# AC_PROG_FONTLINT
-# ----------------
-AC_DEFUN([AC_PROG_FONTLINT],
+# STM_PROG_FONTLINT
+# -----------------
+AC_DEFUN([STM_PROG_FONTLINT],
 [AC_CHECK_PROG(HAVE_FONTLINT, [fontlint], [yes])
 test x"${HAVE_FONTLINT}" = x"yes" || AC_MSG_ERROR([I need fontlint, which is part of fontforge.])])
 
-# AC_CHECK_FONTFORGE_EXTENSION
-# ----------------------------
-AC_DEFUN([AC_CHECK_FONTFORGE_EXTENSION],
+# STM_CHECK_FONTFORGE_EXTENSION
+# -----------------------------
+AC_DEFUN([STM_CHECK_FONTFORGE_EXTENSION],
 [AC_MSG_CHECKING([for the 'fontforge' extension for Python])
 if ${PYTHON} -c 'import fontforge' 2>/dev/null ; then
    AC_MSG_RESULT([yes])
@@ -93,16 +93,29 @@ else
    AC_MSG_ERROR([I need the 'fontforge' extension.])
 fi])
 
-# AC_SORTSMILL_PREREQUISITES
-# --------------------------
-AC_DEFUN([AC_SORTSMILL_PREREQUISITES],
-[AM_PATH_PYTHON([2.6])
-AC_REQUIRE([AC_SORTSMILL_ENABLES])
-AC_REQUIRE([AC_PROG_FONTLINT])])
+# STM_FONTSDIR
+# ------------
+AC_DEFUN([STM_FONTSDIR],
+[AC_ARG_WITH(fontsdir,
+        [AS_HELP_STRING([--with-fontsdir=DIR],
+                        [directory for generated fonts [DIR=DATAROOTDIR/fonts/sortsmill]])],
+        [fontsdir=${withval}],
+        [fontsdir=${datarootdir}/fonts/sortsmill])
+AC_SUBST([fontsdir])
+])
 
-# AM_INIT_SORTSMILL
-# -----------------
-AC_DEFUN([AM_INIT_SORTSMILL],
+# STM_SORTSMILL_PREREQUISITES
+# ---------------------------
+AC_DEFUN([STM_SORTSMILL_PREREQUISITES],
+[AM_PATH_PYTHON([2.6])
+AC_REQUIRE([STM_SORTSMILL_ENABLES])
+AC_REQUIRE([STM_PROG_FONTLINT])
+AC_REQUIRE([STM_FONTSDIR])
+])
+
+# STM_INIT_SORTSMILL
+# ------------------
+AC_DEFUN([STM_INIT_SORTSMILL],
 [
 AC_SUBST([nullify],[])
 AC_SUBST([opentype],['$(foreach f, ${1}, ${f}.otf)'])
@@ -130,8 +143,8 @@ OFL%TT.ttf            : %.sfd  ; ${MKFONT} $(basename [$]@)
 # within make?
 OFL%TT-Italic.ttf     : %-Italic.sfd  ; ${MKFONT} $(basename [$]@)
 %TT-Italic.ttf        : %-Italic.sfd  ; ${MKFONT} $(basename [$]@)
-OFL%TT-Bold.ttf       : %-Bold.sfd  ; ${MKFONT} $(basename [$]@)
-%TT-Bold.ttf          : %-Bold.sfd  ; ${MKFONT} $(basename [$]@)
+OFL%TT-Bold.ttf       : %-Bold.sfd    ; ${MKFONT} $(basename [$]@)
+%TT-Bold.ttf          : %-Bold.sfd    ; ${MKFONT} $(basename [$]@)
 OFL%TT-BoldItalic.ttf : %-BoldItalic.sfd  ; ${MKFONT} $(basename [$]@)
 %TT-BoldItalic.ttf    : %-BoldItalic.sfd  ; ${MKFONT} $(basename [$]@)
 '
