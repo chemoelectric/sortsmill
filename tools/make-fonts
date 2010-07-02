@@ -26,7 +26,8 @@ THE SOFTWARE.
 
 import fontforge
 import optparse
-import os.path
+import os
+######################import os.path
 import re
 import subprocess
 import sys
@@ -48,8 +49,12 @@ def remove_glyph(glyph):
 #--------------------------------------------------------------------------
 
 parser = optparse.OptionParser(usage='\n    %prog FONTNAME...\n    %prog [OPTIONS] FONTNAME...')
-parser.add_option('--output-directory', dest='output_dir', metavar='DIR', help='where to put the fonts')
+parser.add_option('-C', '--working-directory', dest='working_dir', metavar='DIR', help='change to directory')
+parser.add_option('--output-directory', dest='output_dir', metavar='DIR', help='where to put generated fonts')
 (options, args) = parser.parse_args()
+
+if options.working_dir:
+    os.chdir(options.working_dir)
 
 for sfd_path in args:
 
