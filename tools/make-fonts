@@ -27,7 +27,6 @@ THE SOFTWARE.
 import fontforge
 import optparse
 import os
-######################import os.path
 import re
 import subprocess
 import sys
@@ -53,8 +52,10 @@ parser.add_option('-C', '--working-directory', dest='working_dir', metavar='DIR'
 parser.add_option('--output-directory', dest='output_dir', metavar='DIR', help='where to put generated fonts')
 (options, args) = parser.parse_args()
 
-if options.working_dir:
-    os.chdir(options.working_dir)
+working_dir = os.path.abspath(options.working_dir if options.working_dir else '.')
+output_dir = os.path.abspath(options.output_dir if options.output_dir else '.')
+
+os.chdir(working_dir)
 
 for sfd_path in args:
 
@@ -102,12 +103,9 @@ for sfd_path in args:
     readfeatures.merge_pair_positioning_subtables(f)
 
     if tt_match:
-        make_tt_font.generate_tt_font(f, 'TT', output_dir = options.output_dir)
+        make_tt_font.generate_tt_font(f, 'TT', output_dir = output_dir)
     else:
-        if options.output_dir:
-            font_file = os.path.join(options.output_dir, f.fontname + font_extension)
-        else:
-            font_file = f.fontname + font_extension
+        font_file = os.path.join(output_dir, f.fontname + font_extension)
         print("Generating", font_file)
         f.generate(font_file, flags = generation_flags, layer = layer_to_use)
         print("Validating", font_file)
