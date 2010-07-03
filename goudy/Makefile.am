@@ -24,6 +24,7 @@ ACLOCAL_AMFLAGS = -I m4 --install
 @sortsmill_mit_binpack_rules@
 @sortsmill_ofl_binpack_rules@
 
+MKFONT_FLAGS = --infer-licensing
 FAMILYNAME = goudy
 FONTS = GoudyStM GoudyStM-Italic
 FEA_GoudyStM = main locl figures sc hist case salt liga cpsp generated_kerning
