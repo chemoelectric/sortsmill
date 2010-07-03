@@ -22,7 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
-import font_db
 import fontforge
 import glyphbuild
 import math
@@ -30,6 +29,8 @@ import os
 import psMat
 import readfeatures
 import sys
+
+from . import font_db
 
 ###########################################################################
 #
@@ -492,7 +493,7 @@ def create_missing_anchor_classes(font, spacing_names):
                 font.addAnchorClass(subtable_name, full_name)
 
 def spacing_anchor_heights_are_given(font):
-    if os.path.exists(db_file_name(font)):
+    if os.path.exists(font_db.db_file_name(font)):
         db = font_db.db_open(font)
         result = 'spacing_anchor_heights' in db and db['spacing_anchor_heights'] != None
     else:
