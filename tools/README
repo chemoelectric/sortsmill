@@ -1,1 +1,15 @@
-Write me.
+Sortsmill Tools
+---------------
+
+This package contains mainly Python scripts for use with
+FontForge. These need to be installed before Sorts Mill fonts can be
+built from source. To build Sorts Mill fonts, you also will need the
+FontForge extension for Python.
+
+The scripts also can add features to the FontForge GUI. Install the
+package, and then do something like the following:
+
+    mkdir -p ~/.FontForge/python
+    echo 'from sortsmill import *' > ~/.FontForge/python/sortsmill_python.py
+
+See also the file called 'INSTALL'.
