@@ -1,10 +1,17 @@
-Sorts Mill is developing a packaging system based on GNU Autotools,
-and also is reorganizing. A lot of things are changing, therefore.
+To build Sorts Mill fonts from Mercurial or Git sources, first go into
+the 'tools' directory and install the Sorts Mill Tools, using
+something like
 
-The 'tools' subdirectory contains Python scripts for FontForge. There
-is Python code that adds stuff to the "Tools" menus in an interactive
-FontForge session, and there is code that is run from the command line
-or a Makefile to generate fonts from "source code". Some code does both.
+    autoreconf --install
+    make
+    make install
 
-Other subdirectories contain "source code" for font families.
+Then, if the desired fonts are far enough along in development, go
+into the appropriate directory and once again do something like
 
+    autoreconf --install
+    make
+    make install
+
+If the desired fonts are not that far along, then I don't know what
+you should do. :)
