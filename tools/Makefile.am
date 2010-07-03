@@ -30,3 +30,5 @@ dist_bin_SCRIPTS = make-fonts
 
 ChangeLog::
 	hg log --style=changelog --only-branch=default "${top_srcdir}" > $@ 
+
+DISTCLEANFILES = ChangeLog
