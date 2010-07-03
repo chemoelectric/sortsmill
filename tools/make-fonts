@@ -59,6 +59,7 @@ parser.add_option('--infer-licensing', dest='licensing_inferred', action='store_
 
 input_dir = os.path.abspath(options.input_dir if options.input_dir else '.')
 output_dir = os.path.abspath(options.output_dir if options.output_dir else '.')
+licensing_inferred = options.licensing_inferred
 
 os.chdir(input_dir)
 
