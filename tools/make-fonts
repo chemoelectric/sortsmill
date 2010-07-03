@@ -48,8 +48,13 @@ def remove_glyph(glyph):
 #--------------------------------------------------------------------------
 
 parser = optparse.OptionParser(usage='\n    %prog FONTNAME...\n    %prog [OPTIONS] FONTNAME...')
-parser.add_option('-C', '--input-directory', dest='input_dir', metavar='DIR', help='where to read source files')
-parser.add_option('--output-directory', dest='output_dir', metavar='DIR', help='where to put generated fonts')
+parser.set_defaults(licensing_inferred=False)
+parser.add_option('-C', '--input-directory', dest='input_dir', metavar='DIR',
+                  help='where to read source files')
+parser.add_option('--output-directory', dest='output_dir', metavar='DIR',
+                  help='where to put generated fonts')
+parser.add_option('--infer-licensing', dest='licensing_inferred', action='store_true',
+                  help='set license (MIT or OFL) inferred from font name')
 (options, args) = parser.parse_args()
 
 input_dir = os.path.abspath(options.input_dir if options.input_dir else '.')
@@ -74,10 +79,11 @@ for sfd_path in args:
 
     f = fontforge.open(sfd_path)
 
-    if is_ofl:
-        licensing.apply_license(f, licensing.ofl_notice, licensing.ofl_url, name_prefix = 'OFL')
-    elif f.fontname not in ['GoudyBookletter1911']:
-        licensing.apply_license(f, licensing.mit_notice, licensing.mit_url)
+    if licensing_inferred:
+        if is_ofl:
+            licensing.apply_license(f, licensing.ofl_notice, licensing.ofl_url, name_prefix = 'OFL')
+        else:
+            licensing.apply_license(f, licensing.mit_notice, licensing.mit_url)
 
     for glyph_name in f:
         for suffix in unwanted_glyphs:

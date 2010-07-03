@@ -126,7 +126,7 @@ AC_SUBST([mit],['${1}'])
 AC_SUBST([ofl],['$(foreach f, ${1}, OFL${f})'])
 
 AC_SUBST([MAKEFONTS],[make-fonts])
-AC_SUBST([MKFONT],['${MAKEFONTS} --input-directory=${srcdir} --output-directory=${builddir}'])
+AC_SUBST([MKFONT],['${MAKEFONTS} --input-directory=${srcdir} --output-directory=${builddir} ${MKFONT_FLAGS}'])
 
 AC_SUBST([expand_fonts],[' \
 	$(call ${mit_func}, $(call ${opentype_func}, ${1})) \
