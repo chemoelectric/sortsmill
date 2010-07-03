@@ -76,7 +76,7 @@ for sfd_path in args:
 
     if is_ofl:
         licensing.apply_license(f, licensing.ofl_notice, licensing.ofl_url, name_prefix = 'OFL')
-    else:
+    elif f.fontname not in ['GoudyBookletter1911']:
         licensing.apply_license(f, licensing.mit_notice, licensing.mit_url)
 
     for glyph_name in f:
