@@ -19,7 +19,7 @@
 # THE SOFTWARE.
 
 aclocaldir = ${datadir}/aclocal
-aclocal_DATA = ${srcdir}/sortsmill.m4
+dist_aclocal_DATA = ${srcdir}/sortsmill.m4
 
 sortsmillmoduledir = ${pythondir}/sortsmill
 sortsmillmodule_PYTHON = __init__.py cap_spacing.py glyphbuild.py		\
@@ -27,3 +27,6 @@ sortsmillmodule_PYTHON = __init__.py cap_spacing.py glyphbuild.py		\
     make_tt_font.py readfeatures.py spacing_by_anchors.py
 
 dist_bin_SCRIPTS = make-fonts
+
+ChangeLog::
+	hg log --style=changelog --only-branch=default "${top_srcdir}" > $@ 

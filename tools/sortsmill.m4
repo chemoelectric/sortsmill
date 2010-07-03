@@ -54,7 +54,8 @@ AC_DEFUN([STM_ENABLE_OFL],
         [build_ofl=no])
 ofl_func=nullify
 test x"${build_ofl}" = x"yes" && ofl_func=ofl
-AC_SUBST(ofl_func)])
+AC_SUBST(ofl_func)
+])
 
 # STM_DISABLE_MIT
 # ---------------
@@ -66,7 +67,8 @@ AC_DEFUN([STM_DISABLE_MIT],
         [build_mit=yes])
 mit_func=nullify
 test x"${build_mit}" = x"yes" && mit_func=mit
-AC_SUBST(mit_func)])
+AC_SUBST(mit_func)
+])
 
 # STM_SORTSMILL_ENABLES
 # ---------------------
@@ -128,9 +130,15 @@ AC_SUBST([MKFONT],['${MAKEFONTS} --input-directory=${srcdir} --output-directory=
 
 AC_SUBST([expand_fonts],[' \
 	$(call ${mit_func}, $(call ${opentype_func}, ${1})) \
-	$(call ${ofl_func}, $(call ${opentype_func}, ${1})) \
 	$(call ${mit_func}, $(call ${truetype_func}, ${1})) \
+	$(call ${ofl_func}, $(call ${opentype_func}, ${1})) \
 	$(call ${ofl_func}, $(call ${truetype_func}, ${1}))'])
+AC_SUBST([expand_mit_fonts],[' \
+	$(call mit, $(call opentype, ${1})) \
+	$(call mit, $(call truetype, ${1}))'])
+AC_SUBST([expand_ofl_fonts],[' \
+	$(call ofl, $(call opentype, ${1})) \
+	$(call ofl, $(call truetype, ${1}))'])
 
 AM_SUBST_NOTMAKE(sortsmill_rules)
 AC_SUBST([sortsmill_rules],['
@@ -147,6 +155,36 @@ OFL%TT-Bold.ttf       : %-Bold.sfd    ; ${MKFONT} $(basename [$]@)
 %TT-Bold.ttf          : %-Bold.sfd    ; ${MKFONT} $(basename [$]@)
 OFL%TT-BoldItalic.ttf : %-BoldItalic.sfd  ; ${MKFONT} $(basename [$]@)
 %TT-BoldItalic.ttf    : %-BoldItalic.sfd  ; ${MKFONT} $(basename [$]@)
+'
+])
+])
+
+# STM_TARGET_MIT_BINPACK
+# ----------------------
+AC_DEFUN([STM_TARGET_MIT_BINPACK],[
+AC_SUBST([MIT_BINPACK_FILES],['${srcdir}/COPYING $(call expand_mit_fonts, ${FONTS})'])
+AC_SUBST([MIT_BINPACK],['${FAMILYNAME}-${PACKAGE_VERSION}.zip'])
+AM_SUBST_NOTMAKE([sortsmill_mit_binpack_rules])
+AC_SUBST([sortsmill_mit_binpack_rules],['
+${MIT_BINPACK}: ${MIT_BINPACK_FILES}
+	rm -f ${MIT_BINPACK}
+	zip -j ${MIT_BINPACK} ${MIT_BINPACK_FILES}
+'
+])
+])
+
+# STM_TARGET_OFL_BINPACK
+# ----------------------
+AC_DEFUN([STM_TARGET_OFL_BINPACK],[
+AC_SUBST([OFL_BINPACK_FILES],
+    ['${srcdir}/OFL/FONTLOG.txt ${srcdir}/OFL/OFL.txt ${srcdir}/OFL/OFL-FAQ.txt \
+      $(call expand_ofl_fonts, ${FONTS})'])
+AC_SUBST([OFL_BINPACK],['ofl-${FAMILYNAME}-${PACKAGE_VERSION}.zip'])
+AM_SUBST_NOTMAKE([sortsmill_ofl_binpack_rules])
+AC_SUBST([sortsmill_ofl_binpack_rules],['
+${OFL_BINPACK}: ${OFL_BINPACK_FILES}
+	rm -f ${OFL_BINPACK}
+	zip -j ${OFL_BINPACK} ${OFL_BINPACK_FILES}
 '
 ])
 ])

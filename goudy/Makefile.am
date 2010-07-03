@@ -21,7 +21,10 @@
 ACLOCAL_AMFLAGS = -I m4 --install
 
 @sortsmill_rules@
+@sortsmill_mit_binpack_rules@
+@sortsmill_ofl_binpack_rules@
 
+FAMILYNAME = goudy
 FONTS = GoudyStM GoudyStM-Italic
 FEA_GoudyStM = main locl figures sc hist case salt liga cpsp generated_kerning
 FEA_GoudyStM_Italic = main locl figures hist case salt liga cpsp generated_kerning
@@ -29,7 +32,6 @@ FEA_GoudyStM_Italic = main locl figures hist case salt liga cpsp generated_kerni
 fonts_DATA = $(call expand_fonts, ${FONTS})
 
 EXTRA_DIST = \
-	COPYING INSTALL \
 	OFL/OFL-FAQ.txt OFL/OFL.txt OFL/FONTLOG.txt \
 	$(addsuffix .sfd, ${FONTS}) \
 	$(addsuffix _build.py, ${FONTS}) \
@@ -37,3 +39,8 @@ EXTRA_DIST = \
 	${FEA_GoudyStM_Italic:%=GoudyStM-Italic_%.fea}
 
 MOSTLYCLEANFILES = ${fonts_DATA}
+
+ChangeLog::
+	hg log --style=changelog --only-branch=default "${top_srcdir}" > $@ 
+
+DISTCLEANFILES = ChangeLog

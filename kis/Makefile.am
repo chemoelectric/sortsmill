@@ -21,7 +21,10 @@
 ACLOCAL_AMFLAGS = -I m4 --install
 
 @sortsmill_rules@
+@sortsmill_mit_binpack_rules@
+@sortsmill_ofl_binpack_rules@
 
+FAMILYNAME = kis
 FONTS = KisStM KisStM-Italic KisStM-Bold
 FEA_KisStM = main locl desc liga generated_kerning
 FEA_KisStM_Italic = main locl desc calt liga generated_kerning
@@ -30,7 +33,6 @@ FEA_KisStM_Bold = main locl desc generated_kerning
 fonts_DATA = $(call expand_fonts, ${FONTS})
 
 EXTRA_DIST = \
-	COPYING INSTALL \
 	OFL/OFL-FAQ.txt OFL/OFL.txt \
 	$(addsuffix .sfd, ${FONTS}) \
 	$(addsuffix _build.py, ${FONTS}) \
@@ -39,3 +41,8 @@ EXTRA_DIST = \
 	${FEA_KisStM_Bold:%=KisStM-Bold_%.fea}
 
 MOSTLYCLEANFILES = ${fonts_DATA}
+
+ChangeLog::
+	hg log --style=changelog --only-branch=default "${top_srcdir}" > $@ 
+
+DISTCLEANFILES = ChangeLog
