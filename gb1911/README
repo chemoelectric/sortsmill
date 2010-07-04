@@ -1,0 +1,43 @@
+Goudy Bookletter 1911
+---------------------
+
+This is the source distribution of the Goudy Bookletter 1911 fonts,
+which are based on Frederic Goudy's Kennerley typeface. The fonts and
+the FontForge .sfd file from which they are made have been placed in
+the public domain. Configuration files and makefiles may be
+copyrighted, and licensed as free software.
+
+To install fonts from this distribution, first install the Sorts Mill
+Tools package. Then what you do can be as simple as:
+
+    ./configure
+    make
+    make install
+
+The 'configure' script can take some options:
+
+    --disable-opentype     Don't generate PostScript-flavored
+                           OpenType fonts.
+
+    --disable-truetype     Don't generate TrueType fonts.
+
+    --with-fontsdir=DIR    Specify the directory where fonts
+                           are to be installed. (By default
+                           they are placed in
+                           /usr/local/share/fonts/sortsmill)
+
+See also the file called 'INSTALL', where even more options are
+discussed.
+
+
+Appendix
+--------
+
+One also can make a zip-package of pre-generated fonts as follows:
+
+    ./configure
+    make gb1911-XXXX.XX.XX.zip
+
+where 'XXXX.XX.XX' should be replaced with the current version.  In
+this case the --enable-FEATURE and --with-fontsdir options described
+above are ignored.
