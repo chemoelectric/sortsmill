@@ -7,7 +7,12 @@ built from source. To build Sorts Mill fonts, you also will need the
 FontForge extension for Python.
 
 The scripts also can add features to the FontForge GUI. Install the
-package, and then do something like the following:
+package with commands such as:
+
+    ./configure
+    make install  
+
+and then do something like the following:
 
     mkdir -p ~/.FontForge/python
     echo 'from sortsmill import *' > ~/.FontForge/python/sortsmill_python.py
