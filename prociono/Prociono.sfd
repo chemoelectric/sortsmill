@@ -1,27 +1,25 @@
 SplineFontDB: 3.0
-FontName: Prociono-Regular
-FullName: Prociono Regular
+FontName: Prociono
+FullName: Prociono
 FamilyName: Prociono
 Weight: Regular
 Copyright: This font has been released into the public domain by its author, Barry Schwartz. This applies worldwide.\n\nIn some countries this may not be legally possible; if so:\nBarry Schwartz grants anyone the right to use this work for any purpose, without any conditions, unless such conditions are required by law.
-Version: 2.2
+Version: 2.3
 ItalicAngle: 0
 UnderlinePosition: -100
 UnderlineWidth: 50
 Ascent: 797
 Descent: 203
-sfntRevision: 0x00023333
 LayerCount: 2
 Layer: 0 0 "Back"  1
 Layer: 1 0 "Fore"  0
-NeedsXUIDChange: 1
-XUID: [1021 658 797806517 9773845]
+XUID: [1021 658 797806517 10812361]
 FSType: 0
 OS2Version: 3
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1167379177
-ModificationTime: 1278214392
+ModificationTime: 1278222241
 PfmFamily: 17
 TTFWeight: 400
 TTFWidth: 5
@@ -62,6 +60,7 @@ Lookup: 4 0 0 "'dlig' Discretionary Ligatures in Latin lookup 4"  {"'dlig' Discr
 Lookup: 258 0 0 "'kern' Horizontal Kerning in Latin lookup 0"  {"'kern' Horizontal Kerning in Latin lookup 0 subtable"  } ['kern' ('latn' <'dflt' > ) ]
 Lookup: 258 0 0 "'kern' Horizontal Kerning in Latin lookup 1"  {"'kern' Horizontal Kerning in Latin lookup 1 subtable"  } ['kern' ('latn' <'dflt' > ) ]
 Lookup: 260 0 0 "'mark' Mark Positioning in Latin lookup 2"  {"'mark' Mark Positioning in Latin lookup 2 subtable"  } ['mark' ('latn' <'dflt' > ) ]
+MarkAttachClasses: 1
 DEI: 91125
 KernClass2: 18 17 "'kern' Horizontal Kerning in Latin lookup 0 subtable" 
  57 A Agrave Aacute Acircumflex Atilde Adieresis Aring Abreve
@@ -118,14 +117,14 @@ KernClass2: 10 10 "'kern' Horizontal Kerning in Latin lookup 1 subtable"
  13 w wcircumflex
  30 y yacute ydieresis ycircumflex
  0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -35 {} -35 {} -35 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -5 {} -5 {} 0 {} 0 {} 0 {} 0 {} 0 {} -30 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -20 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -15 {} 0 {} -20 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 30 {} 30 {} 30 {} 0 {} -30 {} 0 {} -20 {} 0 {} -70 {} 0 {} 0 {} 0 {} 0 {} 0 {} -30 {} 0 {} -20 {} 0 {} -70 {} 0 {} 0 {} 0 {} 0 {} 0 {} -30 {} 0 {} -20 {} 0 {} -70 {} 0 {} 0 {} 0 {} 0 {}
-LangName: 1033 "" "" "" "Foundry : Prociono Regular : 8-1-2007" "" "" "" "" "The Crud Factory / La Rubejplenigejo" "Barry Schwartz" "" "http://crudfactory.com" "http://crudfactory.com" 
+LangName: 1033 "" "" "" "" "" "" "" "" "The Crud Factory / La Rubejplenigejo" "Barry Schwartz" "" "http://crudfactory.com" "http://crudfactory.com" 
 Encoding: UnicodeBmp
 UnicodeInterp: none
 NameList: Adobe Glyph List
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 1
-WinInfo: 70 14 12
+WinInfo: 0 14 12
 BeginPrivate: 7
 BlueValues 39 [-18 0 504 529 734 753 767 776 797 798]
 OtherBlues 11 [-205 -204]
@@ -2618,7 +2617,7 @@ StartChar: m
 Encoding: 109 109 78
 Width: 834
 GlyphClass: 2
-Flags: MWO
+Flags: MW
 HStem: 0 34<37 87.2896 196.174 241 325 371.125 483.291 529 607 654.625 761.971 811> 452 74<271.877 367.977 555.559 648.933>
 VStem: 95 90<43.3615 330.48> 379 93<42.2523 424.156> 664 88<40.75 435.286>
 CounterMasks: 2 30 18
@@ -3030,37 +3029,12 @@ StartChar: x
 Encoding: 120 120 89
 Width: 453
 GlyphClass: 2
-Flags: MW
+Flags: HMWO
 HStem: -18 21G<414.5 438.5> 0 34<-5 37.366 122.341 159> 494 20G<305 322 418.5 436>
 VStem: 329 121<452 501>
 DStem2: 190 266 223 224 0.605719 0.795678<-206.495 -13.4298 97.2305 236.48>
 AnchorPoint: "Anchor-0" 241 510 basechar 0
 LayerCount: 2
-Back
-SplineSet
--5 0 m 5x40
- -5 34 l 5
- 37 37 37 34 190 266 c 5
- 75 447 85 462 19 469 c 5
- 17 502 l 5
- 80 510 108 526 128 526 c 4x68
- 158 526 169 491 252 341 c 5
- 292 397 329 446 329 458 c 4
- 329 494 292 470 292 497 c 4
- 292 500 295 514 315 514 c 4
- 329 514 344 512 372 512 c 4
- 401 512 407 514 430 514 c 4
- 442 514 450 509 450 493 c 4
- 450 472 423 488 392 446 c 5
- 358 404 294 310 284 295 c 5
- 451 34 453 22 453 2 c 4
- 453 -16 441 -18 436 -18 c 4x90
- 393 -18 327 65 223 224 c 5
- 155 119 122 74 122 54 c 4
- 122 42 135 38 159 34 c 5
- 159 0 l 5
- -5 0 l 5x40
-EndSplineSet
 Fore
 SplineSet
 -5 0 m 1x70
