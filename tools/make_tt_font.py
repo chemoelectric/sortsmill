@@ -25,10 +25,11 @@ THE SOFTWARE.
 #--------------------------------------------------------------------------
 
 import fontforge
-import os.path
+import os
 import re
 import subprocess
 import sys
+import tempfile
 
 font_extension = '.ttf'
 name_modifier = 'TT'
@@ -54,7 +55,12 @@ def modify_postscript_name(ps_name, modifier):
         new_name = ps_name + modifier
     return new_name
 
+def compile_graphite(gdl_file, input_file, output_file):
+    subprocess.call(['grcompiler', gdl_file, input_file, output_file])
+
 def generate_tt_font(f, modifier, output_dir = None):
+
+    unmodified_name = f.fontname
 
     modify_names(f, modifier)
 
@@ -68,10 +74,20 @@ def generate_tt_font(f, modifier, output_dir = None):
     else:
         ttf_file = f.fontname + font_extension
 
-    print("Generating " + ttf_file)
-    f.generate(ttf_file, flags = generation_flags)
-    print("Validating " + ttf_file)
-    subprocess.call(["fontlint", ttf_file])
+    gdl_file = unmodified_name + '.gdl'
+    if os.path.exists(gdl_file):
+        temp_ttf = tempfile.NamedTemporaryFile(suffix = '.ttf')
+        print('Generating ' + temp_ttf.name)
+        f.generate(temp_ttf.name, flags = generation_flags)
+        print('Compiling graphite: ' + gdl_file + ' ' + temp_ttf.name + ' -> ' + ttf_file)
+        compile_graphite(gdl_file, temp_ttf.name, ttf_file)
+        temp_ttf.close()
+    else:
+        print('Generating ' + ttf_file)
+        f.generate(ttf_file, flags = generation_flags)
+
+    print('Validating ' + ttf_file)
+    subprocess.call(['fontlint', ttf_file])
     
 
 #--------------------------------------------------------------------------
@@ -81,7 +97,7 @@ def generate_tt_font(f, modifier, output_dir = None):
 # also the |sys| module will not yet have an |argv| attribute. Weed
 # out that case.  Perhaps fontforge should handle the situation
 # better. (5 Nov 2009)
-if __name__ == "__main__" and not fontforge.hasUserInterface() and hasattr(sys, 'argv'):
+if __name__ == '__main__' and not fontforge.hasUserInterface() and hasattr(sys, 'argv'):
 
     for font_file in sys.argv[1:]:
         f = fontforge.open(font_file)
