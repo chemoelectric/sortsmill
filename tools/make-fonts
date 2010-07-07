@@ -63,22 +63,22 @@ licensing_inferred = options.licensing_inferred
 
 os.chdir(input_dir)
 
-for sfd_path in args:
+for sfd_filename in args:
 
-    is_ofl = (sfd_path[:len(ofl_prefix)] == ofl_prefix)
+    is_ofl = (sfd_filename[:len(ofl_prefix)] == ofl_prefix)
     if is_ofl:
-        sfd_path = sfd_path[len(ofl_prefix):]
+        sfd_filename = sfd_filename[len(ofl_prefix):]
 
-    tt_match = re.match('(^.*)TT(-[^-]*)?$', sfd_path)
+    tt_match = re.match('(^.*)TT(-[^-]*)?$', sfd_filename)
     if tt_match:
-        sfd_path = tt_match.group(1)
+        sfd_filename = tt_match.group(1)
         if tt_match.group(2):
-            sfd_path += tt_match.group(2)
+            sfd_filename += tt_match.group(2)
 
-    if sfd_path[-4:] != ".sfd":
-        sfd_path += ".sfd"
+    if sfd_filename[-4:] != ".sfd":
+        sfd_filename += ".sfd"
 
-    f = fontforge.open(sfd_path)
+    f = fontforge.open(sfd_filename)
 
     if licensing_inferred:
         if is_ofl:
@@ -110,7 +110,7 @@ for sfd_path in args:
     readfeatures.merge_pair_positioning_subtables(f)
 
     if tt_match:
-        make_tt_font.generate_tt_font(f, 'TT', output_dir = output_dir)
+        make_tt_font.generate_tt_font(f, sfd_filename[:-4], 'TT', output_dir = output_dir)
     else:
         font_file = os.path.join(output_dir, f.fontname + font_extension)
         print("Generating", font_file)

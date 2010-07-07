@@ -58,9 +58,7 @@ def modify_postscript_name(ps_name, modifier):
 def compile_graphite(gdl_file, input_file, output_file):
     subprocess.call(['grcompiler', gdl_file, input_file, output_file])
 
-def generate_tt_font(f, modifier, output_dir = None):
-
-    unmodified_name = f.fontname
+def generate_tt_font(f, unadorned_font_name, modifier, output_dir = None):
 
     modify_names(f, modifier)
 
@@ -74,7 +72,7 @@ def generate_tt_font(f, modifier, output_dir = None):
     else:
         ttf_file = f.fontname + font_extension
 
-    gdl_file = unmodified_name + '.gdl'
+    gdl_file = unadorned_font_name + '.gdl'
     if os.path.exists(gdl_file):
         temp_ttf = tempfile.NamedTemporaryFile(suffix = '.ttf')
         print('Generating ' + temp_ttf.name)
