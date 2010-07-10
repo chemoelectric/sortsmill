@@ -1,1 +1,56 @@
+Sorts Mill Kis
+--------------
+
+This is the source distribution of the Sorts Mill Kis fonts.
+
+To install fonts from this distribution, first install the Sorts Mill
+Tools package. Then what you do can be as simple as:
+
+    ./configure
+    make
+    make install
+
+The 'configure' script can take some options:
+
+    --disable-opentype     Don't generate PostScript-flavored
+                           OpenType fonts.
+
+    --disable-truetype     Don't generate TrueType fonts.
+
+    --enable-ofl           Generate the 'OFL Sorts Mill Goudy'
+                           fonts, which are covered by the
+                           SIL Open Font License.
+
+    --disable-mit          Don't generate the default 'Sorts
+                           Mill Goudy' fonts, which are covered
+                           by a permissive, 'MIT-style' license.
+
+    --disable-graphite     Don't include Graphite support in
+                           TrueType fonts.
+
+    --with-fontsdir=DIR    Specify the directory where fonts
+                           are to be installed. (By default
+                           they are placed in
+                           /usr/local/share/fonts/sortsmill)
+
+See also the file called 'INSTALL', where even more options are
+discussed.
+
+
+Appendix
+--------
+
+One also can make zip-packages of pre-generated fonts as follows:
+
+    ./configure
+    make goudy-X.X.zip
+
+or
+
+    ./configure
+    make ofl-goudy-X.X.zip
+
+where 'X.X' should be replaced with the current version number.
+In this case the --enable-FEATURE and --with-fontsdir options
+described above are ignored.
 Write me.

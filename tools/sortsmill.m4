@@ -18,7 +18,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-#serial 1
+#serial 2
 
 # STM_DISABLE_OPENTYPE
 # --------------------
@@ -70,13 +70,24 @@ test x"${build_mit}" = x"yes" && mit_func=mit
 AC_SUBST(mit_func)
 ])
 
+# STM_DISABLE_GRAPHITE
+# --------------------
+AC_DEFUN([STM_DISABLE_GRAPHITE],
+[AC_ARG_ENABLE(graphite,
+        [AS_HELP_STRING([--disable-graphite],
+                        [do not include Graphite support in TrueType fonts (default is to include Graphite support)])],
+        [build_graphite=${enableval}],
+        [build_graphite=yes])
+])
+
 # STM_SORTSMILL_ENABLES
 # ---------------------
 AC_DEFUN([STM_SORTSMILL_ENABLES],
 [STM_DISABLE_OPENTYPE
 STM_DISABLE_TRUETYPE
 STM_ENABLE_OFL
-STM_DISABLE_MIT])
+STM_DISABLE_MIT
+STM_DISABLE_GRAPHITE])
 
 # STM_SORTSMILL_NONLICENSE_ENABLES
 # --------------------------------
@@ -89,6 +100,15 @@ STM_DISABLE_TRUETYPE])
 AC_DEFUN([STM_PROG_FONTLINT],
 [AC_CHECK_PROG(HAVE_FONTLINT, [fontlint], [yes])
 test x"${HAVE_FONTLINT}" = x"yes" || AC_MSG_ERROR([I need fontlint, which is part of fontforge.])])
+
+# STM_PROG_GRCOMPILER
+# -------------------
+AC_DEFUN([STM_PROG_GRCOMPILER],
+[if test x"${build_graphite}" = x"yes" -a x"${build_truetype}" = x"yes" ; then
+AC_CHECK_PROG(HAVE_GRCOMPILER, [grcompiler], [yes])
+test x"${HAVE_GRCOMPILER}" = x"yes" || AC_MSG_ERROR([Graphite compiler not found. Add \"--disable-graphite\" to build TrueType without Graphite support.])
+fi
+])
 
 # STM_CHECK_FONTFORGE_EXTENSION
 # -----------------------------
@@ -118,6 +138,7 @@ AC_DEFUN([STM_SORTSMILL_PREREQUISITES],
 [AM_PATH_PYTHON([2.6])
 AC_REQUIRE([STM_SORTSMILL_ENABLES])
 AC_REQUIRE([STM_PROG_FONTLINT])
+AC_REQUIRE([STM_PROG_GRCOMPILER])
 AC_REQUIRE([STM_FONTSDIR])
 ])
 
@@ -127,6 +148,7 @@ AC_DEFUN([STM_SORTSMILL_NONLICENSE_PREREQUISITES],
 [AM_PATH_PYTHON([2.6])
 AC_REQUIRE([STM_SORTSMILL_NONLICENSE_ENABLES])
 AC_REQUIRE([STM_PROG_FONTLINT])
+AC_REQUIRE([STM_PROG_GRCOMPILER])
 AC_REQUIRE([STM_FONTSDIR])
 ])
 
