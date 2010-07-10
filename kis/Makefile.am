@@ -24,7 +24,7 @@ ACLOCAL_AMFLAGS = -I m4 --install
 @sortsmill_mit_binpack_rules@
 @sortsmill_ofl_binpack_rules@
 
-MKFONT_FLAGS = --infer-licensing
+MKFONT_FLAGS = --infer-licensing --ttf-emsize=4096
 FAMILYNAME = kis
 FONTS = KisStM KisStM-Italic KisStM-Bold
 FEA_KisStM = main locl desc liga generated_kerning

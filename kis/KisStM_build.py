@@ -22,17 +22,17 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
-import font_db
 import fontforge
-from glyphbuild import *
-from spacing_by_anchors import *
+from sortsmill import font_db
+from sortsmill.glyphbuild import *
+from sortsmill.spacing_by_anchors import *
 
 emsize = 1000
 spacesize = 200
 
 def build_glyphs(bitbucket, f):
 
-    import cap_spacing
+    from sortsmill import cap_spacing
 
     figures = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
 

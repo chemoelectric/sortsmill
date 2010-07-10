@@ -55,11 +55,14 @@ parser.add_option('--output-directory', dest='output_dir', metavar='DIR',
                   help='where to put generated fonts')
 parser.add_option('--infer-licensing', dest='licensing_inferred', action='store_true',
                   help='set license (MIT or OFL) inferred from font name')
+parser.add_option('--ttf-emsize', dest='ttf_emsize', metavar='UNITS',
+                  help='set the units-per-em in TrueType versions')
 (options, args) = parser.parse_args()
 
 input_dir = os.path.abspath(options.input_dir if options.input_dir else '.')
 output_dir = os.path.abspath(options.output_dir if options.output_dir else '.')
 licensing_inferred = options.licensing_inferred
+ttf_emsize = int(options.ttf_emsize)
 
 os.chdir(input_dir)
 
@@ -110,7 +113,9 @@ for sfd_filename in args:
     readfeatures.merge_pair_positioning_subtables(f)
 
     if tt_match:
-        make_tt_font.generate_tt_font(f, sfd_filename[:-4], 'TT', output_dir = output_dir)
+        make_tt_font.generate_tt_font(f, sfd_filename[:-4], 'TT',
+                                      output_dir = output_dir,
+                                      emsize = ttf_emsize)
     else:
         font_file = os.path.join(output_dir, f.fontname + font_extension)
         print("Generating", font_file)

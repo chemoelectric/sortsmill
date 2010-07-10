@@ -296,6 +296,16 @@ class kerning_object:
             n += name_of_group(groups[self.bunch[len(self.bunch) - 1]], side, subtable_ident) + "]"
         return n
 
+    def graphite_notation(self, groups, side, subtable_ident):
+        if self.signature != None:
+            n = graphite_name_of_group(groups[self.signature], side, subtable_ident)
+        else:
+            n = "("
+            for i in range(0, len(self.bunch) - 1):
+                n += graphite_name_of_group(groups[self.bunch[i]], side, subtable_ident) + ", "
+            n += graphite_name_of_group(groups[self.bunch[len(self.bunch) - 1]], side, subtable_ident) + ")"
+        return n
+
     def is_singleton(self, groups, side):
         return self.signature != None and len(groups[self.signature]) == 1
 
@@ -363,18 +373,7 @@ def join_groups(kernings):
 
     return all_the_joined_kernings
 
-def print_kerning_feature_file(file, font):
-
-    db = font_db.db_open(font, flag = 'c')
-
-    font_db.db_init_binding(font, 'spacing_anchor_tolerance', str(anchor_tolerance))
-    font_db.db_init_binding(font, 'kerning_rounding', 'round')
-    font_db.db_init_binding(font, 'kerning_sets', [(set(font), set(font))])
-
-    if font.temporary == None:
-        font.temporary = {}
-    if 'kern-cache' not in font.temporary or font.temporary['kern-cache'] == None:
-        font.temporary['kern-cache'] = {}
+def calculate_kerning_subtables(font, db):
 
     tolerance = eval(db['spacing_anchor_tolerance'])
     rounding_function = eval(db['kerning_rounding'])
@@ -400,6 +399,10 @@ def print_kerning_feature_file(file, font):
         if kernings != []:
             subtables.append((right_groups, left_groups, kernings))
 
+    return subtables
+
+def print_kerning_feature_file(file, subtables):
+
     if subtables != []:
 
         file.write('feature kern {\n')
@@ -422,6 +425,88 @@ def print_kerning_feature_file(file, font):
                 file.write(str(k) + ';\n')
             file.write('\n')
         file.write('} kern;\n')
+
+def name_of_group(group, side, subtable_ident):
+    assert len(group) != 0
+    assert side == "l" or side == "r"
+
+    if len(group) == 1:
+        prefix = "\\"
+    else:
+        prefix = "@" + side + str(subtable_ident) + "_"
+    return prefix + group[0]
+
+def graphite_name_of_group(group, side, subtable_ident):
+    assert len(group) != 0
+    assert side == 'l' or side == 'r'
+
+    if len(group) == 1:
+        s = 'postscript("' + group[0] + '")'
+    else:
+        s = side + str(subtable_ident) + group[0].replace('.', '__')
+    return s
+
+def print_graphite_kerning_class_definitions(file, groups, side, subtable_ident):
+    assert side == 'l' or side == 'r'
+    for sig in groups:
+        group = groups[sig]
+        if len(group) != 1:
+            file.write(graphite_name_of_group(group, side, subtable_ident) + ' = postscript(')
+            for i in range(0, len(group) - 1):
+                file.write('"' + group[i] + '", ')
+                if (i + 1) % 6 == 0:
+                    file.write('\n     ')
+            file.write('"' + group[-1] + '")\n')
+
+def print_kerning_graphite_file(file, subtables):
+
+    if subtables != []:
+
+        #
+        # TODO: Clean out any unused class.
+        #
+        file.write('table(glyph)\n')
+        for i in range(0, len(subtables)):
+            (right_groups, left_groups, kernings) = subtables[i]
+            print_graphite_kerning_class_definitions(file, right_groups, 'r', i + 1)
+            file.write('\n')
+            print_graphite_kerning_class_definitions(file, left_groups, 'l', i + 1)
+            file.write('\n')
+        file.write('endtable\n')
+
+        file.write('\n')
+
+        file.write('table(positioning)\n')
+        for i in range(0, len(subtables)):
+            (right_groups, left_groups, kernings) = subtables[i]
+            for (obj1, obj2, k) in kernings:
+                file.write(obj1.graphite_notation(right_groups, 'r', i + 1) + ' ')
+                file.write(obj2.graphite_notation(left_groups, 'l', i + 1) + ' ')
+                file.write('{ kern.x = ' + str(k) + 'm };\n')
+        file.write('endtable\n')
+
+def generate_kerning(font, feature_file_name, graphite_file_name):
+
+    db = font_db.db_open(font, flag = 'c')
+
+    font_db.db_init_binding(font, 'spacing_anchor_tolerance', str(anchor_tolerance))
+    font_db.db_init_binding(font, 'kerning_rounding', 'round')
+    font_db.db_init_binding(font, 'kerning_sets', [(set(font), set(font))])
+
+    if font.temporary == None:
+        font.temporary = {}
+    if 'kern-cache' not in font.temporary or font.temporary['kern-cache'] == None:
+        font.temporary['kern-cache'] = {}
+
+    subtables = calculate_kerning_subtables(font, db)
+    if feature_file_name:
+        feature_file = open(feature_file_name, 'w')
+        print_kerning_feature_file(feature_file, subtables)
+        feature_file.close()
+    if graphite_file_name:
+        graphite_file = open(graphite_file_name, 'w')
+        print_kerning_graphite_file(graphite_file, subtables)
+        graphite_file.close()
 
     font_db.db_close(font)
     font_db.db_open(font)
@@ -640,15 +725,13 @@ def space_selected_by_anchors(font):
         if not glyphbuild.is_mark(glyph.glyphname):
             space_glyph_by_anchors(None, glyph)
 
-def generate_kerning_feature_file(suffix, font):
-    if suffix == None:
-        suffix = '_generated_kerning.fea'
-    f = open(font.fontname + suffix, 'w')
-    print_kerning_feature_file(f, font)
-    f.close()
+def generate_kerning_files(bitbucket, font):
+    feature_file_name = font.fontname + '_generated_kerning.fea'
+    graphite_file_name = font.fontname + '_generated_kerning.gdl'
+    generate_kerning(font, feature_file_name, graphite_file_name)
 
-def generate_kerning_and_read_features(suffix, font):
-    generate_kerning_feature_file(suffix, font)
+def generate_kerning_and_read_features(bitbucket, font):
+    generate_kerning_files(bitbucket, font)
     readfeatures.erase_and_read_features(None, font)
 
 def something_is_selected(bitbucket, font = None):
@@ -740,9 +823,9 @@ fontforge.registerMenuItem((lambda _, font: space_selected_by_anchors(font)),
                            something_is_selected, None, 'Font', 'None',
                            'Space selected glyphs by anchors')
 
-fontforge.registerMenuItem(generate_kerning_feature_file,
+fontforge.registerMenuItem(generate_kerning_files,
                            None, None, 'Font', 'None',
-                           'Generate kerning feature file')
+                           'Generate kerning files')
 
 fontforge.registerMenuItem(generate_kerning_and_read_features,
                            readfeatures.feature_file_exists,

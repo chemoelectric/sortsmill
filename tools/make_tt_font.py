@@ -56,12 +56,16 @@ def modify_postscript_name(ps_name, modifier):
     return new_name
 
 def compile_graphite(gdl_file, input_file, output_file):
-    subprocess.call(['grcompiler', gdl_file, input_file, output_file])
+    # Ignore warning 3521: 'Vertical overlap between glyphs in items 1
+    # and 2; attachment may be needed'
+    subprocess.call(['grcompiler', '-q', '-w3521', gdl_file, input_file, output_file])
 
-def generate_tt_font(f, unadorned_font_name, modifier, output_dir = None):
+def generate_tt_font(f, unadorned_font_name, modifier, output_dir = None, emsize = None):
 
     modify_names(f, modifier)
 
+    if emsize != None:
+        f.em = emsize
     f.layers['Fore'].is_quadratic = True
     f.selection.all()
     f.autoInstr()
@@ -76,8 +80,19 @@ def generate_tt_font(f, unadorned_font_name, modifier, output_dir = None):
     if os.path.exists(gdl_file):
         temp_ttf = tempfile.NamedTemporaryFile(suffix = '.ttf')
         print('Generating ' + temp_ttf.name)
+
+        # grcompiler (version 2.4) seems not to like nested
+        # references; it claims it can't compute the bounding box.
+        for g in f.glyphs():
+            refs_to_unlink = set()
+            for ref in g.references:
+                if len(f[ref[0]].references) != 0:
+                    refs_to_unlink.add(ref[0])
+            for ref_name in refs_to_unlink:
+                g.unlinkRef(ref_name)
+
         f.generate(temp_ttf.name, flags = generation_flags)
-        print('Compiling graphite: ' + gdl_file + ' ' + temp_ttf.name + ' -> ' + ttf_file)
+        print('Compiling Graphite: ' + gdl_file + ' ' + temp_ttf.name + ' -> ' + ttf_file)
         compile_graphite(gdl_file, temp_ttf.name, ttf_file)
         temp_ttf.close()
     else:
