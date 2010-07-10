@@ -62,7 +62,7 @@ parser.add_option('--ttf-emsize', dest='ttf_emsize', metavar='UNITS',
 input_dir = os.path.abspath(options.input_dir if options.input_dir else '.')
 output_dir = os.path.abspath(options.output_dir if options.output_dir else '.')
 licensing_inferred = options.licensing_inferred
-ttf_emsize = int(options.ttf_emsize)
+ttf_emsize = int(options.ttf_emsize) if options.ttf_emsize != None else None
 
 os.chdir(input_dir)
 
