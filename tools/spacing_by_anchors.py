@@ -163,6 +163,9 @@ def right_signature(glyph, tolerance = anchor_tolerance):
             i += 1
     return tuple(points)
 
+def is_unused_glyph(glyph_name):
+    return glyph_name[-8:] == '.NOTUSED' or glyph_name[-10:] == '.DONT_KEEP'
+
 def group_glyphs_by_signature(font, side,
                               glyph_set = None,
                               include_marks = False,
@@ -182,7 +185,7 @@ def group_glyphs_by_signature(font, side,
     groups = {}
     for glyph_name in set(glyph_set) - set([".notdef"]):
         glyph = font[glyph_name]
-        if include_marks or not glyphbuild.is_mark(glyph_name):
+        if not is_unused_glyph(glyph_name) and (include_marks or not glyphbuild.is_mark(glyph_name)):
             sig = signature_function(glyph, tolerance)
             if sig in groups:
                 groups[sig].append(glyph_name)
