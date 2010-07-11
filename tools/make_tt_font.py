@@ -60,7 +60,10 @@ def compile_graphite(gdl_file, input_file, output_file):
     # and 2; attachment may be needed'
     subprocess.call(['grcompiler', '-q', '-w3521', gdl_file, input_file, output_file])
 
-def generate_tt_font(f, unadorned_font_name, modifier, output_dir = None, emsize = None):
+def generate_tt_font(f, unadorned_font_name, modifier,
+                     output_dir = None,
+                     emsize = None,
+                     graphite_enabled = False):
 
     modify_names(f, modifier)
 
@@ -77,7 +80,7 @@ def generate_tt_font(f, unadorned_font_name, modifier, output_dir = None, emsize
         ttf_file = f.fontname + font_extension
 
     gdl_file = unadorned_font_name + '.gdl'
-    if os.path.exists(gdl_file):
+    if graphite_enabled and os.path.exists(gdl_file):
         temp_ttf = tempfile.NamedTemporaryFile(suffix = '.ttf')
         print('Generating ' + temp_ttf.name)
 
