@@ -24,7 +24,7 @@ ACLOCAL_AMFLAGS = -I m4 --install
 @sortsmill_mit_binpack_rules@
 @sortsmill_ofl_binpack_rules@
 
-MKFONT_FLAGS = --infer-licensing
+MKFONT_FLAGS = --infer-licensing --ttf-emsize=4096 ${MKFONT_GRAPHITE_FLAGS}
 FAMILYNAME = goudy
 FONTS = GoudyStM GoudyStM-Italic
 FEA_GoudyStM = main locl figures sc hist case salt liga cpsp generated_kerning
@@ -39,7 +39,7 @@ EXTRA_DIST = \
 	${FEA_GoudyStM:%=GoudyStM_%.fea} \
 	${FEA_GoudyStM_Italic:%=GoudyStM-Italic_%.fea}
 
-MOSTLYCLEANFILES = ${fonts_DATA}
+MOSTLYCLEANFILES = ${fonts_DATA} gdlerr.txt
 
 ChangeLog::
 	hg log --style=changelog --only-branch=default "${top_srcdir}" > $@ 

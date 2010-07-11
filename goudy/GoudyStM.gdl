@@ -1,0 +1,192 @@
+/*
+Copyright (c) 2010 Barry Schwartz
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
+
+#include "stddef.gdh"
+
+Bidi = false;
+
+//-------------------------------------------------------------------------
+
+table(glyph)
+
+    gly_c = postscript("c")
+    gly_f = postscript("f")
+    gly_i = postscript("i")
+    gly_turkish_i = postscript("i.TRK")
+    gly_t = postscript("t")
+
+    gly_ct = postscript("c_t")
+
+    cls_fflig_right = postscript("i", "j", "l", "b", "h", "k")
+    cls_fflig = postscript("f_f_i", "f_f_j", "f_f_l", "f_f_b", "f_f_h", "f_f_k")
+
+    cls_flig_right = (gly_f, cls_fflig_right)
+    cls_flig = postscript("f_f", "f_i", "f_j", "f_l", "f_b", "f_h", "f_k")
+
+    cls_st_cedilla = postscript("scedilla", "uni0163")
+    cls_st_commaaccent = postscript("uni0219", "uni021B")
+
+    oldstyle_figures = postscript("zero", "one", "two", "three", "four",
+                                  "five", "six", "seven", "eight", "nine")
+    lining_figures = postscript("zero.lining", "one.lining", "two.lining", "three.lining", "four.lining",
+                                "five.lining", "six.lining", "seven.lining", "eight.lining", "nine.lining")
+    numerator_figures = postscript(
+        "zero.lining.numer",
+        "one.lining.numer",
+        "two.lining.numer",
+        "three.lining.numer",
+        "four.lining.numer",
+        "five.lining.numer",
+        "six.lining.numer",
+        "seven.lining.numer",
+        "eight.lining.numer",
+        "nine.lining.numer"
+        )
+    denominator_figures = postscript(
+        "zero.lining.denom",
+        "one.lining.denom",
+        "two.lining.denom",
+        "three.lining.denom",
+        "four.lining.denom",
+        "five.lining.denom",
+        "six.lining.denom",
+        "seven.lining.denom",
+        "eight.lining.denom",
+        "nine.lining.denom"
+        )
+    inferior_figures = postscript(
+        "zero.lining.sub",
+        "one.lining.sub",
+        "two.lining.sub",
+        "three.lining.sub",
+        "four.lining.sub",
+        "five.lining.sub",
+        "six.lining.sub",
+        "seven.lining.sub",
+        "eight.lining.sub",
+        "nine.lining.sub"
+        )
+    superior_figures = postscript(
+        "zero.lining.sup",
+        "one.lining.sup",
+        "two.lining.sup",
+        "three.lining.sup",
+        "four.lining.sup",
+        "five.lining.sup",
+        "six.lining.sup",
+        "seven.lining.sup",
+        "eight.lining.sup",
+        "nine.lining.sup"
+        )
+
+endtable
+
+//-------------------------------------------------------------------------
+
+table(feature)
+
+    ligatures {
+        id = 345;
+        name.LG_USENG = string("Ligature Replacement");
+        default = standard;
+        settings {
+            all_turkish { value = 4; name.LG_USENG = string("All (Turkish)"); }
+            all         { value = 3; name.LG_USENG = string("All"); }
+            turkish     { value = 2; name.LG_USENG = string("Standard (Turkish)"); }
+            standard    { value = 1; name.LG_USENG = string("Standard"); }
+            none        { value = 0; name.LG_USENG = string("Off"); }
+        }
+    }
+
+    // Do we really want this one? I'm just blindly translating the
+    // Diacritics Project's recommendations for Romanian "locl" in OpenType.
+    st_cedilla_style {
+        id = 64001;
+        name.LG_USENG = string("Cedilla style for s and t");
+        default = cedilla;
+        settings {
+            comma_accent { value = 1; name.LG_USENG = string("Comma accent"); }
+            cedilla      { value = 0; name.LG_USENG = string("Cedilla"); }
+        }
+    }
+
+    lining {
+        id = 64010;
+        name.LG_USENG = string("Lining figures");
+    }
+
+    inferior {
+        id = 64020;
+        name.LG_USENG = string("Inferior figures");
+    }
+
+    superior {
+        id = 64021;
+        name.LG_USENG = string("Superior figures");
+    }
+
+endtable
+
+//-------------------------------------------------------------------------
+
+table(substitution)
+
+    pass(1)
+
+        if (ligatures == turkish)
+            gly_i > gly_turkish_i;
+        endif
+        if (st_cedilla_style == comma_accent)
+            cls_st_cedilla > cls_st_commaaccent;
+        endif
+
+        if (lining)
+            oldstyle_figures > lining_figures;
+        endif
+        if (inferior)
+            oldstyle_figures > inferior_figures;
+            lining_figures > inferior_figures;
+        endif
+        if (superior)
+            oldstyle_figures > superior_figures;
+            lining_figures > superior_figures;
+        endif
+
+    endpass
+
+    pass(2)
+        if (ligatures == standard || ligatures == turkish || ligatures == all || ligatures == all_turkish)
+            gly_f gly_f cls_fflig_right > _ _ cls_fflig:(1, 2, 3);
+            gly_f cls_flig_right > _ cls_flig:(1, 2);
+        endif
+        if (ligatures == all || ligatures == all_turkish)
+            gly_c gly_t > gly_ct:(1, 2) _;
+        endif
+    endpass
+
+endtable
+
+//-------------------------------------------------------------------------
+
+#include "GoudyStM_generated_kerning.gdl"
+
+//-------------------------------------------------------------------------

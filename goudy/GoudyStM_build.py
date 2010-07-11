@@ -113,6 +113,21 @@ def build_glyphs(bitbucket, f):
     build_multigraph('onehalf', [f['one.lining.numer'], f['fraction'], f['two.lining.denom']])
     build_multigraph('threequarters', [f['three.lining.numer'], f['fraction'], f['four.lining.denom']])
 
+    for g in f:
+        if g[-3:] == '.sc':
+            if g == 'periodcentered.sc':
+                make_glyph_reference(g[:-3] + '.c2', f[g])
+            elif g == 'uni0163.sc':
+                make_glyph_reference('uni0162.c2', f[g])
+            elif g == 'uni0219.sc':
+                make_glyph_reference('uni0218.c2', f[g])
+            elif g == 'uni021B.sc':
+                make_glyph_reference('uni021A.c2', f[g])
+            elif g in ('ae.sc', 'oe.sc'):
+                make_glyph_reference(g[:-3].upper() + '.c2', f[g])
+            else:
+                make_glyph_reference(g[:-3].capitalize() + '.c2', f[g])
+
     #--------------------------------------------------------------------------
 
     for letter in 'GKkLlNnRr':

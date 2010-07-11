@@ -22,15 +22,17 @@
 # THE SOFTWARE.
 
 AC_PREREQ(2.65)
-AC_INIT([sortsmill-goudy],[3.1],[http://code.google.com/p/sortsmill/issues/])
+AC_INIT([sortsmill-goudy],[3.2],[http://code.google.com/p/sortsmill/issues/])
 AM_INIT_AUTOMAKE([foreign])
 
 STM_SORTSMILL_PREREQUISITES
 STM_INIT_SORTSMILL
+#STM_ENABLE_GRAPHITE
 STM_TARGET_MIT_BINPACK
 STM_TARGET_OFL_BINPACK
 
 # Checks for programs.
+#STM_PROG_GRCOMPILER
 AC_PROG_MAKE_SET
 
 # Checks for libraries.
