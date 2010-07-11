@@ -24,7 +24,7 @@ ACLOCAL_AMFLAGS = -I m4 --install
 @sortsmill_mit_binpack_rules@
 @sortsmill_ofl_binpack_rules@
 
-MKFONT_FLAGS = --infer-licensing --ttf-emsize=4096
+MKFONT_FLAGS = --infer-licensing --ttf-emsize=4096 ${MKFONT_GRAPHITE_FLAGS}
 FAMILYNAME = kis
 FONTS = KisStM KisStM-Italic KisStM-Bold
 FEA_KisStM = main locl desc liga generated_kerning
@@ -41,7 +41,7 @@ EXTRA_DIST = \
 	${FEA_KisStM_Italic:%=KisStM-Italic_%.fea} \
 	${FEA_KisStM_Bold:%=KisStM-Bold_%.fea}
 
-MOSTLYCLEANFILES = ${fonts_DATA}
+MOSTLYCLEANFILES = ${fonts_DATA} gdlerr.txt
 
 ChangeLog::
 	hg log --style=changelog --only-branch=default "${top_srcdir}" > $@ 

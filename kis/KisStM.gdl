@@ -20,7 +20,15 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
+//-------------------------------------------------------------------------
+
 #include "stddef.gdh"
+
+#define FEATURE_LIGATURES 200
+#define FEATURE_LONG_DESCENDERS 201
+
+// Do we want this one at all? Or something like it?
+#define FEATURE_ST_CEDILLA_STYLE 1000
 
 Bidi = false;
 
@@ -65,7 +73,7 @@ endtable
 table(feature)
 
     ligatures {
-        id = 345;
+        id = FEATURE_LIGATURES;
         name.LG_USENG = string("Ligature Replacement");
         default = standard;
         settings {
@@ -76,7 +84,7 @@ table(feature)
     }
 
     long_descenders {
-        id = 64000;
+        id = FEATURE_LONG_DESCENDERS;
         name.LG_USENG = string("Long descenders");
         default = off;
         settings {
@@ -88,7 +96,7 @@ table(feature)
     // Do we really want this one? I'm just blindly translating the
     // Diacritics Project's recommendations for Romanian "locl" in OpenType.
     st_cedilla_style {
-        id = 64001;
+        id = FEATURE_ST_CEDILLA_STYLE;
         name.LG_USENG = string("Cedilla style for s and t");
         default = cedilla;
         settings {
