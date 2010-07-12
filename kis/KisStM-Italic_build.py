@@ -22,17 +22,17 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
-import font_db
 import fontforge
-from glyphbuild import *
-from spacing_by_anchors import *
+from sortsmill import font_db
+from sortsmill.glyphbuild import *
+from sortsmill.spacing_by_anchors import *
 
 emsize = 1000
 spacesize = 200
 
 def build_glyphs(bitbucket, f):
 
-    import cap_spacing
+    from sortsmill import cap_spacing
 
     figures = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
 
@@ -43,7 +43,7 @@ def build_glyphs(bitbucket, f):
             base = 'uni0237'
         else:
             base = letter
-        return base    
+        return base
 
     db = font_db.db_create(f)
 
@@ -149,8 +149,11 @@ def build_glyphs(bitbucket, f):
 
     for letter in 'CcSs':
         build_accented_glyph(letter + 'cedilla', f[base(letter)], f['uni0327'])
+        remove_overlap(f[letter + 'cedilla'])
     build_accented_glyph('uni0162', f['T'], f['uni0327'])
-    build_accented_glyph('uni0163', f['t'], f['uni0327'])
+    remove_overlap(f['uni0162'])
+#    build_accented_glyph('uni0163', f['t'], f['uni0327']) <-- don't rebuild; it's manually hinted
+#    remove_overlap(f['uni0163'])                          <-- don't rebuild; it's manually hinted
 
 #    for letter in 'cs':
 #        build_accented_glyph(letter + 'cedilla.sc', f[letter + '.sc'], f['uni0327'])

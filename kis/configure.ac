@@ -22,7 +22,7 @@
 # THE SOFTWARE.
 
 AC_PREREQ(2.65)
-AC_INIT([sortsmill-kis],[1.0],[http://code.google.com/p/sortsmill/issues/])
+AC_INIT([sortsmill-kis],[0.1],[http://code.google.com/p/sortsmill/issues/])
 AM_INIT_AUTOMAKE([foreign])
 
 STM_SORTSMILL_PREREQUISITES

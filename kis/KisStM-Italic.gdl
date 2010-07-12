@@ -1,0 +1,141 @@
+/*
+Copyright (c) 2010 Barry Schwartz
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
+
+//-------------------------------------------------------------------------
+
+#include "stddef.gdh"
+
+#define FEATURE_LIGATURES 200
+#define FEATURE_LONG_DESCENDERS 201
+
+// Do we want this one at all? Or something like it?
+#define FEATURE_ST_CEDILLA_STYLE 1000
+
+Bidi = false;
+
+//-------------------------------------------------------------------------
+
+table(glyph)
+
+    gly_f = postscript("f")
+    gly_i = postscript("i")
+    gly_turkish_i = postscript("i.TRK")
+
+    cls_fflig_right = postscript("i", "l", "b", "h", "hcircumflex", "k")
+    cls_fflig = postscript("f_f_i", "f_f_l", "f_f_b", "f_f_h", "f_f_hcircumflex", "f_f_k")
+
+    cls_flig_right = (gly_f, cls_fflig_right)
+    cls_flig = postscript("f_f", "f_i", "f_l", "f_b", "f_h", "f_hcircumflex", "f_k")
+
+    cls_short_descenders = postscript(
+        "g", "j", "p", "q", "y", "thorn",
+        "gcircumflex", "jcircumflex", "ycircumflex",
+        "yacute", "ydieresis",
+        "gdotaccent", "gcommaaccent",
+        "Eng", "eng",
+        "uni1E57",
+        "germandbls"
+        )
+    cls_long_descenders = postscript(
+        "g.ld", "j.ld", "p.ld", "q.ld", "y.ld", "thorn.ld",
+        "gcircumflex.ld", "jcircumflex.ld", "ycircumflex.ld",
+        "yacute.ld", "ydieresis.ld",
+        "gdotaccent.ld", "gcommaaccent.ld",
+        "Eng.ld", "eng.ld",
+        "uni1E57.ld",
+        "germandbls.ld"
+        )
+
+    cls_st_cedilla = postscript("scedilla", "uni0163")
+    cls_st_commaaccent = postscript("uni0219", "uni021B")
+
+endtable
+
+//-------------------------------------------------------------------------
+
+table(feature)
+
+    ligatures {
+        id = FEATURE_LIGATURES;
+        name.LG_USENG = string("Ligature Replacement");
+        default = standard;
+        settings {
+            turkish  { value = 2; name.LG_USENG = string("Turkish"); }
+            standard { value = 1; name.LG_USENG = string("Standard"); }
+            none     { value = 0; name.LG_USENG = string("Off"); }
+        }
+    }
+
+    long_descenders {
+        id = FEATURE_LONG_DESCENDERS;
+        name.LG_USENG = string("Long descenders");
+        default = off;
+        settings {
+            on  { value = 1; name.LG_USENG = string("On"); }
+            off { value = 0; name.LG_USENG = string("Off"); }
+        }
+    }
+
+    // Do we really want this one? I'm just blindly translating the
+    // Diacritics Project's recommendations for Romanian "locl" in OpenType.
+    st_cedilla_style {
+        id = FEATURE_ST_CEDILLA_STYLE;
+        name.LG_USENG = string("Cedilla style for s and t");
+        default = cedilla;
+        settings {
+            comma_accent { value = 1; name.LG_USENG = string("Comma accent"); }
+            cedilla      { value = 0; name.LG_USENG = string("Cedilla"); }
+        }
+    }
+
+endtable
+
+//-------------------------------------------------------------------------
+
+table(substitution)
+
+    pass(1)
+        if (ligatures == turkish)
+            gly_i > gly_turkish_i;
+        endif
+        if (st_cedilla_style == comma_accent)
+            cls_st_cedilla > cls_st_commaaccent;
+        endif
+        if (long_descenders == on)
+            cls_short_descenders > cls_long_descenders;
+        endif
+    endpass
+
+    pass(2)
+        if (ligatures == standard || ligatures == turkish)
+            gly_f gly_f cls_fflig_right > _ _ cls_fflig:(1, 2, 3);
+            gly_f cls_flig_right > _ cls_flig:(1, 2);
+        endif
+    endpass
+
+endtable
+
+//-------------------------------------------------------------------------
+
+#include "KisStM-Italic_generated_kerning.gdl"
+
+//-------------------------------------------------------------------------

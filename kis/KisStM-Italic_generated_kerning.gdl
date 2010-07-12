@@ -1,0 +1,825 @@
+table(glyph)
+r1D = postscript("D", "Dcaron", "Dcroat", "Eth", "uni1E0A")
+r1p = postscript("p", "p.001", "p.002", "p.ld", "uni1E57", "uni1E57.001", 
+     "uni1E57.002", "uni1E57.ld")
+r1Y = postscript("Y", "Yacute", "Ycircumflex", "Ydieresis", "yen")
+r1g__ld = postscript("g.ld", "gbreve.ld", "gcircumflex.ld", "gcommaaccent.ld", "gdotaccent.ld")
+r1L = postscript("L", "Lacute", "Lcommaaccent", "Ldot", "Lslash")
+r1IJ = postscript("IJ", "J", "Jcircumflex")
+r1ij = postscript("ij", "j", "j.001", "jcircumflex", "jcircumflex.001", "uni0237", 
+     "uni0237.001")
+r1s = postscript("s", "sacute", "scaron", "scedilla", "scircumflex", "uni0219", 
+     "uni1E61", "x")
+r1B = postscript("B", "uni1E02")
+r1y = postscript("y", "y.001", "y.ld", "yacute", "yacute.001", "yacute.ld", 
+     "ycircumflex", "ycircumflex.001", "ycircumflex.ld", "ydieresis", "ydieresis.001", "ydieresis.ld")
+r1d = postscript("d", "dcroat", "f_f_l", "f_f_l.ld", "f_l", "f_l.ld", 
+     "l", "lacute", "lcommaaccent", "uni1E0B")
+r1ellipsis = postscript("ellipsis", "period")
+r1Z = postscript("Z", "Zacute", "Zcaron", "Zdotaccent")
+r1f_f_h = postscript("f_f_h", "f_f_hcircumflex", "f_h", "f_hcircumflex")
+r1ae = postscript("ae", "eogonek", "oe")
+r1W = postscript("W", "Wcircumflex")
+r1f_b = postscript("f_b", "f_b.ld", "f_f_b", "f_f_b.ld")
+r1b = postscript("b", "t", "tbar", "uni0163", "uni021B", "uni1E03", 
+     "uni1E6B")
+r1f__ld = postscript("f.ld", "f_f.ld", "longs.ld", "uni1E1F.ld")
+r1N = postscript("N", "Nacute", "Ncaron", "Ncommaaccent", "Ntilde")
+r1F = postscript("F", "uni1E1E")
+r1U = postscript("U", "Uacute", "Ubreve", "Ucircumflex", "Udieresis", "Ugrave", 
+     "Uhungarumlaut", "Umacron", "Uogonek", "Uring", "Utilde")
+r1S = postscript("S", "Sacute", "Scaron", "Scedilla", "Scircumflex", "uni0218", 
+     "uni1E60")
+r1H = postscript("H", "Hbar", "Hcircumflex", "I", "Iacute", "Ibreve", 
+     "Icircumflex", "Idieresis", "Idotaccent", "Igrave", "Imacron", "Itilde", 
+     "uni1E22")
+r1g = postscript("g", "gbreve", "gcircumflex", "gcommaaccent", "gdotaccent")
+r1C = postscript("C", "Cacute", "Ccaron", "Ccedilla", "Ccircumflex", "Cdotaccent", 
+     "Euro")
+r1R = postscript("R", "Racute", "Rcaron", "Rcommaaccent")
+r1eng = postscript("eng", "eng.ld", "o", "oacute", "obreve", "ocircumflex", 
+     "odieresis", "ograve", "ohungarumlaut", "omacron", "oslash", "otilde")
+r1K = postscript("K", "Kcommaaccent")
+r1M = postscript("M", "uni1E40")
+r1P = postscript("P", "uni1E56")
+r1c = postscript("c", "cacute", "ccaron", "ccedilla", "ccircumflex", "cdotaccent")
+r1Eng = postscript("Eng", "Eng.ld")
+r1O = postscript("O", "Oacute", "Obreve", "Ocircumflex", "Odieresis", "Ograve", 
+     "Ohungarumlaut", "Omacron", "Oslash", "Otilde")
+r1f_f_i = postscript("f_f_i", "f_f_i.ld", "f_i", "f_i.ld")
+r1w = postscript("w", "wcircumflex")
+r1f = postscript("f", "f_f", "longs", "uni1E1F")
+r1braceleft = postscript("braceleft", "bracketleft")
+r1k = postscript("k", "kcommaaccent")
+r1dotlessi = postscript("dotlessi", "h", "hbar", "hcircumflex", "i", "i.TRK", 
+     "iacute", "ibreve", "icircumflex", "idieresis", "igrave", "imacron", 
+     "iogonek", "iogonek.dotless", "itilde", "m", "n", "nacute", 
+     "napostrophe", "ncaron", "ncommaaccent", "ntilde", "u", "uacute", 
+     "ubreve", "ucircumflex", "udieresis", "ugrave", "uhungarumlaut", "umacron", 
+     "uni1E23", "uni1E41", "uogonek", "uring", "utilde")
+r1z = postscript("z", "zacute", "zcaron", "zdotaccent")
+r1G = postscript("G", "Gbreve", "Gcircumflex", "Gcommaaccent", "Gdotaccent")
+r1A = postscript("A", "Aacute", "Abreve", "Acircumflex", "Adieresis", "Agrave", 
+     "Amacron", "Aogonek", "Aring", "Atilde")
+r1f__001 = postscript("f.001", "uni1E1F.001")
+r1e = postscript("e", "eacute", "ebreve", "ecaron", "ecircumflex", "edieresis", 
+     "edotaccent", "egrave", "emacron")
+r1AE = postscript("AE", "E", "Eacute", "Ebreve", "Ecaron", "Ecircumflex", 
+     "Edieresis", "Edotaccent", "Egrave", "Emacron", "OE")
+r1f_f_k = postscript("f_f_k", "f_k")
+r1T = postscript("T", "Tbar", "Tcaron", "uni0162", "uni021A", "uni1E6A")
+r1thorn = postscript("thorn", "thorn.001", "thorn.002", "thorn.ld")
+r1acute = postscript("acute", "acutecomb", "acutecomb.cap", "afii00208", "afii299", "afii300", 
+     "afii301", "afii57929", "afii61664", "asciicircum", "asciitilde", "asterisk", 
+     "at", "backslash", "breve", "brokenbar", "bullet", "caron", 
+     "cedilla", "cent", "circumflex", "copyright", "currency", "dagger", 
+     "daggerdbl", "degree", "dieresis", "divide", "dollar", "dotaccent", 
+     "eight", "emdash", "endash", "equal", "five", "four", 
+     "fraction", "grave", "gravecomb", "gravecomb.cap", "greater", "guillemotleft", 
+     "guillemotright", "guilsinglleft", "guilsinglright", "hungarumlaut", "hyphen", "less", 
+     "logicalnot", "macron", "minus", "minute", "multiply", "nine", 
+     "numbersign", "one", "ordfeminine", "ordmasculine", "paragraph", "parenleft", 
+     "parenright", "percent", "periodcentered", "plus", "plusminus", "quotedbl", 
+     "quotedblbase", "quotedblleft", "quotedblright", "quoteleft", "quotereversed", "quoteright", 
+     "quotesinglbase", "quotesingle", "registered", "ring", "second", "section", 
+     "seven", "six", "slash", "space", "sterling", "three", 
+     "tilde", "tildecomb", "tildecomb.cap", "two", "underscore", "uni00A0", 
+     "uni00AD", "uni02BB", "uni02C0", "uni02C8", "uni0302", "uni0302.cap", 
+     "uni0304", "uni0304.cap", "uni0306", "uni0306.cap", "uni0307", "uni0307.cap", 
+     "uni0308", "uni0308.cap", "uni0308.narrow", "uni030A", "uni030A.cap", "uni030B", 
+     "uni030B.cap", "uni030C", "uni030C.cap", "uni0312", "uni0326", "uni0327", 
+     "uni2000", "uni2001", "uni2002", "uni2003", "uni2004", "uni2005", 
+     "uni2006", "uni2007", "uni2008", "uni2009", "uni200A", "uni200B", 
+     "uni2010", "uni2011", "uni201F", "uni202F", "uni203E", "uni2053", 
+     "uni205F", "uni2060", "uniFEFF", "zero")
+r1bar = postscript("bar", "bracketright")
+r1r = postscript("r", "racute", "rcaron", "rcommaaccent")
+r1a = postscript("a", "aacute", "abreve", "acircumflex", "adieresis", "agrave", 
+     "amacron", "aring", "atilde")
+r1germandbls = postscript("germandbls", "germandbls.ld")
+r1j__002 = postscript("j.002", "j.ld", "jcircumflex.002", "jcircumflex.ld", "uni0237.002", "uni0237.ld")
+r1f_f_h__ld = postscript("f_f_h.ld", "f_f_hcircumflex.ld", "f_h.ld", "f_hcircumflex.ld")
+r1f_f_k__ld = postscript("f_f_k.ld", "f_k.ld")
+
+l1b = postscript("b", "uni1E03")
+l1f_f_h = postscript("f_f_h", "f_f_hcircumflex", "f_f_k", "f_f_l")
+l1germandbls = postscript("germandbls", "germandbls.ld")
+l1f_h = postscript("f_h", "f_hcircumflex", "f_k", "f_l")
+l1c = postscript("c", "cacute", "ccaron", "ccedilla", "ccircumflex", "cdotaccent")
+l1r = postscript("r", "racute", "rcaron", "rcommaaccent")
+l1B = postscript("B", "D", "Dcaron", "Dcroat", "E", "Eacute", 
+     "Ebreve", "Ecaron", "Ecircumflex", "Edieresis", "Edotaccent", "Egrave", 
+     "Emacron", "Eogonek", "Eth", "F", "H", "Hbar", 
+     "Hcircumflex", "I", "Iacute", "Ibreve", "Icircumflex", "Idieresis", 
+     "Idotaccent", "Igrave", "Imacron", "Itilde", "L", "Lacute", 
+     "Lcaron", "Lcommaaccent", "Ldot", "Lslash", "P", "R", 
+     "Racute", "Rcaron", "Rcommaaccent", "Thorn", "uni1E02", "uni1E0A", 
+     "uni1E1E", "uni1E22", "uni1E56")
+l1s = postscript("s", "sacute", "scaron", "scedilla", "scircumflex", "uni0219", 
+     "uni1E61")
+l1l = postscript("l", "lacute", "lcommaaccent", "ldot")
+l1iogonek = postscript("iogonek", "iogonek.dotless", "m", "n", "nacute", "napostrophe", 
+     "ncaron", "ncommaaccent", "ntilde", "uni1E41", "v", "w", 
+     "wcircumflex")
+l1G = postscript("G", "Gbreve", "Gcircumflex", "Gcommaaccent", "Gdotaccent", "O", 
+     "OE", "Oacute", "Obreve", "Ocircumflex", "Odieresis", "Ograve", 
+     "Ohungarumlaut", "Omacron", "Oslash", "Otilde")
+l1h = postscript("h", "hbar", "hcircumflex", "k", "kcommaaccent", "uni1E23")
+l1T = postscript("T", "Tbar", "Tcaron", "uni0162", "uni021A", "uni1E6A")
+l1a = postscript("a", "aacute", "abreve", "acircumflex", "adieresis", "agrave", 
+     "amacron", "aogonek", "aring", "atilde")
+l1u = postscript("u", "uacute", "ubreve", "ucircumflex", "udieresis", "ugrave", 
+     "uhungarumlaut", "umacron", "uogonek", "uring", "utilde")
+l1K = postscript("K", "Kcommaaccent")
+l1C = postscript("C", "Cacute", "Ccaron", "Ccedilla", "Ccircumflex", "Cdotaccent", 
+     "Euro")
+l1U = postscript("U", "Uacute", "Ubreve", "Ucircumflex", "Udieresis", "Ugrave", 
+     "Uhungarumlaut", "Umacron", "Uogonek", "Uring", "Utilde")
+l1y__ld = postscript("y.ld", "yacute.ld", "ycircumflex.ld", "ydieresis.ld")
+l1j = postscript("j", "j.ld", "jcircumflex", "jcircumflex.ld", "uni0237", "uni0237.ld")
+l1f_h__ld = postscript("f_h.ld", "f_hcircumflex.ld", "f_k.ld", "f_l.ld")
+l1braceright = postscript("braceright", "bracketright")
+l1J = postscript("J", "Jcircumflex")
+l1M = postscript("M", "uni1E40")
+l1f_f_h__ld = postscript("f_f_h.ld", "f_f_hcircumflex.ld", "f_f_k.ld", "f_f_l.ld")
+l1dotlessi = postscript("dotlessi", "i", "i.TRK", "iacute", "ibreve", "icircumflex", 
+     "idieresis", "igrave", "imacron", "itilde", "kgreenlandic", "p.001", 
+     "p.002", "uni1E57.001", "uni1E57.002")
+l1ellipsis = postscript("ellipsis", "period")
+l1thorn__001 = postscript("thorn.001", "thorn.002")
+l1y__001 = postscript("y.001", "yacute.001", "ycircumflex.001", "ydieresis.001")
+l1z = postscript("z", "zacute", "zcaron", "zdotaccent")
+l1q = postscript("q", "q.ld")
+l1f__ld = postscript("f.ld", "f_f.ld", "f_f_i.ld", "f_i.ld", "longs.ld", "uni1E1F.ld")
+l1p = postscript("p", "uni1E57")
+l1e = postscript("e", "eacute", "ebreve", "ecaron", "ecircumflex", "edieresis", 
+     "edotaccent", "egrave", "emacron", "eogonek")
+l1t = postscript("t", "tbar", "uni0163", "uni021B", "uni1E6B")
+l1Eng = postscript("Eng", "Eng.ld", "N", "Nacute", "Ncaron", "Ncommaaccent", 
+     "Ntilde")
+l1Z = postscript("Z", "Zacute", "Zcaron", "Zdotaccent")
+l1f = postscript("f", "f_f", "f_f_i", "f_i", "longs", "uni1E1F")
+l1S = postscript("S", "Sacute", "Scaron", "Scedilla", "Scircumflex", "uni0218", 
+     "uni1E60")
+l1f__001 = postscript("f.001", "j.001", "j.002", "jcircumflex.001", "jcircumflex.002", "uni0237.001", 
+     "uni0237.002", "uni1E1F.001")
+l1d = postscript("d", "dcroat", "eth", "oe", "oslash", "uni1E0B")
+l1g__ld = postscript("g.ld", "gbreve.ld", "gcircumflex.ld", "gcommaaccent.ld", "gdotaccent.ld")
+l1o = postscript("o", "oacute", "obreve", "ocircumflex", "odieresis", "ograve", 
+     "ohungarumlaut", "omacron", "otilde")
+l1bar = postscript("bar", "bracketleft")
+l1A = postscript("A", "Aacute", "Abreve", "Acircumflex", "Adieresis", "Agrave", 
+     "Amacron", "Aogonek", "Aring", "Atilde")
+l1acute = postscript("acute", "acutecomb", "acutecomb.cap", "afii00208", "afii299", "afii300", 
+     "afii301", "afii57929", "afii61664", "asciicircum", "asciitilde", "asterisk", 
+     "at", "backslash", "breve", "brokenbar", "bullet", "caron", 
+     "cedilla", "cent", "circumflex", "copyright", "currency", "dagger", 
+     "daggerdbl", "degree", "dieresis", "divide", "dollar", "dotaccent", 
+     "eight", "emdash", "endash", "equal", "five", "four", 
+     "fraction", "grave", "gravecomb", "gravecomb.cap", "greater", "guillemotleft", 
+     "guillemotright", "guilsinglleft", "guilsinglright", "hungarumlaut", "hyphen", "less", 
+     "logicalnot", "macron", "minus", "minute", "multiply", "nine", 
+     "numbersign", "one", "ordfeminine", "ordmasculine", "paragraph", "parenleft", 
+     "parenright", "percent", "periodcentered", "plus", "plusminus", "quotedbl", 
+     "quotedblbase", "quotedblleft", "quotedblright", "quoteleft", "quotereversed", "quoteright", 
+     "quotesinglbase", "quotesingle", "registered", "ring", "second", "section", 
+     "seven", "six", "slash", "space", "sterling", "three", 
+     "tilde", "tildecomb", "tildecomb.cap", "two", "underscore", "uni00A0", 
+     "uni00AD", "uni02BB", "uni02C0", "uni02C8", "uni0302", "uni0302.cap", 
+     "uni0304", "uni0304.cap", "uni0306", "uni0306.cap", "uni0307", "uni0307.cap", 
+     "uni0308", "uni0308.cap", "uni0308.narrow", "uni030A", "uni030A.cap", "uni030B", 
+     "uni030B.cap", "uni030C", "uni030C.cap", "uni0312", "uni0326", "uni0327", 
+     "uni2000", "uni2001", "uni2002", "uni2003", "uni2004", "uni2005", 
+     "uni2006", "uni2007", "uni2008", "uni2009", "uni200A", "uni200B", 
+     "uni2010", "uni2011", "uni201F", "uni202F", "uni203E", "uni2053", 
+     "uni205F", "uni2060", "uniFEFF", "zero")
+l1g = postscript("g", "gbreve", "gcircumflex", "gcommaaccent", "gdotaccent")
+l1p__ld = postscript("p.ld", "uni1E57.ld")
+l1V = postscript("V", "W", "Wcircumflex")
+l1Y = postscript("Y", "Yacute", "Ycircumflex", "Ydieresis", "yen")
+l1y = postscript("y", "yacute", "ycircumflex", "ydieresis")
+
+endtable
+
+table(positioning)
+(postscript("Iogonek"), postscript("Eogonek")) (l1f__ld, l1f_h__ld, postscript("f_b.ld"), l1f_f_h__ld, postscript("f_f_b.ld")) { kern.x = 2m };
+r1IJ (l1f, l1f_h, postscript("f_b"), l1f_f_h, postscript("f_f_b")) { kern.x = 4m };
+(postscript("braceright"), r1L, postscript("Lcaron"), r1S, r1Z, r1G) l1q { kern.x = 5m };
+(postscript("aogonek"), r1g, r1g__ld, r1a) (l1t, postscript("tcaron")) { kern.x = 5m };
+(postscript("questiondown"), r1f_f_i) l1T { kern.x = 5m };
+r1A postscript("x") { kern.x = 5m };
+r1f__001 (postscript("Iogonek"), l1B, l1Z, postscript("IJ")) { kern.x = 5m };
+(r1f__001, r1f) l1p__ld { kern.x = 5m };
+r1g__ld postscript("comma") { kern.x = 5m };
+(postscript("aogonek"), r1a) (l1y, postscript("eng.ld"), l1s, l1iogonek, l1r, postscript("eng"), l1C, l1G, l1y__001, postscript("Q")) { kern.x = 5m };
+r1f__ld postscript("questiondown") { kern.x = 5m };
+(postscript("Iogonek"), r1IJ, r1U, r1H, r1d, postscript("lslash"), r1A) l1Y { kern.x = 5m };
+r1T (postscript("thorn.ld"), l1thorn__001) { kern.x = 5m };
+(r1g, r1g__ld) l1u { kern.x = 5m };
+r1F l1U { kern.x = 5m };
+r1r l1K { kern.x = 5m };
+r1a l1y__ld { kern.x = 5m };
+(r1f__001, postscript("q"), postscript("braceright"), r1f) l1p { kern.x = 5m };
+(postscript("comma"), r1bar, r1R, r1K, r1ellipsis, r1z, postscript("kgreenlandic")) l1c { kern.x = 5m };
+(r1T, postscript("q"), postscript("braceright")) postscript("thorn") { kern.x = 5m };
+r1M l1S { kern.x = 5m };
+r1r postscript("semicolon") { kern.x = 6m };
+r1g (l1f__ld, l1f_h__ld, postscript("f_b.ld"), l1f_f_h__ld, postscript("f_f_b.ld")) { kern.x = 172m };
+(postscript("semicolon"), r1F, r1O, postscript("colon"), postscript("Q")) l1C { kern.x = 10m };
+(postscript("semicolon"), r1O, postscript("colon"), postscript("comma"), r1bar, r1R, r1K, r1ellipsis, r1z, postscript("kgreenlandic"), postscript("Q")) l1s { kern.x = 10m };
+(postscript("question"), r1B, r1s) l1bar { kern.x = 10m };
+(postscript("comma"), postscript("lslash"), r1bar, r1R, r1K, r1ellipsis, r1z, postscript("kgreenlandic")) (l1e, l1l, postscript("lcaron")) { kern.x = 10m };
+(postscript("semicolon"), r1O, postscript("colon"), postscript("Q")) (l1iogonek, l1r, l1G, l1y__001, postscript("Q")) { kern.x = 10m };
+(postscript("comma"), r1bar, r1R, r1K, r1ellipsis, r1z, postscript("kgreenlandic")) l1a { kern.x = 10m };
+(postscript("Eogonek"), r1AE, postscript("eth"), r1K) l1S { kern.x = 10m };
+(r1j__002, r1f__ld, r1e, r1ae, r1C, r1R, r1K, r1ellipsis, r1z, postscript("kgreenlandic")) l1j { kern.x = 10m };
+(r1f__ld, r1e, r1ae, r1C) (postscript("thorn.ld"), postscript("thorn"), l1g__ld, l1g, l1dotlessi, l1thorn__001, postscript("ampersand"), postscript("ij")) { kern.x = 10m };
+(r1F, r1A) l1h { kern.x = 10m };
+postscript("lslash") (l1d, postscript("dcaron"), postscript("x")) { kern.x = 10m };
+(postscript("question"), r1B) (l1braceright, postscript("uni0315")) { kern.x = 10m };
+(r1L, postscript("Lcaron")) l1V { kern.x = 10m };
+(r1T, r1r) postscript("questiondown") { kern.x = 10m };
+(r1f__001, r1f, r1dotlessi, r1f_f_h__ld, r1f_f_h, r1f_f_i, r1s, r1germandbls, r1d) (l1t, postscript("tcaron")) { kern.x = 10m };
+(r1f__ld, r1e, r1ae, r1C, postscript("comma"), r1bar, r1R, r1K, r1ellipsis, r1z, postscript("kgreenlandic")) l1f__001 { kern.x = 10m };
+(r1f__ld, r1e, r1ae, r1C, r1R, r1K, r1ellipsis, r1z, postscript("kgreenlandic")) (l1f__ld, l1f_h__ld, postscript("f_b.ld"), l1f_f_h__ld, postscript("f_f_b.ld"), l1f, l1f_h, postscript("f_b"), l1f_f_h, postscript("f_f_b")) { kern.x = 10m };
+(postscript("Eogonek"), r1c, r1D, r1AE, r1k, r1f_f_k__ld, r1f_f_k) postscript("lslash") { kern.x = 10m };
+(r1O, postscript("colon")) l1y__ld { kern.x = 10m };
+(r1r, r1G, r1germandbls) l1T { kern.x = 10m };
+r1A (l1p__ld, l1p) { kern.x = 10m };
+r1f__001 postscript("X") { kern.x = 10m };
+postscript("V") postscript("exclamdown") { kern.x = 10m };
+(r1e, r1ae, r1C, postscript("comma"), r1bar, r1R, r1K, r1ellipsis, r1z, postscript("kgreenlandic")) l1germandbls { kern.x = 10m };
+(postscript("semicolon"), r1O, postscript("colon")) (l1y, postscript("eng.ld"), postscript("eng")) { kern.x = 10m };
+(r1G, r1s, r1germandbls, r1d) (l1z, postscript("braceleft")) { kern.x = 10m };
+r1r (l1o, postscript("question"), postscript("exclam")) { kern.x = 10m };
+(postscript("aogonek"), r1a) l1q { kern.x = 10m };
+(r1f__001, r1f, r1A) l1u { kern.x = 10m };
+r1z l1V { kern.x = 12m };
+r1f__001 l1J { kern.x = 13m };
+(postscript("q"), postscript("braceright"), postscript("lslash")) l1p__ld { kern.x = 15m };
+postscript("lslash") (l1p, l1U) { kern.x = 15m };
+(postscript("questiondown"), r1f_f_i) (l1braceright, postscript("uni0315")) { kern.x = 15m };
+postscript("exclamdown") l1T { kern.x = 15m };
+r1f__001 (l1K, l1Eng) { kern.x = 15m };
+(postscript("aogonek"), r1a) (l1z, postscript("braceleft")) { kern.x = 15m };
+postscript("ampersand") postscript("ae") { kern.x = 15m };
+r1f__ld (postscript("Iogonek"), l1B, l1Z, postscript("IJ")) { kern.x = 15m };
+(r1g, r1g__ld) (l1f__001, l1germandbls, l1dotlessi, l1thorn__001, postscript("ampersand"), postscript("ij")) { kern.x = 15m };
+r1r l1b { kern.x = 15m };
+r1f postscript("questiondown") { kern.x = 15m };
+r1C l1Y { kern.x = 15m };
+(r1r, r1dotlessi, r1f_f_h__ld, r1f_f_h, r1f_f_i, r1s, r1germandbls, r1d, postscript("lslash")) l1q { kern.x = 15m };
+r1M postscript("lslash") { kern.x = 15m };
+(postscript("aogonek"), postscript("questiondown"), r1a, r1f_f_i) l1bar { kern.x = 15m };
+(postscript("q"), postscript("braceright")) postscript("thorn.ld") { kern.x = 15m };
+(postscript("semicolon"), r1O, postscript("colon"), postscript("Q")) l1z { kern.x = 20m };
+(r1f__ld, r1e, r1ae, r1C, r1braceleft, r1bar) postscript("eng.ld") { kern.x = 20m };
+(r1f__ld, r1e, r1ae, r1C) (l1s, l1iogonek, l1r, postscript("eng"), l1y__001) { kern.x = 20m };
+(r1Eng, r1N, postscript("semicolon"), r1O, postscript("colon"), postscript("X"), postscript("Q")) postscript("braceleft") { kern.x = 20m };
+(r1braceleft, r1bar) postscript("comma") { kern.x = 20m };
+postscript("lslash") l1u { kern.x = 20m };
+(r1ij, r1f__001, r1f, r1A) (l1f, l1f_h, postscript("f_b"), l1f_f_h, postscript("f_f_b")) { kern.x = 20m };
+r1f__ld postscript("X") { kern.x = 20m };
+(r1e, r1ae, r1C) (l1C, l1G, postscript("Q")) { kern.x = 20m };
+(r1r, r1A) l1a { kern.x = 20m };
+(postscript("aogonek"), r1f__ld, r1e, r1ae, r1C) l1y__ld { kern.x = 20m };
+(r1F, r1A) (l1l, postscript("lcaron")) { kern.x = 20m };
+postscript("question") postscript("ae") { kern.x = 20m };
+(r1P, postscript("exclam"), r1S) l1T { kern.x = 20m };
+(r1G, r1germandbls) (l1braceright, postscript("uni0315")) { kern.x = 20m };
+(postscript("Thorn"), r1ij, postscript("ampersand"), r1j__002, postscript("question"), postscript("ldot"), postscript("q.ld"), r1c, r1D, postscript("questiondown"), postscript("q"), postscript("braceright"), r1eng, r1B, r1y, r1b, r1f_b, postscript("v"), r1p, r1thorn, r1k, r1f_f_k__ld, r1f_f_k, r1w, r1dotlessi, r1f_f_h__ld, r1f_f_h, r1f_f_i, r1bar, postscript("kgreenlandic")) l1V { kern.x = 20m };
+(postscript("Iogonek"), r1IJ, r1U, r1H, r1d, postscript("lslash"), r1A) l1S { kern.x = 20m };
+r1F postscript("question") { kern.x = 20m };
+r1A (l1germandbls, l1e, l1c, l1d, postscript("dcaron"), l1o, l1U, postscript("questiondown")) { kern.x = 20m };
+(postscript("semicolon"), r1O, postscript("colon"), r1G, r1germandbls) l1bar { kern.x = 20m };
+(r1f__ld, r1e, r1ae, r1C, postscript("comma")) l1y { kern.x = 20m };
+r1T (postscript("Iogonek"), l1B, l1Z, postscript("IJ")) { kern.x = 20m };
+(r1Eng, r1ij, r1j__002, r1N, r1y, r1b, r1f_b) postscript("lslash") { kern.x = 20m };
+r1r (l1h, postscript("colon"), l1Y) { kern.x = 20m };
+(postscript("comma"), postscript("lslash"), r1bar, r1R, r1K, r1ellipsis, r1z, postscript("kgreenlandic"), r1A) (l1t, postscript("tcaron")) { kern.x = 20m };
+(r1f__001, r1f, r1A) (l1f__ld, l1f_h__ld, postscript("f_b.ld"), l1f_f_h__ld, postscript("f_f_b.ld"), l1j, postscript("thorn.ld"), postscript("thorn"), l1g__ld, l1g, l1f__001, l1dotlessi, l1thorn__001, postscript("ampersand"), postscript("ij")) { kern.x = 20m };
+r1IJ (l1f__ld, l1f_h__ld, postscript("f_b.ld"), l1f_f_h__ld, postscript("f_f_b.ld")) { kern.x = 21m };
+r1f__ld l1J { kern.x = 23m };
+postscript("exclamdown") (l1bar, l1braceright, l1V, postscript("uni0315")) { kern.x = 25m };
+(postscript("comma"), r1bar, r1R, r1K, r1ellipsis, r1z, postscript("kgreenlandic"), r1A) l1q { kern.x = 25m };
+r1f__ld (l1K, l1Eng) { kern.x = 25m };
+postscript("V") (postscript("thorn.ld"), postscript("thorn"), l1thorn__001) { kern.x = 25m };
+r1T (l1b, postscript("X")) { kern.x = 25m };
+(r1g, r1g__ld) (l1y, postscript("eng.ld"), l1s, l1iogonek, l1r, postscript("eng"), l1C, l1G, l1y__001, postscript("Q")) { kern.x = 25m };
+postscript("ldot") postscript("ae") { kern.x = 25m };
+r1f (postscript("Iogonek"), l1B, l1Z, postscript("IJ")) { kern.x = 25m };
+r1g l1g { kern.x = 25m };
+postscript("X") postscript("lslash") { kern.x = 25m };
+(r1Eng, r1N, postscript("X")) l1Y { kern.x = 25m };
+postscript("semicolon") l1y__ld { kern.x = 26m };
+r1T l1J { kern.x = 28m };
+(postscript("comma"), postscript("lslash")) l1g { kern.x = 30m };
+postscript("lslash") (l1f__ld, l1f_h__ld, postscript("f_b.ld"), l1f_f_h__ld, postscript("f_f_b.ld"), l1f, l1f_h, postscript("f_b"), l1f_f_h, postscript("f_f_b"), l1j, postscript("thorn.ld"), postscript("thorn"), l1f__001, l1germandbls, l1dotlessi, l1thorn__001, postscript("ampersand"), postscript("ij")) { kern.x = 30m };
+(r1P, postscript("exclam"), r1S) postscript("uni0315") { kern.x = 30m };
+r1A l1C { kern.x = 30m };
+(r1g, postscript("lslash")) l1g__ld { kern.x = 30m };
+postscript("V") postscript("questiondown") { kern.x = 30m };
+(postscript("v"), postscript("comma"), r1R, r1K, r1ellipsis, r1z, postscript("kgreenlandic")) postscript("lslash") { kern.x = 30m };
+(r1f__001, r1A) (l1G, postscript("Q")) { kern.x = 30m };
+(r1r, r1C) l1S { kern.x = 30m };
+r1T (l1K, l1Eng) { kern.x = 30m };
+(r1P, postscript("exclam"), r1S, r1G, r1s, r1germandbls) l1V { kern.x = 30m };
+(r1P, postscript("exclam"), r1e, r1ae, r1S) l1bar { kern.x = 30m };
+(postscript("q.ld"), r1f__001, r1f, r1A) l1y__ld { kern.x = 30m };
+(r1Eng, postscript("exclam"), r1N) postscript("ae") { kern.x = 30m };
+r1r (l1e, l1l, postscript("lcaron"), l1d, postscript("dcaron"), postscript("x")) { kern.x = 30m };
+r1f postscript("X") { kern.x = 30m };
+(r1e, r1ae, r1C) postscript("braceleft") { kern.x = 30m };
+(r1f__ld, r1e, r1ae, r1C) l1z { kern.x = 30m };
+(r1P, postscript("exclam"), r1r, r1S) l1braceright { kern.x = 30m };
+(r1f__001, r1f, r1A) (l1y, postscript("eng.ld"), l1s, l1iogonek, l1r, postscript("eng"), l1y__001) { kern.x = 30m };
+r1Z l1T { kern.x = 30m };
+r1f l1J { kern.x = 33m };
+r1f__001 (l1germandbls, postscript("exclam")) { kern.x = 35m };
+r1g__ld l1g { kern.x = 35m };
+r1f__ld (l1G, postscript("Q")) { kern.x = 35m };
+postscript("comma") l1g__ld { kern.x = 35m };
+(r1g, r1g__ld) (l1bar, l1z, postscript("braceleft")) { kern.x = 35m };
+r1r (l1p__ld, l1p, l1U) { kern.x = 35m };
+r1f (l1K, l1Eng) { kern.x = 35m };
+r1g l1J { kern.x = 35m };
+(postscript("aogonek"), r1a) l1V { kern.x = 35m };
+r1M l1T { kern.x = 35m };
+r1ij (l1f__ld, l1f_h__ld, postscript("f_b.ld"), l1f_f_h__ld, postscript("f_f_b.ld")) { kern.x = 37m };
+postscript("lslash") (l1y__ld, postscript("eng.ld"), l1s, l1iogonek, l1r, l1C, l1y__001) { kern.x = 40m };
+(r1Eng, r1N, postscript("X")) l1S { kern.x = 40m };
+r1f__001 l1U { kern.x = 40m };
+postscript("V") (postscript("Iogonek"), l1B, l1Z, postscript("IJ")) { kern.x = 40m };
+r1g__ld l1g__ld { kern.x = 40m };
+(r1F, r1A) postscript("braceleft") { kern.x = 40m };
+(r1T, postscript("lslash")) (l1G, postscript("Q")) { kern.x = 40m };
+postscript("comma") l1J { kern.x = 40m };
+(r1T, postscript("exclamdown")) postscript("ae") { kern.x = 40m };
+(postscript("lslash"), r1braceleft, r1bar) l1y { kern.x = 40m };
+(postscript("lslash"), postscript("Q")) postscript("eng") { kern.x = 40m };
+r1r (l1t, postscript("tcaron"), l1u) { kern.x = 40m };
+(postscript("aogonek"), postscript("semicolon"), postscript("q.ld"), r1F, r1f__ld, r1f__001, postscript("q"), postscript("braceright"), r1eng, r1B, postscript("eth"), r1O, r1e, r1f, postscript("colon"), r1p, r1thorn, r1ae, r1C, r1w, r1g, r1L, postscript("Lcaron"), r1S, r1Z, r1G, r1g__ld, r1a, r1dotlessi, r1f_f_h__ld, r1f_f_h, r1f_f_i, r1s, r1germandbls, r1d, r1bar, postscript("Q")) postscript("lslash") { kern.x = 40m };
+(r1f__001, r1f, r1A) l1z { kern.x = 40m };
+r1j__002 (l1f, l1f_h, postscript("f_b"), l1f_f_h, postscript("f_f_b")) { kern.x = 40m };
+(postscript("Eogonek"), r1AE, postscript("eth"), r1K) l1T { kern.x = 40m };
+r1g (postscript("thorn"), l1p) { kern.x = 40m };
+(postscript("semicolon"), r1O, postscript("colon"), r1Z, postscript("Q")) l1V { kern.x = 40m };
+r1Z (l1bar, l1braceright, postscript("uni0315")) { kern.x = 40m };
+r1F l1Y { kern.x = 45m };
+r1f__001 l1C { kern.x = 45m };
+postscript("V") (l1b, postscript("X")) { kern.x = 45m };
+r1g__ld l1J { kern.x = 45m };
+r1f__ld (l1germandbls, postscript("exclam")) { kern.x = 45m };
+postscript("comma") (postscript("thorn"), l1p) { kern.x = 45m };
+r1f (l1G, postscript("Q")) { kern.x = 45m };
+r1M (l1bar, l1braceright, l1V, postscript("uni0315")) { kern.x = 45m };
+postscript("V") l1J { kern.x = 48m };
+postscript("lslash") (postscript("lslash"), l1z, postscript("braceleft")) { kern.x = 50m };
+(r1r, r1g) postscript("thorn.ld") { kern.x = 50m };
+(postscript("Eogonek"), r1AE, postscript("eth"), r1e, r1ae, r1K) l1V { kern.x = 50m };
+postscript("V") (l1K, l1Eng) { kern.x = 50m };
+r1g__ld l1p { kern.x = 50m };
+r1f__ld l1U { kern.x = 50m };
+r1T postscript("exclam") { kern.x = 50m };
+(r1r, r1g__ld) postscript("thorn") { kern.x = 50m };
+r1r (l1f__ld, l1f_h__ld, postscript("f_b.ld"), l1f_f_h__ld, postscript("f_f_b.ld"), l1f, l1f_h, postscript("f_b"), l1f_f_h, postscript("f_f_b"), l1j, l1g__ld, l1f__001, l1dotlessi, l1thorn__001, postscript("ampersand"), postscript("ij")) { kern.x = 50m };
+(postscript("Iogonek"), r1IJ, r1U, r1H, r1d, postscript("lslash"), r1A) l1T { kern.x = 50m };
+(r1r, r1braceleft, r1bar) l1g { kern.x = 50m };
+r1g l1p__ld { kern.x = 50m };
+(postscript("Eogonek"), r1AE, postscript("eth"), r1K) (l1bar, l1braceright, postscript("uni0315")) { kern.x = 50m };
+(r1T, r1r) l1germandbls { kern.x = 50m };
+(postscript("Iogonek"), postscript("Thorn"), r1IJ, r1U, r1H, postscript("questiondown")) postscript("ae") { kern.x = 50m };
+(postscript("q"), postscript("braceright")) l1y__ld { kern.x = 50m };
+r1f__001 postscript("question") { kern.x = 55m };
+r1f__ld l1C { kern.x = 55m };
+r1T l1U { kern.x = 55m };
+postscript("comma") (postscript("thorn.ld"), l1p__ld) { kern.x = 55m };
+(r1g, r1g__ld) l1V { kern.x = 55m };
+r1f (l1germandbls, postscript("exclam")) { kern.x = 55m };
+(r1braceleft, r1bar) l1g__ld { kern.x = 55m };
+r1j__002 (l1f__ld, l1f_h__ld, postscript("f_b.ld"), l1f_f_h__ld, postscript("f_f_b.ld")) { kern.x = 57m };
+(postscript("V"), r1r) (l1G, postscript("Q")) { kern.x = 60m };
+(postscript("Eogonek"), r1c, r1D, r1AE, r1F) postscript("ae") { kern.x = 60m };
+postscript("Q") (postscript("semicolon"), postscript("Iogonek")) { kern.x = 60m };
+r1A postscript("lslash") { kern.x = 60m };
+r1g__ld (postscript("thorn.ld"), l1p__ld) { kern.x = 60m };
+r1T l1h { kern.x = 60m };
+postscript("aogonek") l1j { kern.x = 60m };
+(postscript("Iogonek"), r1IJ, r1U, r1H, r1d, postscript("lslash"), r1A, postscript("Q")) (l1bar, l1braceright) { kern.x = 60m };
+(postscript("Iogonek"), r1IJ, r1U, r1H, r1d, r1A) l1V { kern.x = 60m };
+r1F l1S { kern.x = 60m };
+r1r (l1y__ld, l1y, postscript("eng.ld"), l1s, l1iogonek, l1r, postscript("eng"), l1y__001) { kern.x = 60m };
+(postscript("Iogonek"), r1IJ, r1U, r1H, r1d, postscript("lslash"), r1A) postscript("uni0315") { kern.x = 60m };
+r1f l1U { kern.x = 60m };
+r1C l1T { kern.x = 60m };
+(r1T, r1r) l1C { kern.x = 60m };
+(r1braceleft, r1bar) l1J { kern.x = 60m };
+r1f l1C { kern.x = 65m };
+r1f__ld postscript("question") { kern.x = 65m };
+(r1braceleft, r1bar) (postscript("thorn"), l1p) { kern.x = 65m };
+postscript("semicolon") l1j { kern.x = 66m };
+(r1C, postscript("lslash")) l1V { kern.x = 70m };
+postscript("V") (l1germandbls, postscript("exclam")) { kern.x = 70m };
+(r1r, r1C) l1bar { kern.x = 70m };
+r1T (l1l, postscript("lcaron"), postscript("question")) { kern.x = 70m };
+(r1ij, r1j__002, r1y) postscript("ae") { kern.x = 70m };
+r1r (postscript("lslash"), l1z, postscript("braceleft")) { kern.x = 70m };
+postscript("q.ld") l1j { kern.x = 70m };
+r1C (l1braceright, postscript("uni0315")) { kern.x = 70m };
+(r1Eng, r1N, postscript("X")) l1T { kern.x = 70m };
+r1f postscript("question") { kern.x = 75m };
+postscript("V") l1U { kern.x = 75m };
+r1M postscript("ae") { kern.x = 75m };
+r1f__001 postscript("braceleft") { kern.x = 75m };
+(r1braceleft, r1bar) (postscript("thorn.ld"), l1p__ld) { kern.x = 75m };
+r1f__001 l1Y { kern.x = 80m };
+postscript("V") (l1h, l1C) { kern.x = 80m };
+(r1b, r1f_b, postscript("v"), r1braceleft) postscript("ae") { kern.x = 80m };
+postscript("Q") (postscript("eng.ld"), postscript("comma")) { kern.x = 80m };
+(r1Eng, r1N, postscript("X")) (l1bar, l1braceright, l1V, postscript("uni0315")) { kern.x = 80m };
+r1f__ld postscript("braceleft") { kern.x = 85m };
+r1g l1y__ld { kern.x = 85m };
+r1F l1T { kern.x = 90m };
+postscript("V") (l1l, postscript("lcaron"), postscript("question")) { kern.x = 90m };
+r1f__ld l1Y { kern.x = 90m };
+r1r l1V { kern.x = 90m };
+postscript("aogonek") (l1f, l1f_h, postscript("f_b"), l1f_f_h, postscript("f_f_b")) { kern.x = 90m };
+(postscript("semicolon"), postscript("q.ld"), r1r, r1f__ld, r1f__001, postscript("q"), r1eng, r1B, postscript("eth"), r1O, r1e, r1f, postscript("colon"), r1p, r1thorn, r1ae, r1C, r1k, r1f_f_k__ld, r1f_f_k, postscript("X"), r1w, r1g, r1g__ld, postscript("Q")) postscript("ae") { kern.x = 90m };
+r1T (postscript("lslash"), postscript("braceleft")) { kern.x = 90m };
+postscript("comma") l1y__ld { kern.x = 90m };
+(postscript("q"), postscript("braceright")) l1j { kern.x = 90m };
+postscript("uni0315") postscript("AE") { kern.x = -420m };
+r1f postscript("braceleft") { kern.x = 95m };
+r1g__ld l1y__ld { kern.x = 95m };
+r1T l1Y { kern.x = 95m };
+r1f__001 l1S { kern.x = 95m };
+postscript("semicolon") (l1f, l1f_h, postscript("f_b"), l1f_f_h, postscript("f_f_b")) { kern.x = 96m };
+(postscript("braceright"), r1L, postscript("Lcaron"), r1S, r1Z, r1G) postscript("ae") { kern.x = 100m };
+r1f l1Y { kern.x = 100m };
+r1F (l1bar, l1braceright, l1V, postscript("uni0315")) { kern.x = 100m };
+postscript("Q") l1y { kern.x = 100m };
+postscript("q.ld") (l1f, l1f_h, postscript("f_b"), l1f_f_h, postscript("f_f_b")) { kern.x = 100m };
+r1f__ld l1S { kern.x = 105m };
+(postscript("aogonek"), r1a) postscript("ae") { kern.x = 105m };
+postscript("uni0315") postscript("tcaron") { kern.x = -405m };
+(r1dotlessi, r1f_f_h__ld, r1f_f_h, r1f_f_i, r1s, r1germandbls, r1d, postscript("lslash")) postscript("ae") { kern.x = 110m };
+postscript("V") (postscript("lslash"), postscript("braceleft")) { kern.x = 110m };
+r1T l1S { kern.x = 110m };
+postscript("Q") l1g { kern.x = 110m };
+(r1braceleft, r1bar) l1y__ld { kern.x = 110m };
+postscript("uni0315") l1A { kern.x = -400m };
+postscript("semicolon") (l1f__ld, l1f_h__ld, postscript("f_b.ld"), l1f_f_h__ld, postscript("f_f_b.ld")) { kern.x = 113m };
+r1f l1S { kern.x = 115m };
+postscript("Q") l1g__ld { kern.x = 115m };
+postscript("V") l1Y { kern.x = 115m };
+postscript("q.ld") (l1f__ld, l1f_h__ld, postscript("f_b.ld"), l1f_f_h__ld, postscript("f_f_b.ld")) { kern.x = 117m };
+(postscript("comma"), r1bar, r1R, r1K, r1ellipsis, r1z, postscript("kgreenlandic"), r1A) postscript("ae") { kern.x = 120m };
+postscript("Q") l1J { kern.x = 120m };
+(postscript("q"), postscript("braceright")) (l1f, l1f_h, postscript("f_b"), l1f_f_h, postscript("f_f_b")) { kern.x = 120m };
+r1g l1j { kern.x = 125m };
+r1f__001 l1T { kern.x = 125m };
+postscript("Q") (postscript("thorn"), l1p) { kern.x = 125m };
+postscript("comma") l1j { kern.x = 130m };
+postscript("V") l1S { kern.x = 130m };
+postscript("aogonek") (l1f__ld, l1f_h__ld, postscript("f_b.ld"), l1f_f_h__ld, postscript("f_f_b.ld")) { kern.x = 107m };
+r1W (l1A, postscript("AE")) { kern.x = -380m };
+r1g__ld l1j { kern.x = 135m };
+r1f__ld l1T { kern.x = 135m };
+postscript("Q") (postscript("thorn.ld"), l1p__ld) { kern.x = 135m };
+r1f__001 (l1bar, l1braceright, l1V, postscript("uni0315")) { kern.x = 135m };
+(postscript("q"), postscript("braceright")) (l1f__ld, l1f_h__ld, postscript("f_b.ld"), l1f_f_h__ld, postscript("f_f_b.ld")) { kern.x = 137m };
+r1T l1T { kern.x = 140m };
+r1f l1T { kern.x = 145m };
+r1f__ld (l1bar, l1braceright, l1V, postscript("uni0315")) { kern.x = 145m };
+r1T (l1bar, l1braceright, l1V, postscript("uni0315")) { kern.x = 150m };
+(r1braceleft, r1bar) l1j { kern.x = 150m };
+r1f (l1bar, l1braceright, l1V, postscript("uni0315")) { kern.x = 155m };
+r1g (l1f, l1f_h, postscript("f_b"), l1f_f_h, postscript("f_f_b")) { kern.x = 155m };
+postscript("comma") (l1f, l1f_h, postscript("f_b"), l1f_f_h, postscript("f_f_b")) { kern.x = 160m };
+postscript("V") l1T { kern.x = 160m };
+r1g__ld (l1f, l1f_h, postscript("f_b"), l1f_f_h, postscript("f_f_b")) { kern.x = 165m };
+postscript("Q") l1y__ld { kern.x = 170m };
+postscript("V") (l1bar, l1braceright, l1V, postscript("uni0315")) { kern.x = 170m };
+r1Y (l1A, postscript("AE")) { kern.x = -340m };
+postscript("comma") (l1f__ld, l1f_h__ld, postscript("f_b.ld"), l1f_f_h__ld, postscript("f_f_b.ld")) { kern.x = 177m };
+(r1braceleft, r1bar) (l1f, l1f_h, postscript("f_b"), l1f_f_h, postscript("f_f_b")) { kern.x = 180m };
+r1g__ld (l1f__ld, l1f_h__ld, postscript("f_b.ld"), l1f_f_h__ld, postscript("f_f_b.ld")) { kern.x = 182m };
+postscript("uni0315") (postscript("f_b.ld"), postscript("f_b")) { kern.x = -326m };
+(r1braceleft, r1bar) (l1f__ld, l1f_h__ld, postscript("f_b.ld"), l1f_f_h__ld, postscript("f_f_b.ld")) { kern.x = 197m };
+postscript("uni0315") l1f_h__ld { kern.x = -306m };
+postscript("Q") l1j { kern.x = 210m };
+(r1T, r1r, postscript("colon"), r1g, r1g__ld) l1M { kern.x = -50m };
+(postscript("Thorn"), r1ij, postscript("ampersand"), r1j__002, postscript("ldot"), r1c, r1D, r1y) l1Y { kern.x = -50m };
+(r1Eng, r1N, postscript("semicolon"), r1eng, r1B, postscript("eth"), r1O, r1e, postscript("colon"), r1g, r1g__ld, postscript("Q")) l1Z { kern.x = -50m };
+(r1Eng, r1N) (postscript("Iogonek"), l1B, postscript("IJ")) { kern.x = -50m };
+(postscript("Eogonek"), r1c, r1D, r1AE, r1F) (postscript("comma"), postscript("semicolon"), l1ellipsis) { kern.x = -50m };
+(postscript("exclamdown"), postscript("questiondown")) postscript("questiondown") { kern.x = -50m };
+(r1ij, r1j__002, r1y) (l1T, l1K, postscript("exclamdown")) { kern.x = -50m };
+(r1T, postscript("exclamdown")) l1q { kern.x = -50m };
+(postscript("Eogonek"), r1c, r1D, r1AE) postscript("exclam") { kern.x = -50m };
+(postscript("colon"), r1g, r1g__ld) (postscript("X"), l1A, postscript("AE")) { kern.x = -50m };
+(r1P, postscript("exclam"), r1c, r1D) postscript("question") { kern.x = -50m };
+(r1T, postscript("exclamdown"), postscript("questiondown")) (l1c, l1o) { kern.x = -50m };
+postscript("tcaron") postscript("ae") { kern.x = -50m };
+(postscript("V"), r1Eng, postscript("Iogonek"), postscript("Eogonek"), postscript("Thorn"), r1IJ, r1P, postscript("ampersand"), postscript("question"), postscript("ldot"), postscript("exclam"), r1N, r1T, r1U, postscript("exclamdown"), r1H, r1c, r1D, r1AE, r1F, postscript("questiondown")) postscript("colon") { kern.x = -50m };
+(postscript("Thorn"), r1P, postscript("ampersand"), postscript("question"), postscript("ldot"), postscript("exclam"), postscript("exclamdown"), postscript("questiondown")) l1h { kern.x = -50m };
+(postscript("V"), r1Eng, r1P, postscript("ampersand"), postscript("question"), postscript("ldot"), postscript("exclam"), r1N, r1T, postscript("exclamdown"), postscript("questiondown")) l1a { kern.x = -50m };
+postscript("uni0315") l1f_h { kern.x = -296m };
+r1f_f_h__ld postscript("uni0315") { kern.x = -293m };
+r1W (postscript("comma"), l1ellipsis) { kern.x = -290m };
+r1f_f_h postscript("uni0315") { kern.x = -283m };
+r1Y (postscript("comma"), l1ellipsis) { kern.x = -280m };
+postscript("Q") (l1f, l1f_h, postscript("f_b"), l1f_f_h, postscript("f_f_b")) { kern.x = 240m };
+r1f_b postscript("uni0315") { kern.x = -268m };
+postscript("Q") (l1f__ld, l1f_h__ld, postscript("f_b.ld"), l1f_f_h__ld, postscript("f_f_b.ld")) { kern.x = 257m };
+postscript("V") postscript("AE") { kern.x = -240m };
+r1f_f_k__ld postscript("uni0315") { kern.x = -238m };
+r1Y l1c { kern.x = -230m };
+postscript("V") l1A { kern.x = -230m };
+r1f_f_k postscript("uni0315") { kern.x = -228m };
+r1Y postscript("semicolon") { kern.x = -224m };
+r1Y l1o { kern.x = -220m };
+r1W l1c { kern.x = -220m };
+r1Y l1q { kern.x = -215m };
+r1W postscript("semicolon") { kern.x = -214m };
+r1Y (l1a, postscript("colon")) { kern.x = -210m };
+r1W l1o { kern.x = -210m };
+r1W l1q { kern.x = -205m };
+r1Y (l1e, l1d, postscript("dcaron"), postscript("x")) { kern.x = -200m };
+r1W (l1a, postscript("colon")) { kern.x = -200m };
+(r1W, r1Y, postscript("uni0315")) l1M { kern.x = -200m };
+r1Y (l1p__ld, l1p) { kern.x = -195m };
+postscript("dcaron") (l1p__ld, l1p, postscript("comma"), postscript("semicolon"), l1u, postscript("x"), l1ellipsis, postscript("colon"), l1M, l1A, postscript("AE")) { kern.x = -193m };
+postscript("lcaron") (l1p__ld, l1p, postscript("comma"), postscript("semicolon"), l1u, postscript("x"), l1ellipsis, postscript("colon"), l1M, l1A, postscript("AE")) { kern.x = -191m };
+r1Y (l1t, postscript("tcaron"), l1u) { kern.x = -190m };
+r1W (l1e, l1d, postscript("dcaron"), postscript("x")) { kern.x = -190m };
+r1W (l1p__ld, l1p) { kern.x = -185m };
+postscript("dcaron") (l1f__ld, l1f_h__ld, postscript("f_b.ld"), l1f_f_h__ld, postscript("f_f_b.ld"), l1f, l1f_h, postscript("f_b"), l1f_f_h, postscript("f_f_b"), l1j, l1y__ld, l1g__ld, l1g, l1y, postscript("eng.ld"), l1s, l1f__001, l1e, l1a, l1c, l1iogonek, l1dotlessi, l1d, postscript("dcaron"), l1o, l1r, postscript("eng"), l1y__001, postscript("ampersand"), postscript("ij")) { kern.x = -183m };
+postscript("lcaron") (l1f__ld, l1f_h__ld, postscript("f_b.ld"), l1f_f_h__ld, postscript("f_f_b.ld"), l1f, l1f_h, postscript("f_b"), l1f_f_h, postscript("f_f_b"), l1j, l1y__ld, l1g__ld, l1g, l1y, postscript("eng.ld"), l1s, l1f__001, l1e, l1a, l1c, l1iogonek, l1dotlessi, l1d, postscript("dcaron"), l1o, l1r, postscript("eng"), l1y__001, postscript("ampersand"), postscript("ij")) { kern.x = -181m };
+r1Y (l1f__ld, l1f_h__ld, postscript("f_b.ld"), l1f_f_h__ld, postscript("f_f_b.ld"), l1f, l1f_h, postscript("f_b"), l1f_f_h, postscript("f_f_b"), l1j, l1g__ld, l1g, l1f__001, l1dotlessi, postscript("ampersand"), postscript("ij")) { kern.x = -180m };
+r1W (l1t, postscript("tcaron"), l1u) { kern.x = -180m };
+(r1k, r1f_f_k__ld, r1f_f_k, postscript("X")) (postscript("x"), l1b) { kern.x = -30m };
+(postscript("Eogonek"), r1c, r1D, r1AE, r1F, r1braceleft) (l1e, l1a) { kern.x = -30m };
+(postscript("Eogonek"), r1c, r1D, r1AE, r1F, r1k, r1f_f_k__ld, r1f_f_k) (l1d, postscript("dcaron"), l1o, postscript("questiondown")) { kern.x = -30m };
+(postscript("Eogonek"), r1c, r1D, r1AE, r1braceleft) (l1l, postscript("lcaron")) { kern.x = -30m };
+(postscript("V"), r1k, r1f_f_k__ld, r1f_f_k, postscript("X"), r1w) l1M { kern.x = -30m };
+r1s l1braceright { kern.x = -30m };
+(r1k, r1f_f_k__ld, r1f_f_k, postscript("X"), r1w) (l1J, l1Eng, postscript("X"), l1A, postscript("AE")) { kern.x = -30m };
+(postscript("semicolon"), postscript("q.ld"), postscript("q"), r1eng, r1B, postscript("eth"), r1O, r1e, postscript("colon"), r1p, r1thorn, r1ae, r1C, r1k, r1f_f_k__ld, r1f_f_k, postscript("X"), r1w, r1g, r1g__ld, postscript("Q")) (l1K, postscript("exclamdown")) { kern.x = -30m };
+(r1F, r1k, r1f_f_k__ld, r1f_f_k, postscript("X"), r1w) (postscript("Iogonek"), l1B, l1Z, postscript("IJ")) { kern.x = -30m };
+(postscript("v"), r1k, r1f_f_k__ld, r1f_f_k) postscript("exclam") { kern.x = -30m };
+(r1R, r1K) (l1C, l1G, postscript("Q")) { kern.x = -30m };
+(postscript("Iogonek"), r1IJ, r1ij, r1j__002, r1U, r1H, r1y, r1b, r1f_b, r1k, r1f_f_k__ld, r1f_f_k) l1h { kern.x = -30m };
+(postscript("v"), r1k, r1f_f_k__ld, r1f_f_k, postscript("X")) (postscript("comma"), postscript("semicolon"), l1ellipsis, postscript("colon")) { kern.x = -30m };
+(postscript("V"), r1Eng, postscript("Iogonek"), postscript("Eogonek"), postscript("Thorn"), r1IJ, r1ij, r1P, postscript("ampersand"), r1j__002, postscript("question"), postscript("ldot"), postscript("exclam"), r1N, r1T, r1U, postscript("exclamdown"), r1H, r1c, r1D, r1AE, r1F, postscript("questiondown"), r1y, r1M, r1b, r1f_b, r1k, r1f_f_k__ld, r1f_f_k) l1u { kern.x = -30m };
+(r1ij, r1j__002, r1y, r1b, r1f_b, r1k, r1f_f_k__ld, r1f_f_k) (l1p__ld, l1p) { kern.x = -30m };
+(postscript("Eogonek"), r1c, r1D, r1AE, r1k, r1f_f_k__ld, r1f_f_k) l1U { kern.x = -30m };
+r1braceleft (l1s, l1f__001, l1germandbls) { kern.x = -30m };
+(postscript("V"), r1Eng, postscript("Iogonek"), postscript("Eogonek"), postscript("Thorn"), r1IJ, r1P, postscript("ampersand"), postscript("question"), postscript("ldot"), postscript("exclam"), r1N, r1T, r1U, postscript("exclamdown"), r1H, r1c, r1D, r1AE, r1F, postscript("questiondown")) (l1t, postscript("tcaron")) { kern.x = -30m };
+(postscript("exclamdown"), postscript("semicolon"), postscript("q.ld"), postscript("q"), r1eng, r1B, r1O, postscript("colon"), r1p, r1thorn, r1k, r1f_f_k__ld, r1f_f_k, r1w, postscript("Q")) l1Y { kern.x = -30m };
+(postscript("Eogonek"), r1AE, postscript("v"), r1k, r1f_f_k__ld, r1f_f_k) postscript("question") { kern.x = -30m };
+(postscript("Eogonek"), r1c, r1D, r1AE, r1F) (l1q, l1c) { kern.x = -30m };
+(postscript("semicolon"), postscript("q.ld"), postscript("q"), r1eng, r1O, r1e, postscript("colon"), r1p, r1thorn, r1ae, r1k, r1f_f_k__ld, r1f_f_k, r1w, postscript("Q")) l1T { kern.x = -30m };
+(postscript("question"), r1c, r1D, r1k, r1f_f_k__ld, r1f_f_k) l1S { kern.x = -30m };
+postscript("dcaron") (l1t, postscript("tcaron"), l1z) { kern.x = -173m };
+postscript("lcaron") (l1t, postscript("tcaron"), l1z) { kern.x = -171m };
+r1Y (l1y__ld, l1y, postscript("eng.ld"), l1s, l1iogonek, l1r, postscript("eng"), l1y__001) { kern.x = -170m };
+r1W (l1f__ld, l1f_h__ld, postscript("f_b.ld"), l1f_f_h__ld, postscript("f_f_b.ld"), l1f, l1f_h, postscript("f_b"), l1f_f_h, postscript("f_f_b"), l1j, l1g__ld, l1g, l1f__001, l1dotlessi, postscript("ampersand"), postscript("ij")) { kern.x = -170m };
+postscript("tcaron") (postscript("comma"), postscript("semicolon"), l1ellipsis, postscript("colon"), l1M, l1A, postscript("AE")) { kern.x = -170m };
+postscript("dcaron") l1q { kern.x = -168m };
+postscript("lcaron") l1q { kern.x = -166m };
+postscript("tcaron") postscript("x") { kern.x = -165m };
+r1P (l1A, postscript("AE")) { kern.x = -160m };
+(r1W, r1Y, postscript("dcaron"), postscript("lcaron"), postscript("tcaron"), postscript("uni0315")) postscript("exclamdown") { kern.x = -160m };
+r1W (l1y__ld, l1y, postscript("eng.ld"), l1s, l1iogonek, l1r, postscript("eng"), l1y__001) { kern.x = -160m };
+postscript("tcaron") (l1p__ld, l1p, l1u) { kern.x = -160m };
+r1Y (postscript("ae"), l1z) { kern.x = -160m };
+postscript("V") (postscript("comma"), l1ellipsis) { kern.x = -150m };
+r1W (postscript("ae"), l1z) { kern.x = -150m };
+(postscript("Thorn"), postscript("ampersand")) (l1A, postscript("AE")) { kern.x = -150m };
+postscript("tcaron") (l1f__ld, l1f_h__ld, postscript("f_b.ld"), l1f_f_h__ld, postscript("f_f_b.ld"), l1f, l1f_h, postscript("f_b"), l1f_f_h, postscript("f_f_b"), l1j, l1g__ld, l1g, l1t, postscript("tcaron"), l1f__001, l1e, l1a, l1c, l1dotlessi, l1d, postscript("dcaron"), l1o, postscript("ampersand"), postscript("ij")) { kern.x = -150m };
+(r1W, r1Y, postscript("dcaron"), postscript("lcaron"), postscript("tcaron"), postscript("uni0315")) (postscript("thorn.ld"), postscript("thorn"), l1thorn__001) { kern.x = -145m };
+postscript("tcaron") l1q { kern.x = -145m };
+postscript("ampersand") postscript("X") { kern.x = -140m };
+r1P (postscript("comma"), l1ellipsis) { kern.x = -140m };
+postscript("question") (l1A, postscript("AE")) { kern.x = -140m };
+(r1W, r1Y, postscript("dcaron"), postscript("lcaron"), postscript("tcaron"), postscript("uni0315")) postscript("questiondown") { kern.x = -140m };
+postscript("tcaron") (l1y__ld, l1y, postscript("eng.ld"), l1s, l1iogonek, l1r, postscript("eng"), l1y__001) { kern.x = -140m };
+postscript("ldot") (postscript("X"), l1A, postscript("AE")) { kern.x = -135m };
+(r1W, r1Y, postscript("dcaron"), postscript("lcaron"), postscript("tcaron"), postscript("uni0315")) (postscript("Iogonek"), l1B, l1Z, postscript("IJ")) { kern.x = -130m };
+postscript("exclam") (l1A, postscript("AE")) { kern.x = -130m };
+postscript("Thorn") postscript("X") { kern.x = -130m };
+postscript("tcaron") l1z { kern.x = -130m };
+(r1W, r1Y, postscript("dcaron"), postscript("lcaron"), postscript("tcaron"), postscript("uni0315")) (l1b, postscript("X")) { kern.x = -125m };
+(r1W, r1Y, postscript("dcaron"), postscript("lcaron"), postscript("tcaron"), postscript("uni0315")) l1J { kern.x = -122m };
+(r1W, r1Y, postscript("dcaron"), postscript("lcaron"), postscript("tcaron"), postscript("uni0315")) (l1K, l1Eng) { kern.x = -120m };
+(r1Eng, r1P, postscript("ampersand"), postscript("question"), postscript("ldot"), postscript("exclam"), r1N) l1M { kern.x = -120m };
+postscript("Thorn") postscript("uni0315") { kern.x = -120m };
+(r1Eng, r1N) (l1A, postscript("AE")) { kern.x = -120m };
+(postscript("comma"), r1ellipsis) (l1C, l1G, l1y__001, postscript("Q")) { kern.x = -20m };
+(r1Eng, postscript("Iogonek"), postscript("Eogonek"), postscript("Thorn"), r1IJ, r1ij, r1P, postscript("ampersand"), r1j__002, postscript("question"), postscript("ldot"), postscript("exclam"), r1N, r1U, postscript("exclamdown"), r1H, r1c, r1D, r1AE, postscript("questiondown"), r1y, r1M, r1b, r1f_b, r1k, r1f_f_k__ld, r1f_f_k) l1germandbls { kern.x = -20m };
+postscript("v") (l1p__ld, l1p, l1u, l1h) { kern.x = -20m };
+(postscript("braceright"), r1L, postscript("Lcaron"), r1S, r1Z, r1G) (postscript("Iogonek"), postscript("exclamdown"), l1B, l1M, postscript("X"), l1A, postscript("AE"), postscript("IJ")) { kern.x = -20m };
+(postscript("braceright"), r1L, postscript("Lcaron")) l1T { kern.x = -20m };
+(postscript("semicolon"), postscript("q.ld"), r1f__ld, postscript("q"), postscript("braceright"), r1eng, r1B, postscript("eth"), r1O, r1e, postscript("colon"), r1p, r1thorn, r1ae, r1C, r1w, r1L, postscript("Lcaron"), r1S, r1Z, r1G, postscript("Q")) postscript("colon") { kern.x = -20m };
+(postscript("q.ld"), r1L, postscript("Lcaron"), r1S, r1Z, r1G) l1J { kern.x = -20m };
+(r1Eng, postscript("Iogonek"), postscript("Eogonek"), postscript("Thorn"), r1IJ, r1ij, r1P, postscript("ampersand"), r1j__002, postscript("question"), postscript("ldot"), postscript("exclam"), r1N, r1U, postscript("exclamdown"), r1H, r1c, r1D, r1AE, r1F, postscript("questiondown"), r1y, r1M, r1b, r1f_b, r1k, r1f_f_k__ld, r1f_f_k) (postscript("thorn.ld"), postscript("thorn"), l1thorn__001) { kern.x = -20m };
+r1ellipsis (l1y__ld, l1y) { kern.x = -20m };
+(postscript("Iogonek"), r1IJ, r1ij, r1j__002, r1U, r1H, r1y, r1b, r1f_b, r1k, r1f_f_k__ld, r1f_f_k) (l1l, postscript("lcaron")) { kern.x = -20m };
+(postscript("braceright"), r1g, r1L, postscript("Lcaron"), r1S, r1Z, r1G, r1g__ld) l1b { kern.x = -20m };
+(postscript("semicolon"), postscript("q.ld"), r1r, r1f__ld, r1f__001, postscript("q"), postscript("braceright"), r1eng, r1B, postscript("eth"), r1O, r1e, r1f, postscript("colon"), r1p, r1thorn, r1ae, r1C, r1w, r1g, r1L, postscript("Lcaron"), r1S, r1Z, r1G, r1g__ld, postscript("Q")) l1ellipsis { kern.x = -20m };
+(r1r, postscript("braceright"), r1L, postscript("Lcaron"), r1S, r1Z, r1G) l1Z { kern.x = -20m };
+(postscript("semicolon"), postscript("q.ld"), r1r, r1f__ld, r1f__001, postscript("q"), postscript("braceright"), r1eng, r1B, postscript("eth"), r1O, r1e, r1f, postscript("colon"), r1p, r1thorn, r1ae, r1C, r1w, r1L, postscript("Lcaron"), r1S, r1Z, r1G) postscript("comma") { kern.x = -20m };
+(postscript("V"), r1Eng, postscript("Iogonek"), postscript("Eogonek"), postscript("Thorn"), r1IJ, r1ij, r1P, postscript("ampersand"), r1j__002, postscript("question"), postscript("ldot"), postscript("exclam"), r1N, r1T, r1U, postscript("exclamdown"), r1H, r1c, r1D, r1AE, r1F, postscript("questiondown"), r1y, r1M, r1b, r1f_b, r1k, r1f_f_k__ld, r1f_f_k) (l1g__ld, l1g, l1f__001, l1dotlessi, postscript("ij")) { kern.x = -20m };
+(postscript("comma"), r1R, r1ellipsis) postscript("braceleft") { kern.x = -20m };
+(postscript("V"), postscript("Thorn"), r1P, postscript("ampersand"), postscript("question"), postscript("ldot"), postscript("exclam"), r1N, r1T, r1U, postscript("exclamdown"), r1H, r1c, r1D, r1AE, r1F, postscript("questiondown"), r1y, r1M, r1b, r1f_b, r1k, r1f_f_k__ld, r1f_f_k) (l1f__ld, l1f_h__ld, postscript("f_b.ld"), l1f_f_h__ld, postscript("f_f_b.ld")) { kern.x = -20m };
+(r1ij, r1j__002, r1y, r1b, r1f_b, r1k, r1f_f_k__ld, r1f_f_k) (l1e, l1a) { kern.x = -20m };
+(postscript("semicolon"), postscript("q.ld"), r1f__ld, r1f__001, postscript("q"), postscript("braceright"), r1eng, r1B, postscript("eth"), r1O, r1e, r1f, postscript("colon"), r1p, r1thorn, r1ae, r1C, r1w, r1g, r1L, postscript("Lcaron"), r1S, r1Z, r1G) postscript("semicolon") { kern.x = -20m };
+(r1F, postscript("braceright"), r1L, postscript("Lcaron"), r1S, r1Z, r1G) (l1K, l1Eng) { kern.x = -20m };
+(r1O, postscript("Q")) postscript("uni0315") { kern.x = -20m };
+r1braceleft postscript("eng") { kern.x = -20m };
+(r1ij, r1j__002, r1y, r1b, r1f_b, r1braceleft) (l1t, postscript("tcaron")) { kern.x = -20m };
+(postscript("V"), r1Eng, postscript("Thorn"), r1P, postscript("ampersand"), postscript("question"), postscript("ldot"), postscript("exclam"), r1N, r1T, r1U, postscript("exclamdown"), r1H, r1c, r1D, r1AE, r1F, postscript("questiondown"), r1y, r1M, r1b, r1f_b, r1k, r1f_f_k__ld, r1f_f_k) (l1f, l1f_h, postscript("f_b"), l1f_f_h, postscript("f_f_b")) { kern.x = -20m };
+(r1ij, r1j__002, r1y, r1b, r1f_b) (l1c, l1d, l1S, postscript("dcaron"), l1o, l1U, postscript("questiondown")) { kern.x = -20m };
+(postscript("V"), r1Eng, postscript("Iogonek"), postscript("Eogonek"), postscript("Thorn"), r1IJ, r1P, postscript("ampersand"), postscript("question"), postscript("ldot"), postscript("exclam"), r1N, r1T, r1U, postscript("exclamdown"), r1H, r1c, r1D, r1AE, r1F, postscript("questiondown"), r1y, r1M, r1b, r1f_b, r1k, r1f_f_k__ld, r1f_f_k) l1j { kern.x = -20m };
+(r1Eng, r1N, postscript("semicolon"), postscript("q.ld"), postscript("q"), postscript("braceright"), r1eng, r1B, postscript("eth"), r1O, r1e, postscript("colon"), r1p, r1thorn, r1ae, r1C, postscript("X"), r1w, r1g, r1L, postscript("Lcaron"), r1S, r1Z, r1G, r1g__ld, postscript("Q")) postscript("exclam") { kern.x = -20m };
+(postscript("Iogonek"), r1IJ, r1U, postscript("semicolon"), postscript("q.ld"), r1H, postscript("q"), postscript("braceright"), r1eng, r1B, postscript("eth"), r1O, r1e, postscript("colon"), r1p, r1thorn, r1ae, r1w, r1g, r1L, postscript("Lcaron"), r1S, r1Z, r1G, r1g__ld, postscript("Q")) postscript("question") { kern.x = -20m };
+(postscript("braceright"), r1e, r1ae, r1L, postscript("Lcaron"), r1S, r1G) l1Y { kern.x = -20m };
+(r1ij, r1j__002, r1y, r1M) l1q { kern.x = -20m };
+(postscript("V"), r1Eng, postscript("Iogonek"), postscript("Eogonek"), postscript("Thorn"), r1IJ, r1ij, r1P, postscript("ampersand"), r1j__002, postscript("question"), postscript("ldot"), postscript("exclam"), r1N, r1T, r1U, postscript("exclamdown"), r1H, r1c, r1D, r1AE, r1F, postscript("questiondown"), r1y, r1M, r1b, r1f_b, r1k, r1f_f_k__ld, r1f_f_k, postscript("comma"), r1ellipsis, r1z, postscript("kgreenlandic")) postscript("ampersand") { kern.x = -20m };
+(postscript("semicolon"), r1O, postscript("colon"), postscript("comma")) l1braceright { kern.x = -20m };
+postscript("question") postscript("X") { kern.x = -115m };
+r1thorn postscript("uni0315") { kern.x = -112m };
+(r1W, r1Y, postscript("dcaron"), postscript("lcaron"), postscript("tcaron"), postscript("uni0315")) (l1G, postscript("Q")) { kern.x = -110m };
+r1T (l1A, postscript("AE")) { kern.x = -110m };
+r1L postscript("uni0315") { kern.x = -100m };
+(r1W, r1Y, postscript("dcaron"), postscript("lcaron"), postscript("tcaron"), postscript("uni0315")) (l1germandbls, postscript("exclam")) { kern.x = -100m };
+r1U (l1A, postscript("AE")) { kern.x = -100m };
+(postscript("Thorn"), r1U) l1M { kern.x = -100m };
+postscript("ampersand") (postscript("comma"), l1ellipsis) { kern.x = -95m };
+(r1W, r1Y, postscript("dcaron"), postscript("lcaron"), postscript("tcaron"), postscript("uni0315")) l1U { kern.x = -95m };
+(r1P, postscript("exclam")) postscript("X") { kern.x = -95m };
+(r1W, r1Y, postscript("dcaron"), postscript("lcaron"), postscript("tcaron"), postscript("uni0315")) (l1h, l1C) { kern.x = -90m };
+(postscript("Thorn"), r1P, postscript("ampersand"), postscript("question"), postscript("ldot"), postscript("exclam"), postscript("exclamdown")) l1Z { kern.x = -90m };
+postscript("exclamdown") (l1M, postscript("X"), l1A, postscript("AE")) { kern.x = -90m };
+postscript("question") (postscript("comma"), l1ellipsis) { kern.x = -90m };
+postscript("ldot") (postscript("comma"), l1ellipsis) { kern.x = -85m };
+(r1W, r1Y, postscript("dcaron"), postscript("lcaron"), postscript("tcaron"), postscript("uni0315")) (l1l, postscript("lcaron"), postscript("question")) { kern.x = -80m };
+(postscript("Eogonek"), r1c, r1D, r1AE) l1Z { kern.x = -80m };
+(postscript("Iogonek"), postscript("Eogonek"), r1IJ, r1H, r1c, r1D, r1AE, r1F) (l1M, l1A, postscript("AE")) { kern.x = -80m };
+(r1c, r1D) postscript("X") { kern.x = -80m };
+(r1Eng, postscript("exclam"), r1N) (postscript("comma"), l1ellipsis) { kern.x = -80m };
+(postscript("Thorn"), r1P, postscript("ampersand"), postscript("question"), postscript("ldot"), postscript("exclam"), postscript("exclamdown")) l1Eng { kern.x = -80m };
+(postscript("Eogonek"), r1AE) postscript("X") { kern.x = -75m };
+postscript("dcaron") postscript("ae") { kern.x = -73m };
+postscript("lcaron") postscript("ae") { kern.x = -71m };
+(postscript("V"), r1P, postscript("ampersand"), postscript("question")) l1c { kern.x = -70m };
+(postscript("Eogonek"), r1c, r1D, r1AE, postscript("questiondown")) l1Eng { kern.x = -70m };
+(postscript("Iogonek"), r1IJ, r1ij, r1U, r1H, postscript("questiondown")) l1Z { kern.x = -70m };
+(r1ij, postscript("questiondown"), r1r) (postscript("X"), l1A, postscript("AE")) { kern.x = -70m };
+(r1ij, postscript("questiondown")) l1M { kern.x = -70m };
+(r1Eng, postscript("Iogonek"), postscript("Thorn"), r1IJ, r1P, postscript("ampersand"), postscript("question"), postscript("ldot"), postscript("exclam"), r1N, r1U, postscript("exclamdown"), r1H, postscript("questiondown")) postscript("exclamdown") { kern.x = -70m };
+(postscript("Thorn"), r1P, postscript("ampersand"), postscript("question"), postscript("ldot"), postscript("exclam"), postscript("exclamdown"), postscript("questiondown")) l1J { kern.x = -70m };
+(r1T, postscript("exclamdown"), postscript("questiondown")) (postscript("comma"), l1ellipsis) { kern.x = -70m };
+(postscript("Iogonek"), postscript("Thorn"), r1IJ, r1P, postscript("ampersand"), postscript("question"), postscript("ldot"), postscript("exclam"), r1U, postscript("exclamdown"), r1H, postscript("questiondown")) (postscript("Iogonek"), l1B, postscript("IJ")) { kern.x = -70m };
+(postscript("Iogonek"), r1IJ, r1U, r1H) postscript("X") { kern.x = -65m };
+(r1f__ld, r1f__001) (l1A, postscript("AE")) { kern.x = -65m };
+(postscript("Thorn"), r1P, postscript("ampersand"), postscript("question"), postscript("ldot"), postscript("exclam"), postscript("exclamdown"), postscript("questiondown")) l1K { kern.x = -65m };
+postscript("ldot") (l1c, postscript("uni0315")) { kern.x = -65m };
+(postscript("Eogonek"), r1c, r1D, r1AE) (l1J, postscript("Iogonek"), l1B, postscript("IJ")) { kern.x = -65m };
+postscript("semicolon") (postscript("X"), l1A, postscript("AE")) { kern.x = -64m };
+(postscript("V"), r1Eng, r1P, postscript("ampersand"), postscript("question"), postscript("ldot"), postscript("exclam"), r1N, r1T, postscript("exclamdown"), postscript("questiondown")) postscript("semicolon") { kern.x = -64m };
+(postscript("Iogonek"), r1IJ, r1U, r1H) l1J { kern.x = -62m };
+(postscript("Iogonek"), r1IJ, r1ij, r1j__002, r1U, r1H) l1Eng { kern.x = -60m };
+(r1W, r1Y, postscript("dcaron"), postscript("lcaron"), postscript("tcaron"), postscript("uni0315")) (postscript("lslash"), postscript("braceleft")) { kern.x = -60m };
+(postscript("Eogonek"), r1c, r1D, r1AE, r1F) postscript("exclamdown") { kern.x = -60m };
+(postscript("Iogonek"), postscript("Eogonek"), r1IJ, r1U, r1H, r1c, r1D, r1AE) l1K { kern.x = -60m };
+(r1j__002, r1eng, r1B, postscript("eth"), r1O, r1e, postscript("Q")) (postscript("X"), l1A, postscript("AE")) { kern.x = -60m };
+(postscript("V"), r1Eng, r1P, postscript("ampersand"), postscript("question"), postscript("ldot"), postscript("exclam"), r1N) l1o { kern.x = -60m };
+(r1j__002, postscript("semicolon"), r1f__001, r1eng, r1B, postscript("eth"), r1O, r1e, postscript("Q")) l1M { kern.x = -60m };
+(postscript("Thorn"), postscript("ampersand"), postscript("ldot"), r1c, r1D) l1T { kern.x = -60m };
+(r1D, postscript("braceright")) postscript("uni0315") { kern.x = -60m };
+(r1Eng, postscript("exclam"), r1N) l1c { kern.x = -60m };
+(r1Eng, r1P, postscript("ampersand"), postscript("question"), postscript("ldot"), postscript("exclam"), r1N) postscript("questiondown") { kern.x = -60m };
+(postscript("Thorn"), postscript("ampersand"), postscript("question"), postscript("ldot"), postscript("questiondown")) postscript("question") { kern.x = -60m };
+(postscript("Thorn"), r1P, postscript("ampersand"), postscript("question"), postscript("ldot"), postscript("exclam"), postscript("exclamdown"), postscript("questiondown")) postscript("exclam") { kern.x = -60m };
+r1j__002 l1Z { kern.x = -60m };
+(postscript("Iogonek"), postscript("Thorn"), r1IJ, r1U, r1H) (postscript("comma"), postscript("semicolon"), l1ellipsis) { kern.x = -60m };
+(postscript("Iogonek"), postscript("Eogonek"), postscript("Thorn"), r1IJ, r1P, postscript("ampersand"), postscript("question"), postscript("ldot"), postscript("exclam"), r1U, postscript("exclamdown"), r1H, r1c, r1D, r1AE, postscript("questiondown")) l1b { kern.x = -55m };
+(r1W, r1Y, postscript("dcaron"), postscript("lcaron"), postscript("tcaron"), postscript("uni0315")) l1Y { kern.x = -55m };
+postscript("exclamdown") postscript("question") { kern.x = -55m };
+(postscript("V"), r1Eng, r1P, postscript("ampersand"), postscript("question"), postscript("ldot"), postscript("exclam"), r1N) l1q { kern.x = -55m };
+(r1ij, r1j__002, r1y) (l1J, postscript("Iogonek"), l1B, postscript("IJ")) { kern.x = -55m };
+(r1R, r1K) postscript("ampersand") { kern.x = -55m };
+(r1f__ld, r1y) l1M { kern.x = -55m };
+(r1y, r1f) (l1A, postscript("AE")) { kern.x = -55m };
+r1y (l1Eng, l1Z, postscript("X")) { kern.x = -55m };
+r1R postscript("uni0315") { kern.x = -55m };
+postscript("Lcaron") postscript("uni0315") { kern.x = -54m };
+postscript("uni0315") (postscript("f_f_b.ld"), postscript("f_f_b")) { kern.x = -562m };
+(r1Eng, r1N, r1M) postscript("X") { kern.x = -45m };
+(r1Eng, r1ij, r1j__002, r1N, r1y, r1M) l1b { kern.x = -45m };
+postscript("questiondown") l1q { kern.x = -45m };
+r1M (l1J, postscript("comma"), postscript("semicolon"), postscript("Iogonek"), l1ellipsis, postscript("colon"), postscript("exclam"), l1K, postscript("exclamdown"), l1B, l1Eng, l1Z, l1A, postscript("AE"), postscript("IJ")) { kern.x = -45m };
+(r1f, r1M) l1M { kern.x = -45m };
+postscript("question") l1Y { kern.x = -45m };
+(r1Eng, r1N) l1J { kern.x = -42m };
+(postscript("Iogonek"), r1IJ, r1ij, r1j__002, r1U, r1H, r1y, r1b, r1f_b, r1braceleft) postscript("exclam") { kern.x = -40m };
+(r1b, r1f_b, r1braceleft) l1b { kern.x = -40m };
+(postscript("Iogonek"), postscript("Thorn"), r1IJ, r1U, r1H, r1braceleft) (l1o, postscript("questiondown")) { kern.x = -40m };
+(r1ij, r1j__002, r1y, r1b, r1f_b) (postscript("comma"), postscript("semicolon")) { kern.x = -40m };
+(postscript("Eogonek"), r1c, r1D, r1AE, r1braceleft) l1h { kern.x = -40m };
+(r1Eng, r1N, r1b, r1f_b, postscript("v"), r1braceleft) l1K { kern.x = -40m };
+(postscript("questiondown"), r1b, r1f_b, postscript("v"), r1braceleft) l1Y { kern.x = -40m };
+(r1b, r1f_b, postscript("v"), r1braceleft) (postscript("exclamdown"), l1B, postscript("IJ")) { kern.x = -40m };
+(postscript("V"), r1Eng, postscript("Iogonek"), postscript("Thorn"), r1IJ, r1P, postscript("ampersand"), postscript("question"), postscript("ldot"), postscript("exclam"), r1N, r1T, r1U, postscript("exclamdown"), r1H, postscript("questiondown")) l1e { kern.x = -40m };
+(postscript("Thorn"), r1ij, postscript("ampersand"), r1j__002, postscript("ldot"), postscript("q.ld"), r1c, r1D, postscript("q"), postscript("braceright"), r1eng, r1y, r1b, r1f_b, postscript("v"), r1p, r1thorn, r1k, r1f_f_k__ld, r1f_f_k, r1w, r1L, postscript("Lcaron"), r1dotlessi, r1f_f_h__ld, r1f_f_h, r1R, r1ellipsis, r1z, postscript("kgreenlandic")) l1braceright { kern.x = -40m };
+(r1W, r1Y, postscript("dcaron"), postscript("lcaron"), postscript("Thorn"), postscript("tcaron"), postscript("ampersand"), postscript("ldot"), r1braceleft, postscript("uni0315")) l1S { kern.x = -40m };
+(r1Eng, r1N, postscript("semicolon"), postscript("q.ld"), postscript("q"), r1eng, r1B, postscript("eth"), r1O, r1e, postscript("colon"), r1b, r1f_b, postscript("v"), r1p, r1thorn, r1ae, r1C, r1g, r1g__ld, r1braceleft, postscript("Q")) l1Eng { kern.x = -40m };
+(r1b, r1f_b, postscript("v")) (l1J, postscript("Iogonek"), l1T) { kern.x = -40m };
+(postscript("V"), r1Eng, postscript("Iogonek"), postscript("Thorn"), r1IJ, r1P, postscript("ampersand"), postscript("question"), postscript("ldot"), postscript("exclam"), r1N, r1T, r1U, postscript("exclamdown"), r1H, postscript("questiondown"), r1braceleft) (l1d, postscript("dcaron")) { kern.x = -40m };
+r1braceleft (l1z, l1iogonek, l1dotlessi, l1thorn__001, l1u, l1U, l1r, l1C, l1G, l1y__001, postscript("ampersand"), postscript("braceleft"), postscript("Q"), postscript("ij")) { kern.x = -40m };
+(postscript("V"), r1Eng, postscript("Iogonek"), postscript("Eogonek"), postscript("Thorn"), r1IJ, r1P, postscript("ampersand"), postscript("question"), postscript("ldot"), postscript("exclam"), r1N, r1T, r1U, postscript("exclamdown"), r1H, r1c, r1D, r1AE, r1F, postscript("questiondown"), r1M, r1braceleft) postscript("x") { kern.x = -40m };
+(r1ij, r1j__002, r1y, r1b, r1f_b, r1braceleft) (l1ellipsis, postscript("colon"), postscript("question")) { kern.x = -40m };
+(postscript("Thorn"), r1P, postscript("ampersand"), postscript("question"), postscript("ldot"), postscript("exclam"), postscript("exclamdown"), postscript("questiondown")) (l1l, postscript("lcaron")) { kern.x = -40m };
+(postscript("q.ld"), postscript("q"), r1b, r1f_b, postscript("v"), r1p, r1thorn, r1ae, r1C, r1braceleft) (l1Z, l1M, postscript("X"), l1A, postscript("AE")) { kern.x = -40m };
+(postscript("Iogonek"), postscript("Thorn"), r1IJ, r1U, r1H) (l1q, l1a, l1c) { kern.x = -40m };
+(r1ij, r1j__002, r1y, r1b, r1f_b) postscript("x") { kern.x = -35m };
+(r1eng, r1B, postscript("eth"), r1O, r1e, postscript("colon"), r1p, r1thorn, r1ae, r1C) l1J { kern.x = -35m };
+(r1R, r1K) (l1y__ld, l1y, l1y__001) { kern.x = -35m };
+(postscript("V"), r1Eng, postscript("Iogonek"), postscript("Eogonek"), postscript("Thorn"), r1IJ, r1P, postscript("ampersand"), postscript("question"), postscript("ldot"), postscript("exclam"), r1N, r1T, r1U, postscript("exclamdown"), r1H, r1c, r1D, r1AE, r1F, postscript("questiondown"), r1M) (l1p__ld, l1p) { kern.x = -35m };
+(postscript("Iogonek"), postscript("Thorn"), r1IJ, r1P, postscript("ampersand"), postscript("question"), postscript("ldot"), postscript("exclam"), r1U, postscript("exclamdown"), r1H, postscript("questiondown")) l1U { kern.x = -35m };
+postscript("v") l1b { kern.x = -35m };
+r1braceleft l1c { kern.x = -35m };
+(postscript("semicolon"), postscript("q.ld"), postscript("q"), r1eng, r1B, postscript("eth"), r1O, r1e, postscript("colon"), r1p, r1thorn, r1ae, r1C, r1g, r1g__ld, postscript("Q")) (l1B, postscript("IJ")) { kern.x = -35m };
+(postscript("semicolon"), postscript("q.ld"), postscript("q"), r1eng, r1B, postscript("eth"), r1O, r1e, postscript("colon"), r1p, r1thorn, r1ae, r1C) postscript("Iogonek") { kern.x = -35m };
+r1M (l1h, postscript("question")) { kern.x = -35m };
+postscript("uni0315") l1f_f_h__ld { kern.x = -542m };
+postscript("uni0315") postscript("dcaron") { kern.x = -602m };
+r1F postscript("X") { kern.x = -25m };
+r1f__001 postscript("exclamdown") { kern.x = -25m };
+postscript("questiondown") l1S { kern.x = -25m };
+postscript("X") (l1p__ld, l1p, l1u) { kern.x = -25m };
+(postscript("semicolon"), postscript("q.ld"), r1F, r1f__ld, postscript("q"), r1eng, r1B, postscript("eth"), r1O, r1e, postscript("colon"), r1p, r1thorn, r1ae, r1C, r1w, postscript("Q")) l1b { kern.x = -25m };
+postscript("v") postscript("x") { kern.x = -25m };
+(r1g, r1g__ld) l1T { kern.x = -25m };
+(r1P, postscript("exclam")) l1Y { kern.x = -25m };
+(r1M, r1k, r1f_f_k__ld, r1f_f_k) l1c { kern.x = -25m };
+r1g postscript("Iogonek") { kern.x = -25m };
+(postscript("aogonek"), r1a) l1braceright { kern.x = -25m };
+r1M (l1t, postscript("tcaron"), l1e, l1l, postscript("lcaron"), l1a, l1d, postscript("dcaron"), l1o, l1U, postscript("questiondown")) { kern.x = -25m };
+postscript("semicolon") l1J { kern.x = -24m };
+r1F l1J { kern.x = -22m };
+postscript("uni0315") l1f_f_h { kern.x = -532m };
+r1z (l1y__ld, l1y, l1C, l1G, l1y__001, postscript("Q")) { kern.x = -18m };
+r1Eng (l1f__ld, l1f_h__ld, postscript("f_b.ld"), l1f_f_h__ld, postscript("f_f_b.ld")) { kern.x = -18m };
+(postscript("aogonek"), r1a) (l1J, postscript("comma"), l1ellipsis, postscript("question"), postscript("exclam"), l1T, l1K, l1B, l1Eng, l1Z, l1M, postscript("X"), l1A, postscript("AE"), postscript("IJ")) { kern.x = -15m };
+(r1b, r1f_b, r1braceleft) l1q { kern.x = -15m };
+postscript("exclamdown") l1S { kern.x = -15m };
+(postscript("aogonek"), r1f__001, r1f, r1a) l1b { kern.x = -15m };
+(postscript("Iogonek"), postscript("Eogonek"), postscript("X")) (l1f, l1f_h, postscript("f_b"), l1f_f_h, postscript("f_f_b")) { kern.x = -15m };
+postscript("X") (l1f__ld, l1f_h__ld, postscript("f_b.ld"), l1f_f_h__ld, postscript("f_f_b.ld"), l1j, postscript("thorn.ld"), postscript("thorn"), l1g__ld, l1g, l1f__001, l1germandbls, l1e, l1a, l1c, l1dotlessi, l1thorn__001, l1d, postscript("dcaron"), l1o, postscript("questiondown"), postscript("ampersand"), postscript("ij")) { kern.x = -15m };
+(postscript("aogonek"), r1f__ld, r1a) postscript("exclamdown") { kern.x = -15m };
+(postscript("aogonek"), r1g__ld, r1a) (postscript("semicolon"), postscript("Iogonek")) { kern.x = -15m };
+(postscript("aogonek"), r1g, r1Z, r1g__ld, r1a) l1Y { kern.x = -15m };
+(postscript("aogonek"), postscript("semicolon"), postscript("q.ld"), postscript("q"), postscript("braceright"), r1eng, r1B, postscript("eth"), r1O, postscript("colon"), r1p, r1thorn, r1w, r1L, postscript("Lcaron"), r1S, r1Z, r1G, r1a, postscript("Q")) postscript("x") { kern.x = -15m };
+(postscript("aogonek"), r1g, r1g__ld, r1a) postscript("colon") { kern.x = -15m };
+(r1Eng, r1N, postscript("X")) l1U { kern.x = -15m };
+(r1f__001, r1f, r1dotlessi, r1f_f_h__ld, r1f_f_h, r1f_f_i, r1s, r1germandbls, r1d) postscript("colon") { kern.x = -10m };
+(postscript("v"), postscript("comma"), r1R, r1K, r1ellipsis, r1z, postscript("kgreenlandic")) postscript("questiondown") { kern.x = -10m };
+(r1dotlessi, r1f_f_h__ld, r1f_f_h, r1f_f_i, r1s, r1germandbls, r1d, postscript("lslash")) (l1J, postscript("comma"), postscript("semicolon"), postscript("Iogonek"), l1ellipsis, postscript("exclam"), l1K, l1B, l1Z, l1M, postscript("X"), l1A, postscript("AE"), postscript("IJ")) { kern.x = -10m };
+postscript("v") (l1f__ld, l1f_h__ld, postscript("f_b.ld"), l1f_f_h__ld, postscript("f_f_b.ld"), l1f, l1f_h, postscript("f_b"), l1f_f_h, postscript("f_f_b"), postscript("thorn.ld"), postscript("thorn"), l1q, l1f__001, l1germandbls, l1e, l1l, postscript("lcaron"), l1a, l1c, l1dotlessi, l1thorn__001, l1d, postscript("dcaron"), l1o, l1U, postscript("ampersand"), postscript("ij")) { kern.x = -10m };
+(r1r, r1dotlessi, r1f_f_h__ld, r1f_f_h, r1f_f_i, r1s, r1germandbls, r1d, postscript("lslash")) l1Eng { kern.x = -10m };
+(r1T, r1dotlessi, r1f_f_h__ld, r1f_f_h, r1f_f_i, r1s, r1germandbls, r1d, postscript("lslash")) postscript("exclamdown") { kern.x = -10m };
+(postscript("aogonek"), r1eng, r1B, postscript("eth"), r1O, postscript("colon"), r1p, r1thorn, r1w, r1L, postscript("Lcaron"), r1S, r1Z, r1G, r1a, r1dotlessi, r1f_f_h__ld, r1f_f_h, r1f_f_i, r1s, r1germandbls, r1d) l1p__ld { kern.x = -10m };
+(postscript("v"), r1R, r1K, r1ellipsis, r1z, postscript("kgreenlandic")) (l1g__ld, l1g) { kern.x = -10m };
+(r1dotlessi, r1f_f_h__ld, r1f_f_h, r1f_f_i, r1s, r1germandbls, r1d) l1b { kern.x = -10m };
+(r1M, r1dotlessi, r1f_f_h__ld, r1f_f_h, r1f_f_i, r1s, r1germandbls) l1Y { kern.x = -10m };
+(r1W, r1Y, postscript("dcaron"), postscript("lcaron"), postscript("tcaron"), r1dotlessi, r1f_f_h__ld, r1f_f_h, r1s, r1braceleft, postscript("uni0315")) l1T { kern.x = -10m };
+(postscript("v"), r1k, r1f_f_k__ld, r1f_f_k, postscript("X")) (l1t, postscript("tcaron")) { kern.x = -10m };
+(r1P, postscript("exclam"), postscript("v")) l1S { kern.x = -10m };
+r1K postscript("braceleft") { kern.x = -10m };
+(r1Eng, r1N, postscript("aogonek"), postscript("semicolon"), postscript("q.ld"), r1f__ld, r1f__001, postscript("q"), postscript("braceright"), r1eng, r1B, postscript("eth"), r1O, r1e, r1f, postscript("colon"), r1p, r1thorn, r1ae, r1C, postscript("X"), r1w, r1g, r1L, postscript("Lcaron"), r1S, r1Z, r1G, r1g__ld, r1a, r1dotlessi, r1f_f_h__ld, r1f_f_h, r1f_f_i, r1s, r1germandbls, r1d, postscript("Q")) l1h { kern.x = -10m };
+(postscript("V"), r1Eng, postscript("Iogonek"), postscript("Eogonek"), postscript("Thorn"), r1IJ, r1ij, r1P, postscript("ampersand"), r1j__002, postscript("question"), postscript("ldot"), postscript("exclam"), r1N, r1T, r1U, postscript("exclamdown"), r1H, r1c, r1D, r1AE, r1F, postscript("questiondown"), r1y, r1M, r1b, r1f_b, postscript("v"), r1k, r1f_f_k__ld, r1f_f_k, postscript("X"), postscript("kgreenlandic")) (l1y__ld, l1y, l1y__001) { kern.x = -10m };
+(postscript("aogonek"), postscript("semicolon"), postscript("q.ld"), postscript("q"), postscript("braceright"), r1eng, r1B, postscript("eth"), r1O, postscript("colon"), r1p, r1thorn, r1w, r1L, postscript("Lcaron"), r1S, r1Z, r1G, r1a, r1dotlessi, r1f_f_h__ld, r1f_f_h, r1f_f_i, r1s, r1germandbls, r1d, postscript("Q")) l1u { kern.x = -10m };
+(r1C, r1dotlessi, r1f_f_h__ld, r1f_f_h, r1f_f_i, r1s, r1germandbls, r1d, postscript("lslash")) postscript("question") { kern.x = -10m };
+(r1Eng, postscript("Iogonek"), postscript("Eogonek"), postscript("Thorn"), r1IJ, r1ij, r1P, postscript("ampersand"), r1j__002, postscript("question"), postscript("ldot"), postscript("exclam"), r1N, r1U, postscript("exclamdown"), r1H, r1c, r1D, r1AE, postscript("questiondown"), r1y, r1M, r1b, r1f_b, postscript("v"), r1k, r1f_f_k__ld, r1f_f_k, postscript("X"), postscript("kgreenlandic")) l1C { kern.x = -10m };
+(r1ij, postscript("v")) l1j { kern.x = -10m };
+(postscript("V"), r1Eng, postscript("Iogonek"), postscript("Eogonek"), postscript("Thorn"), r1IJ, r1ij, r1P, postscript("ampersand"), r1j__002, postscript("question"), postscript("ldot"), postscript("exclam"), r1N, r1T, r1U, postscript("exclamdown"), r1H, r1c, r1D, r1AE, r1F, postscript("questiondown"), r1y, r1M, r1b, r1f_b, postscript("v"), r1k, r1f_f_k__ld, r1f_f_k, postscript("X")) (postscript("eng.ld"), l1s, l1iogonek, postscript("eng")) { kern.x = -10m };
+(r1f__ld, r1e, r1ae, r1C, r1dotlessi, r1f_f_h__ld, r1f_f_h, r1f_f_i, r1s, r1germandbls, r1d) postscript("x") { kern.x = -10m };
+(r1e, r1ae) l1braceright { kern.x = -10m };
+(postscript("aogonek"), postscript("semicolon"), postscript("q.ld"), r1eng, r1B, postscript("eth"), r1O, postscript("colon"), r1p, r1thorn, r1w, r1L, postscript("Lcaron"), r1S, r1Z, r1G, r1a, r1dotlessi, r1f_f_h__ld, r1f_f_h, r1f_f_i, r1s, r1germandbls, r1d) l1p { kern.x = -10m };
+(postscript("V"), r1Eng, postscript("Iogonek"), postscript("Eogonek"), postscript("Thorn"), r1IJ, r1ij, r1P, postscript("ampersand"), r1j__002, postscript("question"), postscript("ldot"), postscript("exclam"), r1N, r1T, r1U, postscript("exclamdown"), r1H, r1c, r1D, r1AE, r1F, postscript("questiondown"), r1y, r1M, r1b, r1f_b, postscript("v"), r1k, r1f_f_k__ld, r1f_f_k, postscript("X"), postscript("comma"), r1R, r1K, r1ellipsis, r1z, postscript("kgreenlandic")) l1r { kern.x = -10m };
+(r1Eng, postscript("Iogonek"), postscript("Eogonek"), postscript("Thorn"), r1IJ, r1ij, r1P, postscript("ampersand"), r1j__002, postscript("question"), postscript("ldot"), postscript("exclam"), r1N, r1U, postscript("exclamdown"), r1H, r1c, r1D, r1AE, r1F, postscript("questiondown"), r1y, r1M, r1b, r1f_b, postscript("v"), r1k, r1f_f_k__ld, r1f_f_k, postscript("X"), postscript("kgreenlandic")) (l1G, postscript("Q")) { kern.x = -10m };
+postscript("semicolon") l1p__ld { kern.x = -9m };
+r1z postscript("braceleft") { kern.x = -8m };
+(r1k, r1f_f_k__ld, r1f_f_k, postscript("X")) l1q { kern.x = -5m };
+postscript("lslash") l1b { kern.x = -5m };
+(postscript("comma"), r1R, r1K, r1ellipsis, r1z, postscript("kgreenlandic")) l1U { kern.x = -5m };
+(postscript("q.ld"), r1f__ld, r1e, r1ae, r1C) l1p__ld { kern.x = -5m };
+(r1g, r1g__ld) (l1braceright, postscript("x")) { kern.x = -5m };
+r1f postscript("exclamdown") { kern.x = -5m };
+r1g postscript("comma") { kern.x = -5m };
+(r1f__ld, r1e, r1ae, r1C) l1p { kern.x = -5m };
+(postscript("Eogonek"), r1AE, postscript("eth")) l1Y { kern.x = -5m };
+endtable

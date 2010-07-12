@@ -1,28 +1,65 @@
 table(glyph)
-r1t = postscript("t", "tbar", "tcaron", "uni0163", "uni021B", "uni1E6B", 
-     "x")
+r1Eng = postscript("Eng", "Eng.ld")
 r1ij = postscript("ij", "j", "j.ld", "jcircumflex", "jcircumflex.ld", "uni0237", 
      "uni0237.ld")
-r1T = postscript("T", "Tbar", "Tcaron", "uni0162", "uni021A", "uni1E6A")
-r1W = postscript("W", "Wcircumflex")
+r1y = postscript("y", "yacute", "ycircumflex", "ydieresis")
+r1h = postscript("h", "hbar", "hcircumflex", "m", "n", "nacute", 
+     "napostrophe", "ncaron", "ncommaaccent", "ntilde", "u", "uacute", 
+     "ubreve", "ucircumflex", "udieresis", "ugrave", "uhungarumlaut", "umacron", 
+     "uni1E23", "uni1E41", "uring", "utilde")
 r1K = postscript("K", "Kcommaaccent")
+r1r = postscript("r", "racute", "rcaron", "rcommaaccent")
+r1IJ = postscript("IJ", "J", "Jcircumflex")
 r1bar = postscript("bar", "bracketright")
-r1f_f_i = postscript("f_f_i", "f_i")
 r1q = postscript("q", "q.ld")
 r1D = postscript("D", "Dcaron", "Dcroat", "Eth", "uni1E0A")
-r1c = postscript("c", "cacute", "ccaron", "ccedilla", "ccircumflex", "cdotaccent")
+r1Z = postscript("Z", "Zacute", "Zcaron", "Zdotaccent")
+r1y__ld = postscript("y.ld", "yacute.ld", "ycircumflex.ld", "ydieresis.ld")
 r1g__ld = postscript("g.ld", "gcircumflex.ld", "gcommaaccent.ld", "gdotaccent.ld")
-r1ae = postscript("ae", "b", "e", "eacute", "ebreve", "ecaron", 
-     "ecircumflex", "edieresis", "edotaccent", "egrave", "emacron", "oe", 
-     "p", "p.ld", "thorn", "thorn.ld", "uni1E03", "uni1E57", 
-     "uni1E57.ld")
-r1y = postscript("y", "yacute", "ycircumflex", "ydieresis")
 r1f_f_j = postscript("f_f_j", "f_f_j.ld", "f_j", "f_j.ld")
+r1f_f_i = postscript("f_f_i", "f_i")
+r1M = postscript("M", "uni1E40")
+r1Y = postscript("Y", "Yacute", "Ycircumflex", "Ydieresis", "yen")
+r1o = postscript("o", "oacute", "obreve", "ocircumflex", "odieresis", "ograve", 
+     "ohungarumlaut", "omacron", "oslash", "otilde")
 r1G = postscript("G", "Gbreve", "Gcircumflex", "Gcommaaccent", "Gdotaccent")
 r1k = postscript("k", "kcommaaccent", "kgreenlandic")
 r1L = postscript("L", "Lacute", "Lcaron", "Lcommaaccent", "Ldot", "Lslash")
 r1AE = postscript("AE", "E", "Eacute", "Ebreve", "Ecaron", "Ecircumflex", 
      "Edieresis", "Edotaccent", "Egrave", "Emacron", "OE")
+r1U = postscript("U", "Uacute", "Ubreve", "Ucircumflex", "Udieresis", "Ugrave", 
+     "Uhungarumlaut", "Umacron", "Uring", "Utilde")
+r1S = postscript("S", "Sacute", "Scaron", "Scedilla", "Scircumflex", "uni0218", 
+     "uni1E60")
+r1v = postscript("v", "w", "wcircumflex")
+r1P = postscript("P", "uni1E56")
+r1f_b = postscript("f_b", "f_f_b")
+r1g = postscript("g", "gbreve", "gcircumflex", "gcommaaccent", "gdotaccent")
+r1O = postscript("O", "Oacute", "Obreve", "Ocircumflex", "Odieresis", "Ograve", 
+     "Ohungarumlaut", "Omacron", "Oslash", "Otilde")
+r1f = postscript("f", "f_f", "longs", "uni1E1F")
+r1W = postscript("W", "Wcircumflex")
+r1iogonek = postscript("iogonek", "iogonek.dotless")
+r1R = postscript("R", "Racute", "Rcaron", "Rcommaaccent")
+r1f_f_l = postscript("f_f_l", "f_l", "l", "lacute", "lcaron", "lcommaaccent", 
+     "lslash")
+r1N = postscript("N", "Nacute", "Ncaron", "Ncommaaccent", "Ntilde")
+r1eng = postscript("eng", "eng.ld")
+r1C = postscript("C", "Cacute", "Ccaron", "Ccedilla", "Ccircumflex", "Cdotaccent", 
+     "Euro")
+r1c = postscript("c", "cacute", "ccaron", "ccedilla", "ccircumflex", "cdotaccent")
+r1braceleft = postscript("braceleft", "bracketleft")
+r1ae = postscript("ae", "b", "e", "eacute", "ebreve", "ecaron", 
+     "ecircumflex", "edieresis", "edotaccent", "egrave", "emacron", "oe", 
+     "p", "p.ld", "thorn", "thorn.ld", "uni1E03", "uni1E57", 
+     "uni1E57.ld")
+r1f_f_k = postscript("f_f_k", "f_k")
+r1t = postscript("t", "tbar", "tcaron", "uni0163", "uni021B", "uni1E6B", 
+     "x")
+r1F = postscript("F", "uni1E1E")
+r1T = postscript("T", "Tbar", "Tcaron", "uni0162", "uni021A", "uni1E6A")
+r1d = postscript("d", "dcaron", "dcroat", "uni1E0B")
+r1B = postscript("B", "uni1E02")
 r1acute = postscript("acute", "acutecomb", "acutecomb.cap", "afii00208", "afii299", "afii300", 
      "afii301", "afii57929", "afii61664", "ampersand", "asciicircum", "asciitilde", 
      "asterisk", "backslash", "breve", "brokenbar", "bullet", "caron", 
@@ -48,95 +85,53 @@ r1acute = postscript("acute", "acutecomb", "acutecomb.cap", "afii00208", "afii29
      "uni2007", "uni2008", "uni2009", "uni200A", "uni200B", "uni2010", 
      "uni2011", "uni201F", "uni202F", "uni203E", "uni2053", "uni205F", 
      "uni2060", "uniFEFF", "zero")
-r1S = postscript("S", "Sacute", "Scaron", "Scedilla", "Scircumflex", "uni0218", 
-     "uni1E60")
-r1f = postscript("f", "f_f", "longs", "uni1E1F")
-r1dotlessi = postscript("dotlessi", "i", "i.TRK", "iacute", "ibreve", "icircumflex", 
-     "idieresis", "igrave", "imacron", "itilde")
-r1P = postscript("P", "uni1E56")
-r1at = postscript("at", "s", "sacute", "scaron", "scedilla", "scircumflex", 
-     "uni0219", "uni1E61", "z", "zacute", "zcaron", "zdotaccent")
-r1Eng = postscript("Eng", "Eng.ld")
-r1g = postscript("g", "gbreve", "gcircumflex", "gcommaaccent", "gdotaccent")
-r1a = postscript("a", "aacute", "abreve", "acircumflex", "adieresis", "agrave", 
-     "amacron", "aring", "atilde")
-r1O = postscript("O", "Oacute", "Obreve", "Ocircumflex", "Odieresis", "Ograve", 
-     "Ohungarumlaut", "Omacron", "Oslash", "Otilde")
-r1h = postscript("h", "hbar", "hcircumflex", "m", "n", "nacute", 
-     "napostrophe", "ncaron", "ncommaaccent", "ntilde", "u", "uacute", 
-     "ubreve", "ucircumflex", "udieresis", "ugrave", "uhungarumlaut", "umacron", 
-     "uni1E23", "uni1E41", "uring", "utilde")
-r1f_b = postscript("f_b", "f_f_b")
-r1iogonek = postscript("iogonek", "iogonek.dotless")
-r1R = postscript("R", "Racute", "Rcaron", "Rcommaaccent")
-r1f_f_l = postscript("f_f_l", "f_l", "l", "lacute", "lcaron", "lcommaaccent", 
-     "lslash")
-r1N = postscript("N", "Nacute", "Ncaron", "Ncommaaccent", "Ntilde")
-r1eng = postscript("eng", "eng.ld")
-r1C = postscript("C", "Cacute", "Ccaron", "Ccedilla", "Ccircumflex", "Cdotaccent", 
-     "Euro")
-r1Z = postscript("Z", "Zacute", "Zcaron", "Zdotaccent")
-r1braceleft = postscript("braceleft", "bracketleft")
-r1y__ld = postscript("y.ld", "yacute.ld", "ycircumflex.ld", "ydieresis.ld")
-r1f_f_k = postscript("f_f_k", "f_k")
-r1Y = postscript("Y", "Yacute", "Ycircumflex", "Ydieresis", "yen")
-r1IJ = postscript("IJ", "J", "Jcircumflex")
-r1r = postscript("r", "racute", "rcaron", "rcommaaccent")
-r1o = postscript("o", "oacute", "obreve", "ocircumflex", "odieresis", "ograve", 
-     "ohungarumlaut", "omacron", "oslash", "otilde")
-r1d = postscript("d", "dcaron", "dcroat", "uni1E0B")
-r1M = postscript("M", "uni1E40")
-r1B = postscript("B", "uni1E02")
-r1U = postscript("U", "Uacute", "Ubreve", "Ucircumflex", "Udieresis", "Ugrave", 
-     "Uhungarumlaut", "Umacron", "Uring", "Utilde")
 r1A = postscript("A", "Aacute", "Abreve", "Acircumflex", "Adieresis", "Agrave", 
      "Amacron", "Aring", "Atilde")
 r1H = postscript("H", "Hbar", "Hcircumflex", "I", "Iacute", "Ibreve", 
      "Icircumflex", "Idieresis", "Idotaccent", "Igrave", "Imacron", "Itilde", 
      "uni1E22")
-r1v = postscript("v", "w", "wcircumflex")
-r1F = postscript("F", "uni1E1E")
+r1dotlessi = postscript("dotlessi", "i", "i.TRK", "iacute", "ibreve", "icircumflex", 
+     "idieresis", "igrave", "imacron", "itilde")
+r1a = postscript("a", "aacute", "abreve", "acircumflex", "adieresis", "agrave", 
+     "amacron", "aring", "atilde")
+r1at = postscript("at", "s", "sacute", "scaron", "scedilla", "scircumflex", 
+     "uni0219", "uni1E61", "z", "zacute", "zcaron", "zdotaccent")
 r1f_f_h = postscript("f_f_h", "f_f_hcircumflex", "f_h", "f_hcircumflex")
 
 l1b = postscript("b", "uni1E03")
-l1d = postscript("d", "dcaron", "dcroat", "q", "q.ld", "uni1E0B")
+l1f_f_b = postscript("f_f_b", "f_f_h", "f_f_hcircumflex", "f_f_k", "f_f_l")
+l1thorn = postscript("thorn", "thorn.ld")
 l1C = postscript("C", "Cacute", "Ccaron", "Ccedilla", "Ccircumflex", "Cdotaccent", 
      "Euro", "G", "Gbreve", "Gcircumflex", "Gcommaaccent", "Gdotaccent", 
      "O", "OE", "Oacute", "Obreve", "Ocircumflex", "Odieresis", 
      "Ograve", "Ohungarumlaut", "Omacron", "Oslash", "Otilde", "Q")
-l1j__ld = postscript("j.ld", "jcircumflex.ld", "uni0237.ld")
+l1v = postscript("v", "w", "wcircumflex")
 l1bar = postscript("bar", "bracketleft")
 l1U = postscript("U", "Uacute", "Ubreve", "Ucircumflex", "Udieresis", "Ugrave", 
      "Uhungarumlaut", "Umacron", "Uogonek", "Uring", "Utilde")
 l1J = postscript("J", "Jcircumflex")
+l1A = postscript("A", "Aacute", "Abreve", "Acircumflex", "Adieresis", "Agrave", 
+     "Amacron", "Aogonek", "Aring", "Atilde")
+l1s = postscript("s", "sacute", "scaron", "scedilla", "scircumflex", "uni0219", 
+     "uni1E61")
 l1y = postscript("y", "yacute", "ycircumflex", "ydieresis")
-l1a = postscript("a", "aacute", "abreve", "acircumflex", "adieresis", "ae", 
-     "agrave", "amacron", "aogonek", "aring", "atilde")
 l1S = postscript("S", "Sacute", "Scaron", "Scedilla", "Scircumflex", "uni0218", 
      "uni1E60")
+l1z = postscript("z", "zacute", "zcaron", "zdotaccent")
 l1g__ld = postscript("g.ld", "gcircumflex.ld", "gcommaaccent.ld", "gdotaccent.ld", "iogonek", "iogonek.dotless", 
      "j", "jcircumflex", "p", "p.ld", "uni0237", "uni1E57", 
      "uni1E57.ld")
+l1u = postscript("u", "uacute", "ubreve", "ucircumflex", "udieresis", "ugrave", 
+     "uhungarumlaut", "umacron", "uogonek", "uring", "utilde")
 l1W = postscript("W", "Wcircumflex")
-l1at = postscript("at", "dotlessi", "eng", "eng.ld", "f", "f_f", 
-     "f_f_i", "f_i", "germandbls", "i", "i.TRK", "iacute", 
-     "ibreve", "icircumflex", "idieresis", "igrave", "imacron", "itilde", 
-     "longs", "m", "n", "nacute", "napostrophe", "ncaron", 
-     "ncommaaccent", "ntilde", "r", "racute", "rcaron", "rcommaaccent", 
-     "t", "tbar", "tcaron", "uni0163", "uni021B", "uni1E1F", 
-     "uni1E41", "uni1E6B")
 l1f_b = postscript("f_b", "f_h", "f_hcircumflex", "f_k", "f_l")
 l1T = postscript("T", "Tbar", "Tcaron", "uni0162", "uni021A", "uni1E6A")
-l1f_f_b = postscript("f_f_b", "f_f_h", "f_f_hcircumflex", "f_f_k", "f_f_l")
-l1thorn = postscript("thorn", "thorn.ld")
-l1A = postscript("A", "Aacute", "Abreve", "Acircumflex", "Adieresis", "Agrave", 
-     "Amacron", "Aogonek", "Aring", "Atilde")
-l1v = postscript("v", "w", "wcircumflex")
-l1s = postscript("s", "sacute", "scaron", "scedilla", "scircumflex", "uni0219", 
-     "uni1E61")
-l1Y = postscript("Y", "Yacute", "Ycircumflex", "Ydieresis", "yen")
+l1d = postscript("d", "dcaron", "dcroat", "q", "q.ld", "uni1E0B")
 l1h = postscript("h", "hbar", "hcircumflex", "k", "kcommaaccent", "l", 
      "lacute", "lcaron", "lcommaaccent", "ldot", "lslash", "uni1E23")
+l1Y = postscript("Y", "Yacute", "Ycircumflex", "Ydieresis", "yen")
+l1a = postscript("a", "aacute", "abreve", "acircumflex", "adieresis", "ae", 
+     "agrave", "amacron", "aogonek", "aring", "atilde")
 l1M = postscript("M", "uni1E40")
 l1c = postscript("c", "cacute", "ccaron", "ccedilla", "ccircumflex", "cdotaccent", 
      "e", "eacute", "ebreve", "ecaron", "ecircumflex", "edieresis", 
@@ -153,9 +148,7 @@ l1B = postscript("B", "D", "Dcaron", "Dcroat", "E", "Eacute",
      "Ntilde", "P", "R", "Racute", "Rcaron", "Rcommaaccent", 
      "uni1E02", "uni1E0A", "uni1E1E", "uni1E22", "uni1E56")
 l1braceright = postscript("braceright", "bracketright")
-l1u = postscript("u", "uacute", "ubreve", "ucircumflex", "udieresis", "ugrave", 
-     "uhungarumlaut", "umacron", "uogonek", "uring", "utilde")
-l1z = postscript("z", "zacute", "zcaron", "zdotaccent")
+l1j__ld = postscript("j.ld", "jcircumflex.ld", "uni0237.ld")
 l1y__ld = postscript("y.ld", "yacute.ld", "ycircumflex.ld", "ydieresis.ld")
 l1acute = postscript("acute", "acutecomb", "acutecomb.cap", "afii00208", "afii299", "afii300", 
      "afii301", "afii57929", "afii61664", "ampersand", "asciicircum", "asciitilde", 
@@ -183,25 +176,32 @@ l1acute = postscript("acute", "acutecomb", "acutecomb.cap", "afii00208", "afii29
      "uni2011", "uni201F", "uni202F", "uni203E", "uni2053", "uni205F", 
      "uni2060", "uniFEFF", "zero")
 l1Z = postscript("Z", "Zacute", "Zcaron", "Zdotaccent")
+l1at = postscript("at", "dotlessi", "eng", "eng.ld", "f", "f_f", 
+     "f_f_i", "f_i", "germandbls", "i", "i.TRK", "iacute", 
+     "ibreve", "icircumflex", "idieresis", "igrave", "imacron", "itilde", 
+     "longs", "m", "n", "nacute", "napostrophe", "ncaron", 
+     "ncommaaccent", "ntilde", "r", "racute", "rcaron", "rcommaaccent", 
+     "t", "tbar", "tcaron", "uni0163", "uni021B", "uni1E1F", 
+     "uni1E41", "uni1E6B")
 l1g = postscript("g", "gbreve", "gcircumflex", "gcommaaccent", "gdotaccent")
 
 endtable
 
 table(positioning)
 r1Eng l1J { kern.x = 2m };
-(postscript("Aogonek"), r1L, r1A) l1Y { kern.x = -120m };
 postscript("V") l1s { kern.x = -120m };
 r1W l1c { kern.x = -120m };
 (postscript("Aogonek"), postscript("aogonek"), r1A, r1a) l1T { kern.x = -120m };
 (r1Y, r1T) l1A { kern.x = -120m };
 (r1Y, r1T, r1y, r1P) postscript("AE") { kern.x = -120m };
+(postscript("Aogonek"), r1L, r1A) l1Y { kern.x = -120m };
 (postscript("Aogonek"), r1A) (l1W, postscript("V")) { kern.x = -120m };
 r1L postscript("V") { kern.x = -115m };
 (postscript("uogonek"), r1eng, postscript("eogonek"), r1o, r1L, r1ae, r1f_b, r1iogonek, r1k, r1f_f_k, r1h, r1f_f_h, r1dotlessi) l1T { kern.x = -110m };
 postscript("V") (l1j__ld, l1g__ld, l1y__ld, l1at, l1f_b, l1f_f_b, postscript("kgreenlandic"), postscript("x"), l1y, l1z, l1u, l1v, postscript("ij"), postscript("f_j.ld"), postscript("f_j"), postscript("f_f_j.ld"), postscript("f_f_j")) { kern.x = -110m };
 r1W (l1a, l1g, l1d) { kern.x = -110m };
-r1Y l1c { kern.x = -110m };
 r1o l1Y { kern.x = -110m };
+r1Y l1c { kern.x = -110m };
 postscript("Q") postscript("Iogonek") { kern.x = 20m };
 postscript("Q") l1J { kern.x = 150m };
 r1T (l1a, l1g, l1d, l1c) { kern.x = -105m };
@@ -218,9 +218,9 @@ r1F l1A { kern.x = -100m };
 postscript("braceright") l1J { kern.x = 30m };
 postscript("V") postscript("AE") { kern.x = -220m };
 (r1W, r1T) (l1j__ld, l1g__ld, l1y__ld, l1at, l1f_b, l1f_f_b, postscript("kgreenlandic"), postscript("x"), l1y, l1z, l1u, l1v, postscript("ij"), postscript("f_j.ld"), postscript("f_j"), postscript("f_f_j.ld"), postscript("f_f_j")) { kern.x = -90m };
-(postscript("uogonek"), r1eng, r1iogonek, r1k, r1f_f_k, r1h, r1f_f_h, r1dotlessi) l1Y { kern.x = -90m };
-(r1v, postscript("Thorn")) postscript("AE") { kern.x = -90m };
 r1Y l1s { kern.x = -90m };
+(r1v, postscript("Thorn")) postscript("AE") { kern.x = -90m };
+(postscript("uogonek"), r1eng, r1iogonek, r1k, r1f_f_k, r1h, r1f_f_h, r1dotlessi) l1Y { kern.x = -90m };
 r1f postscript("eth") { kern.x = 40m };
 (postscript("Iogonek"), postscript("Eogonek")) l1J { kern.x = 40m };
 postscript("Q") (l1g, l1y) { kern.x = 40m };
@@ -239,11 +239,11 @@ r1f (l1M, postscript("braceleft")) { kern.x = 50m };
 (postscript("eogonek"), r1ae, r1f_b) postscript("V") { kern.x = -75m };
 postscript("eogonek") l1J { kern.x = 55m };
 (r1f_f_j, r1f_f_i) (l1T, l1Y) { kern.x = -71m };
-(r1y, r1y__ld, r1v) postscript("X") { kern.x = -70m };
+(postscript("eogonek"), r1ae, r1f_b) l1W { kern.x = -70m };
 (postscript("Aogonek"), r1A, r1R, r1K) l1v { kern.x = -70m };
 (postscript("Uogonek"), r1U) l1A { kern.x = -70m };
 (postscript("V"), r1W, r1Y, r1T) postscript("eth") { kern.x = -70m };
-(postscript("eogonek"), r1ae, r1f_b) l1W { kern.x = -70m };
+(r1y, r1y__ld, r1v) postscript("X") { kern.x = -70m };
 r1f l1C { kern.x = 60m };
 postscript("Q") (l1g__ld, l1bar, l1thorn, l1y__ld, l1braceright) { kern.x = 60m };
 (postscript("uogonek"), r1eng, r1iogonek, r1k, r1f_f_k, r1h, r1f_f_h, r1dotlessi, r1f_f_i) postscript("V") { kern.x = -65m };
@@ -290,42 +290,42 @@ r1F postscript("AE") { kern.x = -160m };
 r1f l1S { kern.x = 100m };
 r1f postscript("AE") { kern.x = -25m };
 postscript("aogonek") l1braceright { kern.x = -25m };
-(postscript("V"), postscript("Uogonek"), r1W, r1Y, r1y, r1P, r1y__ld, r1v, r1U, r1g__ld, r1g, r1r, postscript("Thorn")) l1thorn { kern.x = -20m };
-(postscript("Uogonek"), r1F, postscript("Aogonek"), r1IJ, r1Eng, r1U, postscript("Iogonek"), postscript("aogonek"), r1N, r1A, r1R, r1K, postscript("X"), r1M, r1H, r1a) l1u { kern.x = -20m };
-(postscript("Uogonek"), r1y, r1P, r1IJ, r1y__ld, r1v, r1Eng, r1U, r1g__ld, r1g, r1r, r1N, r1braceleft) l1g { kern.x = -20m };
-(r1F, r1IJ, r1Eng, r1N) l1b { kern.x = -20m };
-(postscript("Uogonek"), r1F, r1IJ, r1Eng, r1U, postscript("Iogonek"), postscript("aogonek"), r1N, r1M, r1H, r1a) (l1y__ld, l1v) { kern.x = -20m };
-(postscript("ldot"), r1y, r1P, r1y__ld, r1v, postscript("braceright"), r1O, r1g__ld, r1g, r1D, postscript("eogonek"), r1r, r1o, postscript("eth"), r1L, r1ae, r1f_b, r1Z, r1c, postscript("Thorn"), postscript("Q")) (l1B, postscript("IJ")) { kern.x = -20m };
-(postscript("V"), postscript("Uogonek"), r1W, r1F, r1Y, r1T, r1IJ, r1Eng, r1U, r1N, r1braceleft) l1Z { kern.x = -20m };
-(postscript("V"), postscript("Uogonek"), r1W, r1Y, r1y, r1P, r1IJ, r1y__ld, r1v, r1Eng, r1U, r1g__ld, r1g, r1r, r1N, postscript("Thorn")) l1h { kern.x = -20m };
-(postscript("ldot"), r1IJ, r1Eng, postscript("braceright"), r1O, r1g__ld, r1g, r1D, postscript("eogonek"), r1o, postscript("eth"), r1S, r1N, r1L, r1ae, r1f_b, r1Z, r1c, postscript("Q")) l1M { kern.x = -20m };
 (postscript("Uogonek"), postscript("Aogonek"), r1y, r1P, r1IJ, r1y__ld, r1v, r1Eng, r1U, postscript("Iogonek"), r1g__ld, r1g, r1r, r1N, r1A, r1R, r1K, postscript("X"), r1k, r1f_f_k, r1M, r1H, r1t) l1d { kern.x = -20m };
 (r1P, postscript("Eogonek"), postscript("eth"), r1G, r1AE) (l1braceright, l1T, l1Y, l1W, postscript("V")) { kern.x = -20m };
+(postscript("V"), postscript("Uogonek"), r1W, r1Y, r1y, r1P, r1y__ld, r1v, r1U, r1g__ld, r1g, r1r, postscript("Thorn")) l1thorn { kern.x = -20m };
 (postscript("Uogonek"), r1y, r1P, r1IJ, r1y__ld, r1v, r1Eng, r1U, r1g__ld, r1g, r1r, r1N) l1a { kern.x = -20m };
+(postscript("Uogonek"), r1F, postscript("Aogonek"), r1IJ, r1Eng, r1U, postscript("Iogonek"), postscript("aogonek"), r1N, r1A, r1R, r1K, postscript("X"), r1M, r1H, r1a) l1u { kern.x = -20m };
+(r1IJ, r1Eng, postscript("braceright"), r1g__ld, r1g, postscript("eogonek"), r1f, r1N, r1L, r1ae, r1f_b, r1Z, r1c) l1A { kern.x = -20m };
+(r1F, r1IJ, r1Eng, r1N) l1b { kern.x = -20m };
+(r1IJ, r1Eng, postscript("braceright"), r1g__ld, r1g, postscript("eogonek"), r1N, r1L, r1ae, r1f_b, r1Z, r1c) (postscript("X"), postscript("AE")) { kern.x = -20m };
+(postscript("Uogonek"), r1F, r1IJ, r1Eng, r1U, postscript("Iogonek"), postscript("aogonek"), r1N, r1M, r1H, r1a) (l1y__ld, l1v) { kern.x = -20m };
+(postscript("Uogonek"), r1F, postscript("Aogonek"), r1IJ, r1Eng, r1U, postscript("Iogonek"), r1N, r1A, r1R, r1K, postscript("X"), r1M, r1H) (l1z, postscript("braceleft")) { kern.x = -20m };
+(postscript("Uogonek"), r1F, r1IJ, r1Eng, r1U, r1N) (l1j__ld, l1g__ld, l1at, l1f_b, l1f_f_b, postscript("kgreenlandic"), postscript("ij"), postscript("f_j.ld"), postscript("f_j"), postscript("f_f_j.ld"), postscript("f_f_j")) { kern.x = -20m };
+(postscript("Uogonek"), r1F, r1IJ, r1Eng, r1U, postscript("Iogonek"), r1N, r1M, r1H) l1C { kern.x = -20m };
+(postscript("V"), postscript("Uogonek"), r1W, r1Y, r1y, r1P, r1IJ, r1y__ld, r1v, r1Eng, r1U, r1g__ld, r1g, r1r, r1N, postscript("Thorn")) l1h { kern.x = -20m };
+(postscript("Uogonek"), r1IJ, r1Eng, r1U, postscript("Iogonek"), r1g, r1r, r1N, r1M, r1H, r1t) (l1c, postscript("eth")) { kern.x = -20m };
+(postscript("V"), postscript("Uogonek"), r1W, r1F, r1Y, r1T, r1IJ, r1Eng, r1U, r1N, r1braceleft) l1Z { kern.x = -20m };
 (postscript("ldot"), r1y, r1P, r1y__ld, r1v, postscript("braceright"), r1O, r1g__ld, r1g, r1D, postscript("eogonek"), r1r, r1o, postscript("eth"), r1L, r1ae, r1f_b, r1Z, r1c, postscript("Thorn")) postscript("Iogonek") { kern.x = -20m };
 (postscript("Uogonek"), r1F, r1IJ, r1Eng, r1U, postscript("eogonek"), r1o, r1N, r1L, r1ae, r1f_b, r1Z) postscript("x") { kern.x = -20m };
-(r1IJ, r1Eng, postscript("braceright"), r1g__ld, r1g, postscript("eogonek"), r1f, r1N, r1L, r1ae, r1f_b, r1Z, r1c) l1A { kern.x = -20m };
-(r1IJ, r1Eng, postscript("braceright"), r1g__ld, r1g, postscript("eogonek"), r1N, r1L, r1ae, r1f_b, r1Z, r1c) (postscript("X"), postscript("AE")) { kern.x = -20m };
-(postscript("Uogonek"), r1F, postscript("Aogonek"), r1IJ, r1Eng, r1U, postscript("Iogonek"), r1N, r1A, r1R, r1K, postscript("X"), r1M, r1H) (l1z, postscript("braceleft")) { kern.x = -20m };
+(postscript("Uogonek"), r1y, r1P, r1IJ, r1y__ld, r1v, r1Eng, r1U, r1g__ld, r1g, r1r, r1N, r1braceleft) l1g { kern.x = -20m };
+(postscript("ldot"), r1y, r1P, r1y__ld, r1v, postscript("braceright"), r1O, r1g__ld, r1g, r1D, postscript("eogonek"), r1r, r1o, postscript("eth"), r1L, r1ae, r1f_b, r1Z, r1c, postscript("Thorn"), postscript("Q")) (l1B, postscript("IJ")) { kern.x = -20m };
 (postscript("Uogonek"), r1F, r1IJ, r1Eng, r1U, postscript("Iogonek"), postscript("aogonek"), r1N, r1braceleft, r1M, r1H, r1a) l1y { kern.x = -20m };
-(postscript("Uogonek"), r1F, r1IJ, r1Eng, r1U, r1N) (l1j__ld, l1g__ld, l1at, l1f_b, l1f_f_b, postscript("kgreenlandic"), postscript("ij"), postscript("f_j.ld"), postscript("f_j"), postscript("f_f_j.ld"), postscript("f_f_j")) { kern.x = -20m };
-(postscript("ldot"), r1y, r1P, r1y__ld, r1v, postscript("braceright"), postscript("Eogonek"), r1O, r1g__ld, r1g, r1ij, r1f_f_j, r1D, postscript("eogonek"), r1r, r1o, postscript("eth"), r1L, r1ae, r1f_b, r1Z, r1c, r1G, postscript("Thorn"), r1iogonek, r1q, r1t, r1AE, r1dotlessi, r1f_f_i, postscript("germandbls"), r1at, postscript("Q")) l1U { kern.x = -20m };
-(postscript("Uogonek"), r1F, r1IJ, r1Eng, r1U, postscript("Iogonek"), r1N, r1M, r1H) l1C { kern.x = -20m };
-(r1IJ, r1Eng, r1N) l1s { kern.x = -20m };
-(postscript("Uogonek"), r1IJ, r1Eng, r1U, postscript("Iogonek"), r1g, r1r, r1N, r1M, r1H, r1t) (l1c, postscript("eth")) { kern.x = -20m };
 (postscript("ldot"), r1y, r1P, r1y__ld, r1v, r1O, r1D, r1r, r1o, postscript("eth"), r1L, r1ae, r1f_b, r1Z, r1c, postscript("Thorn")) l1J { kern.x = -20m };
+(postscript("ldot"), r1y, r1P, r1y__ld, r1v, postscript("braceright"), postscript("Eogonek"), r1O, r1g__ld, r1g, r1ij, r1f_f_j, r1D, postscript("eogonek"), r1r, r1o, postscript("eth"), r1L, r1ae, r1f_b, r1Z, r1c, r1G, postscript("Thorn"), r1iogonek, r1q, r1t, r1AE, r1dotlessi, r1f_f_i, postscript("germandbls"), r1at, postscript("Q")) l1U { kern.x = -20m };
+(r1IJ, r1Eng, r1N) l1s { kern.x = -20m };
+(postscript("ldot"), r1IJ, r1Eng, postscript("braceright"), r1O, r1g__ld, r1g, r1D, postscript("eogonek"), r1o, postscript("eth"), r1S, r1N, r1L, r1ae, r1f_b, r1Z, r1c, postscript("Q")) l1M { kern.x = -20m };
 r1f (l1J, l1bar, l1braceright, postscript("Thorn"), l1B, postscript("Iogonek"), l1U, l1T, l1Y, l1W, postscript("V"), postscript("IJ")) { kern.x = 110m };
 postscript("V") l1c { kern.x = -140m };
+(postscript("ldot"), r1T, postscript("braceright"), r1O, r1D, postscript("eogonek"), r1o, postscript("eth"), r1S, r1f, r1L, r1ae, r1f_b, r1Z, r1c, r1B, r1G, r1braceleft, postscript("Q")) l1h { kern.x = -10m };
 postscript("Thorn") (l1a, l1g) { kern.x = -10m };
 (postscript("ldot"), r1y, r1P, r1y__ld, r1v, postscript("braceright"), r1O, r1g__ld, r1g, r1D, postscript("eogonek"), r1r, r1o, postscript("eth"), r1S, r1f, r1L, r1ae, r1f_b, r1Z, r1c, r1B, r1G, postscript("Thorn"), postscript("Q")) l1s { kern.x = -10m };
 (postscript("Eogonek"), postscript("uogonek"), r1eng, postscript("eogonek"), r1o, r1L, r1ae, r1f_b, r1Z, r1B, r1iogonek, r1k, r1f_f_k, r1h, r1f_f_h, r1f_f_l, r1AE, r1dotlessi, r1f_f_i, postscript("germandbls"), r1d) (l1y, l1u, l1v) { kern.x = -10m };
 (postscript("V"), postscript("Uogonek"), r1W, r1Y, r1U) l1b { kern.x = -10m };
-(postscript("ldot"), r1T, postscript("braceright"), r1O, r1D, postscript("eogonek"), r1o, postscript("eth"), r1S, r1f, r1L, r1ae, r1f_b, r1Z, r1c, r1B, r1G, r1braceleft, postscript("Q")) l1h { kern.x = -10m };
 (postscript("uogonek"), r1eng, postscript("aogonek"), postscript("Thorn"), r1a, r1h, r1f_f_h, r1f_f_l) (l1d, l1c, postscript("eth")) { kern.x = -10m };
 (r1B, r1G) (l1J, l1B, l1M, postscript("X"), l1A, postscript("AE"), postscript("Iogonek"), postscript("IJ")) { kern.x = -10m };
-(postscript("ldot"), postscript("Aogonek"), r1T, postscript("braceright"), postscript("Iogonek"), postscript("Eogonek"), r1O, postscript("uogonek"), r1eng, r1ij, r1f_f_j, r1D, postscript("eogonek"), r1o, postscript("eth"), r1S, postscript("aogonek"), r1f, r1L, r1ae, r1f_b, r1Z, r1c, r1B, r1G, r1A, r1R, r1K, postscript("X"), r1k, r1f_f_k, r1M, r1H, r1t, r1a, r1h, r1f_f_h, r1f_f_l, r1AE, r1dotlessi, r1f_f_i, postscript("germandbls"), r1d, r1at, r1C) l1thorn { kern.x = -10m };
-(r1B, r1d) (l1braceright, l1U, l1T, l1Y, l1W, postscript("V")) { kern.x = -10m };
 r1B postscript("x") { kern.x = -10m };
+(r1B, r1d) (l1braceright, l1U, l1T, l1Y, l1W, postscript("V")) { kern.x = -10m };
+(postscript("ldot"), postscript("Aogonek"), r1T, postscript("braceright"), postscript("Iogonek"), postscript("Eogonek"), r1O, postscript("uogonek"), r1eng, r1ij, r1f_f_j, r1D, postscript("eogonek"), r1o, postscript("eth"), r1S, postscript("aogonek"), r1f, r1L, r1ae, r1f_b, r1Z, r1c, r1B, r1G, r1A, r1R, r1K, postscript("X"), r1k, r1f_f_k, r1M, r1H, r1t, r1a, r1h, r1f_f_h, r1f_f_l, r1AE, r1dotlessi, r1f_f_i, postscript("germandbls"), r1d, r1at, r1C) l1thorn { kern.x = -10m };
 (postscript("uogonek"), r1eng, postscript("aogonek"), r1k, r1f_f_k, r1a, r1h, r1f_f_h, r1f_f_l) (l1z, l1C, postscript("braceleft")) { kern.x = -10m };
 (postscript("Eogonek"), postscript("uogonek"), r1eng, postscript("eogonek"), r1o, r1L, r1ae, r1f_b, r1Z, r1B, r1k, r1f_f_k, r1h, r1f_f_h, r1f_f_l, r1AE, r1dotlessi, r1f_f_i, postscript("germandbls"), r1d) l1y__ld { kern.x = -10m };
 (postscript("V"), postscript("Uogonek"), r1W, r1F, postscript("Aogonek"), r1Y, r1T, r1y, r1P, r1IJ, r1y__ld, r1v, r1Eng, r1U, postscript("Iogonek"), postscript("uogonek"), r1g__ld, r1g, r1eng, r1r, postscript("aogonek"), r1N, postscript("Thorn"), r1braceleft, r1A, r1R, r1K, postscript("X"), r1k, r1f_f_k, r1M, r1H, r1t, r1a, r1h, r1f_f_h, r1f_f_l) l1S { kern.x = -10m };
