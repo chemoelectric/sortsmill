@@ -22,7 +22,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1263111985
-ModificationTime: 1278907573
+ModificationTime: 1278924214
 OS2TypoAscent: 0
 OS2TypoAOffset: 1
 OS2TypoDescent: 0
@@ -232,7 +232,7 @@ DisplaySize: -36
 AntiAlias: 1
 FitToEm: 1
 WidthSeparation: 30
-WinInfo: 65535 15 3
+WinInfo: 75 15 3
 BeginPrivate: 9
 BlueValues 31 [-22 0 399 412 636 654 659 664]
 OtherBlues 21 [-285 -270 -224 -211]
@@ -251,7 +251,7 @@ StartChar: a
 Encoding: 97 97 0
 Width: 357
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -13 63<50.073 103.946> 350 54<169.632 227.562>
 VStem: 5 68<51.0185 162.276> 192 69<2.93932 120.453>
 AnchorPoint: "top" 262 500 basechar 0
@@ -296,7 +296,7 @@ StartChar: M
 Encoding: 77 77 1
 Width: 906
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 21G<32.5 189.5 384 395.5 567.5 829.5> 613 23<231.136 310.738 844.417 919.819>
 VStem: 30 112<8 59>
 DStem2: 446 123 410 10 0.540758 0.841178<0 501.767>
@@ -491,7 +491,7 @@ StartChar: b
 Encoding: 98 98 2
 Width: 438
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -13 33<112.5 210.841> 351 53<286.047 379> 644 20G<235 291>
 VStem: 30 86<13.5 103.738> 358 65<230.546 344.977>
 AnchorPoint: "top" 263 730 basechar 0
@@ -533,7 +533,7 @@ StartChar: c
 Encoding: 99 99 3
 Width: 324
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -13 44<68 162.325> 376 28<190.379 256>
 VStem: 15 76<34.7452 189.33>
 AnchorPoint: "cedilla" 62 -80 basechar 0
@@ -614,7 +614,7 @@ StartChar: e
 Encoding: 101 101 5
 Width: 302
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -11 43<65 156.197> 375 27<207.322 282.5>
 VStem: 15 73<34.7589 185.708> 251 66<293.21 374.876>
 AnchorPoint: "top" 267 500 basechar 0
@@ -649,7 +649,7 @@ StartChar: f
 Encoding: 102 102 6
 Width: 216
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -223 36<-132 -45.5752> 351 26<35.7728 109 180 254.227> 606 58<240.5 329.9>
 DStem2: -34.1143 -223 33.2715 -223 0.241922 0.970296<365.206 591.572 633.976 837.486>
 AnchorPoint: "top" 293 730 basechar 0
@@ -741,9 +741,9 @@ StartChar: g
 Encoding: 103 103 7
 Width: 365
 VWidth: 0
-Flags: W
-HStem: -224 24<73.779 225.31> 92 19<115.071 164.904> 342 39<314.703 370> 382 24<170.411 231.548>
-VStem: -45 52<-162.034 -69.4221> 34 63<136.387 291.704> 48 47<12.5 78.5323> 255 59<202.209 340.885> 255 52<273.35 341.996> 278 56<-160.105 -87.0916>
+Flags: HMWO
+HStem: -224 24<73.779 225.31> 92 19<115.071 164.904> 382 24<170.394 231.548>
+VStem: -45 52<-162.034 -69.4221> 32 65<139.504 291.704> 48 47<12.5 78.5323> 255 59<202.209 340.885> 276 58<-160.105 -87.0916>
 AnchorPoint: "top" 232 500 basechar 0
 AnchorPoint: "l;bl" 10 10 basechar 0
 AnchorPoint: "l;k;lo" -50 -200 basechar 0
@@ -790,19 +790,19 @@ SplineSet
 EndSplineSet
 Fore
 SplineSet
-202 382 m 0xfd
+202 382 m 0xfa
  139 382 97 257 97 183 c 0
  97 142 109 111 139 111 c 0
  186 111 255 196 255 302 c 0
- 255 353 231 382 202 382 c 0xfd
+ 255 353 231 382 202 382 c 0xfa
 7 -114 m 0
  7 -165 60 -200 161 -200 c 0
  203 -200 237 -187 256 -170 c 0
- 270 -158 278 -144 278 -128 c 0xf840
- 278 -71 179 -44 111 -22 c 1
+ 270 -158 276 -144 276 -128 c 0xf1
+ 276 -71 179 -44 111 -22 c 1
  76 -29 7 -59 7 -114 c 0
-307 328 m 0xfc80
- 307 317 314 322 314 271 c 0xf9
+307 328 m 0
+ 307 317 314 322 314 271 c 0xfa
  314 173 242 92 142 92 c 0
  122 92 117 95 114 95 c 0
  103 95 95 85 95 74 c 0
@@ -811,16 +811,50 @@ SplineSet
  334 -163 264 -224 145 -224 c 0
  65 -224 -45 -197 -45 -117 c 0
  -45 -59 42 -22 93 -18 c 1
- 93 -18 48 -2 48 27 c 0xfa40
+ 93 -18 48 -2 48 27 c 0xf5
  48 69 92 100 92 100 c 1
- 49 129 34 172 34 216 c 0
- 34 308 92 406 192 406 c 0
+ 49 129 32 172 32 216 c 0xf8
+ 32 308 92 406 192 406 c 0
  272 406 299 343 299 343 c 1
  301 345 321 381 361 381 c 0
  379 381 394 367 394 344 c 0
  394 328 383 312 367 312 c 0
  330 312 346 342 326 342 c 0
- 322 342 307 337 307 328 c 0xfc80
+ 322 342 307 337 307 328 c 0
+EndSplineSet
+Layer: 2
+SplineSet
+202 382 m 4xfd
+ 139 382 97 257 97 183 c 4
+ 97 142 109 111 139 111 c 4
+ 186 111 255 196 255 302 c 4
+ 255 353 231 382 202 382 c 4xfd
+7 -114 m 4
+ 7 -165 60 -200 161 -200 c 4
+ 203 -200 237 -187 256 -170 c 4
+ 270 -158 278 -144 278 -128 c 4xf840
+ 278 -71 179 -44 111 -22 c 5
+ 76 -29 7 -59 7 -114 c 4
+307 328 m 4xfc80
+ 307 317 314 322 314 271 c 4xf9
+ 314 173 242 92 142 92 c 4
+ 122 92 117 95 114 95 c 4
+ 103 95 95 85 95 74 c 4
+ 95 45 112 42 215 9 c 4
+ 250 -3 334 -35 334 -103 c 4
+ 334 -163 264 -224 145 -224 c 4
+ 65 -224 -45 -197 -45 -117 c 4
+ -45 -59 42 -22 93 -18 c 5
+ 93 -18 48 -2 48 27 c 4xfa40
+ 48 69 92 100 92 100 c 5
+ 49 129 34 172 34 216 c 4
+ 34 308 92 406 192 406 c 4
+ 272 406 299 343 299 343 c 5
+ 301 345 321 381 361 381 c 4
+ 379 381 394 367 394 344 c 4
+ 394 328 383 312 367 312 c 4
+ 330 312 346 342 326 342 c 4
+ 322 342 307 337 307 328 c 4xfc80
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" g.ld
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" g.ld
@@ -831,7 +865,7 @@ StartChar: h
 Encoding: 104 104 8
 Width: 448
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -5 43<313.003 336.481> 372 32<273.444 338.799> 644 20G<203.5 260>
 VStem: 20 74<1.19188 86.1082> 235 78<9.3457 105.045> 343 69<266.322 369.531>
 AnchorPoint: "top" 232 730 basechar 0
@@ -881,8 +915,6 @@ Encoding: 105 105 9
 Width: 228
 VWidth: 0
 Flags: HW
-HStem: -13 66<47.5444 125.5> 348 58<116.776 190.761> 506 87<142.44 217.56>
-VStem: 35 80<6.25377 112.056> 125 80<288.32 388.788> 136 88<512.167 586.56>
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 218 10 basechar 0
 AnchorPoint: "r;o" 228 200 basechar 0
@@ -925,8 +957,6 @@ Encoding: 106 106 10
 Width: 285
 VWidth: 0
 Flags: HW
-HStem: -224 29<-87.5 0.708246> 357 49<148.861 231.426> 506 87<167.44 242.56>
-VStem: 161 88<512.167 586.56> 167 78<290.105 392.112>
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 215 10 basechar 0
 AnchorPoint: "r;x" 285 385 basechar 0
@@ -972,7 +1002,7 @@ StartChar: k
 Encoding: 107 107 11
 Width: 393
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 21G<24.5 74 227 354.5> 368 40<258.304 346> 644 20G<205 261>
 VStem: 16 71<0 60.0556> 312 65<279.636 366.191>
 AnchorPoint: "top" 233 730 basechar 0
@@ -1047,7 +1077,7 @@ StartChar: l
 Encoding: 108 108 12
 Width: 211
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -16 73<26.5029 118> 644 20G<195 251>
 VStem: 14 78<4.12744 88.606>
 AnchorPoint: "commaright" 262 515 basechar 0
@@ -1084,7 +1114,7 @@ StartChar: m
 Encoding: 109 109 13
 Width: 725
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -5 37<550.185 617.169> 352 52<599.02 661.499> 360 44<360.147 431.998> 373 26<117.97 206.498>
 VStem: 20 23<232.02 295.578> 266 79<0.457081 64.3438> 400 74<293.005 386.288> 512 76<8.27258 89.185> 628 77<278.584 383.96>
 AnchorPoint: "top" 512 500 basechar 0
@@ -1144,7 +1174,7 @@ StartChar: n
 Encoding: 110 110 14
 Width: 471
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -5 37<295.608 360.187> 369 30<110.637 191.923 300.571 401.205>
 VStem: 256 79<4.04248 83.4761> 378 68<276.186 369.453>
 AnchorPoint: "cedilla" 162 -80 basechar 0
@@ -1223,7 +1253,7 @@ StartChar: p
 Encoding: 112 112 16
 Width: 448
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -211 21G<-53.5 183.5> -8 25<185.915 254.41> 367 37<248.077 371>
 VStem: 194 62<440.448 478> 364 69<174.09 343.208>
 DStem2: 14.5417 -211 82.582 -211 0.241922 0.970296<67.4564 250.85 377.128 558.907 561.02 612.153 655.252 714.91>
@@ -1277,7 +1307,7 @@ StartChar: q
 Encoding: 113 113 17
 Width: 412
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -211 21G<100.5 337.5> -13 42<42.5 140.325> 364 40<205.838 277.845>
 VStem: -10 71<36.9459 149.405> 299 98<242.5 400>
 DStem2: 184 -149 267 -89 0.268377 0.963314<5.4502 288.104 484.757 580.108>
@@ -1329,7 +1359,7 @@ StartChar: r
 Encoding: 114 114 18
 Width: 289
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 21G<57 107> 329 70<254.716 320.144> 362 37<110.867 192.998>
 VStem: 50 71<0.000743866 91.9153> 135 68<290.931 389.121>
 AnchorPoint: "cedilla" 62 -80 basechar 0
@@ -1370,7 +1400,7 @@ StartChar: s
 Encoding: 115 115 19
 Width: 272
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -13 34<43.5 139.932> 375 29<137.196 219.5>
 VStem: 70 57<272.117 358.412> 150 59<41.8402 140.542>
 AnchorPoint: "cedilla" 42 -80 basechar 0
@@ -1405,7 +1435,7 @@ StartChar: t
 Encoding: 116 116 20
 Width: 275
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -13 46<49.5 137.403> 351 26<46.7728 119 191 259.227>
 VStem: 25 74<3.01323 108.539> 153 70<447.37 494.709>
 DStem2: 19.3784 -13 92.2446 -13 0.241922 0.970296<157.939 377.288 419.934 527.638>
@@ -1472,7 +1502,7 @@ StartChar: u
 Encoding: 117 117 21
 Width: 491
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -13 39<97.591 173.123 313.018 369.422> 369 30<119.76 220>
 VStem: 40 23<254.976 309.122> 55 71<26.2255 133.103> 168 79<317.881 390.311> 275 76<-0.476885 84.9964>
 AnchorPoint: "top" 344 500 basechar 0
@@ -1516,7 +1546,7 @@ StartChar: v
 Encoding: 118 118 22
 Width: 502
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -13 74<225.339 307.317> 337 62<74.549 234.996> 386 20G<428.5 447.5>
 VStem: 20 43<214.904 309.678> 138 63<85.4198 185.041> 235 47<328.581 390.5> 449 38<242.554 369.5>
 AnchorPoint: "l;bl" 0 10 basechar 0
@@ -1556,7 +1586,7 @@ StartChar: w
 Encoding: 119 119 23
 Width: 704
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -13 68<247.89 323.265 468.881 548.573> 337 62<71.0018 258.993> 386 20G<622 660>
 VStem: 20 46<217.933 315.268> 157 65<81.6881 176.116> 423 80<279.95 394.189> 440 13<220 242> 657 32<188.904 306.739>
 AnchorPoint: "top" 480 500 basechar 0
@@ -1635,7 +1665,7 @@ StartChar: x
 Encoding: 120 120 24
 Width: 434
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -13 61<242 318.59> -13 51<63.3648 118.023> 348 58<135.777 221 340.285 405.5>
 VStem: 20 43<38.7883 104.871> 80 42<269.674 339.866> 206 52<71.3374 151 160.512 306.219> 382 42<282.568 350.993>
 AnchorPoint: "l;bl" 0 10 basechar 0
@@ -1722,7 +1752,7 @@ StartChar: z
 Encoding: 122 122 26
 Width: 409
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -22 57<234.175 325.725> 313 54<250.134 285> 359 53<94.5911 195.495>
 VStem: 29 44<266.5 347.219> 343 41<42.1339 121.5>
 AnchorPoint: "top" 267 500 basechar 0
@@ -1894,7 +1924,7 @@ StartChar: B
 Encoding: 66 66 28
 Width: 573
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 30<198.246 340.078> 307 23<263 354.228> 611 25<333.75 433.592>
 VStem: 435 88<106.626 253.692> 483 88<423.687 577.387>
 DStem2: 93.3004 0 181.3 0 0.241922 0.970296<78.7272 337.483 361.252 599.93>
@@ -1982,7 +2012,7 @@ StartChar: C
 Encoding: 67 67 29
 Width: 524
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -21 32<203.547 342.017> 625 27<333.529 453.044>
 VStem: 39 94<120.371 337.737> 514 34<453.398 563.904>
 AnchorPoint: "top" 413 730 basechar 0
@@ -2046,7 +2076,7 @@ StartChar: D
 Encoding: 68 68 30
 Width: 717
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 31<198.836 384.876> 608 28<330.355 494.74>
 VStem: 613 84<255.413 503.092>
 DStem2: 93.3004 0 181.3 0 0.241922 0.970296<80.5739 599.93>
@@ -2092,7 +2122,7 @@ StartChar: E
 Encoding: 69 69 31
 Width: 628
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 27<196.646 421.498> 330 21<270.311 378.483> 609 27<330.313 516.078>
 VStem: 411 27<219.04 302.845>
 DStem2: 93.3004 0 181.3 0 0.241922 0.970296<71.7842 366.604 389.326 599.93>
@@ -2201,7 +2231,7 @@ StartChar: F
 Encoding: 70 70 32
 Width: 533
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 21G<32.5 278.5> 327 21<271.552 366.318> 609 27<334.005 515.526>
 VStem: 399 25<216.007 295.076>
 DStem2: 93.3004 0 181.3 0 0.241922 0.970296<77.7571 363.579 390.63 599.93>
@@ -2319,7 +2349,7 @@ StartChar: H
 Encoding: 72 72 34
 Width: 789
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 21G<27.5 272.5 433.5 678.5> 308 31<265 586> 616 20G<155.5 408.5 571.5 814.5>
 DStem2: 93.3004 0 181.3 0 0.241922 0.970296<71.7844 338.696 370.468 599.688> 509.3 0 597.3 0 0.241922 0.970296<71.7851 317.406 349.179 599.93>
 AnchorPoint: "top" 508 730 basechar 0
@@ -2380,7 +2410,7 @@ StartChar: I
 Encoding: 73 73 35
 Width: 373
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 21G<32.5 271.5> 616 20G<160.5 399.5>
 DStem2: 93.3004 0 181.3 0 0.241922 0.970296<76.5456 599.93>
 AnchorPoint: "top" 308 730 basechar 0
@@ -2421,7 +2451,7 @@ StartChar: J
 Encoding: 74 74 36
 Width: 373
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -188 34<-36.7969 32.5335> 616 20G<152.5 399.5>
 DStem2: 49.1505 -188 134.427 -188 0.241922 0.970296<106.754 795.847>
 AnchorPoint: "top" 303 730 basechar 0
@@ -2463,7 +2493,7 @@ StartChar: K
 Encoding: 75 75 37
 Width: 694
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 21G<32.5 262.5 411.5 662.5> 349 16<264 309> 616 20G<150.5 373.5 474.5 711.5>
 DStem2: 212 561 300 561 0.201539 0.97948<-505.33 -203.58 -178.985 22.0782>
 AnchorPoint: "cedilla" 332 -80 basechar 0
@@ -2572,7 +2602,7 @@ StartChar: L
 Encoding: 76 76 38
 Width: 604
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 28<199.285 426.094> 616 20G<160.5 403.5>
 DStem2: 93.3004 0 181.3 0 0.241922 0.970296<77.7563 599.93>
 AnchorPoint: "top" 303 730 basechar 0
@@ -2621,7 +2651,7 @@ StartChar: N
 Encoding: 78 78 39
 Width: 789
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 21G<32.5 287.5 570 580> 613 23<771.139 838.793>
 AnchorPoint: "top" 513 730 basechar 0
 AnchorPoint: "cedilla" 360 -80 basechar 0
@@ -2681,7 +2711,7 @@ StartChar: O
 Encoding: 79 79 40
 Width: 654
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -21 32<216.707 328.213> 623 29<352.7 463.421>
 VStem: 60 86<117.482 319.68> 536 88<306.274 508.366>
 AnchorPoint: "top" 453 730 basechar 0
@@ -2715,7 +2745,7 @@ StartChar: P
 Encoding: 80 80 41
 Width: 563
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 21G<32.5 272.5> 611 25<330.431 440.407>
 VStem: 497 82<430.893 572.09>
 DStem2: 93.3004 0 181.3 0 0.241922 0.970296<71.7844 371.681 394.236 599.491>
@@ -2791,7 +2821,7 @@ StartChar: Q
 Encoding: 81 81 42
 Width: 654
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -224 57<489.043 619.381> -96 56<157.123 240.828> 622 29<358.438 466.267>
 VStem: 53 96<128.384 321.81> 538 89<326.784 515.416>
 AnchorPoint: "r;k;x" 674 385 basechar 0
@@ -2839,7 +2869,7 @@ StartChar: R
 Encoding: 82 82 43
 Width: 687
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 21G<32.5 295.5 510.5 655.5> 337 21<274.192 337.905> 611 25<331.788 475.666>
 VStem: 535 82<417.962 571.704>
 DStem2: 93.3004 0 181.3 0 0.241922 0.970296<82.8042 374.02 399.997 599.93> 443 316 364 279 0.41863 -0.908157<-23.5714 317.488>
@@ -2941,7 +2971,7 @@ StartChar: S
 Encoding: 83 83 44
 Width: 479
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -17 33<163.938 284.503> 625 29<258.583 370.675>
 VStem: 43 40<100.562 189.068> 118 79<443.943 566.175> 355 82<92.3356 224.031> 449 24<483.154 528.699>
 AnchorPoint: "top" 333 730 basechar 0
@@ -3017,7 +3047,7 @@ StartChar: T
 Encoding: 84 84 45
 Width: 551
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 21G<76.5 356.5> 602 34<111.901 317.999 419.868 596.996> 630 20G<642 646.5>
 VStem: 650 21<493.446 508.66>
 DStem2: 178 73 269 75 0.278634 0.960397<5.30422 522.783>
@@ -3152,7 +3182,7 @@ StartChar: V
 Encoding: 86 86 47
 Width: 516
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -20 21G<99.5 114> 616 20G<31.5 274.5 435.5 653.5>
 VStem: 96 92<141.008 604.11> 512 144<567 629>
 DStem2: 252 212 148 24 0.607689 0.794175<-92.7096 446.674>
@@ -3201,7 +3231,7 @@ StartChar: W
 Encoding: 87 87 48
 Width: 936
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -20 21G<107 118 401.5 416> 616 20G<31.5 274.5 351.5 594.5 685.5 903.5>
 VStem: 97 93<309.431 605.94> 422 88<308.887 435 469.48 605.94> 762 144<562.5 629>
 AnchorPoint: "top" 493 730 basechar 0
@@ -3263,7 +3293,7 @@ StartChar: X
 Encoding: 88 88 49
 Width: 671
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 21G<32.5 239.5 362.5 608.5> 616 20G<157.5 412.5 516.5 718.5>
 VStem: 335 88<276.328 361.312>
 DStem2: 166 107 228 128 0.683649 0.729811<-40.1983 244.65 360.306 537.817>
@@ -3327,7 +3357,7 @@ StartChar: Y
 Encoding: 89 89 50
 Width: 682
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 21G<32.5 302.5> 616 20G<88.5 313.5 442.5 649.5>
 VStem: 162 89<390.25 604.96>
 DStem2: 115.799 0 206.3 0 0.241922 0.970296<78.1202 307.392>
@@ -3418,7 +3448,7 @@ StartChar: Z
 Encoding: 90 90 51
 Width: 671
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 31<185.369 497.748> 609 27<252.167 538.993>
 DStem2: 82 78 264 146 0.661373 0.750057<37.4954 695.848>
 AnchorPoint: "top" 458 730 basechar 0
@@ -3469,7 +3499,7 @@ StartChar: space
 Encoding: 32 32 52
 Width: 200
 VWidth: 0
-Flags: W
+Flags: HW
 LayerCount: 3
 EndChar
 
@@ -3477,7 +3507,7 @@ StartChar: period
 Encoding: 46 46 53
 Width: 200
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -14 106<57.3149 142.685>
 VStem: 47 106<-3.68506 81.6851>
 AnchorPoint: "l;bl" 0 10 basechar 0
@@ -3499,7 +3529,7 @@ StartChar: comma
 Encoding: 44 44 54
 Width: 200
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -179 34<19.0392 56.4868> -2 91<49.0901 109.127>
 VStem: 110 55<-83.3369 24>
 AnchorPoint: "l;bl" 0 10 basechar 0
@@ -3549,7 +3579,7 @@ StartChar: colon
 Encoding: 58 58 56
 Width: 250
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -14 104<56.5153 141.485> 256 104<117.515 202.485>
 VStem: 47 104<-4.48471 80.4847> 108 104<265.515 350.485>
 AnchorPoint: "l;bl" 0 10 basechar 0
@@ -3578,7 +3608,7 @@ StartChar: semicolon
 Encoding: 59 59 57
 Width: 264
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 6 95<54.1951 128.838> 256 104<131.515 216.485>
 VStem: 122 104<265.515 350.485> 130 52<-72.9509 38.5>
 AnchorPoint: "r;k;x" 284 385 basechar 0
@@ -3614,7 +3644,7 @@ StartChar: exclam
 Encoding: 33 33 58
 Width: 331
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -15 96<48.332 127.668> 620 20G<262.5 314>
 VStem: 40 96<-6.66797 72.668> 126 50<199.941 281.875>
 AnchorPoint: "l;hi2" 100 670 basechar 0
@@ -3651,7 +3681,7 @@ StartChar: question
 Encoding: 63 63 59
 Width: 394
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -15 96<68.332 147.668> 161 31<183.496 230.746> 606 30<253.751 306.416>
 VStem: 60 96<-6.66797 72.668> 107 60<203.033 274.112> 151 100<538.364 605.766> 341 58<456.5 570.613>
 AnchorPoint: "l;hi2" 80 670 basechar 0
@@ -3763,7 +3793,7 @@ StartChar: bracketleft
 Encoding: 91 91 62
 Width: 295
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -216 38<134 284.994> 625 38<134 284.994>
 VStem: 70 64<-184.003 631.003>
 AnchorPoint: "l;hi2" 0 670 basechar 0
@@ -3805,7 +3835,7 @@ StartChar: bracketright
 Encoding: 93 93 63
 Width: 295
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -216 38<10.006 161> 625 38<10.006 161>
 VStem: 161 64<-183.9 630.9>
 AnchorPoint: "l;x" 40 385 basechar 0
@@ -3891,7 +3921,7 @@ StartChar: ampersand
 Encoding: 38 38 66
 Width: 806
 VWidth: 1
-Flags: W
+Flags: HW
 HStem: -22 79<230.866 423.481> 250 88<443.936 494.717> 319 44<710.859 790.939> 392 57<186.809 286.639> 424 47<492.133 586.671>
 VStem: 60 54<177.753 305.138> 399 44<289 381.337> 419 82<546 658.889> 613 23<289.956 359.362>
 AnchorPoint: "l;bl" 55 10 basechar 0
@@ -3942,7 +3972,7 @@ EndChar
 StartChar: braceleft
 Encoding: 123 123 67
 Width: 295
-Flags: W
+Flags: HW
 HStem: -214 27<217.288 281.994> 634 27<216.826 281.994>
 VStem: 43 59<214.085 231.88> 124 64<-167.262 182.191 261.033 615.053>
 AnchorPoint: "r;x" 255 385 basechar 0
@@ -3989,7 +4019,7 @@ StartChar: uni00A0
 Encoding: 160 160 68
 Width: 200
 VWidth: 0
-Flags: W
+Flags: HW
 LayerCount: 3
 EndChar
 
@@ -3997,7 +4027,7 @@ StartChar: uni2000
 Encoding: 8192 8192 69
 Width: 500
 VWidth: 0
-Flags: W
+Flags: HW
 LayerCount: 3
 EndChar
 
@@ -4005,7 +4035,7 @@ StartChar: uni2001
 Encoding: 8193 8193 70
 Width: 1000
 VWidth: 0
-Flags: W
+Flags: HW
 LayerCount: 3
 EndChar
 
@@ -4013,7 +4043,7 @@ StartChar: uni2002
 Encoding: 8194 8194 71
 Width: 500
 VWidth: 0
-Flags: W
+Flags: HW
 LayerCount: 3
 EndChar
 
@@ -4021,7 +4051,7 @@ StartChar: uni2003
 Encoding: 8195 8195 72
 Width: 1000
 VWidth: 0
-Flags: W
+Flags: HW
 LayerCount: 3
 EndChar
 
@@ -4029,7 +4059,7 @@ StartChar: uni2004
 Encoding: 8196 8196 73
 Width: 333
 VWidth: 0
-Flags: W
+Flags: HW
 LayerCount: 3
 EndChar
 
@@ -4037,7 +4067,7 @@ StartChar: uni2005
 Encoding: 8197 8197 74
 Width: 250
 VWidth: 0
-Flags: W
+Flags: HW
 LayerCount: 3
 EndChar
 
@@ -4045,7 +4075,7 @@ StartChar: uni2006
 Encoding: 8198 8198 75
 Width: 166
 VWidth: 0
-Flags: W
+Flags: HW
 LayerCount: 3
 EndChar
 
@@ -4053,7 +4083,7 @@ StartChar: uni2007
 Encoding: 8199 8199 76
 Width: 300
 VWidth: 0
-Flags: W
+Flags: HW
 LayerCount: 3
 EndChar
 
@@ -4061,7 +4091,7 @@ StartChar: uni2008
 Encoding: 8200 8200 77
 Width: 200
 VWidth: 0
-Flags: W
+Flags: HW
 LayerCount: 3
 EndChar
 
@@ -4069,7 +4099,7 @@ StartChar: uni2009
 Encoding: 8201 8201 78
 Width: 166
 VWidth: 0
-Flags: W
+Flags: HW
 LayerCount: 3
 EndChar
 
@@ -4077,7 +4107,7 @@ StartChar: uni200A
 Encoding: 8202 8202 79
 Width: 100
 VWidth: 0
-Flags: W
+Flags: HW
 LayerCount: 3
 EndChar
 
@@ -4085,7 +4115,7 @@ StartChar: uni200B
 Encoding: 8203 8203 80
 Width: 0
 VWidth: 0
-Flags: W
+Flags: HW
 LayerCount: 3
 EndChar
 
@@ -4093,7 +4123,7 @@ StartChar: afii61664
 Encoding: 8204 8204 81
 Width: 0
 VWidth: 0
-Flags: W
+Flags: HW
 LayerCount: 3
 EndChar
 
@@ -4101,7 +4131,7 @@ StartChar: afii301
 Encoding: 8205 8205 82
 Width: 0
 VWidth: 0
-Flags: W
+Flags: HW
 LayerCount: 3
 EndChar
 
@@ -4109,7 +4139,7 @@ StartChar: afii299
 Encoding: 8206 8206 83
 Width: 0
 VWidth: 0
-Flags: W
+Flags: HW
 LayerCount: 3
 EndChar
 
@@ -4117,7 +4147,7 @@ StartChar: afii300
 Encoding: 8207 8207 84
 Width: 0
 VWidth: 0
-Flags: W
+Flags: HW
 LayerCount: 3
 EndChar
 
@@ -4125,7 +4155,7 @@ StartChar: uni202F
 Encoding: 8239 8239 85
 Width: 166
 VWidth: 0
-Flags: W
+Flags: HW
 LayerCount: 3
 EndChar
 
@@ -4133,7 +4163,7 @@ StartChar: uni205F
 Encoding: 8287 8287 86
 Width: 222
 VWidth: 0
-Flags: W
+Flags: HW
 LayerCount: 3
 EndChar
 
@@ -4141,7 +4171,7 @@ StartChar: uni2060
 Encoding: 8288 8288 87
 Width: 0
 VWidth: 0
-Flags: W
+Flags: HW
 LayerCount: 3
 EndChar
 
@@ -4149,7 +4179,7 @@ StartChar: uniFEFF
 Encoding: 65279 65279 88
 Width: 0
 VWidth: 0
-Flags: W
+Flags: HW
 LayerCount: 3
 EndChar
 
@@ -4157,9 +4187,7 @@ StartChar: uni00AD
 Encoding: 173 173 89
 Width: 326
 VWidth: 0
-Flags: W
-HStem: 177 58<30 295.986>
-VStem: 30 266<177 235>
+Flags: HW
 LayerCount: 3
 Fore
 Refer: 55 45 N 1 0 0 1 0 0 2
@@ -4169,9 +4197,7 @@ StartChar: uni2010
 Encoding: 8208 8208 90
 Width: 326
 VWidth: 0
-Flags: W
-HStem: 177 58<30 295.986>
-VStem: 30 266<177 235>
+Flags: HW
 LayerCount: 3
 Fore
 Refer: 55 45 N 1 0 0 1 0 0 2
@@ -4181,9 +4207,7 @@ StartChar: uni2011
 Encoding: 8209 8209 91
 Width: 326
 VWidth: 0
-Flags: W
-HStem: 177 58<30 295.986>
-VStem: 30 266<177 235>
+Flags: HW
 LayerCount: 3
 Fore
 Refer: 55 45 N 1 0 0 1 0 0 2
@@ -4194,8 +4218,6 @@ Encoding: 65536 -1 92
 Width: 228
 VWidth: 0
 Flags: HW
-HStem: -13 66<47.5444 125.5> 348 58<116.776 190.761> 506 87<142.44 217.56>
-VStem: 35 80<6.25377 112.056> 125 80<288.32 388.788> 136 88<512.167 586.56>
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 218 10 basechar 0
 AnchorPoint: "r;o" 228 200 basechar 0
@@ -4211,9 +4233,7 @@ StartChar: ellipsis
 Encoding: 8230 8230 93
 Width: 600
 VWidth: 0
-Flags: W
-HStem: -14 106<57.3149 142.685 257.315 342.685 457.315 542.685>
-VStem: 47 106<-3.68506 81.6851> 247 106<-3.68506 81.6851> 447 106<-3.68506 81.6851>
+Flags: HW
 CounterMasks: 1 70
 AnchorPoint: "l;o" 20 200 basechar 0
 AnchorPoint: "r;o" 580 200 basechar 0
@@ -4230,9 +4250,7 @@ StartChar: IJ
 Encoding: 306 306 94
 Width: 684
 VWidth: 0
-Flags: W
-HStem: -188 34<274.203 343.534> 0 21<32.5 271.5> 616 20<160.5 399.5 463.5 710.5>
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<76.5456 599.93> 360.151 -188 445.427 -188 0.241922 0.970296<106.754 795.847>
+Flags: HW
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 604 10 basechar 0
 AnchorPoint: "l;k;lo" 251 -200 basechar 0
@@ -4256,8 +4274,6 @@ Encoding: 307 307 95
 Width: 513
 VWidth: 0
 Flags: HW
-HStem: -224 29<140.5 228.708> -13 66<47.5444 125.5> 348 58<116.776 190.761> 357 49<376.861 459.426> 506 87<142.44 217.56 395.44 470.56>
-VStem: 35 80<6.25377 112.056> 125 80<288.32 388.788> 136 88<512.167 586.56> 389 88<512.167 586.56> 395 78<290.105 392.112>
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 443 10 basechar 0
 AnchorPoint: "l;k;lo" 78 -200 basechar 0
@@ -4277,7 +4293,7 @@ StartChar: g.ld
 Encoding: 65537 -1 96
 Width: 372
 VWidth: 0
-Flags: HMWO
+Flags: HMW
 HStem: -285 28<69.8 221.282> 88 23<125.358 184.163> 380 26<174.95 237.754>
 VStem: -46 59<-220.024 -117.8> 34 70<140.367 292.317> 53 42<9 71.7016> 257 68<192.667 329.639> 282 68<-209.519 -120.851>
 AnchorPoint: "top" 238 500 basechar 0
@@ -4369,8 +4385,6 @@ Encoding: 65538 -1 97
 Width: 285
 VWidth: 0
 Flags: HW
-HStem: -282 30<-87.5 4.74858> 361 47<146.611 228.426> 506 87<168.44 243.56>
-VStem: 162 88<512.167 586.56> 169 73<289.233 395.041>
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 225 10 basechar 0
 AnchorPoint: "l;k;lo" -150 -200 basechar 0
@@ -4415,7 +4429,7 @@ StartChar: p.ld
 Encoding: 65539 -1 98
 Width: 448
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -270 21G<-69.5 167.5> -8 25<185.915 254.422> 367 37<248.077 371>
 VStem: 194 62<440.448 478> 364 69<174.194 343.208>
 DStem2: -1.45834 -270 66.582 -270 0.241922 0.970296<67.4564 311.968 438.246 620.026 622.138 670.874 736.711 776.028>
@@ -4468,7 +4482,7 @@ StartChar: q.ld
 Encoding: 65540 -1 99
 Width: 412
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -270 21G<84.5 321.5> -13 42<42.5 140.325> 364 40<205.838 277.845>
 VStem: -10 71<36.9459 149.405> 299 98<242.5 400>
 DStem2: 168 -208 251 -148 0.267727 0.963495<5.40355 349.235 545.886 641.197>
@@ -4517,7 +4531,7 @@ StartChar: y.ld
 Encoding: 65541 -1 100
 Width: 418
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -282 55<-47 39.4825> 348 58<85.6545 138.5> 379 20G<338.5 381>
 VStem: 172 52<33.0007 248.469> 312 88<304.882 380.206>
 AnchorPoint: "top" 282 500 basechar 0
@@ -4906,7 +4920,7 @@ StartChar: bar
 Encoding: 124 124 113
 Width: 186
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -217 21G<89.5 96.5> 644 20G<89 96>
 VStem: 70 46<-216.988 663.974>
 AnchorPoint: "l;hi2" 0 670 basechar 0
@@ -4937,7 +4951,7 @@ EndChar
 StartChar: braceright
 Encoding: 125 125 114
 Width: 295
-Flags: W
+Flags: HW
 HStem: -214 27<13.0058 77.7125> 634 27<13.0058 78.174>
 VStem: 107 64<-167.262 182.191 261.033 615.053> 193 59<214.085 231.88>
 AnchorPoint: "r;hi2" 235 670 basechar 0
@@ -4984,7 +4998,7 @@ StartChar: OE
 Encoding: 338 338 115
 Width: 909
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -21 32<215.707 328.799> 0 27<476.021 702.498> 330 21<621 659.483> 609 27<584.537 797.078> 623 29<351.7 463.695>
 VStem: 59 86<117.482 319.68> 535 88<304.221 330 351 508.235> 692 27<219.04 302.845>
 AnchorPoint: "r;k;hi2" 959 670 basechar 0
@@ -5133,7 +5147,7 @@ StartChar: oe
 Encoding: 339 339 117
 Width: 513
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -15 29<81.3113 147.73> -11 43<283.5 367.197> 381 27<219.212 278.141 424.936 493.5>
 VStem: 15 56<25.9695 153.894> 288 44<324 377.387> 462 66<293.21 374.876>
 AnchorPoint: "r;k;x" 543 385 basechar 0
@@ -5176,7 +5190,7 @@ StartChar: ae
 Encoding: 230 230 118
 Width: 381
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -13 63<-74.5 -0.447773> -11 43<144 235.197> 375 27<285.04 361.5>
 VStem: -105 67<27.5 121.853> 94 73<35.5271 110> 330 66<293.21 374.876>
 AnchorPoint: "r;k;x" 411 385 basechar 0
@@ -5837,9 +5851,7 @@ StartChar: asciitilde
 Encoding: 126 126 136
 Width: 996
 VWidth: 0
-Flags: W
-HStem: 107 53<661.48 798.721> 279 60<199.812 332.709>
-VStem: 60 32<109.738 160.929> 904 32<293.083 334.625>
+Flags: HW
 LayerCount: 3
 Fore
 Refer: 135 8275 N 1 0 0 1 0 0 2
@@ -6545,7 +6557,7 @@ StartChar: exclamdown
 Encoding: 161 161 160
 Width: 331
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -15 21G<52 103.5> 544 96<238.332 317.668>
 VStem: 190 50<343.125 425.059> 230 96<552.332 631.668>
 AnchorPoint: "l;hi2" 160 670 basechar 0
@@ -6583,7 +6595,7 @@ StartChar: questiondown
 Encoding: 191 191 161
 Width: 394
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -15 30<112.584 165.249> 429 31<188.254 235.504> 540 96<271.332 350.668>
 VStem: 20 58<50.3869 164.5> 168 100<15.2343 82.6356> 252 60<346.888 417.967> 263 96<548.332 627.668>
 AnchorPoint: "l;hi2" 140 670 basechar 0
@@ -6624,7 +6636,7 @@ StartChar: yen
 Encoding: 165 165 162
 Width: 682
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 21G<32.5 302.5> 227 31<58 178 278 396.633> 330 31<96.1191 186 360 436.718> 616 20G<88.5 313.5 442.5 649.5>
 VStem: 162 89<390.25 604.96> 186 91<361 413.059>
 DStem2: 115.799 0 206.3 0 0.241922 0.970296<78.1203 235.305 289.576 307.852>
@@ -7075,7 +7087,7 @@ StartChar: longs
 Encoding: 383 383 171
 Width: 216
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -223 36<-132 -45.5659> 606 58<240.5 329.9>
 DStem2: -28.5518 -223 33.9845 -223 0.241922 0.970296<147.208 811.512>
 AnchorPoint: "r;k;x" 256 385 basechar 0
@@ -7138,7 +7150,7 @@ StartChar: germandbls
 Encoding: 223 223 172
 Width: 421
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -223 36<-132 -45.5659> -13 34<192.5 288.932> 623 41<249.413 336.128>
 VStem: 219 57<269.186 355.874> 299 59<41.8402 138.818> 367 55<511.258 593.493>
 DStem2: -28.5518 -223 33.9845 -223 0.241922 0.970296<147.208 811.512>
@@ -7210,7 +7222,7 @@ StartChar: dotlessi
 Encoding: 305 305 174
 Width: 228
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -13 66<47.5444 125.5> 348 58<116.776 190.761>
 VStem: 35 80<6.25377 112.056> 125 80<288.32 388.788>
 AnchorPoint: "top" 179 500 basechar 0
@@ -7245,7 +7257,7 @@ StartChar: uni0237
 Encoding: 567 567 175
 Width: 285
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -224 29<-87.5 0.708246> 357 49<148.861 231.426>
 VStem: 167 78<290.105 392.112>
 AnchorPoint: "top" 204 500 basechar 0
@@ -7309,9 +7321,7 @@ StartChar: adieresis
 Encoding: 228 228 177
 Width: 357
 VWidth: 0
-Flags: W
-HStem: -13 63<50.073 103.946> 350 54<169.632 227.562> 506 87<165.44 240.56 295.44 370.56>
-VStem: 5 68<51.0185 162.276> 159 88<512.167 586.56> 192 69<2.93932 120.453> 289 88<512.167 586.56>
+Flags: HW
 AnchorPoint: "r;k;x" 372 385 basechar 0
 AnchorPoint: "l;x" 50 385 basechar 0
 AnchorPoint: "r;bl" 342 10 basechar 0
@@ -7328,9 +7338,7 @@ StartChar: edieresis
 Encoding: 235 235 178
 Width: 302
 VWidth: 0
-Flags: W
-HStem: -11 43<65 156.197> 375 27<207.322 282.5> 506 87<170.44 245.56 300.44 375.56>
-VStem: 15 73<34.7589 185.708> 164 88<512.167 586.56> 251 66<293.21 374.876> 294 88<512.167 586.56>
+Flags: HW
 AnchorPoint: "r;k;x" 332 385 basechar 0
 AnchorPoint: "l;x" 40 385 basechar 0
 AnchorPoint: "r;bl" 242 10 basechar 0
@@ -7347,9 +7355,7 @@ StartChar: odieresis
 Encoding: 246 246 179
 Width: 364
 VWidth: 0
-Flags: W
-HStem: -15 29<81.3113 143.164> 381 27<219.212 280.959> 506 87<190.44 265.56 320.44 395.56>
-VStem: 15 56<25.9695 153.894> 184 88<512.167 586.56> 293 56<237.812 361.562> 314 88<512.167 586.56>
+Flags: HW
 AnchorPoint: "l;x" 60 385 basechar 0
 AnchorPoint: "r;bl" 304 10 basechar 0
 AnchorPoint: "r;o" 364 200 basechar 0
@@ -7366,9 +7372,7 @@ StartChar: udieresis
 Encoding: 252 252 180
 Width: 491
 VWidth: 0
-Flags: W
-HStem: -13 39<97.591 173.123 313.018 369.422> 369 30<119.76 220> 506 87<247.44 322.56 377.44 452.56>
-VStem: 40 23<254.976 309.122> 55 71<26.2255 133.103> 168 79<317.881 390.311> 241 88<512.167 586.56> 275 76<-0.476885 84.9964> 371 88<512.167 586.56>
+Flags: HW
 AnchorPoint: "l;x" 30 385 basechar 0
 AnchorPoint: "r;bl" 481 10 basechar 0
 AnchorPoint: "r;o" 491 200 basechar 0
@@ -7385,9 +7389,7 @@ StartChar: ydieresis
 Encoding: 255 255 181
 Width: 418
 VWidth: 0
-Flags: W
-HStem: -224 57<-0.375 76.0115> 348 58<83.5716 149> 379 20<356 384.5> 506 87<185.44 260.56 315.44 390.56>
-VStem: 179 88<512.167 586.56> 182 38<61.0461 169.865> 309 88<512.167 586.56> 340 59<300.381 398.815>
+Flags: HW
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 363 10 basechar 0
 AnchorPoint: "r;x" 418 385 basechar 0
@@ -7409,9 +7411,6 @@ Encoding: 196 196 182
 Width: 713
 VWidth: 0
 Flags: HW
-HStem: 0 21<32.5 272.5 411.5 681.5> 257 36<354.004 529.001> 560 89<570.5 655.52> 731 87<561.44 636.56 691.44 766.56>
-VStem: 409 192<8 118.5> 555 88<737.167 811.56> 685 88<737.167 811.56>
-DStem2: 477 509 400 364 0.631673 0.775235<-440.722 -285.241 -241.074 98.0283>
 AnchorPoint: "r;k;x" 753 385 basechar 0
 AnchorPoint: "l;x" 240 385 basechar 0
 AnchorPoint: "r;bl" 713 10 basechar 0
@@ -7433,9 +7432,6 @@ Encoding: 203 203 183
 Width: 628
 VWidth: 0
 Flags: HW
-HStem: 0 27<196.646 421.498> 330 21<270.311 378.483> 609 27<330.313 516.078> 731 87<341.44 416.56 471.44 546.56>
-VStem: 335 88<737.167 811.56> 411 27<219.04 302.845> 465 88<737.167 811.56>
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<71.7842 366.604 389.326 599.93>
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 548 10 basechar 0
 AnchorPoint: "r;o" 598 200 basechar 0
@@ -7457,9 +7453,6 @@ Encoding: 207 207 184
 Width: 373
 VWidth: 0
 Flags: HW
-HStem: 0 21<32.5 271.5> 616 20<160.5 399.5> 731 87<206.44 281.56 336.44 411.56>
-VStem: 200 88<737.167 811.56> 330 88<737.167 811.56>
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<76.5456 599.93>
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 293 10 basechar 0
 AnchorPoint: "r;o" 333 200 basechar 0
@@ -7481,8 +7474,6 @@ Encoding: 214 214 185
 Width: 654
 VWidth: 0
 Flags: HW
-HStem: -21 32<216.707 328.213> 623 29<352.7 463.421> 731 87<351.44 426.56 481.44 556.56>
-VStem: 60 86<117.482 319.68> 345 88<737.167 811.56> 475 88<737.167 811.56> 536 88<306.274 508.366>
 AnchorPoint: "r;k;x" 674 385 basechar 0
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 594 10 basechar 0
@@ -7504,8 +7495,6 @@ Encoding: 220 220 186
 Width: 747
 VWidth: 0
 Flags: HW
-HStem: -22 62<250.946 436.122> 616 20<127.5 384.5 557.5 773.5> 731 87<381.44 456.56 511.44 586.56>
-VStem: 110 88<87.5014 284.984> 375 88<737.167 811.56> 505 88<737.167 811.56>
 AnchorPoint: "l;x" 35 385 basechar 0
 AnchorPoint: "r;bl" 647 10 basechar 0
 AnchorPoint: "r;o" 707 200 basechar 0
@@ -7527,9 +7516,6 @@ Encoding: 376 376 187
 Width: 682
 VWidth: 0
 Flags: HW
-HStem: 0 21<32.5 302.5> 616 20<88.5 313.5 442.5 649.5> 731 87<301.44 376.56 431.44 506.56>
-VStem: 162 89<390.25 604.96> 295 88<737.167 811.56> 425 88<737.167 811.56>
-DStem2: 115.799 0 206.3 0 0.241922 0.970296<78.1202 307.392>
 AnchorPoint: "r;hi" 682 610 basechar 0
 AnchorPoint: "l;x" 50 385 basechar 0
 AnchorPoint: "r;bl" 342 10 basechar 0
@@ -7551,8 +7537,6 @@ Encoding: 180 180 188
 Width: 460
 VWidth: 0
 Flags: HW
-HStem: 446 173
-VStem: 197 148
 LayerCount: 3
 Fore
 Refer: 191 769 N 1 0 0 1 460 0 2
@@ -7562,7 +7546,7 @@ StartChar: eth
 Encoding: 240 240 189
 Width: 364
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -15 29<81.3113 143.842> 381 27<219.212 281.806> 639 20G<218.5 252.5>
 VStem: 15 56<25.9695 153.894> 293 61<239.398 432.689>
 DStem2: 167 526 173 496 0.966645 0.25612<-2.72365 106.48 150.202 240.191>
@@ -7617,7 +7601,7 @@ StartChar: thorn
 Encoding: 254 254 190
 Width: 448
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -211 21G<-53.5 183.5> -8 25<185.915 254.41> 367 37<246.1 371> 644 20G<259 315>
 VStem: 364 69<174.09 343.208>
 DStem2: 30 -149 113 -89 0.268379 0.963313<5.45055 188.737 310.723 495.085 510.192 557.251 568.306 755.168>
@@ -7696,9 +7680,7 @@ StartChar: aacute
 Encoding: 225 225 192
 Width: 357
 VWidth: 0
-Flags: W
-HStem: -13 63<50.073 103.946> 350 54<169.632 227.562> 446 173
-VStem: 5 68<51.0185 162.276> 192 69<2.93932 120.453> 229 148
+Flags: HW
 AnchorPoint: "r;k;x" 372 385 basechar 0
 AnchorPoint: "l;x" 50 385 basechar 0
 AnchorPoint: "r;bl" 342 10 basechar 0
@@ -7715,9 +7697,7 @@ StartChar: cacute
 Encoding: 263 263 193
 Width: 324
 VWidth: 0
-Flags: W
-HStem: -13 44<68 162.325> 376 28<190.379 256> 446 173
-VStem: 15 76<34.7452 189.33> 209 148
+Flags: HW
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 244 10 basechar 0
 AnchorPoint: "r;o" 294 200 basechar 0
@@ -7734,9 +7714,7 @@ StartChar: eacute
 Encoding: 233 233 194
 Width: 302
 VWidth: 0
-Flags: W
-HStem: -11 43<65 156.197> 375 27<207.322 282.5> 446 173
-VStem: 15 73<34.7589 185.708> 234 148 251 66<293.21 374.876>
+Flags: HW
 AnchorPoint: "r;k;x" 332 385 basechar 0
 AnchorPoint: "l;x" 40 385 basechar 0
 AnchorPoint: "r;bl" 242 10 basechar 0
@@ -7753,9 +7731,7 @@ StartChar: iacute
 Encoding: 237 237 195
 Width: 228
 VWidth: 0
-Flags: W
-HStem: -13 66<47.5444 125.5> 348 58<116.776 190.761> 446 173
-VStem: 35 80<6.25377 112.056> 125 80<288.32 388.788> 146 148
+Flags: HW
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 218 10 basechar 0
 AnchorPoint: "r;o" 228 200 basechar 0
@@ -7772,9 +7748,7 @@ StartChar: nacute
 Encoding: 324 324 196
 Width: 471
 VWidth: 0
-Flags: W
-HStem: -5 37<295.608 360.187> 369 30<110.637 191.923 300.571 401.205> 446 173
-VStem: 256 79<4.04248 83.4761> 334 148 378 68<276.186 369.453>
+Flags: HW
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 461 10 basechar 0
 AnchorPoint: "r;o" 471 200 basechar 0
@@ -7791,9 +7765,7 @@ StartChar: oacute
 Encoding: 243 243 197
 Width: 364
 VWidth: 0
-Flags: W
-HStem: -15 29<81.3113 143.164> 381 27<219.212 280.959> 446 173
-VStem: 15 56<25.9695 153.894> 254 148 293 56<237.812 361.562>
+Flags: HW
 AnchorPoint: "l;x" 60 385 basechar 0
 AnchorPoint: "r;bl" 304 10 basechar 0
 AnchorPoint: "r;o" 364 200 basechar 0
@@ -7810,9 +7782,7 @@ StartChar: racute
 Encoding: 341 341 198
 Width: 289
 VWidth: 0
-Flags: W
-HStem: 0 21<57 107> 329 70<254.716 320.144> 362 37<110.867 192.998> 446 173
-VStem: 50 71<0.000743866 91.9153> 135 68<290.931 389.121> 219 148
+Flags: HW
 AnchorPoint: "r;k;x" 359 385 basechar 0
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 219 10 basechar 0
@@ -7829,9 +7799,7 @@ StartChar: sacute
 Encoding: 347 347 199
 Width: 272
 VWidth: 0
-Flags: W
-HStem: -13 34<43.5 139.932> 375 29<137.196 219.5> 446 173
-VStem: 70 57<272.117 358.412> 150 59<41.8402 140.542> 179 148
+Flags: HW
 AnchorPoint: "r;k;x" 282 385 basechar 0
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 262 10 basechar 0
@@ -7848,9 +7816,7 @@ StartChar: uacute
 Encoding: 250 250 200
 Width: 491
 VWidth: 0
-Flags: W
-HStem: -13 39<97.591 173.123 313.018 369.422> 369 30<119.76 220> 446 173
-VStem: 40 23<254.976 309.122> 55 71<26.2255 133.103> 168 79<317.881 390.311> 275 76<-0.476885 84.9964> 311 148
+Flags: HW
 AnchorPoint: "l;x" 30 385 basechar 0
 AnchorPoint: "r;bl" 481 10 basechar 0
 AnchorPoint: "r;o" 491 200 basechar 0
@@ -7867,9 +7833,7 @@ StartChar: yacute
 Encoding: 253 253 201
 Width: 418
 VWidth: 0
-Flags: W
-HStem: -224 57<-0.375 76.0115> 348 58<83.5716 149> 379 20<356 384.5> 446 173
-VStem: 182 38<61.0461 169.865> 249 148 340 59<300.381 398.815>
+Flags: HW
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 363 10 basechar 0
 AnchorPoint: "r;x" 418 385 basechar 0
@@ -7890,9 +7854,7 @@ StartChar: zacute
 Encoding: 378 378 202
 Width: 409
 VWidth: 0
-Flags: W
-HStem: -22 57<234.175 325.725> 313 54<250.134 285> 359 53<94.5911 195.495> 446 173
-VStem: 29 44<266.5 347.219> 234 148 343 41<42.1339 121.5>
+Flags: HW
 AnchorPoint: "l;x" 0 385 basechar 0
 AnchorPoint: "r;bl" 409 10 basechar 0
 AnchorPoint: "r;o" 389 200 basechar 0
@@ -7910,9 +7872,6 @@ Encoding: 193 193 203
 Width: 713
 VWidth: 0
 Flags: HW
-HStem: 0 21<32.5 272.5 411.5 681.5> 257 36<354.004 529.001> 560 89<570.5 655.52> 675 151
-VStem: 409 192<8 118.5> 641 131
-DStem2: 477 509 400 364 0.631673 0.775235<-440.722 -285.241 -241.074 98.0283>
 AnchorPoint: "r;k;x" 753 385 basechar 0
 AnchorPoint: "l;x" 240 385 basechar 0
 AnchorPoint: "r;bl" 713 10 basechar 0
@@ -7934,8 +7893,6 @@ Encoding: 262 262 204
 Width: 524
 VWidth: 0
 Flags: HW
-HStem: -21 32<203.547 342.017> 625 27<333.529 453.044> 675 151
-VStem: 39 94<120.371 337.737> 391 131 514 34<453.398 563.904>
 AnchorPoint: "r;k;x" 554 385 basechar 0
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 484 10 basechar 0
@@ -7957,9 +7914,6 @@ Encoding: 201 201 205
 Width: 628
 VWidth: 0
 Flags: HW
-HStem: 0 27<196.646 421.498> 330 21<270.311 378.483> 609 27<330.313 516.078> 675 151
-VStem: 411 27<219.04 302.845> 421 131
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<71.7842 366.604 389.326 599.93>
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 548 10 basechar 0
 AnchorPoint: "r;o" 598 200 basechar 0
@@ -7981,9 +7935,6 @@ Encoding: 205 205 206
 Width: 373
 VWidth: 0
 Flags: HW
-HStem: 0 21<32.5 271.5> 616 20<160.5 399.5> 675 151
-VStem: 286 131
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<76.5456 599.93>
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 293 10 basechar 0
 AnchorPoint: "r;o" 333 200 basechar 0
@@ -8005,9 +7956,6 @@ Encoding: 313 313 207
 Width: 604
 VWidth: 0
 Flags: HW
-HStem: 0 28<199.285 426.094> 616 20<160.5 403.5> 675 151
-VStem: 281 131
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<77.7563 599.93>
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 584 10 basechar 0
 AnchorPoint: "r;o" 604 200 basechar 0
@@ -8029,8 +7977,6 @@ Encoding: 323 323 208
 Width: 789
 VWidth: 0
 Flags: HW
-HStem: 0 21<32.5 287.5 570 580> 613 23<771.139 838.793> 675 151
-VStem: 491 131
 AnchorPoint: "l;x" 80 385 basechar 0
 AnchorPoint: "r;bl" 669 10 basechar 0
 AnchorPoint: "r;o" 729 200 basechar 0
@@ -8052,8 +7998,6 @@ Encoding: 211 211 209
 Width: 654
 VWidth: 0
 Flags: HW
-HStem: -21 32<216.707 328.213> 623 29<352.7 463.421> 675 151
-VStem: 60 86<117.482 319.68> 431 131 536 88<306.274 508.366>
 AnchorPoint: "r;k;x" 674 385 basechar 0
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 594 10 basechar 0
@@ -8075,9 +8019,6 @@ Encoding: 340 340 210
 Width: 687
 VWidth: 0
 Flags: HW
-HStem: 0 21<32.5 295.5 510.5 655.5> 337 21<274.192 337.905> 611 25<331.788 475.666> 675 151
-VStem: 396 131 535 82<417.962 571.704>
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<82.8042 374.02 399.997 599.93> 443 316 364 279 0.41863 -0.908157<-23.5714 317.488>
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 687 10 basechar 0
 AnchorPoint: "r;o" 587 200 basechar 0
@@ -8099,8 +8040,6 @@ Encoding: 346 346 211
 Width: 479
 VWidth: 0
 Flags: HW
-HStem: -17 33<163.938 284.503> 625 29<258.583 370.675> 675 151
-VStem: 43 40<100.562 189.068> 118 79<443.943 566.175> 311 131 355 82<92.3356 224.031> 449 24<483.154 528.699>
 AnchorPoint: "l;x" 40 385 basechar 0
 AnchorPoint: "r;bl" 459 10 basechar 0
 AnchorPoint: "r;o" 479 200 basechar 0
@@ -8122,8 +8061,6 @@ Encoding: 218 218 212
 Width: 747
 VWidth: 0
 Flags: HW
-HStem: -22 62<250.946 436.122> 616 20<127.5 384.5 557.5 773.5> 675 151
-VStem: 110 88<87.5014 284.984> 461 131
 AnchorPoint: "l;x" 35 385 basechar 0
 AnchorPoint: "r;bl" 647 10 basechar 0
 AnchorPoint: "r;o" 707 200 basechar 0
@@ -8145,9 +8082,6 @@ Encoding: 221 221 213
 Width: 682
 VWidth: 0
 Flags: HW
-HStem: 0 21<32.5 302.5> 616 20<88.5 313.5 442.5 649.5> 675 151
-VStem: 162 89<390.25 604.96> 381 131
-DStem2: 115.799 0 206.3 0 0.241922 0.970296<78.1202 307.392>
 AnchorPoint: "r;hi" 682 610 basechar 0
 AnchorPoint: "l;x" 50 385 basechar 0
 AnchorPoint: "r;bl" 342 10 basechar 0
@@ -8169,9 +8103,6 @@ Encoding: 377 377 214
 Width: 671
 VWidth: 0
 Flags: HW
-HStem: 0 31<185.369 497.748> 609 27<252.167 538.993> 675 151
-VStem: 436 131
-DStem2: 82 78 264 146 0.661373 0.750057<37.4954 695.848>
 AnchorPoint: "l;x" 90 385 basechar 0
 AnchorPoint: "r;bl" 651 10 basechar 0
 AnchorPoint: "r;o" 671 200 basechar 0
@@ -8192,7 +8123,7 @@ StartChar: thorn.ld
 Encoding: 65543 -1 215
 Width: 448
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -270 21G<-69.5 167.5> -8 25<185.915 254.41> 367 37<246.1 371> 644 20G<259 315>
 VStem: 364 69<174.09 343.208>
 DStem2: 14 -208 97 -148 0.267892 0.963449<5.41539 249.835 374.759 556.216 571.332 618.337 629.406 813.042>
@@ -8249,8 +8180,6 @@ Encoding: 251 251 216
 Width: 491
 VWidth: 0
 Flags: HW
-HStem: -13 39<97.591 173.123 313.018 369.422> 369 30<119.76 220> 456 160
-VStem: 40 23<254.976 309.122> 55 71<26.2255 133.103> 168 79<317.881 390.311> 240 198<463 472> 275 76<-0.476885 84.9964>
 AnchorPoint: "l;x" 30 385 basechar 0
 AnchorPoint: "r;bl" 481 10 basechar 0
 AnchorPoint: "r;o" 491 200 basechar 0
@@ -8268,8 +8197,6 @@ Encoding: 249 249 217
 Width: 491
 VWidth: 0
 Flags: HW
-HStem: -13 39<97.591 173.123 313.018 369.422> 369 30<119.76 220> 446 173<289 363>
-VStem: 40 23<254.976 309.122> 55 71<26.2255 133.103> 168 79<317.881 390.311> 261 115 275 76<-0.476885 84.9964>
 AnchorPoint: "l;x" 30 385 basechar 0
 AnchorPoint: "r;bl" 481 10 basechar 0
 AnchorPoint: "r;o" 491 200 basechar 0
@@ -8286,7 +8213,7 @@ StartChar: oslash
 Encoding: 248 248 218
 Width: 364
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -15 29<80.7756 144.647> 381 27<220.203 281.613>
 DStem2: -32 -10 -12 -30 0.67702 0.735965<-2.82261 72.4142 162.788 444.001 518.773 596.51>
 AnchorPoint: "r;x" 364 385 basechar 0
@@ -8350,7 +8277,7 @@ StartChar: Thorn
 Encoding: 222 222 219
 Width: 557
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 25<199.605 273.59> 441 25<296.186 400.024> 616 20G<160.5 399.5>
 VStem: 455 82<260.893 403.413>
 DStem2: 93.3004 0 181.3 0 0.241922 0.970296<74.6498 196.57 219.125 480.67 501.195 599.93>
@@ -8405,8 +8332,6 @@ Encoding: 239 239 220
 Width: 228
 VWidth: 0
 Flags: HW
-HStem: -13 66<47.5444 125.5> 348 58<116.776 190.761> 528 93<60.2803 140.557 190.28 270.557>
-VStem: 35 80<6.25377 112.056> 52 96<536.49 613.508> 125 80<288.32 388.788> 182 96<536.49 613.508>
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 218 10 basechar 0
 AnchorPoint: "r;o" 228 200 basechar 0
@@ -8423,7 +8348,7 @@ StartChar: Eth
 Encoding: 208 208 221
 Width: 717
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 31<198.836 384.876> 308 31<104.084 170 265 435.901> 608 28<330.355 494.74>
 VStem: 613 84<255.413 503.092>
 DStem2: 93.3004 0 181.3 0 0.241922 0.970296<80.5739 317.406 370.468 599.93>
@@ -8499,9 +8424,7 @@ StartChar: agrave
 Encoding: 224 224 223
 Width: 357
 VWidth: 0
-Flags: W
-HStem: -13 63<50.073 103.946> 350 54<169.632 227.562> 446 173<207 281>
-VStem: 5 68<51.0185 162.276> 179 115 192 69<2.93932 120.453>
+Flags: HW
 AnchorPoint: "r;k;x" 372 385 basechar 0
 AnchorPoint: "l;x" 50 385 basechar 0
 AnchorPoint: "r;bl" 342 10 basechar 0
@@ -8518,9 +8441,7 @@ StartChar: egrave
 Encoding: 232 232 224
 Width: 302
 VWidth: 0
-Flags: W
-HStem: -11 43<65 156.197> 375 27<207.322 282.5> 446 173<212 286>
-VStem: 15 73<34.7589 185.708> 184 115 251 66<293.21 374.876>
+Flags: HW
 AnchorPoint: "r;k;x" 332 385 basechar 0
 AnchorPoint: "l;x" 40 385 basechar 0
 AnchorPoint: "r;bl" 242 10 basechar 0
@@ -8537,9 +8458,7 @@ StartChar: igrave
 Encoding: 236 236 225
 Width: 228
 VWidth: 0
-Flags: W
-HStem: -13 66<47.5444 125.5> 348 58<116.776 190.761> 446 173<124 198>
-VStem: 35 80<6.25377 112.056> 96 115 125 80<288.32 388.788>
+Flags: HW
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 218 10 basechar 0
 AnchorPoint: "r;o" 228 200 basechar 0
@@ -8556,9 +8475,7 @@ StartChar: ograve
 Encoding: 242 242 226
 Width: 364
 VWidth: 0
-Flags: W
-HStem: -15 29<81.3113 143.164> 381 27<219.212 280.959> 446 173<232 306>
-VStem: 15 56<25.9695 153.894> 204 115 293 56<237.812 361.562>
+Flags: HW
 AnchorPoint: "l;x" 60 385 basechar 0
 AnchorPoint: "r;bl" 304 10 basechar 0
 AnchorPoint: "r;o" 364 200 basechar 0
@@ -8576,9 +8493,6 @@ Encoding: 192 192 227
 Width: 713
 VWidth: 0
 Flags: HW
-HStem: 0 21<32.5 272.5 411.5 681.5> 257 36<354.004 529.001> 560 89<570.5 655.52> 675 151
-VStem: 409 192<8 118.5> 567 109
-DStem2: 477 509 400 364 0.631673 0.775235<-440.722 -285.241 -241.074 98.0283>
 AnchorPoint: "r;k;x" 753 385 basechar 0
 AnchorPoint: "l;x" 240 385 basechar 0
 AnchorPoint: "r;bl" 713 10 basechar 0
@@ -8600,9 +8514,6 @@ Encoding: 200 200 228
 Width: 628
 VWidth: 0
 Flags: HW
-HStem: 0 27<196.646 421.498> 330 21<270.311 378.483> 609 27<330.313 516.078> 675 151
-VStem: 347 109 411 27<219.04 302.845>
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<71.7842 366.604 389.326 599.93>
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 548 10 basechar 0
 AnchorPoint: "r;o" 598 200 basechar 0
@@ -8624,9 +8535,6 @@ Encoding: 204 204 229
 Width: 373
 VWidth: 0
 Flags: HW
-HStem: 0 21<32.5 271.5> 616 20<160.5 399.5> 675 151
-VStem: 212 109
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<76.5456 599.93>
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 293 10 basechar 0
 AnchorPoint: "r;o" 333 200 basechar 0
@@ -8648,8 +8556,6 @@ Encoding: 210 210 230
 Width: 654
 VWidth: 0
 Flags: HW
-HStem: -21 32<216.707 328.213> 623 29<352.7 463.421> 675 151
-VStem: 60 86<117.482 319.68> 357 109 536 88<306.274 508.366>
 AnchorPoint: "r;k;x" 674 385 basechar 0
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 594 10 basechar 0
@@ -8671,8 +8577,6 @@ Encoding: 217 217 231
 Width: 747
 VWidth: 0
 Flags: HW
-HStem: -22 62<250.946 436.122> 616 20<127.5 384.5 557.5 773.5> 675 151
-VStem: 110 88<87.5014 284.984> 387 109
 AnchorPoint: "l;x" 35 385 basechar 0
 AnchorPoint: "r;bl" 647 10 basechar 0
 AnchorPoint: "r;o" 707 200 basechar 0
@@ -8723,9 +8627,7 @@ StartChar: ohungarumlaut
 Encoding: 337 337 233
 Width: 364
 VWidth: 0
-Flags: W
-HStem: -15 29<81.3113 143.164> 381 27<219.212 280.959> 446 173
-VStem: 15 56<25.9695 153.894> 204 268 293 56<237.812 361.562>
+Flags: HW
 AnchorPoint: "l;x" 60 385 basechar 0
 AnchorPoint: "r;bl" 304 10 basechar 0
 AnchorPoint: "r;o" 364 200 basechar 0
@@ -8742,9 +8644,7 @@ StartChar: uhungarumlaut
 Encoding: 369 369 234
 Width: 491
 VWidth: 0
-Flags: W
-HStem: -13 39<97.591 173.123 313.018 369.422> 369 30<119.76 220> 446 173
-VStem: 40 23<254.976 309.122> 55 71<26.2255 133.103> 168 79<317.881 390.311> 261 268 275 76<-0.476885 84.9964>
+Flags: HW
 AnchorPoint: "l;x" 30 385 basechar 0
 AnchorPoint: "r;bl" 481 10 basechar 0
 AnchorPoint: "r;o" 491 200 basechar 0
@@ -8762,8 +8662,6 @@ Encoding: 336 336 235
 Width: 654
 VWidth: 0
 Flags: HW
-HStem: -21 32<216.707 328.213> 623 29<352.7 463.421> 675 151
-VStem: 60 86<117.482 319.68> 365 256 536 88<306.274 508.366>
 AnchorPoint: "r;k;x" 674 385 basechar 0
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 594 10 basechar 0
@@ -8785,8 +8683,6 @@ Encoding: 368 368 236
 Width: 747
 VWidth: 0
 Flags: HW
-HStem: -22 62<250.946 436.122> 616 20<127.5 384.5 557.5 773.5> 675 151
-VStem: 110 88<87.5014 284.984> 395 256
 AnchorPoint: "l;x" 35 385 basechar 0
 AnchorPoint: "r;bl" 647 10 basechar 0
 AnchorPoint: "r;o" 707 200 basechar 0
@@ -8807,9 +8703,7 @@ StartChar: cdotaccent
 Encoding: 267 267 237
 Width: 324
 VWidth: 0
-Flags: W
-HStem: -13 44<68 162.325> 376 28<190.379 256> 506 87<205.44 280.56>
-VStem: 15 76<34.7452 189.33> 199 88<512.167 586.56>
+Flags: HW
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 244 10 basechar 0
 AnchorPoint: "r;o" 294 200 basechar 0
@@ -8826,9 +8720,7 @@ StartChar: edotaccent
 Encoding: 279 279 238
 Width: 302
 VWidth: 0
-Flags: W
-HStem: -11 43<65 156.197> 375 27<207.322 282.5> 506 87<230.44 305.56>
-VStem: 15 73<34.7589 185.708> 224 88<512.167 586.56> 251 66<293.21 374.876>
+Flags: HW
 AnchorPoint: "r;k;x" 332 385 basechar 0
 AnchorPoint: "l;x" 40 385 basechar 0
 AnchorPoint: "r;bl" 242 10 basechar 0
@@ -8845,9 +8737,7 @@ StartChar: gdotaccent
 Encoding: 289 289 239
 Width: 365
 VWidth: 0
-Flags: W
-HStem: -224 24<73.779 225.31> 92 19<115.071 164.904> 342 39<314.703 370> 382 24<170.411 231.548> 506 87<195.44 270.56>
-VStem: -45 52<-162.034 -69.4221> 34 63<136.387 291.704> 48 47<12.5 78.5323> 189 88<512.167 586.56> 255 52<273.35 341.996> 255 59<202.209 340.885> 278 56<-160.105 -87.0916>
+Flags: HW
 AnchorPoint: "r;k;x" 400 385 basechar 0
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 315 10 basechar 0
@@ -8869,9 +8759,7 @@ StartChar: zdotaccent
 Encoding: 380 380 240
 Width: 409
 VWidth: 0
-Flags: W
-HStem: -22 57<234.175 325.725> 313 54<250.134 285> 359 53<94.5911 195.495> 506 87<230.44 305.56>
-VStem: 29 44<266.5 347.219> 224 88<512.167 586.56> 343 41<42.1339 121.5>
+Flags: HW
 AnchorPoint: "l;x" 0 385 basechar 0
 AnchorPoint: "r;bl" 409 10 basechar 0
 AnchorPoint: "r;o" 389 200 basechar 0
@@ -8889,8 +8777,6 @@ Encoding: 266 266 241
 Width: 524
 VWidth: 0
 Flags: HW
-HStem: -21 32<203.547 342.017> 625 27<333.529 453.044> 731 87<376.44 451.56>
-VStem: 39 94<120.371 337.737> 370 88<737.167 811.56> 514 34<453.398 563.904>
 AnchorPoint: "r;k;x" 554 385 basechar 0
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 484 10 basechar 0
@@ -8912,9 +8798,6 @@ Encoding: 278 278 242
 Width: 628
 VWidth: 0
 Flags: HW
-HStem: 0 27<196.646 421.498> 330 21<270.311 378.483> 609 27<330.313 516.078> 731 87<406.44 481.56>
-VStem: 400 88<737.167 811.56> 411 27<219.04 302.845>
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<71.7842 366.604 389.326 599.93>
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 548 10 basechar 0
 AnchorPoint: "r;o" 598 200 basechar 0
@@ -8936,9 +8819,6 @@ Encoding: 288 288 243
 Width: 674
 VWidth: 0
 Flags: HW
-HStem: -22 33<262.489 420.374> 626 28<376.028 503.347> 731 87<411.44 486.56>
-VStem: 59 101<123.861 347.816> 405 88<737.167 811.56> 604 23<437.014 509.488> 604 48<468.203 544.939>
-DStem2: 420.834 -22 500.566 -22 0.241922 0.970296<94.3688 242.367>
 AnchorPoint: "r;k;x" 684 385 basechar 0
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 654 10 basechar 0
@@ -8960,9 +8840,6 @@ Encoding: 304 304 244
 Width: 373
 VWidth: 0
 Flags: HW
-HStem: 0 21<32.5 271.5> 616 20<160.5 399.5> 731 87<271.44 346.56>
-VStem: 265 88<737.167 811.56>
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<76.5456 599.93>
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 293 10 basechar 0
 AnchorPoint: "r;o" 333 200 basechar 0
@@ -8984,9 +8861,6 @@ Encoding: 379 379 245
 Width: 671
 VWidth: 0
 Flags: HW
-HStem: 0 31<185.369 497.748> 609 27<252.167 538.993> 731 87<421.44 496.56>
-VStem: 415 88<737.167 811.56>
-DStem2: 82 78 264 146 0.661373 0.750057<37.4954 695.848>
 AnchorPoint: "l;x" 90 385 basechar 0
 AnchorPoint: "r;bl" 651 10 basechar 0
 AnchorPoint: "r;o" 671 200 basechar 0
@@ -9007,9 +8881,7 @@ StartChar: grave
 Encoding: 96 96 246
 Width: 460
 VWidth: 0
-Flags: W
-HStem: 446 173<175 249>
-VStem: 147 115
+Flags: HW
 LayerCount: 3
 Fore
 Refer: 222 768 N 1 0 0 1 460 0 2
@@ -9019,9 +8891,7 @@ StartChar: dieresis
 Encoding: 168 168 247
 Width: 460
 VWidth: 0
-Flags: W
-HStem: 506 87<133.44 208.56 263.44 338.56>
-VStem: 127 88<512.167 586.56> 257 88<512.167 586.56>
+Flags: HW
 LayerCount: 3
 Fore
 Refer: 176 776 N 1 0 0 1 460 0 2
@@ -9031,9 +8901,7 @@ StartChar: dotaccent
 Encoding: 729 729 248
 Width: 460
 VWidth: 0
-Flags: W
-HStem: 506 87<193.44 268.56>
-VStem: 187 88<512.167 586.56>
+Flags: HW
 LayerCount: 3
 Fore
 Refer: 173 775 N 1 0 0 1 460 0 2
@@ -9092,9 +8960,7 @@ StartChar: acircumflex
 Encoding: 226 226 251
 Width: 357
 VWidth: 0
-Flags: W
-HStem: -13 63<50.073 103.946> 350 54<169.632 227.562> 456 160
-VStem: 5 68<51.0185 162.276> 158 198<463 472> 192 69<2.93932 120.453>
+Flags: HW
 AnchorPoint: "r;k;x" 372 385 basechar 0
 AnchorPoint: "l;x" 50 385 basechar 0
 AnchorPoint: "r;bl" 342 10 basechar 0
@@ -9111,9 +8977,7 @@ StartChar: ccircumflex
 Encoding: 265 265 252
 Width: 324
 VWidth: 0
-Flags: W
-HStem: -13 44<68 162.325> 376 28<190.379 256> 456 160
-VStem: 15 76<34.7452 189.33> 138 198<463 472>
+Flags: HW
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 244 10 basechar 0
 AnchorPoint: "r;o" 294 200 basechar 0
@@ -9130,9 +8994,7 @@ StartChar: ecircumflex
 Encoding: 234 234 253
 Width: 302
 VWidth: 0
-Flags: W
-HStem: -11 43<65 156.197> 375 27<207.322 282.5> 456 160
-VStem: 15 73<34.7589 185.708> 163 198<463 472> 251 66<293.21 374.876>
+Flags: HW
 AnchorPoint: "r;k;x" 332 385 basechar 0
 AnchorPoint: "l;x" 40 385 basechar 0
 AnchorPoint: "r;bl" 242 10 basechar 0
@@ -9149,9 +9011,7 @@ StartChar: gcircumflex
 Encoding: 285 285 254
 Width: 365
 VWidth: 0
-Flags: W
-HStem: -224 24<73.779 225.31> 92 19<115.071 164.904> 342 39<314.703 370> 382 24<170.411 231.548> 456 160
-VStem: -45 52<-162.034 -69.4221> 34 63<136.387 291.704> 48 47<12.5 78.5323> 128 198<463 472> 255 52<273.35 341.996> 255 59<202.209 340.885> 278 56<-160.105 -87.0916>
+Flags: HW
 AnchorPoint: "r;k;x" 400 385 basechar 0
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 315 10 basechar 0
@@ -9173,9 +9033,7 @@ StartChar: icircumflex
 Encoding: 238 238 255
 Width: 228
 VWidth: 0
-Flags: W
-HStem: -13 66<47.5444 125.5> 348 58<116.776 190.761> 456 160
-VStem: 35 80<6.25377 112.056> 75 198<463 472> 125 80<288.32 388.788>
+Flags: HW
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 218 10 basechar 0
 AnchorPoint: "r;o" 228 200 basechar 0
@@ -9192,9 +9050,7 @@ StartChar: jcircumflex
 Encoding: 309 309 256
 Width: 285
 VWidth: 0
-Flags: W
-HStem: -224 29<-87.5 0.708246> 357 49<148.861 231.426> 456 160
-VStem: 100 198<463 472> 167 78<290.105 392.112>
+Flags: HW
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 215 10 basechar 0
 AnchorPoint: "r;x" 285 385 basechar 0
@@ -9217,9 +9073,7 @@ StartChar: ocircumflex
 Encoding: 244 244 257
 Width: 364
 VWidth: 0
-Flags: W
-HStem: -15 29<81.3113 143.164> 381 27<219.212 280.959> 456 160
-VStem: 15 56<25.9695 153.894> 183 198<463 472> 293 56<237.812 361.562>
+Flags: HW
 AnchorPoint: "l;x" 60 385 basechar 0
 AnchorPoint: "r;bl" 304 10 basechar 0
 AnchorPoint: "r;o" 364 200 basechar 0
@@ -9236,9 +9090,7 @@ StartChar: scircumflex
 Encoding: 349 349 258
 Width: 272
 VWidth: 0
-Flags: W
-HStem: -13 34<43.5 139.932> 375 29<137.196 219.5> 456 160
-VStem: 70 57<272.117 358.412> 108 198<463 472> 150 59<41.8402 140.542>
+Flags: HW
 AnchorPoint: "r;k;x" 282 385 basechar 0
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 262 10 basechar 0
@@ -9255,9 +9107,7 @@ StartChar: wcircumflex
 Encoding: 373 373 259
 Width: 704
 VWidth: 0
-Flags: W
-HStem: -13 68<247.89 323.265 468.881 548.573> 337 62<71.0018 258.993> 386 20<622 660> 456 160
-VStem: 20 46<217.933 315.268> 157 65<81.6881 176.116> 376 198<463 472> 423 80<279.95 394.189> 440 13<220 242> 657 32<188.904 306.739>
+Flags: HW
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 674 10 basechar 0
 AnchorPoint: "r;o" 704 200 basechar 0
@@ -9274,9 +9124,7 @@ StartChar: ycircumflex
 Encoding: 375 375 260
 Width: 418
 VWidth: 0
-Flags: W
-HStem: -224 57<-0.375 76.0115> 348 58<83.5716 149> 379 20<356 384.5> 456 160
-VStem: 178 198<463 472> 182 38<61.0461 169.865> 340 59<300.381 398.815>
+Flags: HW
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 363 10 basechar 0
 AnchorPoint: "r;x" 418 385 basechar 0
@@ -9298,8 +9146,6 @@ Encoding: 293 293 261
 Width: 448
 VWidth: 0
 Flags: HW
-HStem: -5 43<313.003 336.481> 372 32<273.444 338.799> 644 20<203.5 260> 685 136
-VStem: 20 74<1.19188 86.1082> 139 168<693 702> 235 78<9.3457 105.045> 343 69<266.322 369.531>
 AnchorPoint: "l;x" 50 385 basechar 0
 AnchorPoint: "r;bl" 438 10 basechar 0
 AnchorPoint: "r;o" 448 200 basechar 0
@@ -9318,9 +9164,6 @@ Encoding: 194 194 262
 Width: 713
 VWidth: 0
 Flags: HW
-HStem: 0 21<32.5 272.5 411.5 681.5> 257 36<354.004 529.001> 560 89<570.5 655.52> 685 136
-VStem: 409 192<8 118.5> 570 168<693 702>
-DStem2: 477 509 400 364 0.631673 0.775235<-440.722 -285.241 -241.074 98.0283>
 AnchorPoint: "r;k;x" 753 385 basechar 0
 AnchorPoint: "l;x" 240 385 basechar 0
 AnchorPoint: "r;bl" 713 10 basechar 0
@@ -9342,8 +9185,6 @@ Encoding: 264 264 263
 Width: 524
 VWidth: 0
 Flags: HW
-HStem: -21 32<203.547 342.017> 625 27<333.529 453.044> 685 136
-VStem: 39 94<120.371 337.737> 320 168<693 702> 514 34<453.398 563.904>
 AnchorPoint: "r;k;x" 554 385 basechar 0
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 484 10 basechar 0
@@ -9365,9 +9206,6 @@ Encoding: 202 202 264
 Width: 628
 VWidth: 0
 Flags: HW
-HStem: 0 27<196.646 421.498> 330 21<270.311 378.483> 609 27<330.313 516.078> 685 136
-VStem: 350 168<693 702> 411 27<219.04 302.845>
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<71.7842 366.604 389.326 599.93>
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 548 10 basechar 0
 AnchorPoint: "r;o" 598 200 basechar 0
@@ -9389,9 +9227,6 @@ Encoding: 284 284 265
 Width: 674
 VWidth: 0
 Flags: HW
-HStem: -22 33<262.489 420.374> 626 28<376.028 503.347> 685 136
-VStem: 59 101<123.861 347.816> 355 168<693 702> 604 23<437.014 509.488> 604 48<468.203 544.939>
-DStem2: 420.834 -22 500.566 -22 0.241922 0.970296<94.3688 242.367>
 AnchorPoint: "r;k;x" 684 385 basechar 0
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 654 10 basechar 0
@@ -9413,9 +9248,6 @@ Encoding: 292 292 266
 Width: 789
 VWidth: 0
 Flags: HW
-HStem: 0 21<27.5 272.5 433.5 678.5> 308 31<265 586> 616 20<155.5 408.5 571.5 814.5> 685 136
-VStem: 415 168<693 702>
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<71.7844 338.696 370.468 599.688> 509.3 0 597.3 0 0.241922 0.970296<71.7851 317.406 349.179 599.93>
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 709 10 basechar 0
 AnchorPoint: "r;o" 749 200 basechar 0
@@ -9437,9 +9269,6 @@ Encoding: 206 206 267
 Width: 373
 VWidth: 0
 Flags: HW
-HStem: 0 21<32.5 271.5> 616 20<160.5 399.5> 685 136
-VStem: 215 168<693 702>
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<76.5456 599.93>
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 293 10 basechar 0
 AnchorPoint: "r;o" 333 200 basechar 0
@@ -9461,9 +9290,6 @@ Encoding: 308 308 268
 Width: 373
 VWidth: 0
 Flags: HW
-HStem: -188 34<-36.7969 32.5335> 616 20<152.5 399.5> 685 136
-VStem: 210 168<693 702>
-DStem2: 49.1505 -188 134.427 -188 0.241922 0.970296<106.754 795.847>
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 293 10 basechar 0
 AnchorPoint: "l;k;lo" -60 -200 basechar 0
@@ -9487,8 +9313,6 @@ Encoding: 212 212 269
 Width: 654
 VWidth: 0
 Flags: HW
-HStem: -21 32<216.707 328.213> 623 29<352.7 463.421> 685 136
-VStem: 60 86<117.482 319.68> 360 168<693 702> 536 88<306.274 508.366>
 AnchorPoint: "r;k;x" 674 385 basechar 0
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 594 10 basechar 0
@@ -9510,8 +9334,6 @@ Encoding: 348 348 270
 Width: 479
 VWidth: 0
 Flags: HW
-HStem: -17 33<163.938 284.503> 625 29<258.583 370.675> 685 136
-VStem: 43 40<100.562 189.068> 118 79<443.943 566.175> 240 168<693 702> 355 82<92.3356 224.031> 449 24<483.154 528.699>
 AnchorPoint: "l;x" 40 385 basechar 0
 AnchorPoint: "r;bl" 459 10 basechar 0
 AnchorPoint: "r;o" 479 200 basechar 0
@@ -9533,8 +9355,6 @@ Encoding: 219 219 271
 Width: 747
 VWidth: 0
 Flags: HW
-HStem: -22 62<250.946 436.122> 616 20<127.5 384.5 557.5 773.5> 685 136
-VStem: 110 88<87.5014 284.984> 390 168<693 702>
 AnchorPoint: "l;x" 35 385 basechar 0
 AnchorPoint: "r;bl" 647 10 basechar 0
 AnchorPoint: "r;o" 707 200 basechar 0
@@ -9556,8 +9376,6 @@ Encoding: 372 372 272
 Width: 936
 VWidth: 0
 Flags: HW
-HStem: -20 21<107 118 401.5 416> 616 20<31.5 274.5 351.5 594.5 685.5 903.5> 685 136
-VStem: 97 93<309.431 605.94> 400 168<693 702> 422 88<308.887 435 469.48 605.94> 762 144<562.5 629>
 AnchorPoint: "r;hi" 936 610 basechar 0
 AnchorPoint: "l;k;o" -10 200 basechar 0
 AnchorPoint: "r;bl" 536 10 basechar 0
@@ -9579,9 +9397,6 @@ Encoding: 374 374 273
 Width: 682
 VWidth: 0
 Flags: HW
-HStem: 0 21<32.5 302.5> 616 20<88.5 313.5 442.5 649.5> 685 136
-VStem: 162 89<390.25 604.96> 310 168<693 702>
-DStem2: 115.799 0 206.3 0 0.241922 0.970296<78.1202 307.392>
 AnchorPoint: "r;hi" 682 610 basechar 0
 AnchorPoint: "l;x" 50 385 basechar 0
 AnchorPoint: "r;bl" 342 10 basechar 0
@@ -9627,9 +9442,7 @@ StartChar: ccaron
 Encoding: 269 269 275
 Width: 324
 VWidth: 0
-Flags: W
-HStem: -13 44<68 162.325> 376 28<190.379 256> 455 161
-VStem: 15 76<34.7452 189.33> 153 198<599 608>
+Flags: HW
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 244 10 basechar 0
 AnchorPoint: "r;o" 294 200 basechar 0
@@ -9646,9 +9459,7 @@ StartChar: ecaron
 Encoding: 283 283 276
 Width: 302
 VWidth: 0
-Flags: W
-HStem: -11 43<65 156.197> 375 27<207.322 282.5> 455 161
-VStem: 15 73<34.7589 185.708> 178 198<599 608> 251 66<293.21 374.876>
+Flags: HW
 AnchorPoint: "r;k;x" 332 385 basechar 0
 AnchorPoint: "l;x" 40 385 basechar 0
 AnchorPoint: "r;bl" 242 10 basechar 0
@@ -9665,9 +9476,7 @@ StartChar: ncaron
 Encoding: 328 328 277
 Width: 471
 VWidth: 0
-Flags: W
-HStem: -5 37<295.608 360.187> 369 30<110.637 191.923 300.571 401.205> 455 161
-VStem: 256 79<4.04248 83.4761> 278 198<599 608> 378 68<276.186 369.453>
+Flags: HW
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 461 10 basechar 0
 AnchorPoint: "r;o" 471 200 basechar 0
@@ -9684,9 +9493,7 @@ StartChar: rcaron
 Encoding: 345 345 278
 Width: 289
 VWidth: 0
-Flags: W
-HStem: 0 21<57 107> 329 70<254.716 320.144> 362 37<110.867 192.998> 455 161
-VStem: 50 71<0.000743866 91.9153> 135 68<290.931 389.121> 163 198<599 608>
+Flags: HW
 AnchorPoint: "r;k;x" 359 385 basechar 0
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 219 10 basechar 0
@@ -9703,9 +9510,7 @@ StartChar: scaron
 Encoding: 353 353 279
 Width: 272
 VWidth: 0
-Flags: W
-HStem: -13 34<43.5 139.932> 375 29<137.196 219.5> 455 161
-VStem: 70 57<272.117 358.412> 123 198<599 608> 150 59<41.8402 140.542>
+Flags: HW
 AnchorPoint: "r;k;x" 282 385 basechar 0
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 262 10 basechar 0
@@ -9722,9 +9527,7 @@ StartChar: zcaron
 Encoding: 382 382 280
 Width: 409
 VWidth: 0
-Flags: W
-HStem: -22 57<234.175 325.725> 313 54<250.134 285> 359 53<94.5911 195.495> 455 161
-VStem: 29 44<266.5 347.219> 178 198<599 608> 343 41<42.1339 121.5>
+Flags: HW
 AnchorPoint: "l;x" 0 385 basechar 0
 AnchorPoint: "r;bl" 409 10 basechar 0
 AnchorPoint: "r;o" 389 200 basechar 0
@@ -9742,8 +9545,6 @@ Encoding: 268 268 281
 Width: 524
 VWidth: 0
 Flags: HW
-HStem: -21 32<203.547 342.017> 625 27<333.529 453.044> 686 136
-VStem: 39 94<120.371 337.737> 341 168<805 814> 514 34<453.398 563.904>
 AnchorPoint: "r;k;x" 554 385 basechar 0
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 484 10 basechar 0
@@ -9765,9 +9566,6 @@ Encoding: 270 270 282
 Width: 717
 VWidth: 0
 Flags: HW
-HStem: 0 31<198.836 384.876> 608 28<330.355 494.74> 686 136
-VStem: 386 168<805 814> 613 84<255.413 503.092>
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<80.5739 599.93>
 AnchorPoint: "r;hi" 657 610 basechar 0
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 637 10 basechar 0
@@ -9789,9 +9587,6 @@ Encoding: 282 282 283
 Width: 628
 VWidth: 0
 Flags: HW
-HStem: 0 27<196.646 421.498> 330 21<270.311 378.483> 609 27<330.313 516.078> 686 136
-VStem: 371 168<805 814> 411 27<219.04 302.845>
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<71.7842 366.604 389.326 599.93>
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 548 10 basechar 0
 AnchorPoint: "r;o" 598 200 basechar 0
@@ -9813,8 +9608,6 @@ Encoding: 327 327 284
 Width: 789
 VWidth: 0
 Flags: HW
-HStem: 0 21<32.5 287.5 570 580> 613 23<771.139 838.793> 686 136
-VStem: 441 168<805 814>
 AnchorPoint: "l;x" 80 385 basechar 0
 AnchorPoint: "r;bl" 669 10 basechar 0
 AnchorPoint: "r;o" 729 200 basechar 0
@@ -9836,9 +9629,6 @@ Encoding: 344 344 285
 Width: 687
 VWidth: 0
 Flags: HW
-HStem: 0 21<32.5 295.5 510.5 655.5> 337 21<274.192 337.905> 611 25<331.788 475.666> 686 136
-VStem: 346 168<805 814> 535 82<417.962 571.704>
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<82.8042 374.02 399.997 599.93> 443 316 364 279 0.41863 -0.908157<-23.5714 317.488>
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 687 10 basechar 0
 AnchorPoint: "r;o" 587 200 basechar 0
@@ -9860,9 +9650,6 @@ Encoding: 356 356 286
 Width: 551
 VWidth: 0
 Flags: HW
-HStem: 0 21<76.5 356.5> 602 34<111.901 317.999 419.868 596.996> 630 20<642 646.5> 686 136
-VStem: 326 168<805 814> 650 21<493.446 508.66>
-DStem2: 178 73 269 75 0.278634 0.960397<5.30422 522.783>
 AnchorPoint: "l;x" 60 385 basechar 0
 AnchorPoint: "r;bl" 441 10 basechar 0
 AnchorPoint: "r;o" 501 200 basechar 0
@@ -9884,8 +9671,6 @@ Encoding: 352 352 287
 Width: 479
 VWidth: 0
 Flags: HW
-HStem: -17 33<163.938 284.503> 625 29<258.583 370.675> 686 136
-VStem: 43 40<100.562 189.068> 118 79<443.943 566.175> 261 168<805 814> 355 82<92.3356 224.031> 449 24<483.154 528.699>
 AnchorPoint: "l;x" 40 385 basechar 0
 AnchorPoint: "r;bl" 459 10 basechar 0
 AnchorPoint: "r;o" 479 200 basechar 0
@@ -9907,9 +9692,6 @@ Encoding: 381 381 288
 Width: 671
 VWidth: 0
 Flags: HW
-HStem: 0 31<185.369 497.748> 609 27<252.167 538.993> 686 136
-VStem: 386 168<805 814>
-DStem2: 82 78 264 146 0.661373 0.750057<37.4954 695.848>
 AnchorPoint: "l;x" 90 385 basechar 0
 AnchorPoint: "r;bl" 651 10 basechar 0
 AnchorPoint: "r;o" 671 200 basechar 0
@@ -9930,9 +9712,7 @@ StartChar: circumflex
 Encoding: 710 710 289
 Width: 460
 VWidth: 0
-Flags: W
-HStem: 456 160
-VStem: 126 198<463 472>
+Flags: HW
 LayerCount: 3
 Fore
 Refer: 249 770 N 1 0 0 1 460 0 2
@@ -9950,9 +9730,7 @@ StartChar: hungarumlaut
 Encoding: 733 733 291
 Width: 460
 VWidth: 0
-Flags: W
-HStem: 446 173
-VStem: 147 268
+Flags: HW
 LayerCount: 3
 Fore
 Refer: 232 779 N 1 0 0 1 460 0 2
@@ -9962,9 +9740,7 @@ StartChar: caron
 Encoding: 711 711 292
 Width: 460
 VWidth: 0
-Flags: W
-HStem: 455 161
-VStem: 141 198<599 608>
+Flags: HW
 LayerCount: 3
 Fore
 Refer: 274 780 N 1 0 0 1 460 0 2
@@ -9974,9 +9750,7 @@ StartChar: tilde
 Encoding: 732 732 293
 Width: 460
 VWidth: 0
-Flags: W
-HStem: 518 60<260.055 320.646> 561 60<164.476 225.956>
-VStem: 108 269
+Flags: HW
 LayerCount: 3
 Fore
 Refer: 250 771 N 1 0 0 1 460 0 2
@@ -10007,9 +9781,7 @@ StartChar: macron
 Encoding: 175 175 295
 Width: 460
 VWidth: 0
-Flags: W
-HStem: 557 40<143.145 349.104>
-VStem: 142 208<557 597>
+Flags: HW
 LayerCount: 3
 Fore
 Refer: 294 772 N 1 0 0 1 460 0 2
@@ -10019,9 +9791,7 @@ StartChar: amacron
 Encoding: 257 257 296
 Width: 357
 VWidth: 0
-Flags: W
-HStem: -13 63<50.073 103.946> 350 54<169.632 227.562> 557 40<175.145 381.104>
-VStem: 5 68<51.0185 162.276> 174 208<557 597> 192 69<2.93932 120.453>
+Flags: HW
 AnchorPoint: "r;k;x" 372 385 basechar 0
 AnchorPoint: "l;x" 50 385 basechar 0
 AnchorPoint: "r;bl" 342 10 basechar 0
@@ -10038,9 +9808,7 @@ StartChar: emacron
 Encoding: 275 275 297
 Width: 302
 VWidth: 0
-Flags: W
-HStem: -11 43<65 156.197> 375 27<207.322 282.5> 557 40<180.145 386.104>
-VStem: 15 73<34.7589 185.708> 179 208<557 597> 251 66<293.21 374.876>
+Flags: HW
 AnchorPoint: "r;k;x" 332 385 basechar 0
 AnchorPoint: "l;x" 40 385 basechar 0
 AnchorPoint: "r;bl" 242 10 basechar 0
@@ -10057,9 +9825,7 @@ StartChar: imacron
 Encoding: 299 299 298
 Width: 228
 VWidth: 0
-Flags: W
-HStem: -13 66<47.5444 125.5> 348 58<116.776 190.761> 557 40<92.1447 298.104>
-VStem: 35 80<6.25377 112.056> 91 208<557 597> 125 80<288.32 388.788>
+Flags: HW
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 218 10 basechar 0
 AnchorPoint: "r;o" 228 200 basechar 0
@@ -10076,9 +9842,7 @@ StartChar: omacron
 Encoding: 333 333 299
 Width: 364
 VWidth: 0
-Flags: W
-HStem: -15 29<81.3113 143.164> 381 27<219.212 280.959> 557 40<200.145 406.104>
-VStem: 15 56<25.9695 153.894> 199 208<557 597> 293 56<237.812 361.562>
+Flags: HW
 AnchorPoint: "l;x" 60 385 basechar 0
 AnchorPoint: "r;bl" 304 10 basechar 0
 AnchorPoint: "r;o" 364 200 basechar 0
@@ -10095,9 +9859,7 @@ StartChar: umacron
 Encoding: 363 363 300
 Width: 491
 VWidth: 0
-Flags: W
-HStem: -13 39<97.591 173.123 313.018 369.422> 369 30<119.76 220> 557 40<257.145 463.104>
-VStem: 40 23<254.976 309.122> 55 71<26.2255 133.103> 168 79<317.881 390.311> 256 208<557 597> 275 76<-0.476885 84.9964>
+Flags: HW
 AnchorPoint: "l;x" 30 385 basechar 0
 AnchorPoint: "r;bl" 481 10 basechar 0
 AnchorPoint: "r;o" 491 200 basechar 0
@@ -10115,9 +9877,6 @@ Encoding: 256 256 301
 Width: 713
 VWidth: 0
 Flags: HW
-HStem: 0 21<32.5 272.5 411.5 681.5> 257 36<354.004 529.001> 560 89<570.5 655.52> 758 40<564.145 770.104>
-VStem: 409 192<8 118.5> 563 208<758 798>
-DStem2: 477 509 400 364 0.631673 0.775235<-440.722 -285.241 -241.074 98.0283>
 AnchorPoint: "r;k;x" 753 385 basechar 0
 AnchorPoint: "l;x" 240 385 basechar 0
 AnchorPoint: "r;bl" 713 10 basechar 0
@@ -10139,9 +9898,6 @@ Encoding: 274 274 302
 Width: 628
 VWidth: 0
 Flags: HW
-HStem: 0 27<196.646 421.498> 330 21<270.311 378.483> 609 27<330.313 516.078> 758 40<344.145 550.104>
-VStem: 343 208<758 798> 411 27<219.04 302.845>
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<71.7842 366.604 389.326 599.93>
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 548 10 basechar 0
 AnchorPoint: "r;o" 598 200 basechar 0
@@ -10163,9 +9919,6 @@ Encoding: 298 298 303
 Width: 373
 VWidth: 0
 Flags: HW
-HStem: 0 21<32.5 271.5> 616 20<160.5 399.5> 758 40<209.145 415.104>
-VStem: 208 208<758 798>
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<76.5456 599.93>
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 293 10 basechar 0
 AnchorPoint: "r;o" 333 200 basechar 0
@@ -10187,8 +9940,6 @@ Encoding: 332 332 304
 Width: 654
 VWidth: 0
 Flags: HW
-HStem: -21 32<216.707 328.213> 623 29<352.7 463.421> 758 40<354.145 560.104>
-VStem: 60 86<117.482 319.68> 353 208<758 798> 536 88<306.274 508.366>
 AnchorPoint: "r;k;x" 674 385 basechar 0
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 594 10 basechar 0
@@ -10210,8 +9961,6 @@ Encoding: 362 362 305
 Width: 747
 VWidth: 0
 Flags: HW
-HStem: -22 62<250.946 436.122> 616 20<127.5 384.5 557.5 773.5> 758 40<384.145 590.104>
-VStem: 110 88<87.5014 284.984> 383 208<758 798>
 AnchorPoint: "l;x" 35 385 basechar 0
 AnchorPoint: "r;bl" 647 10 basechar 0
 AnchorPoint: "r;o" 707 200 basechar 0
@@ -10232,8 +9981,6 @@ StartChar: breve
 Encoding: 728 728 306
 Width: 460
 Flags: HW
-HStem: 486 59<178.487 296.611>
-VStem: 138 30<563.115 615.869> 346 25<593.098 615.994>
 LayerCount: 3
 Fore
 Refer: 307 774 N 1 0 0 1 460 0 2
@@ -10268,9 +10015,7 @@ StartChar: abreve
 Encoding: 259 259 308
 Width: 357
 VWidth: 0
-Flags: W
-HStem: -13 63<50.073 103.946> 350 54<169.632 227.562> 486 59<210.487 328.611>
-VStem: 5 68<51.0185 162.276> 170 30<563.115 615.869> 192 69<2.93932 120.453> 378 25<593.098 615.994>
+Flags: HW
 AnchorPoint: "r;k;x" 372 385 basechar 0
 AnchorPoint: "l;x" 50 385 basechar 0
 AnchorPoint: "r;bl" 342 10 basechar 0
@@ -10287,9 +10032,7 @@ StartChar: ebreve
 Encoding: 277 277 309
 Width: 302
 VWidth: 0
-Flags: W
-HStem: -11 43<65 156.197> 375 27<207.322 282.5> 486 59<215.487 333.611>
-VStem: 15 73<34.7589 185.708> 175 30<563.115 615.869> 251 66<293.21 374.876> 383 25<593.098 615.994>
+Flags: HW
 AnchorPoint: "r;k;x" 332 385 basechar 0
 AnchorPoint: "l;x" 40 385 basechar 0
 AnchorPoint: "r;bl" 242 10 basechar 0
@@ -10306,9 +10049,7 @@ StartChar: gbreve
 Encoding: 287 287 310
 Width: 365
 VWidth: 0
-Flags: W
-HStem: -224 24<73.779 225.31> 92 19<115.071 164.904> 342 39<314.703 370> 382 24<170.411 231.548> 486 59<180.487 298.611>
-VStem: -45 52<-162.034 -69.4221> 34 63<136.387 291.704> 48 47<12.5 78.5323> 140 30<563.115 615.869> 255 52<273.35 341.996> 255 59<202.209 340.885> 278 56<-160.105 -87.0916> 348 25<593.098 615.994>
+Flags: HW
 AnchorPoint: "r;k;x" 400 385 basechar 0
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 315 10 basechar 0
@@ -10327,9 +10068,7 @@ StartChar: ibreve
 Encoding: 301 301 311
 Width: 228
 VWidth: 0
-Flags: W
-HStem: -13 66<47.5444 125.5> 348 58<116.776 190.761> 486 59<127.487 245.611>
-VStem: 35 80<6.25377 112.056> 87 30<563.115 615.869> 125 80<288.32 388.788> 295 25<593.098 615.994>
+Flags: HW
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 218 10 basechar 0
 AnchorPoint: "r;o" 228 200 basechar 0
@@ -10346,9 +10085,7 @@ StartChar: obreve
 Encoding: 335 335 312
 Width: 364
 VWidth: 0
-Flags: W
-HStem: -15 29<81.3113 143.164> 381 27<219.212 280.959> 486 59<235.487 353.611>
-VStem: 15 56<25.9695 153.894> 195 30<563.115 615.869> 293 56<237.812 361.562> 403 25<593.098 615.994>
+Flags: HW
 AnchorPoint: "l;x" 60 385 basechar 0
 AnchorPoint: "r;bl" 304 10 basechar 0
 AnchorPoint: "r;o" 364 200 basechar 0
@@ -10365,9 +10102,7 @@ StartChar: ubreve
 Encoding: 365 365 313
 Width: 491
 VWidth: 0
-Flags: W
-HStem: -13 39<97.591 173.123 313.018 369.422> 369 30<119.76 220> 486 59<292.487 410.611>
-VStem: 40 23<254.976 309.122> 55 71<26.2255 133.103> 168 79<317.881 390.311> 252 30<563.115 615.869> 275 76<-0.476885 84.9964> 460 25<593.098 615.994>
+Flags: HW
 AnchorPoint: "l;x" 30 385 basechar 0
 AnchorPoint: "r;bl" 481 10 basechar 0
 AnchorPoint: "r;o" 491 200 basechar 0
@@ -10385,9 +10120,6 @@ Encoding: 258 258 314
 Width: 713
 VWidth: 0
 Flags: HW
-HStem: 0 21<32.5 272.5 411.5 681.5> 257 36<354.004 529.001> 560 89<570.5 655.52> 691 56<618.972 717.703>
-VStem: 409 192<8 118.5> 581 26<767.919 820.722> 752 20<796.402 820.978>
-DStem2: 477 509 400 364 0.631673 0.775235<-440.722 -285.241 -241.074 98.0283>
 AnchorPoint: "r;k;x" 753 385 basechar 0
 AnchorPoint: "l;x" 240 385 basechar 0
 AnchorPoint: "r;bl" 713 10 basechar 0
@@ -10409,9 +10141,6 @@ Encoding: 276 276 315
 Width: 628
 VWidth: 0
 Flags: HW
-HStem: 0 27<196.646 421.498> 330 21<270.311 378.483> 609 27<330.313 516.078> 691 56<398.972 497.703>
-VStem: 361 26<767.919 820.722> 411 27<219.04 302.845> 532 20<796.402 820.978>
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<71.7842 366.604 389.326 599.93>
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 548 10 basechar 0
 AnchorPoint: "r;o" 598 200 basechar 0
@@ -10433,9 +10162,6 @@ Encoding: 286 286 316
 Width: 674
 VWidth: 0
 Flags: HW
-HStem: -22 33<262.489 420.374> 626 28<376.028 503.347> 691 56<403.972 502.703>
-VStem: 59 101<123.861 347.816> 366 26<767.919 820.722> 537 20<796.402 820.978> 604 23<437.014 509.488> 604 48<468.203 544.939>
-DStem2: 420.834 -22 500.566 -22 0.241922 0.970296<94.3688 242.367>
 AnchorPoint: "r;k;x" 684 385 basechar 0
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 654 10 basechar 0
@@ -10457,9 +10183,6 @@ Encoding: 300 300 317
 Width: 373
 VWidth: 0
 Flags: HW
-HStem: 0 21<32.5 271.5> 616 20<160.5 399.5> 691 56<263.972 362.703>
-VStem: 226 26<767.919 820.722> 397 20<796.402 820.978>
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<76.5456 599.93>
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 293 10 basechar 0
 AnchorPoint: "r;o" 333 200 basechar 0
@@ -10481,8 +10204,6 @@ Encoding: 334 334 318
 Width: 654
 VWidth: 0
 Flags: HW
-HStem: -21 32<216.707 328.213> 623 29<352.7 463.421> 691 56<408.972 507.703>
-VStem: 60 86<117.482 319.68> 371 26<767.919 820.722> 536 88<306.274 508.366> 542 20<796.402 820.978>
 AnchorPoint: "r;k;x" 674 385 basechar 0
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 594 10 basechar 0
@@ -10504,8 +10225,6 @@ Encoding: 364 364 319
 Width: 747
 VWidth: 0
 Flags: HW
-HStem: -22 62<250.946 436.122> 616 20<127.5 384.5 557.5 773.5> 691 56<438.972 537.703>
-VStem: 110 88<87.5014 284.984> 401 26<767.919 820.722> 572 20<796.402 820.978>
 AnchorPoint: "l;x" 35 385 basechar 0
 AnchorPoint: "r;bl" 647 10 basechar 0
 AnchorPoint: "r;o" 707 200 basechar 0
@@ -10550,9 +10269,7 @@ StartChar: aring
 Encoding: 229 229 321
 Width: 357
 VWidth: 0
-Flags: W
-HStem: -13 63<50.073 103.946> 350 54<169.632 227.562> 474 33<234.69 301.168> 589 33<232.773 298.762>
-VStem: 5 68<51.0185 162.276> 190 36<514.591 582.89> 192 69<2.93932 120.453> 308 36<512.961 581.19>
+Flags: HW
 AnchorPoint: "r;k;x" 372 385 basechar 0
 AnchorPoint: "l;x" 50 385 basechar 0
 AnchorPoint: "r;bl" 342 10 basechar 0
@@ -10569,9 +10286,7 @@ StartChar: ring
 Encoding: 730 730 322
 Width: 460
 VWidth: 0
-Flags: W
-HStem: 474 33<202.69 269.168> 589 33<200.773 266.762>
-VStem: 158 36<514.591 582.89> 276 36<512.961 581.19>
+Flags: HW
 LayerCount: 3
 Fore
 Refer: 320 778 N 1 0 0 1 460 0 2
@@ -10581,9 +10296,7 @@ StartChar: uring
 Encoding: 367 367 323
 Width: 491
 VWidth: 0
-Flags: W
-HStem: -13 39<97.591 173.123 313.018 369.422> 369 30<119.76 220> 474 33<316.69 383.168> 589 33<314.773 380.762>
-VStem: 40 23<254.976 309.122> 55 71<26.2255 133.103> 168 79<317.881 390.311> 272 36<514.591 582.89> 275 76<-0.476885 84.9964> 390 36<512.961 581.19>
+Flags: HW
 AnchorPoint: "l;x" 30 385 basechar 0
 AnchorPoint: "r;bl" 481 10 basechar 0
 AnchorPoint: "r;o" 491 200 basechar 0
@@ -10601,9 +10314,6 @@ Encoding: 197 197 324
 Width: 713
 VWidth: 0
 Flags: HW
-HStem: 0 21<32.5 272.5 411.5 681.5> 257 36<354.004 529.001> 560 89<570.5 655.52> 669 33<631.69 698.168> 784 33<629.773 695.762>
-VStem: 409 192<8 118.5> 587 36<709.591 777.89> 705 36<707.961 776.19>
-DStem2: 477 509 400 364 0.631673 0.775235<-440.722 -285.241 -241.074 98.0283>
 AnchorPoint: "r;k;x" 753 385 basechar 0
 AnchorPoint: "l;x" 240 385 basechar 0
 AnchorPoint: "r;bl" 713 10 basechar 0
@@ -10625,8 +10335,6 @@ Encoding: 366 366 325
 Width: 747
 VWidth: 0
 Flags: HW
-HStem: -22 62<250.946 436.122> 616 20<127.5 384.5 557.5 773.5> 669 33<451.69 518.168> 784 33<449.773 515.762>
-VStem: 110 88<87.5014 284.984> 407 36<709.591 777.89> 525 36<707.961 776.19>
 AnchorPoint: "l;x" 35 385 basechar 0
 AnchorPoint: "r;bl" 647 10 basechar 0
 AnchorPoint: "r;o" 707 200 basechar 0
@@ -10647,9 +10355,7 @@ StartChar: atilde
 Encoding: 227 227 326
 Width: 357
 VWidth: 0
-Flags: W
-HStem: -13 63<50.073 103.946> 350 54<169.632 227.562> 518 60<292.055 352.646> 561 60<196.476 257.956>
-VStem: 5 68<51.0185 162.276> 140 269 192 69<2.93932 120.453>
+Flags: HW
 AnchorPoint: "r;k;x" 372 385 basechar 0
 AnchorPoint: "l;x" 50 385 basechar 0
 AnchorPoint: "r;bl" 342 10 basechar 0
@@ -10666,9 +10372,7 @@ StartChar: itilde
 Encoding: 297 297 327
 Width: 228
 VWidth: 0
-Flags: W
-HStem: -13 66<47.5444 125.5> 348 58<116.776 190.761> 518 60<209.055 269.646> 561 60<113.476 174.956>
-VStem: 35 80<6.25377 112.056> 57 269 125 80<288.32 388.788>
+Flags: HW
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 218 10 basechar 0
 AnchorPoint: "r;o" 228 200 basechar 0
@@ -10685,9 +10389,7 @@ StartChar: ntilde
 Encoding: 241 241 328
 Width: 471
 VWidth: 0
-Flags: W
-HStem: -5 37<295.608 360.187> 369 30<110.637 191.923 300.571 401.205> 518 60<397.055 457.646> 561 60<301.476 362.956>
-VStem: 245 269 256 79<4.04248 83.4761> 378 68<276.186 369.453>
+Flags: HW
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 461 10 basechar 0
 AnchorPoint: "r;o" 471 200 basechar 0
@@ -10704,9 +10406,7 @@ StartChar: otilde
 Encoding: 245 245 329
 Width: 364
 VWidth: 0
-Flags: W
-HStem: -15 29<81.3113 143.164> 381 27<219.212 280.959> 518 60<317.055 377.646> 561 60<221.476 282.956>
-VStem: 15 56<25.9695 153.894> 165 269 293 56<237.812 361.562>
+Flags: HW
 AnchorPoint: "l;x" 60 385 basechar 0
 AnchorPoint: "r;bl" 304 10 basechar 0
 AnchorPoint: "r;o" 364 200 basechar 0
@@ -10723,9 +10423,7 @@ StartChar: utilde
 Encoding: 361 361 330
 Width: 491
 VWidth: 0
-Flags: W
-HStem: -13 39<97.591 173.123 313.018 369.422> 369 30<119.76 220> 518 60<374.055 434.646> 561 60<278.476 339.956>
-VStem: 40 23<254.976 309.122> 55 71<26.2255 133.103> 168 79<317.881 390.311> 222 269 275 76<-0.476885 84.9964>
+Flags: HW
 AnchorPoint: "l;x" 30 385 basechar 0
 AnchorPoint: "r;bl" 481 10 basechar 0
 AnchorPoint: "r;o" 491 200 basechar 0
@@ -10743,9 +10441,6 @@ Encoding: 195 195 331
 Width: 713
 VWidth: 0
 Flags: HW
-HStem: 0 21<32.5 272.5 411.5 681.5> 257 36<354.004 529.001> 560 89<570.5 655.52> 718 60<681.582 737.091> 761 60<596.01 651.418>
-VStem: 409 192<8 118.5> 545 243
-DStem2: 477 509 400 364 0.631673 0.775235<-440.722 -285.241 -241.074 98.0283>
 AnchorPoint: "r;k;x" 753 385 basechar 0
 AnchorPoint: "l;x" 240 385 basechar 0
 AnchorPoint: "r;bl" 713 10 basechar 0
@@ -10767,9 +10462,6 @@ Encoding: 296 296 332
 Width: 373
 VWidth: 0
 Flags: HW
-HStem: 0 21<32.5 271.5> 616 20<160.5 399.5> 718 60<326.582 382.091> 761 60<241.01 296.418>
-VStem: 190 243
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<76.5456 599.93>
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 293 10 basechar 0
 AnchorPoint: "r;o" 333 200 basechar 0
@@ -10791,8 +10483,6 @@ Encoding: 209 209 333
 Width: 789
 VWidth: 0
 Flags: HW
-HStem: 0 21<32.5 287.5 570 580> 613 23<771.139 838.793> 718 60<531.582 587.091> 761 60<446.01 501.418>
-VStem: 395 243
 AnchorPoint: "l;x" 80 385 basechar 0
 AnchorPoint: "r;bl" 669 10 basechar 0
 AnchorPoint: "r;o" 729 200 basechar 0
@@ -10814,8 +10504,6 @@ Encoding: 213 213 334
 Width: 654
 VWidth: 0
 Flags: HW
-HStem: -21 32<216.707 328.213> 623 29<352.7 463.421> 718 60<471.582 527.091> 761 60<386.01 441.418>
-VStem: 60 86<117.482 319.68> 335 243 536 88<306.274 508.366>
 AnchorPoint: "r;k;x" 674 385 basechar 0
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 594 10 basechar 0
@@ -10837,8 +10525,6 @@ Encoding: 360 360 335
 Width: 747
 VWidth: 0
 Flags: HW
-HStem: -22 62<250.946 436.122> 616 20<127.5 384.5 557.5 773.5> 718 60<501.582 557.091> 761 60<416.01 471.418>
-VStem: 110 88<87.5014 284.984> 365 243
 AnchorPoint: "l;x" 35 385 basechar 0
 AnchorPoint: "r;bl" 647 10 basechar 0
 AnchorPoint: "r;o" 707 200 basechar 0
@@ -10859,10 +10545,7 @@ StartChar: Dcroat
 Encoding: 272 272 336
 Width: 717
 VWidth: 0
-Flags: W
-HStem: 0 31<198.836 384.876> 308 31<104.084 170 265 435.901> 608 28<330.355 494.74>
-VStem: 613 84<255.413 503.092>
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<80.5739 317.406 370.468 599.93>
+Flags: HW
 AnchorPoint: "r;hi" 657 610 basechar 0
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 637 10 basechar 0
@@ -10882,7 +10565,7 @@ StartChar: dcroat
 Encoding: 273 273 337
 Width: 419
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -13 46<67.6728 146.227> 365 39<183.878 281.944> 488 31<235.796 347 426 479.794> 644 20G<401 461>
 VStem: 15 68<37.7702 188.667> 235 70<3.56555 117.25>
 DStem2: 220.017 -13 292.087 -13 0.241922 0.970296<414.301 516.838 566.029 616.254>
@@ -10939,7 +10622,7 @@ StartChar: hbar
 Encoding: 295 295 338
 Width: 448
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -5 43<313.003 336.481> 372 32<273.444 338.799> 488 31<83.7963 146 226 337.794> 644 20G<203.5 260>
 VStem: 235 78<9.3457 105.045> 343 69<266.322 369.531>
 DStem2: 146 488 132 194 0.277754 0.960652<-228.911 0 52.0005 99.2822>
@@ -10998,7 +10681,7 @@ StartChar: Hbar
 Encoding: 294 294 339
 Width: 789
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 21G<27.5 272.5 433.5 678.5> 308 31<265 586> 455 31<140.084 206 301 622 717 780.794> 616 20G<155.5 408.5 571.5 814.5>
 DStem2: 93.3004 0 181.3 0 0.241922 0.970296<71.7844 338.696 370.468 468.749 521.811 599.688> 509.3 0 597.3 0 0.241922 0.970296<71.7851 317.406 349.179 468.749 521.811 599.93>
 AnchorPoint: "l;hi2" 130 670 basechar 0
@@ -11073,7 +10756,7 @@ StartChar: tbar
 Encoding: 359 359 340
 Width: 275
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -13 46<49.5 137.403> 197 31<7.06943 72.7109 147.24 227.916> 351 26<46.7728 119 191 259.227>
 VStem: 25 74<3.01323 109.147> 153 70<447.37 494.709>
 DStem2: 19.3784 -13 86.0132 -13 0.241922 0.970296<77.016 216.664 264.774 377.288 419.934 527.638>
@@ -11123,7 +10806,7 @@ StartChar: Tbar
 Encoding: 358 358 341
 Width: 551
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 21G<76.5 356.5> 316 31<100.069 247 348 496.916> 602 34<111.901 317.999 419.868 596.996> 630 20G<642 646.5>
 VStem: 650 21<493.446 508.66>
 DStem2: 178 73 269 75 0.278634 0.960397<5.30422 252.602 310.517 522.783>
@@ -11187,7 +10870,7 @@ StartChar: lslash
 Encoding: 322 322 342
 Width: 191
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -16 73<6.50293 98> 389 20G<185.286 229> 644 20G<175 231>
 VStem: -10 246
 DStem2: -10 295 -10 261 0.901167 0.433473<-9.42068 70.6903 182.036 257.183>
@@ -11257,7 +10940,7 @@ StartChar: Lslash
 Encoding: 321 321 343
 Width: 604
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 28<199.285 426.094> 389 20G<405.194 473> 616 20G<160.5 403.5>
 DStem2: 93.3004 0 181.3 0 0.241922 0.970296<77.7563 289.515 328.563 339.666 378.714 599.93> 95 295 95 260 0.956982 0.290149<-7.01286 61.0127 179.689 389.72>
 AnchorPoint: "r;x" 544 385 basechar 0
@@ -11350,7 +11033,7 @@ StartChar: ldot
 Encoding: 320 320 344
 Width: 336
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -16 73<26.5029 118> 284 87<239.44 314.56> 644 20G<195 251>
 VStem: 14 78<4.12744 88.606> 233 88<290.167 364.56>
 AnchorPoint: "r;k;hi2" 271 670 basechar 0
@@ -11390,7 +11073,7 @@ StartChar: kgreenlandic
 Encoding: 312 312 345
 Width: 394
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 21G<46.5 96 249 376.5> 348 58<116.776 190.651> 379 20G<309 340.5>
 VStem: 125 80<303.249 388.788> 296 68<284.132 398.488>
 DStem2: 39.8555 0 100.523 0 0.241922 0.970296<9.31471 188.446 212.943 348.192>
@@ -11494,7 +11177,7 @@ StartChar: uni0237.ld
 Encoding: 65545 -1 347
 Width: 285
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -282 30<-87.5 4.74858> 361 47<146.611 228.426>
 VStem: 169 73<289.233 395.041>
 AnchorPoint: "r;x" 285 385 basechar 0
@@ -11534,9 +11217,7 @@ StartChar: gcircumflex.ld
 Encoding: 65546 -1 348
 Width: 372
 VWidth: 0
-Flags: W
-HStem: -285 28<69.8 221.282> 88 23<125.358 184.163> 380 26<174.95 237.754> 456 160
-VStem: -46 59<-220.024 -117.8> 34 70<140.367 292.317> 53 42<9 71.7016> 134 198<463 472> 257 68<192.667 329.639> 282 68<-209.519 -120.851>
+Flags: HW
 AnchorPoint: "r;k;x" 407 385 basechar 0
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 322 10 basechar 0
@@ -11555,9 +11236,7 @@ StartChar: jcircumflex.ld
 Encoding: 65547 -1 349
 Width: 285
 VWidth: 0
-Flags: W
-HStem: -282 30<-87.5 4.74858> 361 47<146.611 228.426> 456 160
-VStem: 101 198<463 472> 169 73<289.233 395.041>
+Flags: HW
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 225 10 basechar 0
 AnchorPoint: "l;k;lo" -150 -200 basechar 0
@@ -11579,9 +11258,7 @@ StartChar: ycircumflex.ld
 Encoding: 65548 -1 350
 Width: 418
 VWidth: 0
-Flags: W
-HStem: -282 55<-47 39.4825> 348 58<85.6545 138.5> 379 20<338.5 381> 456 160
-VStem: 172 52<33.0007 248.469> 178 198<463 472> 312 88<304.882 380.206>
+Flags: HW
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 363 10 basechar 0
 AnchorPoint: "r;x" 418 385 basechar 0
@@ -11626,7 +11303,7 @@ StartChar: Iogonek
 Encoding: 302 302 352
 Width: 373
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -222 34<63 143.911> 616 20G<160.5 399.5>
 VStem: 23 66<-186.239 -96.0901>
 DStem2: 37.9496 -222 125.95 -222 0.241922 0.970296<305.342 828.726>
@@ -11681,8 +11358,6 @@ Encoding: 303 303 353
 Width: 228
 VWidth: 0
 Flags: HW
-HStem: -222 34<2 82.9105> 348 58<116.776 190.761> 546 87<142.44 217.56>
-VStem: -37 66<-186.53 -107.685> 35 80<3.01952 112.056> 125 80<288.32 388.788> 136 88<552.167 626.56>
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 218 10 basechar 0
 AnchorPoint: "r;o" 228 200 basechar 0
@@ -11700,9 +11375,6 @@ Encoding: 310 310 354
 Width: 694
 VWidth: 0
 Flags: HW
-HStem: -270 21<288 301> -138 76<304.847 351.483> 0 21<32.5 262.5 411.5 662.5> 349 16<264 309> 616 20<150.5 373.5 474.5 711.5>
-VStem: 352 42<-189.154 -99>
-DStem2: 212 561 300 561 0.201539 0.97948<-505.33 -203.58 -178.985 22.0782>
 AnchorPoint: "l;x" 65 385 basechar 0
 AnchorPoint: "r;bl" 694 10 basechar 0
 AnchorPoint: "r;o" 634 200 basechar 0
@@ -11724,8 +11396,6 @@ Encoding: 311 311 355
 Width: 393
 VWidth: 0
 Flags: HW
-HStem: -270 21<83 96> -138 76<99.847 146.483> 0 21<24.5 74 227 354.5> 368 40<258.304 346> 644 20<205 261>
-VStem: 16 71<0 60.0556> 147 42<-189.154 -99> 312 65<279.636 366.191>
 AnchorPoint: "l;x" 50 385 basechar 0
 AnchorPoint: "r;bl" 363 10 basechar 0
 AnchorPoint: "r;o" 363 200 basechar 0
@@ -11744,8 +11414,6 @@ Encoding: 314 314 356
 Width: 211
 VWidth: 0
 Flags: HW
-HStem: -16 73<26.5029 118> 644 20<195 251> 675 151
-VStem: 14 78<4.12744 88.606> 201 131
 AnchorPoint: "r;k;x" 221 385 basechar 0
 AnchorPoint: "l;x" 40 385 basechar 0
 AnchorPoint: "l;k;bl" -10 10 basechar 0
@@ -11766,9 +11434,6 @@ Encoding: 315 315 357
 Width: 604
 VWidth: 0
 Flags: HW
-HStem: -270 21<258 271> -138 76<274.847 321.483> 0 28<199.285 426.094> 616 20<160.5 403.5>
-VStem: 322 42<-189.154 -99>
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<77.7563 599.93>
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 584 10 basechar 0
 AnchorPoint: "r;o" 604 200 basechar 0
@@ -11790,8 +11455,6 @@ Encoding: 316 316 358
 Width: 211
 VWidth: 0
 Flags: HW
-HStem: -270 21<-22 -9> -138 76<-5.153 41.483> -16 73<26.5029 118> 644 20<195 251>
-VStem: 14 78<4.12744 88.606> 42 42<-189.154 -99>
 AnchorPoint: "r;k;x" 221 385 basechar 0
 AnchorPoint: "l;x" 40 385 basechar 0
 AnchorPoint: "l;k;bl" -10 10 basechar 0
@@ -11812,9 +11475,6 @@ Encoding: 317 317 359
 Width: 604
 VWidth: 0
 Flags: HW
-HStem: 0 28<199.285 426.094> 438 199<415 505> 616 20<160.5 403.5>
-VStem: 408 119
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<77.7563 599.93>
 AnchorPoint: "r;hi" 550 610 basechar 0
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 584 10 basechar 0
@@ -11839,8 +11499,6 @@ Encoding: 318 318 360
 Width: 392
 VWidth: 0
 Flags: HW
-HStem: -16 73<26.5029 118> 438 199<257 347> 644 20<195 251>
-VStem: 14 78<4.12744 88.606> 250 119
 AnchorPoint: "r;hi" 392 610 basechar 0
 AnchorPoint: "r;k;x" 221 385 basechar 0
 AnchorPoint: "l;x" 40 385 basechar 0
@@ -11864,7 +11522,7 @@ StartChar: Ldot
 Encoding: 319 319 361
 Width: 604
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 0 28<199.285 426.094> 284 87<469.44 544.56> 616 20G<160.5 403.5>
 VStem: 463 88<290.167 364.56>
 DStem2: 93.3004 0 181.3 0 0.241922 0.970296<77.7563 599.93>
@@ -11918,8 +11576,6 @@ Encoding: 325 325 362
 Width: 789
 VWidth: 0
 Flags: HW
-HStem: -270 21<316 329> -138 76<332.847 379.483> 0 21<32.5 287.5 570 580> 613 23<771.139 838.793>
-VStem: 380 42<-189.154 -99>
 AnchorPoint: "l;x" 80 385 basechar 0
 AnchorPoint: "r;bl" 669 10 basechar 0
 AnchorPoint: "r;o" 729 200 basechar 0
@@ -11941,8 +11597,6 @@ Encoding: 326 326 363
 Width: 471
 VWidth: 0
 Flags: HW
-HStem: -270 21<118 131> -138 76<134.847 181.483> -5 37<295.608 360.187> 369 30<110.637 191.923 300.571 401.205>
-VStem: 182 42<-189.154 -99> 256 79<4.04248 83.4761> 378 68<276.186 369.453>
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 461 10 basechar 0
 AnchorPoint: "r;o" 471 200 basechar 0
@@ -12075,9 +11729,7 @@ StartChar: yacute.ld
 Encoding: 65555 -1 369
 Width: 418
 VWidth: 0
-Flags: W
-HStem: -282 55<-47 39.4825> 348 58<85.6545 138.5> 379 20<338.5 381> 446 173
-VStem: 172 52<33.0007 248.469> 249 148 312 88<304.882 380.206>
+Flags: HW
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 363 10 basechar 0
 AnchorPoint: "r;x" 418 385 basechar 0
@@ -12126,9 +11778,7 @@ StartChar: ydieresis.ld
 Encoding: 65557 -1 371
 Width: 418
 VWidth: 0
-Flags: W
-HStem: -282 55<-47 39.4825> 348 58<85.6545 138.5> 379 20<338.5 381> 506 87<185.44 260.56 315.44 390.56>
-VStem: 172 52<33.0007 248.469> 179 88<512.167 586.56> 309 88<512.167 586.56> 312 88<304.882 380.206>
+Flags: HW
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 363 10 basechar 0
 AnchorPoint: "r;x" 418 385 basechar 0
@@ -12192,9 +11842,7 @@ StartChar: gdotaccent.ld
 Encoding: 65560 -1 374
 Width: 372
 VWidth: 0
-Flags: W
-HStem: -285 28<69.8 221.282> 88 23<125.358 184.163> 380 26<174.95 237.754> 506 87<201.44 276.56>
-VStem: -46 59<-220.024 -117.8> 34 70<140.367 292.317> 53 42<9 71.7016> 195 88<512.167 586.56> 257 68<192.667 329.639> 282 68<-209.519 -120.851>
+Flags: HW
 AnchorPoint: "r;k;x" 407 385 basechar 0
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 322 10 basechar 0
@@ -12234,9 +11882,7 @@ StartChar: napostrophe
 Encoding: 329 329 376
 Width: 471
 VWidth: 0
-Flags: W
-HStem: -5 37<295.608 360.187> 369 30<110.637 191.923 300.571 401.205> 386 34<-205.961 -168.513> 563 91<-175.91 -115.873>
-VStem: -115 55<481.663 589> 256 79<4.04248 83.4761> 378 68<276.186 369.453>
+Flags: HW
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 461 10 basechar 0
 AnchorPoint: "r;o" 471 200 basechar 0
@@ -12276,9 +11922,7 @@ StartChar: rcommaaccent
 Encoding: 343 343 378
 Width: 289
 VWidth: 0
-Flags: W
-HStem: -270 21<18 31> -138 76<34.8468 81.4829> 0 21<57 107> 329 70<254.716 320.144> 362 37<110.867 192.998>
-VStem: 50 71<0.000743866 91.9153> 82 42<-189.154 -99> 135 68<290.931 389.121>
+Flags: HW
 AnchorPoint: "r;k;x" 359 385 basechar 0
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 219 10 basechar 0
@@ -12295,10 +11939,7 @@ StartChar: Gcommaaccent
 Encoding: 290 290 379
 Width: 674
 VWidth: 0
-Flags: W
-HStem: -270 21<274 287> -138 76<290.847 337.483> -22 33<262.489 420.374> 626 28<376.028 503.347>
-VStem: 59 101<123.861 347.816> 338 42<-189.154 -99> 604 23<437.014 509.488> 604 48<468.203 544.939>
-DStem2: 420.834 -22 500.566 -22 0.241922 0.970296<94.3688 242.367>
+Flags: HW
 AnchorPoint: "r;k;x" 684 385 basechar 0
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 654 10 basechar 0
@@ -12319,10 +11960,7 @@ StartChar: Rcommaaccent
 Encoding: 342 342 380
 Width: 687
 VWidth: 0
-Flags: W
-HStem: -270 21<298 311> -138 76<314.847 361.483> 0 21<32.5 295.5 510.5 655.5> 337 21<274.192 337.905> 611 25<331.788 475.666>
-VStem: 362 42<-189.154 -99> 535 82<417.962 571.704>
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<82.8042 374.02 399.997 599.93> 443 316 364 279 0.41863 -0.908157<-23.5714 317.488>
+Flags: HW
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 687 10 basechar 0
 AnchorPoint: "r;o" 587 200 basechar 0
@@ -12343,9 +11981,7 @@ StartChar: uni0218
 Encoding: 536 536 381
 Width: 479
 VWidth: 0
-Flags: W
-HStem: -270 21<159 172> -138 76<175.847 222.483> -17 33<163.938 284.503> 625 29<258.583 370.675>
-VStem: 43 40<100.562 189.068> 118 79<443.943 566.175> 223 42<-189.154 -99> 355 82<92.3356 224.031> 449 24<483.154 528.699>
+Flags: HW
 AnchorPoint: "l;x" 40 385 basechar 0
 AnchorPoint: "r;bl" 459 10 basechar 0
 AnchorPoint: "r;o" 479 200 basechar 0
@@ -12366,9 +12002,7 @@ StartChar: uni0219
 Encoding: 537 537 382
 Width: 272
 VWidth: 0
-Flags: W
-HStem: -270 21<-2 11> -138 76<14.8468 61.4829> -13 34<43.5 139.932> 375 29<137.196 219.5>
-VStem: 62 42<-189.154 -99> 70 57<272.117 358.412> 150 59<41.8402 140.542>
+Flags: HW
 AnchorPoint: "r;k;x" 282 385 basechar 0
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 262 10 basechar 0
@@ -12385,10 +12019,7 @@ StartChar: uni021A
 Encoding: 538 538 383
 Width: 551
 VWidth: 0
-Flags: W
-HStem: -270 21<139 152> -138 76<155.847 202.483> 0 21<76.5 356.5> 602 34<111.901 317.999 419.868 596.996> 630 20<642 646.5>
-VStem: 203 42<-189.154 -99> 650 21<493.446 508.66>
-DStem2: 178 73 269 75 0.278634 0.960397<5.30422 522.783>
+Flags: HW
 AnchorPoint: "l;x" 60 385 basechar 0
 AnchorPoint: "r;bl" 441 10 basechar 0
 AnchorPoint: "r;o" 501 200 basechar 0
@@ -12409,10 +12040,7 @@ StartChar: uni021B
 Encoding: 539 539 384
 Width: 275
 VWidth: 0
-Flags: W
-HStem: -270 21<-7 6> -138 76<9.84683 56.4829> -13 46<49.5 137.403> 351 26<46.7728 119 191 259.227>
-VStem: 25 74<3.01323 108.539> 57 42<-189.154 -99> 153 70<447.37 494.709>
-DStem2: 19.3784 -13 92.2446 -13 0.241922 0.970296<157.939 377.288 419.934 527.638>
+Flags: HW
 AnchorPoint: "l;x" 30 385 basechar 0
 AnchorPoint: "r;bl" 235 10 basechar 0
 AnchorPoint: "r;o" 255 200 basechar 0
@@ -12468,9 +12096,7 @@ StartChar: cedilla
 Encoding: 184 184 386
 Width: 460
 VWidth: 0
-Flags: W
-VStem: 256 42<-221.573 -129.681>
-DStem2: 204 -89 245 -63 0.490261 0.871576<42.2139 103.445>
+Flags: HW
 LayerCount: 3
 Fore
 Refer: 385 807 N 1 0 0 1 460 0 2
@@ -12480,7 +12106,7 @@ StartChar: Ccedilla
 Encoding: 199 199 387
 Width: 524
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -270 21G<181 189> -20 31<206.687 236 262 341.033> 625 27<333.529 453.044>
 VStem: 39 94<120.497 337.737> 249 42<-221.573 -129.681> 514 34<453.398 563.904>
 AnchorPoint: "r;k;x" 554 385 basechar 0
@@ -12532,7 +12158,7 @@ StartChar: ccedilla
 Encoding: 231 231 388
 Width: 324
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -13 44<105 162.844> 376 28<190.379 256>
 VStem: 15 76<35.2327 189.33> 88 42<-221.573 -129.681>
 DStem2: 36 -89 77 -63 0.488603 0.872506<42.1509 88.6815>
@@ -12575,7 +12201,7 @@ StartChar: Scedilla
 Encoding: 350 350 389
 Width: 479
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -270 21G<161 169> -16 32<166.671 218 244 282.568> 625 29<258.583 370.675>
 VStem: 43 40<100.562 189.068> 118 79<443.943 566.175> 229 42<-221.573 -129.681> 355 82<93.0273 224.031> 449 24<483.154 528.699>
 AnchorPoint: "l;x" 40 385 basechar 0
@@ -12633,7 +12259,7 @@ StartChar: scedilla
 Encoding: 351 351 390
 Width: 272
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -270 21G<0 8> -13 89<6.49634 58.623> -12 33<86 139.227> 375 29<137.196 219.5>
 VStem: 68 42<-221.573 -129.681> 70 57<272.117 358.412> 150 59<40.8865 140.542>
 DStem2: 16 -89 57 -63 0.494302 0.86929<42.367 87.321>
@@ -12678,7 +12304,7 @@ StartChar: uni0162
 Encoding: 354 354 391
 Width: 551
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 602 34<111.901 317.999 419.868 596.996> 630 20G<642 646.5>
 VStem: 209 42<-221.573 -129.681> 650 21<493.446 508.66>
 DStem2: 157 -89 198 -63 0.485643 0.874157<41.8765 102.082> 178 73 269 75 0.278634 0.960397<5.30422 522.783>
@@ -12818,9 +12444,7 @@ StartChar: uni02BB
 Encoding: 699 699 394
 Width: 460
 VWidth: 0
-Flags: W
-HStem: 449 76<225.517 272.153>
-VStem: 183 42<486 576.154>
+Flags: HW
 LayerCount: 3
 Fore
 Refer: 393 786 N 1 0 0 1 460 0 2
@@ -12830,9 +12454,7 @@ StartChar: gcommaaccent
 Encoding: 291 291 395
 Width: 365
 VWidth: 0
-Flags: W
-HStem: -224 24<73.779 225.31> 92 19<115.071 164.904> 342 39<314.703 370> 382 24<170.411 231.548> 449 76<227.517 274.153>
-VStem: -45 52<-162.034 -69.4221> 34 63<136.387 291.704> 48 47<12.5 78.5323> 185 42<486 576.154> 255 52<273.35 341.996> 255 59<202.209 340.885> 278 56<-160.105 -87.0916>
+Flags: HW
 AnchorPoint: "r;k;x" 400 385 basechar 0
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 315 10 basechar 0
@@ -12854,9 +12476,7 @@ StartChar: gcommaaccent.ld
 Encoding: 65562 -1 396
 Width: 372
 VWidth: 0
-Flags: W
-HStem: -285 28<69.8 221.282> 88 23<125.358 184.163> 380 26<174.95 237.754> 449 76<233.517 280.153>
-VStem: -46 59<-220.024 -117.8> 34 70<140.367 292.317> 53 42<9 71.7016> 191 42<486 576.154> 257 68<192.667 329.639> 282 68<-209.519 -120.851>
+Flags: HW
 AnchorPoint: "r;k;x" 407 385 basechar 0
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 322 10 basechar 0
@@ -12875,7 +12495,7 @@ StartChar: Oslash
 Encoding: 216 216 397
 Width: 654
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -21 32<214.583 328.213> 623 29<352.7 465.831>
 VStem: 60 86<116.716 319.68> 536 88<306.274 507.917>
 DStem2: 49 -49 75 -66 0.602721 0.797952<-0.907589 118.506 184.201 748.909 811.006 884.72>
@@ -12946,7 +12566,7 @@ StartChar: uni0315
 Encoding: 789 789 399
 Width: 0
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 438 199<-135 -45>
 VStem: -142 119
 AnchorPoint: "commaright" -130 515 mark 0
@@ -12972,9 +12592,7 @@ StartChar: afii57929
 Encoding: 700 700 400
 Width: 460
 VWidth: 0
-Flags: W
-HStem: 438 199<325 415>
-VStem: 318 119
+Flags: HW
 LayerCount: 3
 Fore
 Refer: 399 789 N 1 0 0 1 460 0 2
@@ -12984,9 +12602,7 @@ StartChar: dcaron
 Encoding: 271 271 401
 Width: 602
 VWidth: 0
-Flags: W
-HStem: -13 46<67.6728 146.227> 365 39<183.878 281.944> 438 199<467 557> 644 20<401 461>
-VStem: 15 68<37.7702 188.667> 235 70<3.56555 118.281> 460 119
+Flags: HW
 AnchorPoint: "r;hi" 602 610 basechar 0
 AnchorPoint: "r;k;x" 429 385 basechar 0
 AnchorPoint: "r;o" 419 200 basechar 0
@@ -13010,10 +12626,7 @@ StartChar: tcaron
 Encoding: 357 357 402
 Width: 405
 VWidth: 0
-Flags: W
-HStem: -13 46<49.5 137.403> 351 26<46.7728 119 191 259.227> 438 199<270 360>
-VStem: 25 74<3.01323 108.539> 153 70<447.37 494.709> 263 119
-DStem2: 19.3784 -13 92.2446 -13 0.241922 0.970296<157.939 377.288 419.934 527.638>
+Flags: HW
 AnchorPoint: "r;hi" 405 610 basechar 0
 AnchorPoint: "r;o" 255 200 basechar 0
 AnchorPoint: "l;x" 30 385 basechar 0
@@ -13077,7 +12690,7 @@ StartChar: eng
 Encoding: 331 331 405
 Width: 471
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -224 29<93.5 182.168> 0 21G<52 108.5> 369 30<119.637 200.923 309.571 410.205>
 VStem: 387 68<279.33 369.453>
 AnchorPoint: "l;bl" 0 10 basechar 0
@@ -13129,7 +12742,7 @@ StartChar: Eng
 Encoding: 330 330 406
 Width: 789
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -224 29<346.5 435.168> 0 21G<32.5 287.5> 613 23<771.139 838.793>
 AnchorPoint: "r;x" 789 385 basechar 0
 AnchorPoint: "r;k;hi" 869 610 basechar 0
@@ -13281,7 +12894,7 @@ StartChar: aogonek
 Encoding: 261 261 407
 Width: 357
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -222 34<144 224.911> -13 63<36 103.946> 350 54<169.632 227.562>
 VStem: 5 68<51.0185 162.276> 105 66<-186.53 -108.117> 290 62<370.375 404>
 AnchorPoint: "r;k;x" 372 385 basechar 0
@@ -13372,7 +12985,7 @@ StartChar: Eng.ld
 Encoding: 65564 -1 408
 Width: 789
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -282 30<308.5 405.918> 0 21G<32.5 287.5> 613 23<771.139 838.793>
 AnchorPoint: "r;lo" 574 -200 basechar 0
 AnchorPoint: "l;hi2" 120 670 basechar 0
@@ -13436,7 +13049,7 @@ StartChar: eng.ld
 Encoding: 65565 -1 409
 Width: 471
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -282 30<57.5 154.444> 0 21G<52 108.5> 369 30<119.637 200.923 309.571 410.205>
 VStem: 387 68<274.4 369.453>
 AnchorPoint: "r;bl" 411 10 basechar 0
@@ -13485,7 +13098,7 @@ StartChar: Aogonek
 Encoding: 260 260 410
 Width: 713
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -222 34<353 433.911> 0 25<170.032 273.465> 257 36<354.004 529.001> 560 89<570.5 655.52>
 VStem: 313 66<-186.425 -106.626>
 AnchorPoint: "r;k;x" 753 385 basechar 0
@@ -13576,7 +13189,7 @@ StartChar: eogonek
 Encoding: 281 281 411
 Width: 302
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -222 34<27 107.911> 375 27<207.322 282.5>
 VStem: -12 66<-186.53 -108.656> 15 73<34.7589 185.708> 251 66<293.21 374.876>
 AnchorPoint: "r;k;x" 332 385 basechar 0
@@ -13647,7 +13260,7 @@ StartChar: Eogonek
 Encoding: 280 280 412
 Width: 628
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -222 34<312 392.911> 0 27<196.646 409.559> 330 21<270.311 378.483> 609 27<330.313 516.078>
 VStem: 272 66<-186.239 -101.749> 411 27<219.04 302.845>
 DStem2: 37.9496 -222 125.95 -222 0.241922 0.970296<300.58 595.401 618.122 828.726>
@@ -13724,7 +13337,7 @@ StartChar: Uogonek
 Encoding: 370 370 413
 Width: 747
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -222 34<288.5 368.911> -22 62<249.443 338.993> 616 20G<127.5 384.5 557.5 773.5>
 VStem: 110 88<88.3198 284.984> 248 66<-186.086 -93.0408> 642 134<536.5 632>
 AnchorPoint: "l;hi2" 95 670 basechar 0
@@ -13779,7 +13392,7 @@ StartChar: uogonek
 Encoding: 371 371 414
 Width: 491
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -222 34<251 331.911> -13 39<97.591 173.123> 369 30<119.76 220>
 VStem: 40 23<254.976 309.122> 55 71<26.2255 133.103> 168 79<317.881 390.311> 212 66<-186.53 -108.031>
 AnchorPoint: "l;bl" 0 10 basechar 0
@@ -13872,7 +13485,7 @@ StartChar: iogonek.dotless
 Encoding: 65566 -1 415
 Width: 228
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -222 34<2 82.9105> 348 58<116.776 190.761>
 VStem: -37 66<-186.53 -107.685> 35 80<3.01952 112.056> 125 80<288.32 388.788>
 AnchorPoint: "r;x" 228 385 basechar 0
@@ -14010,7 +13623,7 @@ StartChar: Euro
 Encoding: 8364 8364 417
 Width: 524
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -21 32<203.547 342.017> 240 31<-17.9745 39 141 473> 353 31<-17.9998 56 167 501> 625 27<329.309 453.044>
 VStem: 39 94<121.688 240> 514 34<453.398 563.904>
 AnchorPoint: "cedilla" 248 -80 basechar 0
@@ -14070,7 +13683,7 @@ StartChar: f.ld
 Encoding: 65567 -1 418
 Width: 226
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -282 36<-147 -60.5273> 351 26<35.7728 109 180 254.227> 606 58<240.5 329.9>
 DStem2: -48.8246 -282 18.5611 -282 0.241922 0.970296<429.974 652.378 694.783 898.292>
 AnchorPoint: "top" 293 730 basechar 0
@@ -14185,7 +13798,7 @@ StartChar: longs.ld
 Encoding: 65568 -1 419
 Width: 226
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -282 36<-147 -60.5477> 606 58<240.5 329.9>
 AnchorPoint: "l;k;bl" -10 10 basechar 0
 AnchorPoint: "l;k;lo" -197 -200 basechar 0
@@ -14238,8 +13851,6 @@ Encoding: 65569 -1 420
 Width: 285
 VWidth: 0
 Flags: HW
-HStem: -224 21<-21.5 -16> 357 49<148.861 230.958> 506 87<167.44 242.56>
-VStem: 161 88<512.167 586.56> 167 77<287.531 391.538>
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 215 10 basechar 0
 AnchorPoint: "r;lo" 125 -200 basechar 0
@@ -14257,7 +13868,7 @@ StartChar: uni0237.001
 Encoding: 65570 -1 421
 Width: 285
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -224 21G<-21.5 -16> 357 49<148.861 230.958>
 VStem: 167 77<287.531 391.538>
 AnchorPoint: "r;x" 285 385 basechar 0
@@ -14311,9 +13922,7 @@ StartChar: jcircumflex.001
 Encoding: 65571 -1 422
 Width: 285
 VWidth: 0
-Flags: W
-HStem: -224 21<-21.5 -16> 357 49<148.861 230.958> 456 160
-VStem: 100 198<463 472> 167 77<287.531 391.538>
+Flags: HW
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 215 10 basechar 0
 AnchorPoint: "r;lo" 125 -200 basechar 0
@@ -14331,7 +13940,7 @@ StartChar: uni0237.002
 Encoding: 65572 -1 423
 Width: 285
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -283 21G<-6 1.5> 361 47<146.611 228.426>
 VStem: 169 73<287.098 395.041>
 AnchorPoint: "top" 205 500 basechar 0
@@ -14384,9 +13993,7 @@ StartChar: jcircumflex.002
 Encoding: 65573 -1 424
 Width: 285
 VWidth: 0
-Flags: W
-HStem: -283 21<-6 1.5> 361 47<146.611 228.426> 456 160
-VStem: 101 198<463 472> 169 73<287.098 395.041>
+Flags: HW
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 225 10 basechar 0
 AnchorPoint: "r;lo" 145 -200 basechar 0
@@ -14404,9 +14011,7 @@ StartChar: j.002
 Encoding: 65574 -1 425
 Width: 285
 VWidth: 0
-Flags: W
-HStem: -283 21<-6 1.5> 361 47<146.611 228.426> 506 87<168.44 243.56>
-VStem: 162 88<512.167 586.56> 169 73<287.098 395.041>
+Flags: HW
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 225 10 basechar 0
 AnchorPoint: "r;lo" 145 -200 basechar 0
@@ -14424,9 +14029,7 @@ StartChar: gbreve.ld
 Encoding: 65575 -1 426
 Width: 372
 VWidth: 0
-Flags: W
-HStem: -285 28<69.8 221.282> 88 23<125.358 184.163> 380 26<174.95 237.754> 486 59<186.487 304.611>
-VStem: -46 59<-220.024 -117.8> 34 70<140.367 292.317> 53 42<9 71.7016> 146 30<563.115 615.869> 257 68<192.667 329.639> 282 68<-209.519 -120.851> 354 25<593.098 615.994>
+Flags: HW
 AnchorPoint: "r;k;x" 407 385 basechar 0
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 322 10 basechar 0
@@ -14445,7 +14048,7 @@ StartChar: f.001
 Encoding: 65576 -1 427
 Width: 231
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -223 21G<21.5 42.5> 351 26<35.7728 109 185 264.227> 606 58<235.5 324.9>
 VStem: 9 50<-222.865 -120.582> 109 71<271.239 351 377 410.115>
 AnchorPoint: "top" 288 730 basechar 0
@@ -14484,7 +14087,7 @@ StartChar: y.001
 Encoding: 65577 -1 428
 Width: 418
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: 348 58<85.6545 138.5> 379 20G<338.5 381>
 VStem: 172 52<33.0007 248.469> 312 88<305.218 380.206>
 AnchorPoint: "l;bl" 35 10 basechar 0
@@ -14545,9 +14148,7 @@ StartChar: yacute.001
 Encoding: 65578 -1 429
 Width: 418
 VWidth: 0
-Flags: W
-HStem: 348 58<85.6545 138.5> 379 20<338.5 381> 446 173
-VStem: 172 52<33.0007 248.469> 228.413 148 312 88<305.218 380.206>
+Flags: HW
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 363 10 basechar 0
 AnchorPoint: "l;o" 0 200 basechar 0
@@ -14564,9 +14165,7 @@ StartChar: ydieresis.001
 Encoding: 65579 -1 430
 Width: 418
 VWidth: 0
-Flags: W
-HStem: 348 58<85.6545 138.5> 379 20<338.5 381> 446 87<148.574 223.694 278.574 353.694>
-VStem: 142.134 88<452.167 526.56> 172 52<33.0007 248.469> 272.134 88<452.167 526.56> 312 88<305.218 380.206>
+Flags: HW
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 363 10 basechar 0
 AnchorPoint: "l;o" 0 200 basechar 0
@@ -14583,9 +14182,7 @@ StartChar: ycircumflex.001
 Encoding: 65580 -1 431
 Width: 418
 VWidth: 0
-Flags: W
-HStem: 348 58<85.6545 138.5> 379 20<338.5 381> 447 160
-VStem: 144.031 198<454 463> 172 52<33.0007 248.469> 312 88<305.218 380.206>
+Flags: HW
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 363 10 basechar 0
 AnchorPoint: "l;o" 0 200 basechar 0
@@ -14602,7 +14199,7 @@ StartChar: p.001
 Encoding: 65581 -1 432
 Width: 448
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -211 21G<-43.5 183.5> -8 25<185.915 254.41> 367 37<248.077 371>
 VStem: 194 62<440.448 478> 364 69<174.09 343.208>
 DStem2: 14.5417 -211 82.582 -211 0.241922 0.970296<67.4564 250.85 377.128 558.907 561.02 612.153 655.252 714.91>
@@ -14651,7 +14248,7 @@ StartChar: p.002
 Encoding: 65582 -1 433
 Width: 448
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -270 21G<-59.5 167.5> -8 25<185.915 254.422> 367 37<248.077 371>
 VStem: 194 62<440.448 478> 364 69<174.194 343.208>
 DStem2: -1.45834 -270 66.582 -270 0.241922 0.970296<67.4564 311.968 438.246 620.026 622.138 670.874 736.711 776.028>
@@ -14700,7 +14297,7 @@ StartChar: thorn.002
 Encoding: 65583 -1 434
 Width: 448
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -270 21G<-59.5 167.5> -8 25<185.915 254.41> 367 37<246.1 371> 644 20G<259 315>
 VStem: 364 69<174.09 343.208>
 DStem2: 14 -208 97 -148 0.267892 0.963449<5.41539 249.835 374.759 556.216 571.332 618.337 629.406 813.042>
@@ -14752,7 +14349,7 @@ StartChar: thorn.001
 Encoding: 65584 -1 435
 Width: 448
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -211 21G<-43.5 183.5> -8 25<185.915 254.41> 367 37<246.1 371> 644 20G<259 315>
 VStem: 364 69<174.09 343.208>
 DStem2: 30 -149 113 -89 0.268379 0.963313<5.45055 188.737 310.723 495.085 510.192 557.251 568.306 755.168>
@@ -14804,7 +14401,7 @@ StartChar: germandbls.ld
 Encoding: 65585 -1 436
 Width: 421
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -282 36<-147 -60.3626> -13 34<192.5 288.932> 623 41<249.413 336.128>
 VStem: 219 57<269.186 355.874> 299 59<41.8402 138.818> 367 55<511.258 593.493>
 DStem2: -46.8683 -282 19.2742 -282 0.241922 0.970296<206.318 877.26>
@@ -14854,7 +14451,7 @@ StartChar: f_b
 Encoding: 65586 -1 437
 Width: 639
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -223 36<-132 -45.5752> -13 33<313.5 411.841> 351 53<487.047 575.625> 351 26<35.7728 109 180 254.227> 578 63<320.167 352.486> 606 58<240.5 319.5>
 VStem: 231 86<13.5 103.738> 559 65<230.546 344.977>
 DStem2: -34.1143 -223 33.2715 -223 0.241922 0.970296<365.206 591.572 633.976 837.486>
@@ -14921,7 +14518,7 @@ StartChar: f_h
 Encoding: 65587 -1 438
 Width: 654
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -223 36<-132 -45.5752> -5 43<519.003 542.481> 351 26<35.7728 109 180 254.227> 372 32<479.444 544.799> 578 65<309.933 352.702> 606 58<240.5 319>
 VStem: 226 74<1.19188 86.1082> 441 78<9.3457 105.045> 549 69<266.322 369.531>
 DStem2: -34.1143 -223 33.2715 -223 0.241922 0.970296<365.206 591.572 633.976 837.486>
@@ -14995,7 +14592,7 @@ StartChar: f_hcircumflex
 Encoding: 65588 -1 439
 Width: 654
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -223 36<-132 -45.5752> -5 43<519.003 542.481> 351 26<35.7728 109 180 254.227> 372 32<479.444 544.799> 578 65<309.933 352.702> 606 58<240.5 319>
 VStem: 226 74<1.19188 86.1082> 441 78<9.3457 105.045> 549 69<266.322 369.531>
 DStem2: -34.1143 -223 33.2715 -223 0.241922 0.970296<365.206 591.572 633.976 837.486>
@@ -15079,7 +14676,7 @@ StartChar: f_k
 Encoding: 65589 -1 440
 Width: 599
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -223 36<-132 -45.5752> 0 21G<230.5 280 433 560.5> 351 26<35.7728 109 180 254.227> 368 40<464.304 552> 578 65<309.933 352.702> 606 58<240.5 319>
 VStem: 222 71<0 60.0556> 518 65<279.636 366.191>
 DStem2: -34.1143 -223 33.2715 -223 0.241922 0.970296<365.206 591.572 633.976 837.486>
@@ -15150,7 +14747,7 @@ StartChar: f_l
 Encoding: 64258 64258 441
 Width: 427
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -223 36<-132 -45.5752> -16 73<242.503 334> 351 26<35.7728 109 180 254.227> 578 65<309.933 352.702> 606 58<240.5 319>
 VStem: 230 78<4.12744 88.606>
 DStem2: -34.1143 -223 33.2715 -223 0.241922 0.970296<365.206 591.572 633.976 837.486>
@@ -15206,7 +14803,7 @@ StartChar: f_b.ld
 Encoding: 65590 -1 442
 Width: 639
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -282 36<-147 -60.5273> -13 33<313.5 411.841> 351 53<487.047 575.625> 351 26<35.7728 109 180 254.227> 578 63<320.167 352.486> 606 58<240.5 319.5>
 VStem: 231 86<13.5 103.738> 559 65<230.546 344.977>
 DStem2: -48.8246 -282 18.5611 -282 0.241922 0.970296<429.974 652.378 694.783 898.292>
@@ -15273,7 +14870,7 @@ StartChar: f_h.ld
 Encoding: 65591 -1 443
 Width: 664
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -282 36<-147 -60.5273> -5 43<529.003 552.481> 351 26<35.7728 109 180 254.227> 372 32<489.444 554.799> 578 65<309.934 351.844> 606 58<240.5 319>
 VStem: 236 74<1.19188 86.1082> 451 78<9.3457 105.045> 559 69<266.322 369.531>
 DStem2: -48.8246 -282 18.5611 -282 0.241922 0.970296<429.974 652.378 694.783 898.292>
@@ -15347,7 +14944,7 @@ StartChar: f_hcircumflex.ld
 Encoding: 65592 -1 444
 Width: 664
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -282 36<-147 -60.5273> -5 43<529.003 552.481> 351 26<35.7728 109 180 254.227> 372 32<489.444 554.799> 578 65<309.934 351.844> 606 58<240.5 319>
 VStem: 236 74<1.19188 86.1082> 451 78<9.3457 105.045> 559 69<266.322 369.531>
 DStem2: -48.8246 -282 18.5611 -282 0.241922 0.970296<429.974 652.378 694.783 898.292>
@@ -15431,7 +15028,7 @@ StartChar: f_k.ld
 Encoding: 65593 -1 445
 Width: 609
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -282 36<-147 -60.5273> 0 21G<240.5 290 443 570.5> 351 26<35.7728 109 180 254.227> 368 40<474.304 562> 578 65<309.979 351.844> 606 58<240.5 319.5>
 VStem: 232 71<0 60.0556> 528 65<279.636 366.191>
 DStem2: -48.8246 -282 18.5611 -282 0.241922 0.970296<429.974 652.378 694.783 898.292>
@@ -15502,7 +15099,7 @@ StartChar: f_l.ld
 Encoding: 65594 -1 446
 Width: 437
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -282 36<-147 -60.5273> -16 73<252.503 344> 351 26<35.7728 109 180 254.227> 578 65<309.979 351.844> 606 58<240.5 319.5>
 VStem: 240 78<4.12744 88.606>
 DStem2: -48.8246 -282 18.5611 -282 0.241922 0.970296<429.974 652.378 694.783 898.292>
@@ -15559,7 +15156,7 @@ StartChar: f_f
 Encoding: 65595 -1 447
 Width: 452
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -223 36<-132 -45.5752 104 190.425> 351 26<35.7728 109 181 345 416 490.227> 611 53<261.214 356.704 476.5 565.9>
 DStem2: -34.1143 -223 33.2715 -223 0.241922 0.970296<365.206 591.572 634.218 795.625> 201.886 -223 269.271 -223 0.241922 0.970296<365.206 591.572 633.976 837.486>
 AnchorPoint: "r;k;x" 492 385 basechar 0
@@ -15620,7 +15217,7 @@ StartChar: f_f.ld
 Encoding: 65596 -1 448
 Width: 462
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -282 36<-147 -60.5273 89 175.473> 351 26<35.7728 109 181 345 416 490.227> 611 53<261 356.704 476.5 565.9>
 DStem2: -48.8246 -282 18.5611 -282 0.241922 0.970296<429.974 652.378 695.024 857.536> 187.175 -282 254.561 -282 0.241922 0.970296<429.974 652.378 694.783 898.292>
 AnchorPoint: "r;bl" 397 10 basechar 0
@@ -15680,7 +15277,7 @@ StartChar: f_f_b
 Encoding: 65597 -1 449
 Width: 875
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -223 36<-132 -45.5752 104 190.425> -13 33<549.5 647.841> 351 53<723.047 811.625> 351 26<35.7728 109 181 345 416 490.227> 578 63<556.167 588.486> 611 53<261 356.704 476.5 555.5>
 VStem: 467 86<13.5 103.738> 795 65<230.546 344.977>
 DStem2: -34.1143 -223 33.2715 -223 0.241922 0.970296<365.206 591.572 634.218 796.73> 201.886 -223 269.271 -223 0.241922 0.970296<365.206 591.572 633.976 837.486>
@@ -15764,7 +15361,7 @@ StartChar: f_f_h
 Encoding: 65598 -1 450
 Width: 890
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -223 36<-132 -45.5752 104 190.425> -5 43<755.003 778.481> 351 26<35.7728 109 181 345 416 490.227> 372 32<715.444 780.799> 578 65<545.933 588.702> 611 53<261 356.704 476.5 555>
 VStem: 462 74<1.19188 86.1082> 677 78<9.3457 105.045> 785 69<266.322 369.531>
 DStem2: -34.1143 -223 33.2715 -223 0.241922 0.970296<365.206 591.572 634.218 796.73> 201.886 -223 269.271 -223 0.241922 0.970296<365.206 591.572 633.976 837.486>
@@ -15855,7 +15452,7 @@ StartChar: f_f_hcircumflex
 Encoding: 65599 -1 451
 Width: 890
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -223 36<-132 -45.5752 104 190.425> -5 43<755.003 778.481> 351 26<35.7728 109 181 345 416 490.227> 372 32<715.444 780.799> 578 65<545.933 588.702> 611 53<261 356.704 476.5 555>
 VStem: 462 74<1.19188 86.1082> 677 78<9.3457 105.045> 785 69<266.322 369.531>
 DStem2: -34.1143 -223 33.2715 -223 0.241922 0.970296<365.206 591.572 634.218 796.73> 201.886 -223 269.271 -223 0.241922 0.970296<365.206 591.572 633.976 837.486>
@@ -15956,7 +15553,7 @@ StartChar: f_f_k
 Encoding: 65600 -1 452
 Width: 835
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -223 36<-132 -45.5752 104 190.425> 0 21G<466.5 516 669 796.5> 351 26<35.7728 109 181 345 416 490.227> 368 40<700.304 788> 578 65<545.933 588.702> 611 53<261 356.704 476.5 555>
 VStem: 458 71<0 60.0556> 754 65<279.636 366.191>
 DStem2: -34.1143 -223 33.2715 -223 0.241922 0.970296<365.206 591.572 634.218 796.73> 201.886 -223 269.271 -223 0.241922 0.970296<365.206 591.572 633.976 837.486>
@@ -16044,7 +15641,7 @@ StartChar: f_f_l
 Encoding: 64260 64260 453
 Width: 663
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -223 36<-132 -45.5752 104 190.425> -16 73<478.503 570> 351 26<35.7728 109 181 345 416 490.227> 578 65<545.933 588.702> 611 53<261 356.704 476.5 555>
 VStem: 466 78<4.12744 88.606>
 DStem2: -34.1143 -223 33.2715 -223 0.241922 0.970296<365.206 591.572 634.218 796.73> 201.886 -223 269.271 -223 0.241922 0.970296<365.206 591.572 633.976 837.486>
@@ -16117,7 +15714,7 @@ StartChar: f_i
 Encoding: 65601 -1 454
 Width: 454
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -223 36<-132 -45.5752> -13 66<273.544 359.5> 351 26<35.7728 109 181 334.923> 386 20G<404 422> 637 27<297.335 396.033>
 VStem: 261 80<6.25377 113.57> 348 83<287.873 387.309> 367 83<566.817 636.498>
 DStem2: -34.1143 -223 33.2715 -223 0.241922 0.970296<365.206 591.572 634.218 798.327>
@@ -16173,7 +15770,7 @@ StartChar: f_f_i
 Encoding: 65602 -1 455
 Width: 689
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -223 36<-132 -45.5752 103 189.425> -13 66<508.544 594.5> 351 26<35.7728 109 182 344 416 569.923> 386 20G<639 657> 637 27<302.954 375.217 537.188 631.033>
 VStem: 496 80<6.25377 113.57> 583 83<287.873 387.309> 602 83<566.817 636.498>
 DStem2: -34.1143 -223 33.2715 -223 0.241922 0.970296<365.206 591.572 634.46 787.24> 200.886 -223 268.271 -223 0.241922 0.970296<365.206 591.572 634.218 795.938>
@@ -16298,7 +15895,7 @@ StartChar: f_f_b.ld
 Encoding: 65603 -1 456
 Width: 875
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -282 36<-147 -60.5273 89 175.473> -13 33<549.5 647.841> 351 53<723.047 811.625> 351 26<35.7728 109 181 345 416 490.227> 578 63<556.167 588.486> 611 53<261 356.704 476.5 555.5>
 VStem: 467 86<13.5 103.738> 795 65<230.546 344.977>
 DStem2: -48.8246 -282 18.5611 -282 0.241922 0.970296<429.974 652.378 695.024 858.845> 187.175 -282 254.561 -282 0.241922 0.970296<429.974 652.378 694.783 898.292>
@@ -16380,7 +15977,7 @@ StartChar: f_f_h.ld
 Encoding: 65604 -1 457
 Width: 900
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -282 36<-147 -60.5273 89 175.473> -5 43<765.003 788.481> 351 26<35.7728 109 181 345 416 490.227> 372 32<725.444 790.799> 578 65<545.934 587.844> 611 53<261 356.704 476.5 555>
 VStem: 472 74<1.19188 86.1082> 687 78<9.3457 105.045> 795 69<266.322 369.531>
 DStem2: -48.8246 -282 18.5611 -282 0.241922 0.970296<429.974 652.378 695.024 858.845> 187.175 -282 254.561 -282 0.241922 0.970296<429.974 652.378 694.783 898.292>
@@ -16469,7 +16066,7 @@ StartChar: f_f_hcircumflex.ld
 Encoding: 65605 -1 458
 Width: 900
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -282 36<-147 -60.5273 89 175.473> -5 43<765.003 788.481> 351 26<35.7728 109 181 345 416 490.227> 372 32<725.444 790.799> 578 65<545.934 587.844> 611 53<261 356.704 476.5 555>
 VStem: 472 74<1.19188 86.1082> 687 78<9.3457 105.045> 795 69<266.322 369.531>
 DStem2: -48.8246 -282 18.5611 -282 0.241922 0.970296<429.974 652.378 695.024 858.845> 187.175 -282 254.561 -282 0.241922 0.970296<429.974 652.378 694.783 898.292>
@@ -16568,7 +16165,7 @@ StartChar: f_f_k.ld
 Encoding: 65606 -1 459
 Width: 845
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -282 36<-147 -60.5273 89 175.473> 0 21G<476.5 526 679 806.5> 351 26<35.7728 109 181 345 416 490.227> 368 40<710.304 798> 578 65<545.979 587.844> 611 53<261 356.704 476.5 555.5>
 VStem: 468 71<0 60.0556> 764 65<279.636 366.191>
 DStem2: -48.8246 -282 18.5611 -282 0.241922 0.970296<429.974 652.378 695.024 858.845> 187.175 -282 254.561 -282 0.241922 0.970296<429.974 652.378 694.783 898.292>
@@ -16654,7 +16251,7 @@ StartChar: f_f_l.ld
 Encoding: 65607 -1 460
 Width: 673
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -282 36<-147 -60.5273 89 175.473> -16 73<488.503 580> 351 26<35.7728 109 181 345 416 490.227> 578 65<545.979 587.844> 611 53<261 356.704 476.5 555.5>
 VStem: 476 78<4.12744 88.606>
 DStem2: -48.8246 -282 18.5611 -282 0.241922 0.970296<429.974 652.378 695.024 858.845> 187.175 -282 254.561 -282 0.241922 0.970296<429.974 652.378 694.783 898.292>
@@ -16726,7 +16323,7 @@ StartChar: f_f_i.ld
 Encoding: 65608 -1 461
 Width: 689
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -282 36<-147 -60.5273 88 174.473> -13 66<508.544 594.5> 351 26<35.7728 109 182 344 416 569.923> 386 20G<639 657> 637 27<302.954 375.217 537.188 631.033>
 VStem: 496 80<6.25377 113.57> 583 83<287.873 387.309> 602 83<566.817 636.498>
 DStem2: -48.8246 -282 18.5611 -282 0.241922 0.970296<429.974 652.378 695.266 848.046> 186.175 -282 253.561 -282 0.241922 0.970296<429.974 652.378 695.024 856.744>
@@ -16798,7 +16395,7 @@ StartChar: f_i.ld
 Encoding: 65609 -1 462
 Width: 454
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -282 36<-147 -60.5273> -13 66<273.544 359.5> 351 26<35.7728 109 181 334.923> 386 20G<404 422> 637 27<297.335 396.033>
 VStem: 261 80<6.25377 113.57> 348 83<287.873 387.309> 367 83<566.817 636.498>
 DStem2: -48.8246 -282 18.5611 -282 0.241922 0.970296<429.974 652.378 698.618 859.133>
@@ -16869,10 +16466,7 @@ StartChar: uni1E02
 Encoding: 7682 7682 465
 Width: 573
 VWidth: 0
-Flags: W
-HStem: 0 30<198.246 340.078> 307 23<263 354.228> 611 25<333.75 433.592> 731 87<376.44 451.56>
-VStem: 370 88<737.167 811.56> 435 88<106.626 253.692> 483 88<423.687 577.387>
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<78.7272 337.483 361.252 599.93>
+Flags: HW
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 513 10 basechar 0
 AnchorPoint: "r;o" 573 200 basechar 0
@@ -16893,9 +16487,7 @@ StartChar: uni1E03
 Encoding: 7683 7683 466
 Width: 438
 VWidth: 0
-Flags: W
-HStem: -13 33<112.5 210.841> 351 53<286.047 379> 644 20<235 291> 731 87<226.44 301.56>
-VStem: 30 86<13.5 103.738> 220 88<737.167 811.56> 358 65<230.546 344.977>
+Flags: HW
 AnchorPoint: "l;x" 55 385 basechar 0
 AnchorPoint: "r;bl" 398 10 basechar 0
 AnchorPoint: "r;o" 418 200 basechar 0
@@ -16913,10 +16505,7 @@ StartChar: uni1E0A
 Encoding: 7690 7690 467
 Width: 717
 VWidth: 0
-Flags: W
-HStem: 0 31<198.836 384.876> 608 28<330.355 494.74> 731 87<421.44 496.56>
-VStem: 415 88<737.167 811.56> 613 84<255.413 503.092>
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<80.5739 599.93>
+Flags: HW
 AnchorPoint: "r;hi" 657 610 basechar 0
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 637 10 basechar 0
@@ -16937,9 +16526,7 @@ StartChar: uni1E0B
 Encoding: 7691 7691 468
 Width: 419
 VWidth: 0
-Flags: W
-HStem: -13 46<67.6728 146.227> 365 39<183.878 281.944> 644 20<401 461> 731 87<396.44 471.56>
-VStem: 15 68<37.7702 188.667> 235 70<3.56555 118.281> 390 88<737.167 811.56>
+Flags: HW
 AnchorPoint: "r;k;x" 429 385 basechar 0
 AnchorPoint: "l;x" 40 385 basechar 0
 AnchorPoint: "r;bl" 409 10 basechar 0
@@ -16958,10 +16545,7 @@ StartChar: uni1E1E
 Encoding: 7710 7710 469
 Width: 533
 VWidth: 0
-Flags: W
-HStem: 0 21<32.5 278.5> 327 21<271.552 366.318> 609 27<334.005 515.526> 731 87<381.44 456.56>
-VStem: 375 88<737.167 811.56> 399 25<216.007 295.076>
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<77.7571 363.579 390.63 599.93>
+Flags: HW
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 453 10 basechar 0
 AnchorPoint: "r;o" 503 200 basechar 0
@@ -16982,10 +16566,7 @@ StartChar: uni1E1F
 Encoding: 7711 7711 470
 Width: 216
 VWidth: 0
-Flags: W
-HStem: -223 36<-132 -45.5752> 351 26<35.7728 109 180 254.227> 606 58<240.5 329.9> 731 87<256.44 331.56>
-VStem: 250 88<737.167 811.56>
-DStem2: -34.1143 -223 33.2715 -223 0.241922 0.970296<365.206 591.572 633.976 837.486>
+Flags: HW
 AnchorPoint: "r;k;x" 256 385 basechar 0
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 161 10 basechar 0
@@ -17008,10 +16589,7 @@ StartChar: uni1E22
 Encoding: 7714 7714 471
 Width: 789
 VWidth: 0
-Flags: W
-HStem: 0 21<27.5 272.5 433.5 678.5> 308 31<265 586> 616 20<155.5 408.5 571.5 814.5> 731 87<471.44 546.56>
-VStem: 465 88<737.167 811.56>
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<71.7844 338.696 370.468 599.688> 509.3 0 597.3 0 0.241922 0.970296<71.7851 317.406 349.179 599.93>
+Flags: HW
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 709 10 basechar 0
 AnchorPoint: "r;o" 749 200 basechar 0
@@ -17032,9 +16610,7 @@ StartChar: uni1E23
 Encoding: 7715 7715 472
 Width: 448
 VWidth: 0
-Flags: W
-HStem: -5 43<313.003 336.481> 372 32<273.444 338.799> 644 20<203.5 260> 731 87<195.44 270.56>
-VStem: 20 74<1.19188 86.1082> 189 88<737.167 811.56> 235 78<9.3457 105.045> 343 69<266.322 369.531>
+Flags: HW
 AnchorPoint: "l;x" 50 385 basechar 0
 AnchorPoint: "r;bl" 438 10 basechar 0
 AnchorPoint: "r;o" 448 200 basechar 0
@@ -17052,10 +16628,7 @@ StartChar: uni1E40
 Encoding: 7744 7744 473
 Width: 906
 VWidth: 0
-Flags: W
-HStem: 0 21<32.5 189.5 384 395.5 567.5 829.5> 613 23<231.136 310.738 844.417 919.819> 731 87<551.44 626.56>
-VStem: 30 112<8 59> 545 88<737.167 811.56>
-DStem2: 446 123 410 10 0.540758 0.841178<0 501.767>
+Flags: HW
 AnchorPoint: "l;x" 120 385 basechar 0
 AnchorPoint: "r;bl" 861 10 basechar 0
 AnchorPoint: "r;o" 881 200 basechar 0
@@ -17076,9 +16649,7 @@ StartChar: uni1E41
 Encoding: 7745 7745 474
 Width: 725
 VWidth: 0
-Flags: W
-HStem: -5 37<550.185 617.169> 352 52<599.02 661.499> 360 44<360.147 431.998> 373 26<117.97 206.498> 506 87<475.44 550.56>
-VStem: 20 23<232.02 295.578> 266 79<0.457081 64.3438> 400 74<293.005 386.288> 469 88<512.167 586.56> 512 76<8.27258 89.185> 628 77<278.584 383.96>
+Flags: HW
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 715 10 basechar 0
 AnchorPoint: "r;o" 725 200 basechar 0
@@ -17095,10 +16666,7 @@ StartChar: uni1E56
 Encoding: 7766 7766 475
 Width: 563
 VWidth: 0
-Flags: W
-HStem: 0 21<32.5 272.5> 611 25<330.431 440.407> 731 87<381.44 456.56>
-VStem: 375 88<737.167 811.56> 497 82<430.893 572.09>
-DStem2: 93.3004 0 181.3 0 0.241922 0.970296<71.7844 371.681 394.236 599.491>
+Flags: HW
 AnchorPoint: "l;x" 70 385 basechar 0
 AnchorPoint: "r;bl" 403 10 basechar 0
 AnchorPoint: "r;o" 443 200 basechar 0
@@ -17119,10 +16687,7 @@ StartChar: uni1E57
 Encoding: 7767 7767 476
 Width: 448
 VWidth: 0
-Flags: W
-HStem: -211 21<-53.5 183.5> -8 25<185.915 254.41> 367 37<248.077 371> 506 87<325.44 400.56>
-VStem: 194 62<440.448 478> 319 88<512.167 586.56> 364 69<174.09 343.208>
-DStem2: 14.5417 -211 82.582 -211 0.241922 0.970296<67.4564 250.85 377.128 558.907 561.02 612.153 655.252 714.91>
+Flags: HW
 AnchorPoint: "l;x" 35 385 basechar 0
 AnchorPoint: "r;bl" 408 10 basechar 0
 AnchorPoint: "r;x" 448 385 basechar 0
@@ -17144,10 +16709,7 @@ StartChar: uni1E57.ld
 Encoding: 65610 -1 477
 Width: 448
 VWidth: 0
-Flags: W
-HStem: -270 21<-69.5 167.5> -8 25<185.915 254.422> 367 37<248.077 371> 506 87<325.44 400.56>
-VStem: 194 62<440.448 478> 319 88<512.167 586.56> 364 69<174.194 343.208>
-DStem2: -1.45834 -270 66.582 -270 0.241922 0.970296<67.4564 311.968 438.246 620.026 622.138 670.874 736.711 776.028>
+Flags: HW
 AnchorPoint: "l;x" 35 385 basechar 0
 AnchorPoint: "r;bl" 408 10 basechar 0
 AnchorPoint: "r;x" 448 385 basechar 0
@@ -17168,9 +16730,7 @@ StartChar: uni1E60
 Encoding: 7776 7776 478
 Width: 479
 VWidth: 0
-Flags: W
-HStem: -17 33<163.938 284.503> 625 29<258.583 370.675> 731 87<296.44 371.56>
-VStem: 43 40<100.562 189.068> 118 79<443.943 566.175> 290 88<737.167 811.56> 355 82<92.3356 224.031> 449 24<483.154 528.699>
+Flags: HW
 AnchorPoint: "l;x" 40 385 basechar 0
 AnchorPoint: "r;bl" 459 10 basechar 0
 AnchorPoint: "r;o" 479 200 basechar 0
@@ -17191,9 +16751,7 @@ StartChar: uni1E61
 Encoding: 7777 7777 479
 Width: 272
 VWidth: 0
-Flags: W
-HStem: -13 34<43.5 139.932> 375 29<137.196 219.5> 506 87<175.44 250.56>
-VStem: 70 57<272.117 358.412> 150 59<41.8402 140.542> 169 88<512.167 586.56>
+Flags: HW
 AnchorPoint: "r;k;x" 282 385 basechar 0
 AnchorPoint: "l;x" 10 385 basechar 0
 AnchorPoint: "r;bl" 262 10 basechar 0
@@ -17210,10 +16768,7 @@ StartChar: uni1E6A
 Encoding: 7786 7786 480
 Width: 551
 VWidth: 0
-Flags: W
-HStem: 0 21<76.5 356.5> 602 34<111.901 317.999 419.868 596.996> 630 20<642 646.5> 731 87<361.44 436.56>
-VStem: 355 88<737.167 811.56> 650 21<493.446 508.66>
-DStem2: 178 73 269 75 0.278634 0.960397<5.30422 522.783>
+Flags: HW
 AnchorPoint: "l;x" 60 385 basechar 0
 AnchorPoint: "r;bl" 441 10 basechar 0
 AnchorPoint: "r;o" 501 200 basechar 0
@@ -17234,10 +16789,7 @@ StartChar: uni1E6B
 Encoding: 7787 7787 481
 Width: 275
 VWidth: 0
-Flags: W
-HStem: -13 46<49.5 137.403> 351 26<46.7728 119 191 259.227> 546 87<182.44 257.56>
-VStem: 25 74<3.01323 108.539> 153 70<447.37 494.709> 176 88<552.167 626.56>
-DStem2: 19.3784 -13 92.2446 -13 0.241922 0.970296<157.939 377.288 419.934 527.638>
+Flags: HW
 AnchorPoint: "l;x" 30 385 basechar 0
 AnchorPoint: "r;bl" 235 10 basechar 0
 AnchorPoint: "r;o" 255 200 basechar 0
@@ -17254,10 +16806,7 @@ StartChar: uni1E1F.ld
 Encoding: 65611 -1 482
 Width: 226
 VWidth: 0
-Flags: W
-HStem: -282 36<-147 -60.5273> 351 26<35.7728 109 180 254.227> 606 58<240.5 329.9> 731 87<256.44 331.56>
-VStem: 250 88<737.167 811.56>
-DStem2: -48.8246 -282 18.5611 -282 0.241922 0.970296<429.974 652.378 694.783 898.292>
+Flags: HW
 AnchorPoint: "r;k;x" 256 385 basechar 0
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 161 10 basechar 0
@@ -17279,9 +16828,7 @@ StartChar: uni1E1F.001
 Encoding: 65612 -1 483
 Width: 231
 VWidth: 0
-Flags: W
-HStem: -223 21<21.5 42.5> 351 26<35.7728 109 185 264.227> 606 58<235.5 324.9> 731 87<251.44 326.56>
-VStem: 9 50<-222.865 -120.582> 109 71<271.239 351 377 410.115> 245 88<737.167 811.56>
+Flags: HW
 AnchorPoint: "r;k;x" 271 385 basechar 0
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 166 10 basechar 0
@@ -17299,10 +16846,7 @@ StartChar: uni1E57.001
 Encoding: 65613 -1 484
 Width: 448
 VWidth: 0
-Flags: W
-HStem: -211 21<-43.5 183.5> -8 25<185.915 254.41> 367 37<248.077 371> 546 87<330.44 405.56>
-VStem: 194 62<440.448 478> 324 88<552.167 626.56> 364 69<174.09 343.208>
-DStem2: 14.5417 -211 82.582 -211 0.241922 0.970296<67.4564 250.85 377.128 558.907 561.02 612.153 655.252 714.91>
+Flags: HW
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 408 10 basechar 0
 AnchorPoint: "r;o" 448 200 basechar 0
@@ -17319,10 +16863,7 @@ StartChar: uni1E57.002
 Encoding: 65614 -1 485
 Width: 448
 VWidth: 0
-Flags: W
-HStem: -270 21<-59.5 167.5> -8 25<185.915 254.422> 367 37<248.077 371> 546 87<330.44 405.56>
-VStem: 194 62<440.448 478> 324 88<552.167 626.56> 364 69<174.194 343.208>
-DStem2: -1.45834 -270 66.582 -270 0.241922 0.970296<67.4564 311.968 438.246 620.026 622.138 670.874 736.711 776.028>
+Flags: HW
 AnchorPoint: "l;x" 20 385 basechar 0
 AnchorPoint: "r;bl" 408 10 basechar 0
 AnchorPoint: "r;o" 448 200 basechar 0
