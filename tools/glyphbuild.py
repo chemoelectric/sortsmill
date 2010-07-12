@@ -3567,6 +3567,7 @@ def remove_overlap(glyph):
     if glyph.selfIntersects():
         glyph.unlinkRef()
         glyph.removeOverlap()
+        glyph.round()
         glyph.autoHint()
 
 def build_multigraph(glyphname, components,
