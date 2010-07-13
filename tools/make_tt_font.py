@@ -26,6 +26,7 @@ THE SOFTWARE.
 
 import fontforge
 import os
+import psMat
 import re
 import subprocess
 import sys
@@ -60,6 +61,20 @@ def compile_graphite(gdl_file, input_file, output_file):
     # and 2; attachment may be needed'
     subprocess.call(['grcompiler', '-q', '-w3521', gdl_file, input_file, output_file])
 
+# follow_references() assumes there are no mixtures of contours and
+# references; thus, font.correctReferences() should have been run
+# before follow_references() is called.
+def follow_references(glyph):
+    f = glyph.font
+    leaves = []
+    for ref in glyph.references:
+        if len(f[ref[0]].references) != 0:
+            subrefs = follow_references(f[ref[0]])
+            leaves += [(r[0], psMat.compose(r[1], ref[1])) for r in subrefs]
+        else:
+            leaves.append(ref)
+    return leaves
+
 def generate_tt_font(f, unadorned_font_name, modifier,
                      output_dir = None,
                      emsize = None,
@@ -85,14 +100,11 @@ def generate_tt_font(f, unadorned_font_name, modifier,
         print('Generating ' + temp_ttf.name)
 
         # grcompiler (version 2.4) seems not to like nested
-        # references; it claims it can't compute the bounding box.
+        # references; it claims it can't compute the bounding box.  So
+        # we resolve nested references.
         for g in f.glyphs():
-            refs_to_unlink = set()
-            for ref in g.references:
-                if len(f[ref[0]].references) != 0:
-                    refs_to_unlink.add(ref[0])
-            for ref_name in refs_to_unlink:
-                g.unlinkRef(ref_name)
+            if len(g.references) != 0:
+                g.references = follow_references(g)
 
         f.generate(temp_ttf.name, flags = generation_flags)
         print('Compiling Graphite: ' + gdl_file + ' ' + temp_ttf.name + ' -> ' + ttf_file)
