@@ -1,0 +1,73 @@
+/*
+Copyright (c) 2010 Barry Schwartz
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
+
+//-------------------------------------------------------------------------
+
+#define FEATURE_LIGATURES 200
+#define FEATURE_LONG_DESCENDERS 201
+#define FEATURE_CONTEXTUAL_DESCENDERS 202
+
+// Do we want this one at all? Or something like it?
+#define FEATURE_ST_CEDILLA_STYLE 1000
+
+//-------------------------------------------------------------------------
+
+table(feature)
+
+    ligatures {
+        id = FEATURE_LIGATURES;
+        name.LG_USENG = string("Ligature Replacement");
+        default = standard;
+        settings {
+            turkish  { value = 2; name.LG_USENG = string("Turkish"); }
+            standard { value = 1; name.LG_USENG = string("Standard"); }
+            none     { value = 0; name.LG_USENG = string("Off"); }
+        }
+    }
+
+    long_descenders {
+        id = FEATURE_LONG_DESCENDERS;
+        name.LG_USENG = string("Long descenders");
+        default = false;
+    }
+
+    contextual_descenders {
+        id = FEATURE_CONTEXTUAL_DESCENDERS;
+        name.LG_USENG = string("Contextual modification of descenders");
+        default = true;
+    }
+
+    // Do we really want this one? I'm just blindly translating the
+    // Diacritics Project's recommendations for Romanian "locl" in OpenType.
+    st_cedilla_style {
+        id = FEATURE_ST_CEDILLA_STYLE;
+        name.LG_USENG = string("Cedilla style for s and t");
+        default = cedilla;
+        settings {
+            comma_accent { value = 1; name.LG_USENG = string("Comma accent"); }
+            cedilla      { value = 0; name.LG_USENG = string("Cedilla"); }
+        }
+    }
+
+endtable
+
+//-------------------------------------------------------------------------

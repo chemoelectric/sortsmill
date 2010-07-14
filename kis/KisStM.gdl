@@ -23,12 +23,7 @@ THE SOFTWARE.
 //-------------------------------------------------------------------------
 
 #include "stddef.gdh"
-
-#define FEATURE_LIGATURES 200
-#define FEATURE_LONG_DESCENDERS 201
-
-// Do we want this one at all? Or something like it?
-#define FEATURE_ST_CEDILLA_STYLE 1000
+#include "KisStM_features.gdh"
 
 Bidi = false;
 
@@ -70,45 +65,6 @@ endtable
 
 //-------------------------------------------------------------------------
 
-table(feature)
-
-    ligatures {
-        id = FEATURE_LIGATURES;
-        name.LG_USENG = string("Ligature Replacement");
-        default = standard;
-        settings {
-            turkish  { value = 2; name.LG_USENG = string("Turkish"); }
-            standard { value = 1; name.LG_USENG = string("Standard"); }
-            none     { value = 0; name.LG_USENG = string("Off"); }
-        }
-    }
-
-    long_descenders {
-        id = FEATURE_LONG_DESCENDERS;
-        name.LG_USENG = string("Long descenders");
-        default = off;
-        settings {
-            on  { value = 1; name.LG_USENG = string("On"); }
-            off { value = 0; name.LG_USENG = string("Off"); }
-        }
-    }
-
-    // Do we really want this one? I'm just blindly translating the
-    // Diacritics Project's recommendations for Romanian "locl" in OpenType.
-    st_cedilla_style {
-        id = FEATURE_ST_CEDILLA_STYLE;
-        name.LG_USENG = string("Cedilla style for s and t");
-        default = cedilla;
-        settings {
-            comma_accent { value = 1; name.LG_USENG = string("Comma accent"); }
-            cedilla      { value = 0; name.LG_USENG = string("Cedilla"); }
-        }
-    }
-
-endtable
-
-//-------------------------------------------------------------------------
-
 table(substitution)
 
     pass(1)
@@ -118,7 +74,7 @@ table(substitution)
         if (st_cedilla_style == comma_accent)
             cls_st_cedilla > cls_st_commaaccent;
         endif
-        if (long_descenders == on)
+        if (long_descenders)
             cls_short_descenders > cls_long_descenders;
         endif
     endpass

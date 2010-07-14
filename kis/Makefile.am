@@ -30,6 +30,9 @@ FONTS = KisStM KisStM-Italic KisStM-Bold
 FEA_KisStM = main locl desc liga generated_kerning
 FEA_KisStM_Italic = main locl desc calt liga generated_kerning
 FEA_KisStM_Bold = main locl desc generated_kerning
+GDL_KisStM = KisStM.gdl KisStM_generated_kerning.gdl KisStM_features.gdh
+GDL_KisStM_Italic = KisStM-Italic.gdl KisStM-Italic_generated_kerning.gdl KisStM_features.gdh
+GDL_KisStM_Bold =
 
 fonts_DATA = $(call expand_fonts, ${FONTS})
 
@@ -39,7 +42,17 @@ EXTRA_DIST = \
 	$(addsuffix _build.py, ${FONTS}) \
 	${FEA_KisStM:%=KisStM_%.fea} \
 	${FEA_KisStM_Italic:%=KisStM-Italic_%.fea} \
-	${FEA_KisStM_Bold:%=KisStM-Bold_%.fea}
+	${FEA_KisStM_Bold:%=KisStM-Bold_%.fea} \
+	${GDL_KisStM} \
+	${GDL_KisStM_Italic} \
+	${GDL_KisStM_Bold}
+
+KisStM.otf OFLKisStM.otf: ${FEA_KisStM:%=KisStM_%.fea}
+KisStMTT.ttf OFLKisStMTT.ttf: ${FEA_KisStM:%=KisStM_%.fea} ${GDL_KisStM}
+KisStM-Italic.otf OFLKisStM-Italic.otf: ${FEA_KisStM:%=KisStM-Italic_%.fea}
+KisStMTT-Italic.ttf OFLKisStMTT-Italic.ttf: ${FEA_KisStM_Italic:%=KisStM-Italic_%.fea} ${GDL_KisStM_Italic}
+KisStM-Bold.otf OFLKisStM-Bold.otf: ${FEA_KisStM:%=KisStM-Bold_%.fea}
+KisStMTT-Bold.ttf OFLKisStMTT-Bold.ttf: ${FEA_KisStM_Bold:%=KisStM-Bold_%.fea} ${GDL_KisStM_Bold}
 
 MOSTLYCLEANFILES = ${fonts_DATA} gdlerr.txt
 

@@ -23,12 +23,7 @@ THE SOFTWARE.
 //-------------------------------------------------------------------------
 
 #include "stddef.gdh"
-
-#define FEATURE_LIGATURES 200
-#define FEATURE_LONG_DESCENDERS 201
-
-// Do we want this one at all? Or something like it?
-#define FEATURE_ST_CEDILLA_STYLE 1000
+#include "KisStM_features.gdh"
 
 Bidi = false;
 
@@ -68,44 +63,35 @@ table(glyph)
     cls_st_cedilla = postscript("scedilla", "uni0163")
     cls_st_commaaccent = postscript("uni0219", "uni021B")
 
-endtable
+    cls_g_short = postscript("g", "gcircumflex", "gbreve", "gdotaccent", "gcommaaccent")
+    cls_g_long = postscript("g.ld", "gcircumflex.ld", "gbreve.ld", "gdotaccent.ld", "gcommaaccent.ld")
 
-//-------------------------------------------------------------------------
+    cls_ogoneks = postscript("aogonek", "iogonek", "iogonek.dotless", "uogonek")
 
-table(feature)
+    cls_f_short = postscript("f", "uni1E1F")
+    cls_f_short_new = postscript("f.001", "uni1E1F.001")
+    cls_f_long = postscript("f.ld", "uni1E1F.ld")
+    cls_f_long_new = postscript("f.001", "uni1E1F.001")
 
-    ligatures {
-        id = FEATURE_LIGATURES;
-        name.LG_USENG = string("Ligature Replacement");
-        default = standard;
-        settings {
-            turkish  { value = 2; name.LG_USENG = string("Turkish"); }
-            standard { value = 1; name.LG_USENG = string("Standard"); }
-            none     { value = 0; name.LG_USENG = string("Off"); }
-        }
-    }
+    cls_j_short = postscript("j", "jcircumflex", "uni0237")
+    cls_j_short_new = postscript("j.001", "jcircumflex.001", "uni0237.001")
+    cls_j_long = postscript("j.ld", "jcircumflex.ld", "uni0237.ld")
+    cls_j_long_new = postscript("j.002", "jcircumflex.002", "uni0237.002")
 
-    long_descenders {
-        id = FEATURE_LONG_DESCENDERS;
-        name.LG_USENG = string("Long descenders");
-        default = off;
-        settings {
-            on  { value = 1; name.LG_USENG = string("On"); }
-            off { value = 0; name.LG_USENG = string("Off"); }
-        }
-    }
+    cls_p_short = postscript("p", "thorn", "uni1E57")
+    cls_p_short_new = postscript("p.001", "thorn.001", "uni1E57.001")
+    cls_p_long = postscript("p.ld", "thorn.ld", "uni1E57.ld")
+    cls_p_long_new = postscript("p.002", "thorn.002", "uni1E57.002")
 
-    // Do we really want this one? I'm just blindly translating the
-    // Diacritics Project's recommendations for Romanian "locl" in OpenType.
-    st_cedilla_style {
-        id = FEATURE_ST_CEDILLA_STYLE;
-        name.LG_USENG = string("Cedilla style for s and t");
-        default = cedilla;
-        settings {
-            comma_accent { value = 1; name.LG_USENG = string("Comma accent"); }
-            cedilla      { value = 0; name.LG_USENG = string("Cedilla"); }
-        }
-    }
+    cls_y_long = postscript("y.ld", "yacute.ld", "ydieresis.ld", "ycircumflex.ld")
+    cls_y_long_new = postscript("y.001", "yacute.001", "ydieresis.001", "ycircumflex.001")
+
+    cls_pre_calt_short = (cls_g_short, cls_ogoneks);
+    cls_pre_calt_long = (cls_g_long, cls_ogoneks);
+    cls_calt_short = (cls_f_short, cls_j_short, cls_p_short)
+    cls_calt_long = (cls_f_long, cls_j_long, cls_p_long, cls_y_long)
+    cls_calt_short_new = (cls_f_short_new, cls_j_short_new, cls_p_short_new)
+    cls_calt_long_new = (cls_f_long_new, cls_j_long_new, cls_p_long_new, cls_y_long_new)
 
 endtable
 
@@ -120,12 +106,19 @@ table(substitution)
         if (st_cedilla_style == comma_accent)
             cls_st_cedilla > cls_st_commaaccent;
         endif
-        if (long_descenders == on)
+        if (long_descenders)
             cls_short_descenders > cls_long_descenders;
         endif
     endpass
 
     pass(2)
+        if (contextual_descenders)
+            cls_calt_short > cls_calt_short_new / cls_pre_calt_short _;
+            cls_calt_long > cls_calt_long_new / cls_pre_calt_long _;
+        endif
+    endpass
+
+    pass(3)
         if (ligatures == standard || ligatures == turkish)
             gly_f gly_f cls_fflig_right > _ _ cls_fflig:(1, 2, 3);
             gly_f cls_flig_right > _ cls_flig:(1, 2);
