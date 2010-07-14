@@ -51,8 +51,8 @@ KisStM.otf OFLKisStM.otf: ${FEA_KisStM:%=KisStM_%.fea}
 KisStMTT.ttf OFLKisStMTT.ttf: ${FEA_KisStM:%=KisStM_%.fea} ${GDL_KisStM}
 KisStM-Italic.otf OFLKisStM-Italic.otf: ${FEA_KisStM:%=KisStM-Italic_%.fea}
 KisStMTT-Italic.ttf OFLKisStMTT-Italic.ttf: ${FEA_KisStM_Italic:%=KisStM-Italic_%.fea} ${GDL_KisStM_Italic}
-KisStM-Bold.otf OFLKisStM-Bold.otf: ${FEA_KisStM:%=KisStM-Bold_%.fea}
-KisStMTT-Bold.ttf OFLKisStMTT-Bold.ttf: ${FEA_KisStM_Bold:%=KisStM-Bold_%.fea} ${GDL_KisStM_Bold}
+#KisStM-Bold.otf OFLKisStM-Bold.otf: ${FEA_KisStM:%=KisStM-Bold_%.fea}
+#KisStMTT-Bold.ttf OFLKisStMTT-Bold.ttf: ${FEA_KisStM_Bold:%=KisStM-Bold_%.fea} ${GDL_KisStM_Bold}
 
 MOSTLYCLEANFILES = ${fonts_DATA} gdlerr.txt
 
