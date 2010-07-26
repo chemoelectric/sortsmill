@@ -47,7 +47,7 @@ def remove_glyph(glyph):
 
 #--------------------------------------------------------------------------
 
-parser = optparse.OptionParser(usage='\n    %prog FONTNAME...\n    %prog [OPTIONS] FONTNAME...')
+parser = optparse.OptionParser(usage='%prog [OPTIONS] FONTNAME...')
 parser.set_defaults(licensing_inferred=False)
 parser.add_option('-C', '--input-directory', dest='input_dir', metavar='DIR',
                   help='where to read source files')
