@@ -1,0 +1,89 @@
+#!/usr/bin/env python
+
+# An aid for making eot fonts that might work in IE, which doesn't
+# like long font names and isn't fixable by the users community. The
+# "fixes" this program does are rough, which probably is okay, because
+# the eot fonts are going to be used in @font-face rather than
+# installed.
+
+"""
+Copyright (c) 2010 Barry Schwartz
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+"""
+
+#--------------------------------------------------------------------------
+
+import fontforge
+import optparse
+import os
+import subprocess
+import tempfile
+
+#--------------------------------------------------------------------------
+
+def make_eot(filename, eot_filename):
+    p = subprocess.Popen('ttf2eot ' + filename + ' > ' + eot_filename,
+                         shell = True)
+    os.waitpid(p.pid, 0)
+
+#--------------------------------------------------------------------------
+
+parser = optparse.OptionParser(usage='%prog [OPTIONS] FONT...')
+parser.set_defaults(no_hints = False)
+parser.add_option('-n', '--name', dest='new_name', metavar='NAME',
+                  help='new font name')
+parser.add_option('--no-hints', '--no-instructions',
+                  dest='no_hints', action='store_true',
+                  help='leave instructions out of the eot font')
+(options, args) = parser.parse_args()
+
+new_name = options.new_name
+no_hints = options.no_hints
+
+generation_flags = ['opentype']
+if no_hints:
+    generation_flags.append('omit-instructions')
+
+for filename in args:
+
+    eot_filename = os.path.splitext(filename)[0] + '.eot'
+
+    if new_name is None:
+        make_eot(filename, eot_filename)
+
+    else:
+        temp_ttf = tempfile.NamedTemporaryFile(suffix = '.ttf')
+        f = fontforge.open(filename)
+        f.fontname = new_name
+        f.familyname = new_name
+        f.fullname = new_name
+        new_sfnt_names = []
+        for name in f.sfnt_names:
+            if name[1] not in ('Family', 'SubFamily', 'Fullname',
+                               'Preferred Family', 'Preferred Styles',
+                               'WWS Family', 'WWS Subfamily'):
+                new_sfnt_names.append(name)
+        f.sfnt_names = new_sfnt_names
+        f.generate(temp_ttf.name, flags = generation_flags)
+        f.close()
+        make_eot(temp_ttf.name, eot_filename)
+        temp_ttf.close()
+
+#--------------------------------------------------------------------------

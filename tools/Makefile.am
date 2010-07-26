@@ -26,7 +26,7 @@ sortsmillmodule_PYTHON = __init__.py cap_spacing.py glyphbuild.py		\
     loadbuild.py persistent_data.py tools.py font_db.py licensing.py	\
     make_tt_font.py readfeatures.py spacing_by_anchors.py
 
-dist_bin_SCRIPTS = make-fonts
+dist_bin_SCRIPTS = make-fonts make-eot
 
 ChangeLog::
 	hg log --style=changelog --only-branch=default "${top_srcdir}" > $@ 
