@@ -63,7 +63,7 @@ if no_hints:
 
 for filename in args:
 
-    eot_filename = os.path.splitext(filename)[0] + '.eot'
+    eot_filename = os.path.splitext(os.path.basename(filename))[0] + '.eot'
 
     if new_name is None:
         make_eot(filename, eot_filename)
