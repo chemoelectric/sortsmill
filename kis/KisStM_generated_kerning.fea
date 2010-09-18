@@ -6,26 +6,27 @@ feature kern {
      \asterisk \backslash \breve \brokenbar \bullet \caron 
      \cedilla \cent \circumflex \colon \comma \copyright 
      \currency \dagger \daggerdbl \degree \dieresis \divide 
-     \dollar \dotaccent \eight \ellipsis \emdash \endash 
-     \equal \exclam \exclamdown \five \four \fraction 
-     \grave \gravecomb \gravecomb.cap \greater \guillemotleft \guillemotright 
-     \guilsinglleft \guilsinglright \hungarumlaut \hyphen \less \logicalnot 
-     \macron \minus \minute \multiply \nine \numbersign 
-     \one \paragraph \parenleft \parenright \percent \period 
-     \periodcentered \plus \plusminus \question \questiondown \quotedbl 
-     \quotedblbase \quotedblleft \quotedblright \quoteleft \quotereversed \quoteright 
-     \quotesinglbase \quotesingle \registered \ring \second \section 
-     \semicolon \seven \six \slash \space \sterling 
-     \three \tilde \tildecomb \tildecomb.cap \two \underscore 
-     \uni00A0 \uni00AD \uni02BB \uni02C0 \uni02C8 \uni0302 
-     \uni0302.ascend \uni0302.cap \uni0304 \uni0304.cap \uni0306 \uni0306.cap 
-     \uni0307 \uni0307.cap \uni0308 \uni0308.cap \uni0308.narrow \uni030A 
-     \uni030A.cap \uni030B \uni030B.cap \uni030C \uni030C.cap \uni0312 
-     \uni0315 \uni0326 \uni0327 \uni2000 \uni2001 \uni2002 
-     \uni2003 \uni2004 \uni2005 \uni2006 \uni2007 \uni2008 
-     \uni2009 \uni200A \uni200B \uni2010 \uni2011 \uni201F 
-     \uni202F \uni203E \uni2053 \uni205F \uni2060 \uniFEFF 
-     \zero];
+     \dollar \dotaccent \eight \eight.lining \ellipsis \emdash 
+     \endash \equal \exclam \exclamdown \five \five.lining 
+     \four \four.lining \fraction \grave \gravecomb \gravecomb.cap 
+     \greater \guillemotleft \guillemotright \guilsinglleft \guilsinglright \hungarumlaut 
+     \hyphen \less \logicalnot \macron \minus \minute 
+     \multiply \nine \nine.lining \numbersign \one \one.lining 
+     \paragraph \parenleft \parenright \percent \period \periodcentered 
+     \plus \plusminus \question \questiondown \quotedbl \quotedblbase 
+     \quotedblleft \quotedblright \quoteleft \quotereversed \quoteright \quotesinglbase 
+     \quotesingle \registered \ring \second \section \semicolon 
+     \seven \seven.lining \six \six.lining \slash \space 
+     \sterling \three \three.lining \tilde \tildecomb \tildecomb.cap 
+     \two \two.lining \underscore \uni00A0 \uni00AD \uni02BB 
+     \uni02C0 \uni02C8 \uni0302 \uni0302.ascend \uni0302.cap \uni0304 
+     \uni0304.cap \uni0306 \uni0306.cap \uni0307 \uni0307.cap \uni0308 
+     \uni0308.cap \uni0308.narrow \uni030A \uni030A.cap \uni030B \uni030B.cap 
+     \uni030C \uni030C.cap \uni0312 \uni0315 \uni0326 \uni0327 
+     \uni2000 \uni2001 \uni2002 \uni2003 \uni2004 \uni2005 
+     \uni2006 \uni2007 \uni2008 \uni2009 \uni200A \uni200B 
+     \uni2010 \uni2011 \uni201F \uni202F \uni203E \uni2053 
+     \uni205F \uni2060 \uniFEFF \zero \zero.lining];
 @r1_f_b = [\f_b \f_f_b];
 @r1_f_f_i = [\f_f_i \f_i];
 @r1_braceleft = [\braceleft \bracketleft];
@@ -124,42 +125,43 @@ feature kern {
      \d.sc \dagger \daggerdbl \dcaron.sc \dcroat.sc \degree 
      \dieresis \divide \dollar \dotaccent \e.sc \eacute.sc 
      \ebreve.sc \ecaron.sc \ecircumflex.sc \edieresis.sc \edotaccent.sc \egrave.sc 
-     \eight \ellipsis \emacron.sc \emdash \endash \eng.sc 
-     \eogonek.sc \equal \eth.sc \exclam \exclamdown \f.sc 
-     \five \four \fraction \g.sc \gbreve.sc \gcircumflex.sc 
-     \gcommaaccent.sc \gdotaccent.sc \grave \gravecomb \gravecomb.cap \greater 
-     \guillemotleft \guillemotright \guilsinglleft \guilsinglright \h.sc \hbar.sc 
-     \hcircumflex.sc \hungarumlaut \hyphen \i.TRK.sc \i.sc \iacute.sc 
-     \ibreve.sc \icircumflex.sc \idieresis.sc \igrave.sc \imacron.sc \iogonek.sc 
-     \itilde.sc \j.sc \jcircumflex.sc \k.sc \kcommaaccent.sc \l.sc 
-     \lacute.sc \lcaron.sc \lcommaaccent.sc \ldot.sc \less \logicalnot 
-     \lslash.sc \m.sc \macron \minus \minute \multiply 
-     \n.sc \nacute.sc \ncaron.sc \ncommaaccent.sc \nine \ntilde.sc 
-     \numbersign \o.sc \oacute.sc \obreve.sc \ocircumflex.sc \odieresis.sc 
-     \oe.sc \ograve.sc \ohungarumlaut.sc \omacron.sc \one \ordfeminine 
-     \ordmasculine \oslash.sc \otilde.sc \p.sc \paragraph \parenleft 
-     \parenright \percent \period \periodcentered \periodcentered.c2 \periodcentered.sc 
-     \plus \plusminus \q.sc \question \questiondown \quotedbl 
-     \quotedblbase \quotedblleft \quotedblright \quoteleft \quotereversed \quoteright 
-     \quotesinglbase \quotesingle \r.sc \racute.sc \rcaron.sc \rcommaaccent.sc 
-     \registered \ring \s.sc \sacute.sc \scaron.sc \scedilla.sc 
-     \scircumflex.sc \second \section \semicolon \seven \six 
-     \slash \space \sterling \t.sc \tbar.sc \tcaron.sc 
-     \thorn.sc \three \tilde \tildecomb \tildecomb.cap \two 
-     \u.sc \uacute.sc \ubreve.sc \ucircumflex.sc \udieresis.sc \ugrave.sc 
-     \uhungarumlaut.sc \umacron.sc \underscore \uni00A0 \uni00AD \uni0162.c2 
-     \uni0163.sc \uni0218.c2 \uni0219.sc \uni021A.c2 \uni021B.sc \uni02BB 
-     \uni02C0 \uni02C8 \uni0302 \uni0302.ascend \uni0302.cap \uni0304 
-     \uni0304.cap \uni0306 \uni0306.cap \uni0307 \uni0307.cap \uni0308 
-     \uni0308.cap \uni0308.narrow \uni030A \uni030A.cap \uni030B \uni030B.cap 
-     \uni030C \uni030C.cap \uni0312 \uni0315 \uni0326 \uni0327 
-     \uni2000 \uni2001 \uni2002 \uni2003 \uni2004 \uni2005 
-     \uni2006 \uni2007 \uni2008 \uni2009 \uni200A \uni200B 
-     \uni2010 \uni2011 \uni201F \uni202F \uni203E \uni2053 
-     \uni205F \uni2060 \uniFEFF \uogonek.sc \uring.sc \utilde.sc 
-     \v.sc \w.sc \wcircumflex.sc \x.sc \y.sc \yacute.sc 
-     \ycircumflex.sc \ydieresis.sc \z.sc \zacute.sc \zcaron.sc \zdotaccent.sc 
-     \zero];
+     \eight \eight.lining \ellipsis \emacron.sc \emdash \endash 
+     \eng.sc \eogonek.sc \equal \eth.sc \exclam \exclamdown 
+     \f.sc \five \five.lining \four \four.lining \fraction 
+     \g.sc \gbreve.sc \gcircumflex.sc \gcommaaccent.sc \gdotaccent.sc \grave 
+     \gravecomb \gravecomb.cap \greater \guillemotleft \guillemotright \guilsinglleft 
+     \guilsinglright \h.sc \hbar.sc \hcircumflex.sc \hungarumlaut \hyphen 
+     \i.TRK.sc \i.sc \iacute.sc \ibreve.sc \icircumflex.sc \idieresis.sc 
+     \igrave.sc \imacron.sc \iogonek.sc \itilde.sc \j.sc \jcircumflex.sc 
+     \k.sc \kcommaaccent.sc \l.sc \lacute.sc \lcaron.sc \lcommaaccent.sc 
+     \ldot.sc \less \logicalnot \lslash.sc \m.sc \macron 
+     \minus \minute \multiply \n.sc \nacute.sc \ncaron.sc 
+     \ncommaaccent.sc \nine \nine.lining \ntilde.sc \numbersign \o.sc 
+     \oacute.sc \obreve.sc \ocircumflex.sc \odieresis.sc \oe.sc \ograve.sc 
+     \ohungarumlaut.sc \omacron.sc \one \one.lining \ordfeminine \ordmasculine 
+     \oslash.sc \otilde.sc \p.sc \paragraph \parenleft \parenright 
+     \percent \period \periodcentered \periodcentered.c2 \periodcentered.sc \plus 
+     \plusminus \q.sc \question \questiondown \quotedbl \quotedblbase 
+     \quotedblleft \quotedblright \quoteleft \quotereversed \quoteright \quotesinglbase 
+     \quotesingle \r.sc \racute.sc \rcaron.sc \rcommaaccent.sc \registered 
+     \ring \s.sc \sacute.sc \scaron.sc \scedilla.sc \scircumflex.sc 
+     \second \section \semicolon \seven \seven.lining \six 
+     \six.lining \slash \space \sterling \t.sc \tbar.sc 
+     \tcaron.sc \thorn.sc \three \three.lining \tilde \tildecomb 
+     \tildecomb.cap \two \two.lining \u.sc \uacute.sc \ubreve.sc 
+     \ucircumflex.sc \udieresis.sc \ugrave.sc \uhungarumlaut.sc \umacron.sc \underscore 
+     \uni00A0 \uni00AD \uni0162.c2 \uni0163.sc \uni0218.c2 \uni0219.sc 
+     \uni021A.c2 \uni021B.sc \uni02BB \uni02C0 \uni02C8 \uni0302 
+     \uni0302.ascend \uni0302.cap \uni0304 \uni0304.cap \uni0306 \uni0306.cap 
+     \uni0307 \uni0307.cap \uni0308 \uni0308.cap \uni0308.narrow \uni030A 
+     \uni030A.cap \uni030B \uni030B.cap \uni030C \uni030C.cap \uni0312 
+     \uni0315 \uni0326 \uni0327 \uni2000 \uni2001 \uni2002 
+     \uni2003 \uni2004 \uni2005 \uni2006 \uni2007 \uni2008 
+     \uni2009 \uni200A \uni200B \uni2010 \uni2011 \uni201F 
+     \uni202F \uni203E \uni2053 \uni205F \uni2060 \uniFEFF 
+     \uogonek.sc \uring.sc \utilde.sc \v.sc \w.sc \wcircumflex.sc 
+     \x.sc \y.sc \yacute.sc \ycircumflex.sc \ydieresis.sc \z.sc 
+     \zacute.sc \zcaron.sc \zdotaccent.sc \zero \zero.lining];
 @l1_J = [\J \Jcircumflex];
 
 @r2_IJ = [\IJ \J \Jcircumflex];
@@ -266,41 +268,43 @@ feature kern {
      \copyright \currency \d.sc \dagger \daggerdbl \dcaron.sc 
      \dcroat.sc \degree \dieresis \divide \dollar \dotaccent 
      \e.sc \eacute.sc \ebreve.sc \ecaron.sc \ecircumflex.sc \edieresis.sc 
-     \edotaccent.sc \egrave.sc \eight \ellipsis \emacron.sc \emdash 
-     \endash \eng.sc \eogonek.sc \equal \eth.sc \exclam 
-     \exclamdown \f.sc \five \four \fraction \g.sc 
-     \gbreve.sc \gcircumflex.sc \gcommaaccent.sc \gdotaccent.sc \grave \gravecomb 
-     \gravecomb.cap \greater \guillemotleft \guillemotright \guilsinglleft \guilsinglright 
-     \h.sc \hbar.sc \hcircumflex.sc \hungarumlaut \hyphen \i.TRK.sc 
-     \i.sc \iacute.sc \ibreve.sc \icircumflex.sc \idieresis.sc \igrave.sc 
-     \imacron.sc \iogonek.sc \itilde.sc \j.sc \jcircumflex.sc \k.sc 
-     \kcommaaccent.sc \l.sc \lacute.sc \lcaron.sc \lcommaaccent.sc \ldot.sc 
-     \less \logicalnot \lslash.sc \m.sc \macron \minus 
-     \minute \multiply \n.sc \nacute.sc \ncaron.sc \ncommaaccent.sc 
-     \nine \ntilde.sc \numbersign \o.sc \oacute.sc \obreve.sc 
-     \ocircumflex.sc \odieresis.sc \oe.sc \ograve.sc \ohungarumlaut.sc \omacron.sc 
-     \one \ordfeminine \ordmasculine \oslash.sc \otilde.sc \p.sc 
-     \paragraph \parenleft \parenright \percent \period \periodcentered 
-     \periodcentered.sc \plus \plusminus \q.sc \question \questiondown 
-     \quotedbl \quotedblbase \quotedblleft \quotedblright \quoteleft \quotereversed 
-     \quoteright \quotesinglbase \quotesingle \r.sc \racute.sc \rcaron.sc 
-     \rcommaaccent.sc \registered \ring \s.sc \sacute.sc \scaron.sc 
-     \scedilla.sc \scircumflex.sc \second \section \semicolon \seven 
-     \six \slash \space \sterling \t.sc \tbar.sc 
-     \tcaron.sc \thorn.sc \three \tilde \tildecomb \tildecomb.cap 
-     \two \u.sc \uacute.sc \ubreve.sc \ucircumflex.sc \udieresis.sc 
-     \ugrave.sc \uhungarumlaut.sc \umacron.sc \underscore \uni00A0 \uni00AD 
-     \uni0163.sc \uni0219.sc \uni021B.sc \uni02BB \uni02C0 \uni02C8 
-     \uni0302 \uni0302.ascend \uni0302.cap \uni0304 \uni0304.cap \uni0306 
-     \uni0306.cap \uni0307 \uni0307.cap \uni0308 \uni0308.cap \uni0308.narrow 
-     \uni030A \uni030A.cap \uni030B \uni030B.cap \uni030C \uni030C.cap 
-     \uni0312 \uni0315 \uni0326 \uni0327 \uni2000 \uni2001 
-     \uni2002 \uni2003 \uni2004 \uni2005 \uni2006 \uni2007 
-     \uni2008 \uni2009 \uni200A \uni200B \uni2010 \uni2011 
-     \uni201F \uni202F \uni203E \uni2053 \uni205F \uni2060 
-     \uniFEFF \uogonek.sc \uring.sc \utilde.sc \v.sc \w.sc 
-     \wcircumflex.sc \x.sc \y.sc \yacute.sc \ycircumflex.sc \ydieresis.sc 
-     \z.sc \zacute.sc \zcaron.sc \zdotaccent.sc \zero];
+     \edotaccent.sc \egrave.sc \eight \eight.lining \ellipsis \emacron.sc 
+     \emdash \endash \eng.sc \eogonek.sc \equal \eth.sc 
+     \exclam \exclamdown \f.sc \five \five.lining \four 
+     \four.lining \fraction \g.sc \gbreve.sc \gcircumflex.sc \gcommaaccent.sc 
+     \gdotaccent.sc \grave \gravecomb \gravecomb.cap \greater \guillemotleft 
+     \guillemotright \guilsinglleft \guilsinglright \h.sc \hbar.sc \hcircumflex.sc 
+     \hungarumlaut \hyphen \i.TRK.sc \i.sc \iacute.sc \ibreve.sc 
+     \icircumflex.sc \idieresis.sc \igrave.sc \imacron.sc \iogonek.sc \itilde.sc 
+     \j.sc \jcircumflex.sc \k.sc \kcommaaccent.sc \l.sc \lacute.sc 
+     \lcaron.sc \lcommaaccent.sc \ldot.sc \less \logicalnot \lslash.sc 
+     \m.sc \macron \minus \minute \multiply \n.sc 
+     \nacute.sc \ncaron.sc \ncommaaccent.sc \nine \nine.lining \ntilde.sc 
+     \numbersign \o.sc \oacute.sc \obreve.sc \ocircumflex.sc \odieresis.sc 
+     \oe.sc \ograve.sc \ohungarumlaut.sc \omacron.sc \one \one.lining 
+     \ordfeminine \ordmasculine \oslash.sc \otilde.sc \p.sc \paragraph 
+     \parenleft \parenright \percent \period \periodcentered \periodcentered.sc 
+     \plus \plusminus \q.sc \question \questiondown \quotedbl 
+     \quotedblbase \quotedblleft \quotedblright \quoteleft \quotereversed \quoteright 
+     \quotesinglbase \quotesingle \r.sc \racute.sc \rcaron.sc \rcommaaccent.sc 
+     \registered \ring \s.sc \sacute.sc \scaron.sc \scedilla.sc 
+     \scircumflex.sc \second \section \semicolon \seven \seven.lining 
+     \six \six.lining \slash \space \sterling \t.sc 
+     \tbar.sc \tcaron.sc \thorn.sc \three \three.lining \tilde 
+     \tildecomb \tildecomb.cap \two \two.lining \u.sc \uacute.sc 
+     \ubreve.sc \ucircumflex.sc \udieresis.sc \ugrave.sc \uhungarumlaut.sc \umacron.sc 
+     \underscore \uni00A0 \uni00AD \uni0163.sc \uni0219.sc \uni021B.sc 
+     \uni02BB \uni02C0 \uni02C8 \uni0302 \uni0302.ascend \uni0302.cap 
+     \uni0304 \uni0304.cap \uni0306 \uni0306.cap \uni0307 \uni0307.cap 
+     \uni0308 \uni0308.cap \uni0308.narrow \uni030A \uni030A.cap \uni030B 
+     \uni030B.cap \uni030C \uni030C.cap \uni0312 \uni0315 \uni0326 
+     \uni0327 \uni2000 \uni2001 \uni2002 \uni2003 \uni2004 
+     \uni2005 \uni2006 \uni2007 \uni2008 \uni2009 \uni200A 
+     \uni200B \uni2010 \uni2011 \uni201F \uni202F \uni203E 
+     \uni2053 \uni205F \uni2060 \uniFEFF \uogonek.sc \uring.sc 
+     \utilde.sc \v.sc \w.sc \wcircumflex.sc \x.sc \y.sc 
+     \yacute.sc \ycircumflex.sc \ydieresis.sc \z.sc \zacute.sc \zcaron.sc 
+     \zdotaccent.sc \zero \zero.lining];
 
 @r3_y.ld = [\y.ld \yacute.ld \ycircumflex.ld \ydieresis.ld];
 @r3_ij = [\ij \j \j.ld \jcircumflex \jcircumflex.ld \uni0237 
@@ -404,26 +408,28 @@ feature kern {
      \asterisk \backslash \breve \brokenbar \bullet \caron 
      \cedilla \cent \circumflex \colon \comma \copyright 
      \currency \dagger \daggerdbl \degree \dieresis \divide 
-     \dollar \dotaccent \eight \ellipsis \emdash \endash 
-     \equal \exclam \exclamdown \five \four \fraction 
-     \grave \gravecomb \gravecomb.cap \greater \guillemotleft \guillemotright 
-     \guilsinglleft \guilsinglright \hungarumlaut \hyphen \less \logicalnot 
-     \macron \minus \minute \multiply \nine \numbersign 
-     \one \ordfeminine \ordmasculine \paragraph \parenleft \parenright 
-     \percent \period \periodcentered \plus \plusminus \question 
-     \questiondown \quotedbl \quotedblbase \quotedblleft \quotedblright \quoteleft 
-     \quotereversed \quoteright \quotesinglbase \quotesingle \registered \ring 
-     \second \section \semicolon \seven \six \slash 
-     \space \sterling \three \tilde \tildecomb \tildecomb.cap 
-     \two \underscore \uni00A0 \uni00AD \uni02BB \uni02C0 
-     \uni02C8 \uni0302 \uni0302.ascend \uni0302.cap \uni0304 \uni0304.cap 
-     \uni0306 \uni0306.cap \uni0307 \uni0307.cap \uni0308 \uni0308.cap 
-     \uni0308.narrow \uni030A \uni030A.cap \uni030B \uni030B.cap \uni030C 
-     \uni030C.cap \uni0312 \uni0315 \uni0326 \uni0327 \uni2000 
-     \uni2001 \uni2002 \uni2003 \uni2004 \uni2005 \uni2006 
-     \uni2007 \uni2008 \uni2009 \uni200A \uni200B \uni2010 
-     \uni2011 \uni201F \uni202F \uni203E \uni2053 \uni205F 
-     \uni2060 \uniFEFF \zero];
+     \dollar \dotaccent \eight \eight.lining \ellipsis \emdash 
+     \endash \equal \exclam \exclamdown \five \five.lining 
+     \four \four.lining \fraction \grave \gravecomb \gravecomb.cap 
+     \greater \guillemotleft \guillemotright \guilsinglleft \guilsinglright \hungarumlaut 
+     \hyphen \less \logicalnot \macron \minus \minute 
+     \multiply \nine \nine.lining \numbersign \one \one.lining 
+     \ordfeminine \ordmasculine \paragraph \parenleft \parenright \percent 
+     \period \periodcentered \plus \plusminus \question \questiondown 
+     \quotedbl \quotedblbase \quotedblleft \quotedblright \quoteleft \quotereversed 
+     \quoteright \quotesinglbase \quotesingle \registered \ring \second 
+     \section \semicolon \seven \seven.lining \six \six.lining 
+     \slash \space \sterling \three \three.lining \tilde 
+     \tildecomb \tildecomb.cap \two \two.lining \underscore \uni00A0 
+     \uni00AD \uni02BB \uni02C0 \uni02C8 \uni0302 \uni0302.ascend 
+     \uni0302.cap \uni0304 \uni0304.cap \uni0306 \uni0306.cap \uni0307 
+     \uni0307.cap \uni0308 \uni0308.cap \uni0308.narrow \uni030A \uni030A.cap 
+     \uni030B \uni030B.cap \uni030C \uni030C.cap \uni0312 \uni0315 
+     \uni0326 \uni0327 \uni2000 \uni2001 \uni2002 \uni2003 
+     \uni2004 \uni2005 \uni2006 \uni2007 \uni2008 \uni2009 
+     \uni200A \uni200B \uni2010 \uni2011 \uni201F \uni202F 
+     \uni203E \uni2053 \uni205F \uni2060 \uniFEFF \zero 
+     \zero.lining];
 @l3_J = [\J \Jcircumflex];
 
 pos \yen [@l1_A \AE] -120;

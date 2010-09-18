@@ -132,14 +132,14 @@ feature smcp {
   sub [p.ld q.ld thorn.ld] by [p.sc q.sc thorn.sc];
   sub [y.ld @y.long] by [y.sc @y.small];
   sub i.TRK by i.TRK.sc;
-  sub [ae oe thorn eth eng] by [ae.sc oe.sc thorn.sc eth.sc eng.sc];
+  sub [ae oe thorn eth eng eng.ld] by [ae.sc oe.sc thorn.sc eth.sc eng.sc eng.sc];
   sub periodcentered by periodcentered.sc;
 } smcp;
 
 feature c2sc {
   sub @uppercase by @c2;
   sub ampersand by ampersand.c2;
-  sub [AE OE Thorn Eth Eng] by [AE.c2 OE.c2 Thorn.c2 Eth.c2 Eng.c2];
+  sub [AE OE Thorn Eth Eng Eng.ld] by [AE.c2 OE.c2 Thorn.c2 Eth.c2 Eng.c2 Eng.c2];
   sub periodcentered by periodcentered.c2;
 } c2sc;
 
