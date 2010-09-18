@@ -235,6 +235,8 @@ def build_glyphs(bitbucket, f):
         build_accented_glyph(letter + 'breve', f[base(letter)], f['uni0306'])
     for letter in 'AEGIOU':
         build_accented_glyph(letter + 'breve', f[base(letter)], f['uni0306.cap'])
+    for letter in 'g':
+        build_accented_glyph(letter + 'breve.ld', f[base(letter) + '.ld'], f['uni0306'])
     for letter in 'aegiou':
         build_accented_glyph(letter + 'breve.sc', f[letter + '.sc'], f['uni0306'])
 

@@ -42,6 +42,7 @@
 
 @g.upper = [Gcircumflex    Gbreve    Gdotaccent    Gcommaaccent];
 @g.lower = [gcircumflex    gbreve    gdotaccent    gcommaaccent];
+@g.long  = [gcircumflex.ld gbreve.ld gdotaccent.ld gcommaaccent];
 @g.small = [gcircumflex.sc gbreve.sc gdotaccent.sc gcommaaccent.sc];
 @g.c2    = [Gcircumflex.c2 Gbreve.c2 Gdotaccent.c2 Gcommaaccent.c2];
 
@@ -57,6 +58,7 @@
 
 @j.upper = [Jcircumflex];
 @j.lower = [jcircumflex];
+@j.long  = [jcircumflex.ld];
 @j.small = [jcircumflex.sc];
 @j.c2    = [Jcircumflex.c2];
 
@@ -107,6 +109,7 @@
 
 @y.upper = [Ycircumflex    Yacute    Ydieresis];
 @y.lower = [ycircumflex    yacute    ydieresis];
+@y.long  = [ycircumflex.ld yacute.ld ydieresis.ld];
 @y.small = [ycircumflex.sc yacute.sc ydieresis.sc];
 @y.c2    = [Ycircumflex.c2 Yacute.c2 Ydieresis.c2];
 
@@ -124,15 +127,19 @@
 
 feature smcp {
   sub @lowercase by @smallcaps;
+  sub [g.ld @g.long] by [g.sc @g.small];
+  sub [j.ld @j.long] by [j.sc @j.small];
+  sub [p.ld q.ld thorn.ld] by [p.sc q.sc thorn.sc];
+  sub [y.ld @y.long] by [y.sc @y.small];
   sub i.TRK by i.TRK.sc;
-  sub [ae oe thorn eth] by [ae.sc oe.sc thorn.sc eth.sc];
+  sub [ae oe thorn eth eng] by [ae.sc oe.sc thorn.sc eth.sc eng.sc];
   sub periodcentered by periodcentered.sc;
 } smcp;
 
 feature c2sc {
   sub @uppercase by @c2;
   sub ampersand by ampersand.c2;
-  sub [AE OE Thorn Eth] by [AE.c2 OE.c2 Thorn.c2 Eth.c2];
+  sub [AE OE Thorn Eth Eng] by [AE.c2 OE.c2 Thorn.c2 Eth.c2 Eng.c2];
   sub periodcentered by periodcentered.c2;
 } c2sc;
 
