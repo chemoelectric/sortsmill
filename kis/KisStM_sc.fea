@@ -123,6 +123,11 @@
 @smallcaps = [a.sc-z.sc @a.small @c.small @d.small @e.small @g.small @h.small @i.small @j.small @k.small @l.small @n.small @o.small @r.small @s.small @t.small @u.small @w.small @y.small @z.small];
 @c2        = [A.c2-Z.c2 @a.c2 @c.c2 @d.c2 @e.c2 @g.c2 @h.c2 @i.c2 @j.c2 @k.c2 @l.c2 @n.c2 @o.c2 @r.c2 @s.c2 @t.c2 @u.c2 @w.c2 @y.c2 @z.c2];
 
+@old_irish_uppercase = [uni1E02 uni1E0A uni1E1E uni1E22 uni1E40 uni1E56 uni1E60 uni1E6A];
+@old_irish_lowercase = [uni1E03 uni1E0B uni1E1F uni1E23 uni1E41 uni1E57 uni1E61 uni1E6B];
+@old_irish_smallcaps = [uni1E03.sc uni1E0B.sc uni1E1F.sc uni1E23.sc uni1E41.sc uni1E57.sc uni1E61.sc uni1E6B.sc];
+@old_irish_c2        = [uni1E02.c2 uni1E0A.c2 uni1E1E.c2 uni1E22.c2 uni1E40.c2 uni1E56.c2 uni1E60.c2 uni1E6A.c2];
+
 #--------------------------------------------------------------------------
 
 feature smcp {
@@ -134,6 +139,11 @@ feature smcp {
   sub i.TRK by i.TRK.sc;
   sub [ae oe thorn eth eng eng.ld] by [ae.sc oe.sc thorn.sc eth.sc eng.sc eng.sc];
   sub periodcentered by periodcentered.sc;
+
+  # Old Irish support.
+  sub @old_irish_lowercase by @old_irish_smallcaps;
+  sub uni1E57.ld by uni1E57.sc;
+
 } smcp;
 
 feature c2sc {
@@ -141,6 +151,10 @@ feature c2sc {
   sub ampersand by ampersand.c2;
   sub [AE OE Thorn Eth Eng Eng.ld] by [AE.c2 OE.c2 Thorn.c2 Eth.c2 Eng.c2 Eng.c2];
   sub periodcentered by periodcentered.c2;
+
+  # Old Irish support.
+  sub @old_irish_uppercase by @old_irish_c2;
+
 } c2sc;
 
 #--------------------------------------------------------------------------

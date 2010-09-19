@@ -115,16 +115,26 @@ def build_glyphs(bitbucket, f):
 #    build_multigraph('onehalf', [f['one.numer'], f['fraction'], f['two.denom']])
 #    build_multigraph('threequarters', [f['three.numer'], f['fraction'], f['four.denom']])
 
+    special_cases = {
+        'uni0163.sc' : 'uni0162.c2',
+        'uni0219.sc' : 'uni0218.c2',
+        'uni021B.sc' : 'uni021A.c2',
+        'uni1E03.sc' : 'uni1E02.c2',
+        'uni1E0B.sc' : 'uni1E0A.c2',
+        'uni1E1F.sc' : 'uni1E1E.c2',
+        'uni1E23.sc' : 'uni1E22.c2',
+        'uni1E41.sc' : 'uni1E40.c2',
+        'uni1E57.sc' : 'uni1E56.c2',
+        'uni1E61.sc' : 'uni1E60.c2',
+        'uni1E6B.sc' : 'uni1E6A.c2',
+        }
+
     for g in f:
         if g[-3:] == '.sc':
-            if g in ('ampersand.sc', 'periodcentered.sc'):
+            if g in special_cases:
+                make_glyph_reference(special_cases[g], f[g])
+            elif g in ('ampersand.sc', 'periodcentered.sc'):
                 make_glyph_reference(g[:-3] + '.c2', f[g])
-            elif g == 'uni0163.sc':
-                make_glyph_reference('uni0162.c2', f[g])
-            elif g == 'uni0219.sc':
-                make_glyph_reference('uni0218.c2', f[g])
-            elif g == 'uni021B.sc':
-                make_glyph_reference('uni021A.c2', f[g])
             elif g in ('ae.sc', 'oe.sc'):
                 make_glyph_reference(g[:-3].upper() + '.c2', f[g])
             else:
@@ -274,6 +284,16 @@ def build_glyphs(bitbucket, f):
     build_accented_glyph('uni1E61', f['s'], f['uni0307'])
     build_accented_glyph('uni1E6A', f['T'], f['uni0307.cap'])
     build_accented_glyph('uni1E6B', f['t'], f['uni0307'])
+
+    # Extra small caps for Old Irish.
+    build_accented_glyph('uni1E03.sc', f['b.sc'], f['uni0307'])
+    build_accented_glyph('uni1E0B.sc', f['d.sc'], f['uni0307'])
+    build_accented_glyph('uni1E1F.sc', f['f.sc'], f['uni0307'])
+    build_accented_glyph('uni1E23.sc', f['h.sc'], f['uni0307'])
+    build_accented_glyph('uni1E41.sc', f['m.sc'], f['uni0307'])
+    build_accented_glyph('uni1E57.sc', f['p.sc'], f['uni0307'])
+    build_accented_glyph('uni1E61.sc', f['s.sc'], f['uni0307'])
+    build_accented_glyph('uni1E6B.sc', f['t.sc'], f['uni0307'])
 
     #--------------------------------------------------------------------------
 

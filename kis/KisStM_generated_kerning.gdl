@@ -48,8 +48,6 @@ l1U = postscript("U", "Uacute", "Ubreve", "Ucircumflex", "Udieresis", "Ugrave",
      "Uhungarumlaut", "Umacron", "Uogonek", "Uring", "Utilde")
 l1thorn = postscript("thorn", "thorn.ld")
 l1M = postscript("M", "uni1E40")
-l1S = postscript("S", "Sacute", "Scaron", "Scedilla", "Scircumflex", "uni0218", 
-     "uni1E60")
 l1s = postscript("s", "sacute", "scaron", "scedilla", "scircumflex", "uni0219", 
      "uni1E61")
 l1A = postscript("A", "Aacute", "Abreve", "Acircumflex", "Adieresis", "Agrave", 
@@ -87,6 +85,8 @@ l1u = postscript("u", "uacute", "ubreve", "ucircumflex", "udieresis", "ugrave",
      "uhungarumlaut", "umacron", "uogonek", "uring", "utilde")
 l1z = postscript("z", "zacute", "zcaron", "zdotaccent")
 l1b = postscript("b", "uni1E03")
+l1S = postscript("S", "Sacute", "Scaron", "Scedilla", "Scircumflex", "uni0218", 
+     "uni1E60")
 l1at = postscript("at", "dotlessi", "eng", "eng.ld", "f", "f_f", 
      "f_f_i", "f_i", "germandbls", "i", "i.TRK", "iacute", 
      "ibreve", "icircumflex", "idieresis", "igrave", "imacron", "itilde", 
@@ -155,13 +155,16 @@ l1A__c2 = postscript("A.c2", "AE.c2", "Aacute.c2", "Abreve.c2", "Acircumflex.c2"
      "uni0302.ascend", "uni0302.cap", "uni0304", "uni0304.cap", "uni0306", "uni0306.cap", 
      "uni0307", "uni0307.cap", "uni0308", "uni0308.cap", "uni0308.narrow", "uni030A", 
      "uni030A.cap", "uni030B", "uni030B.cap", "uni030C", "uni030C.cap", "uni0312", 
-     "uni0315", "uni0326", "uni0327", "uni2000", "uni2001", "uni2002", 
-     "uni2003", "uni2004", "uni2005", "uni2006", "uni2007", "uni2008", 
-     "uni2009", "uni200A", "uni200B", "uni2010", "uni2011", "uni201F", 
-     "uni202F", "uni203E", "uni2053", "uni205F", "uni2060", "uniFEFF", 
-     "uogonek.sc", "uring.sc", "utilde.sc", "v.sc", "w.sc", "wcircumflex.sc", 
-     "x.sc", "y.sc", "yacute.sc", "ycircumflex.sc", "ydieresis.sc", "z.sc", 
-     "zacute.sc", "zcaron.sc", "zdotaccent.sc", "zero", "zero.lining")
+     "uni0315", "uni0326", "uni0327", "uni1E02.c2", "uni1E03.sc", "uni1E0A.c2", 
+     "uni1E0B.sc", "uni1E1E.c2", "uni1E1F.sc", "uni1E22.c2", "uni1E23.sc", "uni1E40.c2", 
+     "uni1E41.sc", "uni1E56.c2", "uni1E57.sc", "uni1E60.c2", "uni1E61.sc", "uni1E6A.c2", 
+     "uni1E6B.sc", "uni2000", "uni2001", "uni2002", "uni2003", "uni2004", 
+     "uni2005", "uni2006", "uni2007", "uni2008", "uni2009", "uni200A", 
+     "uni200B", "uni2010", "uni2011", "uni201F", "uni202F", "uni203E", 
+     "uni2053", "uni205F", "uni2060", "uniFEFF", "uogonek.sc", "uring.sc", 
+     "utilde.sc", "v.sc", "w.sc", "wcircumflex.sc", "x.sc", "y.sc", 
+     "yacute.sc", "ycircumflex.sc", "ydieresis.sc", "z.sc", "zacute.sc", "zcaron.sc", 
+     "zdotaccent.sc", "zero", "zero.lining")
 l1J = postscript("J", "Jcircumflex")
 
 r2IJ = postscript("IJ", "J", "Jcircumflex")
@@ -298,13 +301,14 @@ l2a__sc = postscript("a.sc", "aacute.sc", "abreve.sc", "acircumflex.sc", "acute"
      "uni0304", "uni0304.cap", "uni0306", "uni0306.cap", "uni0307", "uni0307.cap", 
      "uni0308", "uni0308.cap", "uni0308.narrow", "uni030A", "uni030A.cap", "uni030B", 
      "uni030B.cap", "uni030C", "uni030C.cap", "uni0312", "uni0315", "uni0326", 
-     "uni0327", "uni2000", "uni2001", "uni2002", "uni2003", "uni2004", 
-     "uni2005", "uni2006", "uni2007", "uni2008", "uni2009", "uni200A", 
-     "uni200B", "uni2010", "uni2011", "uni201F", "uni202F", "uni203E", 
-     "uni2053", "uni205F", "uni2060", "uniFEFF", "uogonek.sc", "uring.sc", 
-     "utilde.sc", "v.sc", "w.sc", "wcircumflex.sc", "x.sc", "y.sc", 
-     "yacute.sc", "ycircumflex.sc", "ydieresis.sc", "z.sc", "zacute.sc", "zcaron.sc", 
-     "zdotaccent.sc", "zero", "zero.lining")
+     "uni0327", "uni1E03.sc", "uni1E0B.sc", "uni1E1F.sc", "uni1E23.sc", "uni1E41.sc", 
+     "uni1E57.sc", "uni1E61.sc", "uni1E6B.sc", "uni2000", "uni2001", "uni2002", 
+     "uni2003", "uni2004", "uni2005", "uni2006", "uni2007", "uni2008", 
+     "uni2009", "uni200A", "uni200B", "uni2010", "uni2011", "uni201F", 
+     "uni202F", "uni203E", "uni2053", "uni205F", "uni2060", "uniFEFF", 
+     "uogonek.sc", "uring.sc", "utilde.sc", "v.sc", "w.sc", "wcircumflex.sc", 
+     "x.sc", "y.sc", "yacute.sc", "ycircumflex.sc", "ydieresis.sc", "z.sc", 
+     "zacute.sc", "zcaron.sc", "zdotaccent.sc", "zero", "zero.lining")
 
 r3y__ld = postscript("y.ld", "yacute.ld", "ycircumflex.ld", "ydieresis.ld")
 r3ij = postscript("ij", "j", "j.ld", "jcircumflex", "jcircumflex.ld", "uni0237", 
