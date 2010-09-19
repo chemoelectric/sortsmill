@@ -22,7 +22,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1263111985
-ModificationTime: 1284873977
+ModificationTime: 1284874372
 OS2TypoAscent: 0
 OS2TypoAOffset: 1
 OS2TypoDescent: 0
@@ -239,7 +239,7 @@ DisplaySize: -48
 AntiAlias: 1
 FitToEm: 1
 WidthSeparation: 30
-WinInfo: 65568 12 5
+WinInfo: 65748 12 5
 BeginPrivate: 9
 BlueValues 47 [-22 0 377 386 392 412 577 598 636 654 659 664]
 OtherBlues 21 [-282 -270 -224 -211]
@@ -8736,29 +8736,29 @@ AnchorPoint: "l;bl" 30 10 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-429 200 m 0
- 429 79 344 -13 222 -13 c 0
- 192 -13 162 -7 136 4 c 1
- 91 -75 l 1
- 80 -72 71 -67 65 -59 c 1
- 109 18 l 1
- 59 50 25 108 25 196 c 0
- 25 305 107 404 235 404 c 0
- 268 404 297 398 322 387 c 1
- 366 463 l 1
- 376 462 388 455 392 447 c 1
- 349 372 l 1
- 402 336 429 273 429 200 c 0
-157 39 m 1
- 174 23 196 15 227 15 c 0
- 316 15 341 104 341 193 c 0
- 341 249 332 290 318 319 c 1
- 157 39 l 1
-299 347 m 1
- 282 365 256 376 228 376 c 0
- 162 376 113 306 113 194 c 0
- 113 143 118 98 136 66 c 1
- 299 347 l 1
+429 200 m 4
+ 429 79 344 -13 222 -13 c 4
+ 192 -13 162 -7 136 4 c 5
+ 91 -75 l 5
+ 80 -72 71 -67 65 -59 c 5
+ 109 18 l 5
+ 59 50 25 108 25 196 c 4
+ 25 305 107 404 235 404 c 4
+ 268 404 297 398 322 387 c 5
+ 366 463 l 5
+ 376 462 388 455 392 447 c 5
+ 349 372 l 5
+ 402 336 429 273 429 200 c 4
+157 39 m 5
+ 174 23 196 15 227 15 c 4
+ 316 15 341 104 341 193 c 4
+ 341 249 332 290 318 319 c 5
+ 157 39 l 5
+299 347 m 5
+ 282 365 256 376 228 376 c 4
+ 162 376 113 306 113 194 c 4
+ 113 143 118 98 136 66 c 5
+ 299 347 l 5
 EndSplineSet
 Layer: 2
 SplineSet
@@ -17710,7 +17710,7 @@ StartChar: z.sc
 Encoding: 65611 -1 480
 Width: 453
 VWidth: 0
-Flags: HWO
+Flags: HW
 AnchorPoint: "top" 221 500 basechar 0
 LayerCount: 3
 Fore
@@ -18000,7 +18000,7 @@ EndChar
 
 StartChar: zacute.sc
 Encoding: 65635 -1 504
-Width: 437
+Width: 453
 VWidth: 0
 Flags: HW
 LayerCount: 3
@@ -18388,7 +18388,7 @@ EndChar
 
 StartChar: zdotaccent.sc
 Encoding: 65670 -1 539
-Width: 437
+Width: 453
 VWidth: 0
 Flags: HW
 LayerCount: 3
@@ -18487,7 +18487,7 @@ EndChar
 
 StartChar: zcaron.sc
 Encoding: 65679 -1 548
-Width: 437
+Width: 453
 VWidth: 0
 Flags: HW
 LayerCount: 3
@@ -18975,7 +18975,7 @@ EndChar
 
 StartChar: Z.c2
 Encoding: 65716 -1 585
-Width: 437
+Width: 453
 VWidth: 0
 Flags: HW
 LayerCount: 3
@@ -19215,7 +19215,7 @@ EndChar
 
 StartChar: Zacute.c2
 Encoding: 65740 -1 609
-Width: 421
+Width: 437
 VWidth: 0
 Flags: HW
 LayerCount: 3
@@ -19568,7 +19568,7 @@ EndChar
 
 StartChar: Zdotaccent.c2
 Encoding: 65775 -1 644
-Width: 421
+Width: 437
 VWidth: 0
 Flags: HW
 LayerCount: 3
@@ -19658,7 +19658,7 @@ EndChar
 
 StartChar: Zcaron.c2
 Encoding: 65784 -1 653
-Width: 421
+Width: 437
 VWidth: 0
 Flags: HW
 LayerCount: 3
@@ -20166,21 +20166,39 @@ EndChar
 
 StartChar: oslash.sc
 Encoding: 65823 -1 692
-Width: 244
+Width: 516
 VWidth: 0
 Flags: W
-HStem: 281 93<82.2803 162.557>
-VStem: 74 96<289.49 366.508>
+HStem: -13 26<219.172 311.655> 389 23<211.483 305.676>
+VStem: 51 85<104.484 302.068> 385 85<103.666 298.702>
+DStem2: 99 -59 125 -75 0.499531 0.866296<-2.92383 92.4194 150.083 463.269 519.046 605.429>
 LayerCount: 3
 Fore
 SplineSet
-120 374 m 0
- 154 374 170 350 170 327 c 0
- 170 304 155 281 124 281 c 0
- 93 281 74 305 74 330 c 0
- 74 350 87 374 120 374 c 0
+259 389 m 0
+ 165 389 136 290 136 212 c 0
+ 136 163 149 110 174 71 c 1
+ 337 354 l 1
+ 315 377 288 389 259 389 c 0
+51 210 m 0
+ 51 302 113 412 267 412 c 0
+ 302 412 332 405 359 392 c 1
+ 400 463 l 1
+ 410 462 422 455 426 447 c 1
+ 385 376 l 1
+ 439 338 470 273 470 200 c 0
+ 470 94 393 -13 264 -13 c 0
+ 231 -13 200 -6 172 6 c 1
+ 125 -75 l 1
+ 114 -72 105 -67 99 -59 c 1
+ 145 20 l 1
+ 89 56 51 121 51 210 c 0
+357 327 m 1
+ 194 45 l 1
+ 214 25 238 13 267 13 c 0
+ 310 13 385 46 385 195 c 0
+ 385 252 375 295 357 327 c 1
 EndSplineSet
-Validated: 1
 EndChar
 
 StartChar: ampersand.sc
