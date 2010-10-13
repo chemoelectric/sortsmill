@@ -22,7 +22,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1283672823
-ModificationTime: 1286877111
+ModificationTime: 1286956760
 OS2TypoAscent: 0
 OS2TypoAOffset: 1
 OS2TypoDescent: 0
@@ -37,7 +37,9 @@ HheadAOffset: 1
 HheadDescent: 0
 HheadDOffset: 1
 OS2Vendor: 'PfEd'
-Lookup: 4 0 0 "'dlig' Discretionary Ligatures in Latin lookup 0"  {"'dlig' Discretionary Ligatures in Latin lookup 0 subtable"  } ['dlig' ('latn' <'dflt' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
+Lookup: 3 0 0 "'aalt' Access All Alternates in Latin lookup 0"  {"'aalt' Access All Alternates in Latin lookup 0 subtable"  } ['aalt' ('DFLT' <'dflt' > 'latn' <'dflt' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > ) ]
+Lookup: 3 0 0 "'salt' Stylistic Alternatives in Latin lookup 0"  {"'salt' Stylistic Alternatives in Latin lookup 0 subtable"  } ['salt' ('latn' <'dflt' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
+Lookup: 4 0 0 "'dlig' Discretionary Ligatures in Latin lookup 1"  {"'dlig' Discretionary Ligatures in Latin lookup 1 subtable"  } ['dlig' ('latn' <'dflt' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
 MarkAttachClasses: 1
 DEI: 91125
 Encoding: UnicodeBmp
@@ -46,7 +48,7 @@ NameList: Adobe Glyph List
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 1
-WinInfo: 48 16 4
+WinInfo: 65496 12 4
 BeginPrivate: 9
 BlueValues 23 [-29 2 394 426 642 685]
 OtherBlues 11 [-251 -239]
@@ -58,7 +60,7 @@ BlueFuzz 1 0
 BlueScale 9 0.0230233
 BlueShift 1 1
 EndPrivate
-BeginChars: 65540 115
+BeginChars: 65542 145
 
 StartChar: a
 Encoding: 97 97 0
@@ -1923,6 +1925,8 @@ SplineSet
  148 45 46 146 46 310 c 0
  46 546 193 669 380 669 c 0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Q.001 Q.002
+AlternateSubs2: "'salt' Stylistic Alternatives in Latin lookup 0 subtable" Q.001 Q.002
 EndChar
 
 StartChar: R
@@ -2351,9 +2355,9 @@ EndChar
 
 StartChar: space
 Encoding: 32 32 52
-Width: 248
+Width: 250
 VWidth: 0
-Flags: W
+Flags: HW
 LayerCount: 3
 EndChar
 
@@ -3807,7 +3811,7 @@ SplineSet
  458 227 468 293 468 330 c 0
  468 348 465 352 453 352 c 0xce80
 EndSplineSet
-Ligature2: "'dlig' Discretionary Ligatures in Latin lookup 0 subtable" c t
+Ligature2: "'dlig' Discretionary Ligatures in Latin lookup 1 subtable" c t
 LCarets2: 1 0 
 EndChar
 
@@ -3870,7 +3874,7 @@ SplineSet
  196 432 193 439 188 449 c 0
  183 460 176 476 176 501 c 0xadc0
 EndSplineSet
-Ligature2: "'dlig' Discretionary Ligatures in Latin lookup 0 subtable" s t
+Ligature2: "'dlig' Discretionary Ligatures in Latin lookup 1 subtable" s t
 EndChar
 
 StartChar: Q.001
@@ -4303,7 +4307,7 @@ StartChar: at
 Encoding: 64 64 101
 Width: 996
 VWidth: 20
-Flags: WO
+Flags: HWO
 HStem: -221 36<331.627 581.456> -34 20G<846 853.5> -12 59<312.907 432.325> -12 38<498.5 637.238> 388 26<498.949 585.867> 620 36<460.748 710.898>
 VStem: 61 43<30.4651 281.702> 254 84<57.4052 173.54> 466 82<5 105.936> 574 115<341 435.5> 893 37<246.641 453.684>
 LayerCount: 3
@@ -4726,6 +4730,271 @@ SplineSet
  48 188 l 2
  30 188 31 195 31 212 c 0
 EndSplineSet
+EndChar
+
+StartChar: uni00A0
+Encoding: 160 160 115
+Width: 250
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni2000
+Encoding: 8192 8192 116
+Width: 500
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni2001
+Encoding: 8193 8193 117
+Width: 1000
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni2002
+Encoding: 8194 8194 118
+Width: 500
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni2003
+Encoding: 8195 8195 119
+Width: 1000
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni2004
+Encoding: 8196 8196 120
+Width: 333
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni2005
+Encoding: 8197 8197 121
+Width: 250
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni2006
+Encoding: 8198 8198 122
+Width: 166
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni2007
+Encoding: 8199 8199 123
+Width: 500
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni2008
+Encoding: 8200 8200 124
+Width: 298
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni2009
+Encoding: 8201 8201 125
+Width: 166
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni200A
+Encoding: 8202 8202 126
+Width: 100
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni200B
+Encoding: 8203 8203 127
+Width: 0
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: afii61664
+Encoding: 8204 8204 128
+Width: 0
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: afii301
+Encoding: 8205 8205 129
+Width: 0
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: afii299
+Encoding: 8206 8206 130
+Width: 0
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: afii300
+Encoding: 8207 8207 131
+Width: 0
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni202F
+Encoding: 8239 8239 132
+Width: 166
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni205F
+Encoding: 8287 8287 133
+Width: 222
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni2060
+Encoding: 8288 8288 134
+Width: 0
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uniFEFF
+Encoding: 65279 65279 135
+Width: 0
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni00AD
+Encoding: 173 173 136
+Width: 326
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 55 45 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni2010
+Encoding: 8208 8208 137
+Width: 326
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 55 45 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni2011
+Encoding: 8209 8209 138
+Width: 326
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 55 45 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: ellipsis
+Encoding: 8230 8230 139
+Width: 894
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 54 46 N 1 0 0 1 596 0 2
+Refer: 54 46 N 1 0 0 1 298 0 2
+Refer: 54 46 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: napostrophe
+Encoding: 329 329 140
+Width: 698
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 13 110 N 1 0 0 1 202 0 2
+Refer: 84 8217 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: IJ
+Encoding: 306 306 141
+Width: 654
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 35 74 N 1 0 0 1 327 0 2
+Refer: 34 73 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: ij
+Encoding: 307 307 142
+Width: 563
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 9 106 N 1 0 0 1 287 0 2
+Refer: 8 105 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: Q_U
+Encoding: 65540 -1 143
+Width: 1473
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 46 85 N 1 0 0 1 759 0 2
+Refer: 93 -1 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: Q_u
+Encoding: 65541 -1 144
+Width: 1272
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 20 117 N 1 0 0 1 759 0 2
+Refer: 94 -1 N 1 0 0 1 0 0 2
 EndChar
 EndChars
 EndSplineFont
