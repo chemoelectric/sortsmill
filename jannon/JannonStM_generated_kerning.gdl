@@ -1,128 +1,169 @@
 table(glyph)
-r1Q_U = postscript("Q_U", "afii299", "afii300", "afii301", "afii61664", "ampersand", 
-     "asterisk", "at", "backslash", "bracketleft", "bracketright", "bullet", 
-     "c_t", "colon", "comma", "dagger", "daggerdbl", "divide", 
-     "dollar", "eight", "ellipsis", "emdash", "endash", "equal", 
-     "exclam", "f_f_l", "five", "four", "greater", "guillemotleft", 
-     "guillemotright", "guilsinglleft", "guilsinglright", "hyphen", "less", "minus", 
-     "multiply", "nine", "numbersign", "one", "paragraph", "parenleft", 
-     "parenright", "percent", "period", "plus", "question", "quotedbl", 
-     "quotedblleft", "quotedblright", "quoteleft", "quoteright", "quotesingle", "s_t", 
-     "section", "semicolon", "seven", "six", "slash", "space", 
-     "sterling", "three", "two", "uni00A0", "uni00AD", "uni2000", 
-     "uni2001", "uni2002", "uni2003", "uni2004", "uni2005", "uni2006", 
-     "uni2007", "uni2008", "uni2009", "uni200A", "uni200B", "uni2010", 
-     "uni2011", "uni202F", "uni205F", "uni2060", "uniFEFF", "zero")
 r1f_f_i = postscript("f_f_i", "f_i")
+r1bullet = postscript("bullet", "dagger", "daggerdbl", "exclam", "exclamdown", "numbersign", 
+     "question", "questiondown")
+r1afii00208 = postscript("afii00208", "emdash", "endash", "hyphen", "uni00AD", "uni2010", 
+     "uni2011")
+r1c_t = postscript("c_t", "s_t")
+r1colon = postscript("colon", "guillemotleft", "guillemotright", "guilsinglleft", "guilsinglright")
+r1Q_U = postscript("Q_U", "afii299", "afii300", "afii301", "afii61664", "ampersand", 
+     "asterisk", "at", "backslash", "bracketleft", "bracketright", "divide", 
+     "dollar", "eight", "equal", "five", "four", "greater", 
+     "less", "minus", "multiply", "nine", "one", "parenleft", 
+     "parenright", "percent", "plus", "quotedbl", "quotesingle", "seven", 
+     "six", "slash", "space", "sterling", "three", "two", 
+     "underscoredbl", "uni00A0", "uni2000", "uni2001", "uni2002", "uni2003", 
+     "uni2004", "uni2005", "uni2006", "uni2007", "uni2008", "uni2009", 
+     "uni200A", "uni200B", "uni2016", "uni202F", "uni205F", "uni2060", 
+     "uniFEFF", "zero")
+r1comma = postscript("comma", "quotedblbase", "quotesinglbase")
+r1ellipsis = postscript("ellipsis", "period")
+r1quotedblleft = postscript("quotedblleft", "quotedblright", "quoteleft", "quotereversed", "quoteright", "uni201F")
+r1f_f_l = postscript("f_f_l", "f_l")
 
-l1f_f = postscript("f_f", "f_f_i", "f_i", "f_l")
-l1v = postscript("v", "w")
 l1Q_u = postscript("Q_u", "u")
-l1a = postscript("a", "b", "i", "r", "z")
-l1n = postscript("n", "napostrophe")
+l1bullet = postscript("bullet", "dagger", "daggerdbl", "exclam", "exclamdown", "numbersign", 
+     "question", "questiondown")
+l1v = postscript("v", "w")
+l1j = postscript("j", "paragraph", "semicolon")
+l1afii00208 = postscript("afii00208", "c", "c_t", "d", "e", "emdash", 
+     "endash", "hyphen", "o", "oe", "uni00AD", "uni2010", 
+     "uni2011")
+l1ellipsis = postscript("ellipsis", "period")
+l1quotedblleft = postscript("quotedblleft", "quotedblright", "quoteleft", "quotereversed", "quoteright", "uni201F")
+l1s = postscript("s", "s_t")
+l1colon = postscript("colon", "guillemotleft", "guillemotright", "guilsinglleft", "guilsinglright", "i", 
+     "r", "z")
+l1quotedblbase = postscript("quotedblbase", "quotesinglbase")
+l1f_f = postscript("f_f", "f_f_i", "f_f_l", "f_i", "f_l")
 l1k = postscript("k", "l")
 l1A = postscript("A", "AE", "B", "C", "D", "E", 
      "F", "G", "H", "I", "IJ", "J", 
      "K", "L", "M", "N", "O", "OE", 
      "P", "Q", "Q.001", "Q.002", "Q_U", "R", 
      "S", "T", "U", "V", "W", "X", 
-     "Y", "Z", "ae", "afii299", "afii300", "afii301", 
-     "afii61664", "ampersand", "asterisk", "at", "backslash", "bracketleft", 
-     "bracketright", "bullet", "c_t", "colon", "comma", "dagger", 
-     "daggerdbl", "divide", "dollar", "eight", "ellipsis", "emdash", 
-     "endash", "equal", "exclam", "f_f_l", "five", "four", 
-     "greater", "guillemotleft", "guillemotright", "guilsinglleft", "guilsinglright", "hyphen", 
-     "less", "minus", "multiply", "nine", "numbersign", "oe", 
-     "one", "paragraph", "parenleft", "parenright", "percent", "period", 
-     "plus", "question", "quotedbl", "quotedblleft", "quotedblright", "quoteleft", 
-     "quoteright", "quotesingle", "s_t", "section", "semicolon", "seven", 
-     "six", "slash", "space", "sterling", "three", "two", 
-     "uni00A0", "uni00AD", "uni2000", "uni2001", "uni2002", "uni2003", 
-     "uni2004", "uni2005", "uni2006", "uni2007", "uni2008", "uni2009", 
-     "uni200A", "uni200B", "uni2010", "uni2011", "uni202F", "uni205F", 
+     "Y", "Z", "afii299", "afii300", "afii301", "afii61664", 
+     "ampersand", "asterisk", "at", "backslash", "bracketleft", "bracketright", 
+     "divide", "dollar", "eight", "equal", "five", "four", 
+     "greater", "less", "minus", "multiply", "nine", "one", 
+     "parenleft", "parenright", "percent", "plus", "quotedbl", "quotesingle", 
+     "seven", "six", "slash", "space", "sterling", "three", 
+     "two", "underscoredbl", "uni00A0", "uni2000", "uni2001", "uni2002", 
+     "uni2003", "uni2004", "uni2005", "uni2006", "uni2007", "uni2008", 
+     "uni2009", "uni200A", "uni200B", "uni2016", "uni202F", "uni205F", 
      "uni2060", "uniFEFF", "zero")
-l1c = postscript("c", "d", "e", "o")
+l1a = postscript("a", "n")
 
+r2s = postscript("s", "t")
 r2ij = postscript("ij", "j")
-r2h = postscript("h", "n", "napostrophe")
+r2h = postscript("h", "n")
+r2ae = postscript("ae", "e", "oe")
 r2b = postscript("b", "p")
-r2t = postscript("t", "z")
 r2v = postscript("v", "w")
-r2ae = postscript("ae", "oe")
 
-l2f_f = postscript("f_f", "f_f_i", "f_i", "f_l")
-l2v = postscript("v", "w")
 l2Q_u = postscript("Q_u", "u")
-l2a = postscript("a", "b", "i", "r", "z")
-l2n = postscript("n", "napostrophe")
+l2bullet = postscript("bullet", "dagger", "daggerdbl", "exclam", "exclamdown", "numbersign", 
+     "question", "questiondown")
+l2v = postscript("v", "w")
+l2j = postscript("j", "paragraph", "semicolon")
+l2afii00208 = postscript("afii00208", "c", "c_t", "d", "e", "emdash", 
+     "endash", "hyphen", "o", "oe", "uni00AD", "uni2010", 
+     "uni2011")
+l2ellipsis = postscript("ellipsis", "period")
+l2quotedblleft = postscript("quotedblleft", "quotedblright", "quoteleft", "quotereversed", "quoteright", "uni201F")
+l2s = postscript("s", "s_t")
+l2colon = postscript("colon", "guillemotleft", "guillemotright", "guilsinglleft", "guilsinglright", "i", 
+     "r", "z")
+l2quotedblbase = postscript("quotedblbase", "quotesinglbase")
+l2f_f = postscript("f_f", "f_f_i", "f_f_l", "f_i", "f_l")
 l2k = postscript("k", "l")
 l2A = postscript("A", "AE", "B", "C", "D", "E", 
      "F", "G", "H", "I", "IJ", "J", 
      "K", "L", "M", "N", "O", "OE", 
      "P", "Q", "Q.001", "Q.002", "Q_U", "R", 
      "S", "T", "U", "V", "W", "X", 
-     "Y", "Z", "ae", "afii299", "afii300", "afii301", 
-     "afii61664", "ampersand", "asterisk", "at", "backslash", "bracketleft", 
-     "bracketright", "bullet", "c_t", "colon", "comma", "dagger", 
-     "daggerdbl", "divide", "dollar", "eight", "ellipsis", "emdash", 
-     "endash", "equal", "exclam", "f_f_l", "five", "four", 
-     "greater", "guillemotleft", "guillemotright", "guilsinglleft", "guilsinglright", "hyphen", 
-     "less", "minus", "multiply", "nine", "numbersign", "oe", 
-     "one", "paragraph", "parenleft", "parenright", "percent", "period", 
-     "plus", "question", "quotedbl", "quotedblleft", "quotedblright", "quoteleft", 
-     "quoteright", "quotesingle", "s_t", "section", "semicolon", "seven", 
-     "six", "slash", "space", "sterling", "three", "two", 
-     "uni00A0", "uni00AD", "uni2000", "uni2001", "uni2002", "uni2003", 
-     "uni2004", "uni2005", "uni2006", "uni2007", "uni2008", "uni2009", 
-     "uni200A", "uni200B", "uni2010", "uni2011", "uni202F", "uni205F", 
+     "Y", "Z", "afii299", "afii300", "afii301", "afii61664", 
+     "ampersand", "asterisk", "at", "backslash", "bracketleft", "bracketright", 
+     "divide", "dollar", "eight", "equal", "five", "four", 
+     "greater", "less", "minus", "multiply", "nine", "one", 
+     "parenleft", "parenright", "percent", "plus", "quotedbl", "quotesingle", 
+     "seven", "six", "slash", "space", "sterling", "three", 
+     "two", "underscoredbl", "uni00A0", "uni2000", "uni2001", "uni2002", 
+     "uni2003", "uni2004", "uni2005", "uni2006", "uni2007", "uni2008", 
+     "uni2009", "uni200A", "uni200B", "uni2016", "uni202F", "uni205F", 
      "uni2060", "uniFEFF", "zero")
-l2c = postscript("c", "d", "e", "o")
+l2a = postscript("a", "n")
 
 endtable
 
 table(positioning)
-postscript("f_f") (l1n, l1f_f, postscript("x")) { kern.x = -15m };
-(postscript("f_f"), r1f_f_i) (l1c, postscript("q")) { kern.x = -15m };
-r1f_f_i (postscript("y"), l1Q_u, l1v) { kern.x = -15m };
-postscript("f_f") (postscript("s"), postscript("m")) { kern.x = -5m };
-postscript("f_f") (postscript("g"), postscript("f"), l1k) { kern.x = -20m };
-postscript("Q_u") (postscript("y"), l1c, postscript("q"), l1Q_u, l1v) { kern.x = -20m };
-postscript("f_f") postscript("p") { kern.x = 5m };
-postscript("f_f") postscript("h") { kern.x = -10m };
-(postscript("Q_u"), r1f_f_i, postscript("f_l")) postscript("t") { kern.x = -10m };
-postscript("f_l") (postscript("y"), l1c, postscript("q"), l1Q_u, l1v) { kern.x = -10m };
+postscript("f_f") (postscript("comma"), l1ellipsis) { kern.x = -30m };
+(postscript("f_f"), postscript("semicolon"), r1bullet, r1colon, r1quotedblleft) postscript("p") { kern.x = 5m };
+(r1afii00208, postscript("Q_u")) l1v { kern.x = -20m };
+r1afii00208 postscript("x") { kern.x = -20m };
+(r1afii00208, r1comma, postscript("Q_u")) postscript("y") { kern.x = -20m };
+(postscript("paragraph"), postscript("f_f"), r1afii00208, r1quotedblleft) l1k { kern.x = -20m };
+postscript("f_f") (postscript("g"), postscript("f")) { kern.x = -20m };
+postscript("Q_u") (postscript("section"), l1quotedblleft, l1afii00208, postscript("q"), l1Q_u, postscript("napostrophe")) { kern.x = -20m };
+(r1afii00208, r1quotedblleft) (postscript("comma"), l1ellipsis) { kern.x = -20m };
+postscript("paragraph") (l1quotedblbase, l1j, postscript("g"), postscript("comma"), postscript("section"), l1colon, l1s, postscript("ae"), l1a, postscript("m"), l1f_f, postscript("f"), l1ellipsis, postscript("x"), postscript("t"), l1afii00208, postscript("q"), l1Q_u, l1v, postscript("ij")) { kern.x = -80m };
+(postscript("f_f"), r1quotedblleft) postscript("x") { kern.x = -15m };
+postscript("f_f") (l1quotedblbase, l1a, l1f_f) { kern.x = -15m };
+(postscript("f_f"), r1f_f_i) (l1afii00208, postscript("q")) { kern.x = -15m };
+r1f_f_i (postscript("section"), l1quotedblleft, postscript("y"), l1Q_u, l1v, postscript("napostrophe")) { kern.x = -15m };
+postscript("paragraph") postscript("p") { kern.x = -75m };
+postscript("f_f") postscript("ae") { kern.x = -10m };
+(postscript("section"), r1afii00208, r1comma, r1f_f_l, r1ellipsis) l1Q_u { kern.x = -10m };
+r1f_f_l (postscript("section"), l1quotedblleft, postscript("y"), l1afii00208, postscript("q"), l1v, postscript("napostrophe")) { kern.x = -10m };
+(r1afii00208, r1quotedblleft) (l1f_f, postscript("f")) { kern.x = -10m };
+(postscript("paragraph"), postscript("f_f"), r1afii00208, r1quotedblleft) postscript("h") { kern.x = -10m };
+(postscript("section"), r1ellipsis) postscript("y") { kern.x = -40m };
+(postscript("section"), r1comma, r1ellipsis) l1v { kern.x = -40m };
+postscript("f_f") l1s { kern.x = -5m };
+(postscript("f_f"), r1afii00208, r1quotedblleft) postscript("m") { kern.x = -5m };
+r1c_t (postscript("y"), l1Q_u, l1v) { kern.x = -5m };
+(r1afii00208, r1quotedblleft) postscript("g") { kern.x = -5m };
+(postscript("f_f"), postscript("Q_u"), r1f_f_i, r1f_f_l) postscript("t") { kern.x = -5m };
 (postscript("y"), r2v, postscript("k"), postscript("a")) postscript("q") { kern.x = -30m };
-postscript("a") l2Q_u { kern.x = -30m };
-(postscript("y"), r2ij, r2v, postscript("g"), postscript("f"), postscript("r"), postscript("c"), postscript("k"), postscript("x"), r2t) postscript("p") { kern.x = 5m };
+postscript("a") (postscript("section"), l2quotedblleft, l2Q_u, postscript("napostrophe")) { kern.x = -30m };
+postscript("y") l2quotedblbase { kern.x = -60m };
+r2v (postscript("comma"), l2ellipsis) { kern.x = -60m };
+(postscript("y"), r2ij, r2v, postscript("g"), postscript("f"), postscript("r"), postscript("c"), postscript("k"), postscript("x"), postscript("z")) postscript("p") { kern.x = 5m };
 (postscript("y"), r2v) postscript("g") { kern.x = -25m };
+postscript("f") (postscript("comma"), l2ellipsis) { kern.x = -25m };
 (r2b, postscript("o")) postscript("x") { kern.x = -20m };
-(postscript("y"), r2v, postscript("r")) (l2n, postscript("f")) { kern.x = -20m };
+(postscript("y"), r2v, postscript("r")) (l2a, postscript("f")) { kern.x = -20m };
+(r2b, postscript("r"), postscript("o")) (postscript("comma"), l2ellipsis) { kern.x = -20m };
 (postscript("r"), postscript("u")) postscript("q") { kern.x = -20m };
 (r2b, postscript("o"), postscript("u")) (postscript("y"), l2v) { kern.x = -20m };
-postscript("r") postscript("g") { kern.x = -20m };
+postscript("r") (l2quotedblbase, postscript("g")) { kern.x = -20m };
 (postscript("y"), r2v, r2b, postscript("f"), postscript("r"), postscript("o")) l2k { kern.x = -20m };
-(postscript("y"), r2v, postscript("r"), postscript("k"), postscript("a"), postscript("u")) l2c { kern.x = -20m };
-postscript("u") l2Q_u { kern.x = -20m };
-postscript("q") (postscript("p"), postscript("j"), postscript("g")) { kern.x = 15m };
+(postscript("y"), r2v, postscript("r"), postscript("k"), postscript("a"), postscript("u")) l2afii00208 { kern.x = -20m };
+postscript("u") (postscript("section"), l2quotedblleft, l2Q_u, postscript("napostrophe")) { kern.x = -20m };
+postscript("q") (l2quotedblbase, postscript("p"), l2j, l2bullet, postscript("g"), postscript("comma"), postscript("section")) { kern.x = 15m };
+postscript("y") (postscript("comma"), l2ellipsis) { kern.x = -80m };
 (postscript("y"), r2v, postscript("f"), postscript("r")) (l2f_f, postscript("x")) { kern.x = -15m };
-postscript("i") (l2c, postscript("q"), l2Q_u) { kern.x = -15m };
+postscript("i") (postscript("section"), l2quotedblleft, l2afii00208, postscript("q"), l2Q_u, postscript("napostrophe")) { kern.x = -15m };
 (postscript("i"), postscript("m")) (postscript("y"), l2v) { kern.x = -15m };
 postscript("f") postscript("f") { kern.x = -15m };
-(postscript("e"), r2h, postscript("d")) (postscript("y"), l2v) { kern.x = -10m };
+(postscript("y"), r2v, postscript("g"), postscript("r")) postscript("ae") { kern.x = -10m };
 (postscript("g"), postscript("f")) postscript("g") { kern.x = -10m };
-(postscript("g"), r2b, postscript("o"), postscript("e"), postscript("c")) (l2f_f, postscript("f")) { kern.x = -10m };
-postscript("g") l2n { kern.x = -10m };
-(postscript("g"), r2h, postscript("d"), postscript("x")) (l2c, postscript("q")) { kern.x = -10m };
-(postscript("a"), postscript("u"), postscript("i"), r2h, postscript("d")) postscript("t") { kern.x = -10m };
-(postscript("g"), postscript("e"), postscript("c")) (postscript("x"), l2k) { kern.x = -10m };
-(r2v, postscript("g"), r2b, postscript("f"), postscript("r"), postscript("o"), postscript("e"), postscript("c")) postscript("h") { kern.x = -10m };
-(r2b, postscript("o"), postscript("e"), r2h, postscript("d"), postscript("m")) l2Q_u { kern.x = -10m };
+(r2ae, r2h, postscript("napostrophe"), postscript("d")) (postscript("y"), l2v) { kern.x = -10m };
+(r2h, postscript("napostrophe"), postscript("d")) (postscript("section"), l2quotedblleft, postscript("napostrophe")) { kern.x = -10m };
+(postscript("g"), r2b, postscript("o"), r2ae, postscript("c")) (l2f_f, postscript("f")) { kern.x = -10m };
+postscript("g") (l2quotedblbase, l2a) { kern.x = -10m };
+(postscript("g"), r2ae, postscript("c")) (postscript("comma"), l2ellipsis, postscript("x"), l2k) { kern.x = -10m };
+(postscript("y"), r2v, postscript("g"), r2b, postscript("f"), postscript("r"), postscript("o"), r2ae, postscript("c")) postscript("h") { kern.x = -10m };
+(postscript("g"), r2h, postscript("napostrophe"), postscript("d"), postscript("x")) (l2afii00208, postscript("q")) { kern.x = -10m };
+(r2b, postscript("o"), r2ae, r2h, postscript("napostrophe"), postscript("d"), postscript("m")) l2Q_u { kern.x = -10m };
+r2v l2quotedblbase { kern.x = -40m };
 postscript("a") (postscript("y"), l2v) { kern.x = -40m };
-(postscript("y"), r2v, postscript("g"), postscript("f"), postscript("r")) postscript("s") { kern.x = -5m };
-postscript("l") postscript("t") { kern.x = -5m };
-postscript("f") l2n { kern.x = -5m };
-(postscript("f"), postscript("l")) (l2c, postscript("q")) { kern.x = -5m };
-(postscript("y"), r2v, postscript("g"), r2b, postscript("f"), postscript("r"), postscript("o"), postscript("e"), postscript("c")) postscript("m") { kern.x = -5m };
-(postscript("l"), postscript("s")) (postscript("y"), l2Q_u, l2v) { kern.x = -5m };
-(r2b, postscript("o"), postscript("e"), postscript("c")) postscript("g") { kern.x = -5m };
+(postscript("y"), r2v, postscript("g"), postscript("f"), postscript("r")) l2s { kern.x = -5m };
+postscript("l") (postscript("section"), l2quotedblleft, postscript("napostrophe")) { kern.x = -5m };
+postscript("f") (l2quotedblbase, postscript("ae"), l2a) { kern.x = -5m };
+(postscript("f"), postscript("l")) (l2afii00208, postscript("q")) { kern.x = -5m };
+(postscript("y"), r2v, postscript("g"), postscript("f"), postscript("r"), postscript("k"), postscript("a"), postscript("u"), postscript("i"), r2h, postscript("napostrophe"), postscript("d"), postscript("x"), postscript("l")) postscript("t") { kern.x = -5m };
+(postscript("l"), r2s) (postscript("y"), l2Q_u, l2v) { kern.x = -5m };
+(postscript("y"), r2v, postscript("g"), r2b, postscript("f"), postscript("r"), postscript("o"), r2ae, postscript("c")) postscript("m") { kern.x = -5m };
+(r2b, postscript("o"), r2ae, postscript("c")) postscript("g") { kern.x = -5m };
 endtable
