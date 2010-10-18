@@ -42,9 +42,12 @@ feature liga {
 feature dlig {
   sub c t by c_t;
   sub s t by s_t;
-#  sub Q U by Q_U; <-- TODO/FIX: DO WE WANT THESE TO BE IN dlig?
-#  sub Q u by Q_u;
 } dlig;
+
+feature QLIG {
+  sub Q U by Q_U;
+  sub Q u by Q_u;
+} QLIG;
 
 # local variables:
 # mode: fundamental

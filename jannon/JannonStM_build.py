@@ -79,32 +79,23 @@ def build_glyphs(bitbucket, f):
 ##        (numerators, fraction_bar),
 ##        (fraction_bar, denominators),
         ]
-#    db['kerning_rounding'] = '(lambda x: int(round(x/5.0)) * 5)'
-##    db['kerning_rounding'] = '(lambda x: x if abs(x) < 10 else int(round(x/5.0))*5)'
 
     build_several_space_glyphs(f, emsize = emsize, spacesize = spacesize,
                                thinspacesize = emsize / 6,
                                hairspacesize = emsize / 10,
-#                               tabwidth = f['zero.l'].width)
-                               tabwidth = 500) # <-- FIX: SET THIS CORRECTLY
+                               tabwidth = f['zero'].width)
 
     propagate_hyphens(f)
 #    propagate_hyphens(f, '.uppercase')
 #    build_spacing_marks(f, width = 2 * 230)
 
-#    for fig in figures:
-#        make_glyph_reference(fig, f[fig + '.h'])
-
 #    make_glyph_reference('asciitilde', f['uni2053']) # Swung dash.
-#    make_glyph_reference('i.TRK', f['i'])
+    make_glyph_reference('i.TRK', f['i'])
 #    make_glyph_reference('Dcroat', f['Eth'])
 #    make_glyph_reference('dcroat.sc', f['eth.sc'])
 
     build_multigraph('ellipsis', [f['period'], f['period'], f['period']])
 
-#    for fig in figures + ['dollar']:
-#        make_glyph_reference(fig, f[fig + '.hanging'])
-#
 #    make_glyph_reference('uni00B9', f['one.sup'])
 #    make_glyph_reference('uni00B2', f['two.sup'])
 #    make_glyph_reference('uni00B3', f['three.sup'])
