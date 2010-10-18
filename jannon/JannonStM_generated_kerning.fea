@@ -1,32 +1,34 @@
 feature kern {
-@r1_at = [\at \bullet \dagger \daggerdbl \dollar \eight 
-     \exclam \exclamdown \figuredash \five \four \nine 
-     \numbersign \one \percent \question \questiondown \seven 
-     \six \three \two \zero];
+@r1_at = [\at \bracketleft \bracketright \bullet \dagger \daggerdbl 
+     \dollar \eight \exclam \exclamdown \figuredash \five 
+     \four \nine \numbersign \one \parenleft \parenright 
+     \percent \question \questiondown \seven \six \sterling 
+     \three \two \zero];
 @r1_afii00208 = [\afii00208 \emdash \endash \hyphen \uni00AD \uni2010 
      \uni2011];
+@r1_f_f_i = [\f_f_i \f_i];
 @r1_c_t = [\c_t \s_t];
 @r1_colon = [\colon \guillemotleft \guillemotright \guilsinglleft \guilsinglright];
-@r1_afii299 = [\afii299 \afii300 \afii301 \afii61664 \asterisk \backslash 
-     \bracketleft \bracketright \divide \equal \greater \less 
-     \minus \multiply \parenleft \parenright \plus \quotedbl 
-     \quotesingle \slash \space \sterling \uni00A0 \uni2000 
-     \uni2001 \uni2002 \uni2003 \uni2004 \uni2005 \uni2006 
-     \uni2007 \uni2008 \uni2009 \uni200A \uni200B \uni202F 
-     \uni205F \uni2060 \uniFEFF];
+@r1_afii299 = [\afii299 \afii300 \afii301 \afii61664 \brokenbar \currency 
+     \divide \equal \greater \less \minus \multiply 
+     \plus \space \uni00A0 \uni2000 \uni2001 \uni2002 
+     \uni2003 \uni2004 \uni2005 \uni2006 \uni2007 \uni2008 
+     \uni2009 \uni200A \uni200B \uni202F \uni205F \uni2060 
+     \uniFEFF \yen];
 @r1_comma = [\comma \quotedblbase \quotesinglbase];
 @r1_ellipsis = [\ellipsis \period];
-@r1_f_f_i = [\f_f_i \f_i];
-@r1_quotedblleft = [\quotedblleft \quotedblright \quoteleft \quotereversed \quoteright \uni201F];
+@r1_asterisk = [\asterisk \quotedbl \quotedblleft \quotedblright \quoteleft \quotereversed 
+     \quoteright \quotesingle \uni201F];
 @r1_f_f_l = [\f_f_l \f_l];
 
 @l1_a = [\a \n];
-@l1_at = [\at \bullet \dagger \daggerdbl \dollar \eight 
-     \exclam \exclamdown \figuredash \five \four \nine 
-     \numbersign \one \percent \question \questiondown \seven 
-     \six \three \two \zero];
-@l1_j = [\j \paragraph \semicolon];
+@l1_at = [\at \bracketleft \bracketright \bullet \dagger \daggerdbl 
+     \dollar \eight \exclam \exclamdown \figuredash \five 
+     \four \nine \numbersign \one \parenleft \parenright 
+     \percent \question \questiondown \seven \six \sterling 
+     \three \two \zero];
 @l1_v = [\v \w];
+@l1_j = [\j \paragraph \semicolon];
 @l1_afii00208 = [\afii00208 \c \c_t \d \e \emdash 
      \endash \hyphen \o \oe \uni00AD \uni2010 
      \uni2011];
@@ -34,21 +36,21 @@ feature kern {
      \H \I \K \L \M \N 
      \O \OE \P \Q \Q.001 \Q.002 
      \Q_U \Q_u \R \S \ampersand \b];
-@l1_quotedblleft = [\quotedblleft \quotedblright \quoteleft \quotereversed \quoteright \uni201F];
+@l1_asterisk = [\asterisk \quotedbl \quotedblleft \quotedblright \quoteleft \quotereversed 
+     \quoteright \quotesingle \uni201F];
 @l1_s = [\s \s_t];
-@l1_f_f = [\f_f \f_f_i \f_f_l \f_i \f_l];
 @l1_ellipsis = [\ellipsis \period];
 @l1_colon = [\colon \dotlessi \guillemotleft \guillemotright \guilsinglleft \guilsinglright 
      \i \i.TRK \r \z];
 @l1_quotedblbase = [\quotedblbase \quotesinglbase];
 @l1_k = [\k \l];
-@l1_afii299 = [\afii299 \afii300 \afii301 \afii61664 \asterisk \backslash 
-     \bracketleft \bracketright \divide \equal \greater \less 
-     \minus \multiply \parenleft \parenright \plus \quotedbl 
-     \quotesingle \slash \space \sterling \uni00A0 \uni2000 
-     \uni2001 \uni2002 \uni2003 \uni2004 \uni2005 \uni2006 
-     \uni2007 \uni2008 \uni2009 \uni200A \uni200B \uni202F 
-     \uni205F \uni2060 \uniFEFF];
+@l1_aacute = [\aacute \afii299 \afii300 \afii301 \afii61664 \brokenbar 
+     \currency \divide \equal \greater \less \minus 
+     \multiply \plus \space \uni00A0 \uni2000 \uni2001 
+     \uni2002 \uni2003 \uni2004 \uni2005 \uni2006 \uni2007 
+     \uni2008 \uni2009 \uni200A \uni200B \uni202F \uni205F 
+     \uni2060 \uniFEFF \yen];
+@l1_f_f = [\f_f \f_f_i \f_f_l \f_i \f_l];
 
 @r2_C = [\C \Z];
 @r2_F = [\F \P];
@@ -58,12 +60,13 @@ feature kern {
 @r2_K = [\K \X];
 
 @l2_a = [\a \n];
-@l2_at = [\at \bullet \dagger \daggerdbl \dollar \eight 
-     \exclam \exclamdown \figuredash \five \four \nine 
-     \numbersign \one \percent \question \questiondown \seven 
-     \six \three \two \zero];
-@l2_j = [\j \paragraph \semicolon];
+@l2_at = [\at \bracketleft \bracketright \bullet \dagger \daggerdbl 
+     \dollar \eight \exclam \exclamdown \figuredash \five 
+     \four \nine \numbersign \one \parenleft \parenright 
+     \percent \question \questiondown \seven \six \sterling 
+     \three \two \zero];
 @l2_v = [\v \w];
+@l2_j = [\j \paragraph \semicolon];
 @l2_afii00208 = [\afii00208 \c \c_t \d \e \emdash 
      \endash \hyphen \o \oe \uni00AD \uni2010 
      \uni2011];
@@ -71,21 +74,21 @@ feature kern {
      \H \I \K \L \M \N 
      \O \OE \P \Q \Q.001 \Q.002 
      \Q_U \Q_u \R \S \ampersand \b];
-@l2_quotedblleft = [\quotedblleft \quotedblright \quoteleft \quotereversed \quoteright \uni201F];
+@l2_asterisk = [\asterisk \quotedbl \quotedblleft \quotedblright \quoteleft \quotereversed 
+     \quoteright \quotesingle \uni201F];
 @l2_s = [\s \s_t];
-@l2_f_f = [\f_f \f_f_i \f_f_l \f_i \f_l];
 @l2_ellipsis = [\ellipsis \period];
 @l2_colon = [\colon \dotlessi \guillemotleft \guillemotright \guilsinglleft \guilsinglright 
      \i \i.TRK \r \z];
 @l2_quotedblbase = [\quotedblbase \quotesinglbase];
 @l2_k = [\k \l];
-@l2_afii299 = [\afii299 \afii300 \afii301 \afii61664 \asterisk \backslash 
-     \bracketleft \bracketright \divide \equal \greater \less 
-     \minus \multiply \parenleft \parenright \plus \quotedbl 
-     \quotesingle \slash \space \sterling \uni00A0 \uni2000 
-     \uni2001 \uni2002 \uni2003 \uni2004 \uni2005 \uni2006 
-     \uni2007 \uni2008 \uni2009 \uni200A \uni200B \uni202F 
-     \uni205F \uni2060 \uniFEFF];
+@l2_aacute = [\aacute \afii299 \afii300 \afii301 \afii61664 \brokenbar 
+     \currency \divide \equal \greater \less \minus 
+     \multiply \plus \space \uni00A0 \uni2000 \uni2001 
+     \uni2002 \uni2003 \uni2004 \uni2005 \uni2006 \uni2007 
+     \uni2008 \uni2009 \uni200A \uni200B \uni202F \uni205F 
+     \uni2060 \uniFEFF \yen];
+@l2_f_f = [\f_f \f_f_i \f_f_l \f_i \f_l];
 
 @r3_s = [\s \t];
 @r3_ij = [\ij \j];
@@ -96,12 +99,13 @@ feature kern {
 @r3_v = [\v \w];
 
 @l3_a = [\a \n];
-@l3_at = [\at \bullet \dagger \daggerdbl \dollar \eight 
-     \exclam \exclamdown \figuredash \five \four \nine 
-     \numbersign \one \percent \question \questiondown \seven 
-     \six \three \two \zero];
-@l3_j = [\j \paragraph \semicolon];
+@l3_at = [\at \bracketleft \bracketright \bullet \dagger \daggerdbl 
+     \dollar \eight \exclam \exclamdown \figuredash \five 
+     \four \nine \numbersign \one \parenleft \parenright 
+     \percent \question \questiondown \seven \six \sterling 
+     \three \two \zero];
 @l3_v = [\v \w];
+@l3_j = [\j \paragraph \semicolon];
 @l3_afii00208 = [\afii00208 \c \c_t \d \e \emdash 
      \endash \hyphen \o \oe \uni00AD \uni2010 
      \uni2011];
@@ -109,81 +113,98 @@ feature kern {
      \H \I \K \L \M \N 
      \O \OE \P \Q \Q.001 \Q.002 
      \Q_U \Q_u \R \S \ampersand \b];
-@l3_quotedblleft = [\quotedblleft \quotedblright \quoteleft \quotereversed \quoteright \uni201F];
+@l3_asterisk = [\asterisk \quotedbl \quotedblleft \quotedblright \quoteleft \quotereversed 
+     \quoteright \quotesingle \uni201F];
 @l3_s = [\s \s_t];
-@l3_f_f = [\f_f \f_f_i \f_f_l \f_i \f_l];
 @l3_ellipsis = [\ellipsis \period];
 @l3_colon = [\colon \dotlessi \guillemotleft \guillemotright \guilsinglleft \guilsinglright 
      \i \i.TRK \r \z];
 @l3_quotedblbase = [\quotedblbase \quotesinglbase];
 @l3_k = [\k \l];
-@l3_afii299 = [\afii299 \afii300 \afii301 \afii61664 \asterisk \backslash 
-     \bracketleft \bracketright \divide \equal \greater \less 
-     \minus \multiply \parenleft \parenright \plus \quotedbl 
-     \quotesingle \slash \space \sterling \uni00A0 \uni2000 
-     \uni2001 \uni2002 \uni2003 \uni2004 \uni2005 \uni2006 
-     \uni2007 \uni2008 \uni2009 \uni200A \uni200B \uni202F 
-     \uni205F \uni2060 \uniFEFF];
+@l3_aacute = [\aacute \afii299 \afii300 \afii301 \afii61664 \brokenbar 
+     \currency \divide \equal \greater \less \minus 
+     \multiply \plus \space \uni00A0 \uni2000 \uni2001 
+     \uni2002 \uni2003 \uni2004 \uni2005 \uni2006 \uni2007 
+     \uni2008 \uni2009 \uni200A \uni200B \uni202F \uni205F 
+     \uni2060 \uniFEFF \yen];
+@l3_f_f = [\f_f \f_f_i \f_f_l \f_i \f_l];
 
-pos \f_f [\comma @l1_ellipsis \Z \X \A \AE] -30;
-pos [@r1_comma \semicolon @r1_at] \J 100;
-pos [\f_f \semicolon @r1_at @r1_colon \ampersand @r1_quotedblleft] \p 5;
+pos \f_f [\comma \slash @l1_ellipsis \Z \X \A \AE] -30;
+pos \backslash \u -30;
+pos [\slash \backslash] \q -30;
+pos [\backslash @r1_comma \semicolon @r1_at] \J 100;
+pos [\slash \f_f \semicolon @r1_at @r1_colon \ampersand @r1_asterisk] \p 5;
 pos [@r1_comma @r1_ellipsis] \W -90;
 pos [\f_f @r1_afii00208 @r1_comma \semicolon @r1_ellipsis @r1_c_t @r1_colon] \Y -90;
 pos [@r1_afii00208 @r1_comma \Q_u @r1_ellipsis] \T -90;
-pos [\Q_u @r1_f_f_i] \Y -100;
+pos \slash \g -25;
+pos \backslash [\V \W] -120;
+pos @r1_f_f_i [\V \W] -55;
 pos @r1_f_f_i \T -85;
+pos [\f_f \Q_U] \g -20;
 pos @r1_afii00208 [\Z \X] -20;
-pos [\paragraph \f_f \Q_U @r1_afii00208 @r1_quotedblleft] @l1_k -20;
-pos \Q_U [@l1_quotedblbase @l1_j @l1_colon @l1_s \ae @l1_a \m @l1_f_f \t \ij] -20;
+pos \Q_U [@l1_quotedblbase @l1_j @l1_colon @l1_s \ae \m @l1_f_f \t \ij] -20;
 pos [\Q_U @r1_afii00208 \Q_u] @l1_v -20;
-pos [@r1_afii00208 @r1_comma \Q_u] \y -20;
-pos [\section \f_f @r1_afii00208 @r1_comma \semicolon \Q_u @r1_f_f_i @r1_ellipsis @r1_c_t @r1_colon] \U -20;
-pos [\f_f \Q_U] [\g \f] -20;
-pos [\Q_U @r1_afii00208] [\x \A \AE] -20;
-pos \Q_u [@l1_quotedblleft \napostrophe] -20;
-pos [\Q_U @r1_afii00208 @r1_quotedblleft] [\comma @l1_ellipsis] -20;
-pos [\Q_U \Q_u] [\section @l1_afii00208 \q \u] -20;
+pos [\section \f_f @r1_afii00208 \backslash @r1_comma \semicolon \Q_u @r1_f_f_i @r1_ellipsis @r1_c_t @r1_colon] \U -20;
+pos [\slash \Q_U \backslash \Q_u] @l1_afii00208 -20;
+pos [@r1_afii00208 \backslash @r1_comma \Q_u] \y -20;
+pos [\slash \Q_U] @l1_a -20;
+pos [@r1_afii00208 \Q_u] \backslash -20;
+pos [\Q_U @r1_afii00208] [\slash \x \A \AE] -20;
+pos [\slash \paragraph \f_f \Q_U @r1_afii00208 @r1_asterisk] @l1_k -20;
+pos \Q_u [@l1_asterisk \napostrophe] -20;
+pos [\Q_U @r1_afii00208 @r1_asterisk] [\comma @l1_ellipsis] -20;
+pos [\Q_U \Q_u] [\section \q \u] -20;
+pos [\slash \f_f \Q_U] \f -20;
+pos \section \J 60;
 pos [@r1_comma @r1_ellipsis] \V -80;
-pos \paragraph [@l1_quotedblbase @l1_j \g \comma \section @l1_colon @l1_s \ae @l1_a \m @l1_f_f \f @l1_ellipsis \x \A \AE \t @l1_afii00208 \q \u @l1_v \ij] -80;
+pos \backslash \backslash -80;
+pos [\paragraph \backslash] @l1_v -80;
+pos \paragraph [@l1_quotedblbase @l1_j \g \comma \section @l1_colon @l1_s \ae @l1_a \m @l1_f_f \f @l1_ellipsis \x \AE \t @l1_afii00208 \q \u \ij] -80;
+pos [\slash \paragraph] [\slash \A] -80;
+pos [\slash \f_f] @l1_f_f -15;
 pos [\f_f @r1_f_f_i] [@l1_afii00208 \q] -15;
-pos \f_f [@l1_quotedblbase @l1_a @l1_f_f] -15;
-pos [\f_f @r1_quotedblleft] \x -15;
-pos @r1_f_f_i [\section @l1_quotedblleft \y \u @l1_v \napostrophe] -15;
 pos \Q_U \p -15;
+pos [\slash \f_f @r1_asterisk] \x -15;
+pos \f_f [@l1_quotedblbase @l1_a] -15;
+pos @r1_f_f_i [\section @l1_asterisk \y \u @l1_v \backslash \napostrophe] -15;
 pos @r1_c_t [\V \W] -45;
 pos @r1_c_t \T -75;
 pos \paragraph \p -75;
-pos \f_f \ae -10;
+pos [\slash \paragraph \f_f \Q_U @r1_afii00208 @r1_asterisk] \h -10;
+pos [\slash \f_f] \ae -10;
 pos [\section @r1_afii00208 @r1_comma @r1_f_f_l @r1_ellipsis] \u -10;
-pos [@r1_afii00208 @r1_quotedblleft] [@l1_f_f \f] -10;
-pos [\paragraph \f_f \Q_U @r1_afii00208 @r1_quotedblleft] \h -10;
-pos @r1_f_f_l [\section @l1_quotedblleft \y @l1_afii00208 \U \q @l1_v \Y \T \V \W \napostrophe] -10;
-pos @r1_f_f_i [\V \W] -55;
+pos [@r1_afii00208 @r1_asterisk] [@l1_f_f \f] -10;
+pos @r1_f_f_l [\section @l1_asterisk \y @l1_afii00208 \U \q @l1_v \Y \T \backslash \V \W \napostrophe] -10;
 pos [\section \f_f \semicolon @r1_colon] [\V \W] -40;
 pos \section [\Y \T] -40;
+pos [\section @r1_comma @r1_ellipsis] [@l1_v \backslash] -40;
 pos [\section @r1_ellipsis] \y -40;
-pos @r1_quotedblleft \A -40;
-pos [\section @r1_comma @r1_ellipsis] @l1_v -40;
+pos \slash @l1_quotedblbase -40;
+pos \backslash [@l1_asterisk \napostrophe] -40;
+pos @r1_asterisk [\slash \A] -40;
 pos [@r1_afii00208 \Q_u] [\V \W] -60;
+pos \slash [\comma @l1_ellipsis] -60;
 pos [\f_f \semicolon @r1_colon] \T -70;
-pos @r1_quotedblleft \AE -70;
-pos [\f_f \Q_u @r1_f_f_i @r1_f_f_l] \t -5;
-pos \f_f @l1_s -5;
-pos [\f_f @r1_afii00208 @r1_quotedblleft] \m -5;
-pos @r1_c_t [\y \u @l1_v] -5;
-pos [@r1_afii00208 @r1_quotedblleft] \g -5;
-pos \section \J 60;
+pos @r1_asterisk \AE -70;
+pos [\slash \f_f \backslash \Q_u @r1_f_f_i @r1_f_f_l] \t -5;
+pos [\slash \f_f] @l1_s -5;
+pos @r1_c_t [\y \u @l1_v \backslash] -5;
+pos [@r1_afii00208 @r1_asterisk] \g -5;
+pos [\slash \f_f @r1_afii00208 @r1_asterisk] \m -5;
+pos [\backslash \Q_u @r1_f_f_i] \Y -100;
+pos \slash \AE -100;
+pos \backslash \T -130;
 
 subtable;
-pos \T [\A \AE] -125;
+pos \T [\slash \A \AE] -125;
 pos [@r2_F @r2_AE] \p 5;
 pos [\A \R] [\V \W] -120;
-pos [\W \V] \A -120;
+pos [\W \V] [\slash \A] -120;
 pos \R \T -120;
 pos [\W \Y] [\comma @l2_ellipsis] -110;
-pos \Y [@l2_f_f \f \x \A \AE] -110;
-pos \Q [@l2_quotedblbase \p @l2_j @l2_at \g \comma \section] 20;
+pos \Y [\slash @l2_f_f \f \x \A \AE] -110;
+pos \Q [@l2_quotedblbase \p @l2_j @l2_at \g \comma \slash \section] 20;
 pos \Y [\g \m] -105;
 pos \T [\comma @l2_ellipsis] -105;
 pos [\A \R] \Y -100;
@@ -194,10 +215,10 @@ pos \L [\Y \T] -90;
 pos \T \g -90;
 pos \W @l2_quotedblbase -90;
 pos \T [@l2_quotedblbase @l2_a \f @l2_afii00208 \q] -85;
-pos [\A \R] \y -80;
+pos [\A \R] [\y \backslash] -80;
 pos \V @l2_quotedblbase -80;
 pos \L [\V \W] -80;
-pos @r2_F [\A \AE] -80;
+pos @r2_F [\slash \A \AE] -80;
 pos [\A \R @r2_K] @l2_v -80;
 pos \T [@l2_f_f \x] -80;
 pos \T \ae -75;
@@ -211,10 +232,10 @@ pos \T \p -60;
 pos [\W \V] [@l2_f_f \x] -55;
 pos [\W \V] \ae -50;
 pos [\W \V] [@l2_s \m \t] -45;
-pos [\A \R] [@l2_quotedblleft \napostrophe] -40;
+pos [\A \R] [@l2_asterisk \napostrophe] -40;
 pos [\W \V \A \R @r2_K] \section -40;
 pos [\W \V] [@l2_j @l2_colon \u \ij] -40;
-pos \L \y -40;
+pos \L [\y \backslash] -40;
 pos @r2_F @l2_quotedblbase -40;
 pos [\W \V \L] @l2_v -40;
 pos [\W \V] \p -35;
@@ -226,7 +247,7 @@ pos \V \AE -150;
 pos [@r2_F \U \A \R @r2_K] @l2_afii00208 -20;
 pos [\A \R \L] \U -20;
 pos [\U @r2_C] @l2_v -20;
-pos \U [@l2_quotedblbase @l2_j \g \comma \section @l2_colon @l2_s \ae \m @l2_f_f @l2_ellipsis \x \A \AE \t \q \u \ij] -20;
+pos \U [@l2_quotedblbase @l2_j \g \comma \slash \section @l2_colon @l2_s \ae \m @l2_f_f @l2_ellipsis \x \A \AE \t \q \u \ij] -20;
 pos [\W \V \T \Y @r2_F \U] @l2_k -20;
 pos [@r2_F \U] [@l2_a \f] -20;
 pos \U \p -15;
@@ -242,7 +263,7 @@ pos \A \T -130;
 subtable;
 pos [\y @r3_ij @r3_v \g \f \r \c \k \x \z] \p 5;
 pos \y \AE -120;
-pos \q [@l3_quotedblbase \p @l3_j @l3_at \g \comma \section] 15;
+pos \q [@l3_quotedblbase \p @l3_j @l3_at \g \comma \slash \section] 15;
 pos \a \T -110;
 pos [\a \u @r3_dotlessi @r3_h \napostrophe] \Y -100;
 pos [@r3_b \o \u] \T -90;
@@ -252,7 +273,7 @@ pos [@r3_ae @r3_h \napostrophe] \T -80;
 pos \y [\comma @l3_ellipsis] -80;
 pos @r3_v [\X \AE] -80;
 pos \a [\V \W] -80;
-pos [\y @r3_v] \A -80;
+pos [\y @r3_v] [\slash \A] -80;
 pos @r3_s \T -75;
 pos [@r3_ij @r3_v \g \f \r \c \k \x \z \q] \T -70;
 pos \g \J 60;
@@ -262,47 +283,47 @@ pos @r3_v [\comma @l3_ellipsis] -60;
 pos [@r3_dotlessi \m] [\V \W] -55;
 pos [@r3_ae @r3_h \napostrophe] [\V \W] -50;
 pos @r3_s [\V \W] -45;
-pos @r3_b [\X \A \AE] -40;
+pos @r3_b [\slash \X \A \AE] -40;
 pos @r3_v [@l3_quotedblbase \Z] -40;
 pos [@r3_ij @r3_v \g \f \r \c \k \x \z \q] [\V \W] -40;
-pos \a [\y @l3_v] -40;
+pos \a [\y @l3_v \backslash] -40;
 pos [\y @r3_v \k \a] \q -30;
-pos \a [\section @l3_quotedblleft \u \napostrophe] -30;
+pos \a [\section @l3_asterisk \u \napostrophe] -30;
 pos [\y @r3_v] \g -25;
-pos \f [\comma @l3_ellipsis \Z \X \A \AE] -25;
-pos [\r \u] \q -20;
+pos \f [\comma \slash @l3_ellipsis \Z \X \A \AE] -25;
+pos [@r3_b \o \u] [\y @l3_v \backslash] -20;
 pos [@r3_b \o] \x -20;
-pos [@r3_ij @r3_v \g @r3_b \f \r \o @r3_ae \c \k \a \u @r3_dotlessi @r3_h \napostrophe \x \m @r3_s \z \q] \U -20;
-pos [@r3_b \r \o] [\comma @l3_ellipsis \Z] -20;
 pos [\y @r3_v \r] [@l3_a \f] -20;
-pos [@r3_b \o \u] [\y @l3_v] -20;
-pos \r [@l3_quotedblbase \g] -20;
-pos [\y @r3_v @r3_b \f \r \o] @l3_k -20;
+pos [@r3_b \r \o] [\comma @l3_ellipsis \Z] -20;
+pos [@r3_ij @r3_v \g @r3_b \f \r \o @r3_ae \c \k \a \u @r3_dotlessi @r3_h \napostrophe \x \m @r3_s \z \q] \U -20;
+pos [\r \u] \q -20;
 pos [\y @r3_v \r \k \a \u] @l3_afii00208 -20;
-pos [\r \o] [\X \A \AE] -20;
-pos \u [\section @l3_quotedblleft \u \napostrophe] -20;
+pos [\y @r3_v @r3_b \f \r \o] @l3_k -20;
+pos \r [@l3_quotedblbase \g] -20;
+pos [\r \o] [\slash \X \A \AE] -20;
+pos \u [\section @l3_asterisk \u \napostrophe] -20;
 pos [\y @r3_v \f \r] [@l3_f_f \x] -15;
-pos [@r3_dotlessi \m] [\y @l3_v] -15;
+pos [@r3_dotlessi \m] [\y @l3_v \backslash] -15;
 pos \f \f -15;
-pos @r3_dotlessi [\section @l3_quotedblleft @l3_afii00208 \q \u \napostrophe] -15;
+pos @r3_dotlessi [\section @l3_asterisk @l3_afii00208 \q \u \napostrophe] -15;
 pos \q \J 115;
 pos [\y @r3_v \g \r] \ae -10;
 pos [\g \f] \g -10;
-pos [@r3_ae @r3_h \napostrophe \d] [\y @l3_v] -10;
-pos [@r3_h \napostrophe \d] [\section @l3_quotedblleft \napostrophe] -10;
+pos [@r3_ae @r3_h \napostrophe \d] [\y @l3_v \backslash] -10;
+pos [@r3_h \napostrophe \d] [\section @l3_asterisk \napostrophe] -10;
 pos [\g @r3_b \o @r3_ae \c] [@l3_f_f \f] -10;
 pos \g [@l3_quotedblbase @l3_a] -10;
-pos [\g @r3_ae \c] [\comma @l3_ellipsis \x @l3_k \Z \X \A \AE] -10;
+pos [\g @r3_ae \c] [\comma \slash @l3_ellipsis \x @l3_k \Z \X \A \AE] -10;
 pos [\y @r3_v \g @r3_b \f \r \o @r3_ae \c] \h -10;
 pos [\g @r3_h \napostrophe \d \x] [@l3_afii00208 \q] -10;
 pos [@r3_b \o @r3_ae @r3_h \napostrophe \d \m] \u -10;
 pos \d [\U \Y \T \V \W] -10;
 pos [\y @r3_v \g \f \r] @l3_s -5;
-pos \l [\section @l3_quotedblleft \U \Y \T \V \W \napostrophe] -5;
+pos \l [\section @l3_asterisk \U \Y \T \V \W \napostrophe] -5;
 pos \f [@l3_quotedblbase \ae @l3_a] -5;
 pos [\f \l] [@l3_afii00208 \q] -5;
 pos [\y @r3_v \g \f \r \k \a \u @r3_dotlessi @r3_h \napostrophe \d \x \l] \t -5;
-pos [\l @r3_s] [\y \u @l3_v] -5;
+pos [\l @r3_s] [\y \u @l3_v \backslash] -5;
 pos [\y @r3_v \g @r3_b \f \r \o @r3_ae \c] \m -5;
 pos [@r3_b \o @r3_ae \c] \g -5;
 
