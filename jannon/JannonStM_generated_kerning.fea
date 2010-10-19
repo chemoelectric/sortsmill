@@ -74,14 +74,15 @@ feature kern {
 @l1_U = [\U \Uacute \Ubreve \Ucircumflex \Udieresis \Ugrave 
      \Uhungarumlaut \Umacron \Uring \Utilde];
 @l1_g = [\g \gbreve \gcircumflex \gdotaccent];
-@l1_colon = [\colon \dotlessi \guillemotleft \guillemotright \guilsinglleft \guilsinglright 
-     \i \i.TRK \iacute \ibreve \icircumflex \idieresis 
-     \igrave \imacron \itilde \r \racute \rcaron 
-     \rcommaaccent \z \zacute \zcaron \zdotaccent];
+@l1_colon = [\colon \dotlessi \eth \guillemotleft \guillemotright \guilsinglleft 
+     \guilsinglright \i \i.TRK \iacute \ibreve \icircumflex 
+     \idieresis \igrave \imacron \itilde \r \racute 
+     \rcaron \rcommaaccent \z \zacute \zcaron \zdotaccent];
+@l1_f = [\f \germandbls];
 @l1_quotedblbase = [\quotedblbase \quotesinglbase];
 @l1_Z = [\Z \Zacute \Zcaron \Zdotaccent];
 @l1_T = [\T \Tcaron \uni0162 \uni021A];
-@l1_eth = [\eth \j \jcircumflex \paragraph \semicolon \uni0237];
+@l1_j = [\j \jcircumflex \paragraph \semicolon \uni0237];
 @l1_acute = [\acute \acutecomb \acutecomb.cap \afii299 \afii300 \afii301 
      \afii61664 \asciicircum \braceleft \breve \brokenbar \caron 
      \cedilla \circumflex \currency \dieresis \divide \dotaccent 
@@ -170,14 +171,15 @@ feature kern {
 @l2_U = [\U \Uacute \Ubreve \Ucircumflex \Udieresis \Ugrave 
      \Uhungarumlaut \Umacron \Uring \Utilde];
 @l2_g = [\g \gbreve \gcircumflex \gdotaccent];
-@l2_colon = [\colon \dotlessi \guillemotleft \guillemotright \guilsinglleft \guilsinglright 
-     \i \i.TRK \iacute \ibreve \icircumflex \idieresis 
-     \igrave \imacron \itilde \r \racute \rcaron 
-     \rcommaaccent \z \zacute \zcaron \zdotaccent];
+@l2_colon = [\colon \dotlessi \eth \guillemotleft \guillemotright \guilsinglleft 
+     \guilsinglright \i \i.TRK \iacute \ibreve \icircumflex 
+     \idieresis \igrave \imacron \itilde \r \racute 
+     \rcaron \rcommaaccent \z \zacute \zcaron \zdotaccent];
+@l2_f = [\f \germandbls];
 @l2_quotedblbase = [\quotedblbase \quotesinglbase];
 @l2_Z = [\Z \Zacute \Zcaron \Zdotaccent];
 @l2_T = [\T \Tcaron \uni0162 \uni021A];
-@l2_eth = [\eth \j \jcircumflex \paragraph \semicolon \uni0237];
+@l2_j = [\j \jcircumflex \paragraph \semicolon \uni0237];
 @l2_acute = [\acute \acutecomb \acutecomb.cap \afii299 \afii300 \afii301 
      \afii61664 \asciicircum \braceleft \breve \brokenbar \caron 
      \cedilla \circumflex \currency \dieresis \divide \dotaccent 
@@ -267,14 +269,15 @@ feature kern {
 @l3_U = [\U \Uacute \Ubreve \Ucircumflex \Udieresis \Ugrave 
      \Uhungarumlaut \Umacron \Uring \Utilde];
 @l3_g = [\g \gbreve \gcircumflex \gdotaccent];
-@l3_colon = [\colon \dotlessi \guillemotleft \guillemotright \guilsinglleft \guilsinglright 
-     \i \i.TRK \iacute \ibreve \icircumflex \idieresis 
-     \igrave \imacron \itilde \r \racute \rcaron 
-     \rcommaaccent \z \zacute \zcaron \zdotaccent];
+@l3_colon = [\colon \dotlessi \eth \guillemotleft \guillemotright \guilsinglleft 
+     \guilsinglright \i \i.TRK \iacute \ibreve \icircumflex 
+     \idieresis \igrave \imacron \itilde \r \racute 
+     \rcaron \rcommaaccent \z \zacute \zcaron \zdotaccent];
+@l3_f = [\f \germandbls];
 @l3_quotedblbase = [\quotedblbase \quotesinglbase];
 @l3_Z = [\Z \Zacute \Zcaron \Zdotaccent];
 @l3_T = [\T \Tcaron \uni0162 \uni021A];
-@l3_eth = [\eth \j \jcircumflex \paragraph \semicolon \uni0237];
+@l3_j = [\j \jcircumflex \paragraph \semicolon \uni0237];
 @l3_acute = [\acute \acutecomb \acutecomb.cap \afii299 \afii300 \afii301 
      \afii61664 \asciicircum \braceleft \breve \brokenbar \caron 
      \cedilla \circumflex \currency \dieresis \divide \dotaccent 
@@ -303,7 +306,7 @@ pos @r1_f_f_i @l1_T -85;
 pos [@r1_comma @r1_ellipsis] \V -80;
 pos \backslash \backslash -80;
 pos [\paragraph \backslash] @l1_v -80;
-pos \paragraph [@l1_quotedblbase @l1_eth @l1_g \comma \section @l1_colon @l1_s \ae @l1_a \m @l1_f_f \f @l1_ellipsis \x \AE @l1_t @l1_afii00208 \q @l1_u \ij] -80;
+pos \paragraph [@l1_quotedblbase @l1_j @l1_g \comma \section @l1_colon @l1_s \ae @l1_a \m @l1_f_f @l1_f @l1_ellipsis \x \AE @l1_t @l1_afii00208 \q @l1_u \ij] -80;
 pos [\slash \paragraph] [\slash @l1_A] -80;
 pos @r1_c_t @l1_T -75;
 pos \paragraph \p -75;
@@ -328,7 +331,7 @@ pos [\backslash @r1_comma \semicolon @r1_at] @l1_J 100;
 pos \slash @l1_g -25;
 pos [\f_f \Q_U] @l1_g -20;
 pos @r1_afii00208 [@l1_Z \X] -20;
-pos \Q_U [@l1_quotedblbase @l1_eth @l1_colon @l1_s \ae \m @l1_f_f @l1_t \ij] -20;
+pos \Q_U [@l1_quotedblbase @l1_j @l1_colon @l1_s \ae \m @l1_f_f @l1_t \ij] -20;
 pos [\Q_U @r1_afii00208 \Q_u] @l1_v -20;
 pos [\section \f_f @r1_afii00208 \backslash @r1_comma \semicolon \Q_u @r1_f_f_i @r1_ellipsis @r1_c_t @r1_colon] @l1_U -20;
 pos [\slash \Q_U \backslash \Q_u] @l1_afii00208 -20;
@@ -340,7 +343,7 @@ pos [\slash \paragraph \f_f \Q_U @r1_afii00208 @r1_asterisk] @l1_k -20;
 pos \Q_u [@l1_asterisk \napostrophe] -20;
 pos [\Q_U @r1_afii00208 @r1_asterisk] [\comma @l1_ellipsis] -20;
 pos [\Q_U \Q_u] [\section \q @l1_u] -20;
-pos [\slash \f_f \Q_U] \f -20;
+pos [\slash \f_f \Q_U] @l1_f -20;
 pos [\slash \f_f] @l1_f_f -15;
 pos [\f_f @r1_f_f_i] [@l1_afii00208 \q] -15;
 pos \Q_U \p -15;
@@ -351,7 +354,7 @@ pos [\paragraph \Q_U] \thorn -1;
 pos [\slash \paragraph \f_f \Q_U @r1_afii00208 @r1_asterisk] @l1_h -10;
 pos [\slash \f_f] \ae -10;
 pos [\section @r1_afii00208 @r1_comma @r1_f_f_l @r1_ellipsis] @l1_u -10;
-pos [@r1_afii00208 @r1_asterisk] [@l1_f_f \f] -10;
+pos [@r1_afii00208 @r1_asterisk] [@l1_f_f @l1_f] -10;
 pos @r1_f_f_l [\section @l1_asterisk @l1_y @l1_afii00208 @l1_U \q @l1_v @l1_Y @l1_T \backslash \V @l1_W \napostrophe] -10;
 pos [\slash \f_f \backslash \Q_u @r1_f_f_i @r1_f_f_l] @l1_t -5;
 pos [\slash \f_f] @l1_s -5;
@@ -367,19 +370,19 @@ pos [@r2_A @r2_R] [\V @l2_W] -120;
 pos [@r2_W \V] [\slash @l2_A] -120;
 pos @r2_R @l2_T -120;
 pos [@r2_W @r2_Y] [\comma @l2_ellipsis] -110;
-pos @r2_Y [\slash @l2_f_f \f \x @l2_A \AE] -110;
-pos \Q [@l2_quotedblbase \p @l2_eth @l2_at \thorn @l2_g \comma \slash \section] 20;
+pos @r2_Y [\slash @l2_f_f @l2_f \x @l2_A \AE] -110;
+pos \Q [@l2_quotedblbase \p @l2_j @l2_at \thorn @l2_g \comma \slash \section] 20;
 pos @r2_Y [@l2_g \m] -105;
 pos @r2_T [\comma @l2_ellipsis] -105;
 pos [@r2_A @r2_R] @l2_Y -100;
-pos @r2_Y [@l2_quotedblbase @l2_eth \section @l2_colon @l2_s \ae @l2_a @l2_t @l2_afii00208 \q @l2_u @l2_v \ij] -100;
+pos @r2_Y [@l2_quotedblbase @l2_j \section @l2_colon @l2_s \ae @l2_a @l2_t @l2_afii00208 \q @l2_u @l2_v \ij] -100;
 pos \V [\comma @l2_ellipsis] -100;
 pos @r2_Y \p -95;
 pos \Thorn \AE -90;
 pos @r2_L [@l2_Y @l2_T] -90;
 pos @r2_T @l2_g -90;
 pos @r2_W @l2_quotedblbase -90;
-pos @r2_T [@l2_quotedblbase @l2_a \f @l2_afii00208 \q] -85;
+pos @r2_T [@l2_quotedblbase @l2_a @l2_f @l2_afii00208 \q] -85;
 pos [@r2_A @r2_R] [@l2_y \backslash] -80;
 pos \V @l2_quotedblbase -80;
 pos @r2_L [\V @l2_W] -80;
@@ -390,9 +393,9 @@ pos @r2_T \ae -75;
 pos [@r2_W \V] \q -70;
 pos @r2_T [@l2_s \m @l2_t] -70;
 pos [@r2_W \V] @l2_g -65;
-pos @r2_T [@l2_eth \section @l2_colon @l2_u @l2_v \ij] -65;
+pos @r2_T [@l2_j \section @l2_colon @l2_u @l2_v \ij] -65;
 pos \Thorn [\slash @l2_A] -60;
-pos [@r2_W \V] [@l2_a \f @l2_afii00208] -60;
+pos [@r2_W \V] [@l2_a @l2_f @l2_afii00208] -60;
 pos @r2_F [\comma @l2_ellipsis] -60;
 pos @r2_T \p -60;
 pos [@r2_W \V] [@l2_f_f \x] -55;
@@ -401,7 +404,7 @@ pos [@r2_W \V] [@l2_s \m @l2_t] -45;
 pos [@r2_A @r2_R] [@l2_asterisk \napostrophe] -40;
 pos [@r2_W \V @r2_A @r2_R @r2_K] \section -40;
 pos \Thorn [\comma @l2_ellipsis] -40;
-pos [@r2_W \V] [@l2_eth @l2_colon @l2_u \ij] -40;
+pos [@r2_W \V] [@l2_j @l2_colon @l2_u \ij] -40;
 pos @r2_L [@l2_y \backslash] -40;
 pos @r2_F @l2_quotedblbase -40;
 pos [@r2_W \V @r2_L] @l2_v -40;
@@ -414,11 +417,11 @@ pos [@r2_F \Thorn] @l2_g -25;
 pos \V \AE -150;
 pos [@r2_A @r2_R @r2_L] @l2_U -20;
 pos [@r2_U @r2_C] @l2_v -20;
-pos @r2_U [@l2_eth @l2_g \slash \section @l2_colon @l2_s \ae \m @l2_f_f \x @l2_A \AE @l2_t @l2_u \ij] -20;
+pos @r2_U [@l2_j @l2_g \slash \section @l2_colon @l2_s \ae \m @l2_f_f \x @l2_A \AE @l2_t @l2_u \ij] -20;
 pos [@r2_W \V @r2_T @r2_Y @r2_F @r2_O @r2_U \Thorn] @l2_k -20;
 pos [@r2_U \Thorn] [@l2_quotedblbase \q] -20;
 pos [@r2_O @r2_U] [\comma @l2_ellipsis] -20;
-pos [@r2_F @r2_U \Thorn] [@l2_a \f] -20;
+pos [@r2_F @r2_U \Thorn] [@l2_a @l2_f] -20;
 pos [@r2_F @r2_U \Thorn @r2_A @r2_R @r2_K] @l2_afii00208 -20;
 pos @r2_U \p -15;
 pos [@r2_F \Thorn] @l2_f_f -15;
@@ -427,7 +430,7 @@ pos [@r2_W \V @r2_T @r2_Y @r2_U] \thorn -1;
 pos [@r2_F \Thorn] \ae -10;
 pos [@r2_W \V @r2_T @r2_Y @r2_F @r2_O @r2_U \Thorn] @l2_h -10;
 pos [@r2_L @r2_C] @l2_u -10;
-pos @r2_O [@l2_f_f \f] -10;
+pos @r2_O [@l2_f_f @l2_f] -10;
 pos \Q @l2_J 120;
 pos [@r2_F \Thorn @r2_A @r2_R @r2_K] @l2_t -5;
 pos [@r2_F \Thorn] @l2_s -5;
@@ -436,9 +439,9 @@ pos [@r2_F @r2_O \Thorn] \m -5;
 pos @r2_A @l2_T -130;
 
 subtable;
-pos [@r3_y @r3_ij @r3_v @r3_g \f @r3_r @r3_c @r3_k \x @r3_z] \p 5;
+pos [@r3_y @r3_ij @r3_v @r3_g \f @r3_r @r3_c @r3_k \x @r3_z \eth] \p 5;
 pos @r3_y \AE -120;
-pos \q [@l3_quotedblbase \p @l3_eth @l3_at \thorn @l3_g \comma \slash \section] 15;
+pos \q [@l3_quotedblbase \p @l3_j @l3_at \thorn @l3_g \comma \slash \section] 15;
 pos @r3_a @l3_T -110;
 pos [@r3_a @r3_u @r3_dotlessi @r3_h \napostrophe] @l3_Y -100;
 pos [@r3_b @r3_o @r3_u] @l3_T -90;
@@ -464,14 +467,14 @@ pos [@r3_ij @r3_v @r3_g \f @r3_r @r3_c @r3_k \x @r3_z \q] [\V @l3_W] -40;
 pos @r3_a [@l3_y @l3_v \backslash] -40;
 pos [@r3_y @r3_v @r3_k @r3_a] \q -30;
 pos @r3_a [\section @l3_asterisk @l3_u \napostrophe] -30;
-pos \eth @l3_J 100;
+pos \germandbls [@l3_y @l3_v @l3_Y @l3_T \backslash \V @l3_W] -25;
 pos [@r3_y @r3_v] @l3_g -25;
 pos \f [\comma \slash @l3_ellipsis @l3_Z \X @l3_A \AE] -25;
 pos [@r3_b @r3_o @r3_u] [@l3_y @l3_v \backslash] -20;
 pos [@r3_b @r3_o] \x -20;
-pos [@r3_y @r3_v @r3_r] [@l3_a \f] -20;
+pos [@r3_y @r3_v @r3_r] [@l3_a @l3_f] -20;
 pos [@r3_b @r3_r @r3_o] [\comma @l3_ellipsis @l3_Z] -20;
-pos [@r3_ij @r3_v @r3_g @r3_b \f @r3_r @r3_o @r3_ae @r3_c @r3_k @r3_a @r3_u @r3_dotlessi @r3_h \napostrophe \x \m @r3_s @r3_z \q] @l3_U -20;
+pos [@r3_ij @r3_v @r3_g @r3_b \f @r3_r @r3_o @r3_ae @r3_c @r3_k @r3_a @r3_u @r3_dotlessi @r3_h \napostrophe \x \germandbls \m @r3_s @r3_z \q] @l3_U -20;
 pos [@r3_r @r3_u] \q -20;
 pos [@r3_y @r3_v @r3_r @r3_k @r3_a @r3_u] @l3_afii00208 -20;
 pos [@r3_y @r3_v @r3_b \f @r3_r @r3_o] @l3_k -20;
@@ -480,24 +483,20 @@ pos [@r3_r @r3_o] [\slash \X @l3_A \AE] -20;
 pos @r3_u [\section @l3_asterisk @l3_u \napostrophe] -20;
 pos [@r3_y @r3_v \f @r3_r] [@l3_f_f \x] -15;
 pos [@r3_dotlessi \m] [@l3_y @l3_v \backslash] -15;
-pos \f \f -15;
+pos \f @l3_f -15;
 pos @r3_dotlessi [\section @l3_asterisk @l3_afii00208 \q @l3_u \napostrophe] -15;
 pos \q @l3_J 115;
-pos [@r3_y @r3_v @r3_g @r3_b \f @r3_r @r3_o @r3_ae @r3_c \eth] @l3_h -10;
+pos [@r3_y @r3_v @r3_g @r3_r] \ae -10;
 pos [@r3_g \f] @l3_g -10;
-pos [@r3_g \eth @r3_h \napostrophe \d \x] [@l3_afii00208 \q] -10;
-pos [@r3_h \napostrophe \d] \section -10;
-pos [@r3_g @r3_ae @r3_c \eth] [@l3_ellipsis \x @l3_k @l3_Z \X @l3_A \AE] -10;
-pos @r3_g @l3_quotedblbase -10;
-pos [@r3_g \eth] @l3_a -10;
-pos [@r3_g @r3_b @r3_o @r3_ae @r3_c \eth] [@l3_f_f \f] -10;
-pos [@r3_b @r3_o @r3_ae \eth @r3_h \napostrophe \d \m] @l3_u -10;
-pos [@r3_g @r3_ae @r3_c] [\comma \slash] -10;
-pos [@r3_y @r3_v @r3_g @r3_r \eth] \ae -10;
-pos \eth [@l3_colon @l3_B @l3_s \m @l3_t \IJ \ij] -10;
-pos [\eth @r3_h \napostrophe \d] [@l3_asterisk \napostrophe] -10;
-pos [\eth \d] [@l3_U @l3_Y @l3_T \V @l3_W] -10;
-pos [@r3_ae \eth @r3_h \napostrophe \d] [@l3_y @l3_v \backslash] -10;
+pos [@r3_ae @r3_h \napostrophe \d] [@l3_y @l3_v \backslash] -10;
+pos [@r3_h \napostrophe \d] [\section @l3_asterisk \napostrophe] -10;
+pos [@r3_g @r3_b @r3_o @r3_ae @r3_c] [@l3_f_f @l3_f] -10;
+pos @r3_g [@l3_quotedblbase @l3_a] -10;
+pos [@r3_b @r3_o @r3_ae @r3_h \napostrophe \d \germandbls \m] @l3_u -10;
+pos [@r3_g @r3_ae @r3_c] [\comma \slash @l3_ellipsis \x @l3_k @l3_Z \X @l3_A \AE] -10;
+pos [@r3_y @r3_v @r3_g @r3_b \f @r3_r @r3_o @r3_ae @r3_c] @l3_h -10;
+pos [@r3_g @r3_h \napostrophe \d \x] [@l3_afii00208 \q] -10;
+pos \d [@l3_U @l3_Y @l3_T \V @l3_W] -10;
 pos [@r3_y @r3_v @r3_g \f @r3_r] @l3_s -5;
 pos @r3_l [\section @l3_asterisk @l3_U @l3_Y @l3_T \V @l3_W \napostrophe] -5;
 pos \f [@l3_quotedblbase \ae @l3_a] -5;
