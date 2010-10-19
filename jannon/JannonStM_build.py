@@ -143,7 +143,7 @@ def build_glyphs(bitbucket, f):
     build_accented_glyph('uni0219', f['s'], f['uni0326'])
     build_accented_glyph('uni021A', f['T'], f['uni0326'])
     build_accented_glyph('uni021B', f['t'], f['uni0326'])
-#    build_accented_glyph('gcommaaccent', f['g'], f['uni0312'])
+    build_accented_glyph('gcommaaccent', f['g'], f['uni0312'])
 
 #    for letter in 'gklnr':
 #        build_accented_glyph(letter + 'commaaccent.sc', f[letter + '.sc'], f['uni0326'])
