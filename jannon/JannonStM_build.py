@@ -91,7 +91,7 @@ def build_glyphs(bitbucket, f):
 
 #    make_glyph_reference('asciitilde', f['uni2053']) # Swung dash.
     make_glyph_reference('i.TRK', f['i'])
-#    make_glyph_reference('Dcroat', f['Eth'])
+    make_glyph_reference('Dcroat', f['Eth'])
 #    make_glyph_reference('dcroat.sc', f['eth.sc'])
 
     build_multigraph('ellipsis', [f['period'], f['period'], f['period']])
