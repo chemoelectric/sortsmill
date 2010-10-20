@@ -284,8 +284,8 @@ def build_glyphs(bitbucket, f):
         build_accented_glyph(letter + 'caron', f[base(letter)], f['uni030C'])
     for letter in 'CDENRTSZ':
         build_accented_glyph(letter + 'caron', f[base(letter)], f['uni030C.cap'])
-#    for letter in 'dLlt':
-#        build_accented_glyph(letter + 'caron', f[base(letter)], f['uni0315'])
+    for letter in 'dLlt':
+        build_accented_glyph(letter + 'caron', f[base(letter)], f['uni0315'])
 
 #    for letter in 'cdenrstz':
 #        build_accented_glyph(letter + 'caron.sc', f[letter + '.sc'], f['uni030C'])
