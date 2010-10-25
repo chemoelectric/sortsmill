@@ -25,7 +25,7 @@ ACLOCAL_AMFLAGS = -I m4 --install
 
 MKFONT_FLAGS = --infer-licensing --ttf-emsize=4096 ${MKFONT_GRAPHITE_FLAGS}
 FAMILYNAME = jannon
-FONTS = JannonStM
+FONTS = JannonStM JannonStM-Italic
 FEA_JannonStM = main salt liga generated_kerning
 #GDL_JannonStM = JannonStM.gdl JannonStM_generated_kerning.gdl JannonStM_features.gdh
 
@@ -39,6 +39,8 @@ EXTRA_DIST = \
 
 JannonStM.otf : ${FEA_JannonStM:%=JannonStM_%.fea}
 JannonStMTT.ttf : ${FEA_JannonStM:%=JannonStM_%.fea} ${GDL_JannonStM}
+#JannonStM-Italic.otf : ${FEA_JannonStM:%=JannonStM-Italic_%.fea}
+#JannonStMTT-Italic.ttf : ${FEA_JannonStM:%=JannonStM-Italic_%.fea} ${GDL_JannonStM}
 
 MOSTLYCLEANFILES = ${fonts_DATA} gdlerr.txt
 
