@@ -139,7 +139,6 @@ def build_glyphs(bitbucket, f):
 
     #--------------------------------------------------------------------------
 
-    """
     for letter in 'GKkLlNnRr':
         build_accented_glyph(letter + 'commaaccent', f[base(letter)], f['uni0326'])
     build_accented_glyph('uni0218', f['S'], f['uni0326'])
@@ -147,7 +146,6 @@ def build_glyphs(bitbucket, f):
     build_accented_glyph('uni021A', f['T'], f['uni0326'])
     build_accented_glyph('uni021B', f['t'], f['uni0326'])
     build_accented_glyph('gcommaaccent', f['g'], f['uni0312'])
-    """
 
 #    for letter in 'gklnr':
 #        build_accented_glyph(letter + 'commaaccent.sc', f[letter + '.sc'], f['uni0326'])
@@ -156,14 +154,13 @@ def build_glyphs(bitbucket, f):
 
     #--------------------------------------------------------------------------
 
-    """    for letter in 'CcSs':
+    for letter in 'CcSs':
         build_accented_glyph(letter + 'cedilla', f[base(letter)], f['uni0327'])
         remove_overlap(f[letter + 'cedilla'])
     build_accented_glyph('uni0162', f['T'], f['uni0327'])
     remove_overlap(f['uni0162'])
-    """
-#    build_accented_glyph('uni0163', f['t'], f['uni0327']) <-- Manually hinted, so don't rebuild.
-#    remove_overlap(f['uni0163'])
+    build_accented_glyph('uni0163', f['t'], f['uni0327'])
+    remove_overlap(f['uni0163'])
 
     """
     for letter in 'cs':
