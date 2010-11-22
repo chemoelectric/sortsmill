@@ -3371,7 +3371,7 @@ def build_several_space_glyphs(font, emsize, spacesize,
 def build_spacing_marks(font, width):
     transformation = (1, 0, 0, 1, width, 0)
     for combining_mark in spacing_marks_lookup:
-        if combining_mark in font:
+        if combining_mark in font and font[combining_mark].isWorthOutputting:
             spacing_mark = spacing_marks_lookup[combining_mark]
             if spacing_mark != None:
                 new_glyph = font.createChar(preferred_unicode(spacing_mark), spacing_mark)
