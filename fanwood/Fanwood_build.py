@@ -227,12 +227,11 @@ def build_glyphs(bitbucket, f):
 
     for letter in 'acegijosuwy':
         build_accented_glyph(letter + 'circumflex', f[base(letter)], f['uni0302'])
-    for letter in 'ACEGHIJOSUWY':
+    for letter in 'ACEGHIJOSUWYh':
         build_accented_glyph(letter + 'circumflex', f[base(letter)], f['uni0302.cap'])
-    """
-    for letter in 'h':
-        build_accented_glyph(letter + 'circumflex', f[base(letter)], f['uni0302.ascend'])
-    """
+#    for letter in 'h':
+#        build_accented_glyph(letter + 'circumflex', f[base(letter)], f['uni0302.ascendk'])
+
 #    for letter in ['f_h', 'f_f_h']:
 #        build_accented_glyph(letter + 'circumflex', f[base(letter)], f['uni0302.cap'])
 #    for letter in 'aceghijosuwy':

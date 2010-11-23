@@ -18,32 +18,45 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-languagesystem DFLT dflt;
-languagesystem latn dflt;
+lookup romanian {
 
-# Romanian, Moldovan
-languagesystem latn ROM; 
-languagesystem latn MOL;
+ sub scedilla by uni0219;
+ sub uni0163 by uni021B;
 
-# Turkish, Azeri, Crimean Tatar
-languagesystem latn TRK;
-languagesystem latn AZE;
-languagesystem latn CRT;
+} romanian;
 
-# Useful for spacing and kerning of capitals.
-# Comment this out for production.
-#include(CAPS.fea)
 
-include(Fanwood_locl.fea)
-#include(Fanwood_desc.fea)
-include(Fanwood_figures.fea)
-#include(Fanwood_sc.fea)
-#include(Fanwood_hist.fea)
-#include(Fanwood_case.fea)
-#include(Fanwood_salt.fea)
-include(Fanwood_liga.fea)
-#include(Fanwood_cpsp.fea)
-#include(Fanwood_generated_kerning.fea)
+lookup turkish {
+
+  # Replace the dotted 'i' with an equivalent glyph that does not
+  # get replaced with f-ligatures.  See http://typophile.com/node/17787
+  sub i by i.TRK;
+
+} turkish;
+
+
+feature locl {
+
+  script latn;
+
+  language ROM exclude_dflt;
+  lookup romanian;
+
+  language MOL exclude_dflt;
+  lookup romanian;
+
+  language TRK exclude_dflt;
+  lookup turkish;
+
+  language AZE exclude_dflt;
+  lookup turkish;
+
+  language CRT exclude_dflt;
+  lookup turkish;
+
+} locl;
+
+
 
 # local variables:
 # mode: fundamental
