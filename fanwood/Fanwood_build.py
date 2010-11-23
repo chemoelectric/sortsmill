@@ -47,15 +47,13 @@ def build_glyphs(bitbucket, f):
 
     db = font_db.db_create(f)
 
-    """
     db['spacing_anchor_heights'] = {
-        'hi' : 660,             # caps and ascenders,
+        'hi' : 650,             # caps and ascenders,
         'x'  : 380,             # ex-height
-        'o'  : 210,             # like the letter o
+        'o'  : 200,             # like the letter o
         'bl' : 10,              # baseline
-        'lo' : -200,            # descenders
+        'lo' : -260,            # descenders
         }
-        """
 
     all_glyphs = set(f) - set(['.notdef'])
 #    (smallcaps, capssmall, uppercase, lowercase, fraction_bar, numerators, denominators, remaining) = \
@@ -93,7 +91,7 @@ def build_glyphs(bitbucket, f):
 
 #    make_glyph_reference('asciitilde', f['uni2053']) # Swung dash.
     make_glyph_reference('i.TRK', f['i'])
-#    make_glyph_reference('Dcroat', f['Eth'])
+    make_glyph_reference('Dcroat', f['Eth'])
 #    make_glyph_reference('dcroat.sc', f['eth.sc'])
 
     build_multigraph('ellipsis', [f['period'], f['period'], f['period']])
@@ -229,8 +227,6 @@ def build_glyphs(bitbucket, f):
         build_accented_glyph(letter + 'circumflex', f[base(letter)], f['uni0302'])
     for letter in 'ACEGHIJOSUWYh':
         build_accented_glyph(letter + 'circumflex', f[base(letter)], f['uni0302.cap'])
-#    for letter in 'h':
-#        build_accented_glyph(letter + 'circumflex', f[base(letter)], f['uni0302.ascendk'])
 
 #    for letter in ['f_h', 'f_f_h']:
 #        build_accented_glyph(letter + 'circumflex', f[base(letter)], f['uni0302.cap'])
@@ -294,10 +290,8 @@ def build_glyphs(bitbucket, f):
         build_accented_glyph(letter + 'caron', f[base(letter)], f['uni030C'])
     for letter in 'CDENRTSZ':
         build_accented_glyph(letter + 'caron', f[base(letter)], f['uni030C.cap'])
-    """
     for letter in 'dLlt':
         build_accented_glyph(letter + 'caron', f[base(letter)], f['uni0315'])
-    """
 
 #    for letter in 'cdenrstz':
 #        build_accented_glyph(letter + 'caron.sc', f[letter + '.sc'], f['uni030C'])
