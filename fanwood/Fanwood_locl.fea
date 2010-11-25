@@ -18,10 +18,17 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+lookup catalan {
+
+  sub L periodcentered by Ldot;
+
+} catalan;
+
+
 lookup romanian {
 
- sub scedilla by uni0219;
- sub uni0163 by uni021B;
+  sub scedilla by uni0219;
+  sub uni0163 by uni021B;
 
 } romanian;
 
@@ -38,6 +45,9 @@ lookup turkish {
 feature locl {
 
   script latn;
+
+  language CAT exclude_dflt;
+  lookup catalan;
 
   language ROM exclude_dflt;
   lookup romanian;

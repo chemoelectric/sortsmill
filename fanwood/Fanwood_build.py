@@ -320,29 +320,18 @@ def build_glyphs(bitbucket, f):
     #--------------------------------------------------------------------------
 
     build_multigraph('napostrophe', [f['quoteright'], f['n']])
+    build_multigraph('ldot', [f['l'], f['periodcentered']])
 
     build_multigraph('IJ', [f['I'], f['J']])
     build_multigraph('ij', [f['i'], f['j']])
 
-#    build_multigraph('f_b', [f['f'], f['b']])
-#    build_multigraph('f_h', [f['f'], f['h']])
-#    build_multigraph('f_hcircumflex', [f['f'], f['hcircumflex']])
-#    build_multigraph('f_k', [f['f'], f['k']])
-#    build_multigraph('f_l', [f['f'], f['l']])
-
-#    build_multigraph('f_f_b', [f['f_f'], f['b']])
-#    build_multigraph('f_f_h', [f['f_f'], f['h']])
-#    build_multigraph('f_f_hcircumflex', [f['f_f'], f['hcircumflex']])
-#    build_multigraph('f_f_k', [f['f_f'], f['k']])
-#    build_multigraph('f_f_l', [f['f_f'], f['l']])
-
     #--------------------------------------------------------------------------
 
-#    f.selection.all()
-#    space_selected_by_anchors(f)
-#    f.selection.none()
+    f.selection.all()
+    space_selected_by_anchors(f)
+    f.selection.none()
 
-#    generate_kerning_and_read_features(None, f)
+    generate_kerning_and_read_features(None, f)
 
     #--------------------------------------------------------------------------
 
