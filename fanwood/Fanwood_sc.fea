@@ -1,0 +1,143 @@
+# Copyright (c) 2010 Barry Schwartz
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+#--------------------------------------------------------------------------
+
+@a.upper = [Aacute    Acircumflex    Abreve    Atilde    Adieresis    Agrave    Aring    Amacron    Aogonek];
+@a.lower = [aacute    acircumflex    abreve    atilde    adieresis    agrave    aring    amacron    aogonek];
+@a.small = [aacute.sc acircumflex.sc abreve.sc atilde.sc adieresis.sc agrave.sc aring.sc amacron.sc aogonek.sc];
+@a.c2    = [Aacute.c2 Acircumflex.c2 Abreve.c2 Atilde.c2 Adieresis.c2 Agrave.c2 Aring.c2 Amacron.c2 Aogonek.c2];
+
+@c.upper = [Ccircumflex    Ccaron    Cacute    Cdotaccent    Ccedilla];
+@c.lower = [ccircumflex    ccaron    cacute    cdotaccent    ccedilla];
+@c.small = [ccircumflex.sc ccaron.sc cacute.sc cdotaccent.sc ccedilla.sc];
+@c.c2    = [Ccircumflex.c2 Ccaron.c2 Cacute.c2 Cdotaccent.c2 Ccedilla.c2];
+
+@d.upper = [Dcaron    Dcroat];
+@d.lower = [dcaron    dcroat];
+@d.small = [dcaron.sc dcroat.sc];
+@d.c2    = [Dcaron.c2 Dcroat.c2];
+
+@e.upper = [Eacute    Egrave    Ecircumflex    Edieresis    Ecaron    Ebreve    Edotaccent    Emacron    Eogonek];
+@e.lower = [eacute    egrave    ecircumflex    edieresis    ecaron    ebreve    edotaccent    emacron    eogonek];
+@e.small = [eacute.sc egrave.sc ecircumflex.sc edieresis.sc ecaron.sc ebreve.sc edotaccent.sc emacron.sc eogonek.sc];
+@e.c2    = [Eacute.c2 Egrave.c2 Ecircumflex.c2 Edieresis.c2 Ecaron.c2 Ebreve.c2 Edotaccent.c2 Emacron.c2 Eogonek.c2];
+
+@g.upper = [Gcircumflex    Gbreve    Gdotaccent    Gcommaaccent];
+@g.lower = [gcircumflex    gbreve    gdotaccent    gcommaaccent];
+@g.small = [gcircumflex.sc gbreve.sc gdotaccent.sc gcommaaccent.sc];
+@g.c2    = [Gcircumflex.c2 Gbreve.c2 Gdotaccent.c2 Gcommaaccent.c2];
+
+@h.upper = [Hcircumflex    Hbar];
+@h.lower = [hcircumflex    hbar];
+@h.small = [hcircumflex.sc hbar.sc];
+@h.c2    = [Hcircumflex.c2 Hbar.c2];
+
+@i.upper = [Iacute    Icircumflex    Idieresis    Igrave    Itilde    Ibreve    Imacron    Iogonek];
+@i.lower = [iacute    icircumflex    idieresis    igrave    itilde    ibreve    imacron    iogonek];
+@i.small = [iacute.sc icircumflex.sc idieresis.sc igrave.sc itilde.sc ibreve.sc imacron.sc iogonek.sc];
+@i.c2    = [Iacute.c2 Icircumflex.c2 Idieresis.c2 Igrave.c2 Itilde.c2 Ibreve.c2 Imacron.c2 Iogonek.c2];
+
+@j.upper = [Jcircumflex];
+@j.lower = [jcircumflex];
+@j.small = [jcircumflex.sc];
+@j.c2    = [Jcircumflex.c2];
+
+@k.upper = [Kcommaaccent];
+@k.lower = [kcommaaccent];
+@k.small = [kcommaaccent.sc];
+@k.c2    = [Kcommaaccent.c2];
+
+@l.upper = [Lcommaaccent    Lacute    Lcaron    Ldot    Lslash];
+@l.lower = [lcommaaccent    lacute    lcaron    ldot    lslash];
+@l.small = [lcommaaccent.sc lacute.sc lcaron.sc ldot.sc lslash.sc];
+@l.c2    = [Lcommaaccent.c2 Lacute.c2 Lcaron.c2 Ldot.c2 Lslash.c2];
+
+@n.upper = [Ntilde    Nacute    Ncaron    Ncommaaccent];
+@n.lower = [ntilde    nacute    ncaron    ncommaaccent];
+@n.small = [ntilde.sc nacute.sc ncaron.sc ncommaaccent.sc];
+@n.c2    = [Ntilde.c2 Nacute.c2 Ncaron.c2 Ncommaaccent.c2];
+
+@o.upper = [Ocircumflex    Odieresis    Ograve    Oacute    Otilde    Obreve    Omacron    Ohungarumlaut    Oslash];
+@o.lower = [ocircumflex    odieresis    ograve    oacute    otilde    obreve    omacron    ohungarumlaut    oslash];
+@o.small = [ocircumflex.sc odieresis.sc ograve.sc oacute.sc otilde.sc obreve.sc omacron.sc ohungarumlaut.sc oslash.sc];
+@o.c2    = [Ocircumflex.c2 Odieresis.c2 Ograve.c2 Oacute.c2 Otilde.c2 Obreve.c2 Omacron.c2 Ohungarumlaut.c2 Oslash.c2];
+
+@r.upper = [Rcaron    Racute    Rcommaaccent];
+@r.lower = [rcaron    racute    rcommaaccent];
+@r.small = [rcaron.sc racute.sc rcommaaccent.sc];
+@r.c2    = [Rcaron.c2 Racute.c2 Rcommaaccent.c2];
+
+@s.upper = [Scircumflex    Sacute    Scaron    Scedilla    uni0218];
+@s.lower = [scircumflex    sacute    scaron    scedilla    uni0219];
+@s.small = [scircumflex.sc sacute.sc scaron.sc scedilla.sc uni0219.sc];
+@s.c2    = [Scircumflex.c2 Sacute.c2 Scaron.c2 Scedilla.c2 uni0218.c2];
+
+@t.upper = [Tcaron    uni0162    uni021A    Tbar];
+@t.lower = [tcaron    uni0163    uni021B    tbar];
+@t.small = [tcaron.sc uni0163.sc uni021B.sc tbar.sc];
+@t.c2    = [Tcaron.c2 uni0162.c2 uni021A.c2 Tbar.c2];
+
+@u.upper = [Ubreve    Utilde    Uacute    Udieresis    Ucircumflex    Uring    Ugrave    Umacron    Uhungarumlaut    Uogonek];
+@u.lower = [ubreve    utilde    uacute    udieresis    ucircumflex    uring    ugrave    umacron    uhungarumlaut    uogonek];
+@u.small = [ubreve.sc utilde.sc uacute.sc udieresis.sc ucircumflex.sc uring.sc ugrave.sc umacron.sc uhungarumlaut.sc uogonek.sc];
+@u.c2    = [Ubreve.c2 Utilde.c2 Uacute.c2 Udieresis.c2 Ucircumflex.c2 Uring.c2 Ugrave.c2 Umacron.c2 Uhungarumlaut.c2 Uogonek.c2];
+
+@w.upper = [Wcircumflex];
+@w.lower = [wcircumflex];
+@w.small = [wcircumflex.sc];
+@w.c2    = [Wcircumflex.c2];
+
+@y.upper = [Ycircumflex    Yacute    Ydieresis];
+@y.lower = [ycircumflex    yacute    ydieresis];
+@y.small = [ycircumflex.sc yacute.sc ydieresis.sc];
+@y.c2    = [Ycircumflex.c2 Yacute.c2 Ydieresis.c2];
+
+@z.upper = [Zacute    Zcaron    Zdotaccent];
+@z.lower = [zacute    zcaron    zdotaccent];
+@z.small = [zacute.sc zcaron.sc zdotaccent.sc];
+@z.c2    = [Zacute.c2 Zcaron.c2 Zdotaccent.c2];
+
+@uppercase = [A-Z       @a.upper @c.upper @d.upper @e.upper @g.upper @h.upper @i.upper @j.upper @k.upper @l.upper @n.upper @o.upper @r.upper @s.upper @t.upper @u.upper @w.upper @y.upper @z.upper];
+@lowercase = [a-z       @a.lower @c.lower @d.lower @e.lower @g.lower @h.lower @i.lower @j.lower @k.lower @l.lower @n.lower @o.lower @r.lower @s.lower @t.lower @u.lower @w.lower @y.lower @z.lower];
+@smallcaps = [a.sc-z.sc @a.small @c.small @d.small @e.small @g.small @h.small @i.small @j.small @k.small @l.small @n.small @o.small @r.small @s.small @t.small @u.small @w.small @y.small @z.small];
+@c2        = [A.c2-Z.c2 @a.c2 @c.c2 @d.c2 @e.c2 @g.c2 @h.c2 @i.c2 @j.c2 @k.c2 @l.c2 @n.c2 @o.c2 @r.c2 @s.c2 @t.c2 @u.c2 @w.c2 @y.c2 @z.c2];
+
+#--------------------------------------------------------------------------
+
+feature smcp {
+  sub @lowercase by @smallcaps;
+  sub i.TRK by i.TRK.sc;
+#  sub [ae oe thorn eth] by [ae.sc oe.sc thorn.sc eth.sc];
+#  sub periodcentered by periodcentered.sc;
+} smcp;
+
+feature c2sc {
+  sub @uppercase by @c2;
+#  sub ampersand by ampersand.c2;
+#  sub [AE OE Thorn Eth] by [AE.c2 OE.c2 Thorn.c2 Eth.c2];
+#  sub periodcentered by periodcentered.c2;
+} c2sc;
+
+#--------------------------------------------------------------------------
+
+# local variables:
+# mode: fundamental
+# end:
