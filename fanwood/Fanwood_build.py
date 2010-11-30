@@ -125,7 +125,7 @@ def build_glyphs(bitbucket, f):
         }
 
     for g in f:
-        if g[-3:] == '.sc':
+        if g[-3:] == '.sc' and g != 'i.TRK.sc':
             if g in special_cases:
                 make_glyph_reference(special_cases[g], f[g])
             elif g in ('ampersand.sc', 'periodcentered.sc'):
