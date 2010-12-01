@@ -56,16 +56,15 @@ def build_glyphs(bitbucket, f):
         }
 
     all_glyphs = set(f) - set(['.notdef'])
-#    (smallcaps, capssmall, uppercase, lowercase, fraction_bar, numerators, denominators, remaining) = \
-    (smallcaps, capssmall, uppercase, lowercase, remaining) = \
+    (smallcaps, capssmall, uppercase, lowercase, fraction_bar, numerators, denominators, remaining) = \
         tuple(separate_strings(all_glyphs, [
                 (lambda s: s[-3:] == '.sc'),
                 (lambda s: s[-3:] == '.c2'),
                 (lambda s: is_uppercase(s, last_name)),
                 (lambda s: is_lowercase(s, last_name)),
-#                (lambda s: s == 'fraction'),
-#                (lambda s: s[-6:] == '.numer'),
-#                (lambda s: s[-6:] == '.denom'),
+                (lambda s: s == 'fraction'),
+                (lambda s: s[-6:] == '.numer'),
+                (lambda s: s[-6:] == '.denom'),
                 ]))
 
     db["kerning_sets"] = [
@@ -76,8 +75,8 @@ def build_glyphs(bitbucket, f):
         (uppercase, uppercase | lowercase | smallcaps | remaining),
         (smallcaps, uppercase | smallcaps | capssmall | remaining),
         (lowercase, uppercase | lowercase | remaining),
-##        (numerators, fraction_bar),
-##        (fraction_bar, denominators),
+        (numerators, fraction_bar),
+        (fraction_bar, denominators),
         ]
 
     build_several_space_glyphs(f, emsize = emsize, spacesize = spacesize,
@@ -103,15 +102,17 @@ def build_glyphs(bitbucket, f):
     make_glyph_reference('uni00B9', f['one.sup'])
     make_glyph_reference('uni00B2', f['two.sup'])
     make_glyph_reference('uni00B3', f['three.sup'])
-    for extension in [('.numer', 250), ('.sub', -100), ('.sup', 290)]:
+    make_glyph_reference('ordfeminine', f['a.sup'])
+    make_glyph_reference('ordmasculine', f['o.sup'])
+    for extension in [('.numer', 250), ('.sub', -150), ('.sup', 350)]:
         for fig in figures:
             make_glyph_reference(fig + extension[0],
                                  f[fig + '.denom'],
                                  transformation = (1, 0, 0, 1, 0, extension[1]),
                                  copy_spacing_anchors = False)
-#    build_multigraph('onequarter', [f['one.numer'], f['fraction'], f['four.denom']])
-#    build_multigraph('onehalf', [f['one.numer'], f['fraction'], f['two.denom']])
-#    build_multigraph('threequarters', [f['three.numer'], f['fraction'], f['four.denom']])
+    build_multigraph('onequarter', [f['one.numer'], f['fraction'], f['four.denom']])
+    build_multigraph('onehalf', [f['one.numer'], f['fraction'], f['two.denom']])
+    build_multigraph('threequarters', [f['three.numer'], f['fraction'], f['four.denom']])
 
     special_cases = {
         'uni0163.sc' : 'uni0162.c2',

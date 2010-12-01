@@ -78,6 +78,8 @@ feature frac {
 
 feature sups {
   sub @OLDSTYLE_FIGURES by @SUPERIOR_FIGURES;
+  sub [a-z] by [a.sup-z.sup];
+
 #  sub [\period \comma] by [\period.sup \comma.sup];
 #  sub [\parenleft \parenright] by [\parenleft.sup \parenright.sup];
 #  sub [\bracketleft \bracketright] by [\bracketleft.sup \bracketright.sup];
@@ -86,6 +88,7 @@ feature sups {
 
 feature subs {
   sub @OLDSTYLE_FIGURES by @INFERIOR_FIGURES;
+
 #  sub [\period \comma] by [\period.sub \comma.sub];
 #  sub [\parenleft \parenright] by [\parenleft.sub \parenright.sub];
 #  sub [\bracketleft \bracketright] by [\bracketleft.sub \bracketright.sub];
