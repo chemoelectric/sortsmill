@@ -57,10 +57,10 @@ def build_glyphs(bitbucket, f):
 
     all_glyphs = set(f) - set(['.notdef'])
 #    (smallcaps, capssmall, uppercase, lowercase, fraction_bar, numerators, denominators, remaining) = \
-    (uppercase, lowercase, remaining) = \
+    (smallcaps, capssmall, uppercase, lowercase, remaining) = \
         tuple(separate_strings(all_glyphs, [
-#                (lambda s: s[-3:] == '.sc'),
-#                (lambda s: s[-3:] == '.c2'),
+                (lambda s: s[-3:] == '.sc'),
+                (lambda s: s[-3:] == '.c2'),
                 (lambda s: is_uppercase(s, last_name)),
                 (lambda s: is_lowercase(s, last_name)),
 #                (lambda s: s == 'fraction'),
@@ -72,10 +72,10 @@ def build_glyphs(bitbucket, f):
         (remaining, uppercase | lowercase | remaining),
         (uppercase, uppercase | lowercase | remaining),
         (lowercase, uppercase | lowercase | remaining),
-#        (remaining, uppercase | lowercase | smallcaps | capssmall | remaining),
-#        (uppercase, uppercase | lowercase | smallcaps | remaining),
-#        (smallcaps, uppercase | smallcaps | capssmall | remaining),
-#        (lowercase, uppercase | lowercase | remaining),
+        (remaining, uppercase | lowercase | smallcaps | capssmall | remaining),
+        (uppercase, uppercase | lowercase | smallcaps | remaining),
+        (smallcaps, uppercase | smallcaps | capssmall | remaining),
+        (lowercase, uppercase | lowercase | remaining),
 ##        (numerators, fraction_bar),
 ##        (fraction_bar, denominators),
         ]
@@ -89,10 +89,14 @@ def build_glyphs(bitbucket, f):
 #    propagate_hyphens(f, '.uppercase')
     build_spacing_marks(f, width = 2 * 200)
 
-#    make_glyph_reference('asciitilde', f['uni2053']) # Swung dash.
+    make_glyph_reference('asciitilde', f['uni2053']) # Swung dash.
     make_glyph_reference('i.TRK', f['i'])
+    make_glyph_reference('L.CAT', f['L'])
+    make_glyph_reference('l.CAT', f['l'])
+    make_glyph_reference('L.CAT.c2', f['L.c2'])
+    make_glyph_reference('l.CAT.sc', f['l.sc'])
     make_glyph_reference('Dcroat', f['Eth'])
-#    make_glyph_reference('dcroat.sc', f['eth.sc'])
+    make_glyph_reference('dcroat.sc', f['eth.sc'])
 
     build_multigraph('ellipsis', [f['period'], f['period'], f['period']])
 
@@ -130,7 +134,7 @@ def build_glyphs(bitbucket, f):
                 make_glyph_reference(special_cases[g], f[g])
             elif g in ('ampersand.sc', 'periodcentered.sc'):
                 make_glyph_reference(g[:-3] + '.c2', f[g])
-            elif g in ('ae.sc', 'oe.sc'):
+            elif g in ('ae.sc', 'oe.sc', 'ij.sc'):
                 make_glyph_reference(g[:-3].upper() + '.c2', f[g])
             else:
                 make_glyph_reference(g[:-3].capitalize() + '.c2', f[g])
@@ -226,11 +230,12 @@ def build_glyphs(bitbucket, f):
     for letter in 'ACEGHIJOSUWYh':
         build_accented_glyph(letter + 'circumflex', f[base(letter)], f['uni0302.cap'])
 
-#    for letter in ['f_h', 'f_f_h']:
-#        build_accented_glyph(letter + 'circumflex', f[base(letter)], f['uni0302.cap'])
-
     for letter in 'aceghijosuwy':
         build_accented_glyph(letter + 'circumflex.sc', f[letter + '.sc'], f['uni0302'])
+
+    # A gift for Esperantists, although 'ffĥ' seems quite unlikely.
+    for letter in ['f_h', 'f_f_h']:
+        build_accented_glyph(letter + 'circumflex', f[base(letter)], f['uni0302.cap'])
 
     #--------------------------------------------------------------------------
 
@@ -323,6 +328,7 @@ def build_glyphs(bitbucket, f):
 
     build_multigraph('IJ', [f['I'], f['J']])
     build_multigraph('ij', [f['i'], f['j']])
+    build_multigraph('ij.sc', [f['i.sc'], f['j.sc']])
 
     #--------------------------------------------------------------------------
 

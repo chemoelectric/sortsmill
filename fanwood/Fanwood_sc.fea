@@ -125,15 +125,17 @@
 feature smcp {
   sub @lowercase by @smallcaps;
   sub i.TRK by i.TRK.sc;
+  sub l.CAT by l.CAT.sc;
+  sub ij by ij.sc;
 #  sub [ae oe thorn eth] by [ae.sc oe.sc thorn.sc eth.sc];
-#  sub periodcentered by periodcentered.sc;
 } smcp;
 
 feature c2sc {
   sub @uppercase by @c2;
+  sub L.CAT by L.CAT.c2;
+  sub IJ by IJ.c2;
   sub ampersand by ampersand.c2;
 #  sub [AE OE Thorn Eth] by [AE.c2 OE.c2 Thorn.c2 Eth.c2];
-#  sub periodcentered by periodcentered.c2;
 } c2sc;
 
 #--------------------------------------------------------------------------

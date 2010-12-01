@@ -19,17 +19,14 @@
 # THE SOFTWARE.
 
 lookup catalan {
-
-  sub L periodcentered by Ldot;
-
+  sub L by L.CAT;
+  sub l by l.CAT;
 } catalan;
 
 
 lookup romanian {
-
   sub scedilla by uni0219;
   sub uni0163 by uni021B;
-
 } romanian;
 
 
