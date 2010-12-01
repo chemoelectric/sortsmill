@@ -21,7 +21,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1287776574
-ModificationTime: 1291183987
+ModificationTime: 1291184382
 OS2TypoAscent: 0
 OS2TypoAOffset: 1
 OS2TypoDescent: 0
@@ -44,8 +44,9 @@ Lookup: 1 0 0 "turkish"  {"turkish subtable"  } ['locl' ('latn' <'TRK ' 'AZE ' '
 Lookup: 1 0 0 "lining_figures"  {"lining_figures subtable"  } ['case' ('latn' <'dflt' 'CAT ' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) 'lnum' ('latn' <'dflt' 'CAT ' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
 Lookup: 1 0 0 "'smcp' Lowercase to Small Capitals in Latin lookup 4"  {"'smcp' Lowercase to Small Capitals in Latin lookup 4 subtable"  } ['smcp' ('latn' <'dflt' 'CAT ' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
 Lookup: 1 0 0 "'c2sc' Capitals to Small Capitals in Latin lookup 5"  {"'c2sc' Capitals to Small Capitals in Latin lookup 5 subtable"  } ['c2sc' ('latn' <'dflt' 'CAT ' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
-Lookup: 1 0 0 "'case' Case-Sensitive Forms in Latin lookup 6"  {"'case' Case-Sensitive Forms in Latin lookup 6 subtable"  } ['case' ('latn' <'dflt' 'CAT ' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
-Lookup: 4 0 1 "'liga' Standard Ligatures in Latin lookup 7"  {"'liga' Standard Ligatures in Latin lookup 7 subtable"  } ['liga' ('latn' <'dflt' 'CAT ' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
+Lookup: 1 0 0 "'hist' Historical Forms in Latin lookup 6"  {"'hist' Historical Forms in Latin lookup 6 subtable"  } ['hist' ('latn' <'dflt' 'CAT ' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
+Lookup: 1 0 0 "'case' Case-Sensitive Forms in Latin lookup 7"  {"'case' Case-Sensitive Forms in Latin lookup 7 subtable"  } ['case' ('latn' <'dflt' 'CAT ' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
+Lookup: 4 0 1 "'liga' Standard Ligatures in Latin lookup 8"  {"'liga' Standard Ligatures in Latin lookup 8 subtable"  } ['liga' ('latn' <'dflt' 'CAT ' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
 Lookup: 260 0 0 "spacing anchors"  {"spacing anchors-1"  } []
 Lookup: 260 0 0 "accent anchors"  {"accent anchors-1"  } []
 MarkAttachClasses: 1
@@ -1134,8 +1135,9 @@ SplineSet
  99 189 38 209 38 280 c 0
  38 347 111 393 182 393 c 0
 EndSplineSet
-AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" s.sc
-AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" s.sc
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" longs s.sc
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" longs s.sc
+Substitution2: "'hist' Historical Forms in Latin lookup 6 subtable" longs
 Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 4 subtable" s.sc
 EndChar
 
@@ -3587,7 +3589,7 @@ SplineSet
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" hyphen.u
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" hyphen.u
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 6 subtable" hyphen.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 7 subtable" hyphen.u
 EndChar
 
 StartChar: exclam
@@ -3668,7 +3670,7 @@ SplineSet
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" parenleft.u
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" parenleft.u
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 6 subtable" parenleft.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 7 subtable" parenleft.u
 EndChar
 
 StartChar: parenright
@@ -3690,7 +3692,7 @@ SplineSet
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" parenright.u
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" parenright.u
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 6 subtable" parenright.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 7 subtable" parenright.u
 EndChar
 
 StartChar: f_i
@@ -3860,7 +3862,7 @@ SplineSet
  156 169 l 2
  156 97 158 25 166 25 c 2xad
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 7 subtable" f i
+Ligature2: "'liga' Standard Ligatures in Latin lookup 8 subtable" f i
 LCarets2: 1 0 
 EndChar
 
@@ -3978,7 +3980,7 @@ SplineSet
  324 345 l 6
  337 345 340 347 340 365 c 4
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 7 subtable" f l
+Ligature2: "'liga' Standard Ligatures in Latin lookup 8 subtable" f l
 LCarets2: 1 0 
 EndChar
 
@@ -4125,7 +4127,7 @@ SplineSet
  349 561 348 563 346 565 c 0
  336 573 328 581 322 592 c 0
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 7 subtable" f f
+Ligature2: "'liga' Standard Ligatures in Latin lookup 8 subtable" f f
 LCarets2: 1 0 
 EndChar
 
@@ -4218,7 +4220,7 @@ SplineSet
  356 539 358 544 358 549 c 0
  358 553 355 555 349 559 c 0
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 7 subtable" f f i
+Ligature2: "'liga' Standard Ligatures in Latin lookup 8 subtable" f f i
 LCarets2: 2 0 0 
 EndChar
 
@@ -4397,7 +4399,7 @@ SplineSet
  351 557 351 558 351 559 c 4
  351 561 350 562 346 565 c 4
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 7 subtable" f f l
+Ligature2: "'liga' Standard Ligatures in Latin lookup 8 subtable" f f l
 LCarets2: 2 0 0 
 EndChar
 
@@ -4456,7 +4458,7 @@ SplineSet
  292 372 l 2
  312 372 389 378 402 378 c 0xfc
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 7 subtable" f j
+Ligature2: "'liga' Standard Ligatures in Latin lookup 8 subtable" f j
 LCarets2: 1 0 
 EndChar
 
@@ -4544,7 +4546,7 @@ SplineSet
  356 539 358 544 358 549 c 0
  358 553 355 555 349 559 c 0
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 7 subtable" f f j
+Ligature2: "'liga' Standard Ligatures in Latin lookup 8 subtable" f f j
 LCarets2: 2 0 0 
 EndChar
 
@@ -4666,7 +4668,7 @@ SplineSet
  637 276 564 357 477 357 c 4
  443 357 409 337 409 332 c 4xbd80
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 7 subtable" f b
+Ligature2: "'liga' Standard Ligatures in Latin lookup 8 subtable" f b
 LCarets2: 1 0 
 EndChar
 
@@ -4751,7 +4753,7 @@ SplineSet
  341 137 341 191 341 263 c 0
  341 381 341 501 340 549 c 0xde
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 7 subtable" f h
+Ligature2: "'liga' Standard Ligatures in Latin lookup 8 subtable" f h
 LCarets2: 1 0 
 EndChar
 
@@ -4847,7 +4849,7 @@ SplineSet
  341 236 l 2xdd
  341 435 341 501 340 549 c 0xde
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 7 subtable" f k
+Ligature2: "'liga' Standard Ligatures in Latin lookup 8 subtable" f k
 LCarets2: 1 0 
 EndChar
 
@@ -5030,7 +5032,7 @@ SplineSet
  351 557 351 558 351 559 c 4
  351 561 350 562 346 565 c 4
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 7 subtable" f f b
+Ligature2: "'liga' Standard Ligatures in Latin lookup 8 subtable" f f b
 LCarets2: 2 0 0 
 EndChar
 
@@ -5248,7 +5250,7 @@ SplineSet
  351 557 351 558 351 559 c 4
  351 561 350 562 346 565 c 4
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 7 subtable" f f h
+Ligature2: "'liga' Standard Ligatures in Latin lookup 8 subtable" f f h
 LCarets2: 2 0 0 
 EndChar
 
@@ -5488,7 +5490,7 @@ SplineSet
  351 557 351 558 351 559 c 4
  351 561 350 562 346 565 c 4
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 7 subtable" f f k
+Ligature2: "'liga' Standard Ligatures in Latin lookup 8 subtable" f f k
 LCarets2: 2 0 0 
 EndChar
 
@@ -5522,7 +5524,7 @@ SplineSet
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" bracketleft.u
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" bracketleft.u
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 6 subtable" bracketleft.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 7 subtable" bracketleft.u
 EndChar
 
 StartChar: dagger
@@ -5960,7 +5962,7 @@ SplineSet
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" bracketright.u
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" bracketright.u
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 6 subtable" bracketright.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 7 subtable" bracketright.u
 EndChar
 
 StartChar: ampersand
@@ -6193,7 +6195,7 @@ SplineSet
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" emdash.u
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" emdash.u
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 6 subtable" emdash.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 7 subtable" emdash.u
 EndChar
 
 StartChar: endash
@@ -6216,7 +6218,7 @@ SplineSet
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" endash.u
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" endash.u
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 6 subtable" endash.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 7 subtable" endash.u
 EndChar
 
 StartChar: OE
@@ -6719,7 +6721,7 @@ SplineSet
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" guillemotleft.u
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" guillemotleft.u
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 6 subtable" guillemotleft.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 7 subtable" guillemotleft.u
 EndChar
 
 StartChar: guillemotright
@@ -6753,7 +6755,7 @@ SplineSet
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" guillemotright.u
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" guillemotright.u
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 6 subtable" guillemotright.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 7 subtable" guillemotright.u
 EndChar
 
 StartChar: multiply
@@ -6851,7 +6853,7 @@ SplineSet
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" guilsinglleft.u
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" guilsinglleft.u
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 6 subtable" guilsinglleft.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 7 subtable" guilsinglleft.u
 EndChar
 
 StartChar: guilsinglright
@@ -6876,7 +6878,7 @@ SplineSet
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" guilsinglright.u
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" guilsinglright.u
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 6 subtable" guilsinglright.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 7 subtable" guilsinglright.u
 EndChar
 
 StartChar: minus
@@ -7246,7 +7248,7 @@ Fore
 Refer: 71 45 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" uni00AD.u
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" uni00AD.u
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 6 subtable" uni00AD.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 7 subtable" uni00AD.u
 EndChar
 
 StartChar: macron
@@ -7783,7 +7785,7 @@ Fore
 Refer: 71 45 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" uni2010.u
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" uni2010.u
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 6 subtable" uni2010.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 7 subtable" uni2010.u
 EndChar
 
 StartChar: uni2011
@@ -7796,7 +7798,7 @@ Fore
 Refer: 71 45 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" uni2011.u
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" uni2011.u
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 6 subtable" uni2011.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 7 subtable" uni2011.u
 EndChar
 
 StartChar: circumflex
@@ -12451,7 +12453,7 @@ SplineSet
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Ldot.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Ldot.c2
-Ligature2: "'liga' Standard Ligatures in Latin lookup 7 subtable" L.CAT periodcentered
+Ligature2: "'liga' Standard Ligatures in Latin lookup 8 subtable" L.CAT periodcentered
 Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 5 subtable" Ldot.c2
 EndChar
 
@@ -12978,7 +12980,7 @@ SplineSet
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" braceleft.u
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" braceleft.u
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 6 subtable" braceleft.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 7 subtable" braceleft.u
 EndChar
 
 StartChar: uni2053
@@ -13055,7 +13057,7 @@ SplineSet
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" braceright.u
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" braceright.u
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 6 subtable" braceright.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 7 subtable" braceright.u
 EndChar
 
 StartChar: copyright
@@ -16092,7 +16094,7 @@ SplineSet
  415 -1 407 -3 397 -3 c 0xba
  374 -3 170 0 140 0 c 0
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 7 subtable" l.CAT.sc periodcentered
+Ligature2: "'liga' Standard Ligatures in Latin lookup 8 subtable" l.CAT.sc periodcentered
 EndChar
 
 StartChar: lslash.sc
@@ -16186,7 +16188,7 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 557 -1 N 1 0 0 1 0 0 2
-Ligature2: "'liga' Standard Ligatures in Latin lookup 7 subtable" L.CAT.c2 periodcentered
+Ligature2: "'liga' Standard Ligatures in Latin lookup 8 subtable" L.CAT.c2 periodcentered
 EndChar
 
 StartChar: Lslash.c2
@@ -17586,7 +17588,7 @@ LayerCount: 3
 Fore
 Refer: 259 -1 N 1 0 0 1 641 280 2
 Refer: 84 -1 N 1 0 0 1 0 0 2
-Ligature2: "'liga' Standard Ligatures in Latin lookup 7 subtable" f hcircumflex
+Ligature2: "'liga' Standard Ligatures in Latin lookup 8 subtable" f hcircumflex
 EndChar
 
 StartChar: f_f_hcircumflex
@@ -17598,7 +17600,7 @@ LayerCount: 3
 Fore
 Refer: 259 -1 N 1 0 0 1 894 280 2
 Refer: 87 -1 N 1 0 0 1 0 0 2
-Ligature2: "'liga' Standard Ligatures in Latin lookup 7 subtable" f f hcircumflex
+Ligature2: "'liga' Standard Ligatures in Latin lookup 8 subtable" f f hcircumflex
 EndChar
 
 StartChar: uni1E02
@@ -18318,7 +18320,7 @@ SplineSet
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" afii00208.u
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" afii00208.u
-Substitution2: "'case' Case-Sensitive Forms in Latin lookup 6 subtable" afii00208.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 7 subtable" afii00208.u
 EndChar
 
 StartChar: afii00208.u
