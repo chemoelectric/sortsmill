@@ -132,7 +132,7 @@ feature smcp {
   sub i.TRK by i.TRK.sc;
   sub l.CAT by l.CAT.sc;
   sub ij by ij.sc;
-#  sub [ae oe thorn eth] by [ae.sc oe.sc thorn.sc eth.sc];
+  sub [ae oe thorn eth] by [ae.sc oe.sc thorn.sc eth.sc];
 
   # Old Irish support.
   sub @old_irish_lowercase by @old_irish_smallcaps;
@@ -143,7 +143,7 @@ feature c2sc {
   sub L.CAT by L.CAT.c2;
   sub IJ by IJ.c2;
   sub ampersand by ampersand.c2;
-#  sub [AE OE Thorn Eth] by [AE.c2 OE.c2 Thorn.c2 Eth.c2];
+  sub [AE OE Thorn Eth] by [AE.c2 OE.c2 Thorn.c2 Eth.c2];
 
   # Old Irish support.
   sub @old_irish_uppercase by @old_irish_c2;
