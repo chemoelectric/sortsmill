@@ -86,7 +86,7 @@ def build_glyphs(bitbucket, f):
                                tabwidth = f['zero'].width)
 
     propagate_hyphens(f)
-#    propagate_hyphens(f, '.uppercase')
+    propagate_hyphens(f, '.u')
     build_spacing_marks(f, width = 2 * 200)
 
     make_glyph_reference('asciitilde', f['uni2053']) # Swung dash.
