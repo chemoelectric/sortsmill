@@ -258,7 +258,6 @@ def build_glyphs(bitbucket, f):
         build_accented_glyph(letter + 'dotaccent.sc', f[letter + '.sc'], f['uni0307'])
     build_accented_glyph('i.TRK.sc', f['i.sc'], f['uni0307'])
 
-    """
     # Extra dot accents for Old Irish.
     build_accented_glyph('uni1E02', f['B'], f['uni0307.cap'])
     build_accented_glyph('uni1E03', f['b'], f['uni0307.cap'])
@@ -286,7 +285,6 @@ def build_glyphs(bitbucket, f):
     build_accented_glyph('uni1E57.sc', f['p.sc'], f['uni0307'])
     build_accented_glyph('uni1E61.sc', f['s.sc'], f['uni0307'])
     build_accented_glyph('uni1E6B.sc', f['t.sc'], f['uni0307'])
-    """
 
     #--------------------------------------------------------------------------
 
