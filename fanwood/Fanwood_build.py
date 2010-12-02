@@ -68,9 +68,6 @@ def build_glyphs(bitbucket, f):
                 ]))
 
     db["kerning_sets"] = [
-        (remaining, uppercase | lowercase | remaining),
-        (uppercase, uppercase | lowercase | remaining),
-        (lowercase, uppercase | lowercase | remaining),
         (remaining, uppercase | lowercase | smallcaps | capssmall | remaining),
         (uppercase, uppercase | lowercase | smallcaps | remaining),
         (smallcaps, uppercase | smallcaps | capssmall | remaining),
@@ -105,7 +102,11 @@ def build_glyphs(bitbucket, f):
     make_glyph_reference('ordfeminine', f['a.sup'])
     make_glyph_reference('ordmasculine', f['o.sup'])
     for extension in [('.numer', 250), ('.sub', -150), ('.sup', 350)]:
-        for fig in figures:
+        for fig in figures + ['comma', 'period', 'hyphen',
+                              'parenleft', 'parenright',
+                              'bracketleft', 'bracketright',
+                              'dollar', 'cent',
+                              ]:
             make_glyph_reference(fig + extension[0],
                                  f[fig + '.denom'],
                                  transformation = (1, 0, 0, 1, 0, extension[1]),
