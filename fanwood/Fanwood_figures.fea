@@ -118,20 +118,12 @@ feature sups {
 
 feature subs {
   sub @FIGURES_AND_FRIENDS by @INFERIORS;
-
-#  sub @OLDSTYLE_FIGURES by @INFERIOR_FIGURES;
-#
-#  sub [\comma \period \hyphen] by [\comma.sub \period.sub \hyphen.sub];
-#  sub [\parenleft \parenright] by [\parenleft.sub \parenright.sub];
-#  sub [\bracketleft \bracketright] by [\bracketleft.sub \bracketright.sub];
-#  sub [\dollar \cent] by [\dollar.sub \cent.sub];
 } subs;
 
 #-----------------------------------------------------------------------
 
 lookup lining_figures {
-#  sub \figuredash by \figuredash.uppercase;
-#  sub \dollar by \dollar.lining;
+#  sub \figuredash by \figuredash.u;
   sub @OLDSTYLE_FIGURES by @LINING_FIGURES;
 } lining_figures;
 
