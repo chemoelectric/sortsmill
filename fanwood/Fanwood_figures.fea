@@ -51,6 +51,7 @@
   \parenleft \parenright
   \bracketleft \bracketright
   \dollar \cent
+  a-z
 ];
 
 @NUMERATORS = [
@@ -59,6 +60,7 @@
   \parenleft.numer \parenright.numer
   \bracketleft.numer \bracketright.numer
   \dollar.numer \cent.numer
+  a.numer-z.numer
 ];
 
 @DENOMINATORS = [
@@ -67,6 +69,7 @@
   \parenleft.denom \parenright.denom
   \bracketleft.denom \bracketright.denom
   \dollar.denom \cent.denom
+  a.denom-z.denom
 ];
 
 @SUPERIORS = [
@@ -75,6 +78,7 @@
   \parenleft.sup \parenright.sup
   \bracketleft.sup \bracketright.sup
   \dollar.sup \cent.sup
+  a.sup-z.sup
 ];
 
 @INFERIORS = [
@@ -83,6 +87,7 @@
   \parenleft.sub \parenright.sub
   \bracketleft.sub \bracketright.sub
   \dollar.sub \cent.sub
+  a.sub-z.sub
 ];
 
 #-----------------------------------------------------------------------
@@ -106,14 +111,14 @@ feature dnom {
 
 feature frac {
   lookup numerators;
-  sub [\fraction @DENOMINATOR_FIGURES]
-      [@NUMERATOR_FIGURES]'
-      by [@DENOMINATOR_FIGURES];
+  sub [\fraction @DENOMINATORS]
+      [@NUMERATORS]'
+      by [@DENOMINATORS];
 } frac;
 
 feature sups {
   sub @FIGURES_AND_FRIENDS by @SUPERIORS;
-  sub [a-z] by [a.sup-z.sup];
+##################################  sub [a-z] by [a.sup-z.sup];
 } sups;
 
 feature subs {

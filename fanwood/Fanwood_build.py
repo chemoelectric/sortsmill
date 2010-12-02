@@ -23,6 +23,7 @@ THE SOFTWARE.
 """
 
 import fontforge
+import string
 from sortsmill import font_db
 from sortsmill.glyphbuild import *
 from sortsmill.spacing_by_anchors import *
@@ -96,21 +97,21 @@ def build_glyphs(bitbucket, f):
 
     build_multigraph('ellipsis', [f['period'], f['period'], f['period']])
 
-    make_glyph_reference('uni00B9', f['one.sup'])
-    make_glyph_reference('uni00B2', f['two.sup'])
-    make_glyph_reference('uni00B3', f['three.sup'])
-    make_glyph_reference('ordfeminine', f['a.sup'])
-    make_glyph_reference('ordmasculine', f['o.sup'])
     for extension in [('.numer', 250), ('.sub', -150), ('.sup', 350)]:
         for fig in figures + ['comma', 'period', 'hyphen',
                               'parenleft', 'parenright',
                               'bracketleft', 'bracketright',
                               'dollar', 'cent',
-                              ]:
+                              ] + [string.ascii_lowercase[i] for i in range(0, 26)]:
             make_glyph_reference(fig + extension[0],
                                  f[fig + '.denom'],
                                  transformation = (1, 0, 0, 1, 0, extension[1]),
                                  copy_spacing_anchors = False)
+    make_glyph_reference('uni00B9', f['one.sup'])
+    make_glyph_reference('uni00B2', f['two.sup'])
+    make_glyph_reference('uni00B3', f['three.sup'])
+    make_glyph_reference('ordfeminine', f['a.sup'])
+    make_glyph_reference('ordmasculine', f['o.sup'])
     build_multigraph('onequarter', [f['one.numer'], f['fraction'], f['four.denom']])
     build_multigraph('onehalf', [f['one.numer'], f['fraction'], f['two.denom']])
     build_multigraph('threequarters', [f['three.numer'], f['fraction'], f['four.denom']])
