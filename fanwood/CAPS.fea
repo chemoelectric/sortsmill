@@ -1,4 +1,4 @@
-# Copyright (c) 2010 Barry Schwartz
+# Copyright (c) 2009 Barry Schwartz
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -18,35 +18,18 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-languagesystem DFLT dflt;
-languagesystem latn dflt;
-
-# Catalan
-languagesystem latn CAT;
-
-# Romanian, Moldovan
-languagesystem latn ROM; 
-languagesystem latn MOL;
-
-# Turkish, Azeri, Crimean Tatar
-languagesystem latn TRK;
-languagesystem latn AZE;
-languagesystem latn CRT;
 
 # Useful for spacing and kerning of capitals.
-# Comment this out for production.
-#include(CAPS.fea)
 
-include(Fanwood_locl.fea)
-#include(Fanwood_desc.fea)
-include(Fanwood_figures.fea)
-include(Fanwood_sc.fea)
-include(Fanwood_hist.fea)
-include(Fanwood_case.fea)
-#include(Fanwood_salt.fea)
-include(Fanwood_liga.fea)
-include(Fanwood_cpsp.fea)
-include(Fanwood_generated_kerning.fea)
+lookup CAPS {
+  sub [a-z] by [A-Z] ;
+} CAPS;
+
+
+feature CAPS {
+  lookup CAPS;
+} CAPS;
+
 
 # local variables:
 # mode: fundamental
