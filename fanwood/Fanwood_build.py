@@ -57,12 +57,13 @@ def build_glyphs(bitbucket, f):
         }
 
     all_glyphs = set(f) - set(['.notdef'])
+    proportional_figures = ['zero.p', 'one.p', 'two.p', 'three.p', 'four.p', 'five.p', 'six.p', 'seven.p', 'eight.p', 'nine.p']
     (smallcaps, capssmall, uppercase, lowercase, fraction_bar, numerators, denominators, remaining) = \
         tuple(separate_strings(all_glyphs, [
                 (lambda s: s[-3:] == '.sc'),
                 (lambda s: s[-3:] == '.c2'),
                 (lambda s: is_uppercase(s, last_name)),
-                (lambda s: is_lowercase(s, last_name)),
+                (lambda s: is_lowercase(s, last_name) or s in proportional_figures),
                 (lambda s: s == 'fraction'),
                 (lambda s: s[-6:] == '.numer'),
                 (lambda s: s[-6:] == '.denom'),
