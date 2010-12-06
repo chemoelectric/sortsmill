@@ -3572,7 +3572,8 @@ def remove_overlap(glyph):
 
 def build_multigraph(glyphname, components,
                      tolerance = None,
-                     rounding_function = round):
+                     rounding_function = round,
+                     copy_spacing_anchors = True):
     assert len(components) != 0
 
     if tolerance == None:
@@ -3595,7 +3596,8 @@ def build_multigraph(glyphname, components,
             offset += kerning
         new_glyph.addReference(components[i].glyphname, psMat.translate(offset, 0))
 
-    spacing_by_anchors.copy_spacing_anchors(new_glyph)
+    if copy_spacing_anchors:
+        spacing_by_anchors.copy_spacing_anchors(new_glyph)
     if spacing_by_anchors.glyph_has_spacing_anchors(None, new_glyph):
         spacing_by_anchors.space_glyph_by_anchors(None, new_glyph)
     else:
