@@ -108,7 +108,8 @@ def build_glyphs(bitbucket, f):
             make_glyph_reference(fig + extension[0],
                                  f[fig + '.denom'],
                                  transformation = (1, 0, 0, 1, 0, extension[1]),
-                                 copy_spacing_anchors = False)
+                                 copy_spacing_anchors = (extension[0] == '.numer'))
+
     make_glyph_reference('uni00B9', f['one.sup'])
     make_glyph_reference('uni00B2', f['two.sup'])
     make_glyph_reference('uni00B3', f['three.sup'])
