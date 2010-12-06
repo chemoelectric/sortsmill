@@ -71,6 +71,7 @@ def build_glyphs(bitbucket, f):
         (remaining, uppercase | lowercase | smallcaps | capssmall | remaining),
         (uppercase, uppercase | lowercase | smallcaps | remaining),
         (smallcaps, uppercase | smallcaps | capssmall | remaining),
+        (capssmall, smallcaps | capssmall | remaining),
         (lowercase, uppercase | lowercase | remaining),
 #        (numerators, fraction_bar),
 #        (fraction_bar, denominators),
