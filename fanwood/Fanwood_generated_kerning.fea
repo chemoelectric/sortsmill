@@ -816,15 +816,15 @@ feature kern {
      \Uhungarumlaut \Umacron \Uogonek \Uring \Utilde];
 @l5_W = [\W \Wcircumflex];
 
+@r6_bracketleft.numer = [\bracketleft.numer \bracketright.numer \parenleft.numer \parenright.numer];
 @r6_four.numer = [\four.numer \six.numer \two.numer];
 @r6_one.numer = [\one.numer \three.numer \zero.numer];
-@r6_bracketleft.numer = [\bracketleft.numer \bracketright.numer \cent.numer \comma.numer \dollar.numer \hyphen.numer 
-     \parenleft.numer \parenright.numer \period.numer];
+@r6_cent.numer = [\cent.numer \comma.numer \dollar.numer \hyphen.numer \period.numer];
 
 
 
-@l7_bracketleft.denom = [\bracketleft.denom \bracketright.denom \cent.denom \comma.denom \dollar.denom \hyphen.denom 
-     \parenleft.denom \parenright.denom \period.denom];
+@l7_bracketleft.denom = [\bracketleft.denom \bracketright.denom \parenleft.denom \parenright.denom];
+@l7_cent.denom = [\cent.denom \comma.denom \dollar.denom \hyphen.denom \period.denom];
 @l7_five.denom = [\five.denom \one.denom \three.denom];
 @l7_seven.denom = [\seven.denom \two.denom];
 
