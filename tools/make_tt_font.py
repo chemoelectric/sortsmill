@@ -78,7 +78,12 @@ def follow_references(glyph):
 def generate_tt_font(f, unadorned_font_name, modifier,
                      output_dir = None,
                      emsize = None,
+                     no_instructions = False,
                      graphite_enabled = False):
+
+    flags = generation_flags
+    if no_instructions:
+        flags.append('omit-instructions')
 
     modify_names(f, modifier)
 
@@ -106,13 +111,13 @@ def generate_tt_font(f, unadorned_font_name, modifier,
             if len(g.references) != 0:
                 g.references = follow_references(g)
 
-        f.generate(temp_ttf.name, flags = generation_flags)
+        f.generate(temp_ttf.name, flags = flags)
         print('Compiling Graphite: ' + gdl_file + ' ' + temp_ttf.name + ' -> ' + ttf_file)
         compile_graphite(gdl_file, temp_ttf.name, ttf_file)
         temp_ttf.close()
     else:
         print('Generating ' + ttf_file)
-        f.generate(ttf_file, flags = generation_flags)
+        f.generate(ttf_file, flags = flags)
 
     print('Validating ' + ttf_file)
     subprocess.call(['fontlint', ttf_file])

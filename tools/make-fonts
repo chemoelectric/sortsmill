@@ -48,7 +48,7 @@ def remove_glyph(glyph):
 #--------------------------------------------------------------------------
 
 parser = optparse.OptionParser(usage='%prog [OPTIONS] FONTNAME...')
-parser.set_defaults(licensing_inferred=False)
+parser.set_defaults(licensing_inferred=False, no_instructions=False)
 parser.add_option('-C', '--input-directory', dest='input_dir', metavar='DIR',
                   help='where to read source files')
 parser.add_option('--output-directory', dest='output_dir', metavar='DIR',
@@ -57,6 +57,8 @@ parser.add_option('--infer-licensing', dest='licensing_inferred', action='store_
                   help='set license (MIT or OFL) inferred from font name')
 parser.add_option('--ttf-emsize', dest='ttf_emsize', metavar='UNITS',
                   help='set the units-per-em in TrueType versions')
+parser.add_option('--no-instructions', dest='no_instructions', action='store_true',
+                  help='omit TrueType instructions')
 parser.add_option('--graphite', '--enable-graphite', dest='graphite_enabled', action='store_true',
                   help='enables inclusion of Graphite tables')
 (options, args) = parser.parse_args()
@@ -65,6 +67,7 @@ input_dir = os.path.abspath(options.input_dir if options.input_dir else '.')
 output_dir = os.path.abspath(options.output_dir if options.output_dir else '.')
 licensing_inferred = options.licensing_inferred
 ttf_emsize = int(options.ttf_emsize) if options.ttf_emsize != None else None
+no_instructions = options.no_instructions
 graphite_enabled = options.graphite_enabled
 
 os.chdir(input_dir)
@@ -119,6 +122,7 @@ for sfd_filename in args:
         make_tt_font.generate_tt_font(f, sfd_filename[:-4], 'TT',
                                       output_dir = output_dir,
                                       emsize = ttf_emsize,
+                                      no_instructions = no_instructions,
                                       graphite_enabled = graphite_enabled)
     else:
         font_file = os.path.join(output_dir, f.fontname + font_extension)
