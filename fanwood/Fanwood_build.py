@@ -115,9 +115,9 @@ def build_glyphs(bitbucket, f):
     make_glyph_reference('uni00B3', f['three.sup'])
     make_glyph_reference('ordfeminine', f['a.sup'])
     make_glyph_reference('ordmasculine', f['o.sup'])
-    build_multigraph('onequarter', [f['one.numer'], f['fraction'], f['four.denom']])
-    build_multigraph('onehalf', [f['one.numer'], f['fraction'], f['two.denom']])
-    build_multigraph('threequarters', [f['three.numer'], f['fraction'], f['four.denom']])
+    build_multigraph('onequarter', [f['one.numer'], f['fraction'], f['four.denom']], copy_spacing_anchors = False)
+    build_multigraph('onehalf', [f['one.numer'], f['fraction'], f['two.denom']], copy_spacing_anchors = False)
+    build_multigraph('threequarters', [f['three.numer'], f['fraction'], f['four.denom']], copy_spacing_anchors = False)
 
     special_cases = {
         'uni0163.sc' : 'uni0162.c2',
