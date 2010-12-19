@@ -1,4 +1,7 @@
-# Copyright (c) 2009 Barry Schwartz
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
+# Copyright (c) 2010 Barry Schwartz
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -18,53 +21,27 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-lookup catalan {
-  sub L by L.CAT;
-  sub l by l.CAT;
-} catalan;
+AC_PREREQ(2.65)
+AC_INIT([lindenhill],[1.1],[http://code.google.com/p/sortsmill/issues/])
+AM_INIT_AUTOMAKE([foreign])
+
+STM_SORTSMILL_MIT_PREREQUISITES
+STM_INIT_SORTSMILL
+#STM_ENABLE_GRAPHITE
+STM_TARGET_MIT_BINPACK
+
+# Checks for programs.
+#STM_PROG_GRCOMPILER
+AC_PROG_MAKE_SET
+
+# Checks for libraries.
+
+# Checks for header files.
+
+# Checks for typedefs, structures, and compiler characteristics.
+
+# Checks for library functions.
 
 
-lookup romanian {
-  sub scedilla by uni0219;
-  sub uni0163 by uni021B;
-} romanian;
-
-
-lookup turkish {
-
-  # Replace the dotted 'i' with an equivalent glyph that does not
-  # get replaced with f-ligatures.  See http://typophile.com/node/17787
-  sub i by i.TRK;
-
-} turkish;
-
-
-feature locl {
-
-  script latn;
-
-  language CAT exclude_dflt;
-  lookup catalan;
-
-  language ROM exclude_dflt;
-  lookup romanian;
-
-  language MOL exclude_dflt;
-  lookup romanian;
-
-  language TRK exclude_dflt;
-  lookup turkish;  
-
-  language AZE exclude_dflt;
-  lookup turkish;  
-
-  language CRT exclude_dflt;
-  lookup turkish;  
-
-} locl;
-
-
-
-# local variables:
-# mode: fundamental
-# end:
+AC_CONFIG_FILES([Makefile])
+AC_OUTPUT

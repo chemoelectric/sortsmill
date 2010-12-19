@@ -24,23 +24,27 @@ ACLOCAL_AMFLAGS = -I m4 --install
 @sortsmill_mit_binpack_rules@
 
 MKFONT_FLAGS = --infer-licensing --no-instructions --ttf-emsize=4096 ${MKFONT_GRAPHITE_FLAGS}
-FAMILYNAME = fanwood
-FONTS = Fanwood Fanwood-Italic
-FEA_Fanwood = case cpsp figures generated_kerning hist liga locl main sc
-FEA_Fanwood_Italic =
+FAMILYNAME = lindenhill
+FONTS = LindenHill LindenHill-Italic LindenHill-Bold
+FEA_LindenHill = case cpsp figures generated_kerning hist liga locl main sc
+FEA_LindenHill_Italic = case cpsp figures generated_kerning hist liga locl main stylistic
+FEA_LindenHill_Bold = case cpsp figures generated_kerning hist liga locl main
 
 fonts_DATA = $(call expand_fonts, ${FONTS})
 
 EXTRA_DIST = \
 	$(addsuffix .sfd, ${FONTS}) \
 	$(addsuffix _build.py, ${FONTS}) \
-	${FEA_Fanwood:%=Fanwood_%.fea} \
-	${FEA_Fanwood_Italic:%=Fanwood-Italic_%.fea}
+	${FEA_LindenHill:%=LindenHill_%.fea} \
+	${FEA_LindenHill_Italic:%=LindenHill-Italic_%.fea} \
+	${FEA_LindenHill_Bold:%=LindenHill-Bold_%.fea}
 
-Fanwood.otf: ${FEA_Fanwood:%=Fanwood_%.fea}
-FanwoodTT.ttf: ${FEA_Fanwood:%=Fanwood_%.fea}
-Fanwood-Italic.otf: ${FEA_Fanwood_Italic:%=Fanwood-Italic_%.fea}
-FanwoodTT-Italic.ttf: ${FEA_Fanwood_Italic:%=Fanwood-Italic_%.fea}
+LindenHill.otf: ${FEA_LindenHill:%=LindenHill_%.fea}
+LindenHillTT.ttf: ${FEA_LindenHill:%=LindenHill_%.fea}
+LindenHill-Italic.otf: ${FEA_LindenHill_Italic:%=LindenHill-Italic_%.fea}
+LindenHillTT-Italic.ttf: ${FEA_LindenHill_Italic:%=LindenHill-Italic_%.fea}
+LindenHill-Bold.otf: ${FEA_LindenHill_Bold:%=LindenHill-Bold_%.fea}
+LindenHillTT-Bold.ttf: ${FEA_LindenHill_Bold:%=LindenHill-Bold_%.fea}
 
 MOSTLYCLEANFILES = ${fonts_DATA} gdlerr.txt
 

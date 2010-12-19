@@ -134,11 +134,17 @@ def build_glyphs(bitbucket, f):
         }
 
     for g in f:
-        if g[-3:] == '.sc' and g != 'i.TRK.sc':
+        if g[-3:] == '.sc' and g not in ['i.TRK.sc', 'l.CAT.sc']:
             if g in special_cases:
                 make_glyph_reference(special_cases[g], f[g])
             elif g in ('ampersand.sc', 'periodcentered.sc'):
                 make_glyph_reference(g[:-3] + '.c2', f[g])
+            elif g == 'uni0163.sc':
+                make_glyph_reference('uni0162.c2', f[g])
+            elif g == 'uni0219.sc':
+                make_glyph_reference('uni0218.c2', f[g])
+            elif g == 'uni021B.sc':
+                make_glyph_reference('uni021A.c2', f[g])
             elif g in ('ae.sc', 'oe.sc', 'ij.sc'):
                 make_glyph_reference(g[:-3].upper() + '.c2', f[g])
             else:

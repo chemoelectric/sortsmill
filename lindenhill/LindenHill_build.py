@@ -87,6 +87,10 @@ def build_glyphs(bitbucket, f):
 #    make_glyph_reference('i.TRK', f['i']) <-- Handled below.
     make_glyph_reference('Dcroat', f['Eth'])
     make_glyph_reference('dcroat.sc', f['eth.sc'])
+    make_glyph_reference('L.CAT', f['L'])
+    make_glyph_reference('l.CAT', f['l'])
+    make_glyph_reference('L.CAT.c2', f['L.c2'])
+    make_glyph_reference('l.CAT.sc', f['l.sc'])
 
     build_multigraph('ellipsis', [f['period'], f['period'], f['period']])
 
@@ -108,7 +112,7 @@ def build_glyphs(bitbucket, f):
     build_multigraph('threequarters', [f['three.numer'], f['fraction'], f['four.denom']])
 
     for g in f:
-        if g[-3:] == '.sc':
+        if g[-3:] == '.sc' and g not in ['i.TRK.sc', 'l.CAT.sc']:
             if g == 'periodcentered.sc':
                 make_glyph_reference(g[:-3] + '.c2', f[g])
             elif g == 'uni0163.sc':
@@ -117,7 +121,7 @@ def build_glyphs(bitbucket, f):
                 make_glyph_reference('uni0218.c2', f[g])
             elif g == 'uni021B.sc':
                 make_glyph_reference('uni021A.c2', f[g])
-            elif g in ('ae.sc', 'oe.sc'):
+            elif g in ('ae.sc', 'oe.sc', 'ij.sc'):
                 make_glyph_reference(g[:-3].upper() + '.c2', f[g])
             else:
                 make_glyph_reference(g[:-3].capitalize() + '.c2', f[g])
@@ -271,6 +275,7 @@ def build_glyphs(bitbucket, f):
     build_multigraph('napostrophe', [f['quoteright'], f['n']])
     build_multigraph('IJ', [f['I'], f['J']])
     build_multigraph('ij', [f['i'], f['j']])
+    build_multigraph('ij.sc', [f['i.sc'], f['j.sc']])
 #    build_multigraph('Ldot', [f['L'], f['periodcentered']]) # Done by hand.
     build_multigraph('ldot', [f['l'], f['periodcentered']])
 #    build_multigraph('ldot.sc', [f['l.sc'], f['periodcentered.sc']]) # Done by hand.
