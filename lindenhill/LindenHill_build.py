@@ -141,12 +141,17 @@ def build_glyphs(bitbucket, f):
 
     for letter in 'CcSs':
         build_accented_glyph(letter + 'cedilla', f[base(letter)], f['uni0327'])
+        remove_overlap(f[letter + 'cedilla'])
     build_accented_glyph('uni0162', f['T'], f['uni0327'])
+    remove_overlap(f['uni0162'])
     build_accented_glyph('uni0163', f['t'], f['uni0327'])
+    remove_overlap(f['uni0163'])
 
     for letter in 'cs':
         build_accented_glyph(letter + 'cedilla.sc', f[letter + '.sc'], f['uni0327'])
+        remove_overlap(f[letter + 'cedilla.sc'])
     build_accented_glyph('uni0163.sc', f['t.sc'], f['uni0327'])
+    remove_overlap(f['uni0163.sc'])
 
     #--------------------------------------------------------------------------
 
