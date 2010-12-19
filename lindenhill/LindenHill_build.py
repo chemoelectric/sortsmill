@@ -22,14 +22,15 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
-import font_db
 import fontforge
-from glyphbuild import *
-from spacing_by_anchors import *
+import string
+from sortsmill import font_db
+from sortsmill.glyphbuild import *
+from sortsmill.spacing_by_anchors import *
 
 def build_glyphs(bitbucket, f):
 
-    import cap_spacing
+    from sortsmill import cap_spacing
 
     figures = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
 
@@ -83,7 +84,7 @@ def build_glyphs(bitbucket, f):
     make_glyph_reference('quotesingle', f['minute'])
     make_glyph_reference('quotedbl', f['second'])
     make_glyph_reference('asciitilde', f['uni2053']) # Swung dash.
-    make_glyph_reference('i.TRK', f['i'])
+#    make_glyph_reference('i.TRK', f['i']) <-- Handled below.
     make_glyph_reference('Dcroat', f['Eth'])
     make_glyph_reference('dcroat.sc', f['eth.sc'])
 
@@ -223,10 +224,11 @@ def build_glyphs(bitbucket, f):
         build_accented_glyph(letter + 'dotaccent', f[base(letter)], f['uni0307.cap'])
     for letter in 'cegz':
         build_accented_glyph(letter + 'dotaccent.sc', f[letter + '.sc'], f['uni0307'])
+    build_accented_glyph('i.TRK', f['dotlessi'], f['uni0307'])
     build_accented_glyph('i.TRK.sc', f['i.sc'], f['uni0307'])
-    build_accented_glyph('i', f['dotlessi'], f['uni0307'])
-    build_accented_glyph('iogonek', f['iogonek.dotless'], f['uni0307'])
-    build_accented_glyph('j', f['uni0237'], f['uni0307'])
+    build_accented_glyph('i', f['dotlessi'], f['uni0307.high'])
+    build_accented_glyph('iogonek', f['iogonek.dotless'], f['uni0307.high'])
+    build_accented_glyph('j', f['uni0237'], f['uni0307.high'])
 
     #--------------------------------------------------------------------------
 
