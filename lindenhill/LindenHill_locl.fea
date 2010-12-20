@@ -23,19 +23,14 @@ lookup catalan {
   sub l by l.CAT;
 } catalan;
 
-
 lookup romanian {
   sub scedilla by uni0219;
   sub uni0163 by uni021B;
 } romanian;
 
-
 lookup turkish {
-
-  # Replace the dotted 'i' with an equivalent glyph that does not
-  # get replaced with f-ligatures.  See http://typophile.com/node/17787
   sub i by i.TRK;
-
+  sub j by j.TRK;
 } turkish;
 
 

@@ -60,6 +60,9 @@ feature liga {
   sub longs l by longs_l;
   sub longs thorn by longs_thorn;
 
+  # Should these be contextual alternates that look for a following letter L?
+  sub L.CAT periodcentered by Ldot;
+
 } liga;
 
 feature dlig {

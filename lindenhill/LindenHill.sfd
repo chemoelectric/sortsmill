@@ -22,7 +22,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1249677682
-ModificationTime: 1292794245
+ModificationTime: 1292829680
 OS2TypoAscent: 0
 OS2TypoAOffset: 1
 OS2TypoDescent: 0
@@ -78,7 +78,7 @@ KernClass2: 77 89 "'kern' Horizontal Kerning in Latin lookup 4 kerning class 7"
  6 lslash
  6 racute
  5 longs
- 4 ij j
+ 10 ij j j.TRK
  24 ordfeminine ordmasculine
  18 icircumflex itilde
  7 imacron
@@ -186,7 +186,7 @@ KernClass2: 77 89 "'kern' Horizontal Kerning in Latin lookup 4 kerning class 7"
  47 f f_b f_h f_hcircumflex f_i f_j f_k f_l f_thorn
  65 f_f f_f_b f_f_h f_f_hcircumflex f_f_i f_f_j f_f_k f_f_l f_f_thorn
  6 igrave
- 1 j
+ 7 j j.TRK
  7 uni0237
  1 v
  30 y yacute ycircumflex ydieresis
@@ -407,7 +407,7 @@ KernClass2: 25 121 "'kern' Horizontal Kerning in Latin lookup 4 kerning class 3"
  5 colon
  47 f f_b f_h f_hcircumflex f_i f_j f_k f_l f_thorn
  6 dagger
- 1 j
+ 7 j j.TRK
  16 eth questiondown
  19 seven seven.hanging
  65 f_f f_f_b f_f_h f_f_hcircumflex f_f_i f_f_j f_f_k f_f_l f_f_thorn
@@ -609,7 +609,7 @@ KernClass2: 52 106 "'kern' Horizontal Kerning in Latin lookup 4 kerning class 1"
  37 g gcircumflex gcommaaccent gdotaccent
  7 uni00B5
  7 iogonek
- 1 j
+ 7 j j.TRK
  10 parenright
  20 parenright.uppercase
  28 periodcentered w wcircumflex
@@ -657,7 +657,7 @@ NameList: Adobe Glyph List
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 1
-WinInfo: 84 12 4
+WinInfo: 65856 12 4
 BeginPrivate: 11
 BlueValues 31 [-23 0 385 408 667 691 717 731]
 OtherBlues 11 [-263 -259]
@@ -678,7 +678,7 @@ Grid
  1556 667 l 5
 EndSplineSet
 AnchorClass2: "commaright"  "accent positioning-1" "cedilla"  "accent positioning-1" "top"  "accent positioning-1" "r;k;lo"  "spacing anchors-1" "l;k;lo"  "spacing anchors-1" "r;lo"  "spacing anchors-1" "l;lo"  "spacing anchors-1" "r;k;o"  "spacing anchors-1" "l;k;o"  "spacing anchors-1" "r;o"  "spacing anchors-1" "l;o"  "spacing anchors-1" "r;k;hi"  "spacing anchors-1" "l;k;hi"  "spacing anchors-1" "r;hi"  "spacing anchors-1" "l;hi"  "spacing anchors-1" "r;k;x"  "spacing anchors-1" "l;k;x"  "spacing anchors-1" "r;x"  "spacing anchors-1" "l;x"  "spacing anchors-1" "r;k;bl"  "spacing anchors-1" "l;k;bl"  "spacing anchors-1" "r;bl"  "spacing anchors-1" "l;bl"  "spacing anchors-1" 
-BeginChars: 65897 757
+BeginChars: 65898 758
 
 StartChar: i
 Encoding: 105 105 0
@@ -697,7 +697,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 250 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 748 -1 N 1 0 0 1 321 0 2
+Refer: 747 -1 N 1 0 0 1 321 0 2
 Refer: 177 305 N 1 0 0 1 0 0 2
 Layer: 2
 SplineSet
@@ -732,7 +732,7 @@ Encoding: 106 106 1
 Width: 249
 VWidth: 0
 Flags: HW
-HStem: -261 45<-5 71.3069> 384 20<125.5 158> 549 87<87.341 147.894>
+HStem: -261 45<-5 71.3069> 384 20<125.5 158> 549 87<87.3413 147.894>
 VStem: 76 85<561.718 624.085> 88 70<-181.072 351.989>
 AnchorPoint: "l;k;hi" 21 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -746,14 +746,15 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "l;k;lo" -70 -244 basechar 0
 LayerCount: 3
 Fore
-Refer: 748 -1 N 1 0 0 1 295 0 2
+Refer: 747 -1 N 1 0 0 1 295 0 2
 Refer: 178 567 N 1 0 0 1 0 0 2
 Layer: 2
 Refer: 267 775 N 1 0 0 1 295 0 2
 Refer: 178 567 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" j.sc
-AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" j.sc
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" j.sc j.TRK
 Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" j.sc
+Substitution2: "turkish subtable" j.TRK
 EndChar
 
 StartChar: l
@@ -1191,7 +1192,7 @@ SplineSet
  90 344 l 5
  17 344 l 5
 EndSplineSet
-Kerns2: 447 -20 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6"  277 75 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6"  467 65 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6"  314 45 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6"  58 40 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6"  446 5 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6" 
+Kerns2: 446 -20 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6"  277 75 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6"  466 65 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6"  314 45 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6"  58 40 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6"  445 5 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6" 
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" f.sc
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" f.sc
 Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" f.sc
@@ -1380,7 +1381,7 @@ SplineSet
  197 345 156 308 156 308 c 5
  156 98 l 6
 EndSplineSet
-Kerns2: 625 -60 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6" 
+Kerns2: 624 -60 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6" 
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" b.sc
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" b.sc
 Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" b.sc
@@ -2384,7 +2385,7 @@ SplineSet
  124 626 123 627 28 627 c 9
  27 667 l 25
 EndSplineSet
-Kerns2: 591 -90 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 2" 
+Kerns2: 590 -90 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 2" 
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" F.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" F.c2
 Position2: "'cpsp' Capital Spacing in Latin lookup 3 subtable" dx=6 dy=0 dh=12 dv=0
@@ -3056,7 +3057,7 @@ SplineSet
  343 325 292 362 237 362 c 4
  135 362 93 277 93 222 c 4
 EndSplineSet
-Kerns2: 38 20 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6"  494 5 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6" 
+Kerns2: 38 20 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6"  493 5 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6" 
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" q.sc
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" q.sc
 Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" q.sc
@@ -3368,7 +3369,7 @@ SplineSet
  643 520 505 640 370 640 c 4
  279 640 134 578 134 360 c 4
 EndSplineSet
-Kerns2: 38 75 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 2"  494 60 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 2"  164 10 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 2" 
+Kerns2: 38 75 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 2"  493 60 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 2"  164 10 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 2" 
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Q.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Q.c2
 Position2: "'cpsp' Capital Spacing in Latin lookup 3 subtable" dx=6 dy=0 dh=12 dv=0
@@ -9074,7 +9075,7 @@ SplineSet
  257 634 227 613 210 598 c 9
  210 43 l 17
 EndSplineSet
-Kerns2: 38 25 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 0"  494 10 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 0" 
+Kerns2: 38 25 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 0"  493 10 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 0" 
 EndChar
 
 StartChar: section
@@ -9384,7 +9385,7 @@ SplineSet
  251 655 212 693 165 693 c 0
  118 693 80 655 80 608 c 0
 EndSplineSet
-Kerns2: 446 -65 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 0" 
+Kerns2: 445 -65 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 0" 
 EndChar
 
 StartChar: yen
@@ -11825,7 +11826,7 @@ Encoding: 769 769 256
 Width: 0
 VWidth: 0
 Flags: W
-HStem: 483 162
+HStem: 468 162
 VStem: -218 122
 AnchorPoint: "r;k;hi" -67 684 basechar 0
 AnchorPoint: "l;k;hi" -230 684 basechar 0
@@ -11833,13 +11834,12 @@ AnchorPoint: "top" -195 488 mark 0
 LayerCount: 3
 Fore
 SplineSet
--218 483 m 25
- -166 645 l 25
- -96 645 l 25
- -182 483 l 25
- -218 483 l 25
+-218 468 m 25
+ -166 630 l 25
+ -96 630 l 25
+ -182 468 l 25
+ -218 468 l 25
 EndSplineSet
-Validated: 1
 EndChar
 
 StartChar: gravecomb
@@ -11847,7 +11847,7 @@ Encoding: 768 768 257
 Width: 0
 VWidth: 0
 Flags: W
-HStem: 483 162
+HStem: 468 162
 VStem: -295 122
 AnchorPoint: "r;k;hi" -161 684 basechar 0
 AnchorPoint: "l;k;hi" -324 684 basechar 0
@@ -11855,13 +11855,12 @@ AnchorPoint: "top" -195 488 mark 0
 LayerCount: 3
 Fore
 SplineSet
--173 483 m 25
- -209 483 l 25
- -295 645 l 25
- -225 645 l 25
- -173 483 l 25
+-173 468 m 25
+ -209 468 l 25
+ -295 630 l 25
+ -225 630 l 25
+ -173 468 l 25
 EndSplineSet
-Validated: 1
 EndChar
 
 StartChar: Eacute
@@ -11894,7 +11893,7 @@ Encoding: 233 233 259
 Width: 413
 VWidth: 0
 Flags: W
-HStem: -13 68<168.068 299.818> 365 34<147.217 230.629> 483 162
+HStem: -13 68<168.068 299.818> 365 34<147.217 230.629> 468 162
 VStem: 24 75<124.243 226 261 290.703> 178 122 274 93<271 283>
 AnchorPoint: "l;k;hi" 166 684 basechar 0
 AnchorPoint: "l;x" 39 376 basechar 0
@@ -11942,7 +11941,7 @@ Encoding: 232 232 261
 Width: 413
 VWidth: 0
 Flags: W
-HStem: -13 68<168.068 299.818> 365 34<147.217 230.629> 483 162
+HStem: -13 68<168.068 299.818> 365 34<147.217 230.629> 468 162
 VStem: 24 75<124.243 226 261 290.703> 101 122 274 93<271 283>
 AnchorPoint: "l;k;hi" 72 684 basechar 0
 AnchorPoint: "l;x" 39 376 basechar 0
@@ -11966,7 +11965,7 @@ Encoding: 180 180 262
 Width: 390
 VWidth: 0
 Flags: W
-HStem: 483 162
+HStem: 468 162
 VStem: 172 122
 LayerCount: 3
 Fore
@@ -12146,7 +12145,7 @@ StartChar: uni030A
 Encoding: 778 778 269
 Width: 0
 VWidth: 0
-Flags: W
+Flags: WO
 HStem: 466 30<-225.648 -152.346> 591 32<-223.441 -152.849>
 VStem: -270 34<505.254 579.343> -143 35<503.458 581.843>
 AnchorPoint: "l;k;hi" -287 684 basechar 0
@@ -12173,7 +12172,7 @@ Encoding: 779 779 270
 Width: 0
 VWidth: 0
 Flags: W
-HStem: 483 162
+HStem: 468 162
 VStem: -304 269
 AnchorPoint: "l;k;hi" -316 684 basechar 0
 AnchorPoint: "r;k;hi" -6 684 basechar 0
@@ -12181,18 +12180,17 @@ AnchorPoint: "top" -195 488 mark 0
 LayerCount: 3
 Fore
 SplineSet
--157 483 m 25
- -105 645 l 25
- -35 645 l 25
- -121 483 l 25
- -157 483 l 25
--304 483 m 25
- -252 645 l 25
- -182 645 l 25
- -268 483 l 25
- -304 483 l 25
+-157 468 m 25
+ -105 630 l 25
+ -35 630 l 25
+ -121 468 l 29
+ -157 468 l 25
+-304 468 m 25
+ -252 630 l 25
+ -182 630 l 25
+ -268 468 l 25
+ -304 468 l 25
 EndSplineSet
-Validated: 1
 EndChar
 
 StartChar: uni030C
@@ -12208,14 +12206,14 @@ AnchorPoint: "top" -195 488 mark 0
 LayerCount: 3
 Fore
 SplineSet
--306 605 m 5
- -248 605 l 5
- -227 582 -206 543 -186 514 c 5
- -165 545 -146 581 -125 605 c 5
- -87 605 l 5
- -113 565 -137 522 -167 468 c 5
- -226 468 l 5
- -253 517 -278 565 -306 605 c 5
+-306 605 m 1
+ -248 605 l 1
+ -227 582 -206 543 -186 514 c 1
+ -165 545 -146 581 -125 605 c 1
+ -87 605 l 1
+ -113 565 -137 522 -167 468 c 1
+ -226 468 l 1
+ -253 517 -278 565 -306 605 c 1
 EndSplineSet
 EndChar
 
@@ -12273,7 +12271,7 @@ Encoding: 224 224 274
 Width: 380
 VWidth: 0
 Flags: W
-HStem: -11 54<106.032 188.702> 191 27<163.672 228> 349 47<105.883 217.432> 483 162
+HStem: -11 54<106.032 188.702> 191 27<163.672 228> 349 47<105.883 217.432> 468 162
 VStem: 27 70<52.4712 133.749> 35 55<250.669 317.158> 76 122 228 70<60.2211 191 218 337.662>
 AnchorPoint: "l;k;hi" 47 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -12347,7 +12345,7 @@ Encoding: 236 236 277
 Width: 265
 VWidth: 0
 Flags: W
-HStem: 0 32<31 97.337 168.885 248> 386 20<140.5 168> 483 162
+HStem: 0 32<31 97.337 168.885 248> 386 20<140.5 168> 468 162
 VStem: 26 122 98 70<33.3382 353.996>
 AnchorPoint: "l;x" 0 376 basechar 0
 AnchorPoint: "l;k;hi" -3 684 basechar 0
@@ -12396,7 +12394,7 @@ Encoding: 242 242 279
 Width: 458
 VWidth: 0
 Flags: W
-HStem: -15 39<182.917 297.218> 367 34<162.506 274.023> 483 162
+HStem: -15 39<182.917 297.218> 367 34<162.506 274.023> 468 162
 VStem: 25 80<115.943 294.974> 123 122 349 84<90.9094 288.397>
 AnchorPoint: "l;k;hi" 94 684 basechar 0
 AnchorPoint: "l;x" 40 376 basechar 0
@@ -12445,7 +12443,7 @@ Encoding: 249 249 281
 Width: 462
 VWidth: 0
 Flags: W
-HStem: -15 62<160.398 258.627> 11 32<400.426 445> 382 20<114 139 354.5 382> 483 162
+HStem: -15 62<160.398 258.627> 11 32<400.426 445> 382 20<114 139 354.5 382> 468 162
 VStem: 69 70<68.8374 359.997> 121 122 312 70<32.7257 50 65.1097 358.998>
 AnchorPoint: "l;k;hi" 92 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -12494,7 +12492,7 @@ Encoding: 225 225 283
 Width: 380
 VWidth: 0
 Flags: W
-HStem: -11 54<106.032 188.702> 191 27<163.672 228> 349 47<105.883 217.432> 483 162
+HStem: -11 54<106.032 188.702> 191 27<163.672 228> 349 47<105.883 217.432> 468 162
 VStem: 27 70<52.4712 133.749> 35 55<250.669 317.158> 153 122 228 70<60.2211 191 218 337.662>
 AnchorPoint: "l;k;hi" 141 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -12543,7 +12541,7 @@ Encoding: 263 263 285
 Width: 403
 VWidth: 0
 Flags: W
-HStem: -13 60<164.393 307.907> 361 40<141.139 237.509> 483 162
+HStem: -13 60<164.393 307.907> 361 40<141.139 237.509> 468 162
 VStem: 24 71<115.809 287.002> 185 122
 AnchorPoint: "l;k;hi" 173 684 basechar 0
 AnchorPoint: "l;x" 20 376 basechar 0
@@ -12592,7 +12590,7 @@ Encoding: 237 237 287
 Width: 265
 VWidth: 0
 Flags: W
-HStem: 0 32<31 97.337 168.885 248> 386 20<140.5 168> 483 162
+HStem: 0 32<31 97.337 168.885 248> 386 20<140.5 168> 468 162
 VStem: 98 70<33.3382 353.996> 103 122
 AnchorPoint: "l;x" 0 376 basechar 0
 AnchorPoint: "l;k;hi" 91 684 basechar 0
@@ -12727,7 +12725,7 @@ Encoding: 324 324 291
 Width: 463
 VWidth: 0
 Flags: W
-HStem: 0 32<18 71.2969 142.938 213 259 314.123 386.892 445> 339 56<205.889 302.856> 382 20<43.6 141> 483 162
+HStem: 0 32<18 71.2969 142.938 213 259 314.123 386.892 445> 339 56<205.889 302.856> 382 20<43.6 141> 468 162
 VStem: 72 70<33.4473 317.125 331 353.993> 210 122 315 70<33.582 326.068>
 AnchorPoint: "l;k;hi" 198 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -12776,7 +12774,7 @@ Encoding: 243 243 293
 Width: 458
 VWidth: 0
 Flags: W
-HStem: -15 39<182.917 297.218> 367 34<162.506 274.023> 483 162
+HStem: -15 39<182.917 297.218> 367 34<162.506 274.023> 468 162
 VStem: 25 80<115.943 294.974> 200 122 349 84<90.9094 288.397>
 AnchorPoint: "l;k;hi" 188 684 basechar 0
 AnchorPoint: "l;x" 40 376 basechar 0
@@ -12825,7 +12823,7 @@ Encoding: 341 341 295
 Width: 342
 VWidth: 0
 Flags: W
-HStem: 0 32<32 93.3529 167.753 271> 313 82<222.368 290.845> 386 20<100 163> 483 162
+HStem: 0 32<32 93.3529 167.753 271> 313 82<222.368 290.845> 386 20<100 163> 468 162
 VStem: 95 70<34.2967 285.745 293 352.993> 172 122
 AnchorPoint: "l;k;hi" 160 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -12874,7 +12872,7 @@ Encoding: 347 347 297
 Width: 347
 VWidth: 0
 Flags: W
-HStem: -13 34<102.955 213.861> 360 36<130.772 246.073> 388 20<269 301> 483 162
+HStem: -13 34<102.955 213.861> 360 36<130.772 246.073> 388 20<269 301> 468 162
 VStem: 22 31<84.9 141> 40 28<-23 -0.00437546> 51 66<270.632 347.884> 150 122 231 74<33.4498 125.509> 269 32<256 338.172 378.007 407>
 AnchorPoint: "l;k;hi" 138 684 basechar 0
 AnchorPoint: "l;x" 24 376 basechar 0
@@ -12923,7 +12921,7 @@ Encoding: 250 250 299
 Width: 462
 VWidth: 0
 Flags: W
-HStem: -15 62<160.398 258.627> 11 32<400.426 445> 382 20<114 139 354.5 382> 483 162
+HStem: -15 62<160.398 258.627> 11 32<400.426 445> 382 20<114 139 354.5 382> 468 162
 VStem: 69 70<68.8374 359.997> 198 122 312 70<32.7257 50 65.1097 358.998>
 AnchorPoint: "l;k;hi" 186 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -12972,7 +12970,7 @@ Encoding: 253 253 301
 Width: 469
 VWidth: 0
 Flags: W
-HStem: -259 87<12.1143 99.4453> 360 32<19 70.6642 154.009 206 289 346.99 391.086 452> 483 162
+HStem: -259 87<12.1143 99.4453> 360 32<19 70.6642 154.009 206 289 346.99 391.086 452> 468 162
 VStem: 216 122
 AnchorPoint: "l;k;hi" 204 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -13023,7 +13021,7 @@ Encoding: 378 378 303
 Width: 440
 VWidth: 0
 Flags: W
-HStem: 0 61<114 364.482> 327 60<79.9994 311> 483 162
+HStem: 0 61<114 364.482> 327 60<79.9994 311> 468 162
 VStem: 199 122
 DStem2: 52 47 114 61 0.679042 0.734099<52.378 381.42>
 AnchorPoint: "l;k;hi" 187 684 basechar 0
@@ -13941,7 +13939,7 @@ Encoding: 65629 -1 340
 Width: 481
 VWidth: 0
 Flags: W
-HStem: 0 32<28 86.1697 128.008 199 261 326.993 405.395 454> 141 31<179 282> 388 20<236.325 269.919> 483 162
+HStem: 0 32<28 86.1697 128.008 199 261 326.993 405.395 454> 141 31<179 282> 388 20<236.325 269.919> 468 162
 VStem: 152 122
 AnchorPoint: "l;k;hi" 123 684 basechar 0
 AnchorPoint: "l;x" 80 376 basechar 0
@@ -13962,7 +13960,7 @@ Encoding: 65630 -1 341
 Width: 443
 VWidth: 0
 Flags: W
-HStem: 0 32<27 96.5308> 0 40<167.009 355.477> 191 32<167.044 287.147> 360 32<31 96.1465 167.072 345.199> 483 162
+HStem: 0 32<27 96.5308> 0 40<167.009 355.477> 191 32<167.044 287.147> 360 32<31 96.1465 167.072 345.199> 468 162
 VStem: 97 70<40.4711 191 223 359.422> 114 122 288 27<138 190.802 223.426 269> 349 28<286 358.703> 369 32<84.6667 127.875>
 AnchorPoint: "l;k;hi" 85 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -13983,7 +13981,7 @@ Encoding: 65631 -1 342
 Width: 274
 VWidth: 0
 Flags: W
-HStem: 0 32<38 99.2629 171.226 247> 360 32<27 99.2578 171.067 232> 483 162
+HStem: 0 32<38 99.2629 171.226 247> 360 32<27 99.2578 171.067 232> 468 162
 VStem: 29 122 100 70<33.3879 358.752>
 AnchorPoint: "l;k;hi" 0 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -14004,7 +14002,7 @@ Encoding: 65632 -1 343
 Width: 472
 VWidth: 0
 Flags: W
-HStem: -12 34<191.997 298.602> 371 32<177.503 285.197> 483 162
+HStem: -12 34<191.997 298.602> 371 32<177.503 285.197> 468 162
 VStem: 35 76<109.063 292.789> 132 122 359 78<92.4158 292.247>
 AnchorPoint: "l;x" 40 376 basechar 0
 AnchorPoint: "l;k;hi" 103 684 basechar 0
@@ -14025,7 +14023,7 @@ Encoding: 65633 -1 344
 Width: 481
 VWidth: 0
 Flags: W
-HStem: 0 32<28 86.1697 128.008 199 261 326.993 405.395 454> 141 31<179 282> 388 20<236.325 269.919> 483 162
+HStem: 0 32<28 86.1697 128.008 199 261 326.993 405.395 454> 141 31<179 282> 388 20<236.325 269.919> 468 162
 VStem: 229 122
 AnchorPoint: "l;k;hi" 217 684 basechar 0
 AnchorPoint: "l;x" 80 376 basechar 0
@@ -14046,7 +14044,7 @@ Encoding: 65634 -1 345
 Width: 424
 VWidth: 0
 Flags: W
-HStem: -8 50<181.857 320.932> 358 38<164.859 308.19> 385 20<348 372.5> 483 162
+HStem: -8 50<181.857 320.932> 358 38<164.859 308.19> 385 20<348 372.5> 468 162
 VStem: 35 70<127.285 277.817> 204 122 348 24<372.274 404> 357 29<251 311.7>
 AnchorPoint: "l;k;hi" 192 684 basechar 0
 AnchorPoint: "l;x" 40 376 basechar 0
@@ -14067,7 +14065,7 @@ Encoding: 65635 -1 346
 Width: 443
 VWidth: 0
 Flags: W
-HStem: 0 32<27 96.5308> 0 40<167.009 355.477> 191 32<167.044 287.147> 360 32<31 96.1465 167.072 345.199> 483 162
+HStem: 0 32<27 96.5308> 0 40<167.009 355.477> 191 32<167.044 287.147> 360 32<31 96.1465 167.072 345.199> 468 162
 VStem: 97 70<40.4711 191 223 359.422> 191 122 288 27<138 190.802 223.426 269> 349 28<286 358.703> 369 32<84.6667 127.875>
 AnchorPoint: "l;k;hi" 179 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -14088,7 +14086,7 @@ Encoding: 65636 -1 347
 Width: 274
 VWidth: 0
 Flags: W
-HStem: 0 32<38 99.2629 171.226 247> 360 32<27 99.2578 171.067 232> 483 162
+HStem: 0 32<38 99.2629 171.226 247> 360 32<27 99.2578 171.067 232> 468 162
 VStem: 100 70<33.3879 358.752> 106 122
 AnchorPoint: "l;k;hi" 94 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -14109,7 +14107,7 @@ Encoding: 65637 -1 348
 Width: 432
 VWidth: 0
 Flags: W
-HStem: 0 32<35 97.9531 168.957 363.597> 360 32<27 97.3437 168.687 250> 483 162
+HStem: 0 32<35 97.9531 168.957 363.597> 360 32<27 97.3437 168.687 250> 468 162
 VStem: 98 70<32.5078 358.482> 112 122 376 29<79.5633 122>
 AnchorPoint: "l;k;hi" 100 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -14130,7 +14128,7 @@ Encoding: 65638 -1 349
 Width: 487
 VWidth: 0
 Flags: W
-HStem: -12 21<386.5 396> 0 32<38 97.3281 134.246 199> 360 32<27 93 303 368.857 402.539 460> 483 162
+HStem: -12 21<386.5 396> 0 32<38 97.3281 134.246 199> 360 32<27 93 303 368.857 402.539 460> 468 162
 VStem: 98 36<32.5809 320> 222 122 374 27<102 357.806>
 AnchorPoint: "l;k;hi" 210 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -14151,7 +14149,7 @@ Encoding: 65639 -1 350
 Width: 472
 VWidth: 0
 Flags: W
-HStem: -12 34<191.997 298.602> 371 32<177.503 285.197> 483 162
+HStem: -12 34<191.997 298.602> 371 32<177.503 285.197> 468 162
 VStem: 35 76<109.063 292.789> 209 122 359 78<92.4158 292.247>
 AnchorPoint: "l;x" 40 376 basechar 0
 AnchorPoint: "l;k;hi" 197 684 basechar 0
@@ -14172,7 +14170,7 @@ Encoding: 65640 -1 351
 Width: 485
 VWidth: 0
 Flags: W
-HStem: 0 32<35 97.3035 168.606 243 410.004 457> 176 25<168 226.29> 360 32<27 97.1299 169.836 250.114> 483 162
+HStem: 0 32<35 97.3035 168.606 243 410.004 457> 176 25<168 226.29> 360 32<27 97.1299 169.836 250.114> 468 162
 VStem: 98 70<32.9418 176 201 353.744> 181 122 297 79<225.035 329.943>
 AnchorPoint: "l;k;hi" 169 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -14193,7 +14191,7 @@ Encoding: 65641 -1 352
 Width: 367
 VWidth: 0
 Flags: W
-HStem: -8 28<111.708 223.093> 368 33<139.577 252.372> 483 162
+HStem: -8 28<111.708 223.093> 368 33<139.577 252.372> 468 162
 VStem: 43 29<66.1187 114.966> 59 61<275.817 352.975> 69 29<-23 -15.0945> 161 122 253 71<44.2088 125.196> 262 30<389.014 408> 274 29<284 342.372>
 AnchorPoint: "l;k;hi" 149 684 basechar 0
 AnchorPoint: "l;x" 24 376 basechar 0
@@ -14214,7 +14212,7 @@ Encoding: 65642 -1 353
 Width: 490
 VWidth: 0
 Flags: W
-HStem: -7 35<203.342 337.832> 360 32<28 95.5412 166.6 235 308 373.798 410.185 463> 483 162
+HStem: -7 35<203.342 337.832> 360 32<28 95.5412 166.6 235 308 373.798 410.185 463> 468 162
 VStem: 96 70<58.3259 358.804> 234 122 374 36<64.3843 359>
 AnchorPoint: "l;k;hi" 222 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -14235,7 +14233,7 @@ Encoding: 65643 -1 354
 Width: 446
 VWidth: 0
 Flags: W
-HStem: 0 32<102 173.578 244.297 326> 360 32<27 69.8509 154.009 203 263 314.993 358.801 419> 483 162
+HStem: 0 32<102 173.578 244.297 326> 360 32<27 69.8509 154.009 203 263 314.993 358.801 419> 468 162
 VStem: 174 70<32.4319 172> 201 122
 AnchorPoint: "l;k;hi" 189 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -14256,7 +14254,7 @@ Encoding: 65644 -1 355
 Width: 423
 VWidth: 0
 Flags: W
-HStem: 0 70<122 362.469> 326 66<77.1716 297> 483 162
+HStem: 0 70<122 362.469> 326 66<77.1716 297> 468 162
 VStem: 40 31<273.548 320.711> 199 122 371 35<75.168 122.4>
 AnchorPoint: "l;k;hi" 187 684 basechar 0
 AnchorPoint: "l;x" 10 376 basechar 0
@@ -14896,7 +14894,7 @@ AnchorPoint: "l;bl" 90 15 basechar 0
 AnchorPoint: "r;x" 737 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 394 -1 N 1 0 0 1 602 244 2
+Refer: 393 -1 N 1 0 0 1 602 244 2
 Refer: 26 67 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Cdotaccent.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Cdotaccent.c2
@@ -14921,7 +14919,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 596 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 394 -1 N 1 0 0 1 503 244 2
+Refer: 393 -1 N 1 0 0 1 503 244 2
 Refer: 28 69 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Edotaccent.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Edotaccent.c2
@@ -14946,7 +14944,7 @@ AnchorPoint: "l;bl" 90 15 basechar 0
 AnchorPoint: "r;x" 794 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 394 -1 N 1 0 0 1 606 244 2
+Refer: 393 -1 N 1 0 0 1 606 244 2
 Refer: 23 71 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Gdotaccent.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Gdotaccent.c2
@@ -14971,7 +14969,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 322 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 394 -1 N 1 0 0 1 352 244 2
+Refer: 393 -1 N 1 0 0 1 352 244 2
 Refer: 31 73 N 1 0 0 1 0 0 2
 EndChar
 
@@ -14992,7 +14990,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 644 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 394 -1 N 1 0 0 1 522 244 2
+Refer: 393 -1 N 1 0 0 1 522 244 2
 Refer: 53 90 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Zdotaccent.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Zdotaccent.c2
@@ -15084,29 +15082,8 @@ Refer: 267 775 N 1 0 0 1 417 0 2
 Refer: 254 -1 N 1 0 0 1 0 0 2
 EndChar
 
-StartChar: i.TRK.sc
-Encoding: 65673 -1 393
-Width: 274
-VWidth: 0
-Flags: W
-HStem: 0 32<38 99.2629 171.226 247> 360 32<27 99.2578 171.067 232> 504 87<116.341 176.894>
-VStem: 100 70<33.3879 358.752> 105 85<516.718 579.085>
-AnchorPoint: "l;k;hi" 50 684 basechar 0
-AnchorPoint: "l;x" 0 376 basechar 0
-AnchorPoint: "r;bl" 274 15 basechar 0
-AnchorPoint: "r;o" 274 195 basechar 0
-AnchorPoint: "r;k;hi" 243 684 basechar 0
-AnchorPoint: "l;o" 0 195 basechar 0
-AnchorPoint: "l;bl" 0 15 basechar 0
-AnchorPoint: "r;x" 274 376 basechar 0
-LayerCount: 3
-Fore
-Refer: 267 775 N 1 0 0 1 324 0 2
-Refer: 237 -1 N 1 0 0 1 0 0 2
-EndChar
-
 StartChar: uni0307.cap
-Encoding: 65674 -1 394
+Encoding: 65673 -1 393
 Width: 0
 VWidth: 0
 Flags: W
@@ -15134,7 +15111,7 @@ EndSplineSet
 EndChar
 
 StartChar: aring
-Encoding: 229 229 395
+Encoding: 229 229 394
 Width: 380
 VWidth: 0
 Flags: W
@@ -15158,7 +15135,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: uring
-Encoding: 367 367 396
+Encoding: 367 367 395
 Width: 462
 VWidth: 0
 Flags: W
@@ -15182,7 +15159,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: Uring
-Encoding: 366 366 397
+Encoding: 366 366 396
 Width: 721
 VWidth: 0
 Flags: HW
@@ -15198,7 +15175,7 @@ AnchorPoint: "l;bl" 40 15 basechar 0
 AnchorPoint: "r;x" 721 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 400 -1 N 1 0 0 1 573 244 2
+Refer: 399 -1 N 1 0 0 1 573 244 2
 Refer: 48 85 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Uring.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Uring.c2
@@ -15207,7 +15184,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" U
 EndChar
 
 StartChar: aring.sc
-Encoding: 65675 -1 398
+Encoding: 65674 -1 397
 Width: 481
 VWidth: 0
 Flags: W
@@ -15228,7 +15205,7 @@ Refer: 229 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: uring.sc
-Encoding: 65676 -1 399
+Encoding: 65675 -1 398
 Width: 490
 VWidth: 0
 Flags: W
@@ -15249,7 +15226,7 @@ Refer: 249 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: uni030A.cap
-Encoding: 65677 -1 400
+Encoding: 65676 -1 399
 Width: 0
 VWidth: 0
 Flags: W
@@ -15273,7 +15250,7 @@ EndSplineSet
 EndChar
 
 StartChar: adieresis
-Encoding: 228 228 401
+Encoding: 228 228 400
 Width: 380
 VWidth: 0
 Flags: W
@@ -15297,7 +15274,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: edieresis
-Encoding: 235 235 402
+Encoding: 235 235 401
 Width: 413
 VWidth: 0
 Flags: W
@@ -15321,11 +15298,11 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: idieresis
-Encoding: 239 239 403
+Encoding: 239 239 402
 Width: 265
 VWidth: 0
 Flags: HW
-HStem: 0 32<31 97.337 168.885 248> 386 20<140.5 168> 504 87<35.768 96.937 162.768 223.937>
+HStem: 0 32<31 97.337 168.885 248> 386 20<140.5 168> 504 87<35.7683 96.9367 162.768 223.937>
 VStem: 24 85<515.248 578.439> 98 70<33.3382 353.996> 151 85<515.248 578.439>
 AnchorPoint: "l;x" 0 376 basechar 0
 AnchorPoint: "l;k;hi" 17 684 basechar 0
@@ -15337,7 +15314,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 250 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 419 -1 N 1 0 0 1 321 0 2
+Refer: 418 -1 N 1 0 0 1 321 0 2
 Refer: 177 305 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" idieresis.sc
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" idieresis.sc
@@ -15345,7 +15322,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: odieresis
-Encoding: 246 246 404
+Encoding: 246 246 403
 Width: 458
 VWidth: 0
 Flags: W
@@ -15369,7 +15346,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: udieresis
-Encoding: 252 252 405
+Encoding: 252 252 404
 Width: 462
 VWidth: 0
 Flags: W
@@ -15393,7 +15370,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: ydieresis
-Encoding: 255 255 406
+Encoding: 255 255 405
 Width: 469
 VWidth: 0
 Flags: W
@@ -15419,7 +15396,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: Adieresis
-Encoding: 196 196 407
+Encoding: 196 196 406
 Width: 726
 VWidth: 0
 Flags: HW
@@ -15435,7 +15412,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 686 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 420 -1 N 1 0 0 1 564 244 2
+Refer: 419 -1 N 1 0 0 1 564 244 2
 Refer: 24 65 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Adieresis.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Adieresis.c2
@@ -15444,7 +15421,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" A
 EndChar
 
 StartChar: Edieresis
-Encoding: 203 203 408
+Encoding: 203 203 407
 Width: 616
 VWidth: 0
 Flags: HW
@@ -15460,7 +15437,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 596 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 420 -1 N 1 0 0 1 503 244 2
+Refer: 419 -1 N 1 0 0 1 503 244 2
 Refer: 28 69 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Edieresis.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Edieresis.c2
@@ -15469,11 +15446,11 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" E
 EndChar
 
 StartChar: Idieresis
-Encoding: 207 207 409
+Encoding: 207 207 408
 Width: 322
 VWidth: 0
 Flags: HW
-HStem: 0 39<39 118.484 202.884 294> 627 40<28 119.375 203.078 279> 766 87<54.339 115.438 200.768 261.937>
+HStem: 0 39<39 118.484 202.884 294> 627 40<28 119.375 203.078 279> 766 87<54.3389 115.438 200.768 261.937>
 VStem: 42 85<777.248 839.988> 120 81<40.8949 624.899> 189 85<777.248 840.439>
 AnchorPoint: "r;hi" 322 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -15485,7 +15462,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 322 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 420 -1 N 1 0 0 1 352 244 2
+Refer: 419 -1 N 1 0 0 1 352 244 2
 Refer: 31 73 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Idieresis.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Idieresis.c2
@@ -15494,7 +15471,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" I
 EndChar
 
 StartChar: Odieresis
-Encoding: 214 214 410
+Encoding: 214 214 409
 Width: 798
 VWidth: 0
 Flags: HW
@@ -15510,7 +15487,7 @@ AnchorPoint: "l;bl" 90 15 basechar 0
 AnchorPoint: "r;x" 798 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 420 -1 N 1 0 0 1 591 244 2
+Refer: 419 -1 N 1 0 0 1 591 244 2
 Refer: 37 79 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Odieresis.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Odieresis.c2
@@ -15519,7 +15496,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" O
 EndChar
 
 StartChar: Udieresis
-Encoding: 220 220 411
+Encoding: 220 220 410
 Width: 721
 VWidth: 0
 Flags: HW
@@ -15535,7 +15512,7 @@ AnchorPoint: "l;bl" 40 15 basechar 0
 AnchorPoint: "r;x" 721 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 420 -1 N 1 0 0 1 573 244 2
+Refer: 419 -1 N 1 0 0 1 573 244 2
 Refer: 48 85 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Udieresis.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Udieresis.c2
@@ -15544,7 +15521,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" U
 EndChar
 
 StartChar: Ydieresis
-Encoding: 376 376 412
+Encoding: 376 376 411
 Width: 659
 VWidth: 0
 Flags: HW
@@ -15560,7 +15537,7 @@ AnchorPoint: "l;bl" 140 15 basechar 0
 AnchorPoint: "r;x" 559 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 420 -1 N 1 0 0 1 539 244 2
+Refer: 419 -1 N 1 0 0 1 539 244 2
 Refer: 52 89 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Ydieresis.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Ydieresis.c2
@@ -15569,7 +15546,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" Y
 EndChar
 
 StartChar: adieresis.sc
-Encoding: 65678 -1 413
+Encoding: 65677 -1 412
 Width: 481
 VWidth: 0
 Flags: W
@@ -15590,7 +15567,7 @@ Refer: 229 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: edieresis.sc
-Encoding: 65679 -1 414
+Encoding: 65678 -1 413
 Width: 443
 VWidth: 0
 Flags: W
@@ -15611,7 +15588,7 @@ Refer: 233 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: idieresis.sc
-Encoding: 65680 -1 415
+Encoding: 65679 -1 414
 Width: 274
 VWidth: 0
 Flags: W
@@ -15632,7 +15609,7 @@ Refer: 237 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: odieresis.sc
-Encoding: 65681 -1 416
+Encoding: 65680 -1 415
 Width: 472
 VWidth: 0
 Flags: W
@@ -15653,7 +15630,7 @@ Refer: 243 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: udieresis.sc
-Encoding: 65682 -1 417
+Encoding: 65681 -1 416
 Width: 490
 VWidth: 0
 Flags: W
@@ -15674,7 +15651,7 @@ Refer: 249 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: ydieresis.sc
-Encoding: 65683 -1 418
+Encoding: 65682 -1 417
 Width: 446
 VWidth: 0
 Flags: W
@@ -15695,7 +15672,7 @@ Refer: 253 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: uni0308.narrow
-Encoding: 65684 -1 419
+Encoding: 65683 -1 418
 Width: 0
 VWidth: 0
 Flags: W
@@ -15721,7 +15698,7 @@ EndSplineSet
 EndChar
 
 StartChar: uni0308.cap
-Encoding: 65685 -1 420
+Encoding: 65684 -1 419
 Width: 0
 VWidth: 0
 Flags: W
@@ -15746,7 +15723,7 @@ Validated: 1
 EndChar
 
 StartChar: dieresis
-Encoding: 168 168 421
+Encoding: 168 168 420
 Width: 390
 VWidth: 0
 Flags: W
@@ -15758,11 +15735,11 @@ Refer: 268 776 N 1 0 0 1 390 0 2
 EndChar
 
 StartChar: grave
-Encoding: 96 96 422
+Encoding: 96 96 421
 Width: 390
 VWidth: 0
 Flags: W
-HStem: 483 162
+HStem: 468 162
 VStem: 95 122
 LayerCount: 3
 Fore
@@ -15770,11 +15747,11 @@ Refer: 257 768 N 1 0 0 1 390 0 2
 EndChar
 
 StartChar: ohungarumlaut
-Encoding: 337 337 423
+Encoding: 337 337 422
 Width: 458
 VWidth: 0
 Flags: W
-HStem: -15 39<182.917 297.218> 367 34<162.506 274.023> 483 162
+HStem: -15 39<182.917 297.218> 367 34<162.506 274.023> 468 162
 VStem: 25 80<115.943 294.974> 114 269 349 84<90.9094 288.397>
 AnchorPoint: "l;k;hi" 102 684 basechar 0
 AnchorPoint: "l;x" 40 376 basechar 0
@@ -15795,11 +15772,11 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: uhungarumlaut
-Encoding: 369 369 424
+Encoding: 369 369 423
 Width: 462
 VWidth: 0
 Flags: W
-HStem: -15 62<160.398 258.627> 11 32<400.426 445> 382 20<114 139 354.5 382> 483 162
+HStem: -15 62<160.398 258.627> 11 32<400.426 445> 382 20<114 139 354.5 382> 468 162
 VStem: 69 70<68.8374 359.997> 112 269 312 70<32.7257 50 65.1097 358.998>
 AnchorPoint: "l;k;hi" 100 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -15819,7 +15796,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: Ohungarumlaut
-Encoding: 336 336 425
+Encoding: 336 336 424
 Width: 798
 VWidth: 0
 Flags: HW
@@ -15835,7 +15812,7 @@ AnchorPoint: "l;bl" 90 15 basechar 0
 AnchorPoint: "r;x" 798 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 429 -1 N 1 0 0 1 591 244 2
+Refer: 428 -1 N 1 0 0 1 591 244 2
 Refer: 37 79 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Ohungarumlaut.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Ohungarumlaut.c2
@@ -15844,7 +15821,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" O
 EndChar
 
 StartChar: Uhungarumlaut
-Encoding: 368 368 426
+Encoding: 368 368 425
 Width: 721
 VWidth: 0
 Flags: HW
@@ -15860,7 +15837,7 @@ AnchorPoint: "l;bl" 40 15 basechar 0
 AnchorPoint: "r;x" 721 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 429 -1 N 1 0 0 1 573 244 2
+Refer: 428 -1 N 1 0 0 1 573 244 2
 Refer: 48 85 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Uhungarumlaut.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Uhungarumlaut.c2
@@ -15869,11 +15846,11 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" U
 EndChar
 
 StartChar: ohungarumlaut.sc
-Encoding: 65686 -1 427
+Encoding: 65685 -1 426
 Width: 472
 VWidth: 0
 Flags: W
-HStem: -12 34<191.997 298.602> 371 32<177.503 285.197> 483 162
+HStem: -12 34<191.997 298.602> 371 32<177.503 285.197> 468 162
 VStem: 35 76<109.063 292.789> 123 269 359 78<92.4158 292.247>
 AnchorPoint: "l;x" 40 376 basechar 0
 AnchorPoint: "l;k;hi" 111 684 basechar 0
@@ -15890,11 +15867,11 @@ Refer: 243 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: uhungarumlaut.sc
-Encoding: 65687 -1 428
+Encoding: 65686 -1 427
 Width: 490
 VWidth: 0
 Flags: W
-HStem: -7 35<203.342 337.832> 360 32<28 95.5412 166.6 235 308 373.798 410.185 463> 483 162
+HStem: -7 35<203.342 337.832> 360 32<28 95.5412 166.6 235 308 373.798 410.185 463> 468 162
 VStem: 96 70<58.3259 358.804> 148 269 374 36<64.3843 359>
 AnchorPoint: "l;k;hi" 136 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -15911,7 +15888,7 @@ Refer: 249 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: uni030B.cap
-Encoding: 65688 -1 429
+Encoding: 65687 -1 428
 Width: 0
 VWidth: 0
 Flags: W
@@ -15936,7 +15913,7 @@ Validated: 1
 EndChar
 
 StartChar: omacron
-Encoding: 333 333 430
+Encoding: 333 333 429
 Width: 458
 VWidth: 0
 Flags: W
@@ -15961,7 +15938,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: amacron
-Encoding: 257 257 431
+Encoding: 257 257 430
 Width: 380
 VWidth: 0
 Flags: W
@@ -15985,7 +15962,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: emacron
-Encoding: 275 275 432
+Encoding: 275 275 431
 Width: 413
 VWidth: 0
 Flags: W
@@ -16009,7 +15986,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: imacron
-Encoding: 299 299 433
+Encoding: 299 299 432
 Width: 265
 VWidth: 0
 Flags: W
@@ -16027,14 +16004,14 @@ LayerCount: 3
 Fore
 Refer: 265 772 N 1 0 0 1 321 0 2
 Refer: 177 305 N 1 0 0 1 0 0 2
-Kerns2: 164 -10 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6"  467 5 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6" 
+Kerns2: 164 -10 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6"  466 5 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6" 
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" imacron.sc
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" imacron.sc
 Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" imacron.sc
 EndChar
 
 StartChar: umacron
-Encoding: 363 363 434
+Encoding: 363 363 433
 Width: 462
 VWidth: 0
 Flags: W
@@ -16058,7 +16035,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: amacron.sc
-Encoding: 65689 -1 435
+Encoding: 65688 -1 434
 Width: 481
 VWidth: 0
 Flags: W
@@ -16079,7 +16056,7 @@ Refer: 229 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: emacron.sc
-Encoding: 65690 -1 436
+Encoding: 65689 -1 435
 Width: 443
 VWidth: 0
 Flags: W
@@ -16100,7 +16077,7 @@ Refer: 233 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: imacron.sc
-Encoding: 65691 -1 437
+Encoding: 65690 -1 436
 Width: 274
 VWidth: 0
 Flags: W
@@ -16121,7 +16098,7 @@ Refer: 237 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: omacron.sc
-Encoding: 65692 -1 438
+Encoding: 65691 -1 437
 Width: 472
 VWidth: 0
 Flags: W
@@ -16142,7 +16119,7 @@ Refer: 243 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: umacron.sc
-Encoding: 65693 -1 439
+Encoding: 65692 -1 438
 Width: 490
 VWidth: 0
 Flags: W
@@ -16163,7 +16140,7 @@ Refer: 249 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: uni0304.cap
-Encoding: 65694 -1 440
+Encoding: 65693 -1 439
 Width: 0
 VWidth: 0
 Flags: W
@@ -16183,7 +16160,7 @@ Validated: 1
 EndChar
 
 StartChar: Amacron
-Encoding: 256 256 441
+Encoding: 256 256 440
 Width: 726
 VWidth: 0
 Flags: W
@@ -16199,7 +16176,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 686 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 440 -1 N 1 0 0 1 564 244 2
+Refer: 439 -1 N 1 0 0 1 564 244 2
 Refer: 24 65 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Amacron.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Amacron.c2
@@ -16208,7 +16185,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" A
 EndChar
 
 StartChar: Emacron
-Encoding: 274 274 442
+Encoding: 274 274 441
 Width: 616
 VWidth: 0
 Flags: W
@@ -16224,7 +16201,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 596 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 440 -1 N 1 0 0 1 503 244 2
+Refer: 439 -1 N 1 0 0 1 503 244 2
 Refer: 28 69 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Emacron.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Emacron.c2
@@ -16233,7 +16210,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" E
 EndChar
 
 StartChar: Imacron
-Encoding: 298 298 443
+Encoding: 298 298 442
 Width: 322
 VWidth: 0
 Flags: W
@@ -16249,7 +16226,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 322 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 440 -1 N 1 0 0 1 352 244 2
+Refer: 439 -1 N 1 0 0 1 352 244 2
 Refer: 31 73 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Imacron.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Imacron.c2
@@ -16258,7 +16235,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" I
 EndChar
 
 StartChar: Omacron
-Encoding: 332 332 444
+Encoding: 332 332 443
 Width: 798
 VWidth: 0
 Flags: W
@@ -16274,7 +16251,7 @@ AnchorPoint: "l;bl" 90 15 basechar 0
 AnchorPoint: "r;x" 798 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 440 -1 N 1 0 0 1 591 244 2
+Refer: 439 -1 N 1 0 0 1 591 244 2
 Refer: 37 79 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Omacron.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Omacron.c2
@@ -16283,7 +16260,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" O
 EndChar
 
 StartChar: Umacron
-Encoding: 362 362 445
+Encoding: 362 362 444
 Width: 721
 VWidth: 0
 Flags: W
@@ -16299,7 +16276,7 @@ AnchorPoint: "l;bl" 40 15 basechar 0
 AnchorPoint: "r;x" 721 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 440 -1 N 1 0 0 1 573 244 2
+Refer: 439 -1 N 1 0 0 1 573 244 2
 Refer: 48 85 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Umacron.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Umacron.c2
@@ -16308,7 +16285,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" U
 EndChar
 
 StartChar: abreve
-Encoding: 259 259 446
+Encoding: 259 259 445
 Width: 380
 VWidth: 0
 Flags: W
@@ -16332,7 +16309,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: ebreve
-Encoding: 277 277 447
+Encoding: 277 277 446
 Width: 413
 VWidth: 0
 Flags: W
@@ -16356,7 +16333,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: gbreve
-Encoding: 287 287 448
+Encoding: 287 287 447
 Width: 446
 VWidth: 0
 Flags: W
@@ -16382,7 +16359,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: ibreve
-Encoding: 301 301 449
+Encoding: 301 301 448
 Width: 265
 VWidth: 0
 Flags: W
@@ -16406,7 +16383,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: obreve
-Encoding: 335 335 450
+Encoding: 335 335 449
 Width: 458
 VWidth: 0
 Flags: W
@@ -16430,7 +16407,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: ubreve
-Encoding: 365 365 451
+Encoding: 365 365 450
 Width: 462
 VWidth: 0
 Flags: W
@@ -16454,7 +16431,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: Abreve
-Encoding: 258 258 452
+Encoding: 258 258 451
 Width: 726
 VWidth: 0
 Flags: HW
@@ -16470,7 +16447,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 686 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 464 -1 N 1 0 0 1 564 244 2
+Refer: 463 -1 N 1 0 0 1 564 244 2
 Refer: 24 65 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Abreve.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Abreve.c2
@@ -16479,7 +16456,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" A
 EndChar
 
 StartChar: Ebreve
-Encoding: 276 276 453
+Encoding: 276 276 452
 Width: 616
 VWidth: 0
 Flags: HW
@@ -16495,7 +16472,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 596 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 464 -1 N 1 0 0 1 503 244 2
+Refer: 463 -1 N 1 0 0 1 503 244 2
 Refer: 28 69 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Ebreve.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Ebreve.c2
@@ -16504,7 +16481,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" E
 EndChar
 
 StartChar: Gbreve
-Encoding: 286 286 454
+Encoding: 286 286 453
 Width: 794
 VWidth: 0
 Flags: HW
@@ -16520,7 +16497,7 @@ AnchorPoint: "l;bl" 90 15 basechar 0
 AnchorPoint: "r;x" 794 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 464 -1 N 1 0 0 1 606 244 2
+Refer: 463 -1 N 1 0 0 1 606 244 2
 Refer: 23 71 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Gbreve.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Gbreve.c2
@@ -16529,7 +16506,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" G
 EndChar
 
 StartChar: Ibreve
-Encoding: 300 300 455
+Encoding: 300 300 454
 Width: 322
 VWidth: 0
 Flags: HW
@@ -16545,7 +16522,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 322 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 464 -1 N 1 0 0 1 352 244 2
+Refer: 463 -1 N 1 0 0 1 352 244 2
 Refer: 31 73 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Ibreve.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Ibreve.c2
@@ -16554,7 +16531,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" I
 EndChar
 
 StartChar: Obreve
-Encoding: 334 334 456
+Encoding: 334 334 455
 Width: 798
 VWidth: 0
 Flags: HW
@@ -16570,7 +16547,7 @@ AnchorPoint: "l;bl" 90 15 basechar 0
 AnchorPoint: "r;x" 798 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 464 -1 N 1 0 0 1 591 244 2
+Refer: 463 -1 N 1 0 0 1 591 244 2
 Refer: 37 79 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Obreve.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Obreve.c2
@@ -16579,7 +16556,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" O
 EndChar
 
 StartChar: Ubreve
-Encoding: 364 364 457
+Encoding: 364 364 456
 Width: 721
 VWidth: 0
 Flags: HW
@@ -16595,7 +16572,7 @@ AnchorPoint: "l;bl" 40 15 basechar 0
 AnchorPoint: "r;x" 721 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 464 -1 N 1 0 0 1 573 244 2
+Refer: 463 -1 N 1 0 0 1 573 244 2
 Refer: 48 85 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Ubreve.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Ubreve.c2
@@ -16604,7 +16581,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" U
 EndChar
 
 StartChar: abreve.sc
-Encoding: 65695 -1 458
+Encoding: 65694 -1 457
 Width: 481
 VWidth: 0
 Flags: W
@@ -16625,7 +16602,7 @@ Refer: 229 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: ebreve.sc
-Encoding: 65696 -1 459
+Encoding: 65695 -1 458
 Width: 443
 VWidth: 0
 Flags: W
@@ -16646,7 +16623,7 @@ Refer: 233 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: gbreve.sc
-Encoding: 65697 -1 460
+Encoding: 65696 -1 459
 Width: 490
 VWidth: 0
 Flags: W
@@ -16667,7 +16644,7 @@ Refer: 235 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: ibreve.sc
-Encoding: 65698 -1 461
+Encoding: 65697 -1 460
 Width: 274
 VWidth: 0
 Flags: W
@@ -16688,7 +16665,7 @@ Refer: 237 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: obreve.sc
-Encoding: 65699 -1 462
+Encoding: 65698 -1 461
 Width: 472
 VWidth: 0
 Flags: W
@@ -16709,7 +16686,7 @@ Refer: 243 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: ubreve.sc
-Encoding: 65700 -1 463
+Encoding: 65699 -1 462
 Width: 490
 VWidth: 0
 Flags: W
@@ -16730,7 +16707,7 @@ Refer: 249 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: uni0306.cap
-Encoding: 65701 -1 464
+Encoding: 65700 -1 463
 Width: 0
 VWidth: 0
 Flags: W
@@ -16756,7 +16733,7 @@ Validated: 1
 EndChar
 
 StartChar: breve
-Encoding: 728 728 465
+Encoding: 728 728 464
 Width: 390
 VWidth: 0
 Flags: W
@@ -16768,7 +16745,7 @@ Refer: 266 774 N 1 0 0 1 390 0 2
 EndChar
 
 StartChar: atilde
-Encoding: 227 227 466
+Encoding: 227 227 465
 Width: 380
 VWidth: 0
 Flags: W
@@ -16792,7 +16769,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: itilde
-Encoding: 297 297 467
+Encoding: 297 297 466
 Width: 265
 VWidth: 0
 Flags: W
@@ -16816,7 +16793,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: ntilde
-Encoding: 241 241 468
+Encoding: 241 241 467
 Width: 463
 VWidth: 0
 Flags: W
@@ -16841,7 +16818,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: otilde
-Encoding: 245 245 469
+Encoding: 245 245 468
 Width: 458
 VWidth: 0
 Flags: W
@@ -16865,7 +16842,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: utilde
-Encoding: 361 361 470
+Encoding: 361 361 469
 Width: 462
 VWidth: 0
 Flags: W
@@ -16889,7 +16866,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: Atilde
-Encoding: 195 195 471
+Encoding: 195 195 470
 Width: 726
 VWidth: 0
 Flags: HW
@@ -16905,7 +16882,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 686 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 482 -1 N 1 0 0 1 564 244 2
+Refer: 481 -1 N 1 0 0 1 564 244 2
 Refer: 24 65 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Atilde.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Atilde.c2
@@ -16914,7 +16891,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" A
 EndChar
 
 StartChar: Itilde
-Encoding: 296 296 472
+Encoding: 296 296 471
 Width: 322
 VWidth: 0
 Flags: HW
@@ -16930,7 +16907,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 322 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 482 -1 N 1 0 0 1 352 244 2
+Refer: 481 -1 N 1 0 0 1 352 244 2
 Refer: 31 73 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Itilde.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Itilde.c2
@@ -16939,7 +16916,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" I
 EndChar
 
 StartChar: Ntilde
-Encoding: 209 209 473
+Encoding: 209 209 472
 Width: 744
 VWidth: 0
 Flags: HW
@@ -16955,7 +16932,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 744 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 482 -1 N 1 0 0 1 569 244 2
+Refer: 481 -1 N 1 0 0 1 569 244 2
 Refer: 36 78 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Ntilde.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Ntilde.c2
@@ -16964,7 +16941,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" N
 EndChar
 
 StartChar: Otilde
-Encoding: 213 213 474
+Encoding: 213 213 473
 Width: 798
 VWidth: 0
 Flags: HW
@@ -16980,7 +16957,7 @@ AnchorPoint: "l;bl" 90 15 basechar 0
 AnchorPoint: "r;x" 798 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 482 -1 N 1 0 0 1 591 244 2
+Refer: 481 -1 N 1 0 0 1 591 244 2
 Refer: 37 79 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Otilde.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Otilde.c2
@@ -16989,7 +16966,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" O
 EndChar
 
 StartChar: Utilde
-Encoding: 360 360 475
+Encoding: 360 360 474
 Width: 721
 VWidth: 0
 Flags: HW
@@ -17005,7 +16982,7 @@ AnchorPoint: "l;bl" 40 15 basechar 0
 AnchorPoint: "r;x" 721 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 482 -1 N 1 0 0 1 573 244 2
+Refer: 481 -1 N 1 0 0 1 573 244 2
 Refer: 48 85 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Utilde.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Utilde.c2
@@ -17014,7 +16991,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" U
 EndChar
 
 StartChar: atilde.sc
-Encoding: 65702 -1 476
+Encoding: 65701 -1 475
 Width: 481
 VWidth: 0
 Flags: W
@@ -17035,7 +17012,7 @@ Refer: 229 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: itilde.sc
-Encoding: 65703 -1 477
+Encoding: 65702 -1 476
 Width: 274
 VWidth: 0
 Flags: W
@@ -17056,7 +17033,7 @@ Refer: 237 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: ntilde.sc
-Encoding: 65704 -1 478
+Encoding: 65703 -1 477
 Width: 487
 VWidth: 0
 Flags: W
@@ -17077,7 +17054,7 @@ Refer: 242 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: otilde.sc
-Encoding: 65705 -1 479
+Encoding: 65704 -1 478
 Width: 472
 VWidth: 0
 Flags: W
@@ -17098,7 +17075,7 @@ Refer: 243 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: utilde.sc
-Encoding: 65706 -1 480
+Encoding: 65705 -1 479
 Width: 490
 VWidth: 0
 Flags: W
@@ -17119,7 +17096,7 @@ Refer: 249 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: longs
-Encoding: 383 383 481
+Encoding: 383 383 480
 Width: 250
 VWidth: 0
 Flags: W
@@ -17178,11 +17155,11 @@ SplineSet
  39 392 l 5
  81 392 l 5
 EndSplineSet
-Kerns2: 277 100 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6"  467 90 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6"  314 70 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6"  58 65 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6"  446 30 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6" 
+Kerns2: 277 100 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6"  466 90 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6"  314 70 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6"  58 65 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6"  445 30 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6" 
 EndChar
 
 StartChar: tildecomb.cap
-Encoding: 65707 -1 482
+Encoding: 65706 -1 481
 Width: 0
 VWidth: 0
 Flags: W
@@ -17210,7 +17187,7 @@ Validated: 1
 EndChar
 
 StartChar: dotaccent
-Encoding: 729 729 483
+Encoding: 729 729 482
 Width: 390
 VWidth: 0
 Flags: W
@@ -17222,7 +17199,7 @@ Refer: 267 775 N 1 0 0 1 390 0 2
 EndChar
 
 StartChar: macron
-Encoding: 175 175 484
+Encoding: 175 175 483
 Width: 390
 VWidth: 0
 Flags: W
@@ -17234,15 +17211,17 @@ Refer: 265 772 N 1 0 0 1 390 0 2
 EndChar
 
 StartChar: uni203E
-Encoding: 8254 8254 485
+Encoding: 8254 8254 484
 Width: 390
 VWidth: 0
-Flags: W
+Flags: HW
 LayerCount: 3
+Fore
+Refer: -1 773 N 1 0 0 1 390 0 2
 EndChar
 
 StartChar: circumflex
-Encoding: 710 710 486
+Encoding: 710 710 485
 Width: 390
 VWidth: 0
 Flags: W
@@ -17254,19 +17233,21 @@ Refer: 260 770 N 1 0 0 1 390 0 2
 EndChar
 
 StartChar: uni02C8
-Encoding: 712 712 487
+Encoding: 712 712 486
 Width: 390
 VWidth: 0
-Flags: W
+Flags: HW
 LayerCount: 3
+Fore
+Refer: -1 781 N 1 0 0 1 390 0 2
 EndChar
 
 StartChar: hungarumlaut
-Encoding: 733 733 488
+Encoding: 733 733 487
 Width: 390
 VWidth: 0
 Flags: W
-HStem: 483 162
+HStem: 468 162
 VStem: 86 269
 LayerCount: 3
 Fore
@@ -17274,7 +17255,7 @@ Refer: 270 779 N 1 0 0 1 390 0 2
 EndChar
 
 StartChar: caron
-Encoding: 711 711 489
+Encoding: 711 711 488
 Width: 390
 VWidth: 0
 Flags: W
@@ -17286,15 +17267,17 @@ Refer: 271 780 N 1 0 0 1 390 0 2
 EndChar
 
 StartChar: uni02C0
-Encoding: 704 704 490
+Encoding: 704 704 489
 Width: 390
 VWidth: 0
-Flags: W
+Flags: HW
 LayerCount: 3
+Fore
+Refer: -1 777 N 1 0 0 1 390 0 2
 EndChar
 
 StartChar: ring
-Encoding: 730 730 491
+Encoding: 730 730 490
 Width: 390
 VWidth: 0
 Flags: W
@@ -17306,7 +17289,7 @@ Refer: 269 778 N 1 0 0 1 390 0 2
 EndChar
 
 StartChar: tilde
-Encoding: 732 732 492
+Encoding: 732 732 491
 Width: 390
 VWidth: 0
 Flags: W
@@ -17318,7 +17301,7 @@ Refer: 264 771 N 1 0 0 1 390 0 2
 EndChar
 
 StartChar: Thorn
-Encoding: 222 222 493
+Encoding: 222 222 492
 Width: 597
 VWidth: 0
 Flags: W
@@ -17402,7 +17385,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" T
 EndChar
 
 StartChar: thorn
-Encoding: 254 254 494
+Encoding: 254 254 493
 Width: 506
 VWidth: 0
 Flags: HMW
@@ -17478,7 +17461,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: Eth
-Encoding: 208 208 495
+Encoding: 208 208 494
 Width: 744
 VWidth: 0
 Flags: W
@@ -17561,7 +17544,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" E
 EndChar
 
 StartChar: Dcroat
-Encoding: 272 272 496
+Encoding: 272 272 495
 Width: 744
 VWidth: 0
 Flags: W
@@ -17577,7 +17560,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 744 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 495 208 N 1 0 0 1 0 0 2
+Refer: 494 208 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Dcroat.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Dcroat.c2
 Position2: "'cpsp' Capital Spacing in Latin lookup 3 subtable" dx=6 dy=0 dh=12 dv=0
@@ -17585,7 +17568,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" D
 EndChar
 
 StartChar: eth
-Encoding: 240 240 497
+Encoding: 240 240 496
 Width: 460
 VWidth: 0
 Flags: W
@@ -17652,7 +17635,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: f_thorn
-Encoding: 65708 -1 498
+Encoding: 65707 -1 497
 Width: 736
 VWidth: 0
 Flags: HMW
@@ -17765,7 +17748,7 @@ LCarets2: 1 0
 EndChar
 
 StartChar: f_f_thorn
-Encoding: 65709 -1 499
+Encoding: 65708 -1 498
 Width: 970
 Flags: HMW
 HStem: -259 32<494 560.454 632.179 724> -12 33<667.021 811.819> 0 32<24 89.0007 160.417 228 261 323.5 394.656 466> 335 59<702.83 803.396> 344 48<29 90 160 324 394 495> 657 41<195.539 286.823> 683 41<429.32 515.5>
@@ -17920,7 +17903,7 @@ LCarets2: 2 0 0
 EndChar
 
 StartChar: longs_i
-Encoding: 65710 -1 500
+Encoding: 65709 -1 499
 Width: 484
 Flags: HMW
 HStem: 0 32<15 79.0545 150.649 223 250 317.176 388.73 467> 344 48<36 80> 386 20G<360.5 388> 687 38<192.625 297.5>
@@ -17975,7 +17958,7 @@ LCarets2: 1 0
 EndChar
 
 StartChar: longs_l
-Encoding: 65711 -1 501
+Encoding: 65710 -1 500
 Width: 471
 VWidth: 0
 Flags: HMW
@@ -18028,7 +18011,7 @@ LCarets2: 1 0
 EndChar
 
 StartChar: longs_longs
-Encoding: 65712 -1 502
+Encoding: 65711 -1 501
 Width: 485
 VWidth: 0
 Flags: W
@@ -18092,7 +18075,7 @@ LCarets2: 1 0
 EndChar
 
 StartChar: longs_longs_i
-Encoding: 65713 -1 503
+Encoding: 65712 -1 502
 Width: 718
 VWidth: 0
 Flags: HMW
@@ -18169,7 +18152,7 @@ LCarets2: 2 0 0
 EndChar
 
 StartChar: longs_longs_l
-Encoding: 65714 -1 504
+Encoding: 65713 -1 503
 Width: 705
 VWidth: 0
 Flags: HMW
@@ -18242,7 +18225,7 @@ LCarets2: 2 0 0
 EndChar
 
 StartChar: longs_j
-Encoding: 65715 -1 505
+Encoding: 65714 -1 504
 Width: 479
 Flags: HMW
 HStem: -261 45<224 300.465> 0 32<15 79.0545 150.649 223> 344 48<36 80> 384 20G<355.5 388> 687 38<192.625 297.5>
@@ -18298,7 +18281,7 @@ LCarets2: 1 0
 EndChar
 
 StartChar: longs_longs_j
-Encoding: 65716 -1 506
+Encoding: 65715 -1 505
 Width: 713
 VWidth: 0
 Flags: HMW
@@ -18376,7 +18359,7 @@ LCarets2: 2 0 0
 EndChar
 
 StartChar: longs_b
-Encoding: 65717 -1 507
+Encoding: 65716 -1 506
 Width: 734
 Flags: HMW
 HStem: -9 36<420.86 571.509> 0 32<17 79.162 150.733 222> 344 48<36 80> 345 54<444.603 571.374> 683 41<184.528 271.5>
@@ -18434,7 +18417,7 @@ LCarets2: 1 6
 EndChar
 
 StartChar: longs_longs_b
-Encoding: 65718 -1 508
+Encoding: 65717 -1 507
 Width: 970
 Flags: HMW
 HStem: -9 36<655.906 804.553> 0 32<14 79.0007 150.419 218 251 313.5 384.733 456> 344 48<36 80 271 314> 345 54<679.911 807.079> 657 41<185.539 276.823> 683 41<419.32 505.5>
@@ -18512,7 +18495,7 @@ LCarets2: 2 0 0
 EndChar
 
 StartChar: longs_h
-Encoding: 65719 -1 509
+Encoding: 65718 -1 508
 Width: 705
 Flags: HMW
 HStem: 0 32<17 79.162 150.654 221 260 315.414 386.699 455 496 557.721 629.667 688> 344 48<36 80 453.096 582.741> 683 41<184.528 271.5>
@@ -18578,7 +18561,7 @@ LCarets2: 1 0
 EndChar
 
 StartChar: longs_longs_h
-Encoding: 65720 -1 510
+Encoding: 65719 -1 509
 Width: 940
 Flags: HMW
 HStem: 0 32<14 79.0007 150.419 218 251 313.5 384.733 456 492 550.701 621.699 690 731 792.721 864.667 923> 344 48<36 80 271 314 688.518 817.979> 657 41<185.539 276.823> 683 41<419.32 505.5>
@@ -18664,7 +18647,7 @@ LCarets2: 2 0 0
 EndChar
 
 StartChar: longs_k
-Encoding: 65721 -1 511
+Encoding: 65720 -1 510
 Width: 710
 VWidth: 0
 Flags: W
@@ -18735,7 +18718,7 @@ LCarets2: 1 0
 EndChar
 
 StartChar: longs_longs_k
-Encoding: 65722 -1 512
+Encoding: 65721 -1 511
 Width: 945
 Flags: HMW
 HStem: 0 32<14 79.0007 150.419 218 251 313.5 384.733 456 494 550.73 619.523 698 863.81 928> 344 48<36 80 271 314> 365 27<759 810.991 861.683 919> 657 41<185.539 276.823> 683 41<419.32 505.5>
@@ -18826,7 +18809,7 @@ LCarets2: 2 0 0
 EndChar
 
 StartChar: longs_thorn
-Encoding: 65723 -1 513
+Encoding: 65722 -1 512
 Width: 725
 VWidth: 0
 Flags: HMW
@@ -18891,7 +18874,7 @@ LCarets2: 1 0
 EndChar
 
 StartChar: longs_longs_thorn
-Encoding: 65724 -1 514
+Encoding: 65723 -1 513
 Width: 960
 Flags: W
 HStem: -259 32<484 550.403 622.29 714> -12 33<657.021 801.897> 0 32<14 78.8135 150.57 218 251 313.5 384.608 456> 335 59<693.277 796.018> 344 48<36 80 271 314> 657 41<185.539 276.823> 683 41<419.32 505.5>
@@ -18975,7 +18958,7 @@ LCarets2: 2 0 0
 EndChar
 
 StartChar: f_hcircumflex
-Encoding: 65725 -1 515
+Encoding: 65724 -1 514
 Width: 716
 VWidth: 0
 Flags: W
@@ -18998,7 +18981,7 @@ LCarets2: 1 0
 EndChar
 
 StartChar: f_f_hcircumflex
-Encoding: 65726 -1 516
+Encoding: 65725 -1 515
 Width: 950
 VWidth: 0
 Flags: W
@@ -19021,7 +19004,7 @@ LCarets2: 2 0 0
 EndChar
 
 StartChar: ccedilla
-Encoding: 231 231 517
+Encoding: 231 231 516
 Width: 403
 VWidth: 0
 Flags: W
@@ -19068,7 +19051,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: uni0327
-Encoding: 807 807 518
+Encoding: 807 807 517
 Width: 0
 Flags: W
 HStem: -220 27<-237.259 -143.656> -95 30<-206.899 -148.406>
@@ -19110,7 +19093,7 @@ EndSplineSet
 EndChar
 
 StartChar: cedilla
-Encoding: 184 184 519
+Encoding: 184 184 518
 Width: 390
 VWidth: 0
 Flags: W
@@ -19118,11 +19101,11 @@ HStem: -220 27<152.741 246.344> -95 30<183.101 241.594>
 VStem: 260 55<-186.169 -106.751>
 LayerCount: 3
 Fore
-Refer: 518 807 N 1 0 0 1 390 0 2
+Refer: 517 807 N 1 0 0 1 390 0 2
 EndChar
 
 StartChar: Ccedilla
-Encoding: 199 199 520
+Encoding: 199 199 519
 Width: 737
 VWidth: 0
 Flags: W
@@ -19178,7 +19161,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" C
 EndChar
 
 StartChar: Scedilla
-Encoding: 350 350 521
+Encoding: 350 350 520
 Width: 517
 VWidth: 0
 Flags: W
@@ -19244,7 +19227,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" S
 EndChar
 
 StartChar: scedilla
-Encoding: 351 351 522
+Encoding: 351 351 521
 Width: 347
 VWidth: 0
 Flags: W
@@ -19307,7 +19290,7 @@ Substitution2: "romanian subtable" uni0219
 EndChar
 
 StartChar: uni0162
-Encoding: 354 354 523
+Encoding: 354 354 522
 Width: 630
 VWidth: 0
 Flags: W
@@ -19369,7 +19352,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" u
 EndChar
 
 StartChar: uni0163
-Encoding: 355 355 524
+Encoding: 355 355 523
 Width: 316
 VWidth: 0
 Flags: W
@@ -19423,7 +19406,7 @@ Substitution2: "romanian subtable" uni021B
 EndChar
 
 StartChar: ccedilla.sc
-Encoding: 65727 -1 525
+Encoding: 65726 -1 524
 Width: 424
 VWidth: 0
 Flags: W
@@ -19471,7 +19454,7 @@ EndSplineSet
 EndChar
 
 StartChar: scedilla.sc
-Encoding: 65728 -1 526
+Encoding: 65727 -1 525
 Width: 367
 VWidth: 0
 Flags: W
@@ -19524,7 +19507,7 @@ EndSplineSet
 EndChar
 
 StartChar: uni0163.sc
-Encoding: 65729 -1 527
+Encoding: 65728 -1 526
 Width: 425
 VWidth: 0
 Flags: W
@@ -19580,7 +19563,7 @@ EndSplineSet
 EndChar
 
 StartChar: Kcommaaccent
-Encoding: 310 310 528
+Encoding: 310 310 527
 Width: 728
 VWidth: 0
 Flags: HW
@@ -19598,7 +19581,7 @@ AnchorPoint: "r;k;lo" 435 -244 basechar 0
 AnchorPoint: "l;k;lo" 329 -244 basechar 0
 LayerCount: 3
 Fore
-Refer: 529 806 N 1 0 0 1 575 0 2
+Refer: 528 806 N 1 0 0 1 575 0 2
 Refer: 33 75 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Kcommaaccent.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Kcommaaccent.c2
@@ -19607,7 +19590,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" K
 EndChar
 
 StartChar: uni0326
-Encoding: 806 806 529
+Encoding: 806 806 528
 Width: 0
 VWidth: 0
 Flags: W
@@ -19633,7 +19616,7 @@ EndSplineSet
 EndChar
 
 StartChar: Gcommaaccent
-Encoding: 290 290 530
+Encoding: 290 290 529
 Width: 794
 VWidth: 0
 Flags: W
@@ -19651,7 +19634,7 @@ AnchorPoint: "r;k;lo" 463.5 -231 basechar 0
 AnchorPoint: "l;k;lo" 357.5 -231 basechar 0
 LayerCount: 3
 Fore
-Refer: 529 806 N 1 0 0 1 603.5 13 2
+Refer: 528 806 N 1 0 0 1 603.5 13 2
 Refer: 23 71 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Gcommaaccent.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Gcommaaccent.c2
@@ -19660,7 +19643,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" G
 EndChar
 
 StartChar: kcommaaccent
-Encoding: 311 311 531
+Encoding: 311 311 530
 Width: 472
 VWidth: 0
 Flags: W
@@ -19678,7 +19661,7 @@ AnchorPoint: "r;k;lo" 296 -244 basechar 0
 AnchorPoint: "l;k;lo" 190 -244 basechar 0
 LayerCount: 3
 Fore
-Refer: 529 806 N 1 0 0 1 436 0 2
+Refer: 528 806 N 1 0 0 1 436 0 2
 Refer: 5 107 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" kcommaaccent.sc
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" kcommaaccent.sc
@@ -19686,7 +19669,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: Lcommaaccent
-Encoding: 315 315 532
+Encoding: 315 315 531
 Width: 584
 VWidth: 0
 Flags: W
@@ -19704,7 +19687,7 @@ AnchorPoint: "r;k;lo" 345 -208 basechar 0
 AnchorPoint: "l;k;lo" 239 -208 basechar 0
 LayerCount: 3
 Fore
-Refer: 529 806 N 1 0 0 1 485 36 2
+Refer: 528 806 N 1 0 0 1 485 36 2
 Refer: 34 76 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Lcommaaccent.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Lcommaaccent.c2
@@ -19713,7 +19696,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" L
 EndChar
 
 StartChar: lcommaaccent
-Encoding: 316 316 533
+Encoding: 316 316 532
 Width: 262
 VWidth: 0
 Flags: W
@@ -19731,7 +19714,7 @@ AnchorPoint: "r;k;lo" 184 -208 basechar 0
 AnchorPoint: "l;k;lo" 78 -208 basechar 0
 LayerCount: 3
 Fore
-Refer: 529 806 N 1 0 0 1 324 36 2
+Refer: 528 806 N 1 0 0 1 324 36 2
 Refer: 2 108 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" lcommaaccent.sc
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" lcommaaccent.sc
@@ -19739,7 +19722,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: Ncommaaccent
-Encoding: 325 325 534
+Encoding: 325 325 533
 Width: 744
 VWidth: 0
 Flags: W
@@ -19757,7 +19740,7 @@ AnchorPoint: "r;k;lo" 434 -244 basechar 0
 AnchorPoint: "l;k;lo" 328 -244 basechar 0
 LayerCount: 3
 Fore
-Refer: 529 806 N 1 0 0 1 574 0 2
+Refer: 528 806 N 1 0 0 1 574 0 2
 Refer: 36 78 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Ncommaaccent.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Ncommaaccent.c2
@@ -19766,7 +19749,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" N
 EndChar
 
 StartChar: ncommaaccent
-Encoding: 326 326 535
+Encoding: 326 326 534
 Width: 463
 VWidth: 0
 Flags: W
@@ -19782,7 +19765,7 @@ AnchorPoint: "r;k;lo" 289 -244 basechar 0
 AnchorPoint: "l;k;lo" 183 -244 basechar 0
 LayerCount: 3
 Fore
-Refer: 529 806 N 1 0 0 1 429 0 2
+Refer: 528 806 N 1 0 0 1 429 0 2
 Refer: 6 110 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" ncommaaccent.sc
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" ncommaaccent.sc
@@ -19790,7 +19773,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: Rcommaaccent
-Encoding: 342 342 536
+Encoding: 342 342 535
 Width: 694
 VWidth: 0
 Flags: W
@@ -19808,7 +19791,7 @@ AnchorPoint: "r;k;lo" 397.5 -208 basechar 0
 AnchorPoint: "l;k;lo" 291.5 -208 basechar 0
 LayerCount: 3
 Fore
-Refer: 529 806 N 1 0 0 1 537.5 36 2
+Refer: 528 806 N 1 0 0 1 537.5 36 2
 Refer: 45 82 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Rcommaaccent.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Rcommaaccent.c2
@@ -19817,7 +19800,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" R
 EndChar
 
 StartChar: rcommaaccent
-Encoding: 343 343 537
+Encoding: 343 343 536
 Width: 342
 VWidth: 0
 Flags: W
@@ -19833,7 +19816,7 @@ AnchorPoint: "r;k;lo" 224 -208 basechar 0
 AnchorPoint: "l;k;lo" 118 -208 basechar 0
 LayerCount: 3
 Fore
-Refer: 529 806 N 1 0 0 1 364 36 2
+Refer: 528 806 N 1 0 0 1 364 36 2
 Refer: 15 114 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" rcommaaccent.sc
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" rcommaaccent.sc
@@ -19841,7 +19824,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: uni0218
-Encoding: 536 536 538
+Encoding: 536 536 537
 Width: 517
 VWidth: 0
 Flags: W
@@ -19859,7 +19842,7 @@ AnchorPoint: "r;k;lo" 294 -244 basechar 0
 AnchorPoint: "l;k;lo" 188 -244 basechar 0
 LayerCount: 3
 Fore
-Refer: 529 806 N 1 0 0 1 434 0 2
+Refer: 528 806 N 1 0 0 1 434 0 2
 Refer: 46 83 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" uni0218.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" uni0218.c2
@@ -19868,7 +19851,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" u
 EndChar
 
 StartChar: uni0219
-Encoding: 537 537 539
+Encoding: 537 537 538
 Width: 347
 VWidth: 0
 Flags: W
@@ -19884,7 +19867,7 @@ AnchorPoint: "r;k;lo" 230 -244 basechar 0
 AnchorPoint: "l;k;lo" 124 -244 basechar 0
 LayerCount: 3
 Fore
-Refer: 529 806 N 1 0 0 1 370 0 2
+Refer: 528 806 N 1 0 0 1 370 0 2
 Refer: 16 115 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" uni0219.sc
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" uni0219.sc
@@ -19892,7 +19875,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: uni021A
-Encoding: 538 538 540
+Encoding: 538 538 539
 Width: 630
 VWidth: 0
 Flags: W
@@ -19910,7 +19893,7 @@ AnchorPoint: "r;k;lo" 359 -244 basechar 0
 AnchorPoint: "l;k;lo" 253 -244 basechar 0
 LayerCount: 3
 Fore
-Refer: 529 806 N 1 0 0 1 499 0 2
+Refer: 528 806 N 1 0 0 1 499 0 2
 Refer: 47 84 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" uni021A.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" uni021A.c2
@@ -19919,7 +19902,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" u
 EndChar
 
 StartChar: uni021B
-Encoding: 539 539 541
+Encoding: 539 539 540
 Width: 316
 VWidth: 0
 Flags: W
@@ -19935,7 +19918,7 @@ AnchorPoint: "r;k;lo" 235 -244 basechar 0
 AnchorPoint: "l;k;lo" 129 -244 basechar 0
 LayerCount: 3
 Fore
-Refer: 529 806 N 1 0 0 1 375 0 2
+Refer: 528 806 N 1 0 0 1 375 0 2
 Refer: 20 116 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" uni021B.sc
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" uni021B.sc
@@ -19943,7 +19926,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: gcommaaccent.sc
-Encoding: 65730 -1 542
+Encoding: 65729 -1 541
 Width: 490
 VWidth: 0
 Flags: W
@@ -19959,12 +19942,12 @@ AnchorPoint: "r;k;lo" 299 -244 basechar 0
 AnchorPoint: "l;k;lo" 193 -244 basechar 0
 LayerCount: 3
 Fore
-Refer: 529 806 N 1 0 0 1 439 0 2
+Refer: 528 806 N 1 0 0 1 439 0 2
 Refer: 235 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: kcommaaccent.sc
-Encoding: 65731 -1 543
+Encoding: 65730 -1 542
 Width: 491
 VWidth: 0
 Flags: W
@@ -19980,12 +19963,12 @@ AnchorPoint: "r;k;lo" 294 -244 basechar 0
 AnchorPoint: "l;k;lo" 188 -244 basechar 0
 LayerCount: 3
 Fore
-Refer: 529 806 N 1 0 0 1 434 0 2
+Refer: 528 806 N 1 0 0 1 434 0 2
 Refer: 239 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: lcommaaccent.sc
-Encoding: 65732 -1 544
+Encoding: 65731 -1 543
 Width: 432
 VWidth: 0
 Flags: W
@@ -20001,12 +19984,12 @@ AnchorPoint: "r;k;lo" 282 -244 basechar 0
 AnchorPoint: "l;k;lo" 176 -244 basechar 0
 LayerCount: 3
 Fore
-Refer: 529 806 N 1 0 0 1 422 0 2
+Refer: 528 806 N 1 0 0 1 422 0 2
 Refer: 240 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: ncommaaccent.sc
-Encoding: 65733 -1 545
+Encoding: 65732 -1 544
 Width: 487
 VWidth: 0
 Flags: W
@@ -20022,12 +20005,12 @@ AnchorPoint: "r;k;lo" 305 -244 basechar 0
 AnchorPoint: "l;k;lo" 199 -244 basechar 0
 LayerCount: 3
 Fore
-Refer: 529 806 N 1 0 0 1 445 0 2
+Refer: 528 806 N 1 0 0 1 445 0 2
 Refer: 242 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: rcommaaccent.sc
-Encoding: 65734 -1 546
+Encoding: 65733 -1 545
 Width: 485
 VWidth: 0
 Flags: W
@@ -20043,12 +20026,12 @@ AnchorPoint: "r;k;lo" 293 -241 basechar 0
 AnchorPoint: "l;k;lo" 187 -241 basechar 0
 LayerCount: 3
 Fore
-Refer: 529 806 N 1 0 0 1 433 3 2
+Refer: 528 806 N 1 0 0 1 433 3 2
 Refer: 246 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: uni0219.sc
-Encoding: 65735 -1 547
+Encoding: 65734 -1 546
 Width: 367
 VWidth: 0
 Flags: W
@@ -20064,12 +20047,12 @@ AnchorPoint: "r;k;lo" 235 -244 basechar 0
 AnchorPoint: "l;k;lo" 129 -244 basechar 0
 LayerCount: 3
 Fore
-Refer: 529 806 N 1 0 0 1 375 0 2
+Refer: 528 806 N 1 0 0 1 375 0 2
 Refer: 247 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: uni021B.sc
-Encoding: 65736 -1 548
+Encoding: 65735 -1 547
 Width: 425
 VWidth: 0
 Flags: W
@@ -20085,43 +20068,43 @@ AnchorPoint: "r;k;lo" 265 -244 basechar 0
 AnchorPoint: "l;k;lo" 159 -244 basechar 0
 LayerCount: 3
 Fore
-Refer: 529 806 N 1 0 0 1 405 0 2
+Refer: 528 806 N 1 0 0 1 405 0 2
 Refer: 248 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: uni0312
-Encoding: 786 786 549
+Encoding: 786 786 548
 Width: 0
 VWidth: 0
-Flags: HMW
-VStem: -241 52<538 602>
+Flags: W
+HStem: 468 168<-182 -145>
+VStem: -241 53<525.312 589.821>
 AnchorPoint: "r;k;hi" -134 684 basechar 0
 AnchorPoint: "l;k;hi" -241 684 basechar 0
 AnchorPoint: "top" -195 488 mark 0
 LayerCount: 3
 Fore
 SplineSet
--241 539 m 0
- -241 605 -171 646 -145 646 c 0
- -139 646 -134 643 -134 638 c 0
- -134 618 -188 616 -188 567 c 0
- -188 527 -144 535 -144 522 c 0
- -144 520 -145 518 -147 515 c 2
- -168 487 l 2
- -170 485 -177 478 -182 478 c 0
- -187 478 -195 481 -208 488 c 0
- -227 499 -241 504 -241 539 c 0
+-241 529 m 0
+ -241 595 -171 636 -145 636 c 0
+ -139 636 -134 633 -134 628 c 0
+ -134 608 -188 606 -188 557 c 0
+ -188 517 -144 525 -144 512 c 0
+ -144 510 -145 508 -147 505 c 2
+ -168 477 l 2
+ -170 475 -177 468 -182 468 c 0
+ -187 468 -195 471 -208 478 c 0
+ -227 489 -241 494 -241 529 c 0
 EndSplineSet
-Validated: 1
 EndChar
 
 StartChar: gcommaaccent
-Encoding: 291 291 550
+Encoding: 291 291 549
 Width: 446
 VWidth: 0
 Flags: W
-HStem: -263 46<97.9643 276.818> -20 62<106.523 131 142.199 325.167> 103 31<159.226 234.464> 363 37<146.039 230.81>
-VStem: -8 77<-188.722 -90.5777> 33 83<172.672 321.74> 34 71<17 81.2912> 145 52<538 602> 270 85<173.521 306.961> 354 70<-143.235 -46.8187>
+HStem: -263 46<97.9643 276.818> -20 62<106.523 131 142.199 325.167> 103 31<159.226 234.464> 363 37<146.039 230.81> 468 168<204 241>
+VStem: -8 77<-188.722 -90.5777> 33 83<172.672 321.74> 34 71<17 81.2912> 145 53<525.312 589.821> 270 85<173.521 306.961> 354 70<-143.235 -46.8187>
 AnchorPoint: "l;k;hi" 145 684 basechar 0
 AnchorPoint: "l;x" 20 376 basechar 0
 AnchorPoint: "r;bl" 436 15 basechar 0
@@ -20134,7 +20117,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "l;k;lo" -15 -246 basechar 0
 LayerCount: 3
 Fore
-Refer: 549 786 N 1 0 0 1 386 0 2
+Refer: 548 786 N 1 0 0 1 386 0 2
 Refer: 14 103 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" gcommaaccent.sc
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" gcommaaccent.sc
@@ -20142,7 +20125,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: ogonek
-Encoding: 731 731 551
+Encoding: 731 731 550
 Width: 390
 VWidth: 0
 Flags: HW
@@ -20150,22 +20133,23 @@ HStem: -260 47<248.776 341.401> -20 20<216 273>
 VStem: 165 63<-191.661 -82.3439>
 LayerCount: 3
 Fore
-Refer: 750 808 N 1 0 0 1 390 0 2
+Refer: 749 808 N 1 0 0 1 390 0 2
 EndChar
 
 StartChar: uni02BB
-Encoding: 699 699 552
+Encoding: 699 699 551
 Width: 390
 VWidth: 0
 Flags: W
-VStem: 149 52<538 602>
+HStem: 468 168<208 245>
+VStem: 149 53<525.312 589.821>
 LayerCount: 3
 Fore
-Refer: 549 786 N 1 0 0 1 390 0 2
+Refer: 548 786 N 1 0 0 1 390 0 2
 EndChar
 
 StartChar: afii57929
-Encoding: 700 700 553
+Encoding: 700 700 552
 Width: 390
 VWidth: 0
 Flags: HW
@@ -20173,11 +20157,11 @@ HStem: 505 171
 VStem: 161 33<508.939 529.277>
 LayerCount: 3
 Fore
-Refer: 554 789 N 1 0 0 1 390 0 2
+Refer: 553 789 N 1 0 0 1 390 0 2
 EndChar
 
 StartChar: uni0315
-Encoding: 789 789 554
+Encoding: 789 789 553
 Width: 0
 VWidth: 732
 Flags: W
@@ -20198,7 +20182,7 @@ Validated: 1
 EndChar
 
 StartChar: dcaron
-Encoding: 271 271 555
+Encoding: 271 271 554
 Width: 512
 VWidth: 0
 Flags: W
@@ -20215,16 +20199,16 @@ AnchorPoint: "l;bl" 20 15 basechar 0
 AnchorPoint: "r;x" 497 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 554 789 N 1 0 0 1 692 0 2
+Refer: 553 789 N 1 0 0 1 692 0 2
 Refer: 11 100 N 1 0 0 1 0 0 2
-Kerns2: 449 30 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6" 
+Kerns2: 448 30 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6" 
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" dcaron.sc
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" dcaron.sc
 Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" dcaron.sc
 EndChar
 
 StartChar: Lcaron
-Encoding: 317 317 556
+Encoding: 317 317 555
 Width: 584
 VWidth: 0
 Flags: W
@@ -20241,7 +20225,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 504 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 554 789 N 1 0 0 1 559 0 2
+Refer: 553 789 N 1 0 0 1 559 0 2
 Refer: 34 76 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Lcaron.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Lcaron.c2
@@ -20250,7 +20234,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" L
 EndChar
 
 StartChar: lcaron
-Encoding: 318 318 557
+Encoding: 318 318 556
 Width: 262
 VWidth: 0
 Flags: W
@@ -20267,16 +20251,16 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 248 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 554 789 N 1 0 0 1 443 0 2
+Refer: 553 789 N 1 0 0 1 443 0 2
 Refer: 2 108 N 1 0 0 1 0 0 2
-Kerns2: 449 35 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6" 
+Kerns2: 448 35 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6" 
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" lcaron.sc
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" lcaron.sc
 Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" lcaron.sc
 EndChar
 
 StartChar: tcaron
-Encoding: 357 357 558
+Encoding: 357 357 557
 Width: 316
 VWidth: 0
 Flags: W
@@ -20291,7 +20275,7 @@ AnchorPoint: "l;bl" 34 15 basechar 0
 AnchorPoint: "r;x" 316 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 554 789 N 1 0 0 1 433 0 2
+Refer: 553 789 N 1 0 0 1 433 0 2
 Refer: 20 116 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" tcaron.sc
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" tcaron.sc
@@ -20299,7 +20283,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: lcaron.sc
-Encoding: 65737 -1 559
+Encoding: 65736 -1 558
 Width: 432
 VWidth: 0
 Flags: W
@@ -20314,12 +20298,12 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 322 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 554 789 N 1 0 0 1 515 -244 2
+Refer: 553 789 N 1 0 0 1 515 -244 2
 Refer: 240 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: periodcentered
-Encoding: 183 183 560
+Encoding: 183 183 559
 Width: 201
 VWidth: 0
 Flags: W
@@ -20345,7 +20329,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: Oslash
-Encoding: 216 216 561
+Encoding: 216 216 560
 Width: 798
 VWidth: 0
 Flags: W
@@ -20393,7 +20377,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" O
 EndChar
 
 StartChar: AE
-Encoding: 198 198 562
+Encoding: 198 198 561
 Width: 1053
 VWidth: 0
 Flags: W
@@ -20467,7 +20451,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" A
 EndChar
 
 StartChar: oslash
-Encoding: 248 248 563
+Encoding: 248 248 562
 Width: 457
 VWidth: 0
 Flags: W
@@ -20512,7 +20496,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: Aogonek
-Encoding: 260 260 564
+Encoding: 260 260 563
 Width: 726
 VWidth: 0
 Flags: W
@@ -20603,10 +20587,10 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" A
 EndChar
 
 StartChar: aogonek
-Encoding: 261 261 565
+Encoding: 261 261 564
 Width: 380
 VWidth: 0
-Flags: WO
+Flags: W
 HStem: -262 47<233.6 312.801> -11 54<106.032 188.702> 191 27<163.672 228> 349 47<105.883 217.432>
 VStem: 27 70<52.4712 133.749> 35 55<250.669 317.158> 149 70<-202.818 -106.815> 228 70<60.4129 191 218 337.662>
 AnchorPoint: "r;o" 380 195 basechar 0
@@ -20657,7 +20641,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: dcroat
-Encoding: 273 273 566
+Encoding: 273 273 565
 Width: 512
 VWidth: 0
 Flags: HMW
@@ -20712,7 +20696,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: eogonek
-Encoding: 281 281 567
+Encoding: 281 281 566
 Width: 413
 VWidth: 0
 Flags: HMW
@@ -20760,7 +20744,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: Eogonek
-Encoding: 280 280 568
+Encoding: 280 280 567
 Width: 616
 VWidth: 0
 Flags: W
@@ -20867,7 +20851,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" E
 EndChar
 
 StartChar: Hbar
-Encoding: 294 294 569
+Encoding: 294 294 568
 Width: 720
 VWidth: 0
 Flags: W
@@ -20988,7 +20972,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" H
 EndChar
 
 StartChar: hbar
-Encoding: 295 295 570
+Encoding: 295 295 569
 Width: 464
 VWidth: 0
 Flags: HMW
@@ -21083,7 +21067,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: iogonek
-Encoding: 303 303 571
+Encoding: 303 303 570
 Width: 265
 VWidth: 0
 Flags: HW
@@ -21101,8 +21085,8 @@ AnchorPoint: "l;lo" 30 -244 basechar 0
 AnchorPoint: "r;x" 250 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 748 -1 N 1 0 0 1 321 0 2
-Refer: 623 -1 N 1 0 0 1 0 0 2
+Refer: 747 -1 N 1 0 0 1 321 0 2
+Refer: 622 -1 N 1 0 0 1 0 0 2
 Layer: 2
 SplineSet
 110 594 m 4xf2
@@ -21139,7 +21123,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: Iogonek
-Encoding: 302 302 572
+Encoding: 302 302 571
 Width: 322
 VWidth: 0
 Flags: W
@@ -21217,7 +21201,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" I
 EndChar
 
 StartChar: Ldot
-Encoding: 319 319 573
+Encoding: 319 319 572
 Width: 584
 VWidth: 0
 Flags: W
@@ -21269,7 +21253,7 @@ LCarets2: 1 0
 EndChar
 
 StartChar: ldot
-Encoding: 320 320 574
+Encoding: 320 320 573
 Width: 449
 VWidth: 0
 Flags: W
@@ -21285,16 +21269,16 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 449 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 560 183 N 1 0 0 1 248 0 2
+Refer: 559 183 N 1 0 0 1 248 0 2
 Refer: 2 108 N 1 0 0 1 0 0 2
-Kerns2: 562 -120 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6" 
+Kerns2: 561 -120 "'kern' Horizontal Kerning in Latin lookup 4 per glyph data 6" 
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" ldot.sc
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" ldot.sc
 Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" ldot.sc
 EndChar
 
 StartChar: Lslash
-Encoding: 321 321 575
+Encoding: 321 321 574
 Width: 584
 VWidth: 0
 Flags: HMW
@@ -21375,7 +21359,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" L
 EndChar
 
 StartChar: lslash
-Encoding: 322 322 576
+Encoding: 322 322 575
 Width: 263
 VWidth: 0
 Flags: HMW
@@ -21446,7 +21430,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: OE
-Encoding: 338 338 577
+Encoding: 338 338 576
 Width: 1054
 VWidth: 0
 Flags: W
@@ -21547,7 +21531,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" O
 EndChar
 
 StartChar: Tbar
-Encoding: 358 358 578
+Encoding: 358 358 577
 Width: 630
 VWidth: 0
 Flags: HMW
@@ -21633,7 +21617,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" T
 EndChar
 
 StartChar: tbar
-Encoding: 359 359 579
+Encoding: 359 359 578
 Width: 316
 VWidth: 0
 Flags: W
@@ -21680,7 +21664,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: Uogonek
-Encoding: 370 370 580
+Encoding: 370 370 579
 Width: 721
 VWidth: 0
 Flags: W
@@ -21735,7 +21719,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" U
 EndChar
 
 StartChar: uogonek
-Encoding: 371 371 581
+Encoding: 371 371 580
 Width: 463
 VWidth: 0
 Flags: HMW
@@ -21823,7 +21807,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: ae.sc
-Encoding: 65738 -1 582
+Encoding: 65737 -1 581
 Width: 700
 VWidth: 0
 Flags: W
@@ -21936,7 +21920,7 @@ EndSplineSet
 EndChar
 
 StartChar: oe.sc
-Encoding: 65739 -1 583
+Encoding: 65738 -1 582
 Width: 688
 VWidth: 0
 Flags: W
@@ -21990,7 +21974,7 @@ EndSplineSet
 EndChar
 
 StartChar: thorn.sc
-Encoding: 65740 -1 584
+Encoding: 65739 -1 583
 Width: 426
 VWidth: 0
 Flags: W
@@ -22037,7 +22021,7 @@ EndSplineSet
 EndChar
 
 StartChar: eth.sc
-Encoding: 65741 -1 585
+Encoding: 65740 -1 584
 Width: 478
 VWidth: 0
 Flags: W
@@ -22082,7 +22066,7 @@ EndSplineSet
 EndChar
 
 StartChar: dcroat.sc
-Encoding: 65742 -1 586
+Encoding: 65741 -1 585
 Width: 478
 VWidth: 0
 Flags: W
@@ -22096,11 +22080,11 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 468 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 585 -1 N 1 0 0 1 0 0 2
+Refer: 584 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: hbar.sc
-Encoding: 65743 -1 587
+Encoding: 65742 -1 586
 Width: 495
 VWidth: 0
 Flags: W
@@ -22169,7 +22153,7 @@ EndSplineSet
 EndChar
 
 StartChar: tbar.sc
-Encoding: 65744 -1 588
+Encoding: 65743 -1 587
 Width: 425
 VWidth: 0
 Flags: W
@@ -22218,7 +22202,7 @@ EndSplineSet
 EndChar
 
 StartChar: oslash.sc
-Encoding: 65745 -1 589
+Encoding: 65744 -1 588
 Width: 472
 VWidth: 0
 Flags: W
@@ -22260,7 +22244,7 @@ EndSplineSet
 EndChar
 
 StartChar: lslash.sc
-Encoding: 65746 -1 590
+Encoding: 65745 -1 589
 Width: 432
 VWidth: 0
 Flags: HMW
@@ -22308,7 +22292,7 @@ EndSplineSet
 EndChar
 
 StartChar: aogonek.sc
-Encoding: 65747 -1 591
+Encoding: 65746 -1 590
 Width: 481
 VWidth: 0
 Flags: W
@@ -22359,7 +22343,7 @@ EndSplineSet
 EndChar
 
 StartChar: eogonek.sc
-Encoding: 65748 -1 592
+Encoding: 65747 -1 591
 Width: 443
 VWidth: 0
 Flags: W
@@ -22418,7 +22402,7 @@ EndSplineSet
 EndChar
 
 StartChar: iogonek.sc
-Encoding: 65749 -1 593
+Encoding: 65748 -1 592
 Width: 274
 VWidth: 0
 Flags: W
@@ -22462,7 +22446,7 @@ EndSplineSet
 EndChar
 
 StartChar: uogonek.sc
-Encoding: 65750 -1 594
+Encoding: 65749 -1 593
 Width: 490
 VWidth: 0
 Flags: W
@@ -22510,7 +22494,7 @@ EndSplineSet
 EndChar
 
 StartChar: periodcentered.sc
-Encoding: 65751 -1 595
+Encoding: 65750 -1 594
 Width: 201
 VWidth: 0
 Flags: W
@@ -22530,7 +22514,7 @@ EndSplineSet
 EndChar
 
 StartChar: ldot.sc
-Encoding: 65752 -1 596
+Encoding: 65751 -1 595
 Width: 448
 VWidth: 0
 Flags: W
@@ -22576,7 +22560,7 @@ LCarets2: 1 0
 EndChar
 
 StartChar: germandbls
-Encoding: 223 223 597
+Encoding: 223 223 596
 Width: 513
 VWidth: 0
 Flags: W
@@ -22675,7 +22659,7 @@ EndSplineSet
 EndChar
 
 StartChar: ordmasculine
-Encoding: 186 186 598
+Encoding: 186 186 597
 Width: 403
 VWidth: 0
 Flags: W
@@ -22704,7 +22688,7 @@ EndSplineSet
 EndChar
 
 StartChar: ordfeminine
-Encoding: 170 170 599
+Encoding: 170 170 598
 Width: 384
 VWidth: 0
 Flags: W
@@ -22746,11 +22730,11 @@ EndSplineSet
 EndChar
 
 StartChar: ugrave.sc
-Encoding: 65753 -1 600
+Encoding: 65752 -1 599
 Width: 490
 VWidth: 0
 Flags: W
-HStem: -7 35<203.342 337.832> 360 32<28 95.5412 166.6 235 308 373.798 410.185 463> 483 162
+HStem: -7 35<203.342 337.832> 360 32<28 95.5412 166.6 235 308 373.798 410.185 463> 468 162
 VStem: 96 70<58.3259 358.804> 157 122 374 36<64.3843 359>
 AnchorPoint: "l;k;hi" 128 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -22767,7 +22751,7 @@ Refer: 249 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: zero.hanging
-Encoding: 65754 -1 601
+Encoding: 65753 -1 600
 Width: 528
 VWidth: 0
 Flags: W
@@ -22799,7 +22783,7 @@ Substitution2: "lining_figures subtable" zero.lining
 EndChar
 
 StartChar: one.hanging
-Encoding: 65755 -1 602
+Encoding: 65754 -1 601
 Width: 338
 VWidth: 0
 Flags: W
@@ -22838,7 +22822,7 @@ Substitution2: "lining_figures subtable" one.lining
 EndChar
 
 StartChar: two.hanging
-Encoding: 65756 -1 603
+Encoding: 65755 -1 602
 Width: 483
 VWidth: 0
 Flags: W
@@ -22876,7 +22860,7 @@ Substitution2: "lining_figures subtable" two.lining
 EndChar
 
 StartChar: three.hanging
-Encoding: 65757 -1 604
+Encoding: 65756 -1 603
 Width: 431
 VWidth: 0
 Flags: W
@@ -22917,7 +22901,7 @@ Substitution2: "lining_figures subtable" three.lining
 EndChar
 
 StartChar: four.hanging
-Encoding: 65758 -1 605
+Encoding: 65757 -1 604
 Width: 600
 VWidth: 0
 Flags: W
@@ -22958,7 +22942,7 @@ Substitution2: "lining_figures subtable" four.lining
 EndChar
 
 StartChar: five.hanging
-Encoding: 65759 -1 606
+Encoding: 65758 -1 605
 Width: 464
 VWidth: 0
 Flags: HMW
@@ -23004,7 +22988,7 @@ Substitution2: "lining_figures subtable" five.lining
 EndChar
 
 StartChar: six.hanging
-Encoding: 65760 -1 607
+Encoding: 65759 -1 606
 Width: 510
 VWidth: 0
 Flags: W
@@ -23044,7 +23028,7 @@ Substitution2: "lining_figures subtable" six.lining
 EndChar
 
 StartChar: seven.hanging
-Encoding: 65761 -1 608
+Encoding: 65760 -1 607
 Width: 444
 VWidth: 0
 Flags: HMW
@@ -23083,7 +23067,7 @@ Substitution2: "lining_figures subtable" seven.lining
 EndChar
 
 StartChar: eight.hanging
-Encoding: 65762 -1 609
+Encoding: 65761 -1 608
 Width: 512
 VWidth: 0
 Flags: W
@@ -23126,7 +23110,7 @@ Substitution2: "lining_figures subtable" eight.lining
 EndChar
 
 StartChar: nine.hanging
-Encoding: 65763 -1 610
+Encoding: 65762 -1 609
 Width: 515
 VWidth: 0
 Flags: W
@@ -23165,7 +23149,7 @@ Substitution2: "lining_figures subtable" nine.lining
 EndChar
 
 StartChar: dollar.hanging
-Encoding: 65764 -1 611
+Encoding: 65763 -1 610
 Width: 530
 VWidth: 0
 Flags: W
@@ -23227,7 +23211,7 @@ Substitution2: "lining_figures subtable" dollar.lining
 EndChar
 
 StartChar: zero
-Encoding: 48 48 612
+Encoding: 48 48 611
 Width: 528
 VWidth: 0
 Flags: W
@@ -23241,7 +23225,7 @@ AnchorPoint: "l;bl" 40 15 basechar 0
 AnchorPoint: "r;x" 518 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 601 -1 N 1 0 0 1 0 0 2
+Refer: 600 -1 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" zero.lining zero.sub zero.sup zero.denom zero.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" zero.lining zero.sub zero.sup zero.denom zero.numer
 Substitution2: "lining_figures subtable" zero.lining
@@ -23252,7 +23236,7 @@ Substitution2: "numerators subtable" zero.numer
 EndChar
 
 StartChar: one
-Encoding: 49 49 613
+Encoding: 49 49 612
 Width: 338
 VWidth: 0
 Flags: W
@@ -23266,7 +23250,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 328 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 602 -1 N 1 0 0 1 0 0 2
+Refer: 601 -1 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" one.lining one.sub one.sup one.denom one.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" one.lining one.sub one.sup one.denom one.numer
 Substitution2: "lining_figures subtable" one.lining
@@ -23277,7 +23261,7 @@ Substitution2: "numerators subtable" one.numer
 EndChar
 
 StartChar: two
-Encoding: 50 50 614
+Encoding: 50 50 613
 Width: 483
 VWidth: 0
 Flags: W
@@ -23291,7 +23275,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 483 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 603 -1 N 1 0 0 1 0 0 2
+Refer: 602 -1 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" two.lining two.sub two.sup two.denom two.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" two.lining two.sub two.sup two.denom two.numer
 Substitution2: "lining_figures subtable" two.lining
@@ -23302,7 +23286,7 @@ Substitution2: "numerators subtable" two.numer
 EndChar
 
 StartChar: three
-Encoding: 51 51 615
+Encoding: 51 51 614
 Width: 431
 VWidth: 0
 Flags: W
@@ -23318,7 +23302,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "l;k;lo" -10 -244 basechar 0
 LayerCount: 3
 Fore
-Refer: 604 -1 N 1 0 0 1 0 0 2
+Refer: 603 -1 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" three.lining three.sub three.sup three.denom three.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" three.lining three.sub three.sup three.denom three.numer
 Substitution2: "lining_figures subtable" three.lining
@@ -23329,7 +23313,7 @@ Substitution2: "numerators subtable" three.numer
 EndChar
 
 StartChar: four
-Encoding: 52 52 616
+Encoding: 52 52 615
 Width: 600
 VWidth: 0
 Flags: W
@@ -23344,7 +23328,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 590 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 605 -1 N 1 0 0 1 0 0 2
+Refer: 604 -1 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" four.lining four.sub four.sup four.denom four.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" four.lining four.sub four.sup four.denom four.numer
 Substitution2: "lining_figures subtable" four.lining
@@ -23355,7 +23339,7 @@ Substitution2: "numerators subtable" four.numer
 EndChar
 
 StartChar: five
-Encoding: 53 53 617
+Encoding: 53 53 616
 Width: 464
 VWidth: 0
 Flags: W
@@ -23371,7 +23355,7 @@ AnchorPoint: "l;bl" 20 15 basechar 0
 AnchorPoint: "r;x" 454 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 606 -1 N 1 0 0 1 0 0 2
+Refer: 605 -1 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" five.lining five.sub five.sup five.denom five.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" five.lining five.sub five.sup five.denom five.numer
 Substitution2: "lining_figures subtable" five.lining
@@ -23382,7 +23366,7 @@ Substitution2: "numerators subtable" five.numer
 EndChar
 
 StartChar: six
-Encoding: 54 54 618
+Encoding: 54 54 617
 Width: 510
 VWidth: 0
 Flags: W
@@ -23398,7 +23382,7 @@ AnchorPoint: "l;bl" 20 15 basechar 0
 AnchorPoint: "r;x" 510 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 607 -1 N 1 0 0 1 0 0 2
+Refer: 606 -1 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" six.lining six.sub six.sup six.denom six.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" six.lining six.sub six.sup six.denom six.numer
 Substitution2: "lining_figures subtable" six.lining
@@ -23409,7 +23393,7 @@ Substitution2: "numerators subtable" six.numer
 EndChar
 
 StartChar: seven
-Encoding: 55 55 619
+Encoding: 55 55 618
 Width: 444
 VWidth: 0
 Flags: W
@@ -23425,7 +23409,7 @@ AnchorPoint: "l;lo" 90 -244 basechar 0
 AnchorPoint: "r;x" 444 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 608 -1 N 1 0 0 1 0 0 2
+Refer: 607 -1 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" seven.lining seven.sub seven.sup seven.denom seven.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" seven.lining seven.sub seven.sup seven.denom seven.numer
 Substitution2: "lining_figures subtable" seven.lining
@@ -23436,7 +23420,7 @@ Substitution2: "numerators subtable" seven.numer
 EndChar
 
 StartChar: eight
-Encoding: 56 56 620
+Encoding: 56 56 619
 Width: 512
 VWidth: 0
 Flags: W
@@ -23452,7 +23436,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 512 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 609 -1 N 1 0 0 1 0 0 2
+Refer: 608 -1 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" eight.lining eight.sub eight.sup eight.denom eight.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" eight.lining eight.sub eight.sup eight.denom eight.numer
 Substitution2: "lining_figures subtable" eight.lining
@@ -23463,7 +23447,7 @@ Substitution2: "numerators subtable" eight.numer
 EndChar
 
 StartChar: nine
-Encoding: 57 57 621
+Encoding: 57 57 620
 Width: 515
 VWidth: 0
 Flags: W
@@ -23479,7 +23463,7 @@ AnchorPoint: "l;lo" 50 -244 basechar 0
 AnchorPoint: "r;x" 495 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 610 -1 N 1 0 0 1 0 0 2
+Refer: 609 -1 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" nine.lining nine.sub nine.sup nine.denom nine.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" nine.lining nine.sub nine.sup nine.denom nine.numer
 Substitution2: "lining_figures subtable" nine.lining
@@ -23490,7 +23474,7 @@ Substitution2: "numerators subtable" nine.numer
 EndChar
 
 StartChar: dollar
-Encoding: 36 36 622
+Encoding: 36 36 621
 Width: 530
 VWidth: 0
 Flags: W
@@ -23508,14 +23492,14 @@ AnchorPoint: "l;lo" 120 -244 basechar 0
 AnchorPoint: "r;x" 530 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 611 -1 N 1 0 0 1 0 0 2
+Refer: 610 -1 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" dollar.lining
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" dollar.lining
 Substitution2: "lining_figures subtable" dollar.lining
 EndChar
 
 StartChar: iogonek.dotless
-Encoding: 65765 -1 623
+Encoding: 65764 -1 622
 Width: 265
 VWidth: 0
 Flags: HMW
@@ -23584,7 +23568,7 @@ EndSplineSet
 EndChar
 
 StartChar: parenleft.uppercase
-Encoding: 65766 -1 624
+Encoding: 65765 -1 623
 Width: 313
 VWidth: 0
 Flags: W
@@ -23613,7 +23597,7 @@ EndSplineSet
 EndChar
 
 StartChar: parenright.uppercase
-Encoding: 65767 -1 625
+Encoding: 65766 -1 624
 Width: 313
 VWidth: 0
 Flags: W
@@ -23642,7 +23626,7 @@ EndSplineSet
 EndChar
 
 StartChar: slash.uppercase
-Encoding: 65768 -1 626
+Encoding: 65767 -1 625
 Width: 442
 VWidth: 488
 Flags: HMW
@@ -23669,7 +23653,7 @@ EndSplineSet
 EndChar
 
 StartChar: backslash.uppercase
-Encoding: 65769 -1 627
+Encoding: 65768 -1 626
 Width: 442
 VWidth: 488
 Flags: HMW
@@ -23696,7 +23680,7 @@ EndSplineSet
 EndChar
 
 StartChar: A.c2
-Encoding: 65770 -1 628
+Encoding: 65769 -1 627
 Width: 481
 VWidth: 0
 Flags: W
@@ -23713,7 +23697,7 @@ Refer: 229 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: B.c2
-Encoding: 65771 -1 629
+Encoding: 65770 -1 628
 Width: 401
 VWidth: 0
 Flags: W
@@ -23731,7 +23715,7 @@ Refer: 230 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: C.c2
-Encoding: 65772 -1 630
+Encoding: 65771 -1 629
 Width: 424
 VWidth: 0
 Flags: W
@@ -23749,7 +23733,7 @@ Refer: 231 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: D.c2
-Encoding: 65773 -1 631
+Encoding: 65772 -1 630
 Width: 478
 VWidth: 0
 Flags: W
@@ -23767,7 +23751,7 @@ Refer: 232 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: E.c2
-Encoding: 65774 -1 632
+Encoding: 65773 -1 631
 Width: 443
 VWidth: 0
 Flags: W
@@ -23785,7 +23769,7 @@ Refer: 233 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: F.c2
-Encoding: 65775 -1 633
+Encoding: 65774 -1 632
 Width: 416
 VWidth: 0
 Flags: W
@@ -23803,7 +23787,7 @@ Refer: 234 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: G.c2
-Encoding: 65776 -1 634
+Encoding: 65775 -1 633
 Width: 490
 VWidth: 0
 Flags: W
@@ -23821,7 +23805,7 @@ Refer: 235 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: H.c2
-Encoding: 65777 -1 635
+Encoding: 65776 -1 634
 Width: 495
 VWidth: 0
 Flags: W
@@ -23839,7 +23823,7 @@ Refer: 236 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: I.c2
-Encoding: 65778 -1 636
+Encoding: 65777 -1 635
 Width: 274
 VWidth: 0
 Flags: W
@@ -23857,7 +23841,7 @@ Refer: 237 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: J.c2
-Encoding: 65779 -1 637
+Encoding: 65778 -1 636
 Width: 259
 VWidth: 0
 Flags: W
@@ -23877,7 +23861,7 @@ Refer: 238 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: K.c2
-Encoding: 65780 -1 638
+Encoding: 65779 -1 637
 Width: 491
 VWidth: 0
 Flags: W
@@ -23895,7 +23879,7 @@ Refer: 239 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: L.c2
-Encoding: 65781 -1 639
+Encoding: 65780 -1 638
 Width: 432
 VWidth: 0
 Flags: W
@@ -23913,7 +23897,7 @@ Refer: 240 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: M.c2
-Encoding: 65782 -1 640
+Encoding: 65781 -1 639
 Width: 611
 VWidth: 0
 Flags: W
@@ -23932,7 +23916,7 @@ Refer: 241 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: N.c2
-Encoding: 65783 -1 641
+Encoding: 65782 -1 640
 Width: 487
 VWidth: 0
 Flags: W
@@ -23950,7 +23934,7 @@ Refer: 242 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: O.c2
-Encoding: 65784 -1 642
+Encoding: 65783 -1 641
 Width: 472
 VWidth: 0
 Flags: W
@@ -23968,7 +23952,7 @@ Refer: 243 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: P.c2
-Encoding: 65785 -1 643
+Encoding: 65784 -1 642
 Width: 418
 VWidth: 0
 Flags: W
@@ -23986,7 +23970,7 @@ Refer: 244 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Q.c2
-Encoding: 65786 -1 644
+Encoding: 65785 -1 643
 Width: 477
 VWidth: 0
 Flags: W
@@ -24005,7 +23989,7 @@ Refer: 245 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: R.c2
-Encoding: 65787 -1 645
+Encoding: 65786 -1 644
 Width: 485
 VWidth: 0
 Flags: W
@@ -24023,7 +24007,7 @@ Refer: 246 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: S.c2
-Encoding: 65788 -1 646
+Encoding: 65787 -1 645
 Width: 367
 VWidth: 0
 Flags: W
@@ -24041,7 +24025,7 @@ Refer: 247 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: T.c2
-Encoding: 65789 -1 647
+Encoding: 65788 -1 646
 Width: 425
 VWidth: 0
 Flags: W
@@ -24059,7 +24043,7 @@ Refer: 248 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: U.c2
-Encoding: 65790 -1 648
+Encoding: 65789 -1 647
 Width: 490
 VWidth: 0
 Flags: W
@@ -24077,7 +24061,7 @@ Refer: 249 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: V.c2
-Encoding: 65791 -1 649
+Encoding: 65790 -1 648
 Width: 494
 VWidth: 0
 Flags: W
@@ -24094,7 +24078,7 @@ Refer: 250 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: W.c2
-Encoding: 65792 -1 650
+Encoding: 65791 -1 649
 Width: 770
 VWidth: 0
 Flags: W
@@ -24111,7 +24095,7 @@ Refer: 251 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: X.c2
-Encoding: 65793 -1 651
+Encoding: 65792 -1 650
 Width: 518
 VWidth: 0
 Flags: W
@@ -24128,7 +24112,7 @@ Refer: 252 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Y.c2
-Encoding: 65794 -1 652
+Encoding: 65793 -1 651
 Width: 446
 VWidth: 0
 Flags: W
@@ -24146,7 +24130,7 @@ Refer: 253 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Z.c2
-Encoding: 65795 -1 653
+Encoding: 65794 -1 652
 Width: 423
 VWidth: 0
 Flags: W
@@ -24164,11 +24148,11 @@ Refer: 254 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Agrave.c2
-Encoding: 65796 -1 654
+Encoding: 65795 -1 653
 Width: 481
 VWidth: 0
 Flags: W
-HStem: 0 32<28 86.1697 128.008 199 261 326.993 405.395 454> 141 31<179 282> 388 20<236.325 269.919> 483 162
+HStem: 0 32<28 86.1697 128.008 199 261 326.993 405.395 454> 141 31<179 282> 388 20<236.325 269.919> 468 162
 VStem: 152 122
 AnchorPoint: "l;k;hi" 123 684 basechar 0
 AnchorPoint: "l;x" 80 376 basechar 0
@@ -24184,11 +24168,11 @@ Refer: 340 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Egrave.c2
-Encoding: 65797 -1 655
+Encoding: 65796 -1 654
 Width: 443
 VWidth: 0
 Flags: W
-HStem: 0 32<27 96.5308> 0 40<167.009 355.477> 191 32<167.044 287.147> 360 32<31 96.1465 167.072 345.199> 483 162
+HStem: 0 32<27 96.5308> 0 40<167.009 355.477> 191 32<167.044 287.147> 360 32<31 96.1465 167.072 345.199> 468 162
 VStem: 97 70<40.4711 191 223 359.422> 114 122 288 27<138 190.802 223.426 269> 349 28<286 358.703> 369 32<84.6667 127.875>
 AnchorPoint: "l;k;hi" 85 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -24204,11 +24188,11 @@ Refer: 341 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Igrave.c2
-Encoding: 65798 -1 656
+Encoding: 65797 -1 655
 Width: 274
 VWidth: 0
 Flags: W
-HStem: 0 32<38 99.2629 171.226 247> 360 32<27 99.2578 171.067 232> 483 162
+HStem: 0 32<38 99.2629 171.226 247> 360 32<27 99.2578 171.067 232> 468 162
 VStem: 29 122 100 70<33.3879 358.752>
 AnchorPoint: "l;k;hi" 0 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -24224,11 +24208,11 @@ Refer: 342 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Ograve.c2
-Encoding: 65799 -1 657
+Encoding: 65798 -1 656
 Width: 472
 VWidth: 0
 Flags: W
-HStem: -12 34<191.997 298.602> 371 32<177.503 285.197> 483 162
+HStem: -12 34<191.997 298.602> 371 32<177.503 285.197> 468 162
 VStem: 35 76<109.063 292.789> 132 122 359 78<92.4158 292.247>
 AnchorPoint: "l;x" 40 376 basechar 0
 AnchorPoint: "l;k;hi" 103 684 basechar 0
@@ -24244,11 +24228,11 @@ Refer: 343 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Aacute.c2
-Encoding: 65800 -1 658
+Encoding: 65799 -1 657
 Width: 481
 VWidth: 0
 Flags: W
-HStem: 0 32<28 86.1697 128.008 199 261 326.993 405.395 454> 141 31<179 282> 388 20<236.325 269.919> 483 162
+HStem: 0 32<28 86.1697 128.008 199 261 326.993 405.395 454> 141 31<179 282> 388 20<236.325 269.919> 468 162
 VStem: 229 122
 AnchorPoint: "l;k;hi" 217 684 basechar 0
 AnchorPoint: "l;x" 80 376 basechar 0
@@ -24264,11 +24248,11 @@ Refer: 344 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Cacute.c2
-Encoding: 65801 -1 659
+Encoding: 65800 -1 658
 Width: 424
 VWidth: 0
 Flags: W
-HStem: -8 50<181.857 320.932> 358 38<164.859 308.19> 385 20<348 372.5> 483 162
+HStem: -8 50<181.857 320.932> 358 38<164.859 308.19> 385 20<348 372.5> 468 162
 VStem: 35 70<127.285 277.817> 204 122 348 24<372.274 404> 357 29<251 311.7>
 AnchorPoint: "l;k;hi" 192 684 basechar 0
 AnchorPoint: "l;x" 40 376 basechar 0
@@ -24284,11 +24268,11 @@ Refer: 345 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Eacute.c2
-Encoding: 65802 -1 660
+Encoding: 65801 -1 659
 Width: 443
 VWidth: 0
 Flags: W
-HStem: 0 32<27 96.5308> 0 40<167.009 355.477> 191 32<167.044 287.147> 360 32<31 96.1465 167.072 345.199> 483 162
+HStem: 0 32<27 96.5308> 0 40<167.009 355.477> 191 32<167.044 287.147> 360 32<31 96.1465 167.072 345.199> 468 162
 VStem: 97 70<40.4711 191 223 359.422> 191 122 288 27<138 190.802 223.426 269> 349 28<286 358.703> 369 32<84.6667 127.875>
 AnchorPoint: "l;k;hi" 179 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -24304,11 +24288,11 @@ Refer: 346 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Iacute.c2
-Encoding: 65803 -1 661
+Encoding: 65802 -1 660
 Width: 274
 VWidth: 0
 Flags: W
-HStem: 0 32<38 99.2629 171.226 247> 360 32<27 99.2578 171.067 232> 483 162
+HStem: 0 32<38 99.2629 171.226 247> 360 32<27 99.2578 171.067 232> 468 162
 VStem: 100 70<33.3879 358.752> 106 122
 AnchorPoint: "l;k;hi" 94 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -24324,11 +24308,11 @@ Refer: 347 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Lacute.c2
-Encoding: 65804 -1 662
+Encoding: 65803 -1 661
 Width: 432
 VWidth: 0
 Flags: W
-HStem: 0 32<35 97.9531 168.957 363.597> 360 32<27 97.3437 168.687 250> 483 162
+HStem: 0 32<35 97.9531 168.957 363.597> 360 32<27 97.3437 168.687 250> 468 162
 VStem: 98 70<32.5078 358.482> 112 122 376 29<79.5633 122>
 AnchorPoint: "l;k;hi" 100 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -24344,11 +24328,11 @@ Refer: 348 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Nacute.c2
-Encoding: 65805 -1 663
+Encoding: 65804 -1 662
 Width: 487
 VWidth: 0
 Flags: W
-HStem: -12 21<386.5 396> 0 32<38 97.3281 134.246 199> 360 32<27 93 303 368.857 402.539 460> 483 162
+HStem: -12 21<386.5 396> 0 32<38 97.3281 134.246 199> 360 32<27 93 303 368.857 402.539 460> 468 162
 VStem: 98 36<32.5809 320> 222 122 374 27<102 357.806>
 AnchorPoint: "l;k;hi" 210 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -24364,11 +24348,11 @@ Refer: 349 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Oacute.c2
-Encoding: 65806 -1 664
+Encoding: 65805 -1 663
 Width: 472
 VWidth: 0
 Flags: W
-HStem: -12 34<191.997 298.602> 371 32<177.503 285.197> 483 162
+HStem: -12 34<191.997 298.602> 371 32<177.503 285.197> 468 162
 VStem: 35 76<109.063 292.789> 209 122 359 78<92.4158 292.247>
 AnchorPoint: "l;x" 40 376 basechar 0
 AnchorPoint: "l;k;hi" 197 684 basechar 0
@@ -24384,11 +24368,11 @@ Refer: 350 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Racute.c2
-Encoding: 65807 -1 665
+Encoding: 65806 -1 664
 Width: 485
 VWidth: 0
 Flags: W
-HStem: 0 32<35 97.3035 168.606 243 410.004 457> 176 25<168 226.29> 360 32<27 97.1299 169.836 250.114> 483 162
+HStem: 0 32<35 97.3035 168.606 243 410.004 457> 176 25<168 226.29> 360 32<27 97.1299 169.836 250.114> 468 162
 VStem: 98 70<32.9418 176 201 353.744> 181 122 297 79<225.035 329.943>
 AnchorPoint: "l;k;hi" 169 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -24404,11 +24388,11 @@ Refer: 351 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Sacute.c2
-Encoding: 65808 -1 666
+Encoding: 65807 -1 665
 Width: 367
 VWidth: 0
 Flags: W
-HStem: -8 28<111.708 223.093> 368 33<139.577 252.372> 483 162
+HStem: -8 28<111.708 223.093> 368 33<139.577 252.372> 468 162
 VStem: 43 29<66.1187 114.966> 59 61<275.817 352.975> 69 29<-23 -15.0945> 161 122 253 71<44.2088 125.196> 262 30<389.014 408> 274 29<284 342.372>
 AnchorPoint: "l;k;hi" 149 684 basechar 0
 AnchorPoint: "l;x" 24 376 basechar 0
@@ -24424,11 +24408,11 @@ Refer: 352 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Uacute.c2
-Encoding: 65809 -1 667
+Encoding: 65808 -1 666
 Width: 490
 VWidth: 0
 Flags: W
-HStem: -7 35<203.342 337.832> 360 32<28 95.5412 166.6 235 308 373.798 410.185 463> 483 162
+HStem: -7 35<203.342 337.832> 360 32<28 95.5412 166.6 235 308 373.798 410.185 463> 468 162
 VStem: 96 70<58.3259 358.804> 234 122 374 36<64.3843 359>
 AnchorPoint: "l;k;hi" 222 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -24444,11 +24428,11 @@ Refer: 353 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Yacute.c2
-Encoding: 65810 -1 668
+Encoding: 65809 -1 667
 Width: 446
 VWidth: 0
 Flags: W
-HStem: 0 32<102 173.578 244.297 326> 360 32<27 69.8509 154.009 203 263 314.993 358.801 419> 483 162
+HStem: 0 32<102 173.578 244.297 326> 360 32<27 69.8509 154.009 203 263 314.993 358.801 419> 468 162
 VStem: 174 70<32.4319 172> 201 122
 AnchorPoint: "l;k;hi" 189 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -24464,11 +24448,11 @@ Refer: 354 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Zacute.c2
-Encoding: 65811 -1 669
+Encoding: 65810 -1 668
 Width: 423
 VWidth: 0
 Flags: W
-HStem: 0 70<122 362.469> 326 66<77.1716 297> 483 162
+HStem: 0 70<122 362.469> 326 66<77.1716 297> 468 162
 VStem: 40 31<273.548 320.711> 199 122 371 35<75.168 122.4>
 AnchorPoint: "l;k;hi" 187 684 basechar 0
 AnchorPoint: "l;x" 10 376 basechar 0
@@ -24484,7 +24468,7 @@ Refer: 355 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Ccaron.c2
-Encoding: 65812 -1 670
+Encoding: 65811 -1 669
 Width: 424
 VWidth: 0
 Flags: W
@@ -24504,7 +24488,7 @@ Refer: 356 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Dcaron.c2
-Encoding: 65813 -1 671
+Encoding: 65812 -1 670
 Width: 478
 VWidth: 0
 Flags: W
@@ -24524,7 +24508,7 @@ Refer: 357 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Ecaron.c2
-Encoding: 65814 -1 672
+Encoding: 65813 -1 671
 Width: 443
 VWidth: 0
 Flags: W
@@ -24544,7 +24528,7 @@ Refer: 358 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Ncaron.c2
-Encoding: 65815 -1 673
+Encoding: 65814 -1 672
 Width: 487
 VWidth: 0
 Flags: W
@@ -24564,7 +24548,7 @@ Refer: 359 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Rcaron.c2
-Encoding: 65816 -1 674
+Encoding: 65815 -1 673
 Width: 485
 VWidth: 0
 Flags: W
@@ -24584,7 +24568,7 @@ Refer: 360 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Scaron.c2
-Encoding: 65817 -1 675
+Encoding: 65816 -1 674
 Width: 367
 VWidth: 0
 Flags: W
@@ -24604,7 +24588,7 @@ Refer: 361 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Tcaron.c2
-Encoding: 65818 -1 676
+Encoding: 65817 -1 675
 Width: 425
 VWidth: 0
 Flags: W
@@ -24624,7 +24608,7 @@ Refer: 362 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Zcaron.c2
-Encoding: 65819 -1 677
+Encoding: 65818 -1 676
 Width: 423
 VWidth: 0
 Flags: W
@@ -24644,7 +24628,7 @@ Refer: 363 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Acircumflex.c2
-Encoding: 65820 -1 678
+Encoding: 65819 -1 677
 Width: 481
 VWidth: 0
 Flags: W
@@ -24664,7 +24648,7 @@ Refer: 368 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Ccircumflex.c2
-Encoding: 65821 -1 679
+Encoding: 65820 -1 678
 Width: 424
 VWidth: 0
 Flags: W
@@ -24684,7 +24668,7 @@ Refer: 369 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Ecircumflex.c2
-Encoding: 65822 -1 680
+Encoding: 65821 -1 679
 Width: 443
 VWidth: 0
 Flags: W
@@ -24704,7 +24688,7 @@ Refer: 370 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Gcircumflex.c2
-Encoding: 65823 -1 681
+Encoding: 65822 -1 680
 Width: 490
 VWidth: 0
 Flags: W
@@ -24724,7 +24708,7 @@ Refer: 371 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Hcircumflex.c2
-Encoding: 65824 -1 682
+Encoding: 65823 -1 681
 Width: 495
 VWidth: 0
 Flags: W
@@ -24744,7 +24728,7 @@ Refer: 372 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Icircumflex.c2
-Encoding: 65825 -1 683
+Encoding: 65824 -1 682
 Width: 274
 VWidth: 0
 Flags: W
@@ -24764,7 +24748,7 @@ Refer: 373 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Jcircumflex.c2
-Encoding: 65826 -1 684
+Encoding: 65825 -1 683
 Width: 259
 VWidth: 0
 Flags: W
@@ -24786,7 +24770,7 @@ Refer: 374 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Ocircumflex.c2
-Encoding: 65827 -1 685
+Encoding: 65826 -1 684
 Width: 472
 VWidth: 0
 Flags: W
@@ -24806,7 +24790,7 @@ Refer: 375 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Scircumflex.c2
-Encoding: 65828 -1 686
+Encoding: 65827 -1 685
 Width: 367
 VWidth: 0
 Flags: W
@@ -24826,7 +24810,7 @@ Refer: 376 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Ucircumflex.c2
-Encoding: 65829 -1 687
+Encoding: 65828 -1 686
 Width: 490
 VWidth: 0
 Flags: W
@@ -24846,7 +24830,7 @@ Refer: 377 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Wcircumflex.c2
-Encoding: 65830 -1 688
+Encoding: 65829 -1 687
 Width: 770
 VWidth: 0
 Flags: W
@@ -24866,7 +24850,7 @@ Refer: 378 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Ycircumflex.c2
-Encoding: 65831 -1 689
+Encoding: 65830 -1 688
 Width: 446
 VWidth: 0
 Flags: W
@@ -24886,7 +24870,7 @@ Refer: 379 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Cdotaccent.c2
-Encoding: 65832 -1 690
+Encoding: 65831 -1 689
 Width: 424
 VWidth: 0
 Flags: W
@@ -24906,7 +24890,7 @@ Refer: 389 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Edotaccent.c2
-Encoding: 65833 -1 691
+Encoding: 65832 -1 690
 Width: 443
 VWidth: 0
 Flags: W
@@ -24926,7 +24910,7 @@ Refer: 390 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Gdotaccent.c2
-Encoding: 65834 -1 692
+Encoding: 65833 -1 691
 Width: 490
 VWidth: 0
 Flags: W
@@ -24946,7 +24930,7 @@ Refer: 391 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Zdotaccent.c2
-Encoding: 65835 -1 693
+Encoding: 65834 -1 692
 Width: 423
 VWidth: 0
 Flags: W
@@ -24966,7 +24950,7 @@ Refer: 392 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: I.trk.c2
-Encoding: 65836 -1 694
+Encoding: 65835 -1 693
 Width: 274
 VWidth: 0
 Flags: W
@@ -24982,11 +24966,34 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 274 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 393 -1 N 1 0 0 1 0 0 2
+SplineSet
+147 504 m 0xe8
+ 129 504 105 537 105 549 c 0
+ 105 565 134 591 147 591 c 0
+ 158 591 190 564 190 548 c 0
+ 190 534 158 504 147 504 c 0xe8
+27 360 m 1
+ 27 392 l 1
+ 232 392 l 1
+ 232 360 l 1
+ 223 360 l 2
+ 184 360 170 359 170 335 c 2
+ 170 59 l 2
+ 170 34 180 32 226 32 c 2
+ 247 32 l 1
+ 247 0 l 1
+ 38 0 l 1
+ 38 32 l 1
+ 56 32 l 2
+ 93 32 100 34 100 58 c 2
+ 100 334 l 2xf0
+ 100 358 93 360 55 360 c 2
+ 27 360 l 1
+EndSplineSet
 EndChar
 
 StartChar: Aring.c2
-Encoding: 65837 -1 695
+Encoding: 65836 -1 694
 Width: 481
 VWidth: 0
 Flags: W
@@ -25002,11 +25009,11 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 441 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 398 -1 N 1 0 0 1 0 0 2
+Refer: 397 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Uring.c2
-Encoding: 65838 -1 696
+Encoding: 65837 -1 695
 Width: 490
 VWidth: 0
 Flags: W
@@ -25022,11 +25029,11 @@ AnchorPoint: "l;bl" 30 15 basechar 0
 AnchorPoint: "r;x" 490 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 399 -1 N 1 0 0 1 0 0 2
+Refer: 398 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Adieresis.c2
-Encoding: 65839 -1 697
+Encoding: 65838 -1 696
 Width: 481
 VWidth: 0
 Flags: W
@@ -25042,11 +25049,11 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 441 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 413 -1 N 1 0 0 1 0 0 2
+Refer: 412 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Edieresis.c2
-Encoding: 65840 -1 698
+Encoding: 65839 -1 697
 Width: 443
 VWidth: 0
 Flags: W
@@ -25062,11 +25069,11 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 433 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 414 -1 N 1 0 0 1 0 0 2
+Refer: 413 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Idieresis.c2
-Encoding: 65841 -1 699
+Encoding: 65840 -1 698
 Width: 274
 VWidth: 0
 Flags: W
@@ -25082,11 +25089,11 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 274 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 415 -1 N 1 0 0 1 0 0 2
+Refer: 414 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Odieresis.c2
-Encoding: 65842 -1 700
+Encoding: 65841 -1 699
 Width: 472
 VWidth: 0
 Flags: W
@@ -25102,11 +25109,11 @@ AnchorPoint: "l;bl" 40 15 basechar 0
 AnchorPoint: "r;x" 432 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 416 -1 N 1 0 0 1 0 0 2
+Refer: 415 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Udieresis.c2
-Encoding: 65843 -1 701
+Encoding: 65842 -1 700
 Width: 490
 VWidth: 0
 Flags: W
@@ -25122,11 +25129,11 @@ AnchorPoint: "l;bl" 30 15 basechar 0
 AnchorPoint: "r;x" 490 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 417 -1 N 1 0 0 1 0 0 2
+Refer: 416 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Ydieresis.c2
-Encoding: 65844 -1 702
+Encoding: 65843 -1 701
 Width: 446
 VWidth: 0
 Flags: W
@@ -25142,15 +25149,15 @@ AnchorPoint: "l;bl" 40 15 basechar 0
 AnchorPoint: "r;x" 446 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 418 -1 N 1 0 0 1 0 0 2
+Refer: 417 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Ohungarumlaut.c2
-Encoding: 65845 -1 703
+Encoding: 65844 -1 702
 Width: 472
 VWidth: 0
 Flags: W
-HStem: -12 34<191.997 298.602> 371 32<177.503 285.197> 483 162
+HStem: -12 34<191.997 298.602> 371 32<177.503 285.197> 468 162
 VStem: 35 76<109.063 292.789> 123 269 359 78<92.4158 292.247>
 AnchorPoint: "l;x" 40 376 basechar 0
 AnchorPoint: "l;k;hi" 111 684 basechar 0
@@ -25162,15 +25169,15 @@ AnchorPoint: "l;bl" 40 15 basechar 0
 AnchorPoint: "r;x" 432 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 427 -1 N 1 0 0 1 0 0 2
+Refer: 426 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Uhungarumlaut.c2
-Encoding: 65846 -1 704
+Encoding: 65845 -1 703
 Width: 490
 VWidth: 0
 Flags: W
-HStem: -7 35<203.342 337.832> 360 32<28 95.5412 166.6 235 308 373.798 410.185 463> 483 162
+HStem: -7 35<203.342 337.832> 360 32<28 95.5412 166.6 235 308 373.798 410.185 463> 468 162
 VStem: 96 70<58.3259 358.804> 148 269 374 36<64.3843 359>
 AnchorPoint: "l;k;hi" 136 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -25182,11 +25189,11 @@ AnchorPoint: "l;bl" 30 15 basechar 0
 AnchorPoint: "r;x" 490 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 428 -1 N 1 0 0 1 0 0 2
+Refer: 427 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Amacron.c2
-Encoding: 65847 -1 705
+Encoding: 65846 -1 704
 Width: 481
 VWidth: 0
 Flags: W
@@ -25202,11 +25209,11 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 441 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 435 -1 N 1 0 0 1 0 0 2
+Refer: 434 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Emacron.c2
-Encoding: 65848 -1 706
+Encoding: 65847 -1 705
 Width: 443
 VWidth: 0
 Flags: W
@@ -25222,11 +25229,11 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 433 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 436 -1 N 1 0 0 1 0 0 2
+Refer: 435 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Imacron.c2
-Encoding: 65849 -1 707
+Encoding: 65848 -1 706
 Width: 274
 VWidth: 0
 Flags: W
@@ -25242,11 +25249,11 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 274 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 437 -1 N 1 0 0 1 0 0 2
+Refer: 436 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Omacron.c2
-Encoding: 65850 -1 708
+Encoding: 65849 -1 707
 Width: 472
 VWidth: 0
 Flags: W
@@ -25262,11 +25269,11 @@ AnchorPoint: "l;bl" 40 15 basechar 0
 AnchorPoint: "r;x" 432 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 438 -1 N 1 0 0 1 0 0 2
+Refer: 437 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Umacron.c2
-Encoding: 65851 -1 709
+Encoding: 65850 -1 708
 Width: 490
 VWidth: 0
 Flags: W
@@ -25282,11 +25289,11 @@ AnchorPoint: "l;bl" 30 15 basechar 0
 AnchorPoint: "r;x" 490 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 439 -1 N 1 0 0 1 0 0 2
+Refer: 438 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Abreve.c2
-Encoding: 65852 -1 710
+Encoding: 65851 -1 709
 Width: 481
 VWidth: 0
 Flags: W
@@ -25302,11 +25309,11 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 441 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 458 -1 N 1 0 0 1 0 0 2
+Refer: 457 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Ebreve.c2
-Encoding: 65853 -1 711
+Encoding: 65852 -1 710
 Width: 443
 VWidth: 0
 Flags: W
@@ -25322,11 +25329,11 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 433 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 459 -1 N 1 0 0 1 0 0 2
+Refer: 458 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Gbreve.c2
-Encoding: 65854 -1 712
+Encoding: 65853 -1 711
 Width: 490
 VWidth: 0
 Flags: W
@@ -25342,11 +25349,11 @@ AnchorPoint: "l;bl" 40 15 basechar 0
 AnchorPoint: "r;x" 480 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 460 -1 N 1 0 0 1 0 0 2
+Refer: 459 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Ibreve.c2
-Encoding: 65855 -1 713
+Encoding: 65854 -1 712
 Width: 274
 VWidth: 0
 Flags: W
@@ -25362,11 +25369,11 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 274 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 461 -1 N 1 0 0 1 0 0 2
+Refer: 460 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Obreve.c2
-Encoding: 65856 -1 714
+Encoding: 65855 -1 713
 Width: 472
 VWidth: 0
 Flags: W
@@ -25382,11 +25389,11 @@ AnchorPoint: "l;bl" 40 15 basechar 0
 AnchorPoint: "r;x" 432 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 462 -1 N 1 0 0 1 0 0 2
+Refer: 461 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Ubreve.c2
-Encoding: 65857 -1 715
+Encoding: 65856 -1 714
 Width: 490
 VWidth: 0
 Flags: W
@@ -25402,11 +25409,11 @@ AnchorPoint: "l;bl" 30 15 basechar 0
 AnchorPoint: "r;x" 490 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 463 -1 N 1 0 0 1 0 0 2
+Refer: 462 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Atilde.c2
-Encoding: 65858 -1 716
+Encoding: 65857 -1 715
 Width: 481
 VWidth: 0
 Flags: W
@@ -25422,11 +25429,11 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 441 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 476 -1 N 1 0 0 1 0 0 2
+Refer: 475 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Itilde.c2
-Encoding: 65859 -1 717
+Encoding: 65858 -1 716
 Width: 274
 VWidth: 0
 Flags: W
@@ -25442,11 +25449,11 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 274 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 477 -1 N 1 0 0 1 0 0 2
+Refer: 476 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Ntilde.c2
-Encoding: 65860 -1 718
+Encoding: 65859 -1 717
 Width: 487
 VWidth: 0
 Flags: W
@@ -25462,11 +25469,11 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 487 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 478 -1 N 1 0 0 1 0 0 2
+Refer: 477 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Otilde.c2
-Encoding: 65861 -1 719
+Encoding: 65860 -1 718
 Width: 472
 VWidth: 0
 Flags: W
@@ -25482,11 +25489,11 @@ AnchorPoint: "l;bl" 40 15 basechar 0
 AnchorPoint: "r;x" 432 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 479 -1 N 1 0 0 1 0 0 2
+Refer: 478 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Utilde.c2
-Encoding: 65862 -1 720
+Encoding: 65861 -1 719
 Width: 490
 VWidth: 0
 Flags: W
@@ -25502,11 +25509,11 @@ AnchorPoint: "l;bl" 30 15 basechar 0
 AnchorPoint: "r;x" 490 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 480 -1 N 1 0 0 1 0 0 2
+Refer: 479 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Ccedilla.c2
-Encoding: 65863 -1 721
+Encoding: 65862 -1 720
 Width: 424
 VWidth: 0
 Flags: W
@@ -25522,11 +25529,11 @@ AnchorPoint: "r;k;lo" 351 -244 basechar 0
 AnchorPoint: "r;x" 424 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 525 -1 N 1 0 0 1 0 0 2
+Refer: 524 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Scedilla.c2
-Encoding: 65864 -1 722
+Encoding: 65863 -1 721
 Width: 367
 VWidth: 0
 Flags: W
@@ -25542,11 +25549,11 @@ AnchorPoint: "r;k;lo" 305 -244 basechar 0
 AnchorPoint: "r;x" 367 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 526 -1 N 1 0 0 1 0 0 2
+Refer: 525 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Gcommaaccent.c2
-Encoding: 65865 -1 723
+Encoding: 65864 -1 722
 Width: 490
 VWidth: 0
 Flags: W
@@ -25562,11 +25569,11 @@ AnchorPoint: "r;k;lo" 299 -244 basechar 0
 AnchorPoint: "r;x" 480 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 542 -1 N 1 0 0 1 0 0 2
+Refer: 541 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Kcommaaccent.c2
-Encoding: 65866 -1 724
+Encoding: 65865 -1 723
 Width: 491
 VWidth: 0
 Flags: W
@@ -25582,11 +25589,11 @@ AnchorPoint: "r;k;lo" 294 -244 basechar 0
 AnchorPoint: "r;x" 491 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 543 -1 N 1 0 0 1 0 0 2
+Refer: 542 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Lcommaaccent.c2
-Encoding: 65867 -1 725
+Encoding: 65866 -1 724
 Width: 432
 VWidth: 0
 Flags: W
@@ -25602,11 +25609,11 @@ AnchorPoint: "r;k;lo" 282 -244 basechar 0
 AnchorPoint: "r;x" 322 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 544 -1 N 1 0 0 1 0 0 2
+Refer: 543 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Ncommaaccent.c2
-Encoding: 65868 -1 726
+Encoding: 65867 -1 725
 Width: 487
 VWidth: 0
 Flags: W
@@ -25622,11 +25629,11 @@ AnchorPoint: "r;k;lo" 305 -244 basechar 0
 AnchorPoint: "r;x" 487 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 545 -1 N 1 0 0 1 0 0 2
+Refer: 544 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Rcommaaccent.c2
-Encoding: 65869 -1 727
+Encoding: 65868 -1 726
 Width: 485
 VWidth: 0
 Flags: W
@@ -25642,11 +25649,11 @@ AnchorPoint: "r;k;lo" 293 -241 basechar 0
 AnchorPoint: "r;x" 445 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 546 -1 N 1 0 0 1 0 0 2
+Refer: 545 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Lcaron.c2
-Encoding: 65870 -1 728
+Encoding: 65869 -1 727
 Width: 432
 VWidth: 0
 Flags: W
@@ -25661,11 +25668,11 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 322 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 559 -1 N 1 0 0 1 0 0 2
+Refer: 558 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: AE.c2
-Encoding: 65871 -1 729
+Encoding: 65870 -1 728
 Width: 700
 VWidth: 0
 Flags: W
@@ -25679,11 +25686,11 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 690 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 582 -1 N 1 0 0 1 0 0 2
+Refer: 581 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: OE.c2
-Encoding: 65872 -1 730
+Encoding: 65871 -1 729
 Width: 688
 VWidth: 0
 Flags: W
@@ -25697,11 +25704,11 @@ AnchorPoint: "l;bl" 40 15 basechar 0
 AnchorPoint: "r;x" 678 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 583 -1 N 1 0 0 1 0 0 2
+Refer: 582 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Thorn.c2
-Encoding: 65873 -1 731
+Encoding: 65872 -1 730
 Width: 426
 VWidth: 0
 Flags: W
@@ -25715,10 +25722,28 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 346 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 584 -1 N 1 0 0 1 0 0 2
+Refer: 583 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Eth.c2
+Encoding: 65873 -1 731
+Width: 478
+VWidth: 0
+Flags: W
+HStem: 0 32<30 94.5841 165.157 281.182> 187 29<28 95 165 270> 360 32<27 94.2933 165.322 257.391>
+VStem: 95 70<32.7027 187 216 356.907> 369 74<121.574 274.434>
+AnchorPoint: "l;x" 0 376 basechar 0
+AnchorPoint: "r;bl" 438 15 basechar 0
+AnchorPoint: "r;o" 478 195 basechar 0
+AnchorPoint: "l;o" 0 195 basechar 0
+AnchorPoint: "l;bl" 0 15 basechar 0
+AnchorPoint: "r;x" 468 376 basechar 0
+LayerCount: 3
+Fore
+Refer: 584 -1 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: Dcroat.c2
 Encoding: 65874 -1 732
 Width: 478
 VWidth: 0
@@ -25736,26 +25761,8 @@ Fore
 Refer: 585 -1 N 1 0 0 1 0 0 2
 EndChar
 
-StartChar: Dcroat.c2
-Encoding: 65875 -1 733
-Width: 478
-VWidth: 0
-Flags: W
-HStem: 0 32<30 94.5841 165.157 281.182> 187 29<28 95 165 270> 360 32<27 94.2933 165.322 257.391>
-VStem: 95 70<32.7027 187 216 356.907> 369 74<121.574 274.434>
-AnchorPoint: "l;x" 0 376 basechar 0
-AnchorPoint: "r;bl" 438 15 basechar 0
-AnchorPoint: "r;o" 478 195 basechar 0
-AnchorPoint: "l;o" 0 195 basechar 0
-AnchorPoint: "l;bl" 0 15 basechar 0
-AnchorPoint: "r;x" 468 376 basechar 0
-LayerCount: 3
-Fore
-Refer: 586 -1 N 1 0 0 1 0 0 2
-EndChar
-
 StartChar: Hbar.c2
-Encoding: 65876 -1 734
+Encoding: 65875 -1 733
 Width: 495
 VWidth: 0
 Flags: W
@@ -25769,11 +25776,11 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 495 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 587 -1 N 1 0 0 1 0 0 2
+Refer: 586 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Tbar.c2
-Encoding: 65877 -1 735
+Encoding: 65876 -1 734
 Width: 425
 VWidth: 0
 Flags: W
@@ -25787,11 +25794,11 @@ AnchorPoint: "l;bl" 40 15 basechar 0
 AnchorPoint: "r;x" 425 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 588 -1 N 1 0 0 1 0 0 2
+Refer: 587 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Oslash.c2
-Encoding: 65878 -1 736
+Encoding: 65877 -1 735
 Width: 472
 VWidth: 0
 Flags: W
@@ -25805,11 +25812,11 @@ AnchorPoint: "l;bl" 40 15 basechar 0
 AnchorPoint: "r;x" 432 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 589 -1 N 1 0 0 1 0 0 2
+Refer: 588 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Lslash.c2
-Encoding: 65879 -1 737
+Encoding: 65878 -1 736
 Width: 432
 VWidth: 0
 Flags: W
@@ -25824,11 +25831,11 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 322 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 590 -1 N 1 0 0 1 0 0 2
+Refer: 589 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Aogonek.c2
-Encoding: 65880 -1 738
+Encoding: 65879 -1 737
 Width: 481
 VWidth: 0
 Flags: W
@@ -25842,11 +25849,11 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 441 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 591 -1 N 1 0 0 1 0 0 2
+Refer: 590 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Eogonek.c2
-Encoding: 65881 -1 739
+Encoding: 65880 -1 738
 Width: 443
 VWidth: 0
 Flags: W
@@ -25860,11 +25867,11 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 433 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 592 -1 N 1 0 0 1 0 0 2
+Refer: 591 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Iogonek.c2
-Encoding: 65882 -1 740
+Encoding: 65881 -1 739
 Width: 274
 VWidth: 0
 Flags: W
@@ -25878,11 +25885,11 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 274 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 593 -1 N 1 0 0 1 0 0 2
+Refer: 592 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Uogonek.c2
-Encoding: 65883 -1 741
+Encoding: 65882 -1 740
 Width: 490
 VWidth: 0
 Flags: W
@@ -25896,11 +25903,11 @@ AnchorPoint: "l;bl" 30 15 basechar 0
 AnchorPoint: "r;x" 490 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 594 -1 N 1 0 0 1 0 0 2
+Refer: 593 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: Ldot.c2
-Encoding: 65884 -1 742
+Encoding: 65883 -1 741
 Width: 448
 VWidth: 0
 Flags: W
@@ -25914,16 +25921,16 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 322 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 596 -1 N 1 0 0 1 0 0 2
+Refer: 595 -1 N 1 0 0 1 0 0 2
 Ligature2: "'liga' Standard Ligatures in Latin lookup 14 subtable" L.CAT.c2 periodcentered.c2
 EndChar
 
 StartChar: Ugrave.c2
-Encoding: 65885 -1 743
+Encoding: 65884 -1 742
 Width: 490
 VWidth: 0
 Flags: W
-HStem: -7 35<203.342 337.832> 360 32<28 95.5412 166.6 235 308 373.798 410.185 463> 483 162
+HStem: -7 35<203.342 337.832> 360 32<28 95.5412 166.6 235 308 373.798 410.185 463> 468 162
 VStem: 96 70<58.3259 358.804> 157 122 374 36<64.3843 359>
 AnchorPoint: "l;k;hi" 128 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -25935,11 +25942,11 @@ AnchorPoint: "l;bl" 30 15 basechar 0
 AnchorPoint: "r;x" 490 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 600 -1 N 1 0 0 1 0 0 2
+Refer: 599 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: uni0218.c2
-Encoding: 65886 -1 744
+Encoding: 65885 -1 743
 Width: 367
 VWidth: 0
 Flags: W
@@ -25955,11 +25962,11 @@ AnchorPoint: "r;k;lo" 235 -244 basechar 0
 AnchorPoint: "r;x" 367 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 547 -1 N 1 0 0 1 0 0 2
+Refer: 546 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: uni0162.c2
-Encoding: 65887 -1 745
+Encoding: 65886 -1 744
 Width: 425
 VWidth: 0
 Flags: W
@@ -25975,11 +25982,11 @@ AnchorPoint: "r;k;lo" 335 -244 basechar 0
 AnchorPoint: "r;x" 425 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 527 -1 N 1 0 0 1 0 0 2
+Refer: 526 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: uni021A.c2
-Encoding: 65888 -1 746
+Encoding: 65887 -1 745
 Width: 425
 VWidth: 0
 Flags: W
@@ -25995,11 +26002,11 @@ AnchorPoint: "r;k;lo" 265 -244 basechar 0
 AnchorPoint: "r;x" 425 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 548 -1 N 1 0 0 1 0 0 2
+Refer: 547 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: periodcentered.c2
-Encoding: 65889 -1 747
+Encoding: 65888 -1 746
 Width: 201
 VWidth: 0
 Flags: W
@@ -26009,11 +26016,11 @@ AnchorPoint: "l;o" 0 195 basechar 0
 AnchorPoint: "r;o" 201 195 basechar 0
 LayerCount: 3
 Fore
-Refer: 595 -1 N 1 0 0 1 0 0 2
+Refer: 594 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: uni0307.high
-Encoding: 65890 -1 748
+Encoding: 65889 -1 747
 Width: 0
 VWidth: 0
 Flags: W
@@ -26034,7 +26041,7 @@ EndSplineSet
 EndChar
 
 StartChar: Aring
-Encoding: 197 197 749
+Encoding: 197 197 748
 Width: 726
 VWidth: 0
 Flags: W
@@ -26050,7 +26057,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 686 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 400 -1 N 1 0 0 1 564 244 2
+Refer: 399 -1 N 1 0 0 1 564 244 2
 Refer: 24 65 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Aring.c2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Aring.c2
@@ -26059,7 +26066,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" A
 EndChar
 
 StartChar: uni0328
-Encoding: 808 808 750
+Encoding: 808 808 749
 Width: 0
 VWidth: 0
 Flags: W
@@ -26081,7 +26088,7 @@ EndSplineSet
 EndChar
 
 StartChar: L.CAT
-Encoding: 65891 -1 751
+Encoding: 65890 -1 750
 Width: 584
 VWidth: 0
 Flags: W
@@ -26104,7 +26111,7 @@ Substitution2: "'c2sc' Capitals to Small Capitals in Latin lookup 11 subtable" L
 EndChar
 
 StartChar: l.CAT
-Encoding: 65892 -1 752
+Encoding: 65891 -1 751
 Width: 262
 VWidth: 0
 Flags: W
@@ -26127,7 +26134,7 @@ Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" 
 EndChar
 
 StartChar: L.CAT.c2
-Encoding: 65893 -1 753
+Encoding: 65892 -1 752
 Width: 432
 VWidth: 0
 Flags: W
@@ -26141,11 +26148,11 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 322 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 639 -1 N 1 0 0 1 0 0 2
+Refer: 638 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: l.CAT.sc
-Encoding: 65894 -1 754
+Encoding: 65893 -1 753
 Width: 432
 VWidth: 0
 Flags: W
@@ -26163,7 +26170,7 @@ Refer: 240 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: ij.sc
-Encoding: 65895 -1 755
+Encoding: 65894 -1 754
 Width: 533
 VWidth: 0
 Flags: W
@@ -26184,7 +26191,7 @@ Refer: 237 -1 N 1 0 0 1 0 0 2
 EndChar
 
 StartChar: IJ.c2
-Encoding: 65896 -1 756
+Encoding: 65895 -1 755
 Width: 533
 VWidth: 0
 Flags: W
@@ -26200,7 +26207,54 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "l;k;lo" 184 -244 basechar 0
 LayerCount: 3
 Fore
-Refer: 755 -1 N 1 0 0 1 0 0 2
+Refer: 754 -1 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: j.TRK
+Encoding: 65896 -1 756
+Width: 249
+VWidth: 0
+Flags: W
+HStem: -261 45<-5 71.3069> 384 20<125.5 158> 504 87<87.3413 147.894>
+VStem: 76 85<516.718 579.085> 88 70<-181.072 351.989>
+AnchorPoint: "l;k;hi" 21 684 basechar 0
+AnchorPoint: "l;x" 0 376 basechar 0
+AnchorPoint: "r;bl" 249 15 basechar 0
+AnchorPoint: "r;x" 249 376 basechar 0
+AnchorPoint: "r;lo" 176 -244 basechar 0
+AnchorPoint: "r;o" 249 195 basechar 0
+AnchorPoint: "r;k;hi" 214 684 basechar 0
+AnchorPoint: "l;o" 0 195 basechar 0
+AnchorPoint: "l;bl" 0 15 basechar 0
+AnchorPoint: "l;k;lo" -70 -244 basechar 0
+LayerCount: 3
+Fore
+Refer: 267 775 N 1 0 0 1 295 0 2
+Refer: 178 567 N 1 0 0 1 0 0 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" j.sc
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" j.sc
+Substitution2: "'smcp' Lowercase to Small Capitals in Latin lookup 10 subtable" j.sc
+EndChar
+
+StartChar: i.TRK.sc
+Encoding: 65897 -1 757
+Width: 274
+VWidth: 0
+Flags: W
+HStem: 0 32<38 99.2629 171.226 247> 360 32<27 99.2578 171.067 232> 504 87<116.341 176.894>
+VStem: 100 70<33.3879 358.752> 105 85<516.718 579.085>
+AnchorPoint: "l;k;hi" 50 684 basechar 0
+AnchorPoint: "l;x" 0 376 basechar 0
+AnchorPoint: "r;bl" 274 15 basechar 0
+AnchorPoint: "r;o" 274 195 basechar 0
+AnchorPoint: "r;k;hi" 243 684 basechar 0
+AnchorPoint: "l;o" 0 195 basechar 0
+AnchorPoint: "l;bl" 0 15 basechar 0
+AnchorPoint: "r;x" 274 376 basechar 0
+LayerCount: 3
+Fore
+Refer: 267 775 N 1 0 0 1 324 0 2
+Refer: 237 -1 N 1 0 0 1 0 0 2
 EndChar
 EndChars
 EndSplineFont

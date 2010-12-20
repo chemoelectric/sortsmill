@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Copyright (c) 2009 Barry Schwartz
+Copyright (c) 2010 Barry Schwartz
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -235,6 +235,8 @@ def build_glyphs(bitbucket, f):
         build_accented_glyph(letter + 'dotaccent.sc', f[letter + '.sc'], f['uni0307'])
     build_accented_glyph('i.TRK', f['dotlessi'], f['uni0307'])
     build_accented_glyph('i.TRK.sc', f['i.sc'], f['uni0307'])
+    build_accented_glyph('j.TRK', f['uni0237'], f['uni0307'])
+#############    build_accented_glyph('j.TRK.sc', f['j.sc'], f['uni0307'])
     build_accented_glyph('i', f['dotlessi'], f['uni0307.high'])
     build_accented_glyph('iogonek', f['iogonek.dotless'], f['uni0307.high'])
     build_accented_glyph('j', f['uni0237'], f['uni0307.high'])

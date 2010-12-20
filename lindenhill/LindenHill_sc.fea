@@ -128,7 +128,7 @@
 
 feature smcp {
   sub @lowercase by @smallcaps;
-  sub i.TRK by i.TRK.sc;
+  sub [i.TRK j.TRK] by [i.TRK.sc j.sc];
   sub l.CAT by l.CAT.sc;
   sub ij by ij.sc;
   sub [ae oe thorn eth] by [ae.sc oe.sc thorn.sc eth.sc];

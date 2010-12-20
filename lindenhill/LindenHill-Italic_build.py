@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Copyright (c) 2009 Barry Schwartz
+Copyright (c) 2010 Barry Schwartz
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,49 +22,17 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
-import font_db
 import fontforge
-from glyphbuild import *
-from spacing_by_anchors import *
+import string
+from sortsmill import font_db
+from sortsmill.glyphbuild import *
+from sortsmill.spacing_by_anchors import *
 
 def build_glyphs(bitbucket, f):
 
-    import cap_spacing
+    from sortsmill import cap_spacing
 
     figures = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
-
-    caps = [
-        'A', 'Agrave', 'Aacute', 'Acircumflex', 'Atilde', 'Adieresis', 'Aring', 'Amacron', 'Abreve', 'Aogonek',
-        'B',
-        'C', 'Ccedilla', 'Cacute', 'Ccircumflex', 'Cdotaccent', 'Ccaron',
-        'D', 'Dcaron', 'Dcroat',
-        'E', 'Egrave', 'Eacute', 'Ecircumflex', 'Edieresis', 'Emacron', 'Ebreve', 'Edotaccent', 'Eogonek', 'Ecaron',
-        'F',
-        'G', 'Gcircumflex', 'Gbreve', 'Gdotaccent', 'Gcommaaccent',
-        'H', 'Hcircumflex', 'Hbar',
-        'I', 'Igrave', 'Iacute', 'Icircumflex', 'Idieresis', 'Itilde', 'Imacron', 'Ibreve', 'Iogonek',
-        'J', 'Jcircumflex',
-        'K', 'Kcommaaccent',
-        'L', 'Lacute', 'Lcommaaccent', 'Lcaron', 'Ldot', 'Lslash',
-        'M',
-        'N', 'Ntilde', 'Nacute', 'Ncommaaccent', 'Ncaron',
-        'O', 'Ograve', 'Oacute', 'Ocircumflex', 'Otilde', 'Odieresis', 'Oslash', 'Omacron', 'Obreve', 'Ohungarumlaut',
-        'P',
-        'Q',
-        'R', 'Racute', 'Rcommaaccent', 'Rcaron',
-        'S', 'Sacute', 'Scircumflex', 'Scedilla', 'uni0218', 'Scaron',
-        'T', 'uni0162', 'uni021A', 'Tcaron', 'Tbar',
-        'U', 'Ugrave', 'Uacute', 'Ucircumflex', 'Udieresis', 'Utilde', 'Umacron', 'Ubreve', 'Uring', 'Uhungarumlaut', 'Uogonek',
-        'V',
-        'W', 'Wcircumflex',
-        'X',
-        'Y', 'Yacute', 'Ydieresis', 'Ycircumflex',
-        'Z', 'Zacute', 'Zdotaccent', 'Zcaron',
-        'IJ', 'AE', 'OE', 'Eth', 'Thorn',
-        'question', 'questiondown',
-        'exclam', 'exclamdown',
-        'ampersand'
-        ]
 
     def base(letter):
         if letter == 'i':
@@ -84,6 +52,24 @@ def build_glyphs(bitbucket, f):
                                      'bl' : 15,   # baseline
                                      'lo' : -244 } # descenders
 
+    all_glyphs = set(f) - set(['.notdef'])
+    (uppercase, lowercase, fraction_bar, numerators, denominators, remaining) = \
+        tuple(separate_strings(all_glyphs, [
+                (lambda s: is_uppercase(s, last_name)),
+                (lambda s: is_lowercase(s, last_name)),
+                (lambda s: s == 'fraction'),
+                (lambda s: s[-6:] == '.numer'),
+                (lambda s: s[-6:] == '.denom'),
+                ]))
+    db["kerning_sets"] = [
+        (remaining, uppercase | lowercase | remaining),
+        (uppercase, uppercase | lowercase | remaining),
+        (lowercase, uppercase | lowercase | remaining),
+        (numerators, fraction_bar),
+        (fraction_bar, denominators),
+        ]
+    db['kerning_rounding'] = '(lambda x: int(round(x/5.0)) * 5)'
+
     build_several_space_glyphs(f, emsize = 1000, spacesize = 185,
                                thinspacesize = 1000 / 6,
                                hairspacesize = 1000 / 10,
@@ -95,9 +81,10 @@ def build_glyphs(bitbucket, f):
     make_glyph_reference('quotesingle', f['minute'])
     make_glyph_reference('quotedbl', f['second'])
     make_glyph_reference('asciitilde', f['uni2053']) # Swung dash.
-    make_glyph_reference('i.TRK', f['i'])
+#    make_glyph_reference('i.TRK', f['i']) <-- Handled below.
     make_glyph_reference('Dcroat', f['Eth'])
     make_glyph_reference('Dcroat.001', f['Eth.001'])
+    make_glyph_reference('L.CAT', f['L'])
 
     build_multigraph('ellipsis', [f['period'], f['period'], f['period']])
 
@@ -227,9 +214,11 @@ def build_glyphs(bitbucket, f):
         build_accented_glyph(letter + 'dotaccent', f[base(letter)], f['uni0307.cap'])
     for letter in 'CEG':
         build_accented_glyph(letter + 'dotaccent.001', f[base(letter) + '.001'], f['uni0307.cap'])
-    build_accented_glyph('i', f['dotlessi'], f['uni0307'])
-    build_accented_glyph('iogonek', f['iogonek.dotless'], f['uni0307'])
-    build_accented_glyph('j', f['uni0237'], f['uni0307'])
+    build_accented_glyph('i.TRK', f['dotlessi'], f['uni0307'])
+    build_accented_glyph('j.TRK', f['uni0237'], f['uni0307'])
+    build_accented_glyph('i', f['dotlessi'], f['uni0307.high'])
+    build_accented_glyph('iogonek', f['iogonek.dotless'], f['uni0307.high'])
+    build_accented_glyph('j', f['uni0237'], f['uni0307.high'])
 
     #--------------------------------------------------------------------------
 
@@ -273,7 +262,7 @@ def build_glyphs(bitbucket, f):
     build_multigraph('napostrophe', [f['quoteright'], f['n']])
     build_multigraph('IJ', [f['I'], f['J']])
     build_multigraph('ij', [f['i'], f['j']])
-    build_multigraph('Ldot', [f['L'], f['periodcentered']])
+#    build_multigraph('Ldot', [f['L'], f['periodcentered']])
     build_multigraph('ldot', [f['l'], f['periodcentered']])
 
     #--------------------------------------------------------------------------
@@ -281,13 +270,6 @@ def build_glyphs(bitbucket, f):
     f.selection.all()
     spacing_by_anchors.space_selected_by_anchors(f)
     f.selection.none()
-
-    rules = cap_spacing.cap_spacing(f, caps, 0.015)
-    cpsp = open('LindenHill-Italic_cpsp.fea', 'w')
-    print >> cpsp, 'feature cpsp {'
-    print >> cpsp, rules,
-    print >> cpsp, '} cpsp;'
-    cpsp.close()
 
     generate_kerning_and_read_features(None, f)
 
