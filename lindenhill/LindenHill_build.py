@@ -236,7 +236,6 @@ def build_glyphs(bitbucket, f):
     build_accented_glyph('i.TRK', f['dotlessi'], f['uni0307'])
     build_accented_glyph('i.TRK.sc', f['i.sc'], f['uni0307'])
     build_accented_glyph('j.TRK', f['uni0237'], f['uni0307'])
-#############    build_accented_glyph('j.TRK.sc', f['j.sc'], f['uni0307'])
     build_accented_glyph('i', f['dotlessi'], f['uni0307.high'])
     build_accented_glyph('iogonek', f['iogonek.dotless'], f['uni0307.high'])
     build_accented_glyph('j', f['uni0237'], f['uni0307.high'])
