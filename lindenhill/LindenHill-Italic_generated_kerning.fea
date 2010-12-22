@@ -44,9 +44,14 @@ feature kern {
 @r1_quotedblleft = [\quotedblleft \quoteleft \quotereversed \uni201F];
 @r1_quotedblbase = [\quotedblbase \quotesinglbase];
 
+@l1_J = [\J \Jcircumflex];
+@l1_C = [\C \Cacute \Ccaron \Ccedilla \Ccircumflex \Cdotaccent 
+     \O \Oacute \Obreve \Ocircumflex \Odieresis \Ograve 
+     \Ohungarumlaut \Omacron \Otilde];
 @l1_l = [\l \lacute \lcaron \lcommaaccent \ldot \lslash];
 @l1_j.TRK = [\j.TRK \jcircumflex \uni0237];
 @l1_s = [\s \sacute \scaron \scedilla \scircumflex \uni0219];
+@l1_T = [\T \Tcaron \uni0162 \uni021A];
 @l1_h = [\h \hbar \hcircumflex \k \k.001 \kcommaaccent 
      \kcommaaccent.001];
 @l1_dotlessi = [\dotlessi \i.TRK \iacute \ibreve \icircumflex \idieresis 
@@ -56,9 +61,12 @@ feature kern {
 @l1_longs = [\longs \longs_b \longs_h \longs_i \longs_j \longs_k 
      \longs_k.001 \longs_l \longs_longs \longs_longs_b \longs_longs_h \longs_longs_i 
      \longs_longs_j \longs_longs_k \longs_longs_k.001 \longs_longs_l \longs_longs_thorn \longs_thorn];
+@l1_V = [\V \W \Wcircumflex];
 @l1_u = [\u \uacute \ubreve \ucircumflex \udieresis \ugrave 
      \uhungarumlaut \umacron \uogonek \uring \utilde \v 
      \w \wcircumflex];
+@l1_A = [\A \Aacute \Abreve \Acircumflex \Adieresis \Agrave 
+     \Amacron \Aring \Atilde];
 @l1_a = [\a \aacute \abreve \acircumflex \adieresis \ae 
      \agrave \amacron \aogonek \aring \atilde \c 
      \c_t \cacute \ccaron \ccedilla \ccircumflex \cdotaccent 
@@ -76,62 +84,57 @@ feature kern {
      \f_h \f_hcircumflex \f_i \f_j \f_k \f_k.001 
      \f_l \f_thorn];
 @l1_i = [\i \iogonek];
-@l1_D = [\D \Dcaron \I \IJ \Iacute \Ibreve 
-     \Icircumflex \Idieresis \Idotaccent \Igrave \Imacron \Itilde];
-@l1_H = [\H \Hcircumflex \L \L.CAT \Lacute \Lcaron 
-     \Lcommaaccent \P];
+@l1_D = [\D \Dcaron \E \Eacute \Ebreve \Ecaron 
+     \Ecircumflex \Edieresis \Edotaccent \Egrave \Emacron \I 
+     \Iacute \Ibreve \Icircumflex \Idieresis \Idotaccent \Igrave 
+     \Imacron \Itilde];
+@l1_F = [\F \H \Hcircumflex \K \Kcommaaccent \L 
+     \L.CAT \Lacute \Lcaron \Lcommaaccent \P \R 
+     \Racute \Rcaron \Rcommaaccent];
+@l1_Z = [\Z \Zacute \Zcaron \Zdotaccent];
 @l1_g.001 = [\g.001 \gbreve.001 \gcircumflex.001 \gcommaaccent.001 \gdotaccent.001];
+@l1_M = [\M \N \Nacute \Ncaron \Ncommaaccent \Ntilde 
+     \Y \Yacute \Ycircumflex \Ydieresis \b];
+@l1_B = [\B \S \Sacute \Scaron \Scedilla \Scircumflex 
+     \uni0218];
 @l1_quotedblright = [\quotedblright \quoteright];
 @l1_quotedblleft = [\quotedblleft \quoteleft \quotereversed \uni201F];
-@l1_A = [\A \A.001 \AE \Aacute \Aacute.001 \Abreve 
-     \Abreve.001 \Acircumflex \Acircumflex.001 \Adieresis \Adieresis.001 \Agrave 
-     \Agrave.001 \Amacron \Amacron.001 \Aogonek \Aogonek.001 \Aring 
-     \Aring.001 \Atilde \Atilde.001 \B \B.001 \C 
-     \C.001 \Cacute \Cacute.001 \Ccaron \Ccaron.001 \Ccedilla 
-     \Ccircumflex \Ccircumflex.001 \Cdotaccent \Cdotaccent.001 \D.001 \Dcaron.001 
-     \Dcroat \Dcroat.001 \E \E.001 \Eacute \Eacute.001 
-     \Ebreve \Ebreve.001 \Ecaron \Ecaron.001 \Ecircumflex \Ecircumflex.001 
-     \Edieresis \Edieresis.001 \Edotaccent \Edotaccent.001 \Egrave \Egrave.001 
-     \Emacron \Emacron.001 \Eogonek \Eogonek.001 \Eth \Eth.001 
-     \Euro \F \G \G.001 \Gbreve \Gbreve.001 
-     \Gcircumflex \Gcircumflex.001 \Gcommaaccent \Gcommaaccent.001 \Gdotaccent \Gdotaccent.001 
-     \Hbar \Iogonek \J \Jcircumflex \K \Kcommaaccent 
-     \Ldot \Lslash \M \M.001 \M.002 \N 
-     \N.001 \Nacute \Nacute.001 \Ncaron \Ncaron.001 \Ncommaaccent 
-     \Ncommaaccent.001 \Ntilde \Ntilde.001 \OE \Oslash \P.001 
-     \Q \R \R.001 \Racute \Racute.001 \Rcaron 
-     \Rcaron.001 \Rcommaaccent \Rcommaaccent.001 \S \Sacute \Scaron 
-     \Scedilla \Scircumflex \T \T.001 \T.002 \Tbar 
-     \Tbar.001 \Tcaron \Tcaron.001 \Tcaron.002 \Thorn \U 
-     \Uacute \Ubreve \Ucircumflex \Udieresis \Ugrave \Uhungarumlaut 
-     \Umacron \Uogonek \Uring \Utilde \V \W 
-     \Wcircumflex \X \Y \Yacute \Ycircumflex \Ydieresis 
-     \Z \Zacute \Zcaron \Zdotaccent \acute \acutecomb 
-     \acutecomb.cap \afii00208 \afii299 \afii300 \afii301 \afii57929 
-     \afii61664 \ampersand \asciicircum \asciitilde \asterisk \at 
-     \backslash \bar \braceleft \braceright \bracketleft \bracketright 
-     \breve \brokenbar \bullet \bullet.001 \bullet.002 \bullet.003 
-     \caron \cedilla \cent \circumflex \colon \comma 
-     \copyright \currency \dagger \daggerdbl \degree \dieresis 
-     \divide \dollar \dollar.hanging \dollar.lining \dotaccent \eight 
-     \eight.hanging \eight.lining \eight.sub \eight.sup \ellipsis \emdash 
-     \endash \equal \exclam \exclamdown \figuredash \five 
-     \five.hanging \five.lining \five.sub \five.sup \four \four.hanging 
-     \four.lining \four.sub \four.sup \grave \gravecomb \gravecomb.cap 
-     \greater \hungarumlaut \hyphen \less \logicalnot \macron 
-     \minus \minute \multiply \nine \nine.hanging \nine.lining 
-     \nine.sub \nine.sup \notequal \numbersign \ogonek \one 
-     \one.hanging \one.lining \one.sub \one.sup \onehalf \onequarter 
-     \ordfeminine \ordmasculine \paragraph \parenleft \parenright \percent 
-     \period \periodcentered \plus \plusminus \question \questiondown 
-     \quotedbl \quotesingle \registered \ring \second \section 
-     \semicolon \seven \seven.hanging \seven.lining \seven.sub \seven.sup 
-     \six \six.hanging \six.lining \six.sub \six.sup \slash 
-     \space \sterling \three \three.hanging \three.lining \three.sub 
-     \three.sup \threequarters \tilde \tildecomb \tildecomb.cap \two 
-     \two.hanging \two.lining \two.sub \two.sup \uni00A0 \uni00AD 
-     \uni00B2 \uni00B3 \uni00B5 \uni00B9 \uni0162 \uni0162.001 
-     \uni0162.002 \uni0218 \uni021A \uni021A.001 \uni021A.002 \uni02BB 
+@l1_A.001 = [\A.001 \AE \Aacute.001 \Abreve.001 \Acircumflex.001 \Adieresis.001 
+     \Agrave.001 \Amacron.001 \Aogonek \Aogonek.001 \Aring.001 \Atilde.001 
+     \B.001 \C.001 \Cacute.001 \Ccaron.001 \Ccircumflex.001 \Cdotaccent.001 
+     \D.001 \Dcaron.001 \Dcroat \Dcroat.001 \E.001 \Eacute.001 
+     \Ebreve.001 \Ecaron.001 \Ecircumflex.001 \Edieresis.001 \Edotaccent.001 \Egrave.001 
+     \Emacron.001 \Eogonek \Eogonek.001 \Eth \Eth.001 \Euro 
+     \G.001 \Gbreve.001 \Gcircumflex.001 \Gcommaaccent.001 \Gdotaccent.001 \Hbar 
+     \Iogonek \Ldot \Lslash \M.001 \M.002 \N.001 
+     \Nacute.001 \Ncaron.001 \Ncommaaccent.001 \Ntilde.001 \OE \Oslash 
+     \P.001 \R.001 \Racute.001 \Rcaron.001 \Rcommaaccent.001 \T.001 
+     \T.002 \Tbar \Tbar.001 \Tcaron.001 \Tcaron.002 \Thorn 
+     \Uogonek \acute \acutecomb \acutecomb.cap \afii00208 \afii299 
+     \afii300 \afii301 \afii57929 \afii61664 \ampersand \asciicircum 
+     \asciitilde \asterisk \at \backslash \bar \braceleft 
+     \braceright \bracketleft \bracketright \breve \brokenbar \bullet 
+     \bullet.001 \bullet.002 \bullet.003 \caron \cedilla \cent 
+     \circumflex \colon \comma \copyright \currency \dagger 
+     \daggerdbl \degree \dieresis \divide \dollar \dollar.hanging 
+     \dollar.lining \dotaccent \eight \eight.hanging \eight.lining \eight.sub 
+     \eight.sup \ellipsis \emdash \endash \equal \exclam 
+     \exclamdown \figuredash \five \five.hanging \five.lining \five.sub 
+     \five.sup \four \four.hanging \four.lining \four.sub \four.sup 
+     \grave \gravecomb \gravecomb.cap \greater \hungarumlaut \hyphen 
+     \less \logicalnot \macron \minus \minute \multiply 
+     \nine \nine.hanging \nine.lining \nine.sub \nine.sup \notequal 
+     \numbersign \ogonek \one \one.hanging \one.lining \one.sub 
+     \one.sup \onehalf \onequarter \ordfeminine \ordmasculine \paragraph 
+     \parenleft \parenright \percent \period \periodcentered \plus 
+     \plusminus \question \questiondown \quotedbl \quotesingle \registered 
+     \ring \second \section \semicolon \seven \seven.hanging 
+     \seven.lining \seven.sub \seven.sup \six \six.hanging \six.lining 
+     \six.sub \six.sup \slash \space \sterling \three 
+     \three.hanging \three.lining \three.sub \three.sup \threequarters \tilde 
+     \tildecomb \tildecomb.cap \two \two.hanging \two.lining \two.sub 
+     \two.sup \uni00A0 \uni00AD \uni00B2 \uni00B3 \uni00B5 
+     \uni00B9 \uni0162.001 \uni0162.002 \uni021A.001 \uni021A.002 \uni02BB 
      \uni02C0 \uni02C8 \uni0302 \uni0302.cap \uni0304 \uni0304.cap 
      \uni0306 \uni0306.cap \uni0307 \uni0307.cap \uni0307.high \uni0308 
      \uni0308.cap \uni030A \uni030A.cap \uni030B \uni030B.cap \uni030C 
@@ -144,45 +147,56 @@ feature kern {
 @l1_z = [\z \z.001 \zacute \zacute.001 \zcaron \zcaron.001 
      \zdotaccent \zdotaccent.001];
 @l1_quotedblbase = [\quotedblbase \quotesinglbase];
+@l1_U = [\U \Uacute \Ubreve \Ucircumflex \Udieresis \Ugrave 
+     \Uhungarumlaut \Umacron \Uring \Utilde];
+@l1_G = [\G \Gbreve \Gcircumflex \Gcommaaccent \Gdotaccent];
 @l1_y = [\y \yacute \ycircumflex \ydieresis];
-@l1_O = [\O \Oacute \Obreve \Ocircumflex \Odieresis \Ograve 
-     \Ohungarumlaut \Omacron \Otilde];
 
-@r2_I = [\I \IJ \Iacute \Ibreve \Icircumflex \Idieresis 
-     \Idotaccent \Igrave \Imacron \Itilde];
-@r2_H = [\H \Hcircumflex];
-@r2_D = [\D \Dcaron \O \Oacute \Obreve \Ocircumflex 
-     \Odieresis \Ograve \Ohungarumlaut \Omacron \Otilde];
-@r2_A = [\A \A.001 \AE \Aacute \Aacute.001 \Abreve 
-     \Abreve.001 \Acircumflex \Acircumflex.001 \Adieresis \Adieresis.001 \Agrave 
-     \Agrave.001 \Amacron \Amacron.001 \Aogonek \Aogonek.001 \Aring 
-     \Aring.001 \Atilde \Atilde.001 \B \B.001 \C 
-     \C.001 \Cacute \Cacute.001 \Ccaron \Ccaron.001 \Ccedilla 
-     \Ccircumflex \Ccircumflex.001 \Cdotaccent \Cdotaccent.001 \D.001 \Dcaron.001 
-     \Dcroat \Dcroat.001 \E \E.001 \Eacute \Eacute.001 
-     \Ebreve \Ebreve.001 \Ecaron \Ecaron.001 \Ecircumflex \Ecircumflex.001 
-     \Edieresis \Edieresis.001 \Edotaccent \Edotaccent.001 \Egrave \Egrave.001 
-     \Emacron \Emacron.001 \Eogonek \Eogonek.001 \Eth \Eth.001 
-     \F \G \G.001 \Gbreve \Gbreve.001 \Gcircumflex 
-     \Gcircumflex.001 \Gcommaaccent \Gcommaaccent.001 \Gdotaccent \Gdotaccent.001 \Hbar 
-     \Iogonek \J \Jcircumflex \K \Kcommaaccent \Ldot 
-     \Lslash \M \M.001 \M.002 \N \N.001 
-     \Nacute \Nacute.001 \Ncaron \Ncaron.001 \Ncommaaccent \Ncommaaccent.001 
-     \Ntilde \Ntilde.001 \OE \Oslash \P.001 \Q 
-     \R \R.001 \Racute \Racute.001 \Rcaron \Rcaron.001 
-     \Rcommaaccent \Rcommaaccent.001 \S \Sacute \Scaron \Scedilla 
-     \Scircumflex \T \T.001 \T.002 \Tbar \Tbar.001 
-     \Tcaron \Tcaron.001 \Tcaron.002 \Thorn \U \Uacute 
-     \Ubreve \Ucircumflex \Udieresis \Ugrave \Uhungarumlaut \Umacron 
-     \Uogonek \Uring \Utilde \V \W \Wcircumflex 
-     \X \Y \Yacute \Ycircumflex \Ydieresis \Z 
-     \Zacute \Zcaron \Zdotaccent \uni0162 \uni0162.001 \uni0162.002 
-     \uni0218 \uni021A \uni021A.001 \uni021A.002];
+@r2_G = [\G \Gbreve \Gcircumflex \Gcommaaccent \Gdotaccent \U 
+     \Uacute \Ubreve \Ucircumflex \Udieresis \Ugrave \Uhungarumlaut 
+     \Umacron \Uring \Utilde];
+@r2_D = [\D \Dcaron];
+@r2_A = [\A \Aacute \Abreve \Acircumflex \Adieresis \Agrave 
+     \Amacron \Aring \Atilde];
+@r2_E = [\E \Eacute \Ebreve \Ecaron \Ecircumflex \Edieresis 
+     \Edotaccent \Egrave \Emacron];
 @r2_L = [\L \L.CAT \Lacute \Lcaron \Lcommaaccent];
+@r2_W = [\W \Wcircumflex];
+@r2_I = [\I \Iacute \Ibreve \Icircumflex \Idieresis \Idotaccent 
+     \Igrave \Imacron \Itilde];
+@r2_C = [\C \Cacute \Ccaron \Ccedilla \Ccircumflex \Cdotaccent];
+@r2_K = [\K \Kcommaaccent];
+@r2_T = [\T \Tcaron \uni0162 \uni021A];
+@r2_IJ = [\IJ \J \Jcircumflex];
+@r2_R = [\R \Racute \Rcaron \Rcommaaccent];
+@r2_M = [\M \Z \Zacute \Zcaron \Zdotaccent];
+@r2_H = [\H \Hcircumflex];
+@r2_S = [\S \Sacute \Scaron \Scedilla \Scircumflex \uni0218];
+@r2_O = [\O \Oacute \Obreve \Ocircumflex \Odieresis \Ograve 
+     \Ohungarumlaut \Omacron \Otilde];
+@r2_A.001 = [\A.001 \AE \Aacute.001 \Abreve.001 \Acircumflex.001 \Adieresis.001 
+     \Agrave.001 \Amacron.001 \Aogonek \Aogonek.001 \Aring.001 \Atilde.001 
+     \B.001 \C.001 \Cacute.001 \Ccaron.001 \Ccircumflex.001 \Cdotaccent.001 
+     \D.001 \Dcaron.001 \Dcroat \Dcroat.001 \E.001 \Eacute.001 
+     \Ebreve.001 \Ecaron.001 \Ecircumflex.001 \Edieresis.001 \Edotaccent.001 \Egrave.001 
+     \Emacron.001 \Eogonek \Eogonek.001 \Eth \Eth.001 \G.001 
+     \Gbreve.001 \Gcircumflex.001 \Gcommaaccent.001 \Gdotaccent.001 \Hbar \Iogonek 
+     \Ldot \Lslash \M.001 \M.002 \N.001 \Nacute.001 
+     \Ncaron.001 \Ncommaaccent.001 \Ntilde.001 \OE \Oslash \P.001 
+     \R.001 \Racute.001 \Rcaron.001 \Rcommaaccent.001 \T.001 \T.002 
+     \Tbar \Tbar.001 \Tcaron.001 \Tcaron.002 \Thorn \Uogonek 
+     \uni0162.001 \uni0162.002 \uni021A.001 \uni021A.002];
+@r2_Y = [\Y \Yacute \Ycircumflex \Ydieresis];
+@r2_N = [\N \Nacute \Ncaron \Ncommaaccent \Ntilde];
 
+@l2_J = [\J \Jcircumflex];
+@l2_C = [\C \Cacute \Ccaron \Ccedilla \Ccircumflex \Cdotaccent 
+     \O \Oacute \Obreve \Ocircumflex \Odieresis \Ograve 
+     \Ohungarumlaut \Omacron \Otilde];
 @l2_l = [\l \lacute \lcaron \lcommaaccent \ldot \lslash];
 @l2_j.TRK = [\j.TRK \jcircumflex \uni0237];
 @l2_s = [\s \sacute \scaron \scedilla \scircumflex \uni0219];
+@l2_T = [\T \Tcaron \uni0162 \uni021A];
 @l2_h = [\h \hbar \hcircumflex \k \k.001 \kcommaaccent 
      \kcommaaccent.001];
 @l2_dotlessi = [\dotlessi \i.TRK \iacute \ibreve \icircumflex \idieresis 
@@ -192,9 +206,12 @@ feature kern {
 @l2_longs = [\longs \longs_b \longs_h \longs_i \longs_j \longs_k 
      \longs_k.001 \longs_l \longs_longs \longs_longs_b \longs_longs_h \longs_longs_i 
      \longs_longs_j \longs_longs_k \longs_longs_k.001 \longs_longs_l \longs_longs_thorn \longs_thorn];
+@l2_V = [\V \W \Wcircumflex];
 @l2_u = [\u \uacute \ubreve \ucircumflex \udieresis \ugrave 
      \uhungarumlaut \umacron \uogonek \uring \utilde \v 
      \w \wcircumflex];
+@l2_A = [\A \Aacute \Abreve \Acircumflex \Adieresis \Agrave 
+     \Amacron \Aring \Atilde];
 @l2_a = [\a \aacute \abreve \acircumflex \adieresis \ae 
      \agrave \amacron \aogonek \aring \atilde \c 
      \c_t \cacute \ccaron \ccedilla \ccircumflex \cdotaccent 
@@ -212,62 +229,57 @@ feature kern {
      \f_h \f_hcircumflex \f_i \f_j \f_k \f_k.001 
      \f_l \f_thorn];
 @l2_i = [\i \iogonek];
-@l2_D = [\D \Dcaron \I \IJ \Iacute \Ibreve 
-     \Icircumflex \Idieresis \Idotaccent \Igrave \Imacron \Itilde];
-@l2_H = [\H \Hcircumflex \L \L.CAT \Lacute \Lcaron 
-     \Lcommaaccent \P];
+@l2_D = [\D \Dcaron \E \Eacute \Ebreve \Ecaron 
+     \Ecircumflex \Edieresis \Edotaccent \Egrave \Emacron \I 
+     \Iacute \Ibreve \Icircumflex \Idieresis \Idotaccent \Igrave 
+     \Imacron \Itilde];
+@l2_F = [\F \H \Hcircumflex \K \Kcommaaccent \L 
+     \L.CAT \Lacute \Lcaron \Lcommaaccent \P \R 
+     \Racute \Rcaron \Rcommaaccent];
+@l2_Z = [\Z \Zacute \Zcaron \Zdotaccent];
 @l2_g.001 = [\g.001 \gbreve.001 \gcircumflex.001 \gcommaaccent.001 \gdotaccent.001];
+@l2_M = [\M \N \Nacute \Ncaron \Ncommaaccent \Ntilde 
+     \Y \Yacute \Ycircumflex \Ydieresis \b];
+@l2_B = [\B \S \Sacute \Scaron \Scedilla \Scircumflex 
+     \uni0218];
 @l2_quotedblright = [\quotedblright \quoteright];
 @l2_quotedblleft = [\quotedblleft \quoteleft \quotereversed \uni201F];
-@l2_A = [\A \A.001 \AE \Aacute \Aacute.001 \Abreve 
-     \Abreve.001 \Acircumflex \Acircumflex.001 \Adieresis \Adieresis.001 \Agrave 
-     \Agrave.001 \Amacron \Amacron.001 \Aogonek \Aogonek.001 \Aring 
-     \Aring.001 \Atilde \Atilde.001 \B \B.001 \C 
-     \C.001 \Cacute \Cacute.001 \Ccaron \Ccaron.001 \Ccedilla 
-     \Ccircumflex \Ccircumflex.001 \Cdotaccent \Cdotaccent.001 \D.001 \Dcaron.001 
-     \Dcroat \Dcroat.001 \E \E.001 \Eacute \Eacute.001 
-     \Ebreve \Ebreve.001 \Ecaron \Ecaron.001 \Ecircumflex \Ecircumflex.001 
-     \Edieresis \Edieresis.001 \Edotaccent \Edotaccent.001 \Egrave \Egrave.001 
-     \Emacron \Emacron.001 \Eogonek \Eogonek.001 \Eth \Eth.001 
-     \Euro \F \G \G.001 \Gbreve \Gbreve.001 
-     \Gcircumflex \Gcircumflex.001 \Gcommaaccent \Gcommaaccent.001 \Gdotaccent \Gdotaccent.001 
-     \Hbar \Iogonek \J \Jcircumflex \K \Kcommaaccent 
-     \Ldot \Lslash \M \M.001 \M.002 \N 
-     \N.001 \Nacute \Nacute.001 \Ncaron \Ncaron.001 \Ncommaaccent 
-     \Ncommaaccent.001 \Ntilde \Ntilde.001 \OE \Oslash \P.001 
-     \Q \R \R.001 \Racute \Racute.001 \Rcaron 
-     \Rcaron.001 \Rcommaaccent \Rcommaaccent.001 \S \Sacute \Scaron 
-     \Scedilla \Scircumflex \T \T.001 \T.002 \Tbar 
-     \Tbar.001 \Tcaron \Tcaron.001 \Tcaron.002 \Thorn \U 
-     \Uacute \Ubreve \Ucircumflex \Udieresis \Ugrave \Uhungarumlaut 
-     \Umacron \Uogonek \Uring \Utilde \V \W 
-     \Wcircumflex \X \Y \Yacute \Ycircumflex \Ydieresis 
-     \Z \Zacute \Zcaron \Zdotaccent \acute \acutecomb 
-     \acutecomb.cap \afii00208 \afii299 \afii300 \afii301 \afii57929 
-     \afii61664 \ampersand \asciicircum \asciitilde \asterisk \at 
-     \backslash \bar \braceleft \braceright \bracketleft \bracketright 
-     \breve \brokenbar \bullet \bullet.001 \bullet.002 \bullet.003 
-     \caron \cedilla \cent \circumflex \colon \comma 
-     \copyright \currency \dagger \daggerdbl \degree \dieresis 
-     \divide \dollar \dollar.hanging \dollar.lining \dotaccent \eight 
-     \eight.hanging \eight.lining \eight.sub \eight.sup \ellipsis \emdash 
-     \endash \equal \exclam \exclamdown \figuredash \five 
-     \five.hanging \five.lining \five.sub \five.sup \four \four.hanging 
-     \four.lining \four.sub \four.sup \grave \gravecomb \gravecomb.cap 
-     \greater \hungarumlaut \hyphen \less \logicalnot \macron 
-     \minus \minute \multiply \nine \nine.hanging \nine.lining 
-     \nine.sub \nine.sup \notequal \numbersign \ogonek \one 
-     \one.hanging \one.lining \one.sub \one.sup \onehalf \onequarter 
-     \ordfeminine \ordmasculine \paragraph \parenleft \parenright \percent 
-     \period \periodcentered \plus \plusminus \question \questiondown 
-     \quotedbl \quotesingle \registered \ring \second \section 
-     \semicolon \seven \seven.hanging \seven.lining \seven.sub \seven.sup 
-     \six \six.hanging \six.lining \six.sub \six.sup \slash 
-     \space \sterling \three \three.hanging \three.lining \three.sub 
-     \three.sup \threequarters \tilde \tildecomb \tildecomb.cap \two 
-     \two.hanging \two.lining \two.sub \two.sup \uni00A0 \uni00AD 
-     \uni00B2 \uni00B3 \uni00B5 \uni00B9 \uni0162 \uni0162.001 
-     \uni0162.002 \uni0218 \uni021A \uni021A.001 \uni021A.002 \uni02BB 
+@l2_A.001 = [\A.001 \AE \Aacute.001 \Abreve.001 \Acircumflex.001 \Adieresis.001 
+     \Agrave.001 \Amacron.001 \Aogonek \Aogonek.001 \Aring.001 \Atilde.001 
+     \B.001 \C.001 \Cacute.001 \Ccaron.001 \Ccircumflex.001 \Cdotaccent.001 
+     \D.001 \Dcaron.001 \Dcroat \Dcroat.001 \E.001 \Eacute.001 
+     \Ebreve.001 \Ecaron.001 \Ecircumflex.001 \Edieresis.001 \Edotaccent.001 \Egrave.001 
+     \Emacron.001 \Eogonek \Eogonek.001 \Eth \Eth.001 \Euro 
+     \G.001 \Gbreve.001 \Gcircumflex.001 \Gcommaaccent.001 \Gdotaccent.001 \Hbar 
+     \Iogonek \Ldot \Lslash \M.001 \M.002 \N.001 
+     \Nacute.001 \Ncaron.001 \Ncommaaccent.001 \Ntilde.001 \OE \Oslash 
+     \P.001 \R.001 \Racute.001 \Rcaron.001 \Rcommaaccent.001 \T.001 
+     \T.002 \Tbar \Tbar.001 \Tcaron.001 \Tcaron.002 \Thorn 
+     \Uogonek \acute \acutecomb \acutecomb.cap \afii00208 \afii299 
+     \afii300 \afii301 \afii57929 \afii61664 \ampersand \asciicircum 
+     \asciitilde \asterisk \at \backslash \bar \braceleft 
+     \braceright \bracketleft \bracketright \breve \brokenbar \bullet 
+     \bullet.001 \bullet.002 \bullet.003 \caron \cedilla \cent 
+     \circumflex \colon \comma \copyright \currency \dagger 
+     \daggerdbl \degree \dieresis \divide \dollar \dollar.hanging 
+     \dollar.lining \dotaccent \eight \eight.hanging \eight.lining \eight.sub 
+     \eight.sup \ellipsis \emdash \endash \equal \exclam 
+     \exclamdown \figuredash \five \five.hanging \five.lining \five.sub 
+     \five.sup \four \four.hanging \four.lining \four.sub \four.sup 
+     \grave \gravecomb \gravecomb.cap \greater \hungarumlaut \hyphen 
+     \less \logicalnot \macron \minus \minute \multiply 
+     \nine \nine.hanging \nine.lining \nine.sub \nine.sup \notequal 
+     \numbersign \ogonek \one \one.hanging \one.lining \one.sub 
+     \one.sup \onehalf \onequarter \ordfeminine \ordmasculine \paragraph 
+     \parenleft \parenright \percent \period \periodcentered \plus 
+     \plusminus \question \questiondown \quotedbl \quotesingle \registered 
+     \ring \second \section \semicolon \seven \seven.hanging 
+     \seven.lining \seven.sub \seven.sup \six \six.hanging \six.lining 
+     \six.sub \six.sup \slash \space \sterling \three 
+     \three.hanging \three.lining \three.sub \three.sup \threequarters \tilde 
+     \tildecomb \tildecomb.cap \two \two.hanging \two.lining \two.sub 
+     \two.sup \uni00A0 \uni00AD \uni00B2 \uni00B3 \uni00B5 
+     \uni00B9 \uni0162.001 \uni0162.002 \uni021A.001 \uni021A.002 \uni02BB 
      \uni02C0 \uni02C8 \uni0302 \uni0302.cap \uni0304 \uni0304.cap 
      \uni0306 \uni0306.cap \uni0307 \uni0307.cap \uni0307.high \uni0308 
      \uni0308.cap \uni030A \uni030A.cap \uni030B \uni030B.cap \uni030C 
@@ -280,9 +292,10 @@ feature kern {
 @l2_z = [\z \z.001 \zacute \zacute.001 \zcaron \zcaron.001 
      \zdotaccent \zdotaccent.001];
 @l2_quotedblbase = [\quotedblbase \quotesinglbase];
+@l2_U = [\U \Uacute \Ubreve \Ucircumflex \Udieresis \Ugrave 
+     \Uhungarumlaut \Umacron \Uring \Utilde];
+@l2_G = [\G \Gbreve \Gcircumflex \Gcommaaccent \Gdotaccent];
 @l2_y = [\y \yacute \ycircumflex \ydieresis];
-@l2_O = [\O \Oacute \Obreve \Ocircumflex \Odieresis \Ograve 
-     \Ohungarumlaut \Omacron \Otilde];
 
 @r3_z.001 = [\z.001 \zacute.001 \zcaron.001 \zdotaccent.001];
 @r3_r = [\r \racute \rcaron \rcommaaccent \y \yacute 
@@ -314,9 +327,14 @@ feature kern {
 @r3_v = [\v \w \wcircumflex];
 @r3_ordfeminine = [\ordfeminine \ordmasculine \uni00B5];
 
+@l3_J = [\J \Jcircumflex];
+@l3_C = [\C \Cacute \Ccaron \Ccedilla \Ccircumflex \Cdotaccent 
+     \O \Oacute \Obreve \Ocircumflex \Odieresis \Ograve 
+     \Ohungarumlaut \Omacron \Otilde];
 @l3_l = [\l \lacute \lcaron \lcommaaccent \ldot \lslash];
 @l3_j.TRK = [\j.TRK \jcircumflex \uni0237];
 @l3_s = [\s \sacute \scaron \scedilla \scircumflex \uni0219];
+@l3_T = [\T \Tcaron \uni0162 \uni021A];
 @l3_h = [\h \hbar \hcircumflex \k \k.001 \kcommaaccent 
      \kcommaaccent.001];
 @l3_dotlessi = [\dotlessi \i.TRK \iacute \ibreve \icircumflex \idieresis 
@@ -326,9 +344,12 @@ feature kern {
 @l3_longs = [\longs \longs_b \longs_h \longs_i \longs_j \longs_k 
      \longs_k.001 \longs_l \longs_longs \longs_longs_b \longs_longs_h \longs_longs_i 
      \longs_longs_j \longs_longs_k \longs_longs_k.001 \longs_longs_l \longs_longs_thorn \longs_thorn];
+@l3_V = [\V \W \Wcircumflex];
 @l3_u = [\u \uacute \ubreve \ucircumflex \udieresis \ugrave 
      \uhungarumlaut \umacron \uogonek \uring \utilde \v 
      \w \wcircumflex];
+@l3_A = [\A \Aacute \Abreve \Acircumflex \Adieresis \Agrave 
+     \Amacron \Aring \Atilde];
 @l3_a = [\a \aacute \abreve \acircumflex \adieresis \ae 
      \agrave \amacron \aogonek \aring \atilde \c 
      \c_t \cacute \ccaron \ccedilla \ccircumflex \cdotaccent 
@@ -346,62 +367,57 @@ feature kern {
      \f_h \f_hcircumflex \f_i \f_j \f_k \f_k.001 
      \f_l \f_thorn];
 @l3_i = [\i \iogonek];
-@l3_D = [\D \Dcaron \I \IJ \Iacute \Ibreve 
-     \Icircumflex \Idieresis \Idotaccent \Igrave \Imacron \Itilde];
-@l3_H = [\H \Hcircumflex \L \L.CAT \Lacute \Lcaron 
-     \Lcommaaccent \P];
+@l3_D = [\D \Dcaron \E \Eacute \Ebreve \Ecaron 
+     \Ecircumflex \Edieresis \Edotaccent \Egrave \Emacron \I 
+     \Iacute \Ibreve \Icircumflex \Idieresis \Idotaccent \Igrave 
+     \Imacron \Itilde];
+@l3_F = [\F \H \Hcircumflex \K \Kcommaaccent \L 
+     \L.CAT \Lacute \Lcaron \Lcommaaccent \P \R 
+     \Racute \Rcaron \Rcommaaccent];
+@l3_Z = [\Z \Zacute \Zcaron \Zdotaccent];
 @l3_g.001 = [\g.001 \gbreve.001 \gcircumflex.001 \gcommaaccent.001 \gdotaccent.001];
+@l3_M = [\M \N \Nacute \Ncaron \Ncommaaccent \Ntilde 
+     \Y \Yacute \Ycircumflex \Ydieresis \b];
+@l3_B = [\B \S \Sacute \Scaron \Scedilla \Scircumflex 
+     \uni0218];
 @l3_quotedblright = [\quotedblright \quoteright];
 @l3_quotedblleft = [\quotedblleft \quoteleft \quotereversed \uni201F];
-@l3_A = [\A \A.001 \AE \Aacute \Aacute.001 \Abreve 
-     \Abreve.001 \Acircumflex \Acircumflex.001 \Adieresis \Adieresis.001 \Agrave 
-     \Agrave.001 \Amacron \Amacron.001 \Aogonek \Aogonek.001 \Aring 
-     \Aring.001 \Atilde \Atilde.001 \B \B.001 \C 
-     \C.001 \Cacute \Cacute.001 \Ccaron \Ccaron.001 \Ccedilla 
-     \Ccircumflex \Ccircumflex.001 \Cdotaccent \Cdotaccent.001 \D.001 \Dcaron.001 
-     \Dcroat \Dcroat.001 \E \E.001 \Eacute \Eacute.001 
-     \Ebreve \Ebreve.001 \Ecaron \Ecaron.001 \Ecircumflex \Ecircumflex.001 
-     \Edieresis \Edieresis.001 \Edotaccent \Edotaccent.001 \Egrave \Egrave.001 
-     \Emacron \Emacron.001 \Eogonek \Eogonek.001 \Eth \Eth.001 
-     \Euro \F \G \G.001 \Gbreve \Gbreve.001 
-     \Gcircumflex \Gcircumflex.001 \Gcommaaccent \Gcommaaccent.001 \Gdotaccent \Gdotaccent.001 
-     \Hbar \Iogonek \J \Jcircumflex \K \Kcommaaccent 
-     \Ldot \Lslash \M \M.001 \M.002 \N 
-     \N.001 \Nacute \Nacute.001 \Ncaron \Ncaron.001 \Ncommaaccent 
-     \Ncommaaccent.001 \Ntilde \Ntilde.001 \OE \Oslash \P.001 
-     \Q \R \R.001 \Racute \Racute.001 \Rcaron 
-     \Rcaron.001 \Rcommaaccent \Rcommaaccent.001 \S \Sacute \Scaron 
-     \Scedilla \Scircumflex \T \T.001 \T.002 \Tbar 
-     \Tbar.001 \Tcaron \Tcaron.001 \Tcaron.002 \Thorn \U 
-     \Uacute \Ubreve \Ucircumflex \Udieresis \Ugrave \Uhungarumlaut 
-     \Umacron \Uogonek \Uring \Utilde \V \W 
-     \Wcircumflex \X \Y \Yacute \Ycircumflex \Ydieresis 
-     \Z \Zacute \Zcaron \Zdotaccent \acute \acutecomb 
-     \acutecomb.cap \afii00208 \afii299 \afii300 \afii301 \afii57929 
-     \afii61664 \ampersand \asciicircum \asciitilde \asterisk \at 
-     \backslash \bar \braceleft \braceright \bracketleft \bracketright 
-     \breve \brokenbar \bullet \bullet.001 \bullet.002 \bullet.003 
-     \caron \cedilla \cent \circumflex \colon \comma 
-     \copyright \currency \dagger \daggerdbl \degree \dieresis 
-     \divide \dollar \dollar.hanging \dollar.lining \dotaccent \eight 
-     \eight.hanging \eight.lining \eight.sub \eight.sup \ellipsis \emdash 
-     \endash \equal \exclam \exclamdown \figuredash \five 
-     \five.hanging \five.lining \five.sub \five.sup \four \four.hanging 
-     \four.lining \four.sub \four.sup \grave \gravecomb \gravecomb.cap 
-     \greater \hungarumlaut \hyphen \less \logicalnot \macron 
-     \minus \minute \multiply \nine \nine.hanging \nine.lining 
-     \nine.sub \nine.sup \notequal \numbersign \ogonek \one 
-     \one.hanging \one.lining \one.sub \one.sup \onehalf \onequarter 
-     \ordfeminine \ordmasculine \paragraph \parenleft \parenright \percent 
-     \period \periodcentered \plus \plusminus \question \questiondown 
-     \quotedbl \quotesingle \registered \ring \second \section 
-     \semicolon \seven \seven.hanging \seven.lining \seven.sub \seven.sup 
-     \six \six.hanging \six.lining \six.sub \six.sup \slash 
-     \space \sterling \three \three.hanging \three.lining \three.sub 
-     \three.sup \threequarters \tilde \tildecomb \tildecomb.cap \two 
-     \two.hanging \two.lining \two.sub \two.sup \uni00A0 \uni00AD 
-     \uni00B2 \uni00B3 \uni00B5 \uni00B9 \uni0162 \uni0162.001 
-     \uni0162.002 \uni0218 \uni021A \uni021A.001 \uni021A.002 \uni02BB 
+@l3_A.001 = [\A.001 \AE \Aacute.001 \Abreve.001 \Acircumflex.001 \Adieresis.001 
+     \Agrave.001 \Amacron.001 \Aogonek \Aogonek.001 \Aring.001 \Atilde.001 
+     \B.001 \C.001 \Cacute.001 \Ccaron.001 \Ccircumflex.001 \Cdotaccent.001 
+     \D.001 \Dcaron.001 \Dcroat \Dcroat.001 \E.001 \Eacute.001 
+     \Ebreve.001 \Ecaron.001 \Ecircumflex.001 \Edieresis.001 \Edotaccent.001 \Egrave.001 
+     \Emacron.001 \Eogonek \Eogonek.001 \Eth \Eth.001 \Euro 
+     \G.001 \Gbreve.001 \Gcircumflex.001 \Gcommaaccent.001 \Gdotaccent.001 \Hbar 
+     \Iogonek \Ldot \Lslash \M.001 \M.002 \N.001 
+     \Nacute.001 \Ncaron.001 \Ncommaaccent.001 \Ntilde.001 \OE \Oslash 
+     \P.001 \R.001 \Racute.001 \Rcaron.001 \Rcommaaccent.001 \T.001 
+     \T.002 \Tbar \Tbar.001 \Tcaron.001 \Tcaron.002 \Thorn 
+     \Uogonek \acute \acutecomb \acutecomb.cap \afii00208 \afii299 
+     \afii300 \afii301 \afii57929 \afii61664 \ampersand \asciicircum 
+     \asciitilde \asterisk \at \backslash \bar \braceleft 
+     \braceright \bracketleft \bracketright \breve \brokenbar \bullet 
+     \bullet.001 \bullet.002 \bullet.003 \caron \cedilla \cent 
+     \circumflex \colon \comma \copyright \currency \dagger 
+     \daggerdbl \degree \dieresis \divide \dollar \dollar.hanging 
+     \dollar.lining \dotaccent \eight \eight.hanging \eight.lining \eight.sub 
+     \eight.sup \ellipsis \emdash \endash \equal \exclam 
+     \exclamdown \figuredash \five \five.hanging \five.lining \five.sub 
+     \five.sup \four \four.hanging \four.lining \four.sub \four.sup 
+     \grave \gravecomb \gravecomb.cap \greater \hungarumlaut \hyphen 
+     \less \logicalnot \macron \minus \minute \multiply 
+     \nine \nine.hanging \nine.lining \nine.sub \nine.sup \notequal 
+     \numbersign \ogonek \one \one.hanging \one.lining \one.sub 
+     \one.sup \onehalf \onequarter \ordfeminine \ordmasculine \paragraph 
+     \parenleft \parenright \percent \period \periodcentered \plus 
+     \plusminus \question \questiondown \quotedbl \quotesingle \registered 
+     \ring \second \section \semicolon \seven \seven.hanging 
+     \seven.lining \seven.sub \seven.sup \six \six.hanging \six.lining 
+     \six.sub \six.sup \slash \space \sterling \three 
+     \three.hanging \three.lining \three.sub \three.sup \threequarters \tilde 
+     \tildecomb \tildecomb.cap \two \two.hanging \two.lining \two.sub 
+     \two.sup \uni00A0 \uni00AD \uni00B2 \uni00B3 \uni00B5 
+     \uni00B9 \uni0162.001 \uni0162.002 \uni021A.001 \uni021A.002 \uni02BB 
      \uni02C0 \uni02C8 \uni0302 \uni0302.cap \uni0304 \uni0304.cap 
      \uni0306 \uni0306.cap \uni0307 \uni0307.cap \uni0307.high \uni0308 
      \uni0308.cap \uni030A \uni030A.cap \uni030B \uni030B.cap \uni030C 
@@ -414,17 +430,20 @@ feature kern {
 @l3_z = [\z \z.001 \zacute \zacute.001 \zcaron \zcaron.001 
      \zdotaccent \zdotaccent.001];
 @l3_quotedblbase = [\quotedblbase \quotesinglbase];
+@l3_U = [\U \Uacute \Ubreve \Ucircumflex \Udieresis \Ugrave 
+     \Uhungarumlaut \Umacron \Uring \Utilde];
+@l3_G = [\G \Gbreve \Gcircumflex \Gcommaaccent \Gdotaccent];
 @l3_y = [\y \yacute \ycircumflex \ydieresis];
-@l3_O = [\O \Oacute \Obreve \Ocircumflex \Odieresis \Ograve 
-     \Ohungarumlaut \Omacron \Otilde];
 
-pos \longs_longs [\underscore \b @l1_quotedblright @l1_quotedblleft \napostrophe] 130;
+pos \longs_longs [\underscore @l1_M @l1_U @l1_quotedblright @l1_quotedblleft @l1_V @l1_T \napostrophe] 130;
 pos @r1_guillemotleft [@l1_quotedblbase @l1_quotedblright \napostrophe] -125;
 pos \longs_longs [@l1_i \ij] 5;
+pos \f_f @l1_A 10;
 pos @r1_guillemotleft @l1_guillemotright -115;
 pos [\guillemotright \guilsinglright] @l1_quotedblleft -110;
 pos [\f_f \longs_longs] \germandbls -105;
 pos \guillemotright [@l1_quotedblbase @l1_quotedblright \napostrophe] -100;
+pos \longs_longs @l1_A 30;
 pos \guilsinglright [@l1_quotedblbase @l1_quotedblright \napostrophe] -95;
 pos [@r1_f_f_l @r1_f_f_h @r1_f_f_i @r1_c_t @r1_quotedblright @r1_quotedblleft] \germandbls -95;
 pos @r1_guillemotleft @l1_guillemotleft -95;
@@ -434,101 +453,204 @@ pos [\guillemotright \guilsinglright] @l1_guillemotright -85;
 pos [@r1_quotedblbase @r1_quotedblright] [@l1_quotedblbase @l1_quotedblright \napostrophe] -75;
 pos @r1_quotedblleft @l1_quotedblleft -70;
 pos [\guillemotright \guilsinglright] @l1_guillemotleft -70;
+pos \f_f \Q 60;
 pos [@r1_quotedblbase @r1_quotedblright] @l1_guillemotright -60;
 pos @r1_quotedblleft [@l1_quotedblbase @l1_quotedblright \napostrophe] -60;
+pos \f_f [@l1_G @l1_C] 70;
 pos [\underscore @r1_quotedblbase] [@l1_f @l1_longs] 75;
 pos @r1_quotedblleft @l1_guillemotright -50;
+pos \longs_longs \Q 80;
+pos \f_f [@l1_J @l1_D \thorn \X \IJ] 80;
 pos [\underscore @r1_quotedblbase] [@l1_j.TRK \j] 80;
-pos \f_f [@l1_D \thorn] 80;
 pos [@r1_quotedblbase @r1_quotedblright] @l1_guillemotleft -45;
-pos \f_f [@l1_H @l1_h] 90;
+pos [@r1_f_f_l @r1_f_f_h @r1_f_f_i @r1_c_t @r1_quotedblbase @r1_guillemotleft \guillemotright \guilsinglright] @l1_T -40;
+pos \longs_longs [@l1_G @l1_C] 90;
+pos \f_f [@l1_F @l1_h] 90;
 pos @r1_quotedblleft @l1_guillemotleft -30;
 pos [\f_f @r1_f_f_l @r1_f_f_h @r1_quotedblright @r1_quotedblleft] \x -30;
-pos \longs_longs [@l1_D \thorn] 100;
-pos \f_f @l1_l 100;
-pos @r1_f_f_i \x -25;
+pos [@r1_f_f_l @r1_f_f_h @r1_quotedblright @r1_quotedblleft] @l1_A -30;
+pos @r1_quotedblbase @l1_V -30;
+pos \longs_longs [@l1_J @l1_D \thorn \X \IJ] 100;
+pos \f_f [@l1_Z @l1_B @l1_l] 100;
+pos @r1_f_f_l [\Q @l1_V] -25;
+pos @r1_f_f_i [\x @l1_A] -25;
+pos [\underscore @r1_quotedblbase] @l1_J 105;
 pos [\longs_longs @r1_c_t] \x -20;
-pos [\f_f \longs_longs] @l1_longs -20;
-pos @r1_quotedblbase @l1_u -20;
+pos [@r1_f_f_h @r1_f_f_i] [\Q @l1_V] -20;
 pos [\f_f @r1_f_f_l @r1_f_f_h @r1_f_f_i \longs_longs @r1_c_t @r1_quotedblright @r1_quotedblleft] @l1_s -20;
-pos \longs_longs [@l1_H @l1_h] 110;
-pos \f_f [\underscore \b @l1_quotedblright @l1_quotedblleft \napostrophe] 110;
+pos [@r1_f_f_l @r1_f_f_h @r1_f_f_i @r1_c_t @r1_quotedblright @r1_quotedblleft] \X -20;
+pos [\f_f \longs_longs] @l1_longs -20;
+pos @r1_c_t @l1_A -20;
+pos @r1_quotedblbase @l1_u -20;
+pos \longs_longs [@l1_F @l1_h] 110;
+pos \f_f [\underscore @l1_M @l1_U @l1_quotedblright @l1_quotedblleft @l1_V @l1_T \napostrophe] 110;
 pos @r1_f_f_l [@l1_j.TRK \j @l1_u] -15;
 pos [@r1_f_f_h @r1_f_f_i] [@l1_j.TRK \j @l1_u] -10;
-pos [@r1_f_f_l @r1_f_f_h @r1_f_f_i @r1_c_t @r1_quotedblright @r1_quotedblleft] [@l1_longs @l1_l @l1_h] -10;
-pos [\f_f \longs_longs] [@l1_g.001 @l1_g @l1_quotedblbase @l1_a] -10;
-pos [@r1_f_f_l @r1_f_f_h @r1_f_f_i @r1_quotedblbase] [@l1_t @l1_y] -10;
 pos [\f_f @r1_f_f_l @r1_f_f_h @r1_f_f_i \longs_longs @r1_c_t @r1_quotedblright @r1_quotedblleft] @l1_z -10;
-pos \longs_longs @l1_l 120;
+pos [@r1_c_t @r1_quotedblright @r1_quotedblleft] \Q -10;
+pos [\f_f \longs_longs] [@l1_g.001 @l1_g @l1_quotedblbase @l1_a] -10;
+pos [@r1_c_t @r1_guillemotleft \guillemotright \guilsinglright] @l1_V -10;
+pos [@r1_f_f_l @r1_f_f_h @r1_f_f_i @r1_c_t @r1_quotedblright @r1_quotedblleft] [@l1_longs @l1_l @l1_h] -10;
+pos [@r1_f_f_l @r1_f_f_h @r1_f_f_i @r1_quotedblbase] [@l1_t @l1_y] -10;
+pos \longs_longs [@l1_Z @l1_B @l1_l] 120;
 pos [\underscore @r1_quotedblbase] @l1_g.001 120;
 pos @r1_guillemotleft @l1_quotedblleft -135;
 
 subtable;
-pos @r2_L \germandbls -95;
-pos \P [@l2_D \thorn @l2_z] -30;
-pos @r2_I \x -30;
-pos \P \germandbls -125;
+pos [@r2_L @r2_A \B] \germandbls -95;
+pos [@r2_K @r2_I] [\x @l2_A] -30;
+pos @r2_L @l2_V -30;
+pos [@r2_W \V @r2_T @r2_Y \F @r2_N @r2_C \X @r2_S @r2_IJ \P @r2_K @r2_I @r2_D \Q @r2_O] \X -30;
+pos [@r2_W \V @r2_T @r2_Y \F @r2_C \P @r2_K] [@l2_J @l2_D \thorn \IJ] -30;
+pos [@r2_N \X @r2_S @r2_K] @l2_longs -30;
+pos @r2_K [@l2_g.001 @l2_f @l2_g @l2_quotedblbase @l2_dotlessi @l2_G @l2_guillemotleft @l2_guillemotright @l2_i @l2_a \ij] -30;
+pos @r2_A @l2_T -30;
+pos [@r2_N @r2_K] @l2_s -30;
+pos \X [@l2_t @l2_y] -30;
+pos @r2_R [@l2_C @l2_quotedblright @l2_quotedblleft \napostrophe] -30;
+pos [@r2_C \X @r2_S \P @r2_K] @l2_z -30;
+pos [@r2_C @r2_S \P @r2_K] \Q -30;
+pos [@r2_C \P] \germandbls -125;
+pos [\V \F] @l2_z -60;
+pos [@r2_W @r2_Y] [@l2_j.TRK \j @l2_f @l2_dotlessi @l2_guillemotleft @l2_guillemotright @l2_i \tbar @l2_t @l2_y @l2_u \ij] -60;
+pos @r2_R @l2_T -60;
 pos \P \x -60;
-pos [@r2_H @r2_L] \x -20;
-pos [@r2_I @r2_H @r2_D] @l2_longs -20;
-pos @r2_D [@l2_g.001 @l2_g @l2_quotedblbase @l2_a \thorn] -20;
-pos \P [@l2_f @l2_dotlessi @l2_guillemotleft @l2_guillemotright @l2_i @l2_H @l2_h @l2_O \tbar @l2_t @l2_y \ij] -20;
-pos [@r2_I @r2_H @r2_L @r2_D] @l2_s -20;
-pos [\P @r2_L] [@l2_j.TRK \j @l2_u] -20;
-pos [\P @r2_I @r2_H @r2_L @r2_D] @l2_l -10;
-pos @r2_L [@l2_longs @l2_t @l2_y] -10;
-pos [@r2_I @r2_H @r2_D] [@l2_H @l2_D] -10;
-pos [@r2_I @r2_H @r2_L @r2_D] [@l2_z @l2_h] -10;
+pos [\V \F] \germandbls -155;
+pos \V @l2_quotedblbase -90;
+pos @r2_T @l2_z -90;
+pos \F @l2_A -90;
+pos [\V \F] \x -90;
+pos @r2_T \germandbls -185;
+pos @r2_T \x -120;
+pos [@r2_R @r2_M] \germandbls -85;
+pos [@r2_IJ @r2_I @r2_E @r2_G @r2_H @r2_D \Q @r2_O] @l2_longs -20;
+pos [@r2_N \X @r2_S @r2_IJ @r2_E @r2_G @r2_D \Q @r2_O] [@l2_g.001 @l2_g @l2_quotedblbase @l2_a \thorn] -20;
+pos [@r2_C @r2_S \P @r2_E @r2_R] @l2_y -20;
+pos [@r2_W \V @r2_T @r2_Y \F @r2_N @r2_C \X @r2_S \P @r2_K @r2_E] [@l2_F @l2_h] -20;
+pos [@r2_IJ @r2_I @r2_E @r2_G @r2_H @r2_L @r2_D \Q @r2_O] @l2_s -20;
+pos [@r2_E @r2_G @r2_H @r2_L] [\X \x @l2_A] -20;
+pos [@r2_C @r2_S \P @r2_E @r2_L @r2_R] [@l2_j.TRK \j @l2_u] -20;
+pos [@r2_C @r2_S \P @r2_E] @l2_t -20;
+pos [@r2_N @r2_E @r2_L] \Q -20;
+pos [@r2_G \B] @l2_T -20;
+pos [@r2_C \X @r2_S \P @r2_E] [@l2_f @l2_dotlessi @l2_G @l2_guillemotleft @l2_guillemotright @l2_i @l2_C \tbar \ij] -20;
+pos [@r2_N @r2_E] @l2_z -20;
+pos [@r2_A \B] @l2_V -20;
+pos [@r2_N \X @r2_S @r2_E] [@l2_J @l2_D \IJ] -20;
+pos [@r2_N \X @r2_S @r2_K] \germandbls -115;
+pos [\V \F] [@l2_f @l2_dotlessi @l2_guillemotleft @l2_guillemotright @l2_i \tbar @l2_t \ij] -50;
+pos [\V \F @r2_K] [@l2_j.TRK \j @l2_y @l2_u] -50;
+pos [@r2_W \V @r2_T @r2_Y \F] \Q -50;
+pos [@r2_N @r2_D \Q @r2_O] @l2_A -50;
+pos @r2_N \x -50;
+pos [@r2_W @r2_Y] [@l2_g.001 @l2_longs @l2_g @l2_a @l2_s] -80;
+pos @r2_T [@l2_j.TRK \j @l2_f @l2_dotlessi @l2_guillemotleft @l2_guillemotright @l2_i \tbar @l2_t @l2_y @l2_u \ij] -80;
+pos @r2_Y @l2_quotedblbase -80;
+pos [@r2_N @r2_L @r2_A \B @r2_R] @l2_t -10;
 pos [@r2_I @r2_H] [@l2_g.001 @l2_g @l2_quotedblbase @l2_a \thorn] -10;
-pos [@r2_I @r2_H @r2_D] \germandbls -105;
-pos \P [@l2_g.001 @l2_longs @l2_g @l2_quotedblbase @l2_a @l2_s] -40;
-pos @r2_D \x -40;
+pos [@r2_W \V @r2_T @r2_Y \F @r2_N @r2_C \X @r2_S @r2_IJ \P @r2_K @r2_I @r2_E @r2_G @r2_H @r2_D \Q @r2_O] @l2_B -10;
+pos [@r2_L @r2_A \B] @l2_longs -10;
+pos [@r2_N @r2_R] \tbar -10;
+pos [@r2_W \V @r2_T @r2_Y \F @r2_N @r2_C \X @r2_S \P @r2_K @r2_E] @l2_Z -10;
+pos [@r2_IJ @r2_I @r2_G @r2_H @r2_D \Q @r2_O @r2_A \B] \Q -10;
+pos \Q @l2_T -10;
+pos [@r2_G @r2_D \Q] [@l2_U @l2_V] -10;
+pos [@r2_W \V @r2_T @r2_Y \F @r2_N @r2_C \X @r2_S @r2_IJ \P @r2_K @r2_I @r2_E @r2_G @r2_H @r2_L @r2_D \Q @r2_O @r2_A \B] @l2_l -10;
+pos [@r2_N @r2_L @r2_A \B] @l2_y -10;
+pos [@r2_IJ @r2_I @r2_G @r2_H @r2_D \Q @r2_O] [@l2_J @l2_F @l2_D \IJ] -10;
+pos [@r2_N @r2_A \B] [@l2_j.TRK \j @l2_u] -10;
+pos [@r2_A \B] [@l2_s \X \x @l2_A] -10;
+pos [@r2_IJ @r2_I @r2_G @r2_H @r2_L @r2_D \Q @r2_O @r2_A \B] [@l2_z @l2_h] -10;
+pos @r2_N [@l2_f @l2_dotlessi @l2_G @l2_guillemotleft @l2_guillemotright @l2_i @l2_C \ij] -10;
+pos [@r2_IJ @r2_I @r2_E @r2_G @r2_H @r2_D \Q @r2_O] \germandbls -105;
+pos [@r2_W \V @r2_T @r2_Y \F @r2_K] @l2_C -40;
+pos [@r2_C \P] [@l2_g.001 @l2_longs @l2_g @l2_quotedblbase @l2_a] -40;
+pos [@r2_L @r2_D] @l2_T -40;
+pos [@r2_C \X @r2_S @r2_IJ] @l2_A -40;
+pos [@r2_W \V @r2_T @r2_Y \F] @l2_G -40;
+pos @r2_K [\tbar @l2_t] -40;
+pos [@r2_C \X @r2_S \P] @l2_s -40;
+pos [@r2_C \X @r2_S @r2_IJ @r2_D \Q @r2_O] \x -40;
+pos @r2_R @l2_V -40;
+pos \X [@l2_j.TRK \j \Q @l2_u] -40;
+pos \P @l2_A -70;
+pos [@r2_W @r2_Y] @l2_z -70;
+pos \F @l2_quotedblbase -70;
+pos [\V \F] [@l2_g.001 @l2_longs @l2_g @l2_a @l2_s] -70;
+pos [@r2_W @r2_Y] \germandbls -165;
+pos [@r2_W \V @r2_T @r2_Y] @l2_A -100;
+pos [@r2_W @r2_Y] \x -100;
+pos @r2_T [@l2_g.001 @l2_longs @l2_g @l2_a @l2_s] -100;
+pos [@r2_W @r2_T] @l2_quotedblbase -100;
 
 subtable;
-pos \eth [\underscore \b @l3_quotedblright @l3_quotedblleft \napostrophe] 5;
+pos \eth [\underscore @l3_M @l3_U @l3_quotedblright @l3_quotedblleft @l3_V @l3_T \napostrophe] 5;
 pos @r3_g @l3_g 5;
+pos \longs @l3_A 10;
 pos \napostrophe @l3_quotedblleft -495;
 pos [@r3_r @r3_z.001 @r3_v \f \longs] \germandbls -105;
 pos \napostrophe [@l3_quotedblbase @l3_quotedblright \napostrophe] -485;
 pos [@r3_u @r3_l @r3_h \lslash @r3_dotlessi @r3_i \germandbls @r3_ae \napostrophe @r3_d @r3_ij @r3_s \eth @r3_z] \germandbls -95;
 pos @r3_g [@l3_f @l3_longs] 35;
 pos \napostrophe @l3_guillemotright -475;
+pos \f \Q 40;
 pos @r3_a \germandbls -85;
 pos @r3_g [@l3_j.TRK \j] 45;
+pos \f [@l3_G @l3_C] 50;
 pos \napostrophe @l3_guillemotleft -455;
-pos \f [@l3_D \thorn] 60;
-pos \f [@l3_H @l3_h] 70;
-pos \f @l3_l 80;
-pos \longs [@l3_D \thorn] 80;
+pos \f [@l3_J @l3_D \thorn \X \IJ] 60;
+pos \longs \Q 60;
+pos \f [@l3_F @l3_h] 70;
+pos \longs [@l3_G @l3_C] 70;
+pos @r3_g @l3_J 70;
+pos \f [@l3_Z @l3_B @l3_l] 80;
+pos \longs [@l3_J @l3_D \thorn \X \IJ] 80;
 pos @r3_g @l3_g.001 85;
-pos @r3_r \x -40;
-pos \f [\underscore \b @l3_quotedblright @l3_quotedblleft \napostrophe] 90;
-pos \longs [@l3_H @l3_h] 90;
+pos [@r3_r @r3_g @r3_z.001 @r3_v @r3_u @r3_l @r3_h \lslash @r3_dotlessi @r3_ae \napostrophe @r3_s @r3_z @r3_a] @l3_T -40;
+pos @r3_r [\x @l3_A] -40;
+pos \f [\underscore @l3_M @l3_U @l3_quotedblright @l3_quotedblleft @l3_V @l3_T \napostrophe] 90;
+pos \longs [@l3_F @l3_h] 90;
 pos @r3_g \germandbls -35;
+pos [@r3_r @r3_g @r3_z.001 @r3_v] \X -30;
 pos @r3_z.001 [@l3_quotedblbase \thorn] -30;
 pos [@r3_g @r3_z.001 @r3_v \f @r3_u @r3_l @r3_h \lslash] \x -30;
-pos \longs @l3_l 100;
-pos [@r3_dotlessi @r3_i] \x -25;
+pos @r3_u [\Q @l3_V] -30;
+pos @r3_d @l3_T -30;
+pos [@r3_g @r3_z.001 @r3_v @r3_u @r3_l @r3_h \lslash] @l3_A -30;
+pos \longs [@l3_Z @l3_B @l3_l] 100;
+pos [@r3_dotlessi @r3_i] [\x @l3_A] -25;
+pos @r3_l [\Q @l3_V] -25;
+pos [@r3_h @r3_dotlessi \germandbls] @l3_V -20;
 pos [@r3_r @r3_g] [@l3_quotedblbase \thorn] -20;
+pos \germandbls @l3_T -20;
 pos [@r3_r @r3_g @r3_z.001] @l3_a -20;
 pos [@r3_r @r3_z.001] [@l3_g.001 @l3_g] -20;
+pos [@r3_u @r3_l @r3_h \lslash @r3_dotlessi @r3_i \germandbls @r3_ae \napostrophe @r3_d @r3_ij] \X -20;
+pos [\germandbls @r3_ae \napostrophe @r3_d @r3_ij] @l3_A -20;
+pos [@r3_h @r3_dotlessi @r3_i \germandbls] \Q -20;
 pos [\longs \germandbls @r3_ae \napostrophe @r3_d @r3_ij] \x -20;
 pos [@r3_r @r3_z.001 @r3_v \f \longs] @l3_longs -20;
 pos [@r3_u \germandbls] [@l3_j.TRK \j @l3_u] -20;
 pos [@r3_r @r3_g @r3_z.001 @r3_v \f @r3_u @r3_l @r3_h \lslash @r3_dotlessi @r3_i \longs \germandbls @r3_ae \napostrophe @r3_d @r3_ij] @l3_s -20;
-pos \longs [\underscore \b @l3_quotedblright @l3_quotedblleft \napostrophe] 110;
+pos \longs [\underscore @l3_M @l3_U @l3_quotedblright @l3_quotedblleft @l3_V @l3_T \napostrophe] 110;
 pos @r3_l [@l3_j.TRK \j @l3_u] -15;
-pos [@r3_s \eth] [@l3_s \x] -15;
+pos @r3_i [@l3_V @l3_T] -15;
+pos [@r3_s \eth] [@l3_s \X \x @l3_A] -15;
 pos [@r3_v \f \longs @r3_z] [@l3_g.001 @l3_g @l3_quotedblbase @l3_a] -10;
-pos [@r3_v @r3_z] \thorn -10;
+pos [@r3_u @r3_l @r3_h \lslash @r3_dotlessi @r3_i \germandbls @r3_ae \napostrophe @r3_d @r3_ij @r3_s \eth @r3_z] @l3_longs -10;
+pos [\f @r3_z] @l3_A -10;
+pos [@r3_r @r3_g @r3_z.001 @r3_v \lslash @r3_ae \napostrophe @r3_d @r3_s @r3_z @r3_a] @l3_V -10;
+pos [@r3_r @r3_g @r3_z.001 @r3_v \lslash @r3_ae \napostrophe @r3_d @r3_ij @r3_s \eth @r3_z] \Q -10;
 pos [@r3_r @r3_g @r3_z.001 @r3_v \f @r3_u @r3_l @r3_h \lslash @r3_dotlessi @r3_i \longs \germandbls @r3_ae \napostrophe @r3_d @r3_ij @r3_s \eth @r3_z] @l3_z -10;
 pos [@r3_u @r3_l @r3_h @r3_dotlessi @r3_i \germandbls] [@l3_t @l3_y] -10;
-pos [@r3_r @r3_g @r3_z.001 @r3_v @r3_u @r3_l @r3_h \lslash @r3_dotlessi @r3_i \germandbls @r3_ae \napostrophe @r3_d @r3_ij @r3_s @r3_z] @l3_l -10;
-pos @r3_z [@l3_s \x] -10;
-pos [@r3_r @r3_g @r3_z.001 @r3_v @r3_u @r3_l @r3_h \lslash @r3_dotlessi @r3_i \germandbls @r3_ae \napostrophe @r3_d @r3_ij @r3_s \eth @r3_z] @l3_h -10;
 pos [@r3_h @r3_dotlessi @r3_i] [@l3_j.TRK \j @l3_u] -10;
-pos [@r3_u @r3_l @r3_h \lslash @r3_dotlessi @r3_i \germandbls @r3_ae \napostrophe @r3_d @r3_ij @r3_s \eth @r3_z] @l3_longs -10;
-pos [@r3_r @r3_g @r3_z.001 @r3_v @r3_z] [@l3_H @l3_D] -10;
+pos @r3_z [@l3_s \X \x] -10;
+pos [@r3_r @r3_g @r3_z.001 @r3_v @r3_u @r3_l @r3_h \lslash @r3_dotlessi @r3_i \germandbls @r3_ae \napostrophe @r3_d @r3_ij @r3_s \eth @r3_z] @l3_h -10;
+pos [@r3_r @r3_g @r3_z.001 @r3_v @r3_u @r3_l @r3_h \lslash @r3_dotlessi @r3_i \germandbls @r3_ae \napostrophe @r3_d @r3_ij @r3_s @r3_z] @l3_l -10;
+pos [@r3_r @r3_z.001 @r3_v @r3_z] @l3_J -10;
+pos [@r3_r @r3_g @r3_z.001 @r3_v @r3_z] [@l3_U @l3_B @l3_F @l3_D \IJ] -10;
+pos [@r3_v @r3_z] \thorn -10;
 pos \eth @l3_l -5;
+pos @r3_ij [@l3_V @l3_T] -5;
 
 } kern;
