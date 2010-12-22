@@ -26,7 +26,7 @@ ACLOCAL_AMFLAGS = -I m4 --install
 MKFONT_FLAGS = --infer-licensing --no-instructions --ttf-emsize=4096 ${MKFONT_GRAPHITE_FLAGS}
 FAMILYNAME = lindenhill
 FONTS = LindenHill LindenHill-Italic LindenHill-Bold
-FEA_LindenHill = case cpsp figures generated_kerning hist liga locl main sc
+FEA_LindenHill = case cpsp figures generated_kerning hist liga locl main sc stylistic
 FEA_LindenHill_Italic = case cpsp figures generated_kerning hist liga locl main stylistic
 FEA_LindenHill_Bold = case cpsp figures generated_kerning hist liga locl main
 

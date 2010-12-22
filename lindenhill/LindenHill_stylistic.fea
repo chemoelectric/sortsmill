@@ -1,4 +1,4 @@
-# Copyright (c) 2009 Barry Schwartz
+# Copyright (c) 2010 Barry Schwartz
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -18,34 +18,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-languagesystem DFLT dflt;
-languagesystem latn dflt;
+#-----------------------------------------------------------------------
 
-# Catalan
-languagesystem latn CAT;
+feature salt {
+  sub \bullet from [\bullet.001];
+} salt;
 
-# Romanian, Moldovan
-languagesystem latn ROM; 
-languagesystem latn MOL;
-
-# Turkish, Azeri, Crimean Tatar
-languagesystem latn TRK;
-languagesystem latn AZE;
-languagesystem latn CRT;
-
-# Useful for spacing and kerning of capitals.
-# Comment this out for production.
-#include(CAPS.fea)
-
-include(LindenHill_locl.fea)
-include(LindenHill_figures.fea)
-include(LindenHill_sc.fea)
-include(LindenHill_hist.fea)
-include(LindenHill_case.fea)
-include(LindenHill_stylistic.fea)
-include(LindenHill_liga.fea)
-include(LindenHill_cpsp.fea)
-include(LindenHill_generated_kerning.fea)
+#-----------------------------------------------------------------------
 
 # local variables:
 # mode: fundamental

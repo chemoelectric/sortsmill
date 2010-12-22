@@ -1,4 +1,4 @@
-# Copyright (c) 2009 Barry Schwartz
+# Copyright (c) 2010 Barry Schwartz
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -52,6 +52,8 @@ feature swsh {
   lookup swsh2;
 } swsh;
 
+#-----------------------------------------------------------------------
+
 # "Standard" swash capitals. These designs actually were the "non-swash"
 # capitals for Monotype text fonts, but to reduce confusion we make them
 # an option.
@@ -60,6 +62,12 @@ feature ss01 {
   sub [\N \Ntilde \Nacute \Ncommaaccent \Ncaron] by [\N.001 \Ntilde.001 \Nacute.001 \Ncommaaccent.001 \Ncaron.001];
   sub [\T \uni0162 \uni021A \Tcaron \Tbar] by [\T.001 \uni0162.001 \uni021A.001 \Tcaron.001 \Tbar.001];
 } ss01;
+
+#-----------------------------------------------------------------------
+
+feature salt {
+  sub \bullet from [\bullet.001 \bullet.002 \bullet.003];
+} salt;
 
 #-----------------------------------------------------------------------
 
