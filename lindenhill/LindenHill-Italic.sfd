@@ -22,7 +22,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1249677682
-ModificationTime: 1293062760
+ModificationTime: 1293069636
 PfmFamily: 17
 TTFWeight: 400
 TTFWidth: 5
@@ -73,15 +73,15 @@ KernClass2: 22 34 "'kern' Horizontal Kerning in Latin lookup 3 kerning class 5"
  5 longs
  1 f
  44 s sacute scaron scedilla scircumflex uni0219
- 4 ij j
  424 ae b c cacute ccaron ccedilla ccircumflex cdotaccent e eacute ebreve ecaron ecircumflex edieresis edotaccent egrave emacron eogonek g.001 gbreve.001 gcircumflex.001 gcommaaccent.001 gdotaccent.001 j.TRK jcircumflex k k.001 kcommaaccent kcommaaccent.001 m n nacute ncaron ncommaaccent ntilde o oacute obreve ocircumflex odieresis oe ograve ohungarumlaut omacron oslash otilde p q t tbar tcaron thorn uni0163 uni021B uni0237 x
  6 lslash
  15 d dcaron dcroat
+ 4 ij j
  33 l lacute lcaron lcommaaccent ldot
  11 napostrophe
- 9 i iogonek
  88 dotlessi i.TRK iacute ibreve icircumflex idieresis igrave imacron iogonek.dotless itilde
  10 germandbls
+ 9 i iogonek
  18 h hbar hcircumflex
  87 u uacute ubreve ucircumflex udieresis ugrave uhungarumlaut umacron uogonek uring utilde
  44 g gbreve gcircumflex gcommaaccent gdotaccent
@@ -90,7 +90,7 @@ KernClass2: 22 34 "'kern' Horizontal Kerning in Latin lookup 3 kerning class 5"
  15 v w wcircumflex
  42 z.001 zacute.001 zcaron.001 zdotaccent.001
  27 Z Zacute Zcaron Zdotaccent 
- 173 C Cacute Ccaron Ccedilla Ccircumflex Cdotaccent G Gbreve Gcircumflex Gcommaaccent Gdotaccent O Oacute Obreve Ocircumflex Odieresis Ograve Ohungarumlaut Omacron Oslash Otilde
+ 176 C Cacute Ccaron Ccedilla Ccircumflex Cdotaccent G Gbreve Gcircumflex Gcommaaccent Gdotaccent O OE Oacute Obreve Ocircumflex Odieresis Ograve Ohungarumlaut Omacron Oslash Otilde
  82 M N Nacute Ncaron Ncommaaccent Ntilde Y Yacute Ycircumflex Ydieresis b underscore 
  132 f f_b f_f f_f_b f_f_h f_f_hcircumflex f_f_i f_f_j f_f_k f_f_k.001 f_f_l f_f_thorn f_h f_hcircumflex f_i f_j f_k f_k.001 f_l f_thorn 
  10 germandbls
@@ -99,18 +99,19 @@ KernClass2: 22 34 "'kern' Horizontal Kerning in Latin lookup 3 kerning class 5"
  103 u uacute ubreve ucircumflex udieresis ugrave uhungarumlaut umacron uogonek uring utilde v w wcircumflex
  55 t tcaron uni0163 uni021B y yacute ycircumflex ydieresis
  69 z z.001 zacute zacute.001 zcaron zcaron.001 zdotaccent zdotaccent.001
- 65 A Aacute Abreve Acircumflex Adieresis Agrave Amacron Aring Atilde
+ 73 A Aacute Abreve Acircumflex Adieresis Agrave Amacron Aogonek Aring Atilde
  46 B S Sacute Scaron Scedilla Scircumflex uni0218
  180 D Dcaron Dcroat E Eacute Ebreve Ecaron Ecircumflex Edieresis Edotaccent Egrave Emacron Eogonek Eth I IJ Iacute Ibreve Icircumflex Idieresis Idotaccent Igrave Imacron Iogonek Itilde
  119 F H Hbar Hcircumflex K Kcommaaccent L L.CAT Lacute Lcaron Lcommaaccent Ldot Lslash P R Racute Rcaron Rcommaaccent Thorn
- 79 U Uacute Ubreve Ucircumflex Udieresis Ugrave Uhungarumlaut Umacron Uring Utilde
+ 87 U Uacute Ubreve Ucircumflex Udieresis Ugrave Uhungarumlaut Umacron Uogonek Uring Utilde
  40 l lacute lcaron lcommaaccent ldot lslash
  13 J Jcircumflex
  56 h hbar hcircumflex k k.001 kcommaaccent kcommaaccent.001
+ 29 T Tbar Tcaron uni0162 uni021A
  36 napostrophe quotedblright quoteright
  44 quotedblleft quoteleft quotereversed uni201F
  1 Q
- 24 T Tcaron uni0162 uni021A
+ 15 V W Wcircumflex
  313 a aacute abreve acircumflex adieresis ae agrave amacron aogonek aring atilde c c_t cacute ccaron ccedilla ccircumflex cdotaccent d dcaron dcroat e eacute ebreve ecaron ecircumflex edieresis edotaccent egrave emacron eogonek eth o oacute obreve ocircumflex odieresis oe ograve ohungarumlaut omacron oslash otilde q
  209 longs longs_b longs_h longs_i longs_j longs_k longs_k.001 longs_l longs_longs longs_longs_b longs_longs_h longs_longs_i longs_longs_j longs_longs_k longs_longs_k.001 longs_longs_l longs_longs_thorn longs_thorn
  44 g gbreve gcircumflex gcommaaccent gdotaccent
@@ -119,40 +120,39 @@ KernClass2: 22 34 "'kern' Horizontal Kerning in Latin lookup 3 kerning class 5"
  27 quotedblbase quotesinglbase
  44 s sacute scaron scedilla scircumflex uni0219
  5 thorn
- 1 x
+ 4 AE x
  1 X
- 15 V W Wcircumflex
- 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -85 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -40 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} 0 {} 0 {} 5 {} 0 {} -95 {} 0 {} 0 {} 0 {} 0 {} -10 {} -15 {} 0 {} 0 {} 0 {} 5 {} -5 {} 0 {} -10 {} 5 {} 5 {} -10 {} 5 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} -15 {} 0 {} -15 {} -15 {} 5 {} 0 {} 100 {} 70 {} 110 {} 0 {} -105 {} 0 {} 0 {} 0 {} 0 {} -10 {} 10 {} 100 {} 80 {} 90 {} 110 {} 100 {} 80 {} 90 {} 110 {} 110 {} 0 {} 110 {} -10 {} -20 {} -10 {} -10 {} 0 {} -10 {} -20 {} 80 {} -20 {} 80 {} 110 {} 0 {} 80 {} 50 {} 90 {} 0 {} -105 {} 0 {} 0 {} 0 {} 0 {} -10 {} -10 {} 80 {} 60 {} 70 {} 90 {} 80 {} 60 {} 70 {} 90 {} 90 {} 0 {} 90 {} -10 {} -20 {} -10 {} -10 {} 0 {} -10 {} -20 {} 60 {} -30 {} 60 {} 90 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} 0 {} 0 {} -10 {} -15 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} 0 {} 0 {} -10 {} -40 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} -15 {} 0 {} -15 {} -15 {} -10 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} 0 {} 0 {} -10 {} -20 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} 0 {} 0 {} -10 {} -5 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} -20 {} 0 {} -20 {} -20 {} -5 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} 0 {} 0 {} -10 {} -20 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} 0 {} 0 {} -10 {} -40 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} -20 {} 0 {} -20 {} -20 {} -10 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} 0 {} 0 {} -10 {} -30 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} 0 {} 0 {} -10 {} -40 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} -20 {} 0 {} -30 {} -20 {} -10 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} 0 {} 0 {} -10 {} -20 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} 0 {} 0 {} -10 {} -30 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} -20 {} 0 {} -20 {} -20 {} -10 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} -15 {} -10 {} -10 {} -30 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} 0 {} 0 {} -25 {} -40 {} 0 {} -10 {} 0 {} 0 {} -15 {} 0 {} -20 {} 0 {} -30 {} -20 {} -25 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} -455 {} -475 {} 0 {} 0 {} -10 {} -20 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} -485 {} -495 {} -10 {} -40 {} 0 {} -10 {} 0 {} 0 {} 0 {} -485 {} -20 {} 0 {} -20 {} -20 {} -10 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} -10 {} -10 {} -10 {} -25 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} 0 {} 0 {} -20 {} -15 {} 0 {} -10 {} 0 {} 0 {} -10 {} 0 {} -20 {} 0 {} -25 {} -20 {} -15 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} -10 {} -10 {} -10 {} -25 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} 0 {} 0 {} -20 {} -40 {} 0 {} -10 {} 0 {} 0 {} -10 {} 0 {} -20 {} 0 {} -25 {} -20 {} -20 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} -20 {} -10 {} -10 {} -20 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} 0 {} 0 {} -20 {} -20 {} 0 {} -10 {} 0 {} 0 {} -20 {} 0 {} -20 {} 0 {} -20 {} -20 {} -20 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} -10 {} -10 {} -10 {} -30 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} 0 {} 0 {} -20 {} -40 {} 0 {} -10 {} 0 {} 0 {} -10 {} 0 {} -20 {} 0 {} -30 {} -20 {} -20 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} -20 {} -10 {} -10 {} -30 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} 0 {} 0 {} -30 {} -40 {} 0 {} -10 {} 0 {} 0 {} -20 {} 0 {} -20 {} 0 {} -30 {} -20 {} -30 {} 0 {} 0 {} 0 {} 0 {} 35 {} -35 {} 0 {} 0 {} 0 {} 0 {} -10 {} -30 {} -10 {} -10 {} -10 {} -10 {} -10 {} 70 {} -10 {} 0 {} 0 {} -10 {} -40 {} -20 {} 35 {} 5 {} 85 {} 45 {} -20 {} -20 {} -20 {} -30 {} -30 {} -10 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} 0 {} 0 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} 0 {} 0 {} -10 {} -40 {} -10 {} -10 {} -10 {} -10 {} 0 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} 0 {} 0 {} 0 {} 0 {} 0 {} -105 {} 0 {} 0 {} 0 {} 0 {} -10 {} -40 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} 0 {} 0 {} -10 {} -40 {} -20 {} -20 {} -20 {} -20 {} 0 {} -20 {} -20 {} -20 {} -40 {} -30 {} -10 {} 0 {} 0 {} 0 {} 0 {} 0 {} -105 {} 0 {} 0 {} 0 {} 0 {} -10 {} -30 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} 0 {} 0 {} -10 {} -40 {} -10 {} -20 {} -10 {} -10 {} 0 {} -10 {} -20 {} -10 {} -30 {} -30 {} -10 {} 0 {} 0 {} 0 {} 0 {} 0 {} -105 {} 0 {} 0 {} 0 {} 0 {} -10 {} -30 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} 0 {} 0 {} -10 {} -40 {} -20 {} -20 {} -20 {} -20 {} 0 {} -30 {} -20 {} -30 {} -30 {} -30 {} -10 {}
-KernClass2: 26 29 "'kern' Horizontal Kerning in Latin lookup 3 kerning class 3" 
+ 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -85 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -40 {} 0 {} 0 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 5 {} 0 {} -95 {} 0 {} 0 {} 0 {} 0 {} -10 {} -15 {} 0 {} 0 {} 0 {} 5 {} -5 {} 0 {} -10 {} 5 {} 5 {} 5 {} -10 {} 5 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} -15 {} 0 {} -15 {} -15 {} 0 {} 100 {} 70 {} 110 {} 0 {} -105 {} 0 {} 0 {} 0 {} 0 {} -10 {} 10 {} 100 {} 80 {} 90 {} 110 {} 100 {} 80 {} 90 {} 110 {} 110 {} 110 {} 0 {} 110 {} -10 {} -20 {} -10 {} -10 {} 0 {} -10 {} -20 {} 80 {} -20 {} 80 {} 0 {} 80 {} 50 {} 90 {} 0 {} -105 {} 0 {} 0 {} 0 {} 0 {} -10 {} -10 {} 80 {} 60 {} 70 {} 90 {} 80 {} 60 {} 70 {} 90 {} 90 {} 90 {} 0 {} 90 {} -10 {} -20 {} -10 {} -10 {} 0 {} -10 {} -20 {} 60 {} -30 {} 60 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} 0 {} 0 {} -10 {} -15 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} -40 {} 0 {} 0 {} -10 {} -10 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} -15 {} 0 {} -15 {} -15 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} 0 {} 0 {} -10 {} -20 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} -40 {} 0 {} 0 {} -10 {} -10 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} -20 {} 0 {} -20 {} -20 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} 0 {} 0 {} -10 {} -30 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} -40 {} 0 {} 0 {} -10 {} -10 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} -20 {} 0 {} -30 {} -20 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} 0 {} 0 {} -10 {} -20 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} -30 {} 0 {} 0 {} -10 {} -10 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} -20 {} 0 {} -20 {} -20 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} 0 {} 0 {} -10 {} -20 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} -15 {} 0 {} 0 {} -10 {} -10 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} -20 {} 0 {} -20 {} -20 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} -15 {} -10 {} -10 {} -30 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} -40 {} 0 {} 0 {} -25 {} -25 {} 0 {} -10 {} 0 {} 0 {} -15 {} 0 {} -20 {} 0 {} -30 {} -20 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} -455 {} -475 {} 0 {} 0 {} -10 {} -20 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} -40 {} -485 {} -495 {} -10 {} -10 {} 0 {} -10 {} 0 {} 0 {} 0 {} -485 {} -20 {} 0 {} -20 {} -20 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} -10 {} -10 {} -10 {} -25 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} -40 {} 0 {} 0 {} -20 {} -20 {} 0 {} -10 {} 0 {} 0 {} -10 {} 0 {} -20 {} 0 {} -25 {} -20 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} -20 {} -10 {} -10 {} -20 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} -20 {} 0 {} 0 {} -20 {} -20 {} 0 {} -10 {} 0 {} 0 {} -20 {} 0 {} -20 {} 0 {} -20 {} -20 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} -10 {} -10 {} -10 {} -25 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} -15 {} 0 {} 0 {} -20 {} -15 {} 0 {} -10 {} 0 {} 0 {} -10 {} 0 {} -20 {} 0 {} -25 {} -20 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} -10 {} -10 {} -10 {} -30 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} -40 {} 0 {} 0 {} -20 {} -20 {} 0 {} -10 {} 0 {} 0 {} -10 {} 0 {} -20 {} 0 {} -30 {} -20 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} -20 {} -10 {} -10 {} -30 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} -40 {} 0 {} 0 {} -30 {} -30 {} 0 {} -10 {} 0 {} 0 {} -20 {} 0 {} -20 {} 0 {} -30 {} -20 {} 0 {} 0 {} 0 {} 0 {} 35 {} -35 {} 0 {} 0 {} 0 {} 0 {} -10 {} -30 {} -10 {} -10 {} -10 {} -10 {} -10 {} 70 {} -10 {} -40 {} 0 {} 0 {} -10 {} -10 {} -20 {} 35 {} 5 {} 85 {} 45 {} -20 {} -20 {} -20 {} -30 {} -30 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} 0 {} 0 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} -40 {} 0 {} 0 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} 0 {} -10 {} -10 {} -10 {} -10 {} -10 {} 0 {} 0 {} 0 {} 0 {} 0 {} -105 {} 0 {} 0 {} 0 {} 0 {} -10 {} -40 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} -40 {} 0 {} 0 {} -10 {} -10 {} -20 {} -20 {} -20 {} -20 {} 0 {} -20 {} -20 {} -20 {} -40 {} -30 {} 0 {} 0 {} 0 {} 0 {} 0 {} -105 {} 0 {} 0 {} 0 {} 0 {} -10 {} -30 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} -40 {} 0 {} 0 {} -10 {} -10 {} -10 {} -20 {} -10 {} -10 {} 0 {} -10 {} -20 {} -10 {} -30 {} -30 {} 0 {} 0 {} 0 {} 0 {} 0 {} -105 {} 0 {} 0 {} 0 {} 0 {} -10 {} -30 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} -40 {} 0 {} 0 {} -10 {} -10 {} -20 {} -20 {} -20 {} -20 {} 0 {} -30 {} -20 {} -30 {} -30 {} -30 {}
+KernClass2: 26 30 "'kern' Horizontal Kerning in Latin lookup 3 kerning class 3" 
  28 M Z Zacute Zcaron Zdotaccent
  28 R Racute Rcaron Rcommaaccent
- 65 A Aacute Abreve Acircumflex Adieresis Agrave Amacron Aring Atilde
+ 73 A Aacute Abreve Acircumflex Adieresis Agrave Amacron Aogonek Aring Atilde
  1 B
  18 H Hbar Hcircumflex
  78 I Iacute Ibreve Icircumflex Idieresis Idotaccent Igrave Imacron Iogonek Itilde
  46 L L.CAT Lacute Lcaron Lcommaaccent Ldot Lslash
+ 132 G Gbreve Gcircumflex Gcommaaccent Gdotaccent U Uacute Ubreve Ucircumflex Udieresis Ugrave Uhungarumlaut Umacron Uogonek Uring Utilde
+ 84 AE E Eacute Ebreve Ecaron Ecircumflex Edieresis Edotaccent Egrave Emacron Eogonek OE
  16 IJ J Jcircumflex
  80 O Oacute Obreve Ocircumflex Odieresis Ograve Ohungarumlaut Omacron Oslash Otilde
- 124 G Gbreve Gcircumflex Gcommaaccent Gdotaccent U Uacute Ubreve Ucircumflex Udieresis Ugrave Uhungarumlaut Umacron Uring Utilde
  19 D Dcaron Dcroat Eth
- 1 Q
- 78 E Eacute Ebreve Ecaron Ecircumflex Edieresis Edotaccent Egrave Emacron Eogonek
  1 F
- 24 T Tcaron uni0162 uni021A
- 13 W Wcircumflex
  30 Y Yacute Ycircumflex Ydieresis
  1 V
+ 29 T Tbar Tcaron uni0162 uni021A
  14 K Kcommaaccent
  1 X
- 1 P
+ 13 W Wcircumflex
+ 1 Q
  5 Thorn
  47 C Cacute Ccaron Ccedilla Ccircumflex Cdotaccent
+ 1 P
  35 N Nacute Ncaron Ncommaaccent Ntilde
  44 S Sacute Scaron Scedilla Scircumflex uni0218
  46 B S Sacute Scaron Scedilla Scircumflex uni0218
  81 napostrophe quotedblleft quotedblright quoteleft quotereversed quoteright uni201F
- 24 T Tcaron uni0162 uni021A
- 80 U Uacute Ubreve Ucircumflex Udieresis Ugrave Uhungarumlaut Umacron Uring Utilde 
+ 29 T Tbar Tcaron uni0162 uni021A
+ 88 U Uacute Ubreve Ucircumflex Udieresis Ugrave Uhungarumlaut Umacron Uogonek Uring Utilde 
  26 Z Zacute Zcaron Zdotaccent
  10 germandbls
  40 l lacute lcaron lcommaaccent ldot lslash
@@ -166,9 +166,10 @@ KernClass2: 26 29 "'kern' Horizontal Kerning in Latin lookup 3 kerning class 3"
  209 longs longs_b longs_h longs_i longs_j longs_k longs_k.001 longs_l longs_longs longs_longs_b longs_longs_h longs_longs_i longs_longs_j longs_longs_k longs_longs_k.001 longs_longs_l longs_longs_thorn longs_thorn
  44 s sacute scaron scedilla scircumflex uni0219
  5 thorn
- 65 A Aacute Abreve Acircumflex Adieresis Agrave Amacron Aring Atilde
+ 73 A Aacute Abreve Acircumflex Adieresis Agrave Amacron Aogonek Aring Atilde
  1 x
- 128 C Cacute Ccaron Ccedilla Ccircumflex Cdotaccent O Oacute Obreve Ocircumflex Odieresis Ograve Ohungarumlaut Omacron Oslash Otilde
+ 2 AE
+ 131 C Cacute Ccaron Ccedilla Ccircumflex Cdotaccent O OE Oacute Obreve Ocircumflex Odieresis Ograve Ohungarumlaut Omacron Oslash Otilde
  44 G Gbreve Gcircumflex Gcommaaccent Gdotaccent
  360 dotlessi f f_b f_f f_f_b f_f_h f_f_hcircumflex f_f_i f_f_j f_f_k f_f_k.001 f_f_l f_f_thorn f_h f_hcircumflex f_i f_j f_k f_k.001 f_l f_thorn guillemotleft guillemotright guilsinglleft guilsinglright i i.TRK iacute ibreve icircumflex idieresis igrave ij imacron iogonek iogonek.dotless itilde m n nacute ncaron ncommaaccent ntilde p r racute rcaron rcommaaccent
  131 j j.TRK jcircumflex u uacute ubreve ucircumflex udieresis ugrave uhungarumlaut umacron uni0237 uogonek uring utilde v w wcircumflex
@@ -177,26 +178,26 @@ KernClass2: 26 29 "'kern' Horizontal Kerning in Latin lookup 3 kerning class 3"
  30 y yacute ycircumflex ydieresis
  4 tbar
  24 t tcaron uni0163 uni021B
- 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -85 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -30 {} -60 {} 0 {} 0 {} -85 {} 0 {} 0 {} 0 {} 0 {} 0 {} -40 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -30 {} 0 {} 0 {} -20 {} 0 {} 0 {} -20 {} -10 {} -10 {} 0 {} 0 {} 0 {} -30 {} 0 {} 0 {} -95 {} -10 {} 0 {} 0 {} -10 {} -10 {} -20 {} -10 {} -10 {} -10 {} -10 {} 0 {} -10 {} -10 {} 0 {} 0 {} 0 {} -10 {} 0 {} 0 {} -10 {} 0 {} -10 {} 0 {} 0 {} 0 {} -20 {} 0 {} 0 {} -95 {} -10 {} 0 {} 0 {} -10 {} -10 {} -20 {} -10 {} -10 {} -10 {} -10 {} 0 {} -10 {} -10 {} 0 {} 0 {} 0 {} -10 {} 0 {} 0 {} -10 {} 0 {} -10 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} -105 {} -10 {} -10 {} -10 {} -10 {} -10 {} 0 {} -20 {} -10 {} -20 {} -20 {} -10 {} -20 {} -20 {} 0 {} 0 {} 0 {} 0 {} -10 {} -10 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} -105 {} -10 {} -10 {} -10 {} -10 {} -10 {} 0 {} -30 {} -10 {} -20 {} -20 {} -10 {} -30 {} -30 {} 0 {} 0 {} 0 {} 0 {} -10 {} -10 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -40 {} 0 {} 0 {} -95 {} -10 {} 0 {} 0 {} -10 {} -20 {} -30 {} -20 {} -10 {} -10 {} -20 {} 0 {} -20 {} -20 {} 0 {} 0 {} 0 {} -20 {} 0 {} 0 {} -10 {} 0 {} -10 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} -105 {} -10 {} -10 {} -10 {} -10 {} -10 {} 0 {} -30 {} -10 {} -20 {} -20 {} -20 {} -40 {} -40 {} 0 {} 0 {} 0 {} 0 {} -20 {} -20 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} -105 {} -10 {} -10 {} -10 {} -10 {} -10 {} 0 {} -30 {} -10 {} -20 {} -20 {} -20 {} -50 {} -40 {} 0 {} 0 {} 0 {} 0 {} -20 {} -20 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -20 {} -10 {} 0 {} -105 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} -20 {} -10 {} -20 {} -20 {} -20 {} -20 {} -20 {} 0 {} 0 {} 0 {} 0 {} -20 {} -20 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -40 {} -10 {} 0 {} -105 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} -30 {} -10 {} -20 {} -20 {} -20 {} -50 {} -40 {} 0 {} 0 {} 0 {} 0 {} -20 {} -20 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -10 {} -10 {} 0 {} -105 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} -30 {} -10 {} -20 {} -20 {} -20 {} -50 {} -40 {} 0 {} 0 {} 0 {} 0 {} -20 {} -20 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} 0 {} 0 {} -10 {} -105 {} -10 {} -20 {} -20 {} -20 {} -20 {} 0 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} 0 {} -10 {} 0 {} 0 {} 0 {} -10 {} -155 {} -10 {} -30 {} -20 {} -20 {} -50 {} 0 {} -30 {} -60 {} -70 {} -70 {} -30 {} -90 {} -90 {} -40 {} -40 {} -50 {} -50 {} -70 {} -70 {} -50 {} -50 {} -50 {} 0 {} -10 {} 0 {} 0 {} 0 {} -10 {} -185 {} -10 {} -30 {} -20 {} -20 {} -50 {} 0 {} -30 {} -90 {} -100 {} -100 {} -30 {} -100 {} -120 {} -40 {} -40 {} -80 {} -80 {} -100 {} -100 {} -80 {} -80 {} -80 {} 0 {} -10 {} 0 {} 0 {} 0 {} -10 {} -165 {} -10 {} -30 {} -20 {} -20 {} -50 {} 0 {} -30 {} -70 {} -80 {} -80 {} -30 {} -100 {} -100 {} -40 {} -40 {} -60 {} -60 {} -80 {} -100 {} -60 {} -60 {} -60 {} 0 {} -10 {} 0 {} 0 {} 0 {} -10 {} -165 {} -10 {} -30 {} -20 {} -20 {} -50 {} 0 {} -30 {} -70 {} -80 {} -80 {} -30 {} -100 {} -100 {} -40 {} -40 {} -60 {} -60 {} -80 {} -80 {} -60 {} -60 {} -60 {} 0 {} -10 {} 0 {} 0 {} 0 {} -10 {} -155 {} -10 {} -30 {} -20 {} -20 {} -50 {} 0 {} -30 {} -60 {} -70 {} -70 {} -30 {} -100 {} -90 {} -40 {} -40 {} -50 {} -50 {} -70 {} -90 {} -50 {} -50 {} -50 {} 0 {} -10 {} 0 {} 0 {} 0 {} -10 {} -115 {} -10 {} -30 {} -20 {} -20 {} -30 {} 0 {} -30 {} -30 {} -30 {} -30 {} -30 {} -30 {} -30 {} -40 {} -30 {} -30 {} -50 {} -30 {} -30 {} -50 {} -40 {} -40 {} 0 {} -10 {} 0 {} 0 {} 0 {} -10 {} -115 {} -10 {} -20 {} -20 {} -20 {} -40 {} 0 {} -30 {} -30 {} -30 {} -40 {} -20 {} -40 {} -40 {} -20 {} -20 {} -20 {} -40 {} -20 {} -20 {} -30 {} -20 {} -30 {} 0 {} -10 {} 0 {} 0 {} 0 {} -10 {} -125 {} -10 {} -30 {} -20 {} -20 {} -30 {} 0 {} -30 {} -30 {} -40 {} -40 {} -30 {} -70 {} 0 {} -20 {} -20 {} -20 {} -20 {} -40 {} -40 {} -20 {} -20 {} -20 {} 0 {} -10 {} 0 {} -40 {} -10 {} 0 {} -105 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} -30 {} -10 {} -20 {} -20 {} -30 {} -50 {} -40 {} 0 {} 0 {} 0 {} 0 {} -20 {} -35 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} 0 {} 0 {} -10 {} -125 {} -10 {} -30 {} -20 {} -20 {} -30 {} 0 {} -30 {} -30 {} -40 {} -40 {} -30 {} -40 {} -40 {} -20 {} -20 {} -20 {} -20 {} -40 {} -40 {} -20 {} -20 {} -20 {} 0 {} -10 {} 0 {} 0 {} 0 {} -10 {} -115 {} -10 {} -20 {} -20 {} -20 {} -20 {} 0 {} -30 {} -20 {} -30 {} -30 {} -20 {} -50 {} -50 {} -10 {} -10 {} -10 {} -10 {} -20 {} -20 {} -10 {} -10 {} -10 {} 0 {} -10 {} 0 {} 0 {} 0 {} -10 {} -115 {} -10 {} -20 {} -20 {} -20 {} -30 {} 0 {} -30 {} -30 {} -30 {} -40 {} -20 {} -40 {} -40 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {}
-KernClass2: 14 31 "'kern' Horizontal Kerning in Latin lookup 3 kerning class 1" 
+ 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -85 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -30 {} -60 {} 0 {} 0 {} -85 {} 0 {} 0 {} 0 {} 0 {} 0 {} -40 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -30 {} 0 {} 0 {} -20 {} 0 {} 0 {} -20 {} -10 {} -10 {} 0 {} 0 {} 0 {} -30 {} 0 {} 0 {} -95 {} -10 {} 0 {} 0 {} -10 {} -10 {} -20 {} -10 {} -10 {} -10 {} -10 {} 0 {} -10 {} -10 {} -10 {} 0 {} 0 {} 0 {} -10 {} 0 {} 0 {} -10 {} 0 {} -10 {} 0 {} 0 {} 0 {} -20 {} 0 {} 0 {} -95 {} -10 {} 0 {} 0 {} -10 {} -10 {} -20 {} -10 {} -10 {} -10 {} -10 {} 0 {} -10 {} -10 {} -10 {} 0 {} 0 {} 0 {} -10 {} 0 {} 0 {} -10 {} 0 {} -10 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} -105 {} -10 {} -10 {} -10 {} -10 {} -10 {} 0 {} -20 {} -10 {} -20 {} -20 {} -10 {} -20 {} -20 {} -20 {} 0 {} 0 {} 0 {} 0 {} -10 {} -10 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} -105 {} -10 {} -10 {} -10 {} -10 {} -10 {} 0 {} -30 {} -10 {} -20 {} -20 {} -10 {} -30 {} -30 {} -30 {} 0 {} 0 {} 0 {} 0 {} -10 {} -10 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -40 {} 0 {} 0 {} -95 {} -10 {} 0 {} 0 {} -10 {} -20 {} -30 {} -20 {} -10 {} -10 {} -20 {} 0 {} -20 {} -20 {} -20 {} 0 {} 0 {} 0 {} -20 {} 0 {} 0 {} -10 {} 0 {} -10 {} 0 {} -10 {} 0 {} -20 {} -10 {} 0 {} -105 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} -20 {} -10 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} 0 {} 0 {} 0 {} 0 {} -20 {} -20 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} 0 {} 0 {} -10 {} -105 {} -10 {} -20 {} -20 {} -20 {} -20 {} 0 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} -105 {} -10 {} -10 {} -10 {} -10 {} -10 {} 0 {} -30 {} -10 {} -20 {} -20 {} -20 {} -40 {} -40 {} -40 {} 0 {} 0 {} 0 {} 0 {} -20 {} -20 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} -105 {} -10 {} -10 {} -10 {} -10 {} -10 {} 0 {} -30 {} -10 {} -20 {} -20 {} -20 {} -50 {} -40 {} -120 {} 0 {} 0 {} 0 {} 0 {} -20 {} -20 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -40 {} -10 {} 0 {} -105 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} -30 {} -10 {} -20 {} -20 {} -20 {} -50 {} -40 {} -120 {} 0 {} 0 {} 0 {} 0 {} -20 {} -20 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} 0 {} 0 {} -10 {} -155 {} -10 {} -30 {} -20 {} -20 {} -50 {} 0 {} -30 {} -60 {} -70 {} -70 {} -30 {} -90 {} -90 {} -90 {} -40 {} -40 {} -50 {} -50 {} -70 {} -70 {} -50 {} -50 {} -50 {} 0 {} -10 {} 0 {} 0 {} 0 {} -10 {} -165 {} -10 {} -30 {} -20 {} -20 {} -50 {} 0 {} -30 {} -70 {} -80 {} -80 {} -30 {} -100 {} -100 {} -100 {} -40 {} -40 {} -60 {} -60 {} -80 {} -80 {} -60 {} -60 {} -60 {} 0 {} -10 {} 0 {} 0 {} 0 {} -10 {} -155 {} -10 {} -30 {} -20 {} -20 {} -50 {} 0 {} -30 {} -60 {} -70 {} -70 {} -30 {} -100 {} -90 {} 0 {} -40 {} -40 {} -50 {} -50 {} -70 {} -90 {} -50 {} -50 {} -50 {} 0 {} -10 {} 0 {} 0 {} 0 {} -10 {} -185 {} -10 {} -30 {} -20 {} -20 {} -50 {} 0 {} -30 {} -90 {} -100 {} -100 {} -30 {} -100 {} -120 {} -120 {} -40 {} -40 {} -80 {} -80 {} -100 {} -100 {} -80 {} -80 {} -80 {} 0 {} -10 {} 0 {} 0 {} 0 {} -10 {} -115 {} -10 {} -30 {} -20 {} -20 {} -30 {} 0 {} -30 {} -30 {} -30 {} -30 {} -30 {} -30 {} -30 {} -30 {} -40 {} -30 {} -30 {} -50 {} -30 {} -30 {} -50 {} -40 {} -40 {} 0 {} -10 {} 0 {} 0 {} 0 {} -10 {} -115 {} -10 {} -20 {} -20 {} -20 {} -40 {} 0 {} -30 {} -30 {} -30 {} -40 {} -20 {} -40 {} -40 {} -40 {} -20 {} -20 {} -20 {} -40 {} -20 {} -20 {} -30 {} -20 {} -30 {} 0 {} -10 {} 0 {} 0 {} 0 {} -10 {} -165 {} -10 {} -30 {} -20 {} -20 {} -50 {} 0 {} -30 {} -70 {} -80 {} -80 {} -30 {} -100 {} -100 {} -140 {} -40 {} -40 {} -60 {} -60 {} -80 {} -100 {} -60 {} -60 {} -60 {} 0 {} -10 {} 0 {} -10 {} -10 {} 0 {} -105 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} -30 {} -10 {} -20 {} -20 {} -20 {} -50 {} -40 {} -120 {} 0 {} 0 {} 0 {} 0 {} -20 {} -20 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} -40 {} -10 {} 0 {} -105 {} -10 {} -10 {} -10 {} -10 {} -10 {} -10 {} -30 {} -10 {} -20 {} -20 {} -30 {} -50 {} -40 {} 0 {} 0 {} 0 {} 0 {} 0 {} -20 {} -35 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} 0 {} 0 {} -10 {} -125 {} -10 {} -30 {} -20 {} -20 {} -30 {} 0 {} -30 {} -30 {} -40 {} -40 {} -30 {} -40 {} -40 {} -40 {} -20 {} -20 {} -20 {} -20 {} -40 {} -40 {} -20 {} -20 {} -20 {} 0 {} -10 {} 0 {} 0 {} 0 {} -10 {} -125 {} -10 {} -30 {} -20 {} -20 {} -30 {} 0 {} -30 {} -30 {} -40 {} -40 {} -30 {} -70 {} 0 {} -140 {} -20 {} -20 {} -20 {} -20 {} -40 {} -40 {} -20 {} -20 {} -20 {} 0 {} -10 {} 0 {} 0 {} 0 {} -10 {} -115 {} -10 {} -20 {} -20 {} -20 {} -20 {} 0 {} -30 {} -20 {} -30 {} -30 {} -20 {} -50 {} -50 {} -50 {} -10 {} -10 {} -10 {} -10 {} -20 {} -20 {} -10 {} -10 {} -10 {} 0 {} -10 {} 0 {} 0 {} 0 {} -10 {} -115 {} -10 {} -20 {} -20 {} -20 {} -30 {} 0 {} -30 {} -30 {} -30 {} -40 {} -20 {} -40 {} -40 {} -40 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {} -20 {}
+KernClass2: 14 32 "'kern' Horizontal Kerning in Latin lookup 3 kerning class 1" 
  10 underscore
  11 longs_longs
- 3 f_f
  27 guillemotleft guilsinglleft
  195 c_t f_b f_f_b f_f_j f_f_k f_f_k.001 f_f_thorn f_j f_k f_k.001 f_thorn longs_b longs_j longs_k longs_k.001 longs_longs_b longs_longs_j longs_longs_k longs_longs_k.001 longs_longs_thorn longs_thorn
+ 3 f_f
  31 f_f_i f_i longs_i longs_longs_i
+ 14 guillemotright
+ 14 guilsinglright
+ 27 quotedblbase quotesinglbase
  24 quotedblright quoteright
  44 quotedblleft quoteleft quotereversed uni201F
  61 f_f_h f_f_hcircumflex f_h f_hcircumflex longs_h longs_longs_h
  31 f_f_l f_l longs_l longs_longs_l
- 14 guillemotright
- 14 guilsinglright
- 27 quotedblbase quotesinglbase
  73 B S Sacute Scaron Scedilla Scircumflex Z Zacute Zcaron Zdotaccent uni0218
- 173 C Cacute Ccaron Ccedilla Ccircumflex Cdotaccent G Gbreve Gcircumflex Gcommaaccent Gdotaccent O Oacute Obreve Ocircumflex Odieresis Ograve Ohungarumlaut Omacron Oslash Otilde
+ 176 C Cacute Ccaron Ccedilla Ccircumflex Cdotaccent G Gbreve Gcircumflex Gcommaaccent Gdotaccent O OE Oacute Obreve Ocircumflex Odieresis Ograve Ohungarumlaut Omacron Oslash Otilde
  186 D Dcaron Dcroat E Eacute Ebreve Ecaron Ecircumflex Edieresis Edotaccent Egrave Emacron Eogonek Eth I IJ Iacute Ibreve Icircumflex Idieresis Idotaccent Igrave Imacron Iogonek Itilde thorn
  120 F H Hbar Hcircumflex K Kcommaaccent L L.CAT Lacute Lcaron Lcommaaccent Ldot Lslash P R Racute Rcaron Rcommaaccent Thorn 
- 162 M N Nacute Ncaron Ncommaaccent Ntilde U Uacute Ubreve Ucircumflex Udieresis Ugrave Uhungarumlaut Umacron Uring Utilde Y Yacute Ycircumflex Ydieresis b underscore 
+ 170 M N Nacute Ncaron Ncommaaccent Ntilde U Uacute Ubreve Ucircumflex Udieresis Ugrave Uhungarumlaut Umacron Uogonek Uring Utilde Y Yacute Ycircumflex Ydieresis b underscore 
  359 a aacute abreve acircumflex adieresis ae agrave amacron aogonek aring atilde c c_t cacute ccaron ccedilla ccircumflex cdotaccent d dcaron dcroat e eacute ebreve ecaron ecircumflex edieresis edotaccent egrave emacron eogonek eth g gbreve gcircumflex gcommaaccent gdotaccent o oacute obreve ocircumflex odieresis oe ograve ohungarumlaut omacron oslash otilde q 
  132 f f_b f_f f_f_b f_f_h f_f_hcircumflex f_f_i f_f_j f_f_k f_f_k.001 f_f_l f_f_thorn f_h f_hcircumflex f_i f_j f_k f_k.001 f_l f_thorn 
  10 germandbls
@@ -206,13 +207,13 @@ KernClass2: 14 31 "'kern' Horizontal Kerning in Latin lookup 3 kerning class 1"
  44 s sacute scaron scedilla scircumflex uni0219
  55 t tcaron uni0163 uni021B y yacute ycircumflex ydieresis
  69 z z.001 zacute zacute.001 zcaron zcaron.001 zdotaccent zdotaccent.001
- 65 A Aacute Abreve Acircumflex Adieresis Agrave Amacron Aring Atilde
- 1 x
+ 73 A Aacute Abreve Acircumflex Adieresis Agrave Amacron Aogonek Aring Atilde
+ 2 AE
  40 l lacute lcaron lcommaaccent ldot lslash
  13 J Jcircumflex
  1 X
  56 h hbar hcircumflex k k.001 kcommaaccent kcommaaccent.001
- 24 T Tcaron uni0162 uni021A
+ 29 T Tbar Tcaron uni0162 uni021A
  36 napostrophe quotedblright quoteright
  44 quotedblleft quoteleft quotereversed uni201F
  1 Q
@@ -222,7 +223,8 @@ KernClass2: 14 31 "'kern' Horizontal Kerning in Latin lookup 3 kerning class 1"
  27 j j.TRK jcircumflex uni0237
  103 u uacute ubreve ucircumflex udieresis ugrave uhungarumlaut umacron uogonek uring utilde v w wcircumflex
  209 longs longs_b longs_h longs_i longs_j longs_k longs_k.001 longs_l longs_longs longs_longs_b longs_longs_h longs_longs_i longs_longs_j longs_longs_k longs_longs_k.001 longs_longs_l longs_longs_thorn longs_thorn
- 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 75 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 105 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 120 {} 0 {} 80 {} 0 {} 75 {} 0 {} 120 {} 90 {} 100 {} 110 {} 130 {} -10 {} 0 {} -105 {} 0 {} 0 {} 5 {} -20 {} 0 {} -10 {} 30 {} -20 {} 120 {} 100 {} 100 {} 110 {} 130 {} 130 {} 130 {} 0 {} 130 {} -10 {} -10 {} 0 {} 0 {} -20 {} 0 {} 100 {} 70 {} 80 {} 90 {} 110 {} -10 {} 0 {} -105 {} 0 {} 0 {} 0 {} -20 {} 0 {} -10 {} 10 {} -30 {} 100 {} 80 {} 80 {} 90 {} 110 {} 110 {} 110 {} 0 {} 110 {} -10 {} -10 {} 0 {} 0 {} -20 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -85 {} -95 {} -115 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -40 {} -125 {} -135 {} 0 {} -10 {} 0 {} -125 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} 0 {} -20 {} 0 {} -10 {} -20 {} -20 {} -10 {} 0 {} -20 {} -10 {} -40 {} 0 {} 0 {} -10 {} -10 {} 0 {} 0 {} 0 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} 0 {} -20 {} -10 {} -10 {} -25 {} -25 {} -10 {} 0 {} -20 {} -10 {} -40 {} 0 {} 0 {} -20 {} -20 {} 0 {} 0 {} -10 {} -10 {} -10 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} -45 {} -60 {} 0 {} -20 {} 0 {} -10 {} -30 {} -30 {} -10 {} 0 {} -20 {} -10 {} 0 {} -75 {} -85 {} -10 {} 0 {} 0 {} -75 {} 0 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} -30 {} -50 {} 0 {} -20 {} 0 {} -10 {} -30 {} -30 {} -10 {} 0 {} -20 {} -10 {} 0 {} -60 {} -70 {} -10 {} 0 {} 0 {} -60 {} 0 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} 0 {} -20 {} -10 {} -10 {} -30 {} -30 {} -10 {} 0 {} -20 {} -10 {} -40 {} 0 {} 0 {} -20 {} -20 {} 0 {} 0 {} -10 {} -10 {} -10 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} 0 {} -20 {} -10 {} -10 {} -30 {} -30 {} -10 {} 0 {} -20 {} -10 {} -40 {} 0 {} 0 {} -25 {} -25 {} 0 {} 0 {} -15 {} -15 {} -10 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -85 {} -70 {} -85 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -40 {} -100 {} -110 {} 0 {} -10 {} 0 {} -100 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -85 {} -70 {} -85 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -40 {} -95 {} -110 {} 0 {} -10 {} 0 {} -95 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 75 {} 0 {} -45 {} -60 {} 0 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} 105 {} 0 {} 0 {} -40 {} -75 {} -85 {} 0 {} -30 {} 120 {} -75 {} 80 {} -20 {} 75 {}
+ 1 x
+ 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 75 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 105 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 120 {} 0 {} 80 {} 0 {} 75 {} 0 {} 0 {} 120 {} 90 {} 100 {} 110 {} 130 {} -10 {} 0 {} -105 {} 0 {} 0 {} 5 {} -20 {} 0 {} -10 {} 30 {} -20 {} 120 {} 100 {} 100 {} 110 {} 130 {} 130 {} 130 {} 0 {} 130 {} -10 {} -10 {} 0 {} 0 {} -20 {} -20 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -85 {} -95 {} -115 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -40 {} -125 {} -135 {} 0 {} -10 {} 0 {} -125 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} 0 {} -20 {} 0 {} -10 {} -20 {} -20 {} -10 {} 0 {} -20 {} -10 {} -40 {} 0 {} 0 {} -10 {} -10 {} 0 {} 0 {} 0 {} 0 {} -10 {} -20 {} 0 {} 100 {} 70 {} 80 {} 90 {} 110 {} -10 {} 0 {} -105 {} 0 {} 0 {} 0 {} -20 {} 0 {} -10 {} 10 {} -30 {} 100 {} 80 {} 80 {} 90 {} 110 {} 110 {} 110 {} 0 {} 110 {} -10 {} -10 {} 0 {} 0 {} -20 {} -30 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} 0 {} -20 {} -10 {} -10 {} -25 {} -25 {} -10 {} 0 {} -20 {} -10 {} -40 {} 0 {} 0 {} -20 {} -20 {} 0 {} 0 {} -10 {} -10 {} -10 {} -25 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -85 {} -70 {} -85 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -40 {} -100 {} -110 {} 0 {} -10 {} 0 {} -100 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -85 {} -70 {} -85 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -40 {} -95 {} -110 {} 0 {} -10 {} 0 {} -95 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 75 {} 0 {} -45 {} -60 {} 0 {} 0 {} -10 {} 0 {} 0 {} 0 {} 0 {} 105 {} 0 {} 0 {} -40 {} -75 {} -85 {} 0 {} -30 {} 120 {} -75 {} 80 {} -20 {} 75 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} -45 {} -60 {} 0 {} -20 {} 0 {} -10 {} -30 {} -100 {} -10 {} 0 {} -20 {} -10 {} 0 {} -75 {} -85 {} -10 {} 0 {} 0 {} -75 {} 0 {} 0 {} -10 {} -30 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} -30 {} -50 {} 0 {} -20 {} 0 {} -10 {} -30 {} -100 {} -10 {} 0 {} -20 {} -10 {} 0 {} -60 {} -70 {} -10 {} 0 {} 0 {} -60 {} 0 {} 0 {} -10 {} -30 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} 0 {} -20 {} -10 {} -10 {} -30 {} -30 {} -10 {} 0 {} -20 {} -10 {} -40 {} 0 {} 0 {} -20 {} -20 {} 0 {} 0 {} -10 {} -10 {} -10 {} -30 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} 0 {} -95 {} 0 {} 0 {} 0 {} -20 {} -10 {} -10 {} -30 {} -30 {} -10 {} 0 {} -20 {} -10 {} -40 {} 0 {} 0 {} -25 {} -25 {} 0 {} 0 {} -15 {} -15 {} -10 {} -30 {}
 ChainSub2: coverage "'frac' Diagonal Fractions in Latin lookup 5 subtable"  0 0 0 1
  1 1 0
   Coverage: 109 zero.numer one.numer two.numer three.numer four.numer five.numer six.numer seven.numer eight.numer nine.numer
@@ -238,7 +240,7 @@ NameList: Adobe Glyph List
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 1
-WinInfo: 180 12 4
+WinInfo: 65628 12 4
 BeginPrivate: 11
 BlueValues 31 [-23 0 385 408 667 688 702 712]
 OtherBlues 11 [-263 -258]
@@ -291,18 +293,18 @@ Encoding: 106 106 1
 Width: 247
 VWidth: 0
 Flags: HMW
-AnchorPoint: "l;k;hi" 138 684 basechar 0
+AnchorPoint: "l;k;hi" 128 684 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
 AnchorPoint: "r;bl" 227 15 basechar 0
 AnchorPoint: "l;k;lo" -80 -244 basechar 0
 AnchorPoint: "r;o" 247 195 basechar 0
-AnchorPoint: "r;k;hi" 241 684 basechar 0
+AnchorPoint: "r;k;hi" 231 684 basechar 0
 AnchorPoint: "l;o" 20 195 basechar 0
 AnchorPoint: "l;bl" 20 15 basechar 0
 AnchorPoint: "r;x" 247 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 576 -1 N 1 0 0 1 357 0 2
+Refer: 576 -1 N 1 0 0 1 347 0 2
 Refer: 179 567 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" j.TRK
 Substitution2: "turkish subtable" j.TRK
@@ -323,7 +325,7 @@ AnchorPoint: "l;o" 10 195 basechar 0
 AnchorPoint: "l;k;hi" 10 684 basechar 0
 AnchorPoint: "l;x" 10 376 basechar 0
 AnchorPoint: "l;bl" 0 15 basechar 0
-AnchorPoint: "cedilla" 86 -88 basechar 0
+AnchorPoint: "cedilla" 96 -88 basechar 0
 AnchorPoint: "commaright" 249 654 basechar 0
 AnchorPoint: "top" 101 732 basechar 0
 LayerCount: 3
@@ -401,42 +403,42 @@ AnchorPoint: "l;o" 10 195 basechar 0
 AnchorPoint: "l;k;hi" 20 684 basechar 0
 AnchorPoint: "l;x" 10 376 basechar 0
 AnchorPoint: "l;bl" 0 15 basechar 0
-AnchorPoint: "cedilla" 182 -88 basechar 0
+AnchorPoint: "cedilla" 192 -88 basechar 0
 AnchorPoint: "r;bl" 386 15 basechar 0
 AnchorPoint: "r;x" 406 376 basechar 0
 AnchorPoint: "r;o" 406 195 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-95 670 m 4
- 89 670 37 656 30 655 c 5
- 25 678 l 5
- 64 689 149 705 162 705 c 4
- 170 705 176 702 176 695 c 4
- 176 671 126 178 126 178 c 5
- 126 178 294 286 294 347 c 4
- 294 363 277 364 269 364 c 6
- 249 364 l 6
- 241 364 232 363 221 363 c 5
- 223 385 l 5
- 256 388 309 389 331 389 c 4
- 369 389 374 385 374 379 c 4
- 374 362 344 325 316 296 c 4
- 273 252 220 216 220 216 c 5
- 220 216 283 59 317 59 c 4
- 337 59 373 136 373 136 c 5
- 396 123 l 5
- 396 123 385 100 369 74 c 4
- 346 37 313 -8 293 -8 c 4
- 252 -8 172 184 172 184 c 5
- 124 151 l 5
- 124 151 118 80 117 55 c 6
- 116 26 l 6
- 116 5 110 -2 87 -2 c 4
- 73 -2 55 0 55 12 c 4
- 55 26 83 285 106 657 c 4
- 106 658 l 4
- 106 664 105 670 95 670 c 4
+95 670 m 0
+ 89 670 37 656 30 655 c 1
+ 25 678 l 1
+ 64 689 149 705 162 705 c 0
+ 170 705 176 702 176 695 c 0
+ 176 671 126 178 126 178 c 1
+ 126 178 294 286 294 347 c 0
+ 294 363 277 364 269 364 c 2
+ 249 364 l 2
+ 241 364 232 363 221 363 c 1
+ 223 385 l 1
+ 256 388 309 389 331 389 c 0
+ 369 389 374 385 374 379 c 0
+ 374 362 344 325 316 296 c 0
+ 273 252 220 216 220 216 c 1
+ 220 216 283 59 317 59 c 0
+ 337 59 373 136 373 136 c 1
+ 396 123 l 1
+ 396 123 385 100 369 74 c 0
+ 346 37 313 -8 293 -8 c 0
+ 252 -8 172 184 172 184 c 1
+ 124 151 l 1
+ 124 151 118 80 117 55 c 2
+ 116 26 l 2
+ 116 5 110 -2 87 -2 c 0
+ 73 -2 55 0 55 12 c 0
+ 55 26 83 285 106 657 c 0
+ 106 658 l 0
+ 106 664 105 670 95 670 c 0
 EndSplineSet
 Layer: 2
 SplineSet
@@ -481,7 +483,7 @@ VWidth: 0
 Flags: HMW
 HStem: -1 15G<74.5 102.5 262 282> 324 74<264 320> 379 20G<128.5 143.5 301.5 330.5>
 DStem2: 61 14 122 18 0.0633645 0.99799<-12.3449 167.627 315.634 336.912> 254 16 324 111 0.0983797 0.995149<71.3452 101.426 264.282 307.528>
-AnchorPoint: "cedilla" 190 -93 basechar 0
+AnchorPoint: "cedilla" 195 -93 basechar 0
 AnchorPoint: "top" 250 488 basechar 0
 AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
@@ -568,7 +570,7 @@ VWidth: 0
 Flags: HW
 HStem: 0 14G<79 97.5 266 275.5> 327 67<261.714 318.5> 669 37<66.6797 162.243>
 VStem: 61 54<0.384766 165.836> 101 68<458.156 698.258> 256 65<13.9134 245.569> 280 62<81.7524 326.251>
-AnchorPoint: "top" 274 732 basechar 0
+AnchorPoint: "top" 234 732 basechar 0
 AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "l;x" 10 376 basechar 0
 AnchorPoint: "l;k;hi" 20 684 basechar 0
@@ -579,32 +581,32 @@ AnchorPoint: "r;o" 428 195 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-25 677 m 21xe8
- 64 688 143 706 156 706 c 4
- 164 706 169 703 169 696 c 4
- 169 677 135 341 124 190 c 5
- 184 293 261 394 305 394 c 4
- 332 394 342 353 342 290 c 4xea
- 342 217 321 142 321 95 c 4
- 321 86 321 75 327 75 c 4
- 338 75 364 106 382 131 c 6
- 398 154 l 13
- 413 143 l 21
- 384 91 348 56 328 36 c 4
- 289 -2 282 -7 269 -7 c 4
- 263 -7 256 -4 256 19 c 4xe4
- 256 51 280 229 280 291 c 4
- 280 319 273 327 265 327 c 4
- 238 327 142 209 126 137 c 4
- 120 109 117 83 116 58 c 6
- 115 29 l 6
- 115 8 109 0 86 0 c 4
- 72 0 61 3 61 15 c 4xf2
- 61 39 70 143 74 206 c 4
- 101 648 101 593 101 648 c 4
- 101 659 102 669 93 669 c 4
- 87 669 51 660 29 654 c 13
- 25 677 l 21xe8
+25 677 m 17xe8
+ 64 688 143 706 156 706 c 0
+ 164 706 169 703 169 696 c 0
+ 169 677 135 341 124 190 c 1
+ 184 293 261 394 305 394 c 0
+ 332 394 342 353 342 290 c 0xea
+ 342 217 321 142 321 95 c 0
+ 321 86 321 75 327 75 c 0
+ 338 75 364 106 382 131 c 2
+ 398 154 l 9
+ 413 143 l 17
+ 384 91 348 56 328 36 c 0
+ 289 -2 282 -7 269 -7 c 0
+ 263 -7 256 -4 256 19 c 0xe4
+ 256 51 280 229 280 291 c 0
+ 280 319 273 327 265 327 c 0
+ 238 327 142 209 126 137 c 0
+ 120 109 117 83 116 58 c 2
+ 115 29 l 2
+ 115 8 109 0 86 0 c 0
+ 72 0 61 3 61 15 c 0xf2
+ 61 39 70 143 74 206 c 0
+ 101 648 101 593 101 648 c 0
+ 101 659 102 669 93 669 c 0
+ 87 669 51 660 29 654 c 9
+ 25 677 l 17xe8
 EndSplineSet
 EndChar
 
@@ -636,16 +638,16 @@ SplineSet
  35 360 l 1
  35 392 l 1
  106 392 l 1
- 116 490 114 586 174 646 c 4
- 206 678 238 702 287 702 c 4
- 331 702 348 674 348 650 c 4
- 348 630 338 613 322 613 c 4
- 295 613 279 661 255 661 c 4
- 184 661 179 525 166 392 c 5
- 241 392 l 5
- 239 360 l 5
- 164 360 l 5
- 156 248 151 154 146 76 c 4
+ 116 490 114 586 174 646 c 0
+ 206 678 238 702 287 702 c 0
+ 331 702 348 674 348 650 c 0
+ 348 630 338 613 322 613 c 0
+ 295 613 279 661 255 661 c 0
+ 184 661 179 525 166 392 c 1
+ 241 392 l 1
+ 239 360 l 1
+ 164 360 l 1
+ 156 248 151 154 146 76 c 0
  130 -167 112 -258 -7 -258 c 0
 EndSplineSet
 Kerns2: 44 40 "'kern' Horizontal Kerning in Latin lookup 3 per glyph data 4" 
@@ -668,22 +670,22 @@ AnchorPoint: "r;o" 280 195 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-151 355 m 4
- 121 355 75 298 75 199 c 6
- 75 191 l 5
- 81 197 191 299 191 313 c 4
- 191 345 165 355 151 355 c 4
-250 123 m 5
- 265 100 l 5
- 265 100 157 -4 93 -4 c 4
+151 355 m 0
+ 121 355 75 298 75 199 c 2
+ 75 191 l 1
+ 81 197 191 299 191 313 c 0
+ 191 345 165 355 151 355 c 0
+250 123 m 1
+ 265 100 l 1
+ 265 100 157 -4 93 -4 c 0
  72 -4 20 19 20 101 c 0
- 20 171 37 245 62 299 c 4
- 86 352 111 362 140 380 c 4
+ 20 171 37 245 62 299 c 0
+ 86 352 111 362 140 380 c 0
  161 393 183 398 193 398 c 0
- 210 398 259 369 259 353 c 4
- 259 342 160 232 76 169 c 5
- 76 156 78 61 139 61 c 4
- 186 61 235 109 250 123 c 5
+ 210 398 259 369 259 353 c 0
+ 259 342 160 232 76 169 c 1
+ 76 156 78 61 139 61 c 0
+ 186 61 235 109 250 123 c 1
 EndSplineSet
 EndChar
 
@@ -759,8 +761,8 @@ SplineSet
 256 115 m 2
  256 115 167 -8 95 -8 c 0
  77 -8 68 1 64 4 c 0
- 39 24 20 52 20 110 c 4
- 20 169 31 217 51 272 c 4
+ 39 24 20 52 20 110 c 0
+ 20 169 31 217 51 272 c 0
  76 340 126 400 211 400 c 0
  250 400 262 381 262 368 c 0
  262 343 253 330 239 330 c 0
@@ -879,7 +881,7 @@ Flags: HMW
 HStem: -1 21G<80.5 115> 316 82<242.058 301.335> 382 20G<136.5 155.5>
 DStem2: 67 12 131 15 0.0781303 0.996943<-13 0 319 380.5>
 AnchorPoint: "cedilla" 92 -93 basechar 0
-AnchorPoint: "top" 203 486 basechar 0
+AnchorPoint: "top" 208 486 basechar 0
 AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
 AnchorPoint: "l;o" 0 195 basechar 0
@@ -916,7 +918,7 @@ VWidth: 0
 Flags: HW
 HStem: -7 35<95.1265 186.502> 370 29<142.867 211.136>
 VStem: 84 52<289.205 364.087> 215 60<56.6685 152.407>
-AnchorPoint: "cedilla" 109 -93 basechar 0
+AnchorPoint: "cedilla" 124 -93 basechar 0
 AnchorPoint: "top" 209 488 basechar 0
 AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "l;x" 20 376 basechar 0
@@ -954,7 +956,7 @@ VWidth: 0
 Flags: HW
 HStem: -12 38<119.492 178.736> 369 32<156.591 213.166>
 VStem: 20 67<60.9375 241.877> 245 65<153.977 338.936>
-AnchorPoint: "top" 224 488 basechar 0
+AnchorPoint: "top" 219 488 basechar 0
 AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "l;x" 20 376 basechar 0
 AnchorPoint: "l;o" 0 195 basechar 0
@@ -991,7 +993,7 @@ AnchorPoint: "r;bl" 582 15 basechar 0
 AnchorPoint: "l;o" 20 195 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
 AnchorPoint: "l;bl" 20 15 basechar 0
-AnchorPoint: "top" 385 488 basechar 0
+AnchorPoint: "top" 388 488 basechar 0
 LayerCount: 3
 Fore
 SplineSet
@@ -1043,33 +1045,33 @@ AnchorPoint: "r;o" 473 195 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-167 74 m 4
- 197 74 319 254 319 347 c 6
- 319 369 l 6
- 319 388 325 399 348 399 c 6
- 372 399 l 6
- 379 399 387 394 386 384 c 4
- 379 307 362 184 362 97 c 4
- 362 88 366 78 373 78 c 4
- 389 78 435 151 435 151 c 5
- 453 138 l 5
- 445 125 425 79 354 11 c 4
- 341 -2 329 -10 320 -10 c 4
- 305 -10 295 7 295 38 c 4
- 295 80 305 147 310 229 c 5
- 310 229 290 184 259 133 c 4
- 210 50 133 -9 107 -9 c 4
- 91 -9 83 13 83 48 c 4
- 83 118 106 239 106 326 c 4
- 106 341 102 349 93 349 c 4
- 90 349 85 348 81 346 c 6
- 36 326 l 5
- 25 353 l 5
- 25 353 136 402 166 402 c 4
- 179 402 183 395 183 381 c 4
- 183 359 171 320 165 265 c 4
- 158 196 155 152 155 124 c 4
- 155 102 155 74 167 74 c 4
+167 74 m 0
+ 197 74 319 254 319 347 c 2
+ 319 369 l 2
+ 319 388 325 399 348 399 c 2
+ 372 399 l 2
+ 379 399 387 394 386 384 c 0
+ 379 307 362 184 362 97 c 0
+ 362 88 366 78 373 78 c 0
+ 389 78 435 151 435 151 c 1
+ 453 138 l 1
+ 445 125 425 79 354 11 c 0
+ 341 -2 329 -10 320 -10 c 0
+ 305 -10 295 7 295 38 c 0
+ 295 80 305 147 310 229 c 1
+ 310 229 290 184 259 133 c 0
+ 210 50 133 -9 107 -9 c 0
+ 91 -9 83 13 83 48 c 0
+ 83 118 106 239 106 326 c 0
+ 106 341 102 349 93 349 c 0
+ 90 349 85 348 81 346 c 2
+ 36 326 l 1
+ 25 353 l 1
+ 25 353 136 402 166 402 c 0
+ 179 402 183 395 183 381 c 0
+ 183 359 171 320 165 265 c 0
+ 158 196 155 152 155 124 c 0
+ 155 102 155 74 167 74 c 0
 EndSplineSet
 EndChar
 
@@ -1091,11 +1093,11 @@ AnchorPoint: "r;o" 283 195 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-163 361 m 5xd0
- 162 351 146 225 146 129 c 4xe0
- 146 93 148 58 168 58 c 4xd0
- 190 58 246 121 246 121 c 5
- 263 105 l 5
+163 361 m 1xd0
+ 162 351 146 225 146 129 c 0xe0
+ 146 93 148 58 168 58 c 0xd0
+ 190 58 246 121 246 121 c 1
+ 263 105 l 1
  203 16 121 -5 110 -5 c 0
  92 -5 78 14 78 36 c 0xe0
  78 189 102 361 102 361 c 1
@@ -1103,12 +1105,12 @@ SplineSet
  28 392 l 1
  107 392 l 1xd0
  121 476 l 2
- 122 484 164 503 177 503 c 4
- 183 503 186 497 186 490 c 4xc8
- 186 471 173 438 168 392 c 5
- 256 392 l 5
- 252 361 l 5
- 163 361 l 5xd0
+ 122 484 164 503 177 503 c 0
+ 183 503 186 497 186 490 c 0xc8
+ 186 471 173 438 168 392 c 1
+ 256 392 l 1
+ 252 361 l 1
+ 163 361 l 1xd0
 EndSplineSet
 EndChar
 
@@ -1120,7 +1122,7 @@ Flags: HMW
 HStem: -260 23<-2 40> 331 70<85.5 143.5> 378 17<276 277>
 VStem: 298 62<271 378>
 DStem2: 188 306 130 262 0.259711 -0.965686<-48.6024 231.377>
-AnchorPoint: "top" 251 488 basechar 0
+AnchorPoint: "top" 241 488 basechar 0
 AnchorPoint: "l;bl" 20 15 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
 AnchorPoint: "l;o" 10 195 basechar 0
@@ -1399,7 +1401,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "l;x" 10 376 basechar 0
 AnchorPoint: "l;hi" 30 684 basechar 0
 AnchorPoint: "l;o" 0 195 basechar 0
-AnchorPoint: "top" 350 732 basechar 0
+AnchorPoint: "top" 380 732 basechar 0
 LayerCount: 3
 Fore
 SplineSet
@@ -1444,7 +1446,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "l;x" 10 376 basechar 0
 AnchorPoint: "l;hi" 30 684 basechar 0
 AnchorPoint: "l;o" 0 195 basechar 0
-AnchorPoint: "top" 311 732 basechar 0
+AnchorPoint: "top" 306 732 basechar 0
 AnchorPoint: "r;bl" 527 15 basechar 0
 AnchorPoint: "r;x" 527 376 basechar 0
 AnchorPoint: "r;hi" 547 684 basechar 0
@@ -1452,39 +1454,39 @@ AnchorPoint: "r;o" 527 195 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-193 46 m 6xba
- 436 46 441 50 450 76 c 4
- 459 99 465 131 470 152 c 5
- 495 147 l 5
- 461 0 l 5
- 16 0 l 5
- 18 32 l 5
- 41 32 l 6
- 75 32 81 34 84 62 c 4
- 133 610 135 612 135 619 c 4
- 135 635 126 635 104 635 c 6
- 49 635 l 5
- 49 667 l 5
- 497 667 l 5
- 497 546 l 5
- 475 545 l 5
- 474 597 l 6
- 473 633 461 631 230 635 c 4
- 209 635 204 634 203 621 c 6
- 183 398 l 5
- 363 398 l 6
- 391 398 394 400 397 424 c 6
- 402 473 l 5
- 424 472 l 5x76
- 408 267 l 5
- 384 268 l 5
- 388 322 389 329 389 336 c 4
- 389 354 381 359 358 359 c 6
- 179 359 l 5
- 156 93 l 6
- 155 80 154 69 154 62 c 4
- 154 47 159 46 178 46 c 6
- 193 46 l 6xba
+193 46 m 2xba
+ 436 46 441 50 450 76 c 0
+ 459 99 465 131 470 152 c 1
+ 495 147 l 1
+ 461 0 l 1
+ 16 0 l 1
+ 18 32 l 1
+ 41 32 l 2
+ 75 32 81 34 84 62 c 0
+ 133 610 135 612 135 619 c 0
+ 135 635 126 635 104 635 c 2
+ 49 635 l 1
+ 49 667 l 1
+ 497 667 l 1
+ 497 546 l 1
+ 475 545 l 1
+ 474 597 l 2
+ 473 633 461 631 230 635 c 0
+ 209 635 204 634 203 621 c 2
+ 183 398 l 1
+ 363 398 l 2
+ 391 398 394 400 397 424 c 2
+ 402 473 l 1
+ 424 472 l 1x76
+ 408 267 l 1
+ 384 268 l 1
+ 388 322 389 329 389 336 c 0
+ 389 354 381 359 358 359 c 2
+ 179 359 l 1
+ 156 93 l 2
+ 155 80 154 69 154 62 c 0
+ 154 47 159 46 178 46 c 2
+ 193 46 l 2xba
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" E.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" E.001
@@ -1504,7 +1506,6 @@ AnchorPoint: "l;o" 0 195 basechar 0
 AnchorPoint: "l;hi" 20 684 basechar 0
 AnchorPoint: "l;x" 10 376 basechar 0
 AnchorPoint: "l;bl" 0 15 basechar 0
-AnchorPoint: "top" 319 732 basechar 0
 AnchorPoint: "r;bl" 453 15 basechar 0
 AnchorPoint: "r;x" 493 376 basechar 0
 AnchorPoint: "r;hi" 543 684 basechar 0
@@ -1553,7 +1554,7 @@ VWidth: 0
 Flags: HW
 HStem: 0 32<22 87.5271 162.16 250 418 499.027 573.539 656> 353 39<184 523> 635 32<49 129.67 201.688 276 464 541.67 614 684>
 DStem2: 85.5457 0 156.637 0 0.0697565 0.997564<65.5346 358.799 397.913 610.43> 497.546 0 568.266 0 0.0697565 0.997564<61.4551 353.916 393.03 610.43>
-AnchorPoint: "top" 352 732 basechar 0
+AnchorPoint: "top" 372 732 basechar 0
 AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "l;x" 10 376 basechar 0
 AnchorPoint: "l;hi" 20 684 basechar 0
@@ -1565,15 +1566,15 @@ AnchorPoint: "r;o" 695 195 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-130 609 m 4
- 130 633 128 635 94 635 c 6
- 48 635 l 5
- 49 667 l 5
- 277 667 l 5
- 276 635 l 5
- 254 635 l 6
- 203 635 202 635 199 598 c 6
- 184 392 l 5
+130 609 m 0
+ 130 633 128 635 94 635 c 2
+ 48 635 l 1
+ 49 667 l 1
+ 277 667 l 1
+ 276 635 l 1
+ 254 635 l 2
+ 203 635 202 635 199 598 c 2
+ 184 392 l 1
  526 392 l 1
  541 596 l 2
  541 601 542 605 542 609 c 0
@@ -1594,18 +1595,18 @@ SplineSet
  459 32 l 2
  498 32 500 35 503 78 c 2
  523 353 l 1
- 181 353 l 5
- 163 91 l 6
- 162 73 161 69 161 60 c 4
- 161 33 171 32 207 32 c 6
- 250 32 l 5
- 250 0 l 5
- 20 0 l 5
- 22 32 l 5
- 55 32 l 6
- 87 32 88 35 91 78 c 6
- 129 596 l 6
- 129 601 130 605 130 609 c 4
+ 181 353 l 1
+ 163 91 l 2
+ 162 73 161 69 161 60 c 0
+ 161 33 171 32 207 32 c 2
+ 250 32 l 1
+ 250 0 l 1
+ 20 0 l 1
+ 22 32 l 1
+ 55 32 l 2
+ 87 32 88 35 91 78 c 2
+ 129 596 l 2
+ 129 601 130 605 130 609 c 0
 EndSplineSet
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -1626,7 +1627,7 @@ AnchorPoint: "l;o" 0 195 basechar 0
 AnchorPoint: "l;hi" 30 684 basechar 0
 AnchorPoint: "l;x" 10 376 basechar 0
 AnchorPoint: "l;bl" 0 15 basechar 0
-AnchorPoint: "top" 188 732 basechar 0
+AnchorPoint: "top" 178 732 basechar 0
 LayerCount: 3
 Fore
 SplineSet
@@ -1708,7 +1709,7 @@ AnchorPoint: "l;o" 0 195 basechar 0
 AnchorPoint: "l;hi" 20 684 basechar 0
 AnchorPoint: "l;x" 10 376 basechar 0
 AnchorPoint: "l;bl" 0 15 basechar 0
-AnchorPoint: "cedilla" 368 -90 basechar 0
+AnchorPoint: "cedilla" 358 -90 basechar 0
 AnchorPoint: "r;bl" 702 15 basechar 0
 AnchorPoint: "r;x" 682 376 basechar 0
 AnchorPoint: "r;hi" 732 684 basechar 0
@@ -1773,25 +1774,25 @@ AnchorPoint: "r;o" 533 195 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-463 0 m 5x60
- 20 0 l 5
- 21 32 l 5
- 50 32 l 6x60
- 84 32 89 34 91 62 c 4
- 104 245 130 606 130 616 c 4
- 130 632 117 635 91 635 c 6
- 42 635 l 5
- 44 667 l 5
- 279 667 l 5
- 279 635 l 5
- 233 635 l 6
- 197 635 200 623 198 591 c 4
- 186 416 162 74 162 63 c 4
- 162 44 169 39 201 39 c 4xa0
- 276 39 423 53 436 57 c 4
- 454 64 455 75 477 149 c 5
- 503 142 l 5
- 489 97 472 32 463 0 c 5x60
+463 0 m 1x60
+ 20 0 l 1
+ 21 32 l 1
+ 50 32 l 2x60
+ 84 32 89 34 91 62 c 0
+ 104 245 130 606 130 616 c 0
+ 130 632 117 635 91 635 c 2
+ 42 635 l 1
+ 44 667 l 1
+ 279 667 l 1
+ 279 635 l 1
+ 233 635 l 2
+ 197 635 200 623 198 591 c 0
+ 186 416 162 74 162 63 c 0
+ 162 44 169 39 201 39 c 0xa0
+ 276 39 423 53 436 57 c 0
+ 454 64 455 75 477 149 c 1
+ 503 142 l 1
+ 489 97 472 32 463 0 c 1x60
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" L.CAT
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
@@ -1903,7 +1904,7 @@ Flags: HMW
 HStem: -17 21G<593 599> 0 32<34 97.29 138.172 217> 635 32<32 119.525 553 634.438 672.221 736>
 DStem2: 101 75 147 203 0.0852912 0.996356<-37.1026 0 131.457 485.559> 186 667 145 589 0.589396 -0.807844<0 38.8466 83.1873 689.985> 585 104 625 175 0.096766 0.995307<74.5374 389.165 492.746 530.712>
 AnchorPoint: "top" 397 732 basechar 0
-AnchorPoint: "cedilla" 357 -93 basechar 0
+AnchorPoint: "cedilla" 372 -93 basechar 0
 AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
 AnchorPoint: "l;hi" 0 684 basechar 0
@@ -1961,7 +1962,7 @@ VWidth: 0
 Flags: HW
 HStem: -16 36<267.507 422.567> 654 32<307.186 454.251>
 VStem: 45 82<179.601 435.153> 596 82<243.27 499.975>
-AnchorPoint: "top" 383 732 basechar 0
+AnchorPoint: "top" 393 732 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
 AnchorPoint: "l;o" 0 195 basechar 0
 AnchorPoint: "r;x" 728 376 basechar 0
@@ -1972,7 +1973,7 @@ LayerCount: 3
 Fore
 SplineSet
 392 686 m 0
- 587 686 678 537 678 376 c 4
+ 587 686 678 537 678 376 c 0
  678 188 553 -16 321 -16 c 0
  177 -16 45 81 45 297 c 0
  45 513 184 686 392 686 c 0
@@ -2001,32 +2002,32 @@ AnchorPoint: "r;o" 369 195 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-88 349 m 4xb8
- 82 349 74 346 25 324 c 5
- 15 347 l 5
- 15 347 129 403 152 403 c 4xb8
- 160 403 166 400 166 391 c 4
- 166 387 153 313 147 273 c 5
- 147 273 225 395 292 395 c 4xd8
- 327 395 354 364 354 287 c 4
- 354 227 326 154 312 125 c 4
- 278 55 220 -6 186 -6 c 4
- 155 -6 129 22 129 22 c 5
- 124 -89 114 -182 114 -202 c 4
- 114 -219 114 -227 133 -227 c 4
- 142 -227 187 -223 223 -221 c 5
- 222 -248 l 5
- -21 -271 l 5
- -21 -242 l 5
- 53 -235 49 -241 51 -208 c 4
- 72 68 83 202 89 266 c 4
- 92 305 96 325 96 337 c 4
- 96 345 94 349 88 349 c 4xb8
-248 334 m 4xd8
- 212 334 135 247 135 149 c 4
- 135 71 159 39 188 39 c 4
- 237 39 302 131 302 225 c 4
- 302 260 291 334 248 334 c 4xd8
+88 349 m 0xb8
+ 82 349 74 346 25 324 c 1
+ 15 347 l 1
+ 15 347 129 403 152 403 c 0xb8
+ 160 403 166 400 166 391 c 0
+ 166 387 153 313 147 273 c 1
+ 147 273 225 395 292 395 c 0xd8
+ 327 395 354 364 354 287 c 0
+ 354 227 326 154 312 125 c 0
+ 278 55 220 -6 186 -6 c 0
+ 155 -6 129 22 129 22 c 1
+ 124 -89 114 -182 114 -202 c 0
+ 114 -219 114 -227 133 -227 c 0
+ 142 -227 187 -223 223 -221 c 1
+ 222 -248 l 1
+ -21 -271 l 1
+ -21 -242 l 1
+ 53 -235 49 -241 51 -208 c 0
+ 72 68 83 202 89 266 c 0
+ 92 305 96 325 96 337 c 0
+ 96 345 94 349 88 349 c 0xb8
+248 334 m 0xd8
+ 212 334 135 247 135 149 c 0
+ 135 71 159 39 188 39 c 0
+ 237 39 302 131 302 225 c 0
+ 302 260 291 334 248 334 c 0xd8
 EndSplineSet
 EndChar
 
@@ -2158,11 +2159,11 @@ StartChar: z
 Encoding: 122 122 42
 Width: 450
 VWidth: 0
-Flags: HMW
-HStem: -12 65<227.069 363.388> 346 56<102.587 314.895>
+Flags: HWO
+HStem: -12 65<227.069 363.388> 29 52<78.8084 221.91> 346 56<102.587 314.895>
 VStem: 10 36<-55.3558 15.4062> 57 29<304.254 335.76> 378 34<71.822 145.972> 379 51<384.781 442.634>
 DStem2: 125 131 105 71 0.709575 0.70463<-56.2065 273.641>
-AnchorPoint: "top" 249 488 basechar 0
+AnchorPoint: "top" 252 488 basechar 0
 AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "l;x" 10 376 basechar 0
 AnchorPoint: "l;o" 10 195 basechar 0
@@ -2172,34 +2173,34 @@ AnchorPoint: "r;o" 440 195 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-378 110 m 4xf8
- 378 130 368 140 362 146 c 5
- 377 160 l 5
- 377 160 412 146 412 99 c 4xf8
- 412 55 378 -12 307 -12 c 4
- 249 -12 190 29 128 29 c 4
- 74 29 46 12 46 -8 c 4
- 46 -11 50 -26 50 -37 c 4
- 50 -47 47 -56 33 -56 c 4
- 20 -56 10 -45 10 -26 c 4
- 10 32 72 77 125 131 c 30
- 317 326 l 5
- 239 331 178 346 154 346 c 4
- 96 346 86 325 86 321 c 4
- 86 308 113 302 113 285 c 4
- 113 274 107 264 89 264 c 4
- 75 264 57 280 57 307 c 4
- 57 360 114 402 182 402 c 4
- 255 402 292 384 360 384 c 4
- 374 384 379 387 379 399 c 4
- 379 404 373 412 373 421 c 4
- 373 433 382 445 399 445 c 4
- 408 445 430 434 430 410 c 4xf4
- 430 394 408 372 392 356 c 6
- 105 71 l 5
- 105 71 128 81 177 81 c 4
- 233 81 279 53 322 53 c 4
- 366 53 378 102 378 110 c 4xf8
+378 110 m 0xbc
+ 378 130 368 140 362 146 c 1
+ 377 160 l 1
+ 377 160 412 146 412 99 c 0
+ 412 55 378 -12 307 -12 c 0xbc
+ 249 -12 190 29 128 29 c 0
+ 74 29 46 12 46 -8 c 0
+ 46 -11 50 -26 50 -37 c 0
+ 50 -47 47 -56 33 -56 c 0
+ 20 -56 10 -45 10 -26 c 0
+ 10 32 72 77 125 131 c 26
+ 317 326 l 1
+ 239 331 178 346 154 346 c 0
+ 96 346 86 325 86 321 c 0
+ 86 308 113 302 113 285 c 0
+ 113 274 107 264 89 264 c 0
+ 75 264 57 280 57 307 c 0
+ 57 360 114 402 182 402 c 0
+ 255 402 292 384 360 384 c 0
+ 374 384 379 387 379 399 c 0
+ 379 404 373 412 373 421 c 0
+ 373 433 382 445 399 445 c 0
+ 408 445 430 434 430 410 c 0
+ 430 394 408 372 392 356 c 2
+ 105 71 l 1
+ 105 71 128 81 177 81 c 0x7a
+ 233 81 279 53 322 53 c 0
+ 366 53 378 102 378 110 c 0xbc
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" z.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" z.001
@@ -2223,9 +2224,9 @@ AnchorPoint: "r;o" 521 195 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-536 496 m 4
- 536 363 410 275 271 275 c 4
- 219 275 172 285 172 285 c 5
+536 496 m 0
+ 536 363 410 275 271 275 c 0
+ 219 275 172 285 172 285 c 1
  155 89 l 2
  155 84 153 65 153 57 c 0
  153 40 158 32 174 32 c 2
@@ -2238,15 +2239,15 @@ SplineSet
  131 609 132 613 132 619 c 0
  132 635 121 635 83 635 c 2
  54 635 l 1
- 55 667 l 5
- 297 667 l 6
- 454 667 536 607 536 496 c 4
-241 307 m 4
- 417 307 450 434 450 484 c 4
- 450 624 315 635 235 635 c 4
- 209 635 203 634 201 612 c 6
- 176 312 l 5
- 176 312 198 307 241 307 c 4
+ 55 667 l 1
+ 297 667 l 2
+ 454 667 536 607 536 496 c 0
+241 307 m 0
+ 417 307 450 434 450 484 c 0
+ 450 624 315 635 235 635 c 0
+ 209 635 203 634 201 612 c 2
+ 176 312 l 1
+ 176 312 198 307 241 307 c 0
 EndSplineSet
 Kerns2: 41 -60 "'kern' Horizontal Kerning in Latin lookup 3 per glyph data 2" 
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" P.001
@@ -2311,8 +2312,8 @@ AnchorPoint: "l;o" 0 195 basechar 0
 AnchorPoint: "l;hi" 20 684 basechar 0
 AnchorPoint: "l;x" 10 376 basechar 0
 AnchorPoint: "l;bl" 0 15 basechar 0
-AnchorPoint: "cedilla" 356 -95 basechar 0
-AnchorPoint: "top" 285 732 basechar 0
+AnchorPoint: "cedilla" 316 -95 basechar 0
+AnchorPoint: "top" 290 732 basechar 0
 AnchorPoint: "r;bl" 638 15 basechar 0
 AnchorPoint: "r;x" 608 376 basechar 0
 AnchorPoint: "r;hi" 578 684 basechar 0
@@ -2366,8 +2367,8 @@ VWidth: 0
 Flags: HMW
 HStem: -11 35<113.48 264.683> 643 38<179.599 328.429>
 VStem: 38 26<-39 3.94364> 70 70<476.812 597.896> 328 71<98.0533 226.399> 380 27<587.727 599.395 660.04 687> 390 28<531 592.375>
-AnchorPoint: "cedilla" 185 -93 basechar 0
-AnchorPoint: "top" 248 732 basechar 0
+AnchorPoint: "cedilla" 195 -93 basechar 0
+AnchorPoint: "top" 253 732 basechar 0
 AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "l;x" 10 376 basechar 0
 AnchorPoint: "l;hi" 10 684 basechar 0
@@ -2544,21 +2545,22 @@ SplineSet
  177 635 170 633 170 622 c 0
  170 615 173 604 177 588 c 2
  297 114 l 1
- 502 600 l 6
- 505 606 505 614 505 618 c 4
- 505 633 490 635 458 635 c 6
- 425 635 l 5
- 425 667 l 5
- 623 667 l 5
- 621 635 l 5
- 599 635 l 6
- 561 635 558 614 525 540 c 6
+ 502 600 l 2
+ 505 606 505 614 505 618 c 0
+ 505 633 490 635 458 635 c 2
+ 425 635 l 1
+ 425 667 l 1
+ 623 667 l 1
+ 621 635 l 1
+ 599 635 l 2
+ 561 635 558 614 525 540 c 2
  278 -15 l 1
  256 -15 l 1
  99 570 l 2
  82 634 81 635 49 635 c 2
  10 635 l 1
 EndSplineSet
+Kerns2: 458 -130 "'kern' Horizontal Kerning in Latin lookup 3 per glyph data 2" 
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
@@ -2577,7 +2579,7 @@ AnchorPoint: "l;o" 30 195 basechar 0
 AnchorPoint: "l;hi" 0 684 basechar 0
 AnchorPoint: "l;x" 10 376 basechar 0
 AnchorPoint: "l;bl" 50 15 basechar 0
-AnchorPoint: "top" 502 732 basechar 0
+AnchorPoint: "top" 497 732 basechar 0
 LayerCount: 3
 Fore
 SplineSet
@@ -2677,7 +2679,7 @@ VWidth: 0
 Flags: HMW
 HStem: 0 32<110 200.332 285.42 368> 635 32<11 72.4084 165.008 228 377 436.99 502.203 571>
 DStem2: 195 545 83 601 0.443409 -0.896319<-79.9705 202.594> 206 76 285 78 0.0654332 0.997857<-36.348 0> 284 363 301 322 0.548196 0.83635<0 300.248>
-AnchorPoint: "top" 312 732 basechar 0
+AnchorPoint: "top" 306 732 basechar 0
 AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
 AnchorPoint: "l;hi" 0 684 basechar 0
@@ -2732,7 +2734,7 @@ Flags: HMW
 HStem: -16 79<284.363 551.436> 360 32<235 314 387 468> 422 55<93.928 186.425> 625 61<121.177 331.934>
 VStem: 46 29<503.694 581.037> 598 24<126.641 195.889>
 DStem2: 46 57 35 -12 0.65604 0.754726<-78.253 -5.87886 65.3483 404.501 476.543 724.715>
-AnchorPoint: "top" 315 732 basechar 0
+AnchorPoint: "top" 375 732 basechar 0
 AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
 AnchorPoint: "l;hi" 10 684 basechar 0
@@ -4148,7 +4150,7 @@ Flags: HW
 HStem: -258 35<-24.5 47.8282> 0 14G<308 326.5 495 504.5> 327 67<489.46 533.645> 360 32<35 105 166 239> 661 42<217.836 303.024>
 VStem: 290 53<0.242615 160.902> 326 72<470.232 639.359> 484 65<13.9134 245.569> 508 62<81.7524 326.251>
 DStem2: 59.6444 -258 122.644 -258 0.0697565 0.997564<113.765 619.658 655.836 858.519>
-AnchorPoint: "top" 502 732 basechar 0
+AnchorPoint: "top" 492 732 basechar 0
 AnchorPoint: "r;o" 656 195 basechar 0
 AnchorPoint: "r;x" 646 376 basechar 0
 AnchorPoint: "r;bl" 626 15 basechar 0
@@ -4253,7 +4255,7 @@ Flags: HW
 HStem: -258 35<-24.5 48.7514> -229 37<211.792 272.75> 0 14G<529 547.5 716 725.5> 327 67<711.714 755.592> 360 32<35 105 166 326 387 461> 631 39<224.298 316.799> 661 42<439.411 523.934>
 VStem: 511 54<0.384766 160.902> 548 72<470.232 638.93> 706 65<13.9134 245.569> 730 62<81.7524 326.251>
 DStem2: 59.6444 -258 122.805 -258 0.0697565 0.997564<127.23 619.658 655.836 829.246> 280.805 -258 343.805 -258 0.0697565 0.997564<125.961 619.647 655.824 844.564>
-AnchorPoint: "top" 724 732 basechar 0
+AnchorPoint: "top" 714 732 basechar 0
 AnchorPoint: "r;bl" 848 15 basechar 0
 AnchorPoint: "r;x" 868 376 basechar 0
 AnchorPoint: "r;o" 878 195 basechar 0
@@ -4308,13 +4310,13 @@ SplineSet
  620 685 603 518 588 357 c 0
  583 298 577 240 574 190 c 1
  634 293 711 394 755 394 c 0
- 782 394 792 353 792 290 c 4x32a0
- 792 217 771 142 771 95 c 4
- 771 86 772 75 778 75 c 4
- 789 75 814 106 832 131 c 6
- 848 154 l 5
- 863 143 l 5
- 834 91 798 56 778 36 c 4
+ 782 394 792 353 792 290 c 0x32a0
+ 792 217 771 142 771 95 c 0
+ 771 86 772 75 778 75 c 0
+ 789 75 814 106 832 131 c 2
+ 848 154 l 1
+ 863 143 l 1
+ 834 91 798 56 778 36 c 0
  739 -2 732 -7 719 -7 c 0
  713 -7 706 -4 706 19 c 0x3240
  706 51 730 229 730 291 c 0
@@ -7437,7 +7439,7 @@ VWidth: 0
 Flags: HMW
 HStem: -258 35<-4 54> 392 10G<168 181>
 DStem2: 83 -115 164 92 0.0785899 0.996907<-17.4999 212.761 453.551 467.93>
-AnchorPoint: "top" 162 488 basechar 0
+AnchorPoint: "top" 152 488 basechar 0
 AnchorPoint: "l;bl" 20 15 basechar 0
 AnchorPoint: "l;x" 0 376 basechar 0
 AnchorPoint: "l;o" 20 195 basechar 0
@@ -7452,7 +7454,7 @@ SplineSet
  99 352 81 345 39 328 c 1
  30 354 l 1
  118 389 158 402 177 402 c 0
- 185 402 187 396 187 385 c 4
+ 185 402 187 396 187 385 c 0
  187 374 169 184 164 92 c 0
  158 -12 151 -99 137 -153 c 0
  112 -253 21 -258 10 -258 c 0
@@ -7798,7 +7800,7 @@ AnchorPoint: "l;x" 0 376 basechar 0
 AnchorPoint: "r;bl" 461 15 basechar 0
 AnchorPoint: "r;x" 481 376 basechar 0
 AnchorPoint: "r;o" 481 195 basechar 0
-AnchorPoint: "r;k;hi" 475 684 basechar 0
+AnchorPoint: "r;k;hi" 465 684 basechar 0
 AnchorPoint: "l;o" 0 195 basechar 0
 AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "l;k;lo" 154 -244 basechar 0
@@ -8342,7 +8344,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 527 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 315 -1 N 1 0 0 1 506 244 2
+Refer: 315 -1 N 1 0 0 1 501 244 2
 Refer: 28 69 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Eacute.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Eacute.001
@@ -8703,7 +8705,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 527 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 314 -1 N 1 0 0 1 506 244 2
+Refer: 314 -1 N 1 0 0 1 501 244 2
 Refer: 28 69 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Egrave.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Egrave.001
@@ -8726,7 +8728,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 305 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 314 -1 N 1 0 0 1 383 244 2
+Refer: 314 -1 N 1 0 0 1 373 244 2
 Refer: 31 73 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -8761,7 +8763,7 @@ AnchorPoint: "l;hi" 40 684 basechar 0
 AnchorPoint: "r;x" 728 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 314 -1 N 1 0 0 1 578 244 2
+Refer: 314 -1 N 1 0 0 1 588 244 2
 Refer: 37 79 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -8779,7 +8781,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 330 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 231 768 N 1 0 0 1 419 0 2
+Refer: 231 768 N 1 0 0 1 414 0 2
 Refer: 17 111 N 1 0 0 1 0 0 2
 EndChar
 
@@ -8914,7 +8916,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 305 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 315 -1 N 1 0 0 1 383 244 2
+Refer: 315 -1 N 1 0 0 1 373 244 2
 Refer: 31 73 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -9050,7 +9052,7 @@ AnchorPoint: "l;hi" 40 684 basechar 0
 AnchorPoint: "r;x" 728 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 315 -1 N 1 0 0 1 578 244 2
+Refer: 315 -1 N 1 0 0 1 588 244 2
 Refer: 37 79 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -9068,7 +9070,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 330 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 230 769 N 1 0 0 1 419 0 2
+Refer: 230 769 N 1 0 0 1 414 0 2
 Refer: 17 111 N 1 0 0 1 0 0 2
 EndChar
 
@@ -9087,7 +9089,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 608 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 315 -1 N 1 0 0 1 480 244 2
+Refer: 315 -1 N 1 0 0 1 485 244 2
 Refer: 45 82 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Racute.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Racute.001
@@ -9108,7 +9110,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 334 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 230 769 N 1 0 0 1 398 -2 2
+Refer: 230 769 N 1 0 0 1 403 -2 2
 Refer: 15 114 N 1 0 0 1 0 0 2
 EndChar
 
@@ -9127,7 +9129,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 448 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 315 -1 N 1 0 0 1 443 244 2
+Refer: 315 -1 N 1 0 0 1 448 244 2
 Refer: 46 83 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -9201,7 +9203,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 522 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 315 -1 N 1 0 0 1 507 244 2
+Refer: 315 -1 N 1 0 0 1 501 244 2
 Refer: 52 89 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -9219,7 +9221,7 @@ AnchorPoint: "l;bl" 20 15 basechar 0
 AnchorPoint: "r;x" 385 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 230 769 N 1 0 0 1 446 0 2
+Refer: 230 769 N 1 0 0 1 436 0 2
 Refer: 21 121 N 1 0 0 1 0 0 2
 EndChar
 
@@ -9238,7 +9240,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 642 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 315 -1 N 1 0 0 1 510 244 2
+Refer: 315 -1 N 1 0 0 1 570 244 2
 Refer: 53 90 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -9256,7 +9258,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 450 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 230 769 N 1 0 0 1 444 0 2
+Refer: 230 769 N 1 0 0 1 447 0 2
 Refer: 42 122 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" zacute.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" zacute.001
@@ -9357,7 +9359,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 527 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 316 -1 N 1 0 0 1 506 244 2
+Refer: 316 -1 N 1 0 0 1 501 244 2
 Refer: 28 69 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Ecircumflex.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Ecircumflex.001
@@ -9426,7 +9428,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 705 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 316 -1 N 1 0 0 1 547 244 2
+Refer: 316 -1 N 1 0 0 1 567 244 2
 Refer: 30 72 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -9445,7 +9447,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 418 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 316 -1 N 1 0 0 1 469 244 2
+Refer: 316 -1 N 1 0 0 1 429 244 2
 Refer: 8 104 N 1 0 0 1 0 0 2
 EndChar
 
@@ -9464,7 +9466,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 305 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 316 -1 N 1 0 0 1 383 244 2
+Refer: 316 -1 N 1 0 0 1 373 244 2
 Refer: 31 73 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -9521,7 +9523,7 @@ AnchorPoint: "l;bl" 20 15 basechar 0
 AnchorPoint: "r;x" 247 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 234 770 N 1 0 0 1 357 0 2
+Refer: 234 770 N 1 0 0 1 347 0 2
 Refer: 179 567 N 1 0 0 1 0 0 2
 EndChar
 
@@ -9538,7 +9540,7 @@ AnchorPoint: "l;hi" 40 684 basechar 0
 AnchorPoint: "r;x" 728 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 316 -1 N 1 0 0 1 578 244 2
+Refer: 316 -1 N 1 0 0 1 588 244 2
 Refer: 37 79 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -9556,7 +9558,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 330 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 234 770 N 1 0 0 1 419 0 2
+Refer: 234 770 N 1 0 0 1 414 0 2
 Refer: 17 111 N 1 0 0 1 0 0 2
 EndChar
 
@@ -9575,7 +9577,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 448 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 316 -1 N 1 0 0 1 443 244 2
+Refer: 316 -1 N 1 0 0 1 448 244 2
 Refer: 46 83 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -9649,7 +9651,7 @@ AnchorPoint: "l;bl" 50 15 basechar 0
 AnchorPoint: "r;x" 938 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 316 -1 N 1 0 0 1 697 244 2
+Refer: 316 -1 N 1 0 0 1 692 244 2
 Refer: 50 87 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -9667,7 +9669,7 @@ AnchorPoint: "l;bl" 20 15 basechar 0
 AnchorPoint: "r;x" 612 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 234 770 N 1 0 0 1 580 0 2
+Refer: 234 770 N 1 0 0 1 583 0 2
 Refer: 18 119 N 1 0 0 1 0 0 2
 EndChar
 
@@ -9686,7 +9688,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 522 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 316 -1 N 1 0 0 1 507 244 2
+Refer: 316 -1 N 1 0 0 1 501 244 2
 Refer: 52 89 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -9704,7 +9706,7 @@ AnchorPoint: "l;bl" 20 15 basechar 0
 AnchorPoint: "r;x" 385 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 234 770 N 1 0 0 1 446 0 2
+Refer: 234 770 N 1 0 0 1 436 0 2
 Refer: 21 121 N 1 0 0 1 0 0 2
 EndChar
 
@@ -9760,7 +9762,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 729 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 317 -1 N 1 0 0 1 545 244 2
+Refer: 317 -1 N 1 0 0 1 575 244 2
 Refer: 27 68 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Dcaron.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Dcaron.001
@@ -9783,7 +9785,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 527 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 317 -1 N 1 0 0 1 506 244 2
+Refer: 317 -1 N 1 0 0 1 501 244 2
 Refer: 28 69 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Ecaron.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Ecaron.001
@@ -9847,7 +9849,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 608 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 317 -1 N 1 0 0 1 480 244 2
+Refer: 317 -1 N 1 0 0 1 485 244 2
 Refer: 45 82 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Rcaron.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Rcaron.001
@@ -9868,7 +9870,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 334 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 245 780 N 1 0 0 1 398 -2 2
+Refer: 245 780 N 1 0 0 1 403 -2 2
 Refer: 15 114 N 1 0 0 1 0 0 2
 EndChar
 
@@ -9911,7 +9913,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 448 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 317 -1 N 1 0 0 1 443 244 2
+Refer: 317 -1 N 1 0 0 1 448 244 2
 Refer: 46 83 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -9948,7 +9950,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 642 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 317 -1 N 1 0 0 1 510 244 2
+Refer: 317 -1 N 1 0 0 1 570 244 2
 Refer: 53 90 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -9966,7 +9968,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 450 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 245 780 N 1 0 0 1 444 0 2
+Refer: 245 780 N 1 0 0 1 447 0 2
 Refer: 42 122 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" zcaron.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" zcaron.001
@@ -10125,7 +10127,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 450 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 241 775 N 1 0 0 1 444 0 2
+Refer: 241 775 N 1 0 0 1 447 0 2
 Refer: 42 122 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" zdotaccent.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" zdotaccent.001
@@ -10169,7 +10171,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 527 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 327 -1 N 1 0 0 1 506 244 2
+Refer: 327 -1 N 1 0 0 1 501 244 2
 Refer: 28 69 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Edotaccent.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Edotaccent.001
@@ -10215,7 +10217,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 305 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 327 -1 N 1 0 0 1 383 244 2
+Refer: 327 -1 N 1 0 0 1 373 244 2
 Refer: 31 73 N 1 0 0 1 0 0 2
 EndChar
 
@@ -10234,7 +10236,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 642 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 327 -1 N 1 0 0 1 510 244 2
+Refer: 327 -1 N 1 0 0 1 570 244 2
 Refer: 53 90 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -10444,7 +10446,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 330 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 242 776 N 1 0 0 1 419 0 2
+Refer: 242 776 N 1 0 0 1 414 0 2
 Refer: 17 111 N 1 0 0 1 0 0 2
 EndChar
 
@@ -10478,7 +10480,7 @@ AnchorPoint: "l;bl" 20 15 basechar 0
 AnchorPoint: "r;x" 385 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 242 776 N 1 0 0 1 446 0 2
+Refer: 242 776 N 1 0 0 1 436 0 2
 Refer: 21 121 N 1 0 0 1 0 0 2
 EndChar
 
@@ -10520,7 +10522,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 527 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 345 -1 N 1 0 0 1 506 244 2
+Refer: 345 -1 N 1 0 0 1 501 244 2
 Refer: 28 69 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Edieresis.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Edieresis.001
@@ -10543,7 +10545,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 305 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 345 -1 N 1 0 0 1 383 244 2
+Refer: 345 -1 N 1 0 0 1 373 244 2
 Refer: 31 73 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -10561,7 +10563,7 @@ AnchorPoint: "l;hi" 40 684 basechar 0
 AnchorPoint: "r;x" 728 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 345 -1 N 1 0 0 1 578 244 2
+Refer: 345 -1 N 1 0 0 1 588 244 2
 Refer: 37 79 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -10601,7 +10603,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 522 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 345 -1 N 1 0 0 1 507 244 2
+Refer: 345 -1 N 1 0 0 1 501 244 2
 Refer: 52 89 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -10663,7 +10665,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 330 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 244 779 N 1 0 0 1 419 0 2
+Refer: 244 779 N 1 0 0 1 414 0 2
 Refer: 17 111 N 1 0 0 1 0 0 2
 EndChar
 
@@ -10697,7 +10699,7 @@ AnchorPoint: "l;hi" 40 684 basechar 0
 AnchorPoint: "r;x" 728 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 352 -1 N 1 0 0 1 578 244 2
+Refer: 352 -1 N 1 0 0 1 588 244 2
 Refer: 37 79 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -10759,7 +10761,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 330 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 239 772 N 1 0 0 1 419 0 2
+Refer: 239 772 N 1 0 0 1 414 0 2
 Refer: 17 111 N 1 0 0 1 0 0 2
 EndChar
 
@@ -10888,7 +10890,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 527 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 358 -1 N 1 0 0 1 506 244 2
+Refer: 358 -1 N 1 0 0 1 501 244 2
 Refer: 28 69 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Emacron.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Emacron.001
@@ -10911,7 +10913,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 305 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 358 -1 N 1 0 0 1 383 244 2
+Refer: 358 -1 N 1 0 0 1 373 244 2
 Refer: 31 73 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -10929,7 +10931,7 @@ AnchorPoint: "l;hi" 40 684 basechar 0
 AnchorPoint: "r;x" 728 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 358 -1 N 1 0 0 1 578 244 2
+Refer: 358 -1 N 1 0 0 1 588 244 2
 Refer: 37 79 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -11041,7 +11043,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 330 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 240 774 N 1 0 0 1 419 0 2
+Refer: 240 774 N 1 0 0 1 414 0 2
 Refer: 17 111 N 1 0 0 1 0 0 2
 EndChar
 
@@ -11100,7 +11102,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 527 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 376 -1 N 1 0 0 1 506 244 2
+Refer: 376 -1 N 1 0 0 1 501 244 2
 Refer: 28 69 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Ebreve.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Ebreve.001
@@ -11146,7 +11148,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 305 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 376 -1 N 1 0 0 1 383 244 2
+Refer: 376 -1 N 1 0 0 1 373 244 2
 Refer: 31 73 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -11164,7 +11166,7 @@ AnchorPoint: "l;hi" 40 684 basechar 0
 AnchorPoint: "r;x" 728 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 376 -1 N 1 0 0 1 578 244 2
+Refer: 376 -1 N 1 0 0 1 588 244 2
 Refer: 37 79 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -11288,7 +11290,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 330 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 238 771 N 1 0 0 1 419 0 2
+Refer: 238 771 N 1 0 0 1 414 0 2
 Refer: 17 111 N 1 0 0 1 0 0 2
 EndChar
 
@@ -11347,7 +11349,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 305 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 389 -1 N 1 0 0 1 383 244 2
+Refer: 389 -1 N 1 0 0 1 373 244 2
 Refer: 31 73 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -11389,7 +11391,7 @@ AnchorPoint: "l;hi" 40 684 basechar 0
 AnchorPoint: "r;x" 728 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 389 -1 N 1 0 0 1 578 244 2
+Refer: 389 -1 N 1 0 0 1 588 244 2
 Refer: 37 79 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -11577,7 +11579,7 @@ StartChar: Thorn
 Encoding: 222 222 400
 Width: 555
 VWidth: 0
-Flags: HWO
+Flags: HW
 HStem: 0 32<22 87.5271 162.16 250> 140 32<169.255 322.122> 500 32<194.163 340.35> 635 32<49 129.67 201.688 276>
 VStem: 439 86<270.691 429.112>
 DStem2: 85.5457 0 156.637 0 0.0697565 0.997564<65.5346 154.319 180.523 507.465 538.269 610.43>
@@ -11654,6 +11656,7 @@ SplineSet
  162 177 l 5
  162 177 184 172 227 172 c 4
 EndSplineSet
+Kerns2: 458 -135 "'kern' Horizontal Kerning in Latin lookup 3 per glyph data 2" 
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
@@ -12626,7 +12629,7 @@ VWidth: 0
 Flags: HMW
 HStem: -258 35<-23 49> 0 3G<309 327 496 505> 327 67<490 548> 661 41<218 303>
 DStem2: 84 76 149 92 0.0658813 0.997827<-203.876 19.8695 348.118 520.351> 291 15 353 190 0.0597154 0.998215<-12.6958 17.3422 46.1577 124.39 425.133 621.074> 485 19 550 95 0.0895666 0.995981<0 81.1958 272.58 304.815>
-AnchorPoint: "top" 503 732 basechar 0
+AnchorPoint: "top" 493 732 basechar 0
 AnchorPoint: "r;bl" 627 15 basechar 0
 AnchorPoint: "r;x" 647 376 basechar 0
 AnchorPoint: "r;o" 657 195 basechar 0
@@ -12688,7 +12691,7 @@ DStem2: 84 76 149 105 0.0758408 0.99712<-194.895 34.1748 392.732 497.725> 306 88
 AnchorPoint: "r;o" 879 195 basechar 0
 AnchorPoint: "r;x" 869 376 basechar 0
 AnchorPoint: "r;bl" 849 15 basechar 0
-AnchorPoint: "top" 725 732 basechar 0
+AnchorPoint: "top" 715 732 basechar 0
 AnchorPoint: "l;k;lo" -74 -244 basechar 0
 AnchorPoint: "l;o" 10 195 basechar 0
 AnchorPoint: "l;x" 20 376 basechar 0
@@ -13042,7 +13045,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 646 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 316 -1 N 1 0 0 1 697 244 2
+Refer: 316 -1 N 1 0 0 1 687 244 2
 Refer: 80 -1 N 1 0 0 1 0 0 2
 Ligature2: "'liga' Standard Ligatures in Latin lookup 15 subtable" f hcircumflex
 LCarets2: 1 0 
@@ -13062,7 +13065,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 868 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 316 -1 N 1 0 0 1 919 244 2
+Refer: 316 -1 N 1 0 0 1 909 244 2
 Refer: 81 -1 N 1 0 0 1 0 0 2
 Ligature2: "'liga' Standard Ligatures in Latin lookup 15 subtable" f f hcircumflex
 LCarets2: 2 0 0 
@@ -13203,9 +13206,9 @@ Encoding: 350 350 428
 Width: 468
 VWidth: 0
 Flags: HW
-HStem: -220 27<150.772 239.107> -95 30<188.028 240.641> 643 38<179.599 328.429>
-VStem: 38 28<-39 -8.295> 70 70<476.812 597.896> 254 51<-185.618 -104.042> 328 71<98.0439 226.399> 380 27<660.04 687>
-DStem2: 257 382 157 364 0.759257 -0.650791<-161.668 172.208> 160 -79 188 -66 0.345066 0.938579<21.8634 72.45> 418 531 386 583 0.0703382 -0.997523<-69.0605 0>
+HStem: -220 27<160.772 249.107> -95 30<198.028 250.641> 643 38<179.599 328.429>
+VStem: 38 28<-39 -8.295> 70 70<476.812 597.896> 264 51<-185.618 -104.042> 328 71<97.2994 226.399> 380 27<660.04 687>
+DStem2: 257 382 157 364 0.759257 -0.650791<-161.668 172.208> 170 -79 198 -66 0.345066 0.938579<21.8634 72.45> 418 531 386 583 0.0703382 -0.997523<-69.0605 0>
 AnchorPoint: "r;hi" 468 684 basechar 0
 AnchorPoint: "l;x" 10 376 basechar 0
 AnchorPoint: "r;bl" 428 15 basechar 0
@@ -13217,17 +13220,18 @@ AnchorPoint: "r;x" 448 376 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-305 -135 m 0xfe
- 305 -193 248 -220 199 -220 c 0
- 154 -220 140 -207 140 -207 c 1
- 161 -183 l 1
- 161 -183 188 -193 206 -193 c 0
- 234 -193 254 -173 254 -139 c 0
- 254 -105 220 -95 189 -95 c 0
- 182 -95 177 -95 170 -96 c 1
- 160 -79 l 1
- 185 -11 l 1
- 122 -11 102 4 80 4 c 0
+315 -135 m 0xfe
+ 315 -193 258 -220 209 -220 c 0
+ 164 -220 150 -207 150 -207 c 1
+ 171 -183 l 1
+ 171 -183 198 -193 216 -193 c 0
+ 244 -193 264 -173 264 -139 c 0
+ 264 -105 230 -95 199 -95 c 0
+ 192 -95 187 -95 180 -96 c 1
+ 170 -79 l 1
+ 195 -11 l 1
+ 193 -11 190 -11 188 -11 c 0
+ 123 -11 102 4 80 4 c 0
  65 4 64 1 64 -8 c 0
  64 -14 66 -39 66 -39 c 1
  38 -40 l 1
@@ -13253,10 +13257,10 @@ SplineSet
  140 475 198 433 257 382 c 2
  292 352 l 2
  311 335 399 275 399 180 c 0
- 399 101 336 -1 207 -10 c 1
- 188 -66 l 1
- 194 -66 198 -65 204 -65 c 0
- 254 -65 305 -83 305 -135 c 0xfe
+ 399 103 339 5 217 -9 c 1
+ 198 -66 l 1
+ 204 -66 208 -65 214 -65 c 0
+ 264 -65 315 -83 315 -135 c 0xfe
 EndSplineSet
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -13266,9 +13270,9 @@ Encoding: 351 351 429
 Width: 316
 VWidth: 0
 Flags: HW
-HStem: -220 27<74.7722 163.107> -95 30<112.028 164.641> -7 35<95.918 111 132 185.268> 370 29<142.867 211.136>
-VStem: 84 52<289.205 364.087> 178 51<-185.618 -104.042> 215 60<57.5779 152.407>
-DStem2: 84 -79 112 -66 0.351123 0.936329<22.0037 76.896>
+HStem: -220 27<89.7722 178.107> -95 30<127.028 179.641> -7 35<95.2952 126> 370 29<142.867 211.136>
+VStem: 84 52<289.205 364.087> 193 51<-185.618 -104.042> 215 60<57.2012 152.407>
+DStem2: 99 -79 127 -66 0.351123 0.936329<22.0037 76.896>
 AnchorPoint: "l;x" 20 376 basechar 0
 AnchorPoint: "r;bl" 301 15 basechar 0
 AnchorPoint: "r;o" 316 195 basechar 0
@@ -13278,17 +13282,18 @@ AnchorPoint: "r;x" 316 376 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-229 -135 m 0xfc
- 229 -193 172 -220 123 -220 c 0
- 78 -220 64 -207 64 -207 c 1
- 85 -183 l 1
- 85 -183 112 -193 130 -193 c 0
- 158 -193 178 -173 178 -139 c 0xfc
- 178 -105 144 -95 113 -95 c 0
- 106 -95 101 -95 94 -96 c 1
- 84 -79 l 1
- 111 -7 l 1
- 69 -5 41 6 33 17 c 0
+244 -135 m 0xfc
+ 244 -193 187 -220 138 -220 c 0
+ 93 -220 79 -207 79 -207 c 1
+ 100 -183 l 1
+ 100 -183 127 -193 145 -193 c 0
+ 173 -193 193 -173 193 -139 c 0xfc
+ 193 -105 159 -95 128 -95 c 0
+ 121 -95 116 -95 109 -96 c 1
+ 99 -79 l 1
+ 126 -7 l 2
+ 125 -7 124 -7 123 -7 c 0
+ 74 -7 42 5 33 17 c 0
  27 24 25 37 25 60 c 0
  25 78 32 101 49 101 c 0
  78 101 75 28 137 28 c 0
@@ -13300,10 +13305,10 @@ SplineSet
  228 325 215 370 176 370 c 0
  152 370 136 355 136 336 c 0
  136 272 275 213 275 118 c 0xfa
- 275 58 213 -3 132 -7 c 1
- 112 -66 l 1
- 118 -66 122 -65 128 -65 c 0
- 178 -65 229 -83 229 -135 c 0xfc
+ 275 62 221 6 148 -5 c 1
+ 127 -66 l 1
+ 133 -66 137 -65 143 -65 c 0
+ 193 -65 244 -83 244 -135 c 0xfc
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" uni0219
 Substitution2: "romanian subtable" uni0219
@@ -13441,7 +13446,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 682 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 433 806 N 1 0 0 1 563 3 2
+Refer: 433 806 N 1 0 0 1 553 3 2
 Refer: 33 75 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -13504,7 +13509,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 406 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 433 806 N 1 0 0 1 377 5 2
+Refer: 433 806 N 1 0 0 1 387 5 2
 Refer: 5 107 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" kcommaaccent.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" kcommaaccent.001
@@ -13544,7 +13549,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 214 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 433 806 N 1 0 0 1 281 5 2
+Refer: 433 806 N 1 0 0 1 291 5 2
 Refer: 2 108 N 1 0 0 1 0 0 2
 EndChar
 
@@ -13563,7 +13568,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 738 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 433 806 N 1 0 0 1 552 0 2
+Refer: 433 806 N 1 0 0 1 567 0 2
 Refer: 36 78 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Ncommaaccent.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Ncommaaccent.001
@@ -13585,7 +13590,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 411 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 433 806 N 1 0 0 1 385 0 2
+Refer: 433 806 N 1 0 0 1 390 0 2
 Refer: 6 110 N 1 0 0 1 0 0 2
 EndChar
 
@@ -13604,7 +13609,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 608 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 433 806 N 1 0 0 1 551 -2 2
+Refer: 433 806 N 1 0 0 1 511 -2 2
 Refer: 45 82 N 1 0 0 1 0 0 2
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Rcommaaccent.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Rcommaaccent.001
@@ -13644,7 +13649,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 448 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 433 806 N 1 0 0 1 380 0 2
+Refer: 433 806 N 1 0 0 1 390 0 2
 Refer: 46 83 N 1 0 0 1 0 0 2
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -13662,7 +13667,7 @@ AnchorPoint: "l;bl" 0 15 basechar 0
 AnchorPoint: "r;x" 316 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 433 806 N 1 0 0 1 304 0 2
+Refer: 433 806 N 1 0 0 1 319 0 2
 Refer: 16 115 N 1 0 0 1 0 0 2
 EndChar
 
@@ -13936,64 +13941,72 @@ EndChar
 
 StartChar: AE
 Encoding: 198 198 458
-Width: 1020
+Width: 962
 VWidth: 0
-Flags: W
-HStem: 0 46<581.004 829.759> 0 32<22 75.5631 144.042 224 445 508.591> 257 39<334 529> 359 39<610 815.47> 635 32<476 552.996 630 855.471>
-VStem: 902 22<546 620.166>
-DStem2: 109 85 168 88 0.637448 0.770493<-5.12965 254.277 306 306> 506.665 0 576.497 0 0.0697565 0.997564<67.3646 257.932 297.046 365.055 404.239 404.239> 792.26 0 816.33 0 0.0697565 0.997564<269.331 336.51 399.246 474.411>
+Flags: HW
+HStem: 0 46<569.004 817.759> 0 32<10 63.5631 132.042 212 433 496.591> 257 39<322 517> 359 39<598 803.47> 635 32<464 540.996 618 843.471>
+VStem: 890 22<546 620.166>
+DStem2: 97 85 156 88 0.637448 0.770493<-5.12965 254.277 306 306> 494.665 0 564.497 0 0.0697565 0.997564<67.3646 257.932 297.046 365.055 404.239 404.239> 780.26 0 804.33 0 0.0697565 0.997564<269.331 336.51 399.246 474.411>
+AnchorPoint: "l;o" 100 195 basechar 0
+AnchorPoint: "l;hi" 210 684 basechar 0
+AnchorPoint: "l;x" 140 376 basechar 0
+AnchorPoint: "l;bl" 0 15 basechar 0
+AnchorPoint: "r;o" 942 195 basechar 0
+AnchorPoint: "r;hi" 962 684 basechar 0
+AnchorPoint: "r;x" 942 376 basechar 0
+AnchorPoint: "r;bl" 942 15 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-620 46 m 2xbc
- 863 46 868 50 877 76 c 0
- 886 99 892 131 897 152 c 1
- 922 147 l 1
- 888 0 l 1
- 443 0 l 1
- 445 32 l 1
- 468 32 l 2
- 502 32 508 34 511 62 c 2
- 529 257 l 1
- 300 257 l 1
- 168 88 l 2
- 155 71 144 57 144 49 c 0
- 144 34 158 32 207 32 c 2
- 226 32 l 1
- 224 0 l 1
- 22 0 l 1
- 22 32 l 1
- 38 32 l 2x7c
- 65 32 82 52 109 85 c 2
- 545 612 l 2
- 550 618 553 623 553 627 c 0
- 553 632 547 635 531 635 c 2
- 476 635 l 1
- 476 667 l 1
- 924 667 l 1
- 924 546 l 1
- 902 545 l 1
- 901 597 l 2
- 900 633 888 631 657 635 c 0
- 636 635 631 634 630 621 c 2
- 610 398 l 1
- 790 398 l 2
- 818 398 821 400 824 424 c 2
- 829 473 l 1
- 851 472 l 1
- 835 267 l 1
- 811 268 l 1
- 815 322 816 329 816 336 c 0
- 816 354 808 359 785 359 c 2
- 606 359 l 1
- 583 93 l 2
- 582 80 581 69 581 62 c 0
- 581 47 586 46 605 46 c 2
- 620 46 l 2xbc
-532 296 m 1
- 558 574 l 1
- 334 296 l 1
- 532 296 l 1
+608 46 m 2xbc
+ 851 46 856 50 865 76 c 0
+ 874 99 880 131 885 152 c 1
+ 910 147 l 1
+ 876 0 l 1
+ 431 0 l 1
+ 433 32 l 1
+ 456 32 l 2
+ 490 32 496 34 499 62 c 2
+ 517 257 l 1
+ 288 257 l 1
+ 156 88 l 2
+ 143 71 132 57 132 49 c 0
+ 132 34 146 32 195 32 c 2
+ 214 32 l 1
+ 212 0 l 1
+ 10 0 l 1
+ 10 32 l 1
+ 26 32 l 2x7c
+ 53 32 70 52 97 85 c 2
+ 533 612 l 2
+ 538 618 541 623 541 627 c 0
+ 541 632 535 635 519 635 c 2
+ 464 635 l 1
+ 464 667 l 1
+ 912 667 l 1
+ 912 546 l 1
+ 890 545 l 1
+ 889 597 l 2
+ 888 633 876 631 645 635 c 0
+ 624 635 619 634 618 621 c 2
+ 598 398 l 1
+ 778 398 l 2
+ 806 398 809 400 812 424 c 2
+ 817 473 l 1
+ 839 472 l 1
+ 823 267 l 1
+ 799 268 l 1
+ 803 322 804 329 804 336 c 0
+ 804 354 796 359 773 359 c 2
+ 594 359 l 1
+ 571 93 l 2
+ 570 80 569 69 569 62 c 0
+ 569 47 574 46 593 46 c 2
+ 608 46 l 2xbc
+520 296 m 1
+ 546 574 l 1
+ 322 296 l 1
+ 520 296 l 1
 EndSplineSet
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -14044,47 +14057,55 @@ EndChar
 
 StartChar: Aogonek
 Encoding: 260 260 460
-Width: 660
+Width: 655
 VWidth: 0
-Flags: W
-HStem: -262 47<418.011 494.769> 0 32<27 82.553 141.042 221 564.675 632> 257 39<249 423> 663 20G<375.602 407.965>
-VStem: 335 70<-204.06 -105.335>
-DStem2: 104 85 155 88 0.425287 0.905059<-16.5019 210.532 252.634 252.634> 403 683 360 548 0.240927 -0.970543<120.663 380.419 420.438 628.815>
+Flags: HW
+HStem: -262 47<411.011 487.769> 0 32<20 75.553 134.042 214 557.675 625> 257 39<242 416> 663 20G<368.602 400.965>
+VStem: 328 70<-204.06 -105.335>
+DStem2: 97 85 148 88 0.425287 0.905059<-16.5019 210.532 252.634 252.634> 396 683 353 548 0.240927 -0.970543<120.663 380.419 420.438 628.815>
+AnchorPoint: "r;o" 655 195 basechar 0
+AnchorPoint: "r;hi" 625 684 basechar 0
+AnchorPoint: "r;x" 645 376 basechar 0
+AnchorPoint: "r;bl" 645 15 basechar 0
+AnchorPoint: "l;o" 30 195 basechar 0
+AnchorPoint: "l;hi" 100 684 basechar 0
+AnchorPoint: "l;x" 50 376 basechar 0
+AnchorPoint: "l;bl" 0 15 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-424 -262 m 0
- 364 -262 335 -222 335 -174 c 0
- 335 -85 443 -23 471 26 c 0
- 476 34 477 44 477 53 c 0
- 477 63 475 74 473 83 c 2
- 432 257 l 1
- 233 257 l 1
- 155 88 l 2
- 147 70 141 57 141 49 c 0
- 141 34 155 32 204 32 c 2
- 223 32 l 1
- 221 0 l 1
- 27 0 l 1
- 27 32 l 1
- 43 32 l 2
- 70 32 81 35 104 85 c 2
- 385 683 l 1
- 403 683 l 1
- 544 115 l 2
- 564 34 567 32 603 32 c 2
- 632 32 l 1
- 632 0 l 1
- 536 0 l 2
- 465 0 405 -90 405 -146 c 0
- 405 -184 423 -215 458 -215 c 0
- 503 -215 531 -185 531 -185 c 1
- 540 -203 l 1
- 540 -203 491 -262 424 -262 c 0
-249 296 m 1
- 423 296 l 1
- 360 548 l 1
- 249 296 l 1
+417 -262 m 0
+ 357 -262 328 -222 328 -174 c 0
+ 328 -85 436 -23 464 26 c 0
+ 469 34 470 44 470 53 c 0
+ 470 63 468 74 466 83 c 2
+ 425 257 l 1
+ 226 257 l 1
+ 148 88 l 2
+ 140 70 134 57 134 49 c 0
+ 134 34 148 32 197 32 c 2
+ 216 32 l 1
+ 214 0 l 1
+ 20 0 l 1
+ 20 32 l 1
+ 36 32 l 2
+ 63 32 74 35 97 85 c 2
+ 378 683 l 1
+ 396 683 l 1
+ 537 115 l 2
+ 557 34 560 32 596 32 c 2
+ 625 32 l 1
+ 625 0 l 1
+ 529 0 l 2
+ 458 0 398 -90 398 -146 c 0
+ 398 -184 416 -215 451 -215 c 0
+ 496 -215 524 -185 524 -185 c 1
+ 533 -203 l 1
+ 533 -203 484 -262 417 -262 c 0
+242 296 m 1
+ 416 296 l 1
+ 353 548 l 1
+ 242 296 l 1
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Aogonek.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Aogonek.001
@@ -14709,99 +14730,114 @@ EndChar
 
 StartChar: OE
 Encoding: 338 338 473
-Width: 969
+Width: 951
 VWidth: 0
-Flags: W
-HStem: -10 36<260.202 462.89> 0 46<551.004 799.759> 359 39<580 785.47> 635 32<600 825.471> 644 32<298.817 509.897>
-VStem: 38 82<176.318 432.635> 872 22<126.026 148.296 546 620.166>
-DStem2: 475.965 -10 545.798 -10 0.0697565 0.997564<77.3891 375.079 414.263 479.853 521.574 611.626> 761.56 -10 785.63 -10 0.0697565 0.997564<279.355 346.534 409.271 484.435>
+Flags: HW
+HStem: -10 36<267.202 469.89> 0 46<558.004 806.759> 359 39<587 792.47> 635 32<607 832.471> 644 32<305.817 516.897>
+VStem: 45 82<176.318 432.635> 879 22<126.026 148.296 546 620.166>
+DStem2: 482.965 -10 552.798 -10 0.0697565 0.997564<77.3891 375.079 414.263 479.853 521.574 611.626> 768.56 -10 792.63 -10 0.0697565 0.997564<279.355 346.534 409.271 484.435>
+AnchorPoint: "r;o" 931 195 basechar 0
+AnchorPoint: "r;hi" 951 684 basechar 0
+AnchorPoint: "r;x" 931 376 basechar 0
+AnchorPoint: "r;bl" 931 15 basechar 0
+AnchorPoint: "l;hi" 40 684 basechar 0
+AnchorPoint: "l;o" 0 195 basechar 0
+AnchorPoint: "l;x" 0 376 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-38 297 m 0xa6
- 38 513 177 676 385 676 c 0xae
- 441 676 516 667 576 667 c 2
- 894 667 l 1
- 894 546 l 1
- 872 545 l 1
- 871 597 l 2
- 870 633 858 631 627 635 c 0
- 606 635 601 634 600 621 c 2
- 580 398 l 1
- 760 398 l 2
- 788 398 791 400 794 424 c 2
- 799 473 l 1
- 821 472 l 1
- 805 267 l 1
- 781 268 l 1
- 785 322 786 329 786 336 c 0
- 786 354 778 359 755 359 c 2
- 576 359 l 1
- 553 93 l 2
- 552 80 551 69 551 62 c 0
- 551 47 556 46 575 46 c 2
- 590 46 l 2
- 833 46 838 50 847 76 c 0
- 856 99 862 131 867 152 c 1
- 892 147 l 1
- 858 0 l 1
- 532 0 l 2x76
- 480 0 408 -10 333 -10 c 0
- 175 -10 38 73 38 297 c 0xa6
-120 318 m 0
- 120 104 228 26 355 26 c 0
- 375 26 478 32 481 62 c 2
- 526 554 l 2
- 527 568 530 586 530 600 c 0
- 530 644 440 644 390 644 c 0
- 222 644 120 511 120 318 c 0
+45 297 m 0xa6
+ 45 513 184 676 392 676 c 0xae
+ 448 676 523 667 583 667 c 2
+ 901 667 l 1
+ 901 546 l 1
+ 879 545 l 1
+ 878 597 l 2
+ 877 633 865 631 634 635 c 0
+ 613 635 608 634 607 621 c 2
+ 587 398 l 1
+ 767 398 l 2
+ 795 398 798 400 801 424 c 2
+ 806 473 l 1
+ 828 472 l 1
+ 812 267 l 1
+ 788 268 l 1
+ 792 322 793 329 793 336 c 0
+ 793 354 785 359 762 359 c 2
+ 583 359 l 1
+ 560 93 l 2
+ 559 80 558 69 558 62 c 0
+ 558 47 563 46 582 46 c 2
+ 597 46 l 2
+ 840 46 845 50 854 76 c 0
+ 863 99 869 131 874 152 c 1
+ 899 147 l 1
+ 865 0 l 1
+ 539 0 l 2x76
+ 487 0 415 -10 340 -10 c 0
+ 182 -10 45 73 45 297 c 0xa6
+127 318 m 0
+ 127 104 235 26 362 26 c 0
+ 382 26 485 32 488 62 c 2
+ 533 554 l 2
+ 534 568 537 586 537 600 c 0
+ 537 644 447 644 397 644 c 0
+ 229 644 127 511 127 318 c 0
 EndSplineSet
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Tbar
 Encoding: 358 358 474
-Width: 647
+Width: 617
 VWidth: 0
 Flags: HW
-HStem: 0 32<151 243.188 316.293 408> 313 39<118 263 336 482> 623 44<68.1024 282.992 352.475 566.7>
-VStem: 13 36<508 598.124> 557 36<510 594.197>
-DStem2: 240.825 0 311.476 0 0.0697565 0.997564<65.3352 313.784 357.782 608.227>
+HStem: 0 32<148 240.188 313.293 405> 313 39<115 260 333 479> 623 44<65.1024 279.992 349.475 563.7>
+VStem: 10 36<508 598.124> 554 36<510 594.197>
+DStem2: 237.825 0 308.476 0 0.0697565 0.997564<65.3352 313.784 357.782 608.227>
+AnchorPoint: "r;o" 517 195 basechar 0
+AnchorPoint: "r;hi" 617 684 basechar 0
+AnchorPoint: "r;x" 537 376 basechar 0
+AnchorPoint: "r;bl" 497 15 basechar 0
+AnchorPoint: "l;o" 40 195 basechar 0
+AnchorPoint: "l;hi" 0 684 basechar 0
+AnchorPoint: "l;x" 40 376 basechar 0
+AnchorPoint: "l;bl" 60 15 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-282 590 m 2
- 282 593 283 602 283 607 c 0
- 283 620 272 623 240 623 c 2
- 115 623 l 2
- 65 623 64 610 49 507 c 1
- 13 508 l 1
- 23 568 31 616 38 667 c 1
- 615 667 l 1
- 608 616 598 562 593 509 c 1
- 557 510 l 1
- 563 552 567 578 567 595 c 0
- 567 622 556 623 522 623 c 2
- 407 623 l 2
- 355 623 354 623 352 595 c 2
- 336 352 l 1
- 485 352 l 1
- 482 313 l 1
- 333 313 l 1
- 317 79 l 2
- 317 75 316 65 316 60 c 0
- 316 38 316 32 344 32 c 2
- 410 32 l 1
- 408 0 l 1
- 151 0 l 1
- 151 32 l 1
- 204 32 l 2
- 245 32 243 36 246 74 c 2
- 263 313 l 1
- 115 313 l 1
- 118 352 l 1
- 265 352 l 1
- 282 590 l 2
+279 590 m 2
+ 279 593 280 602 280 607 c 0
+ 280 620 269 623 237 623 c 2
+ 112 623 l 2
+ 62 623 61 610 46 507 c 1
+ 10 508 l 1
+ 20 568 28 616 35 667 c 1
+ 612 667 l 1
+ 605 616 595 562 590 509 c 1
+ 554 510 l 1
+ 560 552 564 578 564 595 c 0
+ 564 622 553 623 519 623 c 2
+ 404 623 l 2
+ 352 623 351 623 349 595 c 2
+ 333 352 l 1
+ 482 352 l 1
+ 479 313 l 1
+ 330 313 l 1
+ 314 79 l 2
+ 314 75 313 65 313 60 c 0
+ 313 38 313 32 341 32 c 2
+ 407 32 l 1
+ 405 0 l 1
+ 148 0 l 1
+ 148 32 l 1
+ 201 32 l 2
+ 242 32 240 36 243 74 c 2
+ 260 313 l 1
+ 112 313 l 1
+ 115 352 l 1
+ 262 352 l 1
+ 279 590 l 2
 EndSplineSet
 AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" Tbar.001
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" Tbar.001
@@ -14858,54 +14894,62 @@ EndChar
 
 StartChar: Uogonek
 Encoding: 370 370 476
-Width: 705
+Width: 699
 VWidth: 0
-Flags: W
-HStem: -262 47<448.011 524.769> -22 44<197.184 376.76> 635 32<23 105.122 182.802 262 424 512.678 589.308 661>
-VStem: 74 74<72.1031 393.541> 365 70<-204.06 -107.354> 476 73<47.0023 107>
+Flags: HW
+HStem: -262 47<456.011 532.769> -22 44<205.184 384.76> 635 32<31 113.122 190.802 270 432 520.678 597.308 669>
+VStem: 82 74<72.1031 393.541> 373 70<-204.06 -107.354> 484 73<47.0023 107>
+AnchorPoint: "r;o" 679 195 basechar 0
+AnchorPoint: "r;hi" 679 684 basechar 0
+AnchorPoint: "r;x" 699 376 basechar 0
+AnchorPoint: "r;bl" 679 15 basechar 0
+AnchorPoint: "l;o" 0 195 basechar 0
+AnchorPoint: "l;hi" 0 684 basechar 0
+AnchorPoint: "l;x" 10 376 basechar 0
+AnchorPoint: "l;bl" 0 15 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-454 -262 m 0
- 394 -262 365 -222 365 -174 c 0
- 365 -120 414 -68 454 -25 c 0
- 475 -2 475 26 476 55 c 0
- 477 75 478 92 478 107 c 1
- 471 87 446 43 411 18 c 0
- 380 -4 334 -22 270 -22 c 0
- 105 -22 74 35 74 157 c 0
- 74 205 106 573 106 603 c 0
- 106 633 102 635 77 635 c 2
- 22 635 l 1
- 23 667 l 1
- 264 667 l 1
- 262 635 l 1
- 215 635 l 2
- 191 635 183 634 180 604 c 0
- 156 304 148 179 148 157 c 0
- 148 94 172 22 278 22 c 0
- 370 22 419 64 449 112 c 0
- 486 172 485 244 487 264 c 2
- 512 586 l 2
- 513 594 513 607 513 613 c 0
- 513 631 507 635 474 635 c 2
- 423 635 l 1
- 424 667 l 1
- 661 667 l 1
- 661 635 l 1
- 617 635 l 2
- 600 635 589 634 587 605 c 0
- 556 160 549 136 549 81 c 0
- 549 50 556 47 565 47 c 0
- 574 47 592 57 627 75 c 1
- 638 50 l 1
- 638 50 590 23 548 3 c 0
- 522 -9 516 -12 495 -30 c 0
- 459 -61 435 -110 435 -146 c 0
- 435 -184 453 -215 488 -215 c 0
- 533 -215 561 -185 561 -185 c 1
- 570 -203 l 1
- 570 -203 521 -262 454 -262 c 0
+462 -262 m 0
+ 402 -262 373 -222 373 -174 c 0
+ 373 -120 422 -68 462 -25 c 0
+ 483 -2 483 26 484 55 c 0
+ 485 75 486 92 486 107 c 1
+ 479 87 454 43 419 18 c 0
+ 388 -4 342 -22 278 -22 c 0
+ 113 -22 82 35 82 157 c 0
+ 82 205 114 573 114 603 c 0
+ 114 633 110 635 85 635 c 2
+ 30 635 l 1
+ 31 667 l 1
+ 272 667 l 1
+ 270 635 l 1
+ 223 635 l 2
+ 199 635 191 634 188 604 c 0
+ 164 304 156 179 156 157 c 0
+ 156 94 180 22 286 22 c 0
+ 378 22 427 64 457 112 c 0
+ 494 172 493 244 495 264 c 2
+ 520 586 l 2
+ 521 594 521 607 521 613 c 0
+ 521 631 515 635 482 635 c 2
+ 431 635 l 1
+ 432 667 l 1
+ 669 667 l 1
+ 669 635 l 1
+ 625 635 l 2
+ 608 635 597 634 595 605 c 0
+ 564 160 557 136 557 81 c 0
+ 557 50 564 47 573 47 c 0
+ 582 47 600 57 635 75 c 1
+ 646 50 l 1
+ 646 50 598 23 556 3 c 0
+ 530 -9 524 -12 503 -30 c 0
+ 467 -61 443 -110 443 -146 c 0
+ 443 -184 461 -215 496 -215 c 0
+ 541 -215 569 -185 569 -185 c 1
+ 578 -203 l 1
+ 578 -203 529 -262 462 -262 c 0
 EndSplineSet
 Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
@@ -15962,11 +16006,11 @@ StartChar: T.002
 Encoding: 65646 -1 506
 Width: 652
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -23 36<233.178 358.904> 162 30<326.102 370.713> 284 29<245.994 355.783> 359 32<92.2531 197.875> 620 37<388.946 569.523> 632 64<137.13 390.638>
 VStem: 11 33<441.201 552.338> 114 60<68.1201 220.501> 236 44<422.036 497.736> 377 28<197.891 262.193>
-AnchorPoint: "cedilla" 277 -93 basechar 0
-AnchorPoint: "top" 374 732 basechar 0
+AnchorPoint: "cedilla" 287 -93 basechar 0
+AnchorPoint: "top" 384 732 basechar 0
 LayerCount: 3
 Fore
 SplineSet
@@ -16014,7 +16058,7 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 433 806 N 1 0 0 1 562 0 2
+Refer: 433 806 N 1 0 0 1 552 0 2
 Refer: 511 -1 N 1 0 0 1 0 0 2
 EndChar
 
@@ -16025,7 +16069,7 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 315 -1 N 1 0 0 1 557 244 2
+Refer: 315 -1 N 1 0 0 1 607 244 2
 Refer: 511 -1 N 1 0 0 1 0 0 2
 EndChar
 
@@ -16036,7 +16080,7 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 389 -1 N 1 0 0 1 557 244 2
+Refer: 389 -1 N 1 0 0 1 607 244 2
 Refer: 511 -1 N 1 0 0 1 0 0 2
 EndChar
 
@@ -16047,7 +16091,7 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 317 -1 N 1 0 0 1 557 244 2
+Refer: 317 -1 N 1 0 0 1 607 244 2
 Refer: 511 -1 N 1 0 0 1 0 0 2
 EndChar
 
@@ -16059,8 +16103,8 @@ Flags: HMW
 HStem: -125 41<741.414 805.884> -4 49<22.75 88.3727> 635 32<22 133.222 563 640.919 688.942 746>
 VStem: 642 42<533.906 634.081>
 DStem2: 118 179 155 203 0.1024 0.994743<-114.217 380.197> 196 667 143 608 0.583611 -0.812033<0 43.9526 87.0908 692.243 733.047 900.352>
-AnchorPoint: "top" 362 732 basechar 0
-AnchorPoint: "cedilla" 367 -93 basechar 0
+AnchorPoint: "top" 412 732 basechar 0
+AnchorPoint: "cedilla" 357 -93 basechar 0
 LayerCount: 3
 Fore
 SplineSet
@@ -16241,7 +16285,7 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 433 806 N 1 0 0 1 472 0 2
+Refer: 433 806 N 1 0 0 1 482 0 2
 Refer: 506 -1 N 1 0 0 1 0 0 2
 EndChar
 
@@ -16250,23 +16294,23 @@ Encoding: 65657 -1 517
 Width: 652
 VWidth: 0
 Flags: W
-HStem: -220 27<242.772 331.107> -95 30<280.028 332.641> -23 36<295 358.219> 162 30<326.102 370.713> 284 29<245.994 355.783> 359 32<92.2531 197.875> 620 37<388.946 569.523> 632 64<137.13 390.638>
-VStem: 11 33<441.201 552.338> 114 60<67.6533 220.501> 236 44<422.036 497.736> 346 51<-185.618 -104.042> 377 28<197.891 262.193>
-DStem2: 252 -79 280 -66 0.345705 0.938343<21.8782 60.7454>
+HStem: -220 27<252.772 341.107> -95 30<290.028 342.641> -23 36<305 358.219> 162 30<326.102 370.713> 284 29<245.994 355.783> 359 32<92.2531 197.875> 620 37<388.946 569.523> 632 64<137.13 390.638>
+VStem: 11 33<441.201 552.338> 114 60<68.2508 220.501> 236 44<422.036 497.736> 356 51<-185.618 -104.042> 377 28<197.891 262.193>
+DStem2: 262 -79 290 -66 0.345705 0.938343<21.8782 60.7454>
 LayerCount: 3
 Fore
 SplineSet
-397 -135 m 0xfef0
- 397 -193 340 -220 291 -220 c 0
- 246 -220 232 -207 232 -207 c 1
- 253 -183 l 1
- 253 -183 280 -193 298 -193 c 0
- 326 -193 346 -173 346 -139 c 0xfef0
- 346 -105 312 -95 281 -95 c 0
- 274 -95 269 -95 262 -96 c 1
- 252 -79 l 1
- 273 -22 l 1
- 186 -12 114 47 114 143 c 0
+407 -135 m 0xfef0
+ 407 -193 350 -220 301 -220 c 0
+ 256 -220 242 -207 242 -207 c 1
+ 263 -183 l 1
+ 263 -183 290 -193 308 -193 c 0
+ 336 -193 356 -173 356 -139 c 0xfef0
+ 356 -105 322 -95 291 -95 c 0
+ 284 -95 279 -95 272 -96 c 1
+ 262 -79 l 1
+ 283 -22 l 1
+ 192 -15 114 43 114 143 c 0
  114 248 205 313 306 313 c 0
  381 313 405 257 405 226 c 0
  405 187 382 162 357 162 c 0
@@ -16298,11 +16342,10 @@ SplineSet
  632 674 606 642 592 572 c 0
  559 411 571 240 521 131 c 0
  502 90 472 54 440 27 c 0
- 403 -4 357 -23 300 -23 c 0
- 298 -23 297 -23 295 -23 c 1
- 280 -66 l 1
- 286 -66 290 -65 296 -65 c 0
- 346 -65 397 -83 397 -135 c 0xfef0
+ 404 -3 360 -22 305 -23 c 1
+ 290 -66 l 1
+ 296 -66 300 -65 306 -65 c 0
+ 356 -65 407 -83 407 -135 c 0xfef0
 EndSplineSet
 EndChar
 
@@ -16316,7 +16359,7 @@ Back
 Refer: 317 -1 N 1 0 0 1 569 244 2
 Refer: 506 -1 N 1 0 0 1 0 0 2
 Fore
-Refer: 317 -1 N 1 0 0 1 569 244 2
+Refer: 317 -1 N 1 0 0 1 579 244 2
 Refer: 506 -1 N 1 0 0 1 0 0 2
 EndChar
 
@@ -16376,11 +16419,11 @@ StartChar: A.001
 Encoding: 65660 -1 520
 Width: 794
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -19 51<71.4125 180.182> 0 32<548 626.914 710.091 778> 261 31<396 569> 663 20G<516 548.141>
 VStem: 10 60<36.129 85.4082>
 DStem2: 543 683 506 557 0.24895 -0.968516<112.822 385.163 417.178 633.754>
-AnchorPoint: "top" 538 733 basechar 0
+AnchorPoint: "top" 533 733 basechar 0
 LayerCount: 3
 Fore
 SplineSet
@@ -16463,7 +16506,7 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 314 -1 N 1 0 0 1 733 245 2
+Refer: 314 -1 N 1 0 0 1 728 245 2
 Refer: 520 -1 N 1 0 0 1 0 0 2
 EndChar
 
@@ -16474,7 +16517,7 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 315 -1 N 1 0 0 1 733 245 2
+Refer: 315 -1 N 1 0 0 1 728 245 2
 Refer: 520 -1 N 1 0 0 1 0 0 2
 EndChar
 
@@ -16485,7 +16528,7 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 389 -1 N 1 0 0 1 733 245 2
+Refer: 389 -1 N 1 0 0 1 728 245 2
 Refer: 520 -1 N 1 0 0 1 0 0 2
 EndChar
 
@@ -16496,7 +16539,7 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 345 -1 N 1 0 0 1 733 245 2
+Refer: 345 -1 N 1 0 0 1 728 245 2
 Refer: 520 -1 N 1 0 0 1 0 0 2
 EndChar
 
@@ -16507,7 +16550,7 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 332 -1 N 1 0 0 1 733 245 2
+Refer: 332 -1 N 1 0 0 1 728 245 2
 Refer: 520 -1 N 1 0 0 1 0 0 2
 EndChar
 
@@ -16518,7 +16561,7 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 316 -1 N 1 0 0 1 733 245 2
+Refer: 316 -1 N 1 0 0 1 728 245 2
 Refer: 520 -1 N 1 0 0 1 0 0 2
 EndChar
 
@@ -16529,7 +16572,7 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 376 -1 N 1 0 0 1 733 245 2
+Refer: 376 -1 N 1 0 0 1 728 245 2
 Refer: 520 -1 N 1 0 0 1 0 0 2
 EndChar
 
@@ -16540,7 +16583,7 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 358 -1 N 1 0 0 1 733 245 2
+Refer: 358 -1 N 1 0 0 1 728 245 2
 Refer: 520 -1 N 1 0 0 1 0 0 2
 EndChar
 
@@ -16552,7 +16595,7 @@ Flags: HMW
 HStem: -182 48<878.713 1021.32> 0 32<268 346.192 418.061 516> 252 32<103.416 224.935> 312 28<438.259 536.077> 386 48<204.52 255.828> 638 37<267.644 595.912>
 VStem: 14 27<350.773 478.089> 258 42<308.219 385.563> 696 84<406.354 559.523>
 DStem2: 348 62 419 69 0.069972 0.997549<-23.2015 0 557.366 575.594>
-AnchorPoint: "top" 513 732 basechar 0
+AnchorPoint: "top" 548 732 basechar 0
 AnchorPoint: "cedilla" 554 -95 basechar 0
 LayerCount: 3
 Fore
@@ -16601,91 +16644,6 @@ SplineSet
  1008 -134 1029 -116 1039 -114 c 0
  1046 -113 1052 -122 1052 -128 c 0
 EndSplineSet
-Layer: 2
-SplineSet
-696 482 m 4
- 696 574 624 638 490 638 c 4
- 469 638 458 634 457 621 c 6
- 438 344 l 5
- 438 344 465 340 501 340 c 4
- 561 340 609 345 645 373 c 4
- 677 398 696 441 696 482 c 4
-357 638 m 4
- 265.05 638 41 592 41 408 c 4
- 41 317 118 284 158 284 c 4
- 229 284 258 320 258 351 c 4
- 258 363 255 386 235 386 c 4
- 225 386 221 381 215 381 c 4
- 207 381 202 392 202 400 c 4
- 202 416 215 434 243 434 c 4
- 285 434 300 392 300 364 c 4
- 300 291 234 252 160 252 c 4
- 72 252 14 322 14 409 c 4
- 14 515 78 675 464 675 c 4
- 624 675 780 652 780 487 c 4
- 780 433 757 342 602 318 c 5
- 730 104 798 -10 848 -69 c 4
- 891 -121 938 -134 971 -134 c 4
- 1010 -134 1039 -118 1049 -115 c 4
- 1056 -113 1062 -120 1062 -126 c 4
- 1062 -142 1003 -181 940 -181 c 4
- 792.23539898 -181 732.762544856 -62.1752749412 651.423328799 92 c 4
- 620.254805731 151.078705777 582.022403615 223.124352035 529 312 c 5
- 515 312 l 6
- 476 312 436 319 436 319 c 5
- 419 69 l 6
- 419 63 418 56 418 50 c 4
- 418 40 421 32 440 32 c 6
- 517 32 l 5
- 516 0 l 5
- 267 0 l 5
- 268 32 l 5
- 307 32 l 6
- 341 32 346 34 348 62 c 4
- 386 608 387 614 387 618 c 4
- 387 634 383 638 357 638 c 4
-696 482 m 0
- 696 574 624 638 490 638 c 0
- 469 638 458 634 457 621 c 2
- 438 344 l 1
- 438 344 465 340 501 340 c 0
- 561 340 609 345 645 373 c 0
- 677 398 696 441 696 482 c 0
-41 408 m 0
- 41 317 118 284 158 284 c 0
- 229 284 258 320 258 351 c 0
- 258 363 255 386 235 386 c 0
- 225 386 221 381 215 381 c 0
- 207 381 202 392 202 400 c 0
- 202 416 215 434 243 434 c 0
- 285 434 300 392 300 364 c 0
- 300 291 234 252 160 252 c 0
- 72 252 14 322 14 409 c 0
- 14 515 78 675 464 675 c 0
- 624 675 780 652 780 487 c 0
- 780 433 754 342 599 318 c 1
- 860 -96 904 -133 980 -133 c 0
- 1025 -133 1035 -116 1049 -116 c 0
- 1059 -116 1062 -126 1062 -131 c 0
- 1062 -152 1012 -177 948 -177 c 0
- 892 -177 829 -163 776 -94 c 0
- 723 -24 654 97 529 312 c 1
- 515 312 l 2
- 476 312 436 319 436 319 c 1
- 419 69 l 2
- 419 63 418 56 418 50 c 0
- 418 40 421 32 440 32 c 2
- 524 32 l 1
- 522 0 l 1
- 277 0 l 1
- 278 32 l 1
- 307 32 l 2
- 341 32 346 34 348 62 c 0
- 386 608 387 614 387 618 c 0
- 387 634 383 640 357 640 c 0
- 322 640 283 635 244 625 c 0
- 141 598 41 531 41 408 c 0
-EndSplineSet
 EndChar
 
 StartChar: Rcommaaccent.001
@@ -16706,7 +16664,7 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 315 -1 N 1 0 0 1 708 244 2
+Refer: 315 -1 N 1 0 0 1 743 244 2
 Refer: 530 -1 N 1 0 0 1 0 0 2
 EndChar
 
@@ -16717,7 +16675,7 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 317 -1 N 1 0 0 1 708 244 2
+Refer: 317 -1 N 1 0 0 1 743 244 2
 Refer: 530 -1 N 1 0 0 1 0 0 2
 EndChar
 
@@ -17426,10 +17384,10 @@ StartChar: E.001
 Encoding: 65693 -1 553
 Width: 528
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -12 41<192.779 362.074> 226 35<378.333 447.414> 353 51<198.03 335.276> 507 39<296.194 363.72> 661 28<231.772 345.344>
 VStem: 23 79<115.754 270.889> 68 74<434.522 582.325> 349 27<179.371 220.087> 376 52<556.507 640.601> 463 39<104.394 212.656>
-AnchorPoint: "top" 285 732 basechar 0
+AnchorPoint: "top" 280 732 basechar 0
 LayerCount: 3
 Fore
 SplineSet
@@ -17472,7 +17430,7 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 314 -1 N 1 0 0 1 480 244 2
+Refer: 314 -1 N 1 0 0 1 475 244 2
 Refer: 553 -1 N 1 0 0 1 0 0 2
 EndChar
 
@@ -17483,7 +17441,7 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 315 -1 N 1 0 0 1 480 244 2
+Refer: 315 -1 N 1 0 0 1 475 244 2
 Refer: 553 -1 N 1 0 0 1 0 0 2
 EndChar
 
@@ -17494,7 +17452,7 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 345 -1 N 1 0 0 1 480 244 2
+Refer: 345 -1 N 1 0 0 1 475 244 2
 Refer: 553 -1 N 1 0 0 1 0 0 2
 EndChar
 
@@ -17505,7 +17463,7 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 316 -1 N 1 0 0 1 480 244 2
+Refer: 316 -1 N 1 0 0 1 475 244 2
 Refer: 553 -1 N 1 0 0 1 0 0 2
 EndChar
 
@@ -17516,7 +17474,7 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 376 -1 N 1 0 0 1 480 244 2
+Refer: 376 -1 N 1 0 0 1 475 244 2
 Refer: 553 -1 N 1 0 0 1 0 0 2
 EndChar
 
@@ -17527,7 +17485,7 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 327 -1 N 1 0 0 1 480 244 2
+Refer: 327 -1 N 1 0 0 1 475 244 2
 Refer: 553 -1 N 1 0 0 1 0 0 2
 EndChar
 
@@ -17538,7 +17496,7 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 317 -1 N 1 0 0 1 480 244 2
+Refer: 317 -1 N 1 0 0 1 475 244 2
 Refer: 553 -1 N 1 0 0 1 0 0 2
 EndChar
 
@@ -17549,7 +17507,7 @@ VWidth: 0
 Flags: HW
 LayerCount: 3
 Fore
-Refer: 358 -1 N 1 0 0 1 480 244 2
+Refer: 358 -1 N 1 0 0 1 475 244 2
 Refer: 553 -1 N 1 0 0 1 0 0 2
 EndChar
 
@@ -17977,7 +17935,7 @@ AnchorPoint: "l;bl" 20 15 basechar 0
 AnchorPoint: "r;x" 247 376 basechar 0
 LayerCount: 3
 Fore
-Refer: 241 775 N 1 0 0 1 357 0 2
+Refer: 241 775 N 1 0 0 1 347 0 2
 Refer: 179 567 N 1 0 0 1 0 0 2
 EndChar
 
