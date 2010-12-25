@@ -1,10 +1,10 @@
 feature kern {
 @r1_Euro = [\Euro \asciicircum \bar \braceleft \braceright \bracketright 
      \brokenbar \bullet.001 \bullet.002 \bullet.003 \daggerdbl \divide 
-     \dollar \dollar.hanging \dollar.lining \eight.lining \equal \five.lining 
-     \four.lining \greater \less \logicalnot \minus \multiply 
-     \nine.lining \one.lining \plus \plusminus \seven.lining \six.lining 
-     \three.lining \two.lining \underscore \zero.lining];
+     \dollar \dollar.hanging \dollar.lining \eight.lining \equal \figuredash 
+     \five.lining \four.lining \greater \less \logicalnot \minus 
+     \multiply \nine.lining \one.lining \plus \plusminus \seven.lining 
+     \six.lining \three.lining \two.lining \underscore \zero.lining];
 @r1_seven = [\seven \seven.hanging];
 @r1_onequarter = [\onequarter \threequarters];
 @r1_ampersand = [\ampersand \eight \eight.hanging];
@@ -19,20 +19,20 @@ feature kern {
      \longs_longs_k.001 \longs_longs_thorn \longs_thorn];
 @r1_acute = [\acute \acutecomb \acutecomb.cap \afii299 \afii300 \afii301 
      \afii57929 \afii61664 \breve \caron \cedilla \circumflex 
-     \dieresis \dotaccent \eight.sub \eight.sup \figuredash \five.sub 
-     \five.sup \four.sub \four.sup \grave \gravecomb \gravecomb.cap 
-     \hungarumlaut \macron \nine.sub \nine.sup \ogonek \one.sub 
-     \one.sup \ring \seven.sub \seven.sup \six.sub \six.sup 
-     \space \three.sub \three.sup \tilde \tildecomb \tildecomb.cap 
-     \two.sub \two.sup \uni00A0 \uni00B2 \uni00B3 \uni00B9 
-     \uni02BB \uni02C0 \uni02C8 \uni0302 \uni0302.cap \uni0304 
-     \uni0304.cap \uni0306 \uni0306.cap \uni0307 \uni0307.cap \uni0307.high 
-     \uni0308 \uni0308.cap \uni030A \uni030A.cap \uni030B \uni030B.cap 
-     \uni030C \uni030C.cap \uni0312 \uni0315 \uni0326 \uni0327 
-     \uni0328 \uni2000 \uni2001 \uni2002 \uni2003 \uni2004 
-     \uni2005 \uni2006 \uni2007 \uni2008 \uni2009 \uni200A 
-     \uni200B \uni202F \uni203E \uni205F \uni2060 \uniFEFF 
-     \zero.sub \zero.sup];
+     \dieresis \dotaccent \eight.sub \eight.sup \five.sub \five.sup 
+     \four.sub \four.sup \grave \gravecomb \gravecomb.cap \hungarumlaut 
+     \macron \nine.sub \nine.sup \ogonek \one.sub \one.sup 
+     \ring \seven.sub \seven.sup \six.sub \six.sup \space 
+     \three.sub \three.sup \tilde \tildecomb \tildecomb.cap \two.sub 
+     \two.sup \uni00A0 \uni00B2 \uni00B3 \uni00B9 \uni02BB 
+     \uni02C0 \uni02C8 \uni0302 \uni0302.cap \uni0304 \uni0304.cap 
+     \uni0306 \uni0306.cap \uni0307 \uni0307.cap \uni0307.high \uni0308 
+     \uni0308.cap \uni030A \uni030A.cap \uni030B \uni030B.cap \uni030C 
+     \uni030C.cap \uni0312 \uni0315 \uni0326 \uni0327 \uni0328 
+     \uni2000 \uni2001 \uni2002 \uni2003 \uni2004 \uni2005 
+     \uni2006 \uni2007 \uni2008 \uni2009 \uni200A \uni200B 
+     \uni202F \uni203E \uni205F \uni2060 \uniFEFF \zero.sub 
+     \zero.sup];
 @r1_minute = [\minute \quotedbl \quotesingle \second];
 @r1_f_f_i = [\f_f_i \f_i \longs_i \longs_longs_i];
 @r1_f_f_l = [\f_f_l \f_l \longs_l \longs_longs_l];
@@ -127,28 +127,28 @@ feature kern {
      \uni0218];
 @l1_Euro = [\Euro \asciicircum \bar \braceleft \braceright \bracketleft 
      \brokenbar \bullet.001 \bullet.002 \bullet.003 \daggerdbl \divide 
-     \dollar \dollar.hanging \dollar.lining \eight.lining \equal \five.lining 
-     \four.lining \greater \less \logicalnot \minus \multiply 
-     \nine.lining \one.lining \plus \plusminus \seven.lining \six.lining 
-     \three.lining \two.lining \underscore \zero.lining];
+     \dollar \dollar.hanging \dollar.lining \eight.lining \equal \figuredash 
+     \five.lining \four.lining \greater \less \logicalnot \minus 
+     \multiply \nine.lining \one.lining \plus \plusminus \seven.lining 
+     \six.lining \three.lining \two.lining \underscore \zero.lining];
 @l1_E.001 = [\E.001 \Eacute.001 \Ebreve.001 \Ecaron.001 \Ecircumflex.001 \Edieresis.001 
      \Edotaccent.001 \Egrave.001 \Emacron.001 \Eogonek.001];
 @l1_acute = [\acute \acutecomb \acutecomb.cap \afii299 \afii300 \afii301 
      \afii57929 \afii61664 \breve \caron \cedilla \circumflex 
-     \dieresis \dotaccent \eight.sub \eight.sup \figuredash \five.sub 
-     \five.sup \four.sub \four.sup \grave \gravecomb \gravecomb.cap 
-     \hungarumlaut \macron \nine.sub \nine.sup \ogonek \one.sub 
-     \one.sup \ring \seven.sub \seven.sup \six.sub \six.sup 
-     \space \three.sub \three.sup \tilde \tildecomb \tildecomb.cap 
-     \two.sub \two.sup \uni00A0 \uni00B2 \uni00B3 \uni00B9 
-     \uni02BB \uni02C0 \uni02C8 \uni0302 \uni0302.cap \uni0304 
-     \uni0304.cap \uni0306 \uni0306.cap \uni0307 \uni0307.cap \uni0307.high 
-     \uni0308 \uni0308.cap \uni030A \uni030A.cap \uni030B \uni030B.cap 
-     \uni030C \uni030C.cap \uni0312 \uni0315 \uni0326 \uni0327 
-     \uni0328 \uni2000 \uni2001 \uni2002 \uni2003 \uni2004 
-     \uni2005 \uni2006 \uni2007 \uni2008 \uni2009 \uni200A 
-     \uni200B \uni202F \uni203E \uni205F \uni2060 \uniFEFF 
-     \zero.sub \zero.sup];
+     \dieresis \dotaccent \eight.sub \eight.sup \five.sub \five.sup 
+     \four.sub \four.sup \grave \gravecomb \gravecomb.cap \hungarumlaut 
+     \macron \nine.sub \nine.sup \ogonek \one.sub \one.sup 
+     \ring \seven.sub \seven.sup \six.sub \six.sup \space 
+     \three.sub \three.sup \tilde \tildecomb \tildecomb.cap \two.sub 
+     \two.sup \uni00A0 \uni00B2 \uni00B3 \uni00B9 \uni02BB 
+     \uni02C0 \uni02C8 \uni0302 \uni0302.cap \uni0304 \uni0304.cap 
+     \uni0306 \uni0306.cap \uni0307 \uni0307.cap \uni0307.high \uni0308 
+     \uni0308.cap \uni030A \uni030A.cap \uni030B \uni030B.cap \uni030C 
+     \uni030C.cap \uni0312 \uni0315 \uni0326 \uni0327 \uni0328 
+     \uni2000 \uni2001 \uni2002 \uni2003 \uni2004 \uni2005 
+     \uni2006 \uni2007 \uni2008 \uni2009 \uni200A \uni200B 
+     \uni202F \uni203E \uni205F \uni2060 \uniFEFF \zero.sub 
+     \zero.sup];
 @l1_T.001 = [\T.001 \Tbar.001 \Tcaron.001 \uni0162.001 \uni021A.001];
 @l1_z = [\z \z.001 \zacute \zacute.001 \zcaron \zcaron.001 
      \zdotaccent \zdotaccent.001];
@@ -277,28 +277,28 @@ feature kern {
      \uni0218];
 @l2_Euro = [\Euro \asciicircum \bar \braceleft \braceright \bracketleft 
      \brokenbar \bullet.001 \bullet.002 \bullet.003 \daggerdbl \divide 
-     \dollar \dollar.hanging \dollar.lining \eight.lining \equal \five.lining 
-     \four.lining \greater \less \logicalnot \minus \multiply 
-     \nine.lining \one.lining \plus \plusminus \seven.lining \six.lining 
-     \three.lining \two.lining \underscore \zero.lining];
+     \dollar \dollar.hanging \dollar.lining \eight.lining \equal \figuredash 
+     \five.lining \four.lining \greater \less \logicalnot \minus 
+     \multiply \nine.lining \one.lining \plus \plusminus \seven.lining 
+     \six.lining \three.lining \two.lining \underscore \zero.lining];
 @l2_E.001 = [\E.001 \Eacute.001 \Ebreve.001 \Ecaron.001 \Ecircumflex.001 \Edieresis.001 
      \Edotaccent.001 \Egrave.001 \Emacron.001 \Eogonek.001];
 @l2_acute = [\acute \acutecomb \acutecomb.cap \afii299 \afii300 \afii301 
      \afii57929 \afii61664 \breve \caron \cedilla \circumflex 
-     \dieresis \dotaccent \eight.sub \eight.sup \figuredash \five.sub 
-     \five.sup \four.sub \four.sup \grave \gravecomb \gravecomb.cap 
-     \hungarumlaut \macron \nine.sub \nine.sup \ogonek \one.sub 
-     \one.sup \ring \seven.sub \seven.sup \six.sub \six.sup 
-     \space \three.sub \three.sup \tilde \tildecomb \tildecomb.cap 
-     \two.sub \two.sup \uni00A0 \uni00B2 \uni00B3 \uni00B9 
-     \uni02BB \uni02C0 \uni02C8 \uni0302 \uni0302.cap \uni0304 
-     \uni0304.cap \uni0306 \uni0306.cap \uni0307 \uni0307.cap \uni0307.high 
-     \uni0308 \uni0308.cap \uni030A \uni030A.cap \uni030B \uni030B.cap 
-     \uni030C \uni030C.cap \uni0312 \uni0315 \uni0326 \uni0327 
-     \uni0328 \uni2000 \uni2001 \uni2002 \uni2003 \uni2004 
-     \uni2005 \uni2006 \uni2007 \uni2008 \uni2009 \uni200A 
-     \uni200B \uni202F \uni203E \uni205F \uni2060 \uniFEFF 
-     \zero.sub \zero.sup];
+     \dieresis \dotaccent \eight.sub \eight.sup \five.sub \five.sup 
+     \four.sub \four.sup \grave \gravecomb \gravecomb.cap \hungarumlaut 
+     \macron \nine.sub \nine.sup \ogonek \one.sub \one.sup 
+     \ring \seven.sub \seven.sup \six.sub \six.sup \space 
+     \three.sub \three.sup \tilde \tildecomb \tildecomb.cap \two.sub 
+     \two.sup \uni00A0 \uni00B2 \uni00B3 \uni00B9 \uni02BB 
+     \uni02C0 \uni02C8 \uni0302 \uni0302.cap \uni0304 \uni0304.cap 
+     \uni0306 \uni0306.cap \uni0307 \uni0307.cap \uni0307.high \uni0308 
+     \uni0308.cap \uni030A \uni030A.cap \uni030B \uni030B.cap \uni030C 
+     \uni030C.cap \uni0312 \uni0315 \uni0326 \uni0327 \uni0328 
+     \uni2000 \uni2001 \uni2002 \uni2003 \uni2004 \uni2005 
+     \uni2006 \uni2007 \uni2008 \uni2009 \uni200A \uni200B 
+     \uni202F \uni203E \uni205F \uni2060 \uniFEFF \zero.sub 
+     \zero.sup];
 @l2_T.001 = [\T.001 \Tbar.001 \Tcaron.001 \uni0162.001 \uni021A.001];
 @l2_z = [\z \z.001 \zacute \zacute.001 \zcaron \zcaron.001 
      \zdotaccent \zdotaccent.001];
@@ -418,28 +418,28 @@ feature kern {
      \uni0218];
 @l3_Euro = [\Euro \asciicircum \bar \braceleft \braceright \bracketleft 
      \brokenbar \bullet.001 \bullet.002 \bullet.003 \daggerdbl \divide 
-     \dollar \dollar.hanging \dollar.lining \eight.lining \equal \five.lining 
-     \four.lining \greater \less \logicalnot \minus \multiply 
-     \nine.lining \one.lining \plus \plusminus \seven.lining \six.lining 
-     \three.lining \two.lining \underscore \zero.lining];
+     \dollar \dollar.hanging \dollar.lining \eight.lining \equal \figuredash 
+     \five.lining \four.lining \greater \less \logicalnot \minus 
+     \multiply \nine.lining \one.lining \plus \plusminus \seven.lining 
+     \six.lining \three.lining \two.lining \underscore \zero.lining];
 @l3_E.001 = [\E.001 \Eacute.001 \Ebreve.001 \Ecaron.001 \Ecircumflex.001 \Edieresis.001 
      \Edotaccent.001 \Egrave.001 \Emacron.001 \Eogonek.001];
 @l3_acute = [\acute \acutecomb \acutecomb.cap \afii299 \afii300 \afii301 
      \afii57929 \afii61664 \breve \caron \cedilla \circumflex 
-     \dieresis \dotaccent \eight.sub \eight.sup \figuredash \five.sub 
-     \five.sup \four.sub \four.sup \grave \gravecomb \gravecomb.cap 
-     \hungarumlaut \macron \nine.sub \nine.sup \ogonek \one.sub 
-     \one.sup \ring \seven.sub \seven.sup \six.sub \six.sup 
-     \space \three.sub \three.sup \tilde \tildecomb \tildecomb.cap 
-     \two.sub \two.sup \uni00A0 \uni00B2 \uni00B3 \uni00B9 
-     \uni02BB \uni02C0 \uni02C8 \uni0302 \uni0302.cap \uni0304 
-     \uni0304.cap \uni0306 \uni0306.cap \uni0307 \uni0307.cap \uni0307.high 
-     \uni0308 \uni0308.cap \uni030A \uni030A.cap \uni030B \uni030B.cap 
-     \uni030C \uni030C.cap \uni0312 \uni0315 \uni0326 \uni0327 
-     \uni0328 \uni2000 \uni2001 \uni2002 \uni2003 \uni2004 
-     \uni2005 \uni2006 \uni2007 \uni2008 \uni2009 \uni200A 
-     \uni200B \uni202F \uni203E \uni205F \uni2060 \uniFEFF 
-     \zero.sub \zero.sup];
+     \dieresis \dotaccent \eight.sub \eight.sup \five.sub \five.sup 
+     \four.sub \four.sup \grave \gravecomb \gravecomb.cap \hungarumlaut 
+     \macron \nine.sub \nine.sup \ogonek \one.sub \one.sup 
+     \ring \seven.sub \seven.sup \six.sub \six.sup \space 
+     \three.sub \three.sup \tilde \tildecomb \tildecomb.cap \two.sub 
+     \two.sup \uni00A0 \uni00B2 \uni00B3 \uni00B9 \uni02BB 
+     \uni02C0 \uni02C8 \uni0302 \uni0302.cap \uni0304 \uni0304.cap 
+     \uni0306 \uni0306.cap \uni0307 \uni0307.cap \uni0307.high \uni0308 
+     \uni0308.cap \uni030A \uni030A.cap \uni030B \uni030B.cap \uni030C 
+     \uni030C.cap \uni0312 \uni0315 \uni0326 \uni0327 \uni0328 
+     \uni2000 \uni2001 \uni2002 \uni2003 \uni2004 \uni2005 
+     \uni2006 \uni2007 \uni2008 \uni2009 \uni200A \uni200B 
+     \uni202F \uni203E \uni205F \uni2060 \uniFEFF \zero.sub 
+     \zero.sup];
 @l3_T.001 = [\T.001 \Tbar.001 \Tcaron.001 \uni0162.001 \uni021A.001];
 @l3_z = [\z \z.001 \zacute \zacute.001 \zcaron \zcaron.001 
      \zdotaccent \zdotaccent.001];
