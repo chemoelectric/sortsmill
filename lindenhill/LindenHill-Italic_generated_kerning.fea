@@ -3,10 +3,10 @@ feature kern {
      \brokenbar \bullet.001 \bullet.002 \bullet.003 \daggerdbl \divide 
      \dollar \dollar.hanging \dollar.lining \eight.lining \equal \five.lining 
      \four.lining \greater \less \logicalnot \minus \multiply 
-     \nine.lining \one.lining \onehalf \onequarter \plus \plusminus 
-     \seven.lining \six.lining \three.lining \threequarters \two.lining \underscore 
-     \zero.lining];
+     \nine.lining \one.lining \plus \plusminus \seven.lining \six.lining 
+     \three.lining \two.lining \underscore \zero.lining];
 @r1_seven = [\seven \seven.hanging];
+@r1_onequarter = [\onequarter \threequarters];
 @r1_ampersand = [\ampersand \eight \eight.hanging];
 @r1_asciitilde = [\asciitilde \periodcentered \uni2053];
 @r1_at = [\at \colon \five \five.hanging \guillemotleft \guillemotright 
@@ -58,6 +58,7 @@ feature kern {
 @l1_exclam = [\exclam \exclamdown];
 @l1_minute = [\minute \ordfeminine \ordmasculine \quotedbl \quotesingle \second];
 @l1_hyphen = [\hyphen \uni00AD \uni2010 \uni2011];
+@l1_onehalf = [\onehalf \onequarter];
 @l1_three = [\three \three.hanging];
 @l1_s = [\s \sacute \scaron \scedilla \scircumflex \uni0219];
 @l1_T = [\T \Tbar \Tcaron \uni0162 \uni021A];
@@ -128,9 +129,8 @@ feature kern {
      \brokenbar \bullet.001 \bullet.002 \bullet.003 \daggerdbl \divide 
      \dollar \dollar.hanging \dollar.lining \eight.lining \equal \five.lining 
      \four.lining \greater \less \logicalnot \minus \multiply 
-     \nine.lining \one.lining \onehalf \onequarter \plus \plusminus 
-     \seven.lining \six.lining \three.lining \threequarters \two.lining \underscore 
-     \zero.lining];
+     \nine.lining \one.lining \plus \plusminus \seven.lining \six.lining 
+     \three.lining \two.lining \underscore \zero.lining];
 @l1_E.001 = [\E.001 \Eacute.001 \Ebreve.001 \Ecaron.001 \Ecircumflex.001 \Edieresis.001 
      \Edotaccent.001 \Egrave.001 \Emacron.001 \Eogonek.001];
 @l1_acute = [\acute \acutecomb \acutecomb.cap \afii299 \afii300 \afii301 
@@ -208,6 +208,7 @@ feature kern {
 @l2_exclam = [\exclam \exclamdown];
 @l2_minute = [\minute \ordfeminine \ordmasculine \quotedbl \quotesingle \second];
 @l2_hyphen = [\hyphen \uni00AD \uni2010 \uni2011];
+@l2_onehalf = [\onehalf \onequarter];
 @l2_three = [\three \three.hanging];
 @l2_s = [\s \sacute \scaron \scedilla \scircumflex \uni0219];
 @l2_T = [\T \Tbar \Tcaron \uni0162 \uni021A];
@@ -278,9 +279,8 @@ feature kern {
      \brokenbar \bullet.001 \bullet.002 \bullet.003 \daggerdbl \divide 
      \dollar \dollar.hanging \dollar.lining \eight.lining \equal \five.lining 
      \four.lining \greater \less \logicalnot \minus \multiply 
-     \nine.lining \one.lining \onehalf \onequarter \plus \plusminus 
-     \seven.lining \six.lining \three.lining \threequarters \two.lining \underscore 
-     \zero.lining];
+     \nine.lining \one.lining \plus \plusminus \seven.lining \six.lining 
+     \three.lining \two.lining \underscore \zero.lining];
 @l2_E.001 = [\E.001 \Eacute.001 \Ebreve.001 \Ecaron.001 \Ecircumflex.001 \Edieresis.001 
      \Edotaccent.001 \Egrave.001 \Emacron.001 \Eogonek.001];
 @l2_acute = [\acute \acutecomb \acutecomb.cap \afii299 \afii300 \afii301 
@@ -349,6 +349,7 @@ feature kern {
 @l3_exclam = [\exclam \exclamdown];
 @l3_minute = [\minute \ordfeminine \ordmasculine \quotedbl \quotesingle \second];
 @l3_hyphen = [\hyphen \uni00AD \uni2010 \uni2011];
+@l3_onehalf = [\onehalf \onequarter];
 @l3_three = [\three \three.hanging];
 @l3_s = [\s \sacute \scaron \scedilla \scircumflex \uni0219];
 @l3_T = [\T \Tbar \Tcaron \uni0162 \uni021A];
@@ -419,9 +420,8 @@ feature kern {
      \brokenbar \bullet.001 \bullet.002 \bullet.003 \daggerdbl \divide 
      \dollar \dollar.hanging \dollar.lining \eight.lining \equal \five.lining 
      \four.lining \greater \less \logicalnot \minus \multiply 
-     \nine.lining \one.lining \onehalf \onequarter \plus \plusminus 
-     \seven.lining \six.lining \three.lining \threequarters \two.lining \underscore 
-     \zero.lining];
+     \nine.lining \one.lining \plus \plusminus \seven.lining \six.lining 
+     \three.lining \two.lining \underscore \zero.lining];
 @l3_E.001 = [\E.001 \Eacute.001 \Ebreve.001 \Ecaron.001 \Ecircumflex.001 \Edieresis.001 
      \Edotaccent.001 \Egrave.001 \Emacron.001 \Eogonek.001];
 @l3_acute = [\acute \acutecomb \acutecomb.cap \afii299 \afii300 \afii301 
@@ -450,6 +450,16 @@ feature kern {
 @l3_y = [\y \yacute \ycircumflex \ydieresis];
 @l3_afii00208 = [\afii00208 \asciitilde \bullet \emdash \endash \uni2053];
 
+@r4_nine.numer = [\nine.numer \seven.numer];
+@r4_eight.numer = [\eight.numer \five.numer \four.numer \six.numer \three.numer];
+@r4_one.numer = [\one.numer \two.numer];
+
+
+
+@l5_six.denom = [\six.denom \three.denom];
+@l5_five.denom = [\five.denom \nine.denom \one.denom \seven.denom];
+@l5_eight.denom = [\eight.denom \two.denom];
+
 pos \degree @l1_A.001 -255;
 pos \longs_longs [@l1_Euro \parenright \bracketright @l1_M @l1_U @l1_l @l1_asterisk \section @l1_V @l1_T.002 @l1_T \registered @l1_T.001 @l1_minute \degree \backslash \yen \napostrophe] 130;
 pos \registered \germandbls -125;
@@ -459,12 +469,12 @@ pos \registered @l1_four -120;
 pos \slash \germandbls -120;
 pos \degree @l1_five -120;
 pos [\degree @r1_minute] [\comma @l1_ellipsis] -120;
+pos [\yen \slash \degree @r1_minute \registered @r1_onequarter \question @r1_questiondown \onehalf \bracketleft \parenleft @r1_Euro @r1_cent @r1_asterisk \paragraph] \b 10;
 pos \sterling [@l1_Z @l1_B.001] 10;
 pos \f_f @l1_A 10;
 pos @r1_hyphen [@l1_J @l1_U @l1_Dcroat @l1_z @l1_l \Q @l1_V @l1_T.001 \IJ] 10;
 pos [@r1_four \f_f \longs_longs] @l1_hyphen 10;
 pos [\sterling @r1_hyphen] [@l1_B @l1_N.001] 10;
-pos [\yen \slash \degree @r1_minute \registered \question @r1_questiondown \bracketleft \parenleft @r1_Euro @r1_cent @r1_asterisk \paragraph] \b 10;
 pos [\numbersign @r1_hyphen] [@l1_D \hbar] 10;
 pos \numbersign [@l1_eight \dagger] 10;
 pos \longs_longs \slash 10;
@@ -474,17 +484,17 @@ pos \longs_longs \b 140;
 pos \dagger [@l1_f @l1_longs] 15;
 pos \degree \x -110;
 pos \paragraph [@l1_quotedblbase \uni00B5 \slash @l1_three @l1_five \germandbls] 20;
+pos [\copyright @r1_onequarter \parenright @r1_f_f_l @r1_f_f_h @r1_f_f_i \section @r1_zero @r1_c_t @r1_questiondown \onehalf @r1_quotedblbase @r1_Euro @r1_nine @r1_at @r1_ampersand @r1_cent \sterling @r1_afii00208 @r1_asterisk @r1_hyphen \paragraph] @l1_hyphen 20;
+pos [@r1_onequarter \onehalf \bracketleft \parenleft \backslash @r1_quotedblbase @r1_Euro] \comma 20;
 pos \sterling [@l1_U @l1_l @l1_V @l1_T.002 @l1_T \registered @l1_T.001 \degree \backslash \yen] 20;
 pos [\dagger @r1_hyphen] [@l1_j.TRK \j] 20;
 pos @r1_hyphen [@l1_f @l1_ampersand \b @l1_eight @l1_G \percent \numbersign @l1_C.001 @l1_i @l1_afii00208 @l1_C \tbar @l1_E.001 @l1_t @l1_nine @l1_six @l1_y @l1_u \parenleft @l1_seven \periodcentered \dagger @l1_D.001 \copyright \ij] 20;
 pos \numbersign [@l1_B @l1_N.001] 20;
 pos [\sterling \paragraph] [\parenright \bracketright] 20;
-pos [\bracketleft \parenleft \backslash @r1_quotedblbase @r1_Euro] \comma 20;
 pos [@r1_hyphen \paragraph] \cent 20;
 pos [\sterling @r1_hyphen] [@l1_M @l1_asterisk \section @l1_minute \napostrophe] 20;
 pos [\numbersign @r1_hyphen] [@l1_Z @l1_B.001] 20;
 pos [\sterling @r1_hyphen \paragraph] @l1_Euro 20;
-pos [\copyright \parenright @r1_f_f_l @r1_f_f_h @r1_f_f_i \section @r1_zero @r1_c_t @r1_questiondown @r1_quotedblbase @r1_Euro @r1_nine @r1_at @r1_ampersand @r1_cent \sterling @r1_afii00208 @r1_asterisk @r1_hyphen \paragraph] @l1_hyphen 20;
 pos [\numbersign @r1_seven @r1_asciitilde \f_f \question \longs_longs] \germandbls -105;
 pos \copyright @l1_J 25;
 pos [\slash \degree] @l1_A -100;
@@ -575,7 +585,7 @@ pos [\copyright @r1_seven @r1_asciitilde @r1_c_t @r1_at @r1_afii00208] \backslas
 pos \longs_longs [\numbersign \copyright] 70;
 pos \f_f [@l1_G @l1_C \parenleft] 70;
 pos [@r1_afii00208 @r1_asterisk @r1_hyphen] @l1_A.001 -185;
-pos [\bracketleft \parenleft \backslash @r1_quotedblbase @r1_Euro] [@l1_f @l1_longs] 75;
+pos [@r1_onequarter \onehalf \bracketleft \parenleft \backslash @r1_quotedblbase @r1_Euro] [@l1_f @l1_longs] 75;
 pos [\degree @r1_minute] \AE -180;
 pos \numbersign @l1_A.001 -180;
 pos [\slash \degree \bracketleft] \percent -50;
@@ -588,7 +598,7 @@ pos [\numbersign \dagger @r1_asciitilde] @l1_A -50;
 pos [\comma \backslash @r1_ellipsis] @l1_V -50;
 pos [\yen @r1_minute] @l1_z -50;
 pos \parenleft [\tbar @l1_t] -50;
-pos [\bracketleft \parenleft \backslash @r1_quotedblbase @r1_Euro] [@l1_j.TRK \j] 80;
+pos [@r1_onequarter \onehalf \bracketleft \parenleft \backslash @r1_quotedblbase @r1_Euro] [@l1_j.TRK \j] 80;
 pos \longs_longs [\percent \Q @l1_D.001] 80;
 pos [\comma @r1_four \parenright] @l1_g.001 80;
 pos \f_f [@l1_J @l1_Dcroat \thorn \X @l1_E.001 \IJ] 80;
@@ -652,7 +662,7 @@ pos \section @l1_g.001 100;
 pos \f_f [@l1_Z @l1_B @l1_N.001 @l1_B.001] 100;
 pos @r1_f_f_l [\Q @l1_V @l1_T.001] -25;
 pos @r1_f_f_i [\comma \x @l1_A @l1_ellipsis @l1_four \AE @l1_A.001] -25;
-pos [\bracketleft \parenleft \backslash @r1_quotedblbase @r1_Euro] @l1_J 105;
+pos [@r1_onequarter \onehalf \bracketleft \parenleft \backslash @r1_quotedblbase @r1_Euro] @l1_J 105;
 pos \yen @l1_A.001 -150;
 pos [\numbersign @r1_seven @r1_asciitilde \question] @l1_g.001 -20;
 pos [@r1_zero @r1_quotedblbase @r1_nine] @l1_B.001 -20;
@@ -716,7 +726,7 @@ pos [\copyright \dagger \parenright @r1_seven @r1_asciitilde \section @r1_c_t @r
 pos [@r1_f_f_l @r1_f_f_h @r1_f_f_i @r1_zero @r1_c_t @r1_questiondown @r1_afii00208 @r1_asterisk] @l1_longs -10;
 pos [\yen \slash \degree @r1_minute \registered @r1_four @r1_f_f_h @r1_f_f_i \bracketleft \parenleft] @l1_B.001 -10;
 pos [@r1_four @r1_f_f_h @r1_f_f_i] [@l1_u @l1_seven \periodcentered \dagger @l1_minute] -10;
-pos [\bracketleft \parenleft \backslash @r1_quotedblbase @r1_Euro] @l1_g.001 120;
+pos [@r1_onequarter \onehalf \bracketleft \parenleft \backslash @r1_quotedblbase @r1_Euro] @l1_g.001 120;
 pos \longs_longs [@l1_Z @l1_B @l1_N.001 @l1_B.001] 120;
 pos \f_f \b 120;
 pos \yen \germandbls -135;
@@ -1019,5 +1029,16 @@ pos [\ldot @r3_ordfeminine @r3_r @r3_g @r3_z.001 @r3_v \f @r3_u \lacute @r3_l @r
 pos [\ldot @r3_r @r3_g @r3_z.001 @r3_v @r3_u \lacute @r3_l @r3_h \lslash @r3_dotlessi @r3_i \germandbls @r3_ae \napostrophe \dcroat @r3_ij @r3_d @r3_s @r3_z] @l3_l -10;
 pos \longs \b 120;
 pos \eth @l3_N.001 -5;
+
+subtable;
+pos @r4_nine.numer \fraction -80;
+pos @r4_eight.numer \fraction -40;
+pos \zero.numer \fraction -60;
+
+subtable;
+pos \fraction @l5_six.denom -40;
+pos \fraction \four.denom -100;
+pos \fraction \zero.denom -60;
+pos \fraction @l5_eight.denom -20;
 
 } kern;

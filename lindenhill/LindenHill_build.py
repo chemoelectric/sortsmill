@@ -100,13 +100,12 @@ def build_glyphs(bitbucket, f):
     make_glyph_reference('uni00B9', f['one.sup'])
     make_glyph_reference('uni00B2', f['two.sup'])
     make_glyph_reference('uni00B3', f['three.sup'])
-#    for extension in [('.numer', 244), ('.sub', -98), ('.sup', 293)]:
-    for extension in [('.sub', -98), ('.sup', 293)]:
+    for extension in [('.numer', 244), ('.sub', -180), ('.sup', 244)]:
         for fig in figures:
             make_glyph_reference(fig + extension[0],
                                  f[fig + '.denom'],
                                  transformation = (1, 0, 0, 1, 0, extension[1]),
-                                 copy_spacing_anchors = False)
+                                 copy_spacing_anchors = (extension[0] == '.numer'))
     build_multigraph('onequarter', [f['one.numer'], f['fraction'], f['four.denom']])
     build_multigraph('onehalf', [f['one.numer'], f['fraction'], f['two.denom']])
     build_multigraph('threequarters', [f['three.numer'], f['fraction'], f['four.denom']])
