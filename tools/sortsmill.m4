@@ -18,7 +18,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-#serial 3
+#serial 4
 
 # STM_DISABLE_OPENTYPE
 # --------------------
@@ -40,6 +40,18 @@ AC_DEFUN([STM_DISABLE_TRUETYPE],
                         [do not build TrueType fonts (default is to build them)])],
         [build_truetype=${enableval}],
         [build_truetype=yes])
+truetype_func=nullify
+test x"${build_truetype}" = x"yes" && truetype_func=truetype
+AC_SUBST(truetype_func)])
+
+# STM_ENABLE_TRUETYPE
+# --------------------
+AC_DEFUN([STM_ENABLE_TRUETYPE],
+[AC_ARG_ENABLE(truetype,
+        [AS_HELP_STRING([--enable-truetype],
+                        [build TrueType fonts (default is not to build them)])],
+        [build_truetype=${enableval}],
+        [build_truetype=no])
 truetype_func=nullify
 test x"${build_truetype}" = x"yes" && truetype_func=truetype
 AC_SUBST(truetype_func)])
@@ -95,7 +107,7 @@ STM_DISABLE_MIT])
 # ---------------------
 AC_DEFUN([STM_SORTSMILL_MIT_ENABLES],
 [STM_DISABLE_OPENTYPE
-STM_DISABLE_TRUETYPE
+STM_ENABLE_TRUETYPE
 mit_func=mit
 AC_SUBST(mit_func)])
 
