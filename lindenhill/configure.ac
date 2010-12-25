@@ -22,16 +22,14 @@
 # THE SOFTWARE.
 
 AC_PREREQ(2.65)
-AC_INIT([lindenhill],[1.1],[http://code.google.com/p/sortsmill/issues/])
+AC_INIT([sortsmill-lindenhill],[1.1],[http://code.google.com/p/sortsmill/issues/])
 AM_INIT_AUTOMAKE([foreign])
 
 STM_SORTSMILL_MIT_PREREQUISITES
 STM_INIT_SORTSMILL
-#STM_ENABLE_GRAPHITE
-STM_TARGET_MIT_BINPACK
+STM_TARGET_MIT_OPENTYPE_BINPACK
 
 # Checks for programs.
-#STM_PROG_GRCOMPILER
 AC_PROG_MAKE_SET
 
 # Checks for libraries.

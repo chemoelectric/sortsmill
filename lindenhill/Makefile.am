@@ -21,11 +21,10 @@
 ACLOCAL_AMFLAGS = -I m4 --install
 
 @sortsmill_rules@
-@sortsmill_mit_binpack_rules@
+@sortsmill_mit_opentype_binpack_rules@
 
 MKFONT_FLAGS = --infer-licensing --ttf-emsize=4096 ${MKFONT_GRAPHITE_FLAGS}
 FAMILYNAME = lindenhill
-#FONTS = LindenHill LindenHill-Italic LindenHill-Bold
 FONTS = LindenHill LindenHill-Italic
 FEA_LindenHill = case cpsp figures generated_kerning hist liga locl main sc stylistic
 FEA_LindenHill_Italic = case cpsp figures generated_kerning hist liga locl main stylistic
@@ -38,14 +37,11 @@ EXTRA_DIST = \
 	$(addsuffix _build.py, ${FONTS}) \
 	${FEA_LindenHill:%=LindenHill_%.fea} \
 	${FEA_LindenHill_Italic:%=LindenHill-Italic_%.fea}
-#	${FEA_LindenHill_Bold:%=LindenHill-Bold_%.fea}
 
 LindenHill.otf: ${FEA_LindenHill:%=LindenHill_%.fea}
 LindenHillTT.ttf: ${FEA_LindenHill:%=LindenHill_%.fea}
 LindenHill-Italic.otf: ${FEA_LindenHill_Italic:%=LindenHill-Italic_%.fea}
 LindenHillTT-Italic.ttf: ${FEA_LindenHill_Italic:%=LindenHill-Italic_%.fea}
-#LindenHill-Bold.otf: ${FEA_LindenHill_Bold:%=LindenHill-Bold_%.fea}
-#LindenHillTT-Bold.ttf: ${FEA_LindenHill_Bold:%=LindenHill-Bold_%.fea}
 
 MOSTLYCLEANFILES = ${fonts_DATA} gdlerr.txt
 

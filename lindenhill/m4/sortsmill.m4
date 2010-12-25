@@ -205,6 +205,8 @@ AC_SUBST([expand_fonts_without_license],[' \
 AC_SUBST([expand_mit_fonts],[' \
 	$(call mit, $(call opentype, ${1})) \
 	$(call mit, $(call truetype, ${1}))'])
+AC_SUBST([expand_mit_opentype_fonts],[' \
+	$(call mit, $(call opentype, ${1}))'])
 AC_SUBST([expand_ofl_fonts],[' \
 	$(call ofl, $(call opentype, ${1})) \
 	$(call ofl, $(call truetype, ${1}))'])
@@ -241,6 +243,20 @@ AC_SUBST([sortsmill_mit_binpack_rules],['
 ${MIT_BINPACK}: ${MIT_BINPACK_FILES}
 	rm -f ${MIT_BINPACK}
 	zip -j ${MIT_BINPACK} ${MIT_BINPACK_FILES}
+'
+])
+])
+
+# STM_TARGET_MIT_OPENTYPE_BINPACK
+# -------------------------------
+AC_DEFUN([STM_TARGET_MIT_OPENTYPE_BINPACK],[
+AC_SUBST([MIT_OPENTYPE_BINPACK_FILES],['${srcdir}/COPYING $(call expand_mit_opentype_fonts, ${FONTS})'])
+AC_SUBST([MIT_OPENTYPE_BINPACK],['${FAMILYNAME}-${PACKAGE_VERSION}.zip'])
+AM_SUBST_NOTMAKE([sortsmill_mit_opentype_binpack_rules])
+AC_SUBST([sortsmill_mit_opentype_binpack_rules],['
+${MIT_OPENTYPE_BINPACK}: ${MIT_OPENTYPE_BINPACK_FILES}
+	rm -f ${MIT_OPENTYPE_BINPACK}
+	zip -j ${MIT_OPENTYPE_BINPACK} ${MIT_OPENTYPE_BINPACK_FILES}
 '
 ])
 ])
