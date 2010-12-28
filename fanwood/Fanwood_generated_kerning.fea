@@ -18,7 +18,6 @@ feature kern {
 @r1_braceleft = [\braceleft \braceleft.u];
 @r1_afii00208 = [\afii00208 \emdash \endash \f_f_j \f_j \guillemotleft 
      \guillemotright \guilsinglleft \guilsinglright];
-@r1_braceright = [\braceright \braceright.u];
 @r1_exclam = [\exclam \exclamdown \f_f \f_f_l \f_l \question 
      \questiondown];
 @r1_acute = [\acute \acutecomb \acutecomb.cap \afii299 \afii300 \afii301 
@@ -42,102 +41,13 @@ feature kern {
      \zero.sub \zero.sup];
 @r1_f_f_k = [\f_f_k \f_k];
 @r1_quotedblleft = [\quotedblleft \quotedblright \quoteleft \quotereversed \quoteright \uni201F];
+@r1_braceright = [\braceright \braceright.u];
 @r1_hyphen = [\hyphen \hyphen.u \uni00AD \uni00AD.u \uni2010 \uni2010.u 
      \uni2011 \uni2011.u];
 @r1_logicalnot = [\logicalnot \plusminus];
 @r1_f_b = [\f_b \f_f_b];
 
-@l1_a.numer = [\a.numer \b.numer \c.numer \d.numer \e.numer \f.numer 
-     \g.numer \h.numer \i.numer \j.numer \k.numer \m.numer 
-     \n.numer \o.numer \p.numer \q.numer \r.numer \s.numer 
-     \t.numer \u.numer \v.numer \w.numer \x.numer \y.numer 
-     \z.numer];
-@l1_O.c2 = [\O.c2 \OE.c2 \Oacute.c2 \Obreve.c2 \Ocircumflex.c2 \Ohungarumlaut.c2 
-     \Omacron.c2 \Oslash.c2 \Otilde.c2 \Q.c2 \o.sc \oacute.sc 
-     \obreve.sc \ocircumflex.sc \oe.sc \ohungarumlaut.sc \omacron.sc \oslash.sc 
-     \otilde.sc \q.sc];
-@l1_quotedblbase = [\quotedblbase \quotesinglbase];
-@l1_y = [\y \yacute \ycircumflex];
-@l1_five.p = [\five.p \g \gbreve \gcircumflex \gcommaaccent \gdotaccent 
-     \nine.p];
-@l1_C.c2 = [\C.c2 \Cacute.c2 \Ccaron.c2 \Ccedilla.c2 \Ccircumflex.c2 \Cdotaccent.c2 
-     \G.c2 \Gbreve.c2 \Gcircumflex.c2 \Gcommaaccent.c2 \Gdotaccent.c2 \c.sc 
-     \cacute.sc \ccaron.sc \ccedilla.sc \ccircumflex.sc \cdotaccent.sc \g.sc 
-     \gbreve.sc \gcircumflex.sc \gcommaaccent.sc \gdotaccent.sc \u \uacute 
-     \ubreve \ucircumflex \uhungarumlaut \umacron \uogonek \uring 
-     \utilde];
-@l1_Ograve.c2 = [\Ograve.c2 \ograve.sc];
-@l1_jcircumflex = [\jcircumflex \uni0237];
-@l1_Ydieresis.c2 = [\Ydieresis.c2 \ydieresis.sc];
-@l1_Egrave.c2 = [\Egrave.c2 \egrave.sc];
-@l1_l = [\l \l.CAT \lacute \lcaron \lcommaaccent \ldot 
-     \lslash];
-@l1_AE.c2 = [\AE.c2 \ae.sc];
-@l1_v = [\v \w \wcircumflex];
-@l1_Igrave.c2 = [\Igrave.c2 \igrave.sc];
-@l1_logicalnot = [\logicalnot \plusminus];
-@l1_O = [\O \OE \Oacute \Obreve \Ocircumflex \Odieresis 
-     \Ograve \Ohungarumlaut \Omacron \Oslash \Otilde \Q];
-@l1_c = [\c \cacute \ccaron \ccedilla \ccircumflex \cdotaccent 
-     \d \dcaron \dcroat \e \eacute \ebreve 
-     \ecaron \ecircumflex \edotaccent \emacron \eogonek \o 
-     \oacute \obreve \ocircumflex \oe \ohungarumlaut \omacron 
-     \oslash \otilde \q \uni1E0B \zero.p];
-@l1_braceleft = [\braceleft \braceleft.u];
-@l1_Edieresis.c2 = [\Edieresis.c2 \edieresis.sc];
-@l1_Euro = [\Euro \a.denom \asciicircum \asciitilde \at \b.denom 
-     \bar \bracketleft \bracketleft.u \brokenbar \bullet \c.denom 
-     \cent \colon \copyright \currency \d.denom \dagger 
-     \daggerdbl \degree \divide \dollar \e.denom \eight 
-     \eight.u \equal \f.denom \figuredash \figuredash.u \five 
-     \five.u \four \four.u \g.denom \greater \h.denom 
-     \i.denom \j.denom \k.denom \less \m.denom \minus 
-     \multiply \n.denom \nine \nine.u \numbersign \o.denom 
-     \one \one.u \p.denom \paragraph \percent \perthousand 
-     \plus \q.denom \quotedbl \quotesingle \r.denom \registered 
-     \s.denom \section \semicolon \seven \seven.u \six 
-     \six.u \sterling \t.denom \three \three.u \trademark 
-     \two \two.u \u.denom \underscore \uni00B5 \uni2053 
-     \v.denom \w.denom \x.denom \y.denom \yen \z.denom 
-     \zero \zero.u];
-@l1_p = [\p \uni1E57];
-@l1_U.c2 = [\U.c2 \Uacute.c2 \Ubreve.c2 \Ucircumflex.c2 \Uhungarumlaut.c2 \Umacron.c2 
-     \Uogonek.c2 \Uring.c2 \Utilde.c2 \u.sc \uacute.sc \ubreve.sc 
-     \ucircumflex.sc \uhungarumlaut.sc \umacron.sc \uogonek.sc \uring.sc \utilde.sc];
-@l1_germandbls = [\germandbls \longs];
-@l1_afii00208.u = [\afii00208.u \emdash.u \endash.u \guillemotleft.u \guillemotright.u \guilsinglleft.u 
-     \guilsinglright.u \parenleft \parenleft.u \periodcentered];
-@l1_Y.c2 = [\Y.c2 \Yacute.c2 \Ycircumflex.c2 \y.sc \yacute.sc \ycircumflex.sc];
 @l1_Adieresis.c2 = [\Adieresis.c2 \adieresis.sc];
-@l1_T = [\T \Tbar \Tcaron \uni0162 \uni021A \uni1E6A];
-@l1_quotedblleft = [\quotedblleft \quotedblright \quoteleft \quotereversed \quoteright \uni201F];
-@l1_comma = [\comma \ellipsis \period];
-@l1_hyphen = [\hyphen \hyphen.u \i \i.TRK \uni00AD \uni00AD.u 
-     \uni2010 \uni2010.u \uni2011 \uni2011.u];
-@l1_b = [\b \uni1E03];
-@l1_W = [\W \Wcircumflex];
-@l1_Odieresis.c2 = [\Odieresis.c2 \odieresis.sc];
-@l1_B = [\B \D \Dcaron \Dcroat \E \Eacute 
-     \Ebreve \Ecaron \Ecircumflex \Edieresis \Edotaccent \Egrave 
-     \Emacron \Eng \Eogonek \Eth \F \H 
-     \Hbar \Hcircumflex \I \Iacute \Ibreve \Icircumflex 
-     \Idieresis \Idotaccent \Igrave \Imacron \Iogonek \Itilde 
-     \K \Kcommaaccent \L \L.CAT \Lacute \Lcaron 
-     \Lcommaaccent \Ldot \Lslash \M \N \Nacute 
-     \Ncaron \Ncommaaccent \Ntilde \P \R \Racute 
-     \Rcaron \Rcommaaccent \S \Sacute \Scaron \Scedilla 
-     \Scircumflex \Thorn \ampersand \eight.p \exclam \exclamdown 
-     \h \hbar \hcircumflex \k \kcommaaccent \questiondown 
-     \uni0218 \uni1E02 \uni1E0A \uni1E1E \uni1E22 \uni1E23 
-     \uni1E40 \uni1E56 \uni1E60];
-@l1_J = [\J \Jcircumflex];
-@l1_Udieresis.c2 = [\Udieresis.c2 \udieresis.sc];
-@l1_A = [\A \Aacute \Abreve \Acircumflex \Adieresis \Agrave 
-     \Amacron \Aogonek \Aring \Atilde];
-@l1_Y = [\Y \Yacute \Ycircumflex \Ydieresis];
-@l1_edieresis = [\edieresis \eth];
-@l1_J.c2 = [\J.c2 \Jcircumflex.c2 \j.sc \jcircumflex.sc];
-@l1_Ugrave.c2 = [\Ugrave.c2 \ugrave.sc];
 @l1_B.c2 = [\B.c2 \D.c2 \Dcaron.c2 \Dcroat.c2 \E.c2 \Eacute.c2 
      \Ebreve.c2 \Ecaron.c2 \Ecircumflex.c2 \Edotaccent.c2 \Emacron.c2 \Eogonek.c2 
      \Eth.c2 \F.c2 \H.c2 \Hbar.c2 \Hcircumflex.c2 \I.c2 
@@ -170,17 +80,110 @@ feature kern {
      \uni1E40.c2 \uni1E41 \uni1E41.sc \uni1E56.c2 \uni1E57.sc \uni1E60.c2 
      \uni1E61 \uni1E61.sc \uni1E6B \x.sc \z \z.sc 
      \zacute \zacute.sc \zcaron \zcaron.sc \zdotaccent \zdotaccent.sc];
-@l1_braceright = [\braceright \braceright.u];
-@l1_a = [\a \aacute \abreve \acircumflex \ae \amacron 
-     \aogonek \aring \atilde];
-@l1_Agrave.c2 = [\Agrave.c2 \agrave.sc];
+@l1_quotedblbase = [\quotedblbase \quotesinglbase];
+@l1_jcircumflex = [\jcircumflex \uni0237];
+@l1_hyphen = [\hyphen \hyphen.u \i \i.TRK \uni00AD \uni00AD.u 
+     \uni2010 \uni2010.u \uni2011 \uni2011.u];
+@l1_Ydieresis.c2 = [\Ydieresis.c2 \ydieresis.sc];
 @l1_T.c2 = [\T.c2 \Tbar.c2 \Tcaron.c2 \W.c2 \Wcircumflex.c2 \t.sc 
      \tbar.sc \tcaron.sc \uni0162.c2 \uni0163.sc \uni021A.c2 \uni021B.sc 
      \uni1E6A.c2 \uni1E6B.sc \w.sc \wcircumflex.sc];
-@l1_U = [\U \Uacute \Ubreve \Ucircumflex \Udieresis \Ugrave 
-     \Uhungarumlaut \Umacron \Uogonek \Uring \Utilde];
+@l1_l = [\l \l.CAT \lacute \lcaron \lcommaaccent \ldot 
+     \lslash];
+@l1_V.c2 = [\V.c2 \v.sc];
+@l1_Udieresis.c2 = [\Udieresis.c2 \udieresis.sc];
+@l1_Ugrave.c2 = [\Ugrave.c2 \ugrave.sc];
+@l1_comma = [\comma \ellipsis \period];
+@l1_A.c2 = [\A.c2 \Aacute.c2 \Abreve.c2 \Acircumflex.c2 \Amacron.c2 \Aogonek.c2 
+     \Aring.c2 \Atilde.c2 \a.sc \aacute.sc \abreve.sc \acircumflex.sc 
+     \amacron.sc \aogonek.sc \aring.sc \atilde.sc];
+@l1_a.numer = [\a.numer \b.numer \c.numer \d.numer \e.numer \f.numer 
+     \g.numer \h.numer \i.numer \j.numer \k.numer \m.numer 
+     \n.numer \o.numer \p.numer \q.numer \r.numer \s.numer 
+     \t.numer \u.numer \v.numer \w.numer \x.numer \y.numer 
+     \z.numer];
+@l1_quotedblleft = [\quotedblleft \quotedblright \quoteleft \quotereversed \quoteright \uni201F];
+@l1_braceleft = [\braceleft \braceleft.u];
+@l1_Idieresis.c2 = [\Idieresis.c2 \idieresis.sc];
+@l1_b = [\b \uni1E03];
+@l1_p = [\p \uni1E57];
+@l1_J = [\J \Jcircumflex];
+@l1_germandbls = [\germandbls \longs];
 @l1_C = [\C \Cacute \Ccaron \Ccedilla \Ccircumflex \Cdotaccent 
      \G \Gbreve \Gcircumflex \Gcommaaccent \Gdotaccent];
+@l1_A = [\A \Aacute \Abreve \Acircumflex \Adieresis \Agrave 
+     \Amacron \Aogonek \Aring \Atilde];
+@l1_Y = [\Y \Yacute \Ycircumflex \Ydieresis];
+@l1_logicalnot = [\logicalnot \plusminus];
+@l1_U = [\U \Uacute \Ubreve \Ucircumflex \Udieresis \Ugrave 
+     \Uhungarumlaut \Umacron \Uogonek \Uring \Utilde];
+@l1_O.c2 = [\O.c2 \OE.c2 \Oacute.c2 \Obreve.c2 \Ocircumflex.c2 \Ohungarumlaut.c2 
+     \Omacron.c2 \Oslash.c2 \Otilde.c2 \Q.c2 \o.sc \oacute.sc 
+     \obreve.sc \ocircumflex.sc \oe.sc \ohungarumlaut.sc \omacron.sc \oslash.sc 
+     \otilde.sc \q.sc];
+@l1_c = [\c \cacute \ccaron \ccedilla \ccircumflex \cdotaccent 
+     \d \dcaron \dcroat \e \eacute \ebreve 
+     \ecaron \ecircumflex \edotaccent \emacron \eogonek \o 
+     \oacute \obreve \ocircumflex \oe \ohungarumlaut \omacron 
+     \oslash \otilde \q \uni1E0B \zero.p];
+@l1_five.p = [\five.p \g \gbreve \gcircumflex \gcommaaccent \gdotaccent 
+     \nine.p];
+@l1_braceright = [\braceright \braceright.u];
+@l1_Euro = [\Euro \a.denom \asciicircum \asciitilde \at \b.denom 
+     \bar \bracketleft \bracketleft.u \brokenbar \bullet \c.denom 
+     \cent \colon \copyright \currency \d.denom \dagger 
+     \daggerdbl \degree \divide \dollar \e.denom \eight 
+     \eight.u \equal \f.denom \figuredash \figuredash.u \five 
+     \five.u \four \four.u \g.denom \greater \h.denom 
+     \i.denom \j.denom \k.denom \less \m.denom \minus 
+     \multiply \n.denom \nine \nine.u \numbersign \o.denom 
+     \one \one.u \p.denom \paragraph \percent \perthousand 
+     \plus \q.denom \quotedbl \quotesingle \r.denom \registered 
+     \s.denom \section \semicolon \seven \seven.u \six 
+     \six.u \sterling \t.denom \three \three.u \trademark 
+     \two \two.u \u.denom \underscore \uni00B5 \uni2053 
+     \v.denom \w.denom \x.denom \y.denom \yen \z.denom 
+     \zero \zero.u];
+@l1_a = [\a \aacute \abreve \acircumflex \ae \amacron 
+     \aogonek \aring \atilde];
+@l1_Y.c2 = [\Y.c2 \Yacute.c2 \Ycircumflex.c2 \y.sc \yacute.sc \ycircumflex.sc];
+@l1_Egrave.c2 = [\Egrave.c2 \egrave.sc];
+@l1_Odieresis.c2 = [\Odieresis.c2 \odieresis.sc];
+@l1_B = [\B \D \Dcaron \Dcroat \E \Eacute 
+     \Ebreve \Ecaron \Ecircumflex \Edieresis \Edotaccent \Egrave 
+     \Emacron \Eng \Eogonek \Eth \F \H 
+     \Hbar \Hcircumflex \I \Iacute \Ibreve \Icircumflex 
+     \Idieresis \Idotaccent \Igrave \Imacron \Iogonek \Itilde 
+     \K \Kcommaaccent \L \L.CAT \Lacute \Lcaron 
+     \Lcommaaccent \Ldot \Lslash \M \N \Nacute 
+     \Ncaron \Ncommaaccent \Ntilde \P \R \Racute 
+     \Rcaron \Rcommaaccent \S \Sacute \Scaron \Scedilla 
+     \Scircumflex \Thorn \ampersand \eight.p \exclam \exclamdown 
+     \h \hbar \hcircumflex \k \kcommaaccent \questiondown 
+     \uni0218 \uni1E02 \uni1E0A \uni1E1E \uni1E22 \uni1E23 
+     \uni1E40 \uni1E56 \uni1E60];
+@l1_U.c2 = [\U.c2 \Uacute.c2 \Ubreve.c2 \Ucircumflex.c2 \Uhungarumlaut.c2 \Umacron.c2 
+     \Uogonek.c2 \Uring.c2 \Utilde.c2 \u.sc \uacute.sc \ubreve.sc 
+     \ucircumflex.sc \uhungarumlaut.sc \umacron.sc \uogonek.sc \uring.sc \utilde.sc];
+@l1_edieresis = [\edieresis \eth];
+@l1_Igrave.c2 = [\Igrave.c2 \igrave.sc];
+@l1_J.c2 = [\J.c2 \Jcircumflex.c2 \j.sc \jcircumflex.sc];
+@l1_W = [\W \Wcircumflex];
+@l1_O = [\O \OE \Oacute \Obreve \Ocircumflex \Odieresis 
+     \Ograve \Ohungarumlaut \Omacron \Oslash \Otilde \Q];
+@l1_y = [\y \yacute \ycircumflex];
+@l1_C.c2 = [\C.c2 \Cacute.c2 \Ccaron.c2 \Ccedilla.c2 \Ccircumflex.c2 \Cdotaccent.c2 
+     \G.c2 \Gbreve.c2 \Gcircumflex.c2 \Gcommaaccent.c2 \Gdotaccent.c2 \c.sc 
+     \cacute.sc \ccaron.sc \ccedilla.sc \ccircumflex.sc \cdotaccent.sc \g.sc 
+     \gbreve.sc \gcircumflex.sc \gcommaaccent.sc \gdotaccent.sc \u \uacute 
+     \ubreve \ucircumflex \uhungarumlaut \umacron \uogonek \uring 
+     \utilde];
+@l1_Edieresis.c2 = [\Edieresis.c2 \edieresis.sc];
+@l1_Ograve.c2 = [\Ograve.c2 \ograve.sc];
+@l1_bracketright = [\bracketright \bracketright.u \parenright \parenright.u];
+@l1_afii00208.u = [\afii00208.u \emdash.u \endash.u \guillemotleft.u \guillemotright.u \guilsinglleft.u 
+     \guilsinglright.u \parenleft \parenleft.u \periodcentered];
+@l1_AE.c2 = [\AE.c2 \ae.sc];
 @l1_a.sub = [\a.sub \a.sup \acute \acutecomb \acutecomb.cap \afii299 
      \afii300 \afii301 \afii57929 \afii61664 \b.sub \b.sup 
      \bracketleft.sub \bracketleft.sup \bracketright.sub \bracketright.sup \breve \c.sub 
@@ -210,18 +213,16 @@ feature kern {
      \x.sub \x.sup \y.sub \y.sup \z.sub \z.sup 
      \zero.sub \zero.sup];
 @l1_IJ.c2 = [\IJ.c2 \ij.sc];
-@l1_V.c2 = [\V.c2 \v.sc];
-@l1_Idieresis.c2 = [\Idieresis.c2 \idieresis.sc];
+@l1_T = [\T \Tbar \Tcaron \uni0162 \uni021A \uni1E6A];
 @l1_Z = [\Z \Zacute \Zcaron \Zdotaccent];
-@l1_A.c2 = [\A.c2 \Aacute.c2 \Abreve.c2 \Acircumflex.c2 \Amacron.c2 \Aogonek.c2 
-     \Aring.c2 \Atilde.c2 \a.sc \aacute.sc \abreve.sc \acircumflex.sc 
-     \amacron.sc \aogonek.sc \aring.sc \atilde.sc];
-@l1_bracketright = [\bracketright \bracketright.u \parenright \parenright.u];
+@l1_Agrave.c2 = [\Agrave.c2 \agrave.sc];
+@l1_v = [\v \w \wcircumflex];
 
 @r2_T = [\T \Tbar \Tcaron \uni0162 \uni021A \uni1E6A];
 @r2_L = [\L \L.CAT \Lacute \Lcommaaccent \Ldot \Lslash];
 @r2_A = [\A \Aacute \Abreve \Acircumflex \Adieresis \Agrave 
      \Amacron \Aogonek \Aring \Atilde];
+@r2_R = [\R \Racute \Rcaron \Rcommaaccent];
 @r2_D = [\D \Dcaron \Dcroat \Eth \O \Oacute 
      \Obreve \Ocircumflex \Odieresis \Ograve \Ohungarumlaut \Omacron 
      \Oslash \Otilde \uni1E0A];
@@ -243,87 +244,9 @@ feature kern {
 @r2_S = [\S \Sacute \Scaron \Scedilla \Scircumflex \uni0218 
      \uni1E60];
 @r2_Z = [\Z \Zacute \Zcaron \Zdotaccent];
-@r2_R = [\R \Racute \Rcaron \Rcommaaccent];
-@r2_B = [\B \uni1E02];
 @r2_V = [\V \W \Wcircumflex];
+@r2_B = [\B \uni1E02];
 
-@l2_a.numer = [\a.numer \b.numer \c.numer \d.numer \e.numer \f.numer 
-     \g.numer \h.numer \i.numer \j.numer \k.numer \m.numer 
-     \n.numer \o.numer \p.numer \q.numer \r.numer \s.numer 
-     \t.numer \u.numer \v.numer \w.numer \x.numer \y.numer 
-     \z.numer];
-@l2_o.sc = [\o.sc \oacute.sc \obreve.sc \ocircumflex.sc \oe.sc \ohungarumlaut.sc 
-     \omacron.sc \oslash.sc \otilde.sc \q.sc];
-@l2_quotedblbase = [\quotedblbase \quotesinglbase];
-@l2_y = [\y \yacute \ycircumflex];
-@l2_five.p = [\five.p \g \gbreve \gcircumflex \gcommaaccent \gdotaccent 
-     \nine.p];
-@l2_c.sc = [\c.sc \cacute.sc \ccaron.sc \ccedilla.sc \ccircumflex.sc \cdotaccent.sc 
-     \g.sc \gbreve.sc \gcircumflex.sc \gcommaaccent.sc \gdotaccent.sc \u 
-     \uacute \ubreve \ucircumflex \uhungarumlaut \umacron \uogonek 
-     \uring \utilde];
-@l2_jcircumflex = [\jcircumflex \uni0237];
-@l2_j.sc = [\j.sc \jcircumflex.sc];
-@l2_l = [\l \l.CAT \lacute \lcaron \lcommaaccent \ldot 
-     \lslash];
-@l2_v = [\v \w \wcircumflex];
-@l2_logicalnot = [\logicalnot \plusminus];
-@l2_O = [\O \OE \Oacute \Obreve \Ocircumflex \Odieresis 
-     \Ograve \Ohungarumlaut \Omacron \Oslash \Otilde \Q];
-@l2_c = [\c \cacute \ccaron \ccedilla \ccircumflex \cdotaccent 
-     \d \dcaron \dcroat \e \eacute \ebreve 
-     \ecaron \ecircumflex \edotaccent \emacron \eogonek \o 
-     \oacute \obreve \ocircumflex \oe \ohungarumlaut \omacron 
-     \oslash \otilde \q \uni1E0B \zero.p];
-@l2_braceleft = [\braceleft \braceleft.u];
-@l2_Euro = [\Euro \a.denom \asciicircum \asciitilde \at \b.denom 
-     \bar \bracketleft \bracketleft.u \brokenbar \bullet \c.denom 
-     \cent \colon \copyright \currency \d.denom \dagger 
-     \daggerdbl \degree \divide \dollar \e.denom \eight 
-     \eight.u \equal \f.denom \figuredash \figuredash.u \five 
-     \five.u \four \four.u \g.denom \greater \h.denom 
-     \i.denom \j.denom \k.denom \less \m.denom \minus 
-     \multiply \n.denom \nine \nine.u \numbersign \o.denom 
-     \one \one.u \p.denom \paragraph \percent \perthousand 
-     \plus \q.denom \quotedbl \quotesingle \r.denom \registered 
-     \s.denom \section \semicolon \seven \seven.u \six 
-     \six.u \sterling \t.denom \three \three.u \trademark 
-     \two \two.u \u.denom \underscore \uni00B5 \uni2053 
-     \v.denom \w.denom \x.denom \y.denom \yen \z.denom 
-     \zero \zero.u];
-@l2_p = [\p \uni1E57];
-@l2_u.sc = [\u.sc \uacute.sc \ubreve.sc \ucircumflex.sc \uhungarumlaut.sc \umacron.sc 
-     \uogonek.sc \uring.sc \utilde.sc];
-@l2_germandbls = [\germandbls \longs];
-@l2_afii00208.u = [\afii00208.u \emdash.u \endash.u \guillemotleft.u \guillemotright.u \guilsinglleft.u 
-     \guilsinglright.u \parenleft \parenleft.u \periodcentered];
-@l2_y.sc = [\y.sc \yacute.sc \ycircumflex.sc];
-@l2_W = [\W \Wcircumflex];
-@l2_T = [\T \Tbar \Tcaron \uni0162 \uni021A \uni1E6A];
-@l2_quotedblleft = [\quotedblleft \quotedblright \quoteleft \quotereversed \quoteright \uni201F];
-@l2_comma = [\comma \ellipsis \period];
-@l2_hyphen = [\hyphen \hyphen.u \i \i.TRK \uni00AD \uni00AD.u 
-     \uni2010 \uni2010.u \uni2011 \uni2011.u];
-@l2_b = [\b \uni1E03];
-@l2_bracketright = [\bracketright \bracketright.u \parenright \parenright.u];
-@l2_B = [\B \D \Dcaron \Dcroat \E \Eacute 
-     \Ebreve \Ecaron \Ecircumflex \Edieresis \Edotaccent \Egrave 
-     \Emacron \Eng \Eogonek \Eth \F \H 
-     \Hbar \Hcircumflex \I \Iacute \Ibreve \Icircumflex 
-     \Idieresis \Idotaccent \Igrave \Imacron \Iogonek \Itilde 
-     \K \Kcommaaccent \L \L.CAT \Lacute \Lcaron 
-     \Lcommaaccent \Ldot \Lslash \M \N \Nacute 
-     \Ncaron \Ncommaaccent \Ntilde \P \R \Racute 
-     \Rcaron \Rcommaaccent \S \Sacute \Scaron \Scedilla 
-     \Scircumflex \Thorn \ampersand \eight.p \exclam \exclamdown 
-     \h \hbar \hcircumflex \k \kcommaaccent \questiondown 
-     \uni0218 \uni1E02 \uni1E0A \uni1E1E \uni1E22 \uni1E23 
-     \uni1E40 \uni1E56 \uni1E60];
-@l2_J = [\J \Jcircumflex];
-@l2_A = [\A \Aacute \Abreve \Acircumflex \Adieresis \Agrave 
-     \Amacron \Aogonek \Aring \Atilde];
-@l2_Y = [\Y \Yacute \Ycircumflex \Ydieresis];
-@l2_edieresis = [\edieresis \eth];
 @l2_afii00208 = [\afii00208 \b.sc \d.sc \dcaron.sc \dcroat.sc \dotlessi 
      \e.sc \eacute.sc \ebreve.sc \ecaron.sc \ecircumflex.sc \edotaccent.sc 
      \emacron.sc \emdash \endash \eng \eogonek.sc \eth.sc 
@@ -346,14 +269,91 @@ feature kern {
      \uni1E41.sc \uni1E57.sc \uni1E61 \uni1E61.sc \uni1E6B \x.sc 
      \z \z.sc \zacute \zacute.sc \zcaron \zcaron.sc 
      \zdotaccent \zdotaccent.sc];
-@l2_braceright = [\braceright \braceright.u];
-@l2_a = [\a \aacute \abreve \acircumflex \ae \amacron 
-     \aogonek \aring \atilde];
+@l2_quotedblbase = [\quotedblbase \quotesinglbase];
+@l2_jcircumflex = [\jcircumflex \uni0237];
+@l2_hyphen = [\hyphen \hyphen.u \i \i.TRK \uni00AD \uni00AD.u 
+     \uni2010 \uni2010.u \uni2011 \uni2011.u];
 @l2_t.sc = [\t.sc \tbar.sc \tcaron.sc \uni0163.sc \uni021B.sc \uni1E6B.sc 
      \w.sc \wcircumflex.sc];
-@l2_Z = [\Z \Zacute \Zcaron \Zdotaccent];
+@l2_l = [\l \l.CAT \lacute \lcaron \lcommaaccent \ldot 
+     \lslash];
+@l2_comma = [\comma \ellipsis \period];
+@l2_a.sc = [\a.sc \aacute.sc \abreve.sc \acircumflex.sc \amacron.sc \aogonek.sc 
+     \aring.sc \atilde.sc];
+@l2_a.numer = [\a.numer \b.numer \c.numer \d.numer \e.numer \f.numer 
+     \g.numer \h.numer \i.numer \j.numer \k.numer \m.numer 
+     \n.numer \o.numer \p.numer \q.numer \r.numer \s.numer 
+     \t.numer \u.numer \v.numer \w.numer \x.numer \y.numer 
+     \z.numer];
+@l2_quotedblleft = [\quotedblleft \quotedblright \quoteleft \quotereversed \quoteright \uni201F];
+@l2_braceleft = [\braceleft \braceleft.u];
+@l2_b = [\b \uni1E03];
+@l2_p = [\p \uni1E57];
+@l2_J = [\J \Jcircumflex];
+@l2_germandbls = [\germandbls \longs];
 @l2_C = [\C \Cacute \Ccaron \Ccedilla \Ccircumflex \Cdotaccent 
      \G \Gbreve \Gcircumflex \Gcommaaccent \Gdotaccent];
+@l2_Y = [\Y \Yacute \Ycircumflex \Ydieresis];
+@l2_logicalnot = [\logicalnot \plusminus];
+@l2_U = [\U \Uacute \Ubreve \Ucircumflex \Udieresis \Ugrave 
+     \Uhungarumlaut \Umacron \Uogonek \Uring \Utilde];
+@l2_o.sc = [\o.sc \oacute.sc \obreve.sc \ocircumflex.sc \oe.sc \ohungarumlaut.sc 
+     \omacron.sc \oslash.sc \otilde.sc \q.sc];
+@l2_c = [\c \cacute \ccaron \ccedilla \ccircumflex \cdotaccent 
+     \d \dcaron \dcroat \e \eacute \ebreve 
+     \ecaron \ecircumflex \edotaccent \emacron \eogonek \o 
+     \oacute \obreve \ocircumflex \oe \ohungarumlaut \omacron 
+     \oslash \otilde \q \uni1E0B \zero.p];
+@l2_u.sc = [\u.sc \uacute.sc \ubreve.sc \ucircumflex.sc \uhungarumlaut.sc \umacron.sc 
+     \uogonek.sc \uring.sc \utilde.sc];
+@l2_five.p = [\five.p \g \gbreve \gcircumflex \gcommaaccent \gdotaccent 
+     \nine.p];
+@l2_braceright = [\braceright \braceright.u];
+@l2_Euro = [\Euro \a.denom \asciicircum \asciitilde \at \b.denom 
+     \bar \bracketleft \bracketleft.u \brokenbar \bullet \c.denom 
+     \cent \colon \copyright \currency \d.denom \dagger 
+     \daggerdbl \degree \divide \dollar \e.denom \eight 
+     \eight.u \equal \f.denom \figuredash \figuredash.u \five 
+     \five.u \four \four.u \g.denom \greater \h.denom 
+     \i.denom \j.denom \k.denom \less \m.denom \minus 
+     \multiply \n.denom \nine \nine.u \numbersign \o.denom 
+     \one \one.u \p.denom \paragraph \percent \perthousand 
+     \plus \q.denom \quotedbl \quotesingle \r.denom \registered 
+     \s.denom \section \semicolon \seven \seven.u \six 
+     \six.u \sterling \t.denom \three \three.u \trademark 
+     \two \two.u \u.denom \underscore \uni00B5 \uni2053 
+     \v.denom \w.denom \x.denom \y.denom \yen \z.denom 
+     \zero \zero.u];
+@l2_a = [\a \aacute \abreve \acircumflex \ae \amacron 
+     \aogonek \aring \atilde];
+@l2_y.sc = [\y.sc \yacute.sc \ycircumflex.sc];
+@l2_j.sc = [\j.sc \jcircumflex.sc];
+@l2_B = [\B \D \Dcaron \Dcroat \E \Eacute 
+     \Ebreve \Ecaron \Ecircumflex \Edieresis \Edotaccent \Egrave 
+     \Emacron \Eng \Eogonek \Eth \F \H 
+     \Hbar \Hcircumflex \I \Iacute \Ibreve \Icircumflex 
+     \Idieresis \Idotaccent \Igrave \Imacron \Iogonek \Itilde 
+     \K \Kcommaaccent \L \L.CAT \Lacute \Lcaron 
+     \Lcommaaccent \Ldot \Lslash \M \N \Nacute 
+     \Ncaron \Ncommaaccent \Ntilde \P \R \Racute 
+     \Rcaron \Rcommaaccent \S \Sacute \Scaron \Scedilla 
+     \Scircumflex \Thorn \ampersand \eight.p \exclam \exclamdown 
+     \h \hbar \hcircumflex \k \kcommaaccent \questiondown 
+     \uni0218 \uni1E02 \uni1E0A \uni1E1E \uni1E22 \uni1E23 
+     \uni1E40 \uni1E56 \uni1E60];
+@l2_v = [\v \w \wcircumflex];
+@l2_edieresis = [\edieresis \eth];
+@l2_W = [\W \Wcircumflex];
+@l2_O = [\O \OE \Oacute \Obreve \Ocircumflex \Odieresis 
+     \Ograve \Ohungarumlaut \Omacron \Oslash \Otilde \Q];
+@l2_y = [\y \yacute \ycircumflex];
+@l2_c.sc = [\c.sc \cacute.sc \ccaron.sc \ccedilla.sc \ccircumflex.sc \cdotaccent.sc 
+     \g.sc \gbreve.sc \gcircumflex.sc \gcommaaccent.sc \gdotaccent.sc \u 
+     \uacute \ubreve \ucircumflex \uhungarumlaut \umacron \uogonek 
+     \uring \utilde];
+@l2_bracketright = [\bracketright \bracketright.u \parenright \parenright.u];
+@l2_afii00208.u = [\afii00208.u \emdash.u \endash.u \guillemotleft.u \guillemotright.u \guilsinglleft.u 
+     \guilsinglright.u \parenleft \parenleft.u \periodcentered];
 @l2_a.sub = [\a.sub \a.sup \acute \acutecomb \acutecomb.cap \afii299 
      \afii300 \afii301 \afii57929 \afii61664 \b.sub \b.sup 
      \bracketleft.sub \bracketleft.sup \bracketright.sub \bracketright.sup \breve \c.sub 
@@ -382,21 +382,11 @@ feature kern {
      \uni2060 \uniFEFF \v.sub \v.sup \w.sub \w.sup 
      \x.sub \x.sup \y.sub \y.sup \z.sub \z.sup 
      \zero.sub \zero.sup];
-@l2_U = [\U \Uacute \Ubreve \Ucircumflex \Udieresis \Ugrave 
-     \Uhungarumlaut \Umacron \Uogonek \Uring \Utilde];
-@l2_a.sc = [\a.sc \aacute.sc \abreve.sc \acircumflex.sc \amacron.sc \aogonek.sc 
-     \aring.sc \atilde.sc];
+@l2_T = [\T \Tbar \Tcaron \uni0162 \uni021A \uni1E6A];
+@l2_Z = [\Z \Zacute \Zcaron \Zdotaccent];
+@l2_A = [\A \Aacute \Abreve \Acircumflex \Adieresis \Agrave 
+     \Amacron \Aogonek \Aring \Atilde];
 
-@r3_w.sc = [\w.sc \wcircumflex.sc];
-@r3_o.sc = [\o.sc \obreve.sc \ocircumflex.sc \ograve.sc \omacron.sc \oslash.sc 
-     \otilde.sc \q.sc];
-@r3_y.sc = [\y.sc \ycircumflex.sc];
-@r3_n.sc = [\n.sc \ncaron.sc \ncommaaccent.sc \ntilde.sc];
-@r3_r.sc = [\r.sc \rcaron.sc \rcommaaccent.sc];
-@r3_d.sc = [\d.sc \dcaron.sc \dcroat.sc \eth.sc \thorn.sc \uni1E0B.sc];
-@r3_t.sc = [\t.sc \tcaron.sc \uni0163.sc \uni021B.sc \uni1E6B.sc];
-@r3_f.sc = [\f.sc \p.sc \uni1E1F.sc \uni1E57.sc];
-@r3_b.sc = [\b.sc \uni1E03.sc];
 @r3_z.sc = [\z.sc \zcaron.sc \zdotaccent.sc];
 @r3_ae.sc = [\ae.sc \c.sc \ccaron.sc \ccedilla.sc \ccircumflex.sc \cdotaccent.sc 
      \e.sc \ebreve.sc \ecaron.sc \ecircumflex.sc \edotaccent.sc \egrave.sc 
@@ -408,76 +398,20 @@ feature kern {
 @r3_s.sc = [\s.sc \scaron.sc \scedilla.sc \scircumflex.sc \u.sc \ubreve.sc 
      \ucircumflex.sc \ugrave.sc \umacron.sc \uni0219.sc \uni1E61.sc \uogonek.sc 
      \uring.sc \utilde.sc];
+@r3_t.sc = [\t.sc \tcaron.sc \uni0163.sc \uni021B.sc \uni1E6B.sc];
+@r3_o.sc = [\o.sc \obreve.sc \ocircumflex.sc \ograve.sc \omacron.sc \oslash.sc 
+     \otilde.sc \q.sc];
+@r3_b.sc = [\b.sc \uni1E03.sc];
+@r3_y.sc = [\y.sc \ycircumflex.sc];
+@r3_r.sc = [\r.sc \rcaron.sc \rcommaaccent.sc];
+@r3_d.sc = [\d.sc \dcaron.sc \dcroat.sc \eth.sc \thorn.sc \uni1E0B.sc];
 @r3_a.sc = [\a.sc \abreve.sc \acircumflex.sc \agrave.sc \amacron.sc \aogonek.sc 
      \aring.sc \atilde.sc \l.CAT.sc \l.sc \lcommaaccent.sc \lslash.sc];
+@r3_f.sc = [\f.sc \p.sc \uni1E1F.sc \uni1E57.sc];
+@r3_n.sc = [\n.sc \ncaron.sc \ncommaaccent.sc \ntilde.sc];
+@r3_w.sc = [\w.sc \wcircumflex.sc];
 
-@l3_O.c2 = [\O.c2 \OE.c2 \Oacute.c2 \Obreve.c2 \Ocircumflex.c2 \Ohungarumlaut.c2 
-     \Omacron.c2 \Oslash.c2 \Otilde.c2 \Q.c2 \o.sc \oacute.sc 
-     \obreve.sc \ocircumflex.sc \oe.sc \ohungarumlaut.sc \omacron.sc \oslash.sc 
-     \otilde.sc \q.sc];
 @l3_Adieresis.c2 = [\Adieresis.c2 \adieresis.sc];
-@l3_Idieresis.c2 = [\Idieresis.c2 \idieresis.sc];
-@l3_quotedblbase = [\quotedblbase \quotesinglbase];
-@l3_C.c2 = [\C.c2 \Cacute.c2 \Ccaron.c2 \Ccedilla.c2 \Ccircumflex.c2 \Cdotaccent.c2 
-     \G.c2 \Gbreve.c2 \Gcircumflex.c2 \Gcommaaccent.c2 \Gdotaccent.c2 \c.sc 
-     \cacute.sc \ccaron.sc \ccedilla.sc \ccircumflex.sc \cdotaccent.sc \g.sc 
-     \gbreve.sc \gcircumflex.sc \gcommaaccent.sc \gdotaccent.sc];
-@l3_Ograve.c2 = [\Ograve.c2 \ograve.sc];
-@l3_Ydieresis.c2 = [\Ydieresis.c2 \ydieresis.sc];
-@l3_Egrave.c2 = [\Egrave.c2 \egrave.sc];
-@l3_Y.c2 = [\Y.c2 \Yacute.c2 \Ycircumflex.c2 \y.sc \yacute.sc \ycircumflex.sc];
-@l3_AE.c2 = [\AE.c2 \ae.sc];
-@l3_A.c2 = [\A.c2 \Aacute.c2 \Abreve.c2 \Acircumflex.c2 \Amacron.c2 \Aogonek.c2 
-     \Aring.c2 \Atilde.c2 \a.sc \aacute.sc \abreve.sc \acircumflex.sc 
-     \amacron.sc \aogonek.sc \aring.sc \atilde.sc];
-@l3_Igrave.c2 = [\Igrave.c2 \igrave.sc];
-@l3_logicalnot = [\logicalnot \plusminus];
-@l3_O = [\O \OE \Oacute \Obreve \Ocircumflex \Odieresis 
-     \Ograve \Ohungarumlaut \Omacron \Oslash \Otilde \Q];
-@l3_Udieresis.c2 = [\Udieresis.c2 \udieresis.sc];
-@l3_braceleft = [\braceleft \braceleft.u];
-@l3_Edieresis.c2 = [\Edieresis.c2 \edieresis.sc];
-@l3_Euro = [\Euro \asciicircum \asciitilde \at \bar \bracketleft 
-     \bracketleft.u \brokenbar \bullet \cent \colon \copyright 
-     \currency \dagger \daggerdbl \degree \divide \dollar 
-     \eight \eight.u \equal \figuredash \figuredash.u \five 
-     \five.u \four \four.u \greater \less \minus 
-     \multiply \nine \nine.u \numbersign \one \one.u 
-     \paragraph \percent \perthousand \plus \quotedbl \quotesingle 
-     \registered \section \semicolon \seven \seven.u \six 
-     \six.u \sterling \three \three.u \trademark \two 
-     \two.u \underscore \uni2053 \yen \zero \zero.u];
-@l3_U.c2 = [\U.c2 \Uacute.c2 \Ubreve.c2 \Ucircumflex.c2 \Uhungarumlaut.c2 \Umacron.c2 
-     \Uogonek.c2 \Uring.c2 \Utilde.c2 \u.sc \uacute.sc \ubreve.sc 
-     \ucircumflex.sc \uhungarumlaut.sc \umacron.sc \uogonek.sc \uring.sc \utilde.sc];
-@l3_afii00208.u = [\afii00208.u \emdash.u \endash.u \guillemotleft.u \guillemotright.u \guilsinglleft.u 
-     \guilsinglright.u \parenleft \parenleft.u \periodcentered];
-@l3_bracketright = [\bracketright \bracketright.u \parenright \parenright.u];
-@l3_T = [\T \Tbar \Tcaron \uni0162 \uni021A \uni1E6A];
-@l3_quotedblleft = [\quotedblleft \quotedblright \quoteleft \quotereversed \quoteright \uni201F];
-@l3_comma = [\comma \ellipsis \period];
-@l3_hyphen = [\hyphen \hyphen.u \uni00AD \uni00AD.u \uni2010 \uni2010.u 
-     \uni2011 \uni2011.u];
-@l3_W = [\W \Wcircumflex];
-@l3_Odieresis.c2 = [\Odieresis.c2 \odieresis.sc];
-@l3_B = [\B \D \Dcaron \Dcroat \E \Eacute 
-     \Ebreve \Ecaron \Ecircumflex \Edieresis \Edotaccent \Egrave 
-     \Emacron \Eng \Eogonek \Eth \F \H 
-     \Hbar \Hcircumflex \I \Iacute \Ibreve \Icircumflex 
-     \Idieresis \Idotaccent \Igrave \Imacron \Iogonek \Itilde 
-     \K \Kcommaaccent \L \L.CAT \Lacute \Lcaron 
-     \Lcommaaccent \Ldot \Lslash \M \N \Nacute 
-     \Ncaron \Ncommaaccent \Ntilde \P \R \Racute 
-     \Rcaron \Rcommaaccent \S \Sacute \Scaron \Scedilla 
-     \Scircumflex \Thorn \ampersand \exclam \exclamdown \questiondown 
-     \uni0218 \uni1E02 \uni1E0A \uni1E1E \uni1E22 \uni1E40 
-     \uni1E56 \uni1E60];
-@l3_J = [\J \Jcircumflex];
-@l3_A = [\A \Aacute \Abreve \Acircumflex \Adieresis \Agrave 
-     \Amacron \Aogonek \Aring \Atilde];
-@l3_Y = [\Y \Yacute \Ycircumflex \Ydieresis];
-@l3_J.c2 = [\J.c2 \Jcircumflex.c2 \j.sc \jcircumflex.sc];
-@l3_Ugrave.c2 = [\Ugrave.c2 \ugrave.sc];
 @l3_B.c2 = [\B.c2 \D.c2 \Dcaron.c2 \Dcroat.c2 \E.c2 \Eacute.c2 
      \Ebreve.c2 \Ecaron.c2 \Ecircumflex.c2 \Edotaccent.c2 \Emacron.c2 \Eogonek.c2 
      \Eth.c2 \F.c2 \H.c2 \Hbar.c2 \Hcircumflex.c2 \I.c2 
@@ -503,13 +437,78 @@ feature kern {
      \uni1E03.sc \uni1E0A.c2 \uni1E0B.sc \uni1E1E.c2 \uni1E1F.sc \uni1E22.c2 
      \uni1E23.sc \uni1E40.c2 \uni1E41.sc \uni1E56.c2 \uni1E57.sc \uni1E60.c2 
      \uni1E61.sc \x.sc \z.sc \zacute.sc \zcaron.sc \zdotaccent.sc];
+@l3_quotedblbase = [\quotedblbase \quotesinglbase];
+@l3_Idieresis.c2 = [\Idieresis.c2 \idieresis.sc];
+@l3_hyphen = [\hyphen \hyphen.u \uni00AD \uni00AD.u \uni2010 \uni2010.u 
+     \uni2011 \uni2011.u];
+@l3_Ydieresis.c2 = [\Ydieresis.c2 \ydieresis.sc];
+@l3_U.c2 = [\U.c2 \Uacute.c2 \Ubreve.c2 \Ucircumflex.c2 \Uhungarumlaut.c2 \Umacron.c2 
+     \Uogonek.c2 \Uring.c2 \Utilde.c2 \u.sc \uacute.sc \ubreve.sc 
+     \ucircumflex.sc \uhungarumlaut.sc \umacron.sc \uogonek.sc \uring.sc \utilde.sc];
+@l3_V.c2 = [\V.c2 \v.sc];
+@l3_Udieresis.c2 = [\Udieresis.c2 \udieresis.sc];
+@l3_A.c2 = [\A.c2 \Aacute.c2 \Abreve.c2 \Acircumflex.c2 \Amacron.c2 \Aogonek.c2 
+     \Aring.c2 \Atilde.c2 \a.sc \aacute.sc \abreve.sc \acircumflex.sc 
+     \amacron.sc \aogonek.sc \aring.sc \atilde.sc];
+@l3_O.c2 = [\O.c2 \OE.c2 \Oacute.c2 \Obreve.c2 \Ocircumflex.c2 \Ohungarumlaut.c2 
+     \Omacron.c2 \Oslash.c2 \Otilde.c2 \Q.c2 \o.sc \oacute.sc 
+     \obreve.sc \ocircumflex.sc \oe.sc \ohungarumlaut.sc \omacron.sc \oslash.sc 
+     \otilde.sc \q.sc];
+@l3_quotedblleft = [\quotedblleft \quotedblright \quoteleft \quotereversed \quoteright \uni201F];
+@l3_braceleft = [\braceleft \braceleft.u];
+@l3_J = [\J \Jcircumflex];
+@l3_C = [\C \Cacute \Ccaron \Ccedilla \Ccircumflex \Cdotaccent 
+     \G \Gbreve \Gcircumflex \Gcommaaccent \Gdotaccent];
+@l3_Y = [\Y \Yacute \Ycircumflex \Ydieresis];
+@l3_logicalnot = [\logicalnot \plusminus];
+@l3_U = [\U \Uacute \Ubreve \Ucircumflex \Udieresis \Ugrave 
+     \Uhungarumlaut \Umacron \Uogonek \Uring \Utilde];
+@l3_Ugrave.c2 = [\Ugrave.c2 \ugrave.sc];
+@l3_comma = [\comma \ellipsis \period];
 @l3_braceright = [\braceright \braceright.u];
+@l3_Euro = [\Euro \asciicircum \asciitilde \at \bar \bracketleft 
+     \bracketleft.u \brokenbar \bullet \cent \colon \copyright 
+     \currency \dagger \daggerdbl \degree \divide \dollar 
+     \eight \eight.u \equal \figuredash \figuredash.u \five 
+     \five.u \four \four.u \greater \less \minus 
+     \multiply \nine \nine.u \numbersign \one \one.u 
+     \paragraph \percent \perthousand \plus \quotedbl \quotesingle 
+     \registered \section \semicolon \seven \seven.u \six 
+     \six.u \sterling \three \three.u \trademark \two 
+     \two.u \underscore \uni2053 \yen \zero \zero.u];
+@l3_Y.c2 = [\Y.c2 \Yacute.c2 \Ycircumflex.c2 \y.sc \yacute.sc \ycircumflex.sc];
+@l3_Egrave.c2 = [\Egrave.c2 \egrave.sc];
+@l3_Odieresis.c2 = [\Odieresis.c2 \odieresis.sc];
+@l3_B = [\B \D \Dcaron \Dcroat \E \Eacute 
+     \Ebreve \Ecaron \Ecircumflex \Edieresis \Edotaccent \Egrave 
+     \Emacron \Eng \Eogonek \Eth \F \H 
+     \Hbar \Hcircumflex \I \Iacute \Ibreve \Icircumflex 
+     \Idieresis \Idotaccent \Igrave \Imacron \Iogonek \Itilde 
+     \K \Kcommaaccent \L \L.CAT \Lacute \Lcaron 
+     \Lcommaaccent \Ldot \Lslash \M \N \Nacute 
+     \Ncaron \Ncommaaccent \Ntilde \P \R \Racute 
+     \Rcaron \Rcommaaccent \S \Sacute \Scaron \Scedilla 
+     \Scircumflex \Thorn \ampersand \exclam \exclamdown \questiondown 
+     \uni0218 \uni1E02 \uni1E0A \uni1E1E \uni1E22 \uni1E40 
+     \uni1E56 \uni1E60];
 @l3_T.c2 = [\T.c2 \Tbar.c2 \Tcaron.c2 \W.c2 \Wcircumflex.c2 \t.sc 
      \tbar.sc \tcaron.sc \uni0162.c2 \uni0163.sc \uni021A.c2 \uni021B.sc 
      \uni1E6A.c2 \uni1E6B.sc \w.sc \wcircumflex.sc];
-@l3_Z = [\Z \Zacute \Zcaron \Zdotaccent];
-@l3_C = [\C \Cacute \Ccaron \Ccedilla \Ccircumflex \Cdotaccent 
-     \G \Gbreve \Gcircumflex \Gcommaaccent \Gdotaccent];
+@l3_Igrave.c2 = [\Igrave.c2 \igrave.sc];
+@l3_J.c2 = [\J.c2 \Jcircumflex.c2 \j.sc \jcircumflex.sc];
+@l3_W = [\W \Wcircumflex];
+@l3_O = [\O \OE \Oacute \Obreve \Ocircumflex \Odieresis 
+     \Ograve \Ohungarumlaut \Omacron \Oslash \Otilde \Q];
+@l3_C.c2 = [\C.c2 \Cacute.c2 \Ccaron.c2 \Ccedilla.c2 \Ccircumflex.c2 \Cdotaccent.c2 
+     \G.c2 \Gbreve.c2 \Gcircumflex.c2 \Gcommaaccent.c2 \Gdotaccent.c2 \c.sc 
+     \cacute.sc \ccaron.sc \ccedilla.sc \ccircumflex.sc \cdotaccent.sc \g.sc 
+     \gbreve.sc \gcircumflex.sc \gcommaaccent.sc \gdotaccent.sc];
+@l3_Edieresis.c2 = [\Edieresis.c2 \edieresis.sc];
+@l3_Ograve.c2 = [\Ograve.c2 \ograve.sc];
+@l3_bracketright = [\bracketright \bracketright.u \parenright \parenright.u];
+@l3_afii00208.u = [\afii00208.u \emdash.u \endash.u \guillemotleft.u \guillemotright.u \guilsinglleft.u 
+     \guilsinglright.u \parenleft \parenleft.u \periodcentered];
+@l3_AE.c2 = [\AE.c2 \ae.sc];
 @l3_acute = [\acute \acutecomb \acutecomb.cap \afii299 \afii300 \afii301 
      \afii57929 \afii61664 \bracketleft.sub \bracketleft.sup \bracketright.sub \bracketright.sup 
      \breve \caron \cedilla \cent.sub \cent.sup \circumflex 
@@ -530,20 +529,12 @@ feature kern {
      \uni200B \uni202F \uni203E \uni205F \uni2060 \uniFEFF 
      \zero.sub \zero.sup];
 @l3_IJ.c2 = [\IJ.c2 \ij.sc];
-@l3_V.c2 = [\V.c2 \v.sc];
-@l3_U = [\U \Uacute \Ubreve \Ucircumflex \Udieresis \Ugrave 
-     \Uhungarumlaut \Umacron \Uogonek \Uring \Utilde];
+@l3_T = [\T \Tbar \Tcaron \uni0162 \uni021A \uni1E6A];
+@l3_Z = [\Z \Zacute \Zcaron \Zdotaccent];
 @l3_Agrave.c2 = [\Agrave.c2 \agrave.sc];
+@l3_A = [\A \Aacute \Abreve \Acircumflex \Adieresis \Agrave 
+     \Amacron \Aogonek \Aring \Atilde];
 
-@r4_O.c2 = [\O.c2 \Obreve.c2 \Ocircumflex.c2 \Ograve.c2 \Omacron.c2 \Oslash.c2 
-     \Otilde.c2 \Q.c2];
-@r4_Y.c2 = [\Y.c2 \Ycircumflex.c2];
-@r4_N.c2 = [\N.c2 \Ncaron.c2 \Ncommaaccent.c2 \Ntilde.c2];
-@r4_R.c2 = [\R.c2 \Rcaron.c2 \Rcommaaccent.c2];
-@r4_D.c2 = [\D.c2 \Dcaron.c2 \Dcroat.c2 \Eth.c2 \Thorn.c2 \uni1E0A.c2];
-@r4_T.c2 = [\T.c2 \Tcaron.c2 \uni0162.c2 \uni021A.c2 \uni1E6A.c2];
-@r4_F.c2 = [\F.c2 \P.c2 \uni1E1E.c2 \uni1E56.c2];
-@r4_B.c2 = [\B.c2 \uni1E02.c2];
 @r4_Z.c2 = [\Z.c2 \Zcaron.c2 \Zdotaccent.c2];
 @r4_AE.c2 = [\AE.c2 \C.c2 \Ccaron.c2 \Ccedilla.c2 \Ccircumflex.c2 \Cdotaccent.c2 
      \E.c2 \Ebreve.c2 \Ecaron.c2 \Ecircumflex.c2 \Edotaccent.c2 \Egrave.c2 
@@ -555,58 +546,20 @@ feature kern {
 @r4_S.c2 = [\S.c2 \Scaron.c2 \Scedilla.c2 \Scircumflex.c2 \U.c2 \Ubreve.c2 
      \Ucircumflex.c2 \Ugrave.c2 \Umacron.c2 \Uogonek.c2 \Uring.c2 \Utilde.c2 
      \uni0218.c2 \uni1E60.c2];
-@r4_W.c2 = [\W.c2 \Wcircumflex.c2];
+@r4_T.c2 = [\T.c2 \Tcaron.c2 \uni0162.c2 \uni021A.c2 \uni1E6A.c2];
+@r4_O.c2 = [\O.c2 \Obreve.c2 \Ocircumflex.c2 \Ograve.c2 \Omacron.c2 \Oslash.c2 
+     \Otilde.c2 \Q.c2];
+@r4_Y.c2 = [\Y.c2 \Ycircumflex.c2];
+@r4_R.c2 = [\R.c2 \Rcaron.c2 \Rcommaaccent.c2];
+@r4_D.c2 = [\D.c2 \Dcaron.c2 \Dcroat.c2 \Eth.c2 \Thorn.c2 \uni1E0A.c2];
 @r4_A.c2 = [\A.c2 \Abreve.c2 \Acircumflex.c2 \Agrave.c2 \Amacron.c2 \Aogonek.c2 
      \Aring.c2 \Atilde.c2 \L.CAT.c2 \L.c2 \Lcommaaccent.c2 \Lslash.c2];
+@r4_F.c2 = [\F.c2 \P.c2 \uni1E1E.c2 \uni1E56.c2];
+@r4_N.c2 = [\N.c2 \Ncaron.c2 \Ncommaaccent.c2 \Ntilde.c2];
+@r4_B.c2 = [\B.c2 \uni1E02.c2];
+@r4_W.c2 = [\W.c2 \Wcircumflex.c2];
 
-@l4_O.c2 = [\O.c2 \OE.c2 \Oacute.c2 \Obreve.c2 \Ocircumflex.c2 \Ohungarumlaut.c2 
-     \Omacron.c2 \Oslash.c2 \Otilde.c2 \Q.c2 \o.sc \oacute.sc 
-     \obreve.sc \ocircumflex.sc \oe.sc \ohungarumlaut.sc \omacron.sc \oslash.sc 
-     \otilde.sc \q.sc];
 @l4_Adieresis.c2 = [\Adieresis.c2 \adieresis.sc];
-@l4_Idieresis.c2 = [\Idieresis.c2 \idieresis.sc];
-@l4_quotedblbase = [\quotedblbase \quotesinglbase];
-@l4_C.c2 = [\C.c2 \Cacute.c2 \Ccaron.c2 \Ccedilla.c2 \Ccircumflex.c2 \Cdotaccent.c2 
-     \G.c2 \Gbreve.c2 \Gcircumflex.c2 \Gcommaaccent.c2 \Gdotaccent.c2 \c.sc 
-     \cacute.sc \ccaron.sc \ccedilla.sc \ccircumflex.sc \cdotaccent.sc \g.sc 
-     \gbreve.sc \gcircumflex.sc \gcommaaccent.sc \gdotaccent.sc];
-@l4_Ydieresis.c2 = [\Ydieresis.c2 \ydieresis.sc];
-@l4_J.c2 = [\J.c2 \Jcircumflex.c2 \j.sc \jcircumflex.sc];
-@l4_AE.c2 = [\AE.c2 \ae.sc];
-@l4_T.c2 = [\T.c2 \Tbar.c2 \Tcaron.c2 \W.c2 \Wcircumflex.c2 \t.sc 
-     \tbar.sc \tcaron.sc \uni0162.c2 \uni0163.sc \uni021A.c2 \uni021B.sc 
-     \uni1E6A.c2 \uni1E6B.sc \w.sc \wcircumflex.sc];
-@l4_Igrave.c2 = [\Igrave.c2 \igrave.sc];
-@l4_logicalnot = [\logicalnot \plusminus];
-@l4_Udieresis.c2 = [\Udieresis.c2 \udieresis.sc];
-@l4_Edieresis.c2 = [\Edieresis.c2 \edieresis.sc];
-@l4_Euro = [\Euro \asciicircum \asciitilde \at \bar \bracketleft 
-     \bracketleft.u \brokenbar \bullet \cent \colon \copyright 
-     \currency \dagger \daggerdbl \degree \divide \dollar 
-     \eight \eight.u \equal \figuredash \figuredash.u \five 
-     \five.u \four \four.u \greater \less \minus 
-     \multiply \nine \nine.u \numbersign \one \one.u 
-     \paragraph \percent \perthousand \plus \quotedbl \quotesingle 
-     \registered \section \semicolon \seven \seven.u \six 
-     \six.u \sterling \three \three.u \trademark \two 
-     \two.u \underscore \uni2053 \yen \zero \zero.u];
-@l4_U.c2 = [\U.c2 \Uacute.c2 \Ubreve.c2 \Ucircumflex.c2 \Uhungarumlaut.c2 \Umacron.c2 
-     \Uogonek.c2 \Uring.c2 \Utilde.c2 \u.sc \uacute.sc \ubreve.sc 
-     \ucircumflex.sc \uhungarumlaut.sc \umacron.sc \uogonek.sc \uring.sc \utilde.sc];
-@l4_afii00208.u = [\afii00208.u \emdash.u \endash.u \guillemotleft.u \guillemotright.u \guilsinglleft.u 
-     \guilsinglright.u \parenleft \parenleft.u \periodcentered];
-@l4_quotedblleft = [\quotedblleft \quotedblright \quoteleft \quotereversed \quoteright \uni201F];
-@l4_comma = [\comma \ellipsis \period];
-@l4_hyphen = [\hyphen \hyphen.u \uni00AD \uni00AD.u \uni2010 \uni2010.u 
-     \uni2011 \uni2011.u];
-@l4_bracketright = [\bracketright \bracketright.u \parenright \parenright.u];
-@l4_Odieresis.c2 = [\Odieresis.c2 \odieresis.sc];
-@l4_ampersand = [\ampersand \exclam \exclamdown \questiondown];
-@l4_A.c2 = [\A.c2 \Aacute.c2 \Abreve.c2 \Acircumflex.c2 \Amacron.c2 \Aogonek.c2 
-     \Aring.c2 \Atilde.c2 \a.sc \aacute.sc \abreve.sc \acircumflex.sc 
-     \amacron.sc \aogonek.sc \aring.sc \atilde.sc];
-@l4_Egrave.c2 = [\Egrave.c2 \egrave.sc];
-@l4_Ugrave.c2 = [\Ugrave.c2 \ugrave.sc];
 @l4_B.c2 = [\B.c2 \D.c2 \Dcaron.c2 \Dcroat.c2 \E.c2 \Eacute.c2 
      \Ebreve.c2 \Ecaron.c2 \Ecircumflex.c2 \Edotaccent.c2 \Emacron.c2 \Eogonek.c2 
      \Eth.c2 \F.c2 \H.c2 \Hbar.c2 \Hcircumflex.c2 \I.c2 
@@ -632,9 +585,57 @@ feature kern {
      \uni1E03.sc \uni1E0A.c2 \uni1E0B.sc \uni1E1E.c2 \uni1E1F.sc \uni1E22.c2 
      \uni1E23.sc \uni1E40.c2 \uni1E41.sc \uni1E56.c2 \uni1E57.sc \uni1E60.c2 
      \uni1E61.sc \x.sc \z.sc \zacute.sc \zcaron.sc \zdotaccent.sc];
-@l4_braceright = [\braceright \braceright.u];
-@l4_Y.c2 = [\Y.c2 \Yacute.c2 \Ycircumflex.c2 \y.sc \yacute.sc \ycircumflex.sc];
+@l4_quotedblbase = [\quotedblbase \quotesinglbase];
+@l4_Idieresis.c2 = [\Idieresis.c2 \idieresis.sc];
+@l4_hyphen = [\hyphen \hyphen.u \uni00AD \uni00AD.u \uni2010 \uni2010.u 
+     \uni2011 \uni2011.u];
+@l4_Ydieresis.c2 = [\Ydieresis.c2 \ydieresis.sc];
+@l4_U.c2 = [\U.c2 \Uacute.c2 \Ubreve.c2 \Ucircumflex.c2 \Uhungarumlaut.c2 \Umacron.c2 
+     \Uogonek.c2 \Uring.c2 \Utilde.c2 \u.sc \uacute.sc \ubreve.sc 
+     \ucircumflex.sc \uhungarumlaut.sc \umacron.sc \uogonek.sc \uring.sc \utilde.sc];
+@l4_V.c2 = [\V.c2 \v.sc];
+@l4_A.c2 = [\A.c2 \Aacute.c2 \Abreve.c2 \Acircumflex.c2 \Amacron.c2 \Aogonek.c2 
+     \Aring.c2 \Atilde.c2 \a.sc \aacute.sc \abreve.sc \acircumflex.sc 
+     \amacron.sc \aogonek.sc \aring.sc \atilde.sc];
+@l4_O.c2 = [\O.c2 \OE.c2 \Oacute.c2 \Obreve.c2 \Ocircumflex.c2 \Ohungarumlaut.c2 
+     \Omacron.c2 \Oslash.c2 \Otilde.c2 \Q.c2 \o.sc \oacute.sc 
+     \obreve.sc \ocircumflex.sc \oe.sc \ohungarumlaut.sc \omacron.sc \oslash.sc 
+     \otilde.sc \q.sc];
+@l4_quotedblleft = [\quotedblleft \quotedblright \quoteleft \quotereversed \quoteright \uni201F];
+@l4_bracketright = [\bracketright \bracketright.u \parenright \parenright.u];
 @l4_braceleft = [\braceleft \braceleft.u];
+@l4_logicalnot = [\logicalnot \plusminus];
+@l4_Ugrave.c2 = [\Ugrave.c2 \ugrave.sc];
+@l4_comma = [\comma \ellipsis \period];
+@l4_braceright = [\braceright \braceright.u];
+@l4_Euro = [\Euro \asciicircum \asciitilde \at \bar \bracketleft 
+     \bracketleft.u \brokenbar \bullet \cent \colon \copyright 
+     \currency \dagger \daggerdbl \degree \divide \dollar 
+     \eight \eight.u \equal \figuredash \figuredash.u \five 
+     \five.u \four \four.u \greater \less \minus 
+     \multiply \nine \nine.u \numbersign \one \one.u 
+     \paragraph \percent \perthousand \plus \quotedbl \quotesingle 
+     \registered \section \semicolon \seven \seven.u \six 
+     \six.u \sterling \three \three.u \trademark \two 
+     \two.u \underscore \uni2053 \yen \zero \zero.u];
+@l4_Y.c2 = [\Y.c2 \Yacute.c2 \Ycircumflex.c2 \y.sc \yacute.sc \ycircumflex.sc];
+@l4_J.c2 = [\J.c2 \Jcircumflex.c2 \j.sc \jcircumflex.sc];
+@l4_Odieresis.c2 = [\Odieresis.c2 \odieresis.sc];
+@l4_ampersand = [\ampersand \exclam \exclamdown \questiondown];
+@l4_T.c2 = [\T.c2 \Tbar.c2 \Tcaron.c2 \W.c2 \Wcircumflex.c2 \t.sc 
+     \tbar.sc \tcaron.sc \uni0162.c2 \uni0163.sc \uni021A.c2 \uni021B.sc 
+     \uni1E6A.c2 \uni1E6B.sc \w.sc \wcircumflex.sc];
+@l4_Igrave.c2 = [\Igrave.c2 \igrave.sc];
+@l4_Egrave.c2 = [\Egrave.c2 \egrave.sc];
+@l4_C.c2 = [\C.c2 \Cacute.c2 \Ccaron.c2 \Ccedilla.c2 \Ccircumflex.c2 \Cdotaccent.c2 
+     \G.c2 \Gbreve.c2 \Gcircumflex.c2 \Gcommaaccent.c2 \Gdotaccent.c2 \c.sc 
+     \cacute.sc \ccaron.sc \ccedilla.sc \ccircumflex.sc \cdotaccent.sc \g.sc 
+     \gbreve.sc \gcircumflex.sc \gcommaaccent.sc \gdotaccent.sc];
+@l4_Edieresis.c2 = [\Edieresis.c2 \edieresis.sc];
+@l4_Ograve.c2 = [\Ograve.c2 \ograve.sc];
+@l4_afii00208.u = [\afii00208.u \emdash.u \endash.u \guillemotleft.u \guillemotright.u \guilsinglleft.u 
+     \guilsinglright.u \parenleft \parenleft.u \periodcentered];
+@l4_AE.c2 = [\AE.c2 \ae.sc];
 @l4_acute = [\acute \acutecomb \acutecomb.cap \afii299 \afii300 \afii301 
      \afii57929 \afii61664 \bracketleft.sub \bracketleft.sup \bracketright.sub \bracketright.sup 
      \breve \caron \cedilla \cent.sub \cent.sup \circumflex 
@@ -655,36 +656,9 @@ feature kern {
      \uni200B \uni202F \uni203E \uni205F \uni2060 \uniFEFF 
      \zero.sub \zero.sup];
 @l4_IJ.c2 = [\IJ.c2 \ij.sc];
-@l4_V.c2 = [\V.c2 \v.sc];
-@l4_Ograve.c2 = [\Ograve.c2 \ograve.sc];
+@l4_Udieresis.c2 = [\Udieresis.c2 \udieresis.sc];
 @l4_Agrave.c2 = [\Agrave.c2 \agrave.sc];
 
-@r5_a.numer = [\a.numer \b.numer \c.numer \d.numer \e.numer \f.numer 
-     \g.numer \h.numer \i.numer \j.numer \k.numer \m.numer 
-     \n.numer \o.numer \p.numer \q.numer \r.numer \s.numer 
-     \t.numer \u.numer \v.numer \w.numer \x.numer \y.numer 
-     \z.numer];
-@r5_a = [\a \abreve \acircumflex \agrave \amacron \aogonek 
-     \aring \atilde \eng \h \hbar \hcircumflex 
-     \m \n \ncaron \ncommaaccent \ntilde \uni1E23 
-     \uni1E41];
-@r5_g = [\g \gbreve \gcircumflex \gcommaaccent \gdotaccent \q];
-@r5_k = [\k \kcommaaccent \kgreenlandic];
-@r5_f = [\f \uni1E1F];
-@r5_ij = [\ij \j];
-@r5_b = [\b \o \obreve \ocircumflex \ograve \omacron 
-     \oslash \otilde \p \thorn \uni1E03 \uni1E57 
-     \zero.p];
-@r5_a.denom = [\a.denom \b.denom \c.denom \d.denom \e.denom \f.denom 
-     \g.denom \h.denom \i.denom \j.denom \k.denom \m.denom 
-     \n.denom \o.denom \p.denom \q.denom \r.denom \s.denom 
-     \t.denom \u.denom \uni00B5 \v.denom \w.denom \x.denom 
-     \y.denom \z.denom];
-@r5_w = [\w \wcircumflex \y \ycircumflex];
-@r5_i = [\i \i.TRK];
-@r5_d = [\d \dcroat \eight.p \l \l.CAT \lacute 
-     \lcommaaccent \lslash \six.p \uni1E0B];
-@r5_four.p = [\four.p \two.p];
 @r5_c = [\c \ccaron \ccedilla \ccircumflex \cdotaccent \dotlessi 
      \five.p \ibreve \icircumflex \idieresis \igrave \imacron 
      \itilde \jcircumflex \nine.p \one.p \r \rcaron 
@@ -693,6 +667,30 @@ feature kern {
      \umacron \uni0163 \uni0219 \uni021B \uni0237 \uni1E61 
      \uni1E6B \uogonek \uring \utilde \z \zcaron 
      \zdotaccent];
+@r5_a = [\a \abreve \acircumflex \agrave \amacron \aogonek 
+     \aring \atilde \eng \h \hbar \hcircumflex 
+     \m \n \ncaron \ncommaaccent \ntilde \uni1E23 
+     \uni1E41];
+@r5_f = [\f \uni1E1F];
+@r5_ij = [\ij \j];
+@r5_a.numer = [\a.numer \b.numer \c.numer \d.numer \e.numer \f.numer 
+     \g.numer \h.numer \i.numer \j.numer \k.numer \m.numer 
+     \n.numer \o.numer \p.numer \q.numer \r.numer \s.numer 
+     \t.numer \u.numer \v.numer \w.numer \x.numer \y.numer 
+     \z.numer];
+@r5_i = [\i \i.TRK];
+@r5_b = [\b \o \obreve \ocircumflex \ograve \omacron 
+     \oslash \otilde \p \thorn \uni1E03 \uni1E57 
+     \zero.p];
+@r5_g = [\g \gbreve \gcircumflex \gcommaaccent \gdotaccent \q];
+@r5_a.denom = [\a.denom \b.denom \c.denom \d.denom \e.denom \f.denom 
+     \g.denom \h.denom \i.denom \j.denom \k.denom \m.denom 
+     \n.denom \o.denom \p.denom \q.denom \r.denom \s.denom 
+     \t.denom \u.denom \uni00B5 \v.denom \w.denom \x.denom 
+     \y.denom \z.denom];
+@r5_d = [\d \dcroat \eight.p \l \l.CAT \lacute 
+     \lcommaaccent \lslash \six.p \uni1E0B];
+@r5_w = [\w \wcircumflex \y \ycircumflex];
 @r5_a.sub = [\a.sub \a.sup \b.sub \b.sup \c.sub \c.sup 
      \d.sub \d.sup \e.sub \e.sup \f.sub \f.sup 
      \g.sub \g.sup \h.sub \h.sup \i.sub \i.sup 
@@ -702,33 +700,55 @@ feature kern {
      \r.sub \r.sup \s.sub \s.sup \t.sub \t.sup 
      \u.sub \u.sup \v.sub \v.sup \w.sub \w.sup 
      \x.sub \x.sup \y.sub \y.sup \z.sub \z.sup];
+@r5_k = [\k \kcommaaccent \kgreenlandic];
 @r5_ae = [\ae \e \ebreve \ecaron \ecircumflex \edotaccent 
      \egrave \emacron \eogonek \oe];
+@r5_four.p = [\four.p \two.p];
 
+@l5_afii00208 = [\afii00208 \dotlessi \emdash \endash \eng \f 
+     \f_b \f_f \f_f_b \f_f_h \f_f_hcircumflex \f_f_i 
+     \f_f_j \f_f_k \f_f_l \f_h \f_hcircumflex \f_i 
+     \f_j \f_k \f_l \guillemotleft \guillemotright \guilsinglleft 
+     \guilsinglright \iacute \ibreve \icircumflex \idieresis \imacron 
+     \itilde \kgreenlandic \m \n \nacute \ncaron 
+     \ncommaaccent \ntilde \one.p \r \racute \rcaron 
+     \rcommaaccent \s \sacute \scaron \scedilla \scircumflex 
+     \six.p \t \tbar \tcaron \two.p \uni0163 
+     \uni0219 \uni021B \uni1E1F \uni1E41 \uni1E61 \uni1E6B 
+     \z \zacute \zcaron \zdotaccent];
+@l5_quotedblbase = [\quotedblbase \quotesinglbase];
+@l5_jcircumflex = [\jcircumflex \uni0237];
+@l5_hyphen = [\hyphen \hyphen.u \i \i.TRK \uni00AD \uni00AD.u 
+     \uni2010 \uni2010.u \uni2011 \uni2011.u];
+@l5_bracketright = [\bracketright \bracketright.u \parenright \parenright.u];
+@l5_T = [\T \Tbar \Tcaron \uni0162 \uni021A \uni1E6A];
+@l5_l = [\l \l.CAT \lacute \lcaron \lcommaaccent \ldot 
+     \lslash];
+@l5_comma = [\comma \ellipsis \period];
 @l5_a.numer = [\a.numer \b.numer \c.numer \d.numer \e.numer \f.numer 
      \g.numer \h.numer \i.numer \j.numer \k.numer \m.numer 
      \n.numer \o.numer \p.numer \q.numer \r.numer \s.numer 
      \t.numer \u.numer \v.numer \w.numer \x.numer \y.numer 
      \z.numer];
-@l5_quotedblbase = [\quotedblbase \quotesinglbase];
-@l5_y = [\y \yacute \ycircumflex];
-@l5_five.p = [\five.p \g \gbreve \gcircumflex \gcommaaccent \gdotaccent 
-     \nine.p];
-@l5_u = [\u \uacute \ubreve \ucircumflex \uhungarumlaut \umacron 
-     \uogonek \uring \utilde];
-@l5_jcircumflex = [\jcircumflex \uni0237];
-@l5_l = [\l \l.CAT \lacute \lcaron \lcommaaccent \ldot 
-     \lslash];
-@l5_v = [\v \w \wcircumflex];
+@l5_quotedblleft = [\quotedblleft \quotedblright \quoteleft \quotereversed \quoteright \uni201F];
+@l5_C = [\C \Cacute \Ccaron \Ccedilla \Ccircumflex \Cdotaccent 
+     \G \Gbreve \Gcircumflex \Gcommaaccent \Gdotaccent];
+@l5_b = [\b \uni1E03];
+@l5_p = [\p \uni1E57];
+@l5_germandbls = [\germandbls \longs];
+@l5_braceleft = [\braceleft \braceleft.u];
+@l5_Y = [\Y \Yacute \Ycircumflex \Ydieresis];
 @l5_logicalnot = [\logicalnot \plusminus];
-@l5_O = [\O \OE \Oacute \Obreve \Ocircumflex \Odieresis 
-     \Ograve \Ohungarumlaut \Omacron \Oslash \Otilde \Q];
+@l5_U = [\U \Uacute \Ubreve \Ucircumflex \Udieresis \Ugrave 
+     \Uhungarumlaut \Umacron \Uogonek \Uring \Utilde];
 @l5_c = [\c \cacute \ccaron \ccedilla \ccircumflex \cdotaccent 
      \d \dcaron \dcroat \e \eacute \ebreve 
      \ecaron \ecircumflex \edotaccent \emacron \eogonek \o 
      \oacute \obreve \ocircumflex \oe \ohungarumlaut \omacron 
      \oslash \otilde \q \uni1E0B \zero.p];
-@l5_braceleft = [\braceleft \braceleft.u];
+@l5_five.p = [\five.p \g \gbreve \gcircumflex \gcommaaccent \gdotaccent 
+     \nine.p];
+@l5_braceright = [\braceright \braceright.u];
 @l5_Euro = [\Euro \a.denom \asciicircum \asciitilde \at \b.denom 
      \bar \bracketleft \bracketleft.u \brokenbar \bullet \c.denom 
      \cent \colon \copyright \currency \d.denom \dagger 
@@ -744,17 +764,8 @@ feature kern {
      \two \two.u \u.denom \underscore \uni00B5 \uni2053 
      \v.denom \w.denom \x.denom \y.denom \yen \z.denom 
      \zero \zero.u];
-@l5_p = [\p \uni1E57];
-@l5_T = [\T \Tbar \Tcaron \uni0162 \uni021A \uni1E6A];
-@l5_germandbls = [\germandbls \longs];
-@l5_afii00208.u = [\afii00208.u \emdash.u \endash.u \guillemotleft.u \guillemotright.u \guilsinglleft.u 
-     \guilsinglright.u \parenleft \parenleft.u \periodcentered];
-@l5_quotedblleft = [\quotedblleft \quotedblright \quoteleft \quotereversed \quoteright \uni201F];
-@l5_comma = [\comma \ellipsis \period];
-@l5_hyphen = [\hyphen \hyphen.u \i \i.TRK \uni00AD \uni00AD.u 
-     \uni2010 \uni2010.u \uni2011 \uni2011.u];
-@l5_b = [\b \uni1E03];
-@l5_bracketright = [\bracketright \bracketright.u \parenright \parenright.u];
+@l5_a = [\a \aacute \abreve \acircumflex \ae \amacron 
+     \aogonek \aring \atilde];
 @l5_B = [\B \D \Dcaron \Dcroat \E \Eacute 
      \Ebreve \Ecaron \Ecircumflex \Edieresis \Edotaccent \Egrave 
      \Emacron \Eng \Eogonek \Eth \F \H 
@@ -768,28 +779,17 @@ feature kern {
      \h \hbar \hcircumflex \k \kcommaaccent \questiondown 
      \uni0218 \uni1E02 \uni1E0A \uni1E1E \uni1E22 \uni1E23 
      \uni1E40 \uni1E56 \uni1E60];
-@l5_J = [\J \Jcircumflex];
-@l5_A = [\A \Aacute \Abreve \Acircumflex \Adieresis \Agrave 
-     \Amacron \Aogonek \Aring \Atilde];
-@l5_Y = [\Y \Yacute \Ycircumflex \Ydieresis];
+@l5_v = [\v \w \wcircumflex];
 @l5_edieresis = [\edieresis \eth];
-@l5_afii00208 = [\afii00208 \dotlessi \emdash \endash \eng \f 
-     \f_b \f_f \f_f_b \f_f_h \f_f_hcircumflex \f_f_i 
-     \f_f_j \f_f_k \f_f_l \f_h \f_hcircumflex \f_i 
-     \f_j \f_k \f_l \guillemotleft \guillemotright \guilsinglleft 
-     \guilsinglright \iacute \ibreve \icircumflex \idieresis \imacron 
-     \itilde \kgreenlandic \m \n \nacute \ncaron 
-     \ncommaaccent \ntilde \one.p \r \racute \rcaron 
-     \rcommaaccent \s \sacute \scaron \scedilla \scircumflex 
-     \six.p \t \tbar \tcaron \two.p \uni0163 
-     \uni0219 \uni021B \uni1E1F \uni1E41 \uni1E61 \uni1E6B 
-     \z \zacute \zcaron \zdotaccent];
-@l5_braceright = [\braceright \braceright.u];
-@l5_a = [\a \aacute \abreve \acircumflex \ae \amacron 
-     \aogonek \aring \atilde];
-@l5_Z = [\Z \Zacute \Zcaron \Zdotaccent];
-@l5_C = [\C \Cacute \Ccaron \Ccedilla \Ccircumflex \Cdotaccent 
-     \G \Gbreve \Gcircumflex \Gcommaaccent \Gdotaccent];
+@l5_W = [\W \Wcircumflex];
+@l5_O = [\O \OE \Oacute \Obreve \Ocircumflex \Odieresis 
+     \Ograve \Ohungarumlaut \Omacron \Oslash \Otilde \Q];
+@l5_y = [\y \yacute \ycircumflex];
+@l5_u = [\u \uacute \ubreve \ucircumflex \uhungarumlaut \umacron 
+     \uogonek \uring \utilde];
+@l5_afii00208.u = [\afii00208.u \emdash.u \endash.u \guillemotleft.u \guillemotright.u \guilsinglleft.u 
+     \guilsinglright.u \parenleft \parenleft.u \periodcentered];
+@l5_J = [\J \Jcircumflex];
 @l5_a.sub = [\a.sub \a.sup \acute \acutecomb \acutecomb.cap \afii299 
      \afii300 \afii301 \afii57929 \afii61664 \b.sub \b.sup 
      \bracketleft.sub \bracketleft.sup \bracketright.sub \bracketright.sup \breve \c.sub 
@@ -818,9 +818,9 @@ feature kern {
      \uni2060 \uniFEFF \v.sub \v.sup \w.sub \w.sup 
      \x.sub \x.sup \y.sub \y.sup \z.sub \z.sup 
      \zero.sub \zero.sup];
-@l5_U = [\U \Uacute \Ubreve \Ucircumflex \Udieresis \Ugrave 
-     \Uhungarumlaut \Umacron \Uogonek \Uring \Utilde];
-@l5_W = [\W \Wcircumflex];
+@l5_Z = [\Z \Zacute \Zcaron \Zdotaccent];
+@l5_A = [\A \Aacute \Abreve \Acircumflex \Adieresis \Agrave 
+     \Amacron \Aogonek \Aring \Atilde];
 
 @r6_bracketleft.numer = [\bracketleft.numer \bracketright.numer \cent.numer \comma.numer \dollar.numer \parenleft.numer 
      \parenright.numer \period.numer];
@@ -906,8 +906,8 @@ pos [@r1_braceright @r1_f_f_k @r1_comma @r1_afii00208 \ampersand @r1_hyphen @r1_
 pos @r1_f_f_i @l1_W -30;
 pos [@r1_bracketleft \backslash @r1_logicalnot] @l1_braceleft -30;
 pos \slash \four.p -25;
-pos [@r1_comma @r1_f_b] [@l1_Y.c2 @l1_Ydieresis.c2] -25;
 pos @r1_f_b \x -25;
+pos [@r1_comma @r1_f_b] [@l1_Y.c2 @l1_Ydieresis.c2] -25;
 pos @r1_logicalnot \AE -150;
 pos \backslash @l1_T -150;
 pos @r1_logicalnot @l1_Agrave.c2 -153;
@@ -954,8 +954,8 @@ pos @r2_V @l2_A -120;
 pos @r2_S \question 10;
 pos [@r2_G @r2_B] \idieresis.sc 11;
 pos @r2_K \question 15;
-pos @r2_Y [\ae.sc \AE] -110;
 pos @r2_V [@l2_comma @l2_a.sc \agrave.sc] -110;
+pos @r2_Y [\ae.sc \AE] -110;
 pos [@r2_T @r2_V @r2_Y @r2_P @r2_U @r2_F \X @r2_Z @r2_AE] \question 20;
 pos \Q [@l2_j.sc @l2_J] 20;
 pos @r2_S \idieresis.sc 21;
@@ -997,8 +997,8 @@ pos @r2_V [@l2_a \agrave @l2_o.sc \odieresis.sc \ograve.sc] -60;
 pos \Thorn [\slash @l2_bracketright @l2_T] -60;
 pos \X \v.sc -55;
 pos @r2_A [@l2_y.sc \ydieresis.sc] -55;
-pos @r2_A \asterisk -50;
 pos @r2_R [@l2_logicalnot \V @l2_T] -50;
+pos @r2_A \asterisk -50;
 pos [@r2_V @r2_Y] [@l2_j.sc \three.p @l2_five.p @l2_p @l2_jcircumflex @l2_afii00208 \iogonek \edieresis.sc \egrave.sc @l2_afii00208.u @l2_c.sc \udieresis \ugrave \seven.p @l2_u.sc \udieresis.sc \ugrave.sc @l2_t.sc @l2_y.sc \ydieresis.sc \v.sc \ij.sc] -50;
 pos @r2_Y [@l2_quotedblbase @l2_a \agrave @l2_c @l2_edieresis \odieresis \egrave \ograve @l2_o.sc \odieresis.sc \ograve.sc] -50;
 pos [@r2_V @r2_Y @r2_A] [@l2_v @l2_y \ydieresis] -50;
@@ -1023,11 +1023,11 @@ pos [@r2_T @r2_V @r2_Y] \adieresis -33;
 pos @r2_T \ae.sc -160;
 pos [\X @r2_K] @l2_O -30;
 pos @r2_A [@l2_c @l2_afii00208.u @l2_edieresis \odieresis \egrave \ograve] -30;
-pos [@r2_D \Thorn] [@l2_comma @l2_Z \X] -30;
-pos @r2_R \backslash -30;
-pos [@r2_D \Q \Thorn @r2_L \Lcaron @r2_R] @l2_Y -30;
 pos [@r2_D \Q \Thorn] \V -30;
 pos @r2_U [\l.denom \slash @l2_a.sc \adieresis.sc \agrave.sc @l2_A \ae.sc \AE] -30;
+pos [@r2_D \Q \Thorn @r2_L \Lcaron @r2_R] @l2_Y -30;
+pos @r2_R \backslash -30;
+pos [@r2_D \Thorn] [@l2_comma @l2_Z \X] -30;
 pos @r2_P \x -30;
 pos [@r2_T @r2_V @r2_Y @r2_A] @l2_braceleft -30;
 pos @r2_P \four.p -25;
@@ -1035,21 +1035,21 @@ pos [@r2_L \Lcaron] [@l2_y.sc \ydieresis.sc] -25;
 pos @r2_T \slash -150;
 pos [@r2_T @r2_V] \AE -150;
 pos @r2_V \ae.sc -150;
-pos [@r2_D \Q @r2_G @r2_B \Thorn] @l2_W -20;
+pos [\Q @r2_G @r2_B] @l2_logicalnot -20;
 pos [@r2_D @r2_U @r2_G @r2_B @r2_F \Thorn] \x -20;
 pos [@r2_U @r2_G @r2_B] @l2_comma -20;
+pos [@r2_D \Q @r2_G @r2_B \Thorn] @l2_W -20;
 pos [\X @r2_K] [@l2_afii00208.u @l2_braceleft] -20;
 pos @r2_A @l2_U -20;
 pos [@r2_P @r2_A \X @r2_K] [@l2_o.sc \odieresis.sc \ograve.sc] -20;
-pos [\Q @r2_G @r2_B] @l2_logicalnot -20;
 pos [@r2_T @r2_V @r2_Y] @l2_germandbls -20;
 pos @r2_G \backslash -20;
+pos [@r2_T @r2_V @r2_Y @r2_A \X @r2_K] @l2_C -20;
 pos [@r2_F \X @r2_K] [@l2_c @l2_edieresis \odieresis \egrave \ograve] -20;
 pos [@r2_G @r2_B] [\l.denom \slash @l2_Z \X @l2_a.sc \adieresis.sc \agrave.sc @l2_A \ae.sc \AE @l2_Y \V @l2_T] -20;
 pos @r2_F @l2_quotedblbase -20;
 pos [@r2_G @r2_R] [@l2_quotedblleft @l2_y.sc \ydieresis.sc \v.sc \napostrophe] -20;
 pos [\Q @r2_G @r2_B @r2_A @r2_L \Lcaron @r2_R] @l2_bracketright -20;
-pos [@r2_T @r2_V @r2_Y @r2_A \X @r2_K] @l2_C -20;
 pos [@r2_G @r2_L \Lcaron @r2_R] [@l2_v \asterisk @l2_y \ydieresis @l2_t.sc] -20;
 pos @r2_P [@l2_a \adieresis \agrave] -20;
 pos [@r2_A \X @r2_K] [\seven.p @l2_u.sc \udieresis.sc \ugrave.sc] -20;
@@ -1058,19 +1058,19 @@ pos [@r2_D @r2_U @r2_G @r2_B @r2_F \Thorn] \four.p -15;
 pos [\Q @r2_A @r2_L \Lcaron @r2_R] \thorn -15;
 pos [@r2_T @r2_V @r2_Y] \igrave -13;
 pos @r2_V \slash -140;
-pos [@r2_P @r2_G @r2_A \X @r2_K @r2_L \Lcaron @r2_R @r2_S @r2_Z] [@l2_jcircumflex \j] -10;
 pos [@r2_D \Thorn] [@l2_quotedblbase @l2_c @l2_edieresis \odieresis \egrave \ograve] -10;
-pos [@r2_P @r2_S @r2_Z] [@l2_v @l2_y \ydieresis @l2_t.sc @l2_y.sc \ydieresis.sc \v.sc] -10;
+pos [@r2_P @r2_G @r2_A \X @r2_K @r2_L \Lcaron @r2_R @r2_S @r2_Z] [@l2_jcircumflex \j] -10;
 pos [@r2_D \Q @r2_B \Thorn @r2_S] \backslash -10;
 pos [@r2_P @r2_G @r2_L \Lcaron @r2_R @r2_S @r2_Z] @l2_O -10;
-pos [@r2_D @r2_F \Thorn] [@l2_a \adieresis \agrave @l2_o.sc \odieresis.sc \ograve.sc] -10;
 pos [@r2_P @r2_A \X @r2_K] [@l2_c.sc \udieresis \ugrave] -10;
+pos [@r2_D @r2_F \Thorn] [@l2_a \adieresis \agrave @l2_o.sc \odieresis.sc \ograve.sc] -10;
+pos [@r2_P @r2_S @r2_Z] [@l2_v @l2_y \ydieresis @l2_t.sc @l2_y.sc \ydieresis.sc \v.sc] -10;
 pos @r2_P [@l2_j.sc \three.p @l2_five.p @l2_p @l2_afii00208 \igrave @l2_germandbls \igrave.sc @l2_hyphen \iogonek \edieresis.sc \egrave.sc @l2_afii00208.u \seven.p @l2_u.sc @l2_C \udieresis.sc \ugrave.sc @l2_braceleft \ij.sc \ij] -10;
 pos @r2_S [@l2_logicalnot \thorn @l2_bracketright \asterisk @l2_Y @l2_quotedblleft @l2_W \V @l2_T \napostrophe] -10;
-pos @r2_K [@l2_logicalnot \thorn @l2_bracketright @l2_U \asterisk @l2_Y @l2_quotedblleft @l2_W \V @l2_T \napostrophe \backslash] -5;
-pos @r2_G @l2_b -5;
 pos [@r2_D @r2_G @r2_B \Thorn] @l2_l -5;
+pos @r2_K [@l2_logicalnot \thorn @l2_bracketright @l2_U \asterisk @l2_Y @l2_quotedblleft @l2_W \V @l2_T \napostrophe \backslash] -5;
 pos [@r2_G @r2_A \X @r2_K @r2_L \Lcaron @r2_R @r2_S @r2_Z] @l2_p -5;
+pos @r2_G @l2_b -5;
 pos @r2_T [@l2_a.sc \agrave.sc @l2_A] -130;
 
 subtable;
@@ -1089,11 +1089,11 @@ pos \idieresis.sc \question 45;
 pos @r3_b.sc @l3_T -80;
 pos \odieresis.sc @l3_logicalnot -80;
 pos \lacute.sc @l3_logicalnot -205;
-pos \v.sc [\slash @l3_A.c2 @l3_Adieresis.c2 @l3_Agrave.c2 @l3_A @l3_AE.c2 \AE] -55;
+pos \nacute.sc @l3_logicalnot -183;
 pos \idieresis.sc @l3_Idieresis.c2 56;
-pos @r3_d.sc \backslash -70;
-pos [@r3_r.sc \racute.sc @r3_a.sc \lacute.sc \aacute.sc \lcaron.sc \ldot.sc @r3_d.sc] \V -70;
 pos [@r3_r.sc \racute.sc] @l3_Y -70;
+pos [@r3_r.sc \racute.sc @r3_a.sc \lacute.sc \aacute.sc \lcaron.sc \ldot.sc @r3_d.sc] \V -70;
+pos @r3_d.sc \backslash -70;
 pos [@r3_o.sc \oacute.sc \ohungarumlaut.sc \odieresis.sc @r3_z.sc \zacute.sc] @l3_T -70;
 pos [@r3_r.sc \racute.sc @r3_a.sc \lacute.sc \aacute.sc \adieresis.sc \lcaron.sc \ldot.sc @r3_d.sc] @l3_W -60;
 pos [@r3_y.sc \yacute.sc \v.sc @r3_t.sc @r3_w.sc \tbar.sc @r3_f.sc @r3_s.sc \uacute.sc \uhungarumlaut.sc \udieresis.sc \sacute.sc @r3_n.sc \nacute.sc \adieresis.sc @r3_ae.sc \cacute.sc \eacute.sc] @l3_T -60;
@@ -1101,7 +1101,7 @@ pos [@r3_y.sc \yacute.sc \ydieresis.sc] [\slash @l3_A.c2 @l3_Adieresis.c2 @l3_Ag
 pos [@r3_y.sc \yacute.sc \v.sc @r3_t.sc @r3_w.sc \tbar.sc @r3_f.sc @r3_d.sc] @l3_bracketright -60;
 pos [@r3_y.sc \yacute.sc \ydieresis.sc @r3_d.sc] [@l3_AE.c2 \AE] -60;
 pos \adieresis.sc [@l3_logicalnot \V] -60;
-pos \nacute.sc @l3_logicalnot -183;
+pos \v.sc [\slash @l3_A.c2 @l3_Adieresis.c2 @l3_Agrave.c2 @l3_A @l3_AE.c2 \AE] -55;
 pos [@r3_a.sc \lacute.sc \aacute.sc \adieresis.sc \lcaron.sc] @l3_Y -50;
 pos @r3_b.sc \V -50;
 pos [@r3_t.sc @r3_d.sc] \slash -50;
@@ -1149,10 +1149,10 @@ pos [@r3_y.sc \yacute.sc \ydieresis.sc \v.sc @r3_t.sc @r3_w.sc \tbar.sc @r3_f.sc
 pos [@r3_t.sc @r3_w.sc \tbar.sc] @l3_quotedblbase -20;
 pos [@r3_f.sc @r3_o.sc \oacute.sc \ohungarumlaut.sc \odieresis.sc @r3_s.sc \uacute.sc \uhungarumlaut.sc \udieresis.sc \sacute.sc @r3_d.sc] [@l3_comma @l3_Z \X] -20;
 pos [@r3_n.sc \nacute.sc] [\slash @l3_comma @l3_Z \X @l3_A.c2 @l3_Adieresis.c2 @l3_Agrave.c2 @l3_A @l3_AE.c2 \AE] -15;
+pos [@r3_o.sc \oacute.sc \ohungarumlaut.sc \odieresis.sc \ldot.sc @r3_b.sc @r3_z.sc \zacute.sc @r3_d.sc] @l3_O -10;
 pos [@r3_o.sc \oacute.sc \ohungarumlaut.sc \odieresis.sc @r3_z.sc \zacute.sc] [\asterisk @l3_T.c2 @l3_quotedblleft @l3_Y.c2 @l3_Ydieresis.c2 @l3_V.c2] -10;
 pos [@r3_y.sc \yacute.sc \ydieresis.sc \v.sc @r3_t.sc @r3_w.sc \tbar.sc @r3_f.sc @r3_s.sc \uacute.sc \uhungarumlaut.sc \udieresis.sc \sacute.sc @r3_n.sc \nacute.sc @r3_ae.sc \cacute.sc \eacute.sc \edieresis.sc \iacute.sc] \backslash -10;
 pos [@r3_y.sc \yacute.sc \ydieresis.sc \v.sc @r3_t.sc @r3_w.sc \tbar.sc] [@l3_O.c2 @l3_Odieresis.c2 @l3_Ograve.c2] -10;
-pos [@r3_o.sc \oacute.sc \ohungarumlaut.sc \odieresis.sc \ldot.sc @r3_b.sc @r3_z.sc \zacute.sc @r3_d.sc] @l3_O -10;
 pos [@r3_r.sc \racute.sc @r3_a.sc \lacute.sc \aacute.sc \adieresis.sc \lcaron.sc] @l3_C.c2 -10;
 pos \iacute.sc [@l3_logicalnot @l3_T] -44;
 pos \aacute.sc @l3_logicalnot -129;
@@ -1162,22 +1162,22 @@ pos \Uhungarumlaut.c2 @l4_logicalnot -127;
 pos \Cacute.c2 @l4_logicalnot -124;
 pos \Eacute.c2 @l4_logicalnot -116;
 pos \Yacute.c2 @l4_logicalnot -114;
-pos \Idieresis.c2 [@l4_Euro @l4_logicalnot @l4_ampersand @l4_braceright @l4_bracketright \asterisk @l4_quotedblleft \backslash] 25;
-pos \Ohungarumlaut.c2 @l4_logicalnot -104;
 pos \Udieresis.c2 @l4_logicalnot -103;
+pos \Ohungarumlaut.c2 @l4_logicalnot -104;
+pos \Idieresis.c2 [@l4_Euro @l4_logicalnot @l4_ampersand @l4_braceright @l4_bracketright \asterisk @l4_quotedblleft \backslash] 25;
 pos \Zacute.c2 @l4_logicalnot -95;
 pos \Sacute.c2 @l4_logicalnot -89;
 pos \Idieresis.c2 \question 45;
 pos \Odieresis.c2 @l4_logicalnot -80;
 pos \Lacute.c2 @l4_logicalnot -205;
-pos \V.c2 [\slash @l4_A.c2 @l4_Adieresis.c2 @l4_Agrave.c2 @l4_AE.c2] -55;
+pos \Nacute.c2 @l4_logicalnot -183;
 pos \Idieresis.c2 @l4_Idieresis.c2 56;
 pos [\ampersand.c2 @r4_D.c2] \backslash -70;
 pos [@r4_Y.c2 \Yacute.c2 \Ydieresis.c2 @r4_D.c2] @l4_AE.c2 -60;
-pos \Adieresis.c2 @l4_logicalnot -60;
 pos [@r4_Y.c2 \Yacute.c2 \Ydieresis.c2] [\slash @l4_A.c2 @l4_Adieresis.c2 @l4_Agrave.c2] -60;
+pos \Adieresis.c2 @l4_logicalnot -60;
 pos [@r4_Y.c2 \Yacute.c2 \V.c2 @r4_T.c2 @r4_W.c2 \Tbar.c2 @r4_F.c2 @r4_D.c2] @l4_bracketright -60;
-pos \Nacute.c2 @l4_logicalnot -183;
+pos \V.c2 [\slash @l4_A.c2 @l4_Adieresis.c2 @l4_Agrave.c2 @l4_AE.c2] -55;
 pos @r4_T.c2 [@l4_A.c2 @l4_Adieresis.c2 @l4_Agrave.c2 @l4_AE.c2] -50;
 pos [@r4_T.c2 @r4_D.c2] \slash -50;
 pos [@r4_Y.c2 \Yacute.c2 \Ydieresis.c2] @l4_comma -50;
@@ -1204,12 +1204,12 @@ pos \V.c2 @l4_quotedblbase -25;
 pos [\ampersand.c2 \Ldot.c2 @r4_D.c2] [@l4_Y.c2 @l4_Ydieresis.c2] -25;
 pos \Oacute.c2 @l4_logicalnot -149;
 pos [@r4_A.c2 \Lacute.c2 \Aacute.c2 \Adieresis.c2 \Lcaron.c2] [@l4_afii00208.u @l4_braceleft] -20;
+pos [@r4_O.c2 \Oacute.c2 \Ohungarumlaut.c2 \Odieresis.c2 @r4_Z.c2 \Zacute.c2] \backslash -20;
 pos @r4_B.c2 [@l4_quotedblleft @l4_Y.c2 @l4_Ydieresis.c2 @l4_V.c2] -20;
 pos [\ampersand.c2 \Ldot.c2 @r4_B.c2 @r4_D.c2] [\asterisk @l4_T.c2] -20;
-pos [@r4_O.c2 \Oacute.c2 \Ohungarumlaut.c2 \Odieresis.c2 @r4_Z.c2 \Zacute.c2] \backslash -20;
 pos [@r4_R.c2 \Racute.c2 @r4_A.c2 \Lacute.c2 \Aacute.c2 \Adieresis.c2 \Lcaron.c2] [@l4_U.c2 @l4_Udieresis.c2 @l4_Ugrave.c2 @l4_O.c2 @l4_Odieresis.c2 @l4_Ograve.c2] -20;
-pos [@r4_O.c2 \Oacute.c2 \Ohungarumlaut.c2 \Odieresis.c2 @r4_S.c2 \Uacute.c2 \Uhungarumlaut.c2 \Udieresis.c2 \Sacute.c2] [\slash @l4_A.c2 @l4_Adieresis.c2 @l4_Agrave.c2 @l4_AE.c2] -20;
 pos [@r4_R.c2 \Racute.c2 @r4_A.c2 \Lacute.c2 \Aacute.c2 \Adieresis.c2 \Lcaron.c2 \ampersand.c2 \Ldot.c2 @r4_B.c2 @r4_Z.c2 \Zacute.c2 @r4_AE.c2 \Cacute.c2 \Eacute.c2 \Edieresis.c2 \Iacute.c2] @l4_bracketright -20;
+pos [@r4_O.c2 \Oacute.c2 \Ohungarumlaut.c2 \Odieresis.c2 @r4_S.c2 \Uacute.c2 \Uhungarumlaut.c2 \Udieresis.c2 \Sacute.c2] [\slash @l4_A.c2 @l4_Adieresis.c2 @l4_Agrave.c2 @l4_AE.c2] -20;
 pos [@r4_T.c2 @r4_W.c2 \Tbar.c2] @l4_quotedblbase -20;
 pos [@r4_F.c2 @r4_O.c2 \Oacute.c2 \Ohungarumlaut.c2 \Odieresis.c2 @r4_S.c2 \Uacute.c2 \Uhungarumlaut.c2 \Udieresis.c2 \Sacute.c2 @r4_D.c2] @l4_comma -20;
 pos [@r4_N.c2 \Nacute.c2] [\slash @l4_comma @l4_A.c2 @l4_Adieresis.c2 @l4_Agrave.c2 @l4_AE.c2] -15;
@@ -1260,24 +1260,24 @@ pos \v \slash -80;
 pos \cacute @l5_logicalnot -79;
 pos \longs [@l5_J @l5_Euro @l5_logicalnot @l5_B @l5_b @l5_l @l5_Z \X @l5_braceright \thorn @l5_bracketright @l5_U \asterisk @l5_Y @l5_quotedblleft @l5_W \V @l5_T \napostrophe \backslash \IJ] 50;
 pos \lcaron \question 55;
-pos [@r5_w \yacute \ydieresis] \slash -70;
-pos \v @l5_A -70;
 pos @r5_ij @l5_logicalnot -70;
+pos \v @l5_A -70;
+pos [@r5_w \yacute \ydieresis] \slash -70;
 pos [@r5_ae \eacute @r5_a \napostrophe \nacute \aacute @r5_b \oacute] [\V \backslash] -70;
 pos \ohungarumlaut [@l5_logicalnot \V @l5_T \backslash] -69;
 pos \dcaron \question 61;
 pos \sacute @l5_logicalnot -66;
 pos [\ldot \v \seven.p @r5_w \yacute @r5_g \x @r5_k @r5_c \uacute \uhungarumlaut \udieresis \zacute \cacute @r5_ij \sacute] @l5_T -60;
-pos [\ldot @r5_b \oacute \ohungarumlaut \odieresis \eth] \AE -60;
 pos [@r5_ae \eacute @r5_a \napostrophe \nacute \aacute @r5_b \oacute \ohungarumlaut] @l5_W -60;
 pos [@r5_w \yacute \ydieresis] @l5_A -60;
+pos [\ldot @r5_b \oacute \ohungarumlaut \odieresis \eth] \AE -60;
 pos [\ldot \v @r5_w \yacute @r5_b \oacute \ohungarumlaut] @l5_bracketright -60;
 pos \longs \question 70;
-pos \iogonek [@l5_logicalnot @l5_T] -50;
 pos [\ldot @r5_b \oacute \ohungarumlaut \odieresis \eth] \slash -50;
 pos [@r5_ae \eacute] @l5_bracketright -50;
 pos \v [@l5_comma \X] -50;
 pos @r5_four.p [@l5_Y \V] -50;
+pos \iogonek [@l5_logicalnot @l5_T] -50;
 pos \adieresis [@l5_logicalnot @l5_W \V @l5_T \backslash] -47;
 pos \racute [@l5_logicalnot @l5_T] -46;
 pos \odieresis [@l5_W \V \backslash] -45;
@@ -1295,13 +1295,13 @@ pos \iacute [@l5_logicalnot @l5_T] -32;
 pos [\ldot \v \seven.p @r5_w \yacute \ydieresis @r5_g \x @r5_k @r5_c \uacute \uhungarumlaut \udieresis \zacute \cacute @r5_ij \sacute \iogonek \racute \iacute @r5_i] \V -30;
 pos \l.denom @l5_braceleft -30;
 pos \v [@l5_quotedblbase @l5_c @l5_edieresis \odieresis \egrave \ograve] -30;
-pos [@r5_ae \eacute \edieresis] [\l.denom \slash @l5_A \AE] -30;
 pos @r5_i [@l5_logicalnot @l5_T] -30;
+pos [@r5_ae \eacute \edieresis] [\l.denom \slash @l5_A \AE] -30;
 pos [\ldot @r5_ae \eacute \v \seven.p @r5_w \yacute \ydieresis @r5_g \x @r5_k @r5_a \napostrophe \nacute \aacute \adieresis @r5_c \uacute \uhungarumlaut \udieresis \zacute \cacute @r5_ij \sacute \iogonek \racute \iacute @r5_i @r5_b \oacute \ohungarumlaut \odieresis \eth] @l5_Y -30;
 pos [@r5_four.p \eth] \backslash -30;
 pos [@r5_ae \eacute \edieresis @r5_b \oacute \ohungarumlaut \odieresis \eth] \x -25;
 pos \edieresis [@l5_logicalnot @l5_bracketright @l5_Y @l5_quotedblleft @l5_W \V @l5_T \napostrophe \backslash] -25;
-pos [\ldot @r5_ae \eacute \edieresis \seven.p \germandbls @r5_b \oacute \ohungarumlaut \odieresis \eth] [@l5_comma @l5_Z \X] -20;
+pos [\seven.p \germandbls] [\l.denom \slash @l5_A \AE] -20;
 pos [\seven.p @r5_w \yacute \ydieresis @r5_four.p \x] [@l5_c @l5_edieresis \odieresis \egrave \ograve] -20;
 pos [\germandbls \l.denom @r5_g @r5_four.p \x @r5_k @r5_a \napostrophe \nacute \aacute \adieresis @r5_c \uacute \uhungarumlaut \udieresis \zacute \cacute @r5_ij \sacute \iogonek \racute \iacute @r5_i] @l5_bracketright -20;
 pos [\ldot \v \seven.p \germandbls @r5_w \yacute \ydieresis] \x -20;
@@ -1311,7 +1311,7 @@ pos [\seven.p @r5_w \yacute \ydieresis] @l5_quotedblbase -20;
 pos [\ldot @r5_ae \eacute \edieresis \v \seven.p \germandbls @r5_w \yacute \ydieresis @r5_b \oacute \ohungarumlaut \odieresis \eth] \thorn -20;
 pos [@r5_ae \eacute \edieresis @r5_four.p @r5_a \napostrophe \nacute \aacute \adieresis @r5_b \oacute \ohungarumlaut \odieresis \eth] [@l5_v \asterisk @l5_y \ydieresis] -20;
 pos [\l.denom @r5_four.p] [\seven.p @l5_U @l5_C] -20;
-pos [\seven.p \germandbls] [\l.denom \slash @l5_A \AE] -20;
+pos [\ldot @r5_ae \eacute \edieresis \seven.p \germandbls @r5_b \oacute \ohungarumlaut \odieresis \eth] [@l5_comma @l5_Z \X] -20;
 pos @r5_four.p [@l5_afii00208.u @l5_braceleft @l5_O] -20;
 pos [@r5_four.p \eth] [@l5_quotedblleft \napostrophe] -20;
 pos \ldot [\l.denom @l5_logicalnot] -147;
@@ -1320,15 +1320,15 @@ pos [\ldot @r5_ae \eacute \edieresis \v \seven.p \germandbls @r5_w \yacute \ydie
 pos [@r5_four.p \x @r5_k @r5_a \napostrophe \nacute \aacute \adieresis @r5_c \uacute \uhungarumlaut \udieresis \zacute \cacute @r5_ij \sacute \iogonek \racute \iacute @r5_i \tcaron] \thorn -15;
 pos \nacute @l5_logicalnot -140;
 pos \napostrophe @l5_logicalnot -514;
-pos \germandbls [\asterisk @l5_quotedblleft \napostrophe] -10;
 pos [@r5_ae \eacute \edieresis \germandbls @r5_four.p @r5_a \napostrophe \nacute \aacute \adieresis @r5_b \oacute \ohungarumlaut \odieresis \eth] \j -10;
 pos [\l.denom @r5_g] \thorn -10;
-pos [@r5_ae \eacute \edieresis \germandbls @r5_four.p @r5_a \napostrophe \nacute \aacute \adieresis \longs @r5_b \oacute \ohungarumlaut \odieresis \eth] @l5_jcircumflex -10;
+pos [\l.denom @r5_four.p] [@l5_u \udieresis \ugrave] -10;
+pos \germandbls [\asterisk @l5_quotedblleft \napostrophe] -10;
 pos [@r5_ae \eacute \edieresis \germandbls @r5_a \napostrophe \nacute \aacute \adieresis @r5_b \oacute \ohungarumlaut \odieresis \eth] @l5_O -10;
 pos [\ldot \v \seven.p @r5_w \yacute \ydieresis @r5_g \x @r5_k @r5_c \uacute \uhungarumlaut \udieresis \zacute \cacute @r5_ij \sacute \iogonek \racute \iacute @r5_i \tcaron] \backslash -10;
 pos [\germandbls \longs] [@l5_v @l5_y \ydieresis] -10;
 pos @r5_k [@l5_c @l5_edieresis \odieresis \egrave \ograve] -10;
-pos [\l.denom @r5_four.p] [@l5_u \udieresis \ugrave] -10;
+pos [@r5_ae \eacute \edieresis \germandbls @r5_four.p @r5_a \napostrophe \nacute \aacute \adieresis \longs @r5_b \oacute \ohungarumlaut \odieresis \eth] @l5_jcircumflex -10;
 pos [\v \seven.p @r5_w \yacute \ydieresis] [@l5_a \adieresis \agrave] -10;
 pos [\ldot @r5_ae \eacute \edieresis \v \seven.p \germandbls @r5_w \yacute \ydieresis @r5_b \oacute \ohungarumlaut \odieresis \eth] @l5_l -5;
 pos [@r5_ae \eacute \edieresis \germandbls @r5_four.p @r5_a \napostrophe \nacute \aacute \adieresis \longs @r5_b \oacute \ohungarumlaut \odieresis \eth] @l5_p -5;
