@@ -246,11 +246,11 @@ def build_glyphs(bitbucket, f):
 
     #--------------------------------------------------------------------------
 
-#    f.selection.all()
-#    space_selected_by_anchors(f)
-#    f.selection.none()
+    f.selection.all()
+    space_selected_by_anchors(f)
+    f.selection.none()
 
-#    generate_kerning_and_read_features(None, f)
+    generate_kerning_and_read_features(None, f)
 
     #--------------------------------------------------------------------------
 
