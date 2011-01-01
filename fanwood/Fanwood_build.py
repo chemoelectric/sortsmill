@@ -88,6 +88,8 @@ def build_glyphs(bitbucket, f):
     propagate_hyphens(f, '.u')
     build_spacing_marks(f, width = 2 * 200)
 
+    make_glyph_reference('minute', f['quotesingle'])
+    make_glyph_reference('second', f['quotedbl'])
     make_glyph_reference('asciitilde', f['uni2053']) # Swung dash.
     make_glyph_reference('i.TRK', f['i'])
     make_glyph_reference('L.CAT', f['L'])
