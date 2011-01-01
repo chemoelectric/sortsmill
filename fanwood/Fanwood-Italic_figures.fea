@@ -1,0 +1,146 @@
+# Copyright (c) 2010 Barry Schwartz
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+#-----------------------------------------------------------------------
+
+@OLDSTYLE_FIGURES = [ zero one two three four five six seven eight nine ];
+@LINING_FIGURES = [ zero.u one.u two.u three.u four.u five.u six.u seven.u eight.u nine.u ];
+@PROPORTIONAL_FIGURES = [ zero.p one.p two.p three.p four.p five.p six.p seven.p eight.p nine.p ];
+
+@NUMERATOR_FIGURES = [
+  zero.numer one.numer two.numer three.numer four.numer
+  five.numer six.numer seven.numer eight.numer nine.numer
+];
+
+@DENOMINATOR_FIGURES = [
+  zero.denom one.denom two.denom three.denom four.denom
+  five.denom six.denom seven.denom eight.denom nine.denom
+];
+
+@INFERIOR_FIGURES = [
+  zero.sub one.sub two.sub three.sub four.sub
+  five.sub six.sub seven.sub eight.sub nine.sub
+];
+
+@SUPERIOR_FIGURES = [
+  zero.sup one.sup two.sup three.sup four.sup
+  five.sup six.sup seven.sup eight.sup nine.sup
+];
+
+#-----------------------------------------------------------------------
+
+@FIGURES_AND_FRIENDS = [
+  @OLDSTYLE_FIGURES
+  \comma \period \hyphen
+  \parenleft \parenright
+  \bracketleft \bracketright
+  \dollar \cent
+  a-z
+];
+
+@NUMERATORS = [
+  @NUMERATOR_FIGURES
+  \comma.numer \period.numer \hyphen.numer
+  \parenleft.numer \parenright.numer
+  \bracketleft.numer \bracketright.numer
+  \dollar.numer \cent.numer
+  a.numer-z.numer
+];
+
+@DENOMINATORS = [
+  @DENOMINATOR_FIGURES
+  \comma.denom \period.denom \hyphen.denom
+  \parenleft.denom \parenright.denom
+  \bracketleft.denom \bracketright.denom
+  \dollar.denom \cent.denom
+  a.denom-z.denom
+];
+
+@SUPERIORS = [
+  @SUPERIOR_FIGURES
+  \comma.sup \period.sup \hyphen.sup
+  \parenleft.sup \parenright.sup
+  \bracketleft.sup \bracketright.sup
+  \dollar.sup \cent.sup
+  a.sup-z.sup
+];
+
+@INFERIORS = [
+  @INFERIOR_FIGURES
+  \comma.sub \period.sub \hyphen.sub
+  \parenleft.sub \parenright.sub
+  \bracketleft.sub \bracketright.sub
+  \dollar.sub \cent.sub
+  a.sub-z.sub
+];
+
+#-----------------------------------------------------------------------
+
+lookup numerators {
+  sub @FIGURES_AND_FRIENDS by @NUMERATORS;
+  sub \slash by \fraction;
+} numerators;
+
+lookup denominators {
+  sub @FIGURES_AND_FRIENDS by @DENOMINATORS;
+} denominators;
+
+feature numr {
+  lookup numerators;
+} numr;
+
+feature dnom {
+  lookup denominators;
+} dnom;
+
+feature frac {
+  lookup numerators;
+  sub [\fraction @DENOMINATORS]
+      [@NUMERATORS]'
+      by [@DENOMINATORS];
+} frac;
+
+feature sups {
+  sub @FIGURES_AND_FRIENDS by @SUPERIORS;
+} sups;
+
+feature subs {
+  sub @FIGURES_AND_FRIENDS by @INFERIORS;
+} subs;
+
+#-----------------------------------------------------------------------
+
+lookup lining_figures {
+  sub @OLDSTYLE_FIGURES by @LINING_FIGURES;
+} lining_figures;
+
+feature lnum {
+  lookup lining_figures;
+} lnum;
+
+feature pnum {
+  sub @OLDSTYLE_FIGURES by @PROPORTIONAL_FIGURES;
+} pnum;
+
+#-----------------------------------------------------------------------
+
+# local variables:
+# mode: fundamental
+# end:

@@ -18,33 +18,33 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-ACLOCAL_AMFLAGS = -I m4 --install
+feature liga {
 
-@sortsmill_rules@
-@sortsmill_mit_binpack_rules@
+  sub f f b by f_f_b;
+  sub f f h by f_f_h;
+  sub f f hcircumflex by f_f_hcircumflex;
+  sub f f i by f_f_i;
+  sub f f j by f_f_j;
+  sub f f k by f_f_k;
+  sub f f l by f_f_l;
 
-MKFONT_FLAGS = --infer-licensing --no-instructions --ttf-emsize=4096 ${MKFONT_GRAPHITE_FLAGS}
-FAMILYNAME = fanwood
-FONTS = Fanwood Fanwood-Italic
-FEA_Fanwood = case cpsp figures generated_kerning hist liga locl main sc
-FEA_Fanwood_Italic = case cpsp figures generated_kerning hist liga locl main
+  sub f b by f_b;
+  sub f f by f_f;
+  sub f h by f_h;
+  sub f hcircumflex by f_hcircumflex;
+  sub f i by f_i;
+  sub f j by f_j;
+  sub f k by f_k;
+  sub f l by f_l;
 
-fonts_DATA = $(call expand_fonts, ${FONTS})
+  # Should these be contextual alternates that look for a following letter L?
+  sub L.CAT periodcentered by Ldot;
+  sub l.CAT.sc periodcentered by ldot.sc;
+  sub L.CAT.c2 periodcentered by Ldot.c2;
 
-EXTRA_DIST = \
-	$(addsuffix .sfd, ${FONTS}) \
-	$(addsuffix _build.py, ${FONTS}) \
-	${FEA_Fanwood:%=Fanwood_%.fea} \
-	${FEA_Fanwood_Italic:%=Fanwood-Italic_%.fea}
+} liga;
 
-Fanwood.otf: ${FEA_Fanwood:%=Fanwood_%.fea}
-FanwoodTT.ttf: ${FEA_Fanwood:%=Fanwood_%.fea}
-Fanwood-Italic.otf: ${FEA_Fanwood_Italic:%=Fanwood-Italic_%.fea}
-FanwoodTT-Italic.ttf: ${FEA_Fanwood_Italic:%=Fanwood-Italic_%.fea}
 
-MOSTLYCLEANFILES = ${fonts_DATA} gdlerr.txt
-
-ChangeLog::
-	hg log --style=changelog --only-branch=default "${top_srcdir}" > $@ 
-
-DISTCLEANFILES = ChangeLog
+# local variables:
+# mode: fundamental
+# end:

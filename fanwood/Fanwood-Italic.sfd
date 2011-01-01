@@ -3,7 +3,7 @@ FontName: Fanwood-Italic
 FullName: Fanwood Italic
 FamilyName: Fanwood
 Weight: Regular
-Copyright: Copyright (c) 2010, Barry Schwartz
+Copyright: Copyright (c) 2011, Barry Schwartz
 UComments: "10pt on 11pt body: Scan 6400, cut 1000, scale 105%; print at 11pt to match original size." 
 Version: 0.1
 ItalicAngle: -9
@@ -21,7 +21,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1287776574
-ModificationTime: 1293915394
+ModificationTime: 1293920175
 OS2TypoAscent: 0
 OS2TypoAOffset: 1
 OS2TypoDescent: 0
@@ -36,25 +36,32 @@ HheadAOffset: 1
 HheadDescent: 0
 HheadDOffset: 1
 OS2Vendor: 'PfEd'
-Lookup: 3 0 0 "'aalt' Access All Alternates in Latin lookup 0"  {"'aalt' Access All Alternates in Latin lookup 0 subtable"  } ['aalt' ('DFLT' <'dflt' > 'latn' <'dflt' 'CAT ' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > ) ]
+Lookup: 3 0 0 "'aalt' Access All Alternates lookup 0"  {"'aalt' Access All Alternates lookup 0 subtable"  } ['aalt' ('DFLT' <'dflt' > ) ]
+Lookup: 3 0 0 "'aalt' Access All Alternates in Latin lookup 0"  {"'aalt' Access All Alternates in Latin lookup 0 subtable"  } ['aalt' ('latn' <'CAT ' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' 'dflt' > ) ]
+Lookup: 1 0 0 "catalan"  {"catalan subtable"  } ['locl' ('latn' <'CAT ' > ) ]
+Lookup: 1 0 0 "romanian"  {"romanian subtable"  } ['locl' ('latn' <'ROM ' 'MOL ' > ) ]
+Lookup: 1 0 0 "turkish"  {"turkish subtable"  } ['locl' ('latn' <'TRK ' 'AZE ' 'CRT ' > ) ]
 Lookup: 1 0 0 "numerators"  {"numerators subtable"  } ['frac' ('latn' <'dflt' 'CAT ' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) 'numr' ('latn' <'dflt' 'CAT ' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
 Lookup: 1 0 0 "denominators"  {"denominators subtable"  } ['dnom' ('latn' <'dflt' 'CAT ' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
-Lookup: 6 0 0 "'frac' Diagonal Fractions in Latin lookup 2"  {"'frac' Diagonal Fractions in Latin lookup 2 subtable"  } ['frac' ('latn' <'dflt' 'CAT ' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
-Lookup: 1 0 0 "Single Substitution lookup 3"  {"Single Substitution lookup 3 subtable"  } []
-Lookup: 1 0 0 "'sups' Superscript in Latin lookup 4"  {"'sups' Superscript in Latin lookup 4 subtable" ("superior" ) } ['sups' ('latn' <'dflt' 'CAT ' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
-Lookup: 1 0 0 "'subs' Subscript in Latin lookup 5"  {"'subs' Subscript in Latin lookup 5 subtable" ("inferior" ) } ['subs' ('latn' <'dflt' 'CAT ' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
-Lookup: 1 0 0 "lining_figures"  {"lining_figures subtable"  } ['lnum' ('latn' <'dflt' 'CAT ' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
-Lookup: 1 0 0 "'pnum' Proportional Numbers in Latin lookup 7"  {"'pnum' Proportional Numbers in Latin lookup 7 subtable"  } ['pnum' ('latn' <'dflt' 'CAT ' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
+Lookup: 6 0 0 "'frac' Diagonal Fractions in Latin lookup 5"  {"'frac' Diagonal Fractions in Latin lookup 5 subtable"  } ['frac' ('latn' <'dflt' 'CAT ' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
+Lookup: 1 0 0 "Single Substitution lookup 6"  {"Single Substitution lookup 6 subtable"  } []
+Lookup: 1 0 0 "'sups' Superscript in Latin lookup 7"  {"'sups' Superscript in Latin lookup 7 subtable" ("superior" ) } ['sups' ('latn' <'dflt' 'CAT ' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
+Lookup: 1 0 0 "'subs' Subscript in Latin lookup 8"  {"'subs' Subscript in Latin lookup 8 subtable" ("inferior" ) } ['subs' ('latn' <'dflt' 'CAT ' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
+Lookup: 1 0 0 "lining_figures"  {"lining_figures subtable"  } ['case' ('latn' <'dflt' 'CAT ' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) 'lnum' ('latn' <'dflt' 'CAT ' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
+Lookup: 1 0 0 "'pnum' Proportional Numbers in Latin lookup 10"  {"'pnum' Proportional Numbers in Latin lookup 10 subtable"  } ['pnum' ('latn' <'dflt' 'CAT ' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
+Lookup: 1 0 0 "'hist' Historical Forms in Latin lookup 11"  {"'hist' Historical Forms in Latin lookup 11 subtable"  } ['hist' ('latn' <'dflt' 'CAT ' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
+Lookup: 1 0 0 "'case' Case-Sensitive Forms in Latin lookup 12"  {"'case' Case-Sensitive Forms in Latin lookup 12 subtable"  } ['case' ('latn' <'dflt' 'CAT ' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
 Lookup: 260 0 0 "spacing anchors"  {"spacing anchors-1"  } []
 Lookup: 260 0 0 "accent anchors"  {"accent anchors-1"  } []
+Lookup: 257 0 0 "'cpsp' Capital Spacing in Latin lookup 2"  {"'cpsp' Capital Spacing in Latin lookup 2 subtable"  } ['cpsp' ('latn' <'dflt' 'CAT ' 'ROM ' 'MOL ' 'TRK ' 'AZE ' 'CRT ' > 'DFLT' <'dflt' > ) ]
 MarkAttachClasses: 1
 DEI: 91125
-ChainSub2: coverage "'frac' Diagonal Fractions in Latin lookup 2 subtable"  0 0 0 1
+ChainSub2: coverage "'frac' Diagonal Fractions in Latin lookup 5 subtable"  0 0 0 1
  1 1 0
   Coverage: 449 zero.numer one.numer two.numer three.numer four.numer five.numer six.numer seven.numer eight.numer nine.numer comma.numer period.numer hyphen.numer parenleft.numer parenright.numer bracketleft.numer bracketright.numer dollar.numer cent.numer a.numer b.numer c.numer d.numer e.numer f.numer g.numer h.numer i.numer j.numer k.numer l.numer m.numer n.numer o.numer p.numer q.numer r.numer s.numer t.numer u.numer v.numer w.numer x.numer y.numer z.numer
   BCoverage: 458 fraction zero.denom one.denom two.denom three.denom four.denom five.denom six.denom seven.denom eight.denom nine.denom comma.denom period.denom hyphen.denom parenleft.denom parenright.denom bracketleft.denom bracketright.denom dollar.denom cent.denom a.denom b.denom c.denom d.denom e.denom f.denom g.denom h.denom i.denom j.denom k.denom l.denom m.denom n.denom o.denom p.denom q.denom r.denom s.denom t.denom u.denom v.denom w.denom x.denom y.denom z.denom
  1
-  SeqLookup: 0 "Single Substitution lookup 3" 
+  SeqLookup: 0 "Single Substitution lookup 6" 
 EndFPST
 Encoding: UnicodeBmp
 UnicodeInterp: none
@@ -62,7 +69,7 @@ NameList: Adobe Glyph List
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 1
-WinInfo: 65556 12 4
+WinInfo: 65748 12 4
 BeginPrivate: 11
 BlueValues 31 [-25 0 372 399 401 429 661 687]
 OtherBlues 11 [-295 -275]
@@ -114,9 +121,10 @@ SplineSet
  308 254 311 284 311 289 c 0
  311 327 259 347 229 347 c 0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" a.sub a.sup a.denom a.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" a.sub a.sup a.denom a.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" a.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" a.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" a.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" a.sup
 Substitution2: "denominators subtable" a.denom
 Substitution2: "numerators subtable" a.numer
 EndChar
@@ -160,9 +168,10 @@ SplineSet
  275 341 250 310 230 282 c 0
  163 189 108 112 108 80 c 0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" b.sub b.sup b.denom b.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" b.sub b.sup b.denom b.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" b.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" b.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" b.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" b.sup
 Substitution2: "denominators subtable" b.denom
 Substitution2: "numerators subtable" b.numer
 EndChar
@@ -195,9 +204,10 @@ SplineSet
  366 277 349 255 323 255 c 0
  307 255 301 273 301 292 c 0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" c.sub c.sup c.denom c.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" c.sub c.sup c.denom c.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" c.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" c.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" c.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" c.sup
 Substitution2: "denominators subtable" c.denom
 Substitution2: "numerators subtable" c.numer
 EndChar
@@ -242,9 +252,10 @@ SplineSet
  173 46 227 118 274 186 c 0
  295 218 328 266 328 304 c 0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" d.sub d.sup d.denom d.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" d.sub d.sup d.denom d.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" d.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" d.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" d.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" d.sup
 Substitution2: "denominators subtable" d.denom
 Substitution2: "numerators subtable" d.numer
 EndChar
@@ -278,9 +289,10 @@ SplineSet
  119 230 111 203 111 200 c 0
  111 196 113 193 121 193 c 0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" e.sub e.sup e.denom e.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" e.sub e.sup e.denom e.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" e.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" e.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" e.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" e.sup
 Substitution2: "denominators subtable" e.denom
 Substitution2: "numerators subtable" e.numer
 EndChar
@@ -360,9 +372,10 @@ SplineSet
  -73 -199 -52 -223 -18 -223 c 4
  28 -223 38 -104 46 -54 c 4
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" f.sub f.sup f.denom f.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" f.sub f.sup f.denom f.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" f.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" f.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" f.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" f.sup
 Substitution2: "denominators subtable" f.denom
 Substitution2: "numerators subtable" f.numer
 EndChar
@@ -415,9 +428,10 @@ SplineSet
  122 138 172 115 196 115 c 0
  244 115 313 183 313 279 c 0xf6
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" g.sub g.sup g.denom g.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" g.sub g.sup g.denom g.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" g.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" g.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" g.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" g.sup
 Substitution2: "denominators subtable" g.denom
 Substitution2: "numerators subtable" g.numer
 EndChar
@@ -459,9 +473,10 @@ SplineSet
  413 270 346 96 346 67 c 0
  346 56 353 45 367 45 c 0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" h.sub h.sup h.denom h.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" h.sub h.sup h.denom h.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" h.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" h.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" h.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" h.sup
 Substitution2: "denominators subtable" h.denom
 Substitution2: "numerators subtable" h.numer
 EndChar
@@ -495,11 +510,13 @@ SplineSet
  12 288 126 383 163 383 c 0
  173 383 183 378 183 361 c 0xe4
 EndSplineSet
-AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" i.sub i.sup i.denom i.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" i.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" i.sup
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" i.sub i.sup i.denom i.numer
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" i.sub i.sup i.denom i.numer i.TRK
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" i.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" i.sup
 Substitution2: "denominators subtable" i.denom
 Substitution2: "numerators subtable" i.numer
+Substitution2: "turkish subtable" i.TRK
 EndChar
 
 StartChar: j
@@ -532,9 +549,10 @@ SplineSet
  162 531 147 558 147 579 c 0xf0
  147 605 162 625 188 625 c 0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" j.sub j.sup j.denom j.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" j.sub j.sup j.denom j.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" j.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" j.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" j.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" j.sup
 Substitution2: "denominators subtable" j.denom
 Substitution2: "numerators subtable" j.numer
 EndChar
@@ -588,9 +606,10 @@ SplineSet
  49 611 48 614 50 632 c 0
  51 637 51 640 56 641 c 0xfb
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" k.sub k.sup k.denom k.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" k.sub k.sup k.denom k.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" k.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" k.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" k.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" k.sup
 Substitution2: "denominators subtable" k.denom
 Substitution2: "numerators subtable" k.numer
 EndChar
@@ -633,9 +652,10 @@ SplineSet
  55 314 103 396 156 396 c 0x0a
  201 396 280 352 322 352 c 0x12
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" z.sub z.sup z.denom z.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" z.sub z.sup z.denom z.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" z.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" z.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" z.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" z.sup
 Substitution2: "denominators subtable" z.denom
 Substitution2: "numerators subtable" z.numer
 EndChar
@@ -668,11 +688,13 @@ SplineSet
  218 649 118 77 118 68 c 0
  118 50 127 47 132 47 c 0
 EndSplineSet
-AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" l.sub l.sup l.denom l.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" l.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" l.sup
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" l.sub l.sup l.denom l.numer
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" l.sub l.sup l.denom l.numer l.CAT
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" l.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" l.sup
 Substitution2: "denominators subtable" l.denom
 Substitution2: "numerators subtable" l.numer
+Substitution2: "catalan subtable" l.CAT
 EndChar
 
 StartChar: m
@@ -721,9 +743,10 @@ SplineSet
  674 293 601 112 601 73 c 0
  601 65 604 49 619 49 c 0x77
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" m.sub m.sup m.denom m.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" m.sub m.sup m.denom m.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" m.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" m.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" m.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" m.sup
 Substitution2: "denominators subtable" m.denom
 Substitution2: "numerators subtable" m.numer
 EndChar
@@ -770,9 +793,10 @@ SplineSet
  208 304 176 202 154 118 c 1
  244 277 326 386 405 386 c 0xbc
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" n.sub n.sup n.denom n.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" n.sub n.sup n.denom n.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" n.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" n.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" n.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" n.sup
 Substitution2: "denominators subtable" n.denom
 Substitution2: "numerators subtable" n.numer
 EndChar
@@ -805,9 +829,10 @@ SplineSet
  362 397 394 300 394 238 c 0
  394 115 291 -8 165 -8 c 0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" o.sub o.sup o.denom o.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" o.sub o.sup o.denom o.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" o.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" o.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" o.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" o.sup
 Substitution2: "denominators subtable" o.denom
 Substitution2: "numerators subtable" o.numer
 EndChar
@@ -853,9 +878,10 @@ SplineSet
  146 -227 148 -240 157 -241 c 0xbc
  220 -248 236 -244 236 -259 c 0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" p.sub p.sup p.denom p.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" p.sub p.sup p.denom p.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" p.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" p.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" p.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" p.sup
 Substitution2: "denominators subtable" p.denom
 Substitution2: "numerators subtable" p.numer
 EndChar
@@ -901,9 +927,10 @@ SplineSet
  172 40 231 118 278 186 c 0
  299 218 342 288 342 318 c 0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" q.sub q.sup q.denom q.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" q.sub q.sup q.denom q.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" q.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" q.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" q.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" q.sup
 Substitution2: "denominators subtable" q.denom
 Substitution2: "numerators subtable" q.numer
 EndChar
@@ -941,9 +968,10 @@ SplineSet
  47 8 95 236 95 293 c 0
  95 306 95 331 82 331 c 0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" r.sub r.sup r.denom r.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" r.sub r.sup r.denom r.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" r.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" r.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" r.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" r.sup
 Substitution2: "denominators subtable" r.denom
 Substitution2: "numerators subtable" r.numer
 EndChar
@@ -976,9 +1004,11 @@ SplineSet
  72 346 132 399 203 399 c 0
  291 399 300 346 300 335 c 0
 EndSplineSet
-AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" s.sub s.sup s.denom s.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" s.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" s.sup
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" longs s.sub s.sup s.denom s.numer
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" longs s.sub s.sup s.denom s.numer
+Substitution2: "'hist' Historical Forms in Latin lookup 11 subtable" longs
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" s.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" s.sup
 Substitution2: "denominators subtable" s.denom
 Substitution2: "numerators subtable" s.numer
 EndChar
@@ -1023,9 +1053,10 @@ SplineSet
  257 351 253 342 244 342 c 2
  171 342 l 2
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" t.sub t.sup t.denom t.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" t.sub t.sup t.denom t.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" t.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" t.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" t.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" t.sup
 Substitution2: "denominators subtable" t.denom
 Substitution2: "numerators subtable" t.numer
 EndChar
@@ -1067,9 +1098,10 @@ SplineSet
  438 64 493 154 497 154 c 0
  501 154 505 150 505 147 c 0xe0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" u.sub u.sup u.denom u.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" u.sub u.sup u.denom u.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" u.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" u.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" u.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" u.sup
 Substitution2: "denominators subtable" u.denom
 Substitution2: "numerators subtable" u.numer
 EndChar
@@ -1109,9 +1141,10 @@ SplineSet
  137 392 158 388 168 382 c 0
  198 365 207 359 207 337 c 0xcc
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" v.sub v.sup v.denom v.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" v.sub v.sup v.denom v.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" v.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" v.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" v.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" v.sup
 Substitution2: "denominators subtable" v.denom
 Substitution2: "numerators subtable" v.numer
 EndChar
@@ -1166,9 +1199,10 @@ SplineSet
  155 386 179 374 189 368 c 0
  219 348 220 336 220 322 c 0xc9
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" w.sub w.sup w.denom w.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" w.sub w.sup w.denom w.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" w.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" w.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" w.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" w.sup
 Substitution2: "denominators subtable" w.denom
 Substitution2: "numerators subtable" w.numer
 EndChar
@@ -1214,9 +1248,10 @@ SplineSet
  388 52 418 118 421 118 c 0
  425 118 438 114 438 110 c 0x9c
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" x.sub x.sup x.denom x.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" x.sub x.sup x.denom x.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" x.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" x.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" x.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" x.sup
 Substitution2: "denominators subtable" x.denom
 Substitution2: "numerators subtable" x.numer
 EndChar
@@ -1253,9 +1288,10 @@ SplineSet
  111 -202 134 -180 145 -160 c 0
  199 -60 204 -23 204 17 c 0xb8
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" y.sub y.sup y.denom y.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" y.sub y.sup y.denom y.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" y.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" y.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" y.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" y.sup
 Substitution2: "denominators subtable" y.denom
 Substitution2: "numerators subtable" y.numer
 EndChar
@@ -1308,6 +1344,7 @@ SplineSet
  297 319 294 314 294 311 c 0
  294 306 300 305 312 305 c 2
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: B
@@ -1393,6 +1430,7 @@ SplineSet
  186 30 189 27 195 27 c 6xfc
  279 27 l 6
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: C
@@ -1427,6 +1465,7 @@ SplineSet
  247 643 132 447 132 288 c 0
  132 119 241 20 374 20 c 0xe8
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: D
@@ -1461,6 +1500,7 @@ SplineSet
  269 630 187 92 187 46 c 0
  187 36 190 31 193 29 c 0
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: E
@@ -1520,6 +1560,7 @@ SplineSet
  229 299 198 83 193 39 c 0
  193 32 195 30 200 30 c 0x7e
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: F
@@ -1576,6 +1617,7 @@ SplineSet
  229 299 198 80 193 36 c 0
  192 30 195 27 201 27 c 2xfe
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: G
@@ -1616,6 +1658,7 @@ SplineSet
  638 578 506 650 427 650 c 0
  263 650 142 449 142 276 c 0
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: H
@@ -1678,6 +1721,7 @@ SplineSet
  109 27 188 585 188 623 c 0
  188 633 186 639 179 639 c 2
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: I
@@ -1712,6 +1756,7 @@ SplineSet
  90 27 172 572 172 623 c 0
  172 633 170 639 163 639 c 2
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: J
@@ -1743,6 +1788,7 @@ SplineSet
  -30 -124 -15 -145 6 -145 c 0
  44 -145 48 -62 54 -5 c 0
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: K
@@ -1809,6 +1855,7 @@ SplineSet
  239 320 l 2
  230 320 225 321 223 310 c 0
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: L
@@ -1850,6 +1897,9 @@ SplineSet
  252 638 175 66 175 53 c 4
  175 40 179 31 192 31 c 4x70
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" L.CAT
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
+Substitution2: "catalan subtable" L.CAT
 EndChar
 
 StartChar: M
@@ -1908,6 +1958,7 @@ SplineSet
  402 16 399 15 395 15 c 0
  390 15 382 18 379 36 c 0
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: N
@@ -1962,6 +2013,7 @@ SplineSet
  250 666 267 669 273 669 c 0
  284 669 286 667 293 656 c 2x78
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: O
@@ -1986,6 +2038,7 @@ SplineSet
  609 484 555 645 411 645 c 0
  266 645 128 463 128 286 c 0
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: P
@@ -2029,6 +2082,7 @@ SplineSet
  490 667 564 594 564 496 c 0
  564 344 436 302 320 302 c 0
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Q
@@ -2069,6 +2123,7 @@ SplineSet
  336 -10 341 -8 341 -7 c 0
  341 -2 44 -5 44 305 c 0
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: R
@@ -2172,6 +2227,7 @@ SplineSet
  488 669 576 603 576 507 c 4
  576 350 382 329 382 324 c 4
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: S
@@ -2210,6 +2266,7 @@ SplineSet
  93 188 78 105 78 100 c 0
  78 80 180 16 265 16 c 0xf8
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: T
@@ -2297,6 +2354,7 @@ SplineSet
  660 686 662 685 662 675 c 4xf4
  662 656 657 624 653 545 c 4xf8
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: U
@@ -2345,6 +2403,7 @@ SplineSet
  520 1 518 5 517 12 c 0
  512 55 513 79 504 79 c 0
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: V
@@ -2385,6 +2444,7 @@ SplineSet
  219 7 201 -17 188 -17 c 0
  177 -17 175 -8 168 44 c 0
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: W
@@ -2442,6 +2502,7 @@ SplineSet
  213 7 197 -17 184 -17 c 0
  173 -17 171 -8 164 44 c 0
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: X
@@ -2504,6 +2565,7 @@ SplineSet
  64 27 182 193 291 325 c 0
  301 337 301 333 295 346 c 2
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Y
@@ -2554,6 +2616,7 @@ SplineSet
  528 639 367 419 310 332 c 4
  306 325 304 319 302 310 c 4
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Z
@@ -2594,6 +2657,7 @@ SplineSet
  158 39 161 32 169 32 c 2
  473 35 l 2
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: zero
@@ -2617,11 +2681,12 @@ SplineSet
  112 71 165 27 236 27 c 0
  315 27 396.078138446 100.281582995 396.078138446 207.001724028 c 0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" zero.p zero.u zero.sub zero.sup zero.denom zero.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" zero.p zero.u zero.sub zero.sup zero.denom zero.numer
-Substitution2: "'pnum' Proportional Numbers in Latin lookup 7 subtable" zero.p
+Substitution2: "'pnum' Proportional Numbers in Latin lookup 10 subtable" zero.p
 Substitution2: "lining_figures subtable" zero.u
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" zero.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" zero.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" zero.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" zero.sup
 Substitution2: "denominators subtable" zero.denom
 Substitution2: "numerators subtable" zero.numer
 EndChar
@@ -2660,11 +2725,12 @@ SplineSet
  207 25 205 27 207 37 c 0
  227 140 257 339 257 346 c 0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" one.p one.u one.sub one.sup one.denom one.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" one.p one.u one.sub one.sup one.denom one.numer
-Substitution2: "'pnum' Proportional Numbers in Latin lookup 7 subtable" one.p
+Substitution2: "'pnum' Proportional Numbers in Latin lookup 10 subtable" one.p
 Substitution2: "lining_figures subtable" one.u
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" one.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" one.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" one.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" one.sup
 Substitution2: "denominators subtable" one.denom
 Substitution2: "numerators subtable" one.numer
 EndChar
@@ -2699,11 +2765,12 @@ SplineSet
  268 176 305 218 305 266 c 0
  305 317 275 359 221 359 c 0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" two.p two.u two.sub two.sup two.denom two.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" two.p two.u two.sub two.sup two.denom two.numer
-Substitution2: "'pnum' Proportional Numbers in Latin lookup 7 subtable" two.p
+Substitution2: "'pnum' Proportional Numbers in Latin lookup 10 subtable" two.p
 Substitution2: "lining_figures subtable" two.u
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" two.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" two.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" two.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" two.sup
 Substitution2: "denominators subtable" two.denom
 Substitution2: "numerators subtable" two.numer
 EndChar
@@ -2738,11 +2805,12 @@ SplineSet
  111 324 105 335 105 341 c 0
  105 348 181 387 246 387 c 0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" three.p three.u three.sub three.sup three.denom three.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" three.p three.u three.sub three.sup three.denom three.numer
-Substitution2: "'pnum' Proportional Numbers in Latin lookup 7 subtable" three.p
+Substitution2: "'pnum' Proportional Numbers in Latin lookup 10 subtable" three.p
 Substitution2: "lining_figures subtable" three.u
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" three.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" three.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" three.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" three.sup
 Substitution2: "denominators subtable" three.denom
 Substitution2: "numerators subtable" three.numer
 EndChar
@@ -2789,11 +2857,12 @@ SplineSet
  319 290 l 2
  321 301 314 302 307 295 c 2
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" four.p four.u four.sub four.sup four.denom four.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" four.p four.u four.sub four.sup four.denom four.numer
-Substitution2: "'pnum' Proportional Numbers in Latin lookup 7 subtable" four.p
+Substitution2: "'pnum' Proportional Numbers in Latin lookup 10 subtable" four.p
 Substitution2: "lining_figures subtable" four.u
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" four.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" four.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" four.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" four.sup
 Substitution2: "denominators subtable" four.denom
 Substitution2: "numerators subtable" four.numer
 EndChar
@@ -2827,11 +2896,12 @@ SplineSet
  276 106 106 153 106 180 c 0
  106 194 148 292 173 372 c 0xdc
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" five.p five.u five.sub five.sup five.denom five.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" five.p five.u five.sub five.sup five.denom five.numer
-Substitution2: "'pnum' Proportional Numbers in Latin lookup 7 subtable" five.p
+Substitution2: "'pnum' Proportional Numbers in Latin lookup 10 subtable" five.p
 Substitution2: "lining_figures subtable" five.u
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" five.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" five.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" five.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" five.sup
 Substitution2: "denominators subtable" five.denom
 Substitution2: "numerators subtable" five.numer
 EndChar
@@ -2866,11 +2936,12 @@ SplineSet
  203 343 150 333 142 322 c 0
  116 287 107 217 107 173 c 0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" six.p six.u six.sub six.sup six.denom six.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" six.p six.u six.sub six.sup six.denom six.numer
-Substitution2: "'pnum' Proportional Numbers in Latin lookup 7 subtable" six.p
+Substitution2: "'pnum' Proportional Numbers in Latin lookup 10 subtable" six.p
 Substitution2: "lining_figures subtable" six.u
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" six.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" six.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" six.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" six.sup
 Substitution2: "denominators subtable" six.denom
 Substitution2: "numerators subtable" six.numer
 EndChar
@@ -2906,11 +2977,12 @@ SplineSet
  78 296 100 342 111 404 c 0
  113 418 116 424 123 424 c 0xe8
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" seven.p seven.u seven.sub seven.sup seven.denom seven.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" seven.p seven.u seven.sub seven.sup seven.denom seven.numer
-Substitution2: "'pnum' Proportional Numbers in Latin lookup 7 subtable" seven.p
+Substitution2: "'pnum' Proportional Numbers in Latin lookup 10 subtable" seven.p
 Substitution2: "lining_figures subtable" seven.u
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" seven.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" seven.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" seven.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" seven.sup
 Substitution2: "denominators subtable" seven.denom
 Substitution2: "numerators subtable" seven.numer
 EndChar
@@ -2945,11 +3017,12 @@ SplineSet
  163 454 263 359 270 359 c 0
  281 359 370 434 370 525 c 0xda
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" eight.p eight.u eight.sub eight.sup eight.denom eight.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" eight.p eight.u eight.sub eight.sup eight.denom eight.numer
-Substitution2: "'pnum' Proportional Numbers in Latin lookup 7 subtable" eight.p
+Substitution2: "'pnum' Proportional Numbers in Latin lookup 10 subtable" eight.p
 Substitution2: "lining_figures subtable" eight.u
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" eight.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" eight.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" eight.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" eight.sup
 Substitution2: "denominators subtable" eight.denom
 Substitution2: "numerators subtable" eight.numer
 EndChar
@@ -2983,11 +3056,12 @@ SplineSet
  339 80 364 165 364 240 c 0
  364 323 325 368 272 368 c 0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" nine.p nine.u nine.sub nine.sup nine.denom nine.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" nine.p nine.u nine.sub nine.sup nine.denom nine.numer
-Substitution2: "'pnum' Proportional Numbers in Latin lookup 7 subtable" nine.p
+Substitution2: "'pnum' Proportional Numbers in Latin lookup 10 subtable" nine.p
 Substitution2: "lining_figures subtable" nine.u
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" nine.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" nine.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" nine.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" nine.sup
 Substitution2: "denominators subtable" nine.denom
 Substitution2: "numerators subtable" nine.numer
 EndChar
@@ -3020,9 +3094,10 @@ SplineSet
  121 0 116 11 106 24 c 0
  90 44 68 62 68 68 c 0xa0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" comma.sub comma.sup comma.denom comma.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" comma.sub comma.sup comma.denom comma.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" comma.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" comma.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" comma.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" comma.sup
 Substitution2: "denominators subtable" comma.denom
 Substitution2: "numerators subtable" comma.numer
 EndChar
@@ -3137,9 +3212,10 @@ SplineSet
  154 8 124 -8 114 -8 c 0
  86 -8 64 23 64 38 c 0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" period.sub period.sup period.denom period.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" period.sub period.sup period.denom period.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" period.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" period.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" period.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" period.sup
 Substitution2: "denominators subtable" period.denom
 Substitution2: "numerators subtable" period.numer
 EndChar
@@ -3212,9 +3288,11 @@ SplineSet
  26 198 25 199 25 201 c 0
  25 216 34 240 43 241 c 0xa0
 EndSplineSet
-AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" hyphen.sub hyphen.sup hyphen.denom hyphen.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" hyphen.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" hyphen.sup
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" hyphen.u hyphen.sub hyphen.sup hyphen.denom hyphen.numer
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" hyphen.u hyphen.sub hyphen.sup hyphen.denom hyphen.numer
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 12 subtable" hyphen.u
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" hyphen.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" hyphen.sup
 Substitution2: "denominators subtable" hyphen.denom
 Substitution2: "numerators subtable" hyphen.numer
 EndChar
@@ -3263,6 +3341,7 @@ SplineSet
  101 157 108.932492435 237.008462554 121 333 c 4
  143 508 150 574 155 635 c 4xb0
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: question
@@ -3298,6 +3377,7 @@ SplineSet
  154 8 124 -8 114 -8 c 0
  86 -8 64 23 64 38 c 0xe8
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: parenleft
@@ -3317,9 +3397,11 @@ SplineSet
  230 -133 225 -140 214 -140 c 0
  203 -140 40 55 40 285 c 0
 EndSplineSet
-AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" parenleft.sub parenleft.sup parenleft.denom parenleft.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" parenleft.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" parenleft.sup
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" parenleft.u parenleft.sub parenleft.sup parenleft.denom parenleft.numer
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" parenleft.u parenleft.sub parenleft.sup parenleft.denom parenleft.numer
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 12 subtable" parenleft.u
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" parenleft.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" parenleft.sup
 Substitution2: "denominators subtable" parenleft.denom
 Substitution2: "numerators subtable" parenleft.numer
 EndChar
@@ -3341,9 +3423,11 @@ SplineSet
  44 682 49 689 60 689 c 0
  71 689 234 494 234 264 c 0
 EndSplineSet
-AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" parenright.sub parenright.sup parenright.denom parenright.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" parenright.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" parenright.sup
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" parenright.u parenright.sub parenright.sup parenright.denom parenright.numer
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" parenright.u parenright.sub parenright.sup parenright.denom parenright.numer
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 12 subtable" parenright.u
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" parenright.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" parenright.sup
 Substitution2: "denominators subtable" parenright.denom
 Substitution2: "numerators subtable" parenright.numer
 EndChar
@@ -5162,9 +5246,11 @@ SplineSet
  256 -138 255 -141 243 -141 c 2
  93 -141 l 2
 EndSplineSet
-AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" bracketleft.sub bracketleft.sup bracketleft.denom bracketleft.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" bracketleft.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" bracketleft.sup
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" bracketleft.u bracketleft.sub bracketleft.sup bracketleft.denom bracketleft.numer
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" bracketleft.u bracketleft.sub bracketleft.sup bracketleft.denom bracketleft.numer
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 12 subtable" bracketleft.u
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" bracketleft.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" bracketleft.sup
 Substitution2: "denominators subtable" bracketleft.denom
 Substitution2: "numerators subtable" bracketleft.numer
 EndChar
@@ -5506,9 +5592,10 @@ SplineSet
  274 273 272 275 270 275 c 0
  269 275 268 271 267 266 c 2
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" dollar.sub dollar.sup dollar.denom dollar.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" dollar.sub dollar.sup dollar.denom dollar.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" dollar.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" dollar.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" dollar.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" dollar.sup
 Substitution2: "denominators subtable" dollar.denom
 Substitution2: "numerators subtable" dollar.numer
 EndChar
@@ -5612,9 +5699,11 @@ SplineSet
  40 687 41 690 53 690 c 2
  203 690 l 2
 EndSplineSet
-AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" bracketright.sub bracketright.sup bracketright.denom bracketright.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" bracketright.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" bracketright.sup
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" bracketright.u bracketright.sub bracketright.sup bracketright.denom bracketright.numer
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" bracketright.u bracketright.sub bracketright.sup bracketright.denom bracketright.numer
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 12 subtable" bracketright.u
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" bracketright.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" bracketright.sup
 Substitution2: "denominators subtable" bracketright.denom
 Substitution2: "numerators subtable" bracketright.numer
 EndChar
@@ -5665,6 +5754,7 @@ SplineSet
  306 252 348 248 379 242 c 0
  391 240 395 237 395 233 c 0xe760
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: ae
@@ -5772,6 +5862,9 @@ SplineSet
  739 212 740 211 740 200 c 2
  740 188 l 2
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" emdash.u
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" emdash.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 12 subtable" emdash.u
 EndChar
 
 StartChar: endash
@@ -5792,6 +5885,9 @@ SplineSet
  489 212 490 211 490 200 c 2
  490 188 l 2
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" endash.u
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" endash.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 12 subtable" endash.u
 EndChar
 
 StartChar: OE
@@ -5851,6 +5947,7 @@ SplineSet
  887 -3 577 0 547 0 c 0x39a0
  494 0 434 -17 340 -17 c 0
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: AE
@@ -5931,6 +6028,7 @@ SplineSet
  596 630 595 632 593 632 c 0
  590 632 586 628 582 622 c 2
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: at
@@ -6186,6 +6284,7 @@ SplineSet
  57 -233 51 -233 36 -233 c 0
  24 -233 10 -233 10 -220 c 0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" fraction
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" fraction
 Substitution2: "numerators subtable" fraction
 EndChar
@@ -6318,6 +6417,9 @@ SplineSet
  186 324 198 314 198 312 c 0
  198 304 136 205 136 193 c 0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" guillemotleft.u
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" guillemotleft.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 12 subtable" guillemotleft.u
 EndChar
 
 StartChar: guillemotright
@@ -6349,6 +6451,9 @@ SplineSet
  222 62 210 72 210 74 c 0
  210 82 272 181 272 193 c 0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" guillemotright.u
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" guillemotright.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 12 subtable" guillemotright.u
 EndChar
 
 StartChar: multiply
@@ -6444,6 +6549,9 @@ SplineSet
  186 324 198 314 198 312 c 0
  198 304 136 205 136 193 c 0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" guilsinglleft.u
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" guilsinglleft.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 12 subtable" guilsinglleft.u
 EndChar
 
 StartChar: guilsinglright
@@ -6466,6 +6574,9 @@ SplineSet
  72 62 60 72 60 74 c 0
  60 82 122 181 122 193 c 0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" guilsinglright.u
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" guilsinglright.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 12 subtable" guilsinglright.u
 EndChar
 
 StartChar: minus
@@ -6823,6 +6934,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 71 45 N 1 0 0 1 0 0 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" uni00AD.u
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" uni00AD.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 12 subtable" uni00AD.u
 EndChar
 
 StartChar: macron
@@ -7326,6 +7440,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 71 45 N 1 0 0 1 0 0 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" uni2010.u
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" uni2010.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 12 subtable" uni2010.u
 EndChar
 
 StartChar: uni2011
@@ -7336,6 +7453,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 71 45 N 1 0 0 1 0 0 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" uni2011.u
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" uni2011.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 12 subtable" uni2011.u
 EndChar
 
 StartChar: circumflex
@@ -7407,6 +7527,7 @@ LayerCount: 3
 Fore
 Refer: 35 74 N 1 0 0 1 353 0 2
 Refer: 34 73 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: ij
@@ -8225,6 +8346,7 @@ LayerCount: 3
 Fore
 Refer: 239 -1 N 1 0 0 1 711 280 2
 Refer: 26 65 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Egrave
@@ -8236,6 +8358,7 @@ LayerCount: 3
 Fore
 Refer: 239 -1 N 1 0 0 1 576 280 2
 Refer: 30 69 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Igrave
@@ -8247,6 +8370,7 @@ LayerCount: 3
 Fore
 Refer: 239 -1 N 1 0 0 1 435 280 2
 Refer: 34 73 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Ograve
@@ -8258,6 +8382,7 @@ LayerCount: 3
 Fore
 Refer: 239 -1 N 1 0 0 1 640 280 2
 Refer: 40 79 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Ugrave
@@ -8269,6 +8394,7 @@ LayerCount: 3
 Fore
 Refer: 239 -1 N 1 0 0 1 607 280 2
 Refer: 46 85 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: acutecomb.cap
@@ -8304,6 +8430,7 @@ LayerCount: 3
 Fore
 Refer: 245 -1 N 1 0 0 1 711 280 2
 Refer: 26 65 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Cacute
@@ -8315,6 +8442,7 @@ LayerCount: 3
 Fore
 Refer: 245 -1 N 1 0 0 1 615 280 2
 Refer: 28 67 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Eacute
@@ -8326,6 +8454,7 @@ LayerCount: 3
 Fore
 Refer: 245 -1 N 1 0 0 1 576 280 2
 Refer: 30 69 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Iacute
@@ -8337,6 +8466,7 @@ LayerCount: 3
 Fore
 Refer: 245 -1 N 1 0 0 1 435 280 2
 Refer: 34 73 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Lacute
@@ -8348,6 +8478,7 @@ LayerCount: 3
 Fore
 Refer: 245 -1 N 1 0 0 1 412 280 2
 Refer: 37 76 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Nacute
@@ -8359,6 +8490,7 @@ LayerCount: 3
 Fore
 Refer: 245 -1 N 1 0 0 1 631 280 2
 Refer: 39 78 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Oacute
@@ -8370,6 +8502,7 @@ LayerCount: 3
 Fore
 Refer: 245 -1 N 1 0 0 1 640 280 2
 Refer: 40 79 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Racute
@@ -8381,6 +8514,7 @@ LayerCount: 3
 Fore
 Refer: 245 -1 N 1 0 0 1 597 280 2
 Refer: 43 82 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Sacute
@@ -8392,6 +8526,7 @@ LayerCount: 3
 Fore
 Refer: 245 -1 N 1 0 0 1 515 280 2
 Refer: 44 83 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Uacute
@@ -8403,6 +8538,7 @@ LayerCount: 3
 Fore
 Refer: 245 -1 N 1 0 0 1 607 280 2
 Refer: 46 85 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Yacute
@@ -8414,6 +8550,7 @@ LayerCount: 3
 Fore
 Refer: 245 -1 N 1 0 0 1 528 280 2
 Refer: 50 89 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Zacute
@@ -8425,6 +8562,7 @@ LayerCount: 3
 Fore
 Refer: 245 -1 N 1 0 0 1 554 280 2
 Refer: 51 90 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: lacute
@@ -8478,6 +8616,7 @@ LayerCount: 3
 Fore
 Refer: 259 -1 N 1 0 0 1 711 280 2
 Refer: 26 65 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Ccircumflex
@@ -8489,6 +8628,7 @@ LayerCount: 3
 Fore
 Refer: 259 -1 N 1 0 0 1 615 280 2
 Refer: 28 67 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Ecircumflex
@@ -8500,6 +8640,7 @@ LayerCount: 3
 Fore
 Refer: 259 -1 N 1 0 0 1 576 280 2
 Refer: 30 69 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Gcircumflex
@@ -8511,6 +8652,7 @@ LayerCount: 3
 Fore
 Refer: 259 -1 N 1 0 0 1 624 280 2
 Refer: 32 71 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Hcircumflex
@@ -8522,6 +8664,7 @@ LayerCount: 3
 Fore
 Refer: 259 -1 N 1 0 0 1 652 280 2
 Refer: 33 72 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Icircumflex
@@ -8533,6 +8676,7 @@ LayerCount: 3
 Fore
 Refer: 259 -1 N 1 0 0 1 435 280 2
 Refer: 34 73 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Jcircumflex
@@ -8544,6 +8688,7 @@ LayerCount: 3
 Fore
 Refer: 259 -1 N 1 0 0 1 367 280 2
 Refer: 35 74 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Ocircumflex
@@ -8555,6 +8700,7 @@ LayerCount: 3
 Fore
 Refer: 259 -1 N 1 0 0 1 640 280 2
 Refer: 40 79 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Scircumflex
@@ -8566,6 +8712,7 @@ LayerCount: 3
 Fore
 Refer: 259 -1 N 1 0 0 1 515 280 2
 Refer: 44 83 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Ucircumflex
@@ -8577,6 +8724,7 @@ LayerCount: 3
 Fore
 Refer: 259 -1 N 1 0 0 1 607 280 2
 Refer: 46 85 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Wcircumflex
@@ -8588,6 +8736,7 @@ LayerCount: 3
 Fore
 Refer: 259 -1 N 1 0 0 1 702 280 2
 Refer: 48 87 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Ycircumflex
@@ -8599,6 +8748,7 @@ LayerCount: 3
 Fore
 Refer: 259 -1 N 1 0 0 1 528 280 2
 Refer: 50 89 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Ubreve
@@ -8610,6 +8760,7 @@ LayerCount: 3
 Fore
 Refer: 288 -1 N 1 0 0 1 607 280 2
 Refer: 46 85 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: uni030C.cap
@@ -8652,6 +8803,7 @@ LayerCount: 3
 Fore
 Refer: 273 -1 N 1 0 0 1 615 280 2
 Refer: 28 67 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Dcaron
@@ -8663,6 +8815,7 @@ LayerCount: 3
 Fore
 Refer: 273 -1 N 1 0 0 1 572 280 2
 Refer: 29 68 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Ecaron
@@ -8674,6 +8827,7 @@ LayerCount: 3
 Fore
 Refer: 273 -1 N 1 0 0 1 576 280 2
 Refer: 30 69 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Ncaron
@@ -8685,6 +8839,7 @@ LayerCount: 3
 Fore
 Refer: 273 -1 N 1 0 0 1 631 280 2
 Refer: 39 78 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Rcaron
@@ -8696,6 +8851,7 @@ LayerCount: 3
 Fore
 Refer: 273 -1 N 1 0 0 1 597 280 2
 Refer: 43 82 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Tcaron
@@ -8707,6 +8863,7 @@ LayerCount: 3
 Fore
 Refer: 273 -1 N 1 0 0 1 569.852 277 2
 Refer: 45 84 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Scaron
@@ -8718,6 +8875,7 @@ LayerCount: 3
 Fore
 Refer: 273 -1 N 1 0 0 1 515 280 2
 Refer: 44 83 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Zcaron
@@ -8729,6 +8887,7 @@ LayerCount: 3
 Fore
 Refer: 273 -1 N 1 0 0 1 554 280 2
 Refer: 51 90 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: uni0304.cap
@@ -8763,6 +8922,7 @@ LayerCount: 3
 Fore
 Refer: 282 -1 N 1 0 0 1 711 280 2
 Refer: 26 65 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Emacron
@@ -8774,6 +8934,7 @@ LayerCount: 3
 Fore
 Refer: 282 -1 N 1 0 0 1 576 280 2
 Refer: 30 69 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Imacron
@@ -8785,6 +8946,7 @@ LayerCount: 3
 Fore
 Refer: 282 -1 N 1 0 0 1 435 280 2
 Refer: 34 73 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Omacron
@@ -8796,6 +8958,7 @@ LayerCount: 3
 Fore
 Refer: 282 -1 N 1 0 0 1 640 280 2
 Refer: 40 79 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Umacron
@@ -8807,6 +8970,7 @@ LayerCount: 3
 Fore
 Refer: 282 -1 N 1 0 0 1 607 280 2
 Refer: 46 85 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: uni0306.cap
@@ -8876,6 +9040,7 @@ LayerCount: 3
 Fore
 Refer: 289 -1 N 1 0 0 1 640 280 2
 Refer: 40 79 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Uhungarumlaut
@@ -8887,6 +9052,7 @@ LayerCount: 3
 Fore
 Refer: 289 -1 N 1 0 0 1 607 280 2
 Refer: 46 85 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Abreve
@@ -8898,6 +9064,7 @@ LayerCount: 3
 Fore
 Refer: 288 -1 N 1 0 0 1 711 280 2
 Refer: 26 65 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Ebreve
@@ -8909,6 +9076,7 @@ LayerCount: 3
 Fore
 Refer: 288 -1 N 1 0 0 1 576 280 2
 Refer: 30 69 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Gbreve
@@ -8920,6 +9088,7 @@ LayerCount: 3
 Fore
 Refer: 288 -1 N 1 0 0 1 624 280 2
 Refer: 32 71 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Ibreve
@@ -8931,6 +9100,7 @@ LayerCount: 3
 Fore
 Refer: 288 -1 N 1 0 0 1 435 280 2
 Refer: 34 73 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Obreve
@@ -8942,6 +9112,7 @@ LayerCount: 3
 Fore
 Refer: 288 -1 N 1 0 0 1 640 280 2
 Refer: 40 79 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: edotaccent
@@ -9016,6 +9187,7 @@ LayerCount: 3
 Fore
 Refer: 301 -1 N 1 0 0 1 615 280 2
 Refer: 28 67 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Edotaccent
@@ -9027,6 +9199,7 @@ LayerCount: 3
 Fore
 Refer: 301 -1 N 1 0 0 1 576 280 2
 Refer: 30 69 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Gdotaccent
@@ -9038,6 +9211,7 @@ LayerCount: 3
 Fore
 Refer: 301 -1 N 1 0 0 1 624 280 2
 Refer: 32 71 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Idotaccent
@@ -9060,6 +9234,7 @@ LayerCount: 3
 Fore
 Refer: 301 -1 N 1 0 0 1 554 280 2
 Refer: 51 90 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: odieresis
@@ -9156,6 +9331,7 @@ LayerCount: 3
 Fore
 Refer: 312 -1 N 1 0 0 1 711 280 2
 Refer: 26 65 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Edieresis
@@ -9167,6 +9343,7 @@ LayerCount: 3
 Fore
 Refer: 312 -1 N 1 0 0 1 576 280 2
 Refer: 30 69 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Idieresis
@@ -9178,6 +9355,7 @@ LayerCount: 3
 Fore
 Refer: 312 -1 N 1 0 0 1 435 280 2
 Refer: 34 73 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Odieresis
@@ -9189,6 +9367,7 @@ LayerCount: 3
 Fore
 Refer: 312 -1 N 1 0 0 1 640 280 2
 Refer: 40 79 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Udieresis
@@ -9200,6 +9379,7 @@ LayerCount: 3
 Fore
 Refer: 312 -1 N 1 0 0 1 607 280 2
 Refer: 46 85 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Ydieresis
@@ -9211,6 +9391,7 @@ LayerCount: 3
 Fore
 Refer: 312 -1 N 1 0 0 1 528 280 2
 Refer: 50 89 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: uni0312
@@ -9335,6 +9516,7 @@ LayerCount: 3
 Fore
 Refer: 325 -1 N 1 0 0 1 711 280 2
 Refer: 26 65 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Uring
@@ -9346,6 +9528,7 @@ LayerCount: 3
 Fore
 Refer: 325 -1 N 1 0 0 1 607 280 2
 Refer: 46 85 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: ntilde
@@ -9451,6 +9634,7 @@ LayerCount: 3
 Fore
 Refer: 333 -1 N 1 0 0 1 631 280 2
 Refer: 39 78 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Atilde
@@ -9462,6 +9646,7 @@ LayerCount: 3
 Fore
 Refer: 333 -1 N 1 0 0 1 711 280 2
 Refer: 26 65 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Itilde
@@ -9473,6 +9658,7 @@ LayerCount: 3
 Fore
 Refer: 333 -1 N 1 0 0 1 435 280 2
 Refer: 34 73 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Otilde
@@ -9484,6 +9670,7 @@ LayerCount: 3
 Fore
 Refer: 333 -1 N 1 0 0 1 640 280 2
 Refer: 40 79 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Utilde
@@ -9495,6 +9682,7 @@ LayerCount: 3
 Fore
 Refer: 333 -1 N 1 0 0 1 607 280 2
 Refer: 46 85 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: uni0326
@@ -9528,6 +9716,7 @@ LayerCount: 3
 Fore
 Refer: 339 806 N 1 0 0 1 506 0 2
 Refer: 32 71 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Kcommaaccent
@@ -9539,6 +9728,7 @@ LayerCount: 3
 Fore
 Refer: 339 806 N 1 0 0 1 536 0 2
 Refer: 36 75 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: kcommaaccent
@@ -9561,6 +9751,7 @@ LayerCount: 3
 Fore
 Refer: 339 806 N 1 0 0 1 492 0 2
 Refer: 37 76 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: lcommaaccent
@@ -9583,6 +9774,7 @@ LayerCount: 3
 Fore
 Refer: 339 806 N 1 0 0 1 594 0 2
 Refer: 39 78 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: ncommaaccent
@@ -9611,6 +9803,7 @@ LayerCount: 3
 Fore
 Refer: 339 806 N 1 0 0 1 532 0 2
 Refer: 43 82 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: rcommaaccent
@@ -9633,6 +9826,7 @@ LayerCount: 3
 Fore
 Refer: 339 806 N 1 0 0 1 428 0 2
 Refer: 44 83 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: uni0219
@@ -9655,6 +9849,7 @@ LayerCount: 3
 Fore
 Refer: 339 806 N 1 0 0 1 465 0 2
 Refer: 45 84 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: uni021B
@@ -9718,6 +9913,8 @@ SplineSet
  131 -67 160 -98 160 -131 c 0
  160 -181 111 -217 48 -217 c 0xf0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" uni021B
+Substitution2: "romanian subtable" uni021B
 EndChar
 
 StartChar: uni0327
@@ -9791,6 +9988,7 @@ SplineSet
  423 -67 452 -98 452 -131 c 0
  452 -181 403 -217 340 -217 c 0xff
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: ccedilla
@@ -9883,6 +10081,7 @@ SplineSet
  295 -67 324 -98 324 -131 c 0
  324 -181 275 -217 212 -217 c 0xff80
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: scedilla
@@ -9924,6 +10123,8 @@ SplineSet
  192 -67 221 -98 221 -131 c 0
  221 -181 172 -217 109 -217 c 0xfc
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" uni0219
+Substitution2: "romanian subtable" uni0219
 EndChar
 
 StartChar: uni0162
@@ -9985,6 +10186,7 @@ SplineSet
  332 -67 361 -98 361 -131 c 0
  361 -181 312 -217 249 -217 c 0xfe
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: gcommaaccent
@@ -10035,6 +10237,7 @@ SplineSet
  177 495 169 412 157 316 c 0
  135 141 128 75 123 14 c 0xb0
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: questiondown
@@ -10070,6 +10273,7 @@ SplineSet
  233 641 263 657 273 657 c 0
  301 657 323 626 323 611 c 0xe8
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: germandbls
@@ -10166,6 +10370,7 @@ SplineSet
  277 497 265 497 255 496 c 0
  236 494 238 493 236 479 c 2
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: thorn
@@ -10258,6 +10463,7 @@ SplineSet
  113 662 194 661 228 661 c 0
  288 661 326 663 360 663 c 0
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Dcroat
@@ -10268,6 +10474,7 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 367 208 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: dcroat
@@ -10477,6 +10684,7 @@ SplineSet
  610 482 611 484 611 485 c 0
  611 487 609 488 603 488 c 2
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: tbar
@@ -10590,6 +10798,7 @@ SplineSet
  660 686 662 685 662 675 c 0xf4
  662 656 657 624 653 545 c 0xf8
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: oslash
@@ -10686,6 +10895,7 @@ SplineSet
  572 640 l 2
  569 635 568 635 573 632 c 0
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: lslash
@@ -10783,6 +10993,7 @@ SplineSet
  187 147 175 58 175 53 c 0
  175 40 179 31 192 31 c 0x78
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: afii57929
@@ -10839,6 +11050,7 @@ LayerCount: 3
 Fore
 Refer: 380 789 N 1 0 0 1 377 0 2
 Refer: 37 76 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: lcaron
@@ -11158,6 +11370,7 @@ SplineSet
  274 638 247 436 238 369 c 0
  236 354 234 352 252 352 c 2xdf80
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Uogonek
@@ -11212,6 +11425,7 @@ SplineSet
  514 39 513 58 511 69 c 0
  509 79 508 81 502 75 c 0
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: ogonek
@@ -11263,6 +11477,7 @@ SplineSet
  90 27 172 572 172 623 c 0
  172 633 170 639 163 639 c 2
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: Aogonek
@@ -11321,6 +11536,7 @@ SplineSet
  654 -3 617 -1 588 0 c 1
  542 -41 481 -108 481 -177 c 0
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: periodcentered
@@ -11401,6 +11617,7 @@ SplineSet
  252 638 175 66 175 53 c 0
  175 40 179 31 192 31 c 0x70
 EndSplineSet
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 LCarets2: 1 0 
 EndChar
 
@@ -11879,6 +12096,9 @@ SplineSet
  169 335 166 299 111 281 c 0
  101 277 96 277 96 274 c 0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" braceleft.u
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" braceleft.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 12 subtable" braceleft.u
 EndChar
 
 StartChar: uni2053
@@ -11958,6 +12178,9 @@ SplineSet
  138 213 141 249 196 267 c 0
  206 271 211 271 211 274 c 0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" braceright.u
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" braceright.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 12 subtable" braceright.u
 EndChar
 
 StartChar: copyright
@@ -12138,9 +12361,10 @@ SplineSet
  156 48 158 47 160 47 c 0
  163 47 164 53 166 60 c 2
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" cent.sub cent.sup cent.denom cent.numer
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" cent.sub cent.sup cent.denom cent.numer
-Substitution2: "'subs' Subscript in Latin lookup 5 subtable" cent.sub
-Substitution2: "'sups' Superscript in Latin lookup 4 subtable" cent.sup
+Substitution2: "'subs' Subscript in Latin lookup 8 subtable" cent.sub
+Substitution2: "'sups' Superscript in Latin lookup 7 subtable" cent.sup
 Substitution2: "denominators subtable" cent.denom
 Substitution2: "numerators subtable" cent.numer
 EndChar
@@ -12266,6 +12490,7 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 37 76 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: f_hcircumflex
@@ -12301,6 +12526,7 @@ LayerCount: 3
 Fore
 Refer: 301 -1 N 1 0 0 1 561 280 2
 Refer: 27 66 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: uni1E03
@@ -12323,6 +12549,7 @@ LayerCount: 3
 Fore
 Refer: 301 -1 N 1 0 0 1 572 280 2
 Refer: 29 68 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: uni1E0B
@@ -12345,6 +12572,7 @@ LayerCount: 3
 Fore
 Refer: 301 -1 N 1 0 0 1 568 280 2
 Refer: 31 70 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: uni1E1F
@@ -12367,6 +12595,7 @@ LayerCount: 3
 Fore
 Refer: 301 -1 N 1 0 0 1 652 280 2
 Refer: 33 72 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: uni1E23
@@ -12389,6 +12618,7 @@ LayerCount: 3
 Fore
 Refer: 301 -1 N 1 0 0 1 718 280 2
 Refer: 38 77 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: uni1E41
@@ -12411,6 +12641,7 @@ LayerCount: 3
 Fore
 Refer: 301 -1 N 1 0 0 1 554 280 2
 Refer: 41 80 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: uni1E57
@@ -12433,6 +12664,7 @@ LayerCount: 3
 Fore
 Refer: 301 -1 N 1 0 0 1 515 280 2
 Refer: 44 83 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: uni1E61
@@ -12455,6 +12687,7 @@ LayerCount: 3
 Fore
 Refer: 301 -1 N 1 0 0 1 572.691 264 2
 Refer: 45 84 N 1 0 0 1 0 0 2
+Position2: "'cpsp' Capital Spacing in Latin lookup 2 subtable" dx=4 dy=0 dh=8 dv=0
 EndChar
 
 StartChar: uni1E6B
@@ -12576,6 +12809,9 @@ SplineSet
  739 212 740 211 740 200 c 2
  740 188 l 2
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" afii00208.u
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" afii00208.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 12 subtable" afii00208.u
 EndChar
 
 StartChar: afii00208.u
@@ -13187,8 +13423,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 459 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" zero.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" zero.denom
-Substitution2: "Single Substitution lookup 3 subtable" zero.denom
+Substitution2: "Single Substitution lookup 6 subtable" zero.denom
 EndChar
 
 StartChar: one.numer
@@ -13199,8 +13436,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 460 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" one.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" one.denom
-Substitution2: "Single Substitution lookup 3 subtable" one.denom
+Substitution2: "Single Substitution lookup 6 subtable" one.denom
 EndChar
 
 StartChar: two.numer
@@ -13211,8 +13449,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 461 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" two.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" two.denom
-Substitution2: "Single Substitution lookup 3 subtable" two.denom
+Substitution2: "Single Substitution lookup 6 subtable" two.denom
 EndChar
 
 StartChar: three.numer
@@ -13223,8 +13462,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 462 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" three.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" three.denom
-Substitution2: "Single Substitution lookup 3 subtable" three.denom
+Substitution2: "Single Substitution lookup 6 subtable" three.denom
 EndChar
 
 StartChar: four.numer
@@ -13235,8 +13475,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 463 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" four.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" four.denom
-Substitution2: "Single Substitution lookup 3 subtable" four.denom
+Substitution2: "Single Substitution lookup 6 subtable" four.denom
 EndChar
 
 StartChar: five.numer
@@ -13247,8 +13488,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 464 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" five.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" five.denom
-Substitution2: "Single Substitution lookup 3 subtable" five.denom
+Substitution2: "Single Substitution lookup 6 subtable" five.denom
 EndChar
 
 StartChar: six.numer
@@ -13259,8 +13501,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 465 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" six.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" six.denom
-Substitution2: "Single Substitution lookup 3 subtable" six.denom
+Substitution2: "Single Substitution lookup 6 subtable" six.denom
 EndChar
 
 StartChar: seven.numer
@@ -13271,8 +13514,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 466 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" seven.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" seven.denom
-Substitution2: "Single Substitution lookup 3 subtable" seven.denom
+Substitution2: "Single Substitution lookup 6 subtable" seven.denom
 EndChar
 
 StartChar: eight.numer
@@ -13283,8 +13527,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 467 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" eight.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" eight.denom
-Substitution2: "Single Substitution lookup 3 subtable" eight.denom
+Substitution2: "Single Substitution lookup 6 subtable" eight.denom
 EndChar
 
 StartChar: nine.numer
@@ -13295,8 +13540,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 468 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" nine.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" nine.denom
-Substitution2: "Single Substitution lookup 3 subtable" nine.denom
+Substitution2: "Single Substitution lookup 6 subtable" nine.denom
 EndChar
 
 StartChar: zero.sub
@@ -14827,8 +15073,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 533 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" parenleft.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" parenleft.denom
-Substitution2: "Single Substitution lookup 3 subtable" parenleft.denom
+Substitution2: "Single Substitution lookup 6 subtable" parenleft.denom
 EndChar
 
 StartChar: parenright.numer
@@ -14839,8 +15086,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 534 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" parenright.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" parenright.denom
-Substitution2: "Single Substitution lookup 3 subtable" parenright.denom
+Substitution2: "Single Substitution lookup 6 subtable" parenright.denom
 EndChar
 
 StartChar: parenleft.sub
@@ -14951,8 +15199,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 541 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" bracketleft.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" bracketleft.denom
-Substitution2: "Single Substitution lookup 3 subtable" bracketleft.denom
+Substitution2: "Single Substitution lookup 6 subtable" bracketleft.denom
 EndChar
 
 StartChar: bracketright.numer
@@ -14963,8 +15212,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 542 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" bracketright.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" bracketright.denom
-Substitution2: "Single Substitution lookup 3 subtable" bracketright.denom
+Substitution2: "Single Substitution lookup 6 subtable" bracketright.denom
 EndChar
 
 StartChar: bracketleft.sub
@@ -15053,8 +15303,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 549 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" comma.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" comma.denom
-Substitution2: "Single Substitution lookup 3 subtable" comma.denom
+Substitution2: "Single Substitution lookup 6 subtable" comma.denom
 EndChar
 
 StartChar: period.numer
@@ -15065,8 +15316,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 550 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" period.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" period.denom
-Substitution2: "Single Substitution lookup 3 subtable" period.denom
+Substitution2: "Single Substitution lookup 6 subtable" period.denom
 EndChar
 
 StartChar: comma.sub
@@ -15136,8 +15388,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 557 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" hyphen.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" hyphen.denom
-Substitution2: "Single Substitution lookup 3 subtable" hyphen.denom
+Substitution2: "Single Substitution lookup 6 subtable" hyphen.denom
 EndChar
 
 StartChar: hyphen.sub
@@ -15225,8 +15478,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 561 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" dollar.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" dollar.denom
-Substitution2: "Single Substitution lookup 3 subtable" dollar.denom
+Substitution2: "Single Substitution lookup 6 subtable" dollar.denom
 EndChar
 
 StartChar: dollar.sub
@@ -15307,8 +15561,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 565 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" cent.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" cent.denom
-Substitution2: "Single Substitution lookup 3 subtable" cent.denom
+Substitution2: "Single Substitution lookup 6 subtable" cent.denom
 EndChar
 
 StartChar: cent.sub
@@ -15339,8 +15594,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 505 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" a.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" a.denom
-Substitution2: "Single Substitution lookup 3 subtable" a.denom
+Substitution2: "Single Substitution lookup 6 subtable" a.denom
 EndChar
 
 StartChar: b.numer
@@ -15351,8 +15607,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 506 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" b.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" b.denom
-Substitution2: "Single Substitution lookup 3 subtable" b.denom
+Substitution2: "Single Substitution lookup 6 subtable" b.denom
 EndChar
 
 StartChar: c.numer
@@ -15363,8 +15620,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 507 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" c.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" c.denom
-Substitution2: "Single Substitution lookup 3 subtable" c.denom
+Substitution2: "Single Substitution lookup 6 subtable" c.denom
 EndChar
 
 StartChar: d.numer
@@ -15375,8 +15633,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 508 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" d.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" d.denom
-Substitution2: "Single Substitution lookup 3 subtable" d.denom
+Substitution2: "Single Substitution lookup 6 subtable" d.denom
 EndChar
 
 StartChar: e.numer
@@ -15387,8 +15646,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 509 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" e.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" e.denom
-Substitution2: "Single Substitution lookup 3 subtable" e.denom
+Substitution2: "Single Substitution lookup 6 subtable" e.denom
 EndChar
 
 StartChar: f.numer
@@ -15399,8 +15659,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 510 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" f.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" f.denom
-Substitution2: "Single Substitution lookup 3 subtable" f.denom
+Substitution2: "Single Substitution lookup 6 subtable" f.denom
 EndChar
 
 StartChar: g.numer
@@ -15411,8 +15672,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 511 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" g.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" g.denom
-Substitution2: "Single Substitution lookup 3 subtable" g.denom
+Substitution2: "Single Substitution lookup 6 subtable" g.denom
 EndChar
 
 StartChar: h.numer
@@ -15423,8 +15685,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 512 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" h.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" h.denom
-Substitution2: "Single Substitution lookup 3 subtable" h.denom
+Substitution2: "Single Substitution lookup 6 subtable" h.denom
 EndChar
 
 StartChar: i.numer
@@ -15435,8 +15698,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 513 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" i.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" i.denom
-Substitution2: "Single Substitution lookup 3 subtable" i.denom
+Substitution2: "Single Substitution lookup 6 subtable" i.denom
 EndChar
 
 StartChar: j.numer
@@ -15447,8 +15711,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 514 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" j.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" j.denom
-Substitution2: "Single Substitution lookup 3 subtable" j.denom
+Substitution2: "Single Substitution lookup 6 subtable" j.denom
 EndChar
 
 StartChar: k.numer
@@ -15459,8 +15724,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 515 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" k.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" k.denom
-Substitution2: "Single Substitution lookup 3 subtable" k.denom
+Substitution2: "Single Substitution lookup 6 subtable" k.denom
 EndChar
 
 StartChar: l.numer
@@ -15471,8 +15737,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 516 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" l.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" l.denom
-Substitution2: "Single Substitution lookup 3 subtable" l.denom
+Substitution2: "Single Substitution lookup 6 subtable" l.denom
 EndChar
 
 StartChar: m.numer
@@ -15483,8 +15750,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 517 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" m.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" m.denom
-Substitution2: "Single Substitution lookup 3 subtable" m.denom
+Substitution2: "Single Substitution lookup 6 subtable" m.denom
 EndChar
 
 StartChar: n.numer
@@ -15495,8 +15763,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 518 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" n.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" n.denom
-Substitution2: "Single Substitution lookup 3 subtable" n.denom
+Substitution2: "Single Substitution lookup 6 subtable" n.denom
 EndChar
 
 StartChar: o.numer
@@ -15507,8 +15776,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 519 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" o.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" o.denom
-Substitution2: "Single Substitution lookup 3 subtable" o.denom
+Substitution2: "Single Substitution lookup 6 subtable" o.denom
 EndChar
 
 StartChar: p.numer
@@ -15519,8 +15789,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 520 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" p.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" p.denom
-Substitution2: "Single Substitution lookup 3 subtable" p.denom
+Substitution2: "Single Substitution lookup 6 subtable" p.denom
 EndChar
 
 StartChar: q.numer
@@ -15531,8 +15802,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 521 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" q.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" q.denom
-Substitution2: "Single Substitution lookup 3 subtable" q.denom
+Substitution2: "Single Substitution lookup 6 subtable" q.denom
 EndChar
 
 StartChar: r.numer
@@ -15543,8 +15815,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 522 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" r.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" r.denom
-Substitution2: "Single Substitution lookup 3 subtable" r.denom
+Substitution2: "Single Substitution lookup 6 subtable" r.denom
 EndChar
 
 StartChar: s.numer
@@ -15555,8 +15828,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 523 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" s.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" s.denom
-Substitution2: "Single Substitution lookup 3 subtable" s.denom
+Substitution2: "Single Substitution lookup 6 subtable" s.denom
 EndChar
 
 StartChar: t.numer
@@ -15567,8 +15841,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 524 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" t.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" t.denom
-Substitution2: "Single Substitution lookup 3 subtable" t.denom
+Substitution2: "Single Substitution lookup 6 subtable" t.denom
 EndChar
 
 StartChar: u.numer
@@ -15579,8 +15854,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 525 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" u.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" u.denom
-Substitution2: "Single Substitution lookup 3 subtable" u.denom
+Substitution2: "Single Substitution lookup 6 subtable" u.denom
 EndChar
 
 StartChar: v.numer
@@ -15591,8 +15867,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 526 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" v.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" v.denom
-Substitution2: "Single Substitution lookup 3 subtable" v.denom
+Substitution2: "Single Substitution lookup 6 subtable" v.denom
 EndChar
 
 StartChar: w.numer
@@ -15603,8 +15880,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 527 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" w.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" w.denom
-Substitution2: "Single Substitution lookup 3 subtable" w.denom
+Substitution2: "Single Substitution lookup 6 subtable" w.denom
 EndChar
 
 StartChar: x.numer
@@ -15615,8 +15893,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 528 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" x.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" x.denom
-Substitution2: "Single Substitution lookup 3 subtable" x.denom
+Substitution2: "Single Substitution lookup 6 subtable" x.denom
 EndChar
 
 StartChar: y.numer
@@ -15627,8 +15906,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 529 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" y.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" y.denom
-Substitution2: "Single Substitution lookup 3 subtable" y.denom
+Substitution2: "Single Substitution lookup 6 subtable" y.denom
 EndChar
 
 StartChar: z.numer
@@ -15639,8 +15919,9 @@ Flags: HW
 LayerCount: 3
 Fore
 Refer: 530 -1 N 1 0 0 1 0 250 2
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" z.denom
 AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" z.denom
-Substitution2: "Single Substitution lookup 3 subtable" z.denom
+Substitution2: "Single Substitution lookup 6 subtable" z.denom
 EndChar
 
 StartChar: a.sub
@@ -16320,6 +16601,9 @@ SplineSet
  99 198 98 199 98 201 c 0
  98 216 107 240 116 241 c 0xa0
 EndSplineSet
+AlternateSubs2: "'aalt' Access All Alternates lookup 0 subtable" figuredash.u
+AlternateSubs2: "'aalt' Access All Alternates in Latin lookup 0 subtable" figuredash.u
+Substitution2: "'case' Case-Sensitive Forms in Latin lookup 12 subtable" figuredash.u
 EndChar
 
 StartChar: figuredash.u

@@ -18,33 +18,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-ACLOCAL_AMFLAGS = -I m4 --install
 
-@sortsmill_rules@
-@sortsmill_mit_binpack_rules@
+feature hist {
+   sub \s by \longs;
+} hist;
 
-MKFONT_FLAGS = --infer-licensing --no-instructions --ttf-emsize=4096 ${MKFONT_GRAPHITE_FLAGS}
-FAMILYNAME = fanwood
-FONTS = Fanwood Fanwood-Italic
-FEA_Fanwood = case cpsp figures generated_kerning hist liga locl main sc
-FEA_Fanwood_Italic = case cpsp figures generated_kerning hist liga locl main
 
-fonts_DATA = $(call expand_fonts, ${FONTS})
-
-EXTRA_DIST = \
-	$(addsuffix .sfd, ${FONTS}) \
-	$(addsuffix _build.py, ${FONTS}) \
-	${FEA_Fanwood:%=Fanwood_%.fea} \
-	${FEA_Fanwood_Italic:%=Fanwood-Italic_%.fea}
-
-Fanwood.otf: ${FEA_Fanwood:%=Fanwood_%.fea}
-FanwoodTT.ttf: ${FEA_Fanwood:%=Fanwood_%.fea}
-Fanwood-Italic.otf: ${FEA_Fanwood_Italic:%=Fanwood-Italic_%.fea}
-FanwoodTT-Italic.ttf: ${FEA_Fanwood_Italic:%=Fanwood-Italic_%.fea}
-
-MOSTLYCLEANFILES = ${fonts_DATA} gdlerr.txt
-
-ChangeLog::
-	hg log --style=changelog --only-branch=default "${top_srcdir}" > $@ 
-
-DISTCLEANFILES = ChangeLog
+# local variables:
+# mode: fundamental
+# end:

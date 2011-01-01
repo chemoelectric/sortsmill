@@ -18,33 +18,53 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-ACLOCAL_AMFLAGS = -I m4 --install
+lookup catalan {
+  sub L by L.CAT;
+  sub l by l.CAT;
+} catalan;
 
-@sortsmill_rules@
-@sortsmill_mit_binpack_rules@
 
-MKFONT_FLAGS = --infer-licensing --no-instructions --ttf-emsize=4096 ${MKFONT_GRAPHITE_FLAGS}
-FAMILYNAME = fanwood
-FONTS = Fanwood Fanwood-Italic
-FEA_Fanwood = case cpsp figures generated_kerning hist liga locl main sc
-FEA_Fanwood_Italic = case cpsp figures generated_kerning hist liga locl main
+lookup romanian {
+  sub scedilla by uni0219;
+  sub uni0163 by uni021B;
+} romanian;
 
-fonts_DATA = $(call expand_fonts, ${FONTS})
 
-EXTRA_DIST = \
-	$(addsuffix .sfd, ${FONTS}) \
-	$(addsuffix _build.py, ${FONTS}) \
-	${FEA_Fanwood:%=Fanwood_%.fea} \
-	${FEA_Fanwood_Italic:%=Fanwood-Italic_%.fea}
+lookup turkish {
 
-Fanwood.otf: ${FEA_Fanwood:%=Fanwood_%.fea}
-FanwoodTT.ttf: ${FEA_Fanwood:%=Fanwood_%.fea}
-Fanwood-Italic.otf: ${FEA_Fanwood_Italic:%=Fanwood-Italic_%.fea}
-FanwoodTT-Italic.ttf: ${FEA_Fanwood_Italic:%=Fanwood-Italic_%.fea}
+  # Replace the dotted 'i' with an equivalent glyph that does not
+  # get replaced with f-ligatures.  See http://typophile.com/node/17787
+  sub i by i.TRK;
 
-MOSTLYCLEANFILES = ${fonts_DATA} gdlerr.txt
+} turkish;
 
-ChangeLog::
-	hg log --style=changelog --only-branch=default "${top_srcdir}" > $@ 
 
-DISTCLEANFILES = ChangeLog
+feature locl {
+
+  script latn;
+
+  language CAT exclude_dflt;
+  lookup catalan;
+
+  language ROM exclude_dflt;
+  lookup romanian;
+
+  language MOL exclude_dflt;
+  lookup romanian;
+
+  language TRK exclude_dflt;
+  lookup turkish;
+
+  language AZE exclude_dflt;
+  lookup turkish;
+
+  language CRT exclude_dflt;
+  lookup turkish;
+
+} locl;
+
+
+
+# local variables:
+# mode: fundamental
+# end:
