@@ -666,12 +666,12 @@ def flip_spacing_anchors_left_right(glyph):
             anchor_points.append(a)
     glyph.anchorPointsWithSel = anchor_points
 
-def spread_spacing_anchors(amount, glyph):
+def spread_spacing_anchors(amount, glyph, ignore_point_selections = False):
     glyph.preserveLayerAsUndo()
     none_selected = (selected_spacing_anchors(glyph) == [])
     anchor_points = []
     for a in glyph.anchorPointsWithSel:
-        if none_selected or a[4]:
+        if none_selected or ignore_point_selections or a[4]:
             a_name = anchor_name(a[0])
             if a_name.side:
                 if a_name.side in 'l':
@@ -688,7 +688,7 @@ def spread_spacing_anchors(amount, glyph):
 
 def spread_spacing_anchors_of_selected_glyphs(amount, font):
     for glyph in font.selection.byGlyphs:
-        spread_spacing_anchors(amount, glyph)
+        spread_spacing_anchors(amount, glyph, ignore_point_selections=True)
 
 #--------------------------------------------------------------------------
 
