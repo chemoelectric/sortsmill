@@ -22,7 +22,7 @@
 # THE SOFTWARE.
 
 AC_PREREQ([2.65])
-AC_INIT([sortsmill-tools], [0.2], [http://code.google.com/p/sortsmill/issues/])
+AC_INIT([sortsmill-tools], [0.3], [http://code.google.com/p/sortsmill/issues/])
 AM_INIT_AUTOMAKE([foreign])
 AM_PATH_PYTHON([2.6])
 
