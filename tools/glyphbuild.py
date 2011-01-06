@@ -3102,31 +3102,6 @@ TILDE_BELOW = "uni0330"
 MACRON_BELOW = "uni0331"
 PERIOD_CENTERED = PERIODCENTERED = "periodcentered"
 
-
-"""
-FIX: deprecated stuff
-
-basic_bases = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
-               "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
-               "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
-               "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
-               "longs", "AE", "ae", "Oslash", "oslash"]
-
-top_marks = [GRAVE, ACUTE, CIRCUMFLEX, TILDE, MACRON, OVERLINE, BREVE,
-             DOTACCENT, DIERESIS, HOOK_ABOVE, RING, HUNGARUMLAUT, CARON,
-             VERTICAL_LINE_ABOVE, DOUBLE_VERTICAL_LINE_ABOVE,
-             DOUBLE_GRAVE, CANDRABINDU, INVERTED_BREVE,
-             TURNED_COMMA_ABOVE, COMMA_ABOVE, REVERSED_COMMA_ABOVE]
-
-bottom_marks = [GRAVE_BELOW, ACUTE_BELOW, DOT_BELOW, DIERESIS_BELOW,
-                RING_BELOW, COMMA_BELOW, CEDILLA, OGONEK, CARON_BELOW,
-                CIRCUMFLEX_BELOW, BREVE_BELOW, TILDE_BELOW, MACRON_BELOW]
-
-right_side_marks = [COMMA_ABOVE_RIGHT, HORN, PERIOD_CENTERED]
-
-all_marks = top_marks + bottom_marks + right_side_marks
-"""
-
 spacing_marks_lookup = {
     GRAVE: "grave",
     ACUTE: "acute",
@@ -3266,44 +3241,6 @@ def separate_strings(glyph_names, predicates):
         remaining = bad
     bins.append(set(remaining))
     return bins
-
-"""
-FIX: deprecated stuff
-
-def reference_transformation(glyph, ref_name):
-    for r in glyph.references:
-        if variant_root(r[0]) == ref_name:
-            return r[1]
-    raise ValueError
-
-def get_base_and_mark(glyph):
-    base = mark = None
-    if len(glyph.references) == 2:
-        if variant_root(glyph.references[0][0]) in all_marks:
-            base = glyph.references[1][0]
-            mark = glyph.references[0][0]
-        elif variant_root(glyph.references[1][0]) in all_marks:
-            base = glyph.references[0][0]
-            mark = glyph.references[1][0]
-    return (base, mark)
-
-ascender_bases = ("b", "d", "f", "h", "k", "l", "germandbls", "thorn", "eth")
-smallcaps_extensions = ("sc", "smcp", "smallcap", "smallcaps")
-
-
-def has_ascender(glyph):
-    roots = ascender_bases
-    nonascending = smallcaps_extensions
-    found = glyph.glyphname in roots
-    if not found:
-        for r in roots:
-            dotted = r + "."
-            d = len(dotted)
-            if glyph.glyphname[:d] == dotted and not glyph.glyphname[d:] in nonascending:
-                found = True
-                break
-    return found
-"""
 
 def propagate_hyphens(font, suffix = ""):
     if "hyphen" + suffix in font:

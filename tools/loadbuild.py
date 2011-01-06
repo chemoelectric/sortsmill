@@ -1,5 +1,5 @@
 """
-Copyright (c) 2009 Barry Schwartz
+Copyright (c) 2009-2011 Barry Schwartz
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,8 @@ THE SOFTWARE.
 
 import fontforge
 import os
+import spacing_by_anchors
+import tools
 from os.path import exists
 from imp import reload
 
@@ -35,5 +37,15 @@ def load_build(bitbucket, font):
     reload(module)
     module.build_glyphs(bitbucket, font)
 
+def load_build_thoroughly(bitbucket, font):
+    spacing_by_anchors.clear_cached_data(font)
+    load_build(None, font)
+    load_build(None, font)
+    load_build(None, font)
+    tools.reautohint(font)
+
 fontforge.registerMenuItem(load_build, build_file_exists,
                            None, "Font", "None", "Build glyphs")
+
+fontforge.registerMenuItem(load_build_thoroughly, build_file_exists,
+                           None, "Font", "None", "Thoroughly build glyphs")
