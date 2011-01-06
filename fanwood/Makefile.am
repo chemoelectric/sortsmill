@@ -21,7 +21,7 @@
 ACLOCAL_AMFLAGS = -I m4 --install
 
 @sortsmill_rules@
-@sortsmill_mit_binpack_rules@
+@sortsmill_mit_opentype_binpack_rules@
 
 MKFONT_FLAGS = --infer-licensing --no-instructions --ttf-emsize=4096 ${MKFONT_GRAPHITE_FLAGS}
 FAMILYNAME = fanwood
