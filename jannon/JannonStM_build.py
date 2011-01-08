@@ -28,7 +28,7 @@ from sortsmill.glyphbuild import *
 from sortsmill.spacing_by_anchors import *
 
 emsize = 1000
-spacesize = 225
+spacesize = 230
 
 def build_glyphs(bitbucket, f):
 
@@ -48,11 +48,11 @@ def build_glyphs(bitbucket, f):
     db = font_db.db_create(f)
 
     db['spacing_anchor_heights'] = {
-        'hi' : 660,             # caps and ascenders,
-        'x'  : 380,             # ex-height
-        'o'  : 210,             # like the letter o
+        'hi' : 675,             # caps and ascenders,
+        'x'  : 389,             # ex-height
+        'o'  : 215,             # like the letter o
         'bl' : 10,              # baseline
-        'lo' : -200,            # descenders
+        'lo' : -204,            # descenders
         }
 
     all_glyphs = set(f) - set(['.notdef'])
