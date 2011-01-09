@@ -21,7 +21,7 @@
 ACLOCAL_AMFLAGS = -I m4 --install
 
 @sortsmill_rules@
-@sortsmill_mit_binpack_rules@
+@sortsmill_mit_opentype_binpack_rules@
 
 MKFONT_FLAGS = --infer-licensing --ttf-emsize=4096 ${MKFONT_GRAPHITE_FLAGS}
 FAMILYNAME = jannon
@@ -35,10 +35,9 @@ EXTRA_DIST = \
 	$(addsuffix .sfd, ${FONTS}) \
 	$(addsuffix _build.py, ${FONTS}) \
 	${FEA_JannonStM:%=JannonStM_%.fea}
-#	${GDL_JannonStM}
 
 JannonStM.otf : ${FEA_JannonStM:%=JannonStM_%.fea}
-JannonStMTT.ttf : ${FEA_JannonStM:%=JannonStM_%.fea} ${GDL_JannonStM}
+JannonStMTT.ttf : ${FEA_JannonStM:%=JannonStM_%.fea}
 #JannonStM-Italic.otf : ${FEA_JannonStM:%=JannonStM-Italic_%.fea}
 #JannonStMTT-Italic.ttf : ${FEA_JannonStM:%=JannonStM-Italic_%.fea} ${GDL_JannonStM}
 
