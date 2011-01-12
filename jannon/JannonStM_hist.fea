@@ -18,38 +18,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-feature liga {
 
-  sub f f b by f_f_b;
-  sub f f h by f_f_h;
-  sub f f hcircumflex by f_f_hcircumflex;
-  sub f f i by f_f_i;
-  sub f f j by f_f_j;
-  sub f f k by f_f_k;
-  sub f f l by f_f_l;
-  sub f f thorn by f_f_thorn;
+feature hist {
+   sub \s by \longs;
+} hist;
 
-  sub f b by f_b;
-  sub f f by f_f;
-  sub f h by f_h;
-  sub f hcircumflex by f_hcircumflex;
-  sub f i by f_i;
-  sub f j by f_j;
-  sub f k by f_k;
-  sub f l by f_l;
-  sub f thorn by f_thorn;
-
-} liga;
-
-feature dlig {
-  sub c t by c_t;
-  sub s t by s_t;
-} dlig;
-
-feature QLIG {
-  sub Q U by Q_U;
-  sub Q u by Q_u;
-} QLIG;
 
 # local variables:
 # mode: fundamental

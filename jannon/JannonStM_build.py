@@ -89,12 +89,15 @@ def build_glyphs(bitbucket, f):
 #    propagate_hyphens(f, '.uppercase')
     build_spacing_marks(f, width = 2 * 220)
 
-#    make_glyph_reference('asciitilde', f['uni2053']) # Swung dash.
+    make_glyph_reference('asciitilde', f['uni2053']) # Swung dash.
     make_glyph_reference('i.TRK', f['i'])
     make_glyph_reference('Dcroat', f['Eth'])
 #    make_glyph_reference('dcroat.sc', f['eth.sc'])
 
     build_multigraph('ellipsis', [f['period'], f['period'], f['period']])
+
+    make_glyph_reference('quotesingle', f['minute'])
+    make_glyph_reference('quotedbl', f['second'])
 
 #    make_glyph_reference('uni00B9', f['one.sup'])
 #    make_glyph_reference('uni00B2', f['two.sup'])
@@ -224,8 +227,8 @@ def build_glyphs(bitbucket, f):
         build_accented_glyph(letter + 'circumflex', f[base(letter)], f['uni0302.cap'])
     for letter in 'h':
         build_accented_glyph(letter + 'circumflex', f[base(letter)], f['uni0302.ascend'])
-#    for letter in ['f_h', 'f_f_h']:
-#        build_accented_glyph(letter + 'circumflex', f[base(letter)], f['uni0302.cap'])
+    for letter in ['f_h', 'f_f_h']:
+        build_accented_glyph(letter + 'circumflex', f[base(letter)], f['uni0302.cap'])
 #    for letter in 'aceghijosuwy':
 #        build_accented_glyph(letter + 'circumflex.sc', f[letter + '.sc'], f['uni0302'])
 
@@ -318,18 +321,6 @@ def build_glyphs(bitbucket, f):
 
     build_multigraph('IJ', [f['I'], f['J']])
     build_multigraph('ij', [f['i'], f['j']])
-
-#    build_multigraph('f_b', [f['f'], f['b']])
-#    build_multigraph('f_h', [f['f'], f['h']])
-#    build_multigraph('f_hcircumflex', [f['f'], f['hcircumflex']])
-#    build_multigraph('f_k', [f['f'], f['k']])
-#    build_multigraph('f_l', [f['f'], f['l']])
-
-#    build_multigraph('f_f_b', [f['f_f'], f['b']])
-#    build_multigraph('f_f_h', [f['f_f'], f['h']])
-#    build_multigraph('f_f_hcircumflex', [f['f_f'], f['hcircumflex']])
-#    build_multigraph('f_f_k', [f['f_f'], f['k']])
-#    build_multigraph('f_f_l', [f['f_f'], f['l']])
 
     #--------------------------------------------------------------------------
 
