@@ -80,6 +80,11 @@ def reautohint(f):
         if not g.manualHints:
             g.autoHint()
 
+fontforge.registerMenuItem((lambda _, glyph: glyph.autoHint()),
+                           (lambda _, glyph: not glyph.manualHints),
+                           None, "Glyph", "None",
+                           "Autohint")
+
 fontforge.registerMenuItem((lambda _, font: reautohint(font)),
                            None, None, "Font", "None",
                            "Re-autohint autohintable glyphs")
