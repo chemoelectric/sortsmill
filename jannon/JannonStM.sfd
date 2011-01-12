@@ -22,7 +22,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1283672823
-ModificationTime: 1294817476
+ModificationTime: 1294821846
 OS2TypoAscent: 0
 OS2TypoAOffset: 1
 OS2TypoDescent: 0
@@ -109,7 +109,7 @@ KernClass2: 31 42 "'kern' Horizontal Kerning in Latin lookup 2 kerning class 5"
  5 slash
  26 Z Zacute Zcaron Zdotaccent
  15 asterisk degree
- 107 asterisk.STRANGE.NOT_USED napostrophe quotedblleft quotedblright quoteleft quotereversed quoteright uni201F
+ 106 asterisk.STRANGE.NOTUSED napostrophe quotedblleft quotedblright quoteleft quotereversed quoteright uni201F
  82 O Oacute Obreve Ocircumflex Odieresis Ograve Ohungarumlaut Omacron Oslash Otilde Q
  87 u uacute ubreve ucircumflex udieresis ugrave uhungarumlaut umacron uogonek uring utilde
  15 d dcaron dcroat
@@ -155,7 +155,7 @@ KernClass2: 21 40 "'kern' Horizontal Kerning in Latin lookup 2 kerning class 3"
  5 thorn
  73 A Aacute Abreve Acircumflex Adieresis Agrave Amacron Aogonek Aring Atilde
  92 C Cacute Ccaron Ccedilla Ccircumflex Cdotaccent G Gbreve Gcircumflex Gcommaaccent Gdotaccent
- 107 asterisk.STRANGE.NOT_USED napostrophe quotedblleft quotedblright quoteleft quotereversed quoteright uni201F
+ 106 asterisk.STRANGE.NOTUSED napostrophe quotedblleft quotedblright quoteleft quotereversed quoteright uni201F
  82 O Oacute Obreve Ocircumflex Odieresis Ograve Ohungarumlaut Omacron Oslash Otilde Q
  29 T Tbar Tcaron uni0162 uni021A
  15 V W Wcircumflex
@@ -201,7 +201,7 @@ KernClass2: 25 41 "'kern' Horizontal Kerning in Latin lookup 2 kerning class 1"
  33 comma quotedblbase quotesinglbase
  3 Q_u
  9 f_f_k f_k
- 95 asterisk.STRANGE.NOT_USED quotedblleft quotedblright quoteleft quotereversed quoteright uni201F
+ 94 asterisk.STRANGE.NOTUSED quotedblleft quotedblright quoteleft quotereversed quoteright uni201F
  15 ellipsis period
  54 afii00208 emdash endash hyphen uni00AD uni2010 uni2011
  15 asterisk degree
@@ -225,7 +225,7 @@ KernClass2: 25 41 "'kern' Horizontal Kerning in Latin lookup 2 kerning class 1"
  34 Y Yacute Ycircumflex Ydieresis yen
  26 Z Zacute Zcaron Zdotaccent
  254 colon dotlessi eth guillemotleft guillemotright guilsinglleft guilsinglright i i.TRK iacute ibreve icircumflex idieresis igrave ij imacron iogonek itilde j jcircumflex kgreenlandic r racute rcaron rcommaaccent semicolon uni0237 z zacute zcaron zdotaccent
- 107 asterisk.STRANGE.NOT_USED napostrophe quotedblleft quotedblright quoteleft quotereversed quoteright uni201F
+ 106 asterisk.STRANGE.NOTUSED napostrophe quotedblleft quotedblright quoteleft quotereversed quoteright uni201F
  21 comma ellipsis period
  15 d dcaron dcroat
  44 g gbreve gcircumflex gcommaaccent gdotaccent
@@ -257,7 +257,7 @@ NameList: Adobe Glyph List
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 1
-WinInfo: 24 12 4
+WinInfo: 8208 12 4
 BeginPrivate: 9
 BlueValues 23 [-28 4 400 443 663 708]
 OtherBlues 11 [-272 -254]
@@ -270,7 +270,7 @@ BlueScale 5 0.022
 BlueShift 1 1
 EndPrivate
 AnchorClass2: "right"  "accent anchors-1" "cedilla"  "accent anchors-1" "top"  "accent anchors-1" "r;k;lo"  "spacing anchors-1" "l;k;lo"  "spacing anchors-1" "r;lo"  "spacing anchors-1" "l;lo"  "spacing anchors-1" "r;k;o"  "spacing anchors-1" "l;k;o"  "spacing anchors-1" "r;o"  "spacing anchors-1" "l;o"  "spacing anchors-1" "r;k;hi"  "spacing anchors-1" "l;k;hi"  "spacing anchors-1" "r;hi"  "spacing anchors-1" "l;hi"  "spacing anchors-1" "r;k;x"  "spacing anchors-1" "l;k;x"  "spacing anchors-1" "r;x"  "spacing anchors-1" "l;x"  "spacing anchors-1" "r;k;bl"  "spacing anchors-1" "l;k;bl"  "spacing anchors-1" "r;bl"  "spacing anchors-1" "l;bl"  "spacing anchors-1" 
-BeginChars: 65575 428
+BeginChars: 65577 430
 
 StartChar: a
 Encoding: 97 97 0
@@ -5410,9 +5410,9 @@ StartChar: dagger
 Encoding: 8224 8224 97
 Width: 418
 VWidth: 0
-Flags: W
-HStem: 458 54<247.481 375.087> 468 39<237.666 326.904> 479 50<39.4714 177.24> 652 20G<207 220.5>
-VStem: 173 68<-127.509 170.331> 185 51<248.521 467.927 522.666 671.071>
+Flags: WO
+HStem: 422 54<252.479 377.921> 432 40<242.13 329.86> 443 51<36.4845 171.221>
+VStem: 179 63<-157.625 431.927 486.461 636.78>
 AnchorPoint: "l;bl" 0 10 basechar 0
 AnchorPoint: "l;x" 0 389 basechar 0
 AnchorPoint: "l;hi" 0 675 basechar 0
@@ -5426,104 +5426,128 @@ AnchorPoint: "r;lo" 418 -204 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-191 -133 m 0x58
- 176 -133 173 -118 173 -101 c 0x58
- 173 -98 175 -68 175 -56 c 0
- 178 63 181 280 185 458 c 0x94
- 185 475 142 479 111 479 c 0
- 74 479 54 463 44 463 c 0
- 33 463 27 475 27 486 c 0
- 27 514 59 529 85 529 c 0x34
- 122 529 139 522 171 522 c 0
- 181 522 185 532 185 542 c 0
- 185 585 188 606 188 648 c 0
- 188 661 201 672 213 672 c 0
- 228 672 236 663 236 651 c 0
- 236 614 235 586 235 549 c 0
- 235 523 240 507 272 507 c 0x54
- 331 507 344 512 366 512 c 0
- 373 512 377 505 377 495 c 0
- 377 463 359 458 329 458 c 0x94
- 284 458 257 468 247 468 c 0
- 237 468 236 458 236 449 c 2
- 236 312 l 2x54
- 236 193 241 97 241 -29 c 2
- 241 -82 l 2
- 241 -116 227 -133 191 -133 c 0x58
+191 -191 m 0x50
+ 176 -191 174 -133 174 -102 c 0
+ 177 19 175 241 179 422 c 0x90
+ 179 439 141 443 109 443 c 0
+ 71 443 51 427 41 427 c 0
+ 30 427 24 439 24 450 c 0
+ 24 479 56 494 83 494 c 0x30
+ 121 494 132 486 165 486 c 0
+ 175 486 179 497 179 507 c 0
+ 179 551 182 572 182 615 c 0
+ 182 628 201 640 213 640 c 0
+ 228 640 242 630 242 618 c 0
+ 242 580 241 552 241 514 c 0
+ 241 487 241 472 273 472 c 0x50
+ 333 472 346 476 369 476 c 0
+ 376 476 380 470 380 460 c 0
+ 380 427 363 422 332 422 c 0x90
+ 286 422 262 432 252 432 c 0
+ 242 432 242 421 242 412 c 2
+ 240 -98 l 2
+ 240 -133 204 -191 191 -191 c 0x50
+EndSplineSet
+Layer: 2
+SplineSet
+180.150390625 182 m 4
+ 180.150390625 199 144.049804688 203 113.650390625 203 c 4
+ 77.5498046875 203 58.5498046875 187 49.0498046875 187 c 4
+ 38.599609375 187 32.900390625 199 32.900390625 210 c 4
+ 32.900390625 239 63.2998046875 254 88.9501953125 254 c 4
+ 125.049804688 254 135.5 246 166.849609375 246 c 4
+ 176.349609375 246 180.150390625 257 180.150390625 267 c 4
+ 180.150390625 311 195.349609375 283 204.849609375 294 c 5
+ 218.150390625 286 239.049804688 312 239.049804688 274 c 4
+ 239.049804688 247 239.049804688 232 269.450195312 232 c 4
+ 326.450195312 232 338.799804688 236 360.650390625 236 c 4
+ 367.299804688 236 371.099609375 230 371.099609375 220 c 4
+ 371.099609375 187 354.950195312 182 325.5 182 c 4
+ 281.799804688 182 259 192 249.5 192 c 4
+ 240 192 240 172 240 172 c 13
+ 224.799804688 154 222.900390625 121 200.099609375 125 c 28
+ 178.25 129 180.150390625 182 180.150390625 182 c 4
+191 -191 m 4
+ 176 -191 174 -133 174 -102 c 4
+ 177 19 175 241 179 422 c 4
+ 179 439 141 443 109 443 c 4
+ 71 443 51 427 41 427 c 4
+ 30 427 24 439 24 450 c 4
+ 24 479 56 494 83 494 c 4
+ 121 494 132 486 165 486 c 4
+ 175 486 179 497 179 507 c 4
+ 179 551 182 572 182 615 c 4
+ 182 628 201 640 213 640 c 4
+ 228 640 242 630 242 618 c 4
+ 242 580 241 552 241 514 c 4
+ 241 487 241 472 273 472 c 4
+ 333 472 346 476 369 476 c 4
+ 376 476 380 470 380 460 c 4
+ 380 427 363 422 332 422 c 4
+ 286 422 262 432 252 432 c 4
+ 242 432 242 421 242 412 c 6
+ 240 -98 l 6
+ 240 -133 204 -191 191 -191 c 4
 EndSplineSet
 EndChar
 
 StartChar: daggerdbl
 Encoding: 8225 8225 98
-Width: 471
+Width: 418
 VWidth: 0
 Flags: W
-HStem: 415 39<158.92 212.979 262.314 310.248> 646 20G<163 174.5 307 313>
-VStem: 197 69<-124.179 124.834> 217 45<196.296 412.93 455.01 529.039> 293 31<621.244 665.867>
-AnchorPoint: "l;bl" 0 10 basechar 0
-AnchorPoint: "l;x" 0 389 basechar 0
-AnchorPoint: "l;hi" 0 675 basechar 0
-AnchorPoint: "l;o" 0 215 basechar 0
+HStem: 202 54<250.478 372.036> 212 40<250.235 325.907> 223 51<41.865 170.246> 422 54<252.479 377.921> 432 40<242.13 329.86> 443 51<36.4845 171.221>
+VStem: 176 65<-159.381 211.808 266.004 431.927 486.461 635.261>
+AnchorPoint: "r;lo" 418 -204 basechar 0
+AnchorPoint: "r;o" 418 215 basechar 0
+AnchorPoint: "r;hi" 418 675 basechar 0
+AnchorPoint: "r;x" 418 389 basechar 0
+AnchorPoint: "r;bl" 418 10 basechar 0
 AnchorPoint: "l;lo" 0 -204 basechar 0
-AnchorPoint: "r;bl" 471 10 basechar 0
-AnchorPoint: "r;x" 471 389 basechar 0
-AnchorPoint: "r;hi" 471 675 basechar 0
-AnchorPoint: "r;o" 471 215 basechar 0
-AnchorPoint: "r;lo" 471 -204 basechar 0
+AnchorPoint: "l;o" 0 215 basechar 0
+AnchorPoint: "l;hi" 0 675 basechar 0
+AnchorPoint: "l;x" 0 389 basechar 0
+AnchorPoint: "l;bl" 0 10 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-232 542 m 2xd8
- 236 533 237 530 239 530 c 0
- 243 530 248 540 253 556 c 0
- 263 585 275 617 293 655 c 1
- 293 656 l 1
- 296 661 304 666 310 666 c 0
- 316 666 324 661 324 650 c 0
- 324 626 280 548 268 512 c 0
- 264 501 262 491 262 483 c 0xd8
- 262 457 266 454 274 454 c 0
- 280 454 288 457 298 461 c 0
- 319 470 376 499 408 512 c 0
- 415 515 421 516 426 516 c 0
- 437 516 442 509 442 502 c 0
- 442 492 432 486 419 480 c 0
- 384 464 345 452 328 447 c 0
- 309 441 309 441 309 438 c 0
- 309 435 315 431 336 424 c 0
- 353 418 392 408 418 397 c 0
- 430 392 437 386 437 373 c 0
- 437 363 428 359 419 359 c 0
- 411 359 402 362 396 365 c 0
- 380 373 350 389 325 399 c 0
- 309 406 292 410 276 414 c 0
- 274 415 271 415 269 415 c 0
- 264 415 261 413 261 398 c 2
- 261 312 l 2
- 261 193 266 97 266 -29 c 2
- 266 -82 l 2xe8
- 266 -116 253 -128 217 -128 c 0xd8
- 201 -128 197 -118 197 -101 c 0xe8
- 197 -54 208 -9 213 407 c 0
- 213 412 209 413 203 413 c 0
- 195 413 185 410 181 409 c 0
- 129 395 73 364 47 364 c 0
- 37 364 27 370 27 381 c 0
- 27 394 42 402 60 406 c 0
- 87 412 145 432 149 436 c 1
- 149 442 133 448 122 453 c 0
- 97 463 64 480 38 491 c 0
- 31 493 29 501 29 506 c 0
- 29 515 36 522 46 522 c 0
- 48 522 51 522 53 521 c 0
- 94 504 138 481 174 466 c 0
- 182 462 196 455 206 455 c 0
- 213 455 217 458 217 468 c 0
- 217 477 215 491 209 506 c 0
- 194 544 152 627 152 648 c 0
- 152 656 156 666 170 666 c 0
- 179 666 186 660 188 656 c 2
- 232 542 l 2xd8
+191 -191 m 0x42
+ 176 -191 174 -133 174 -102 c 0
+ 176 -28 175 83 176 199 c 0
+ 176 212 174 213 164 217 c 0
+ 150 222 130 223 112 223 c 0
+ 75 223 56 207 46 207 c 0
+ 35 207 30 219 30 230 c 0
+ 30 259 61 274 87 274 c 0
+ 124 274 134 266 166 266 c 0
+ 175 266 177 272 177 282 c 0
+ 177 330 178 377 179 422 c 0x32
+ 179 439 141 443 109 443 c 0
+ 71 443 51 427 41 427 c 0
+ 30 427 24 439 24 450 c 0
+ 24 479 56 494 83 494 c 0x06
+ 121 494 132 486 165 486 c 0
+ 175 486 179 497 179 507 c 0
+ 179 551 182 572 182 615 c 0
+ 182 628 201 640 213 640 c 0
+ 228 640 242 630 242 618 c 0
+ 242 580 241 552 241 514 c 0
+ 241 487 241 472 273 472 c 0x0a
+ 333 472 346 476 369 476 c 0
+ 376 476 380 470 380 460 c 0
+ 380 427 363 422 332 422 c 0x12
+ 286 422 262 432 252 432 c 0
+ 242 432 242 421 242 412 c 2
+ 241 282 l 2
+ 241 269 242 261 250 256 c 0x8a
+ 255 253 261 252 271 252 c 0x42
+ 329 252 342 256 364 256 c 0
+ 371 256 374 250 374 240 c 0
+ 374 207 358 202 328 202 c 0x82
+ 283 202 260 212 250 212 c 0
+ 244 212 241 210 241 198 c 2
+ 240 -98 l 2
+ 240 -133 204 -191 191 -191 c 0x42
 EndSplineSet
 EndChar
 
@@ -6207,7 +6231,7 @@ StartChar: divide
 Encoding: 247 247 113
 Width: 527
 VWidth: 488
-Flags: WO
+Flags: W
 HStem: 61 83<227.824 299.915> 192 45<32.0031 506.998> 286 83<223.359 294.915>
 VStem: 222 84<67.0854 137.915 295.57 360.305>
 AnchorPoint: "l;bl" 0 10 basechar 0
@@ -6710,8 +6734,8 @@ StartChar: f_i
 Encoding: 65543 -1 146
 Width: 529
 VWidth: 0
-Flags: W
-HStem: -2 31<24.0118 89.316 179.004 258.988 297.093 361.086 450.38 511.815> 340 33<26.0432 80.2486> 372 29<168.521 358.727> 660 47<238.003 339.5>
+Flags: MW
+HStem: -2 31<24.0118 89.316 179.004 258.988 297.093 361.086 450.38 511.815> 372 29<168.521 358.727> 660 47<238.003 339.5>
 VStem: 95 72<36.4834 349.994 401.006 556.669> 366 73<38.9005 364.551>
 AnchorPoint: "l;o" 10 215 basechar 0
 AnchorPoint: "l;x" 15 389 basechar 0
@@ -6722,8 +6746,8 @@ AnchorPoint: "r;o" 519 215 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-263 372 m 2xbc
- 232 372 l 2xbc
+263 372 m 2
+ 232 372 l 2
  201 372 167 370 167 352 c 2
  167 332 l 2
  167 258 172 181 172 107 c 2
@@ -6742,7 +6766,7 @@ SplineSet
  96 342 95 350 81 350 c 0
  65 350 47 340 37 340 c 0
  30 340 26 344 26 356 c 0
- 26 365 41 371 47 373 c 0xdc
+ 26 365 41 371 47 373 c 0
  74 382 95 384 95 395 c 0
  95 515 115 599 185 653 c 0
  209 671 263 707 323 707 c 0
@@ -6766,7 +6790,7 @@ SplineSet
  362 33 366 36 366 83 c 0
  366 153 364 269 364 342 c 0
  364 353 362 359 346 364 c 0
- 326 370 291 372 263 372 c 2xbc
+ 326 370 291 372 263 372 c 2
 EndSplineSet
 Ligature2: "'liga' Standard Ligatures in Latin lookup 4 subtable" f i
 LCarets2: 1 0 
@@ -15324,7 +15348,7 @@ SplineSet
 EndSplineSet
 EndChar
 
-StartChar: asterisk.STRANGE.NOT_USED
+StartChar: asterisk.STRANGE.NOTUSED
 Encoding: 65574 -1 426
 Width: 393
 VWidth: 0
@@ -15397,6 +15421,127 @@ AnchorPoint: "r;x" 793 389 basechar 0
 LayerCount: 3
 Fore
 Refer: 422 8275 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: dagger.NOTUSED
+Encoding: 65575 -1 428
+Width: 418
+VWidth: 0
+Flags: W
+HStem: 458 54<247.481 375.087> 468 39<237.666 326.904> 479 50<39.4714 177.24> 652 20G<207 220.5>
+VStem: 173 68<-127.509 170.331> 185 51<248.521 467.927 522.666 671.071>
+AnchorPoint: "l;bl" 0 10 basechar 0
+AnchorPoint: "l;x" 0 389 basechar 0
+AnchorPoint: "l;hi" 0 675 basechar 0
+AnchorPoint: "l;o" 0 215 basechar 0
+AnchorPoint: "l;lo" 0 -204 basechar 0
+AnchorPoint: "r;bl" 418 10 basechar 0
+AnchorPoint: "r;x" 418 389 basechar 0
+AnchorPoint: "r;hi" 418 675 basechar 0
+AnchorPoint: "r;o" 418 215 basechar 0
+AnchorPoint: "r;lo" 418 -204 basechar 0
+LayerCount: 3
+Fore
+SplineSet
+191 -133 m 0x58
+ 176 -133 173 -118 173 -101 c 0x58
+ 173 -98 175 -68 175 -56 c 0
+ 178 63 181 280 185 458 c 0x94
+ 185 475 142 479 111 479 c 0
+ 74 479 54 463 44 463 c 0
+ 33 463 27 475 27 486 c 0
+ 27 514 59 529 85 529 c 0x34
+ 122 529 139 522 171 522 c 0
+ 181 522 185 532 185 542 c 0
+ 185 585 188 606 188 648 c 0
+ 188 661 201 672 213 672 c 0
+ 228 672 236 663 236 651 c 0
+ 236 614 235 586 235 549 c 0
+ 235 523 240 507 272 507 c 0x54
+ 331 507 344 512 366 512 c 0
+ 373 512 377 505 377 495 c 0
+ 377 463 359 458 329 458 c 0x94
+ 284 458 257 468 247 468 c 0
+ 237 468 236 458 236 449 c 2
+ 236 312 l 2x54
+ 236 193 241 97 241 -29 c 2
+ 241 -82 l 2
+ 241 -116 227 -133 191 -133 c 0x58
+EndSplineSet
+EndChar
+
+StartChar: daggerdbl.NOTUSED
+Encoding: 65576 -1 429
+Width: 471
+VWidth: 0
+Flags: W
+HStem: 415 39<158.92 212.979 262.314 310.248> 646 20G<163 174.5 307 313>
+VStem: 197 69<-124.179 124.834> 217 45<196.296 412.93 455.01 529.039> 293 31<621.244 665.867>
+AnchorPoint: "l;bl" 0 10 basechar 0
+AnchorPoint: "l;x" 0 389 basechar 0
+AnchorPoint: "l;hi" 0 675 basechar 0
+AnchorPoint: "l;o" 0 215 basechar 0
+AnchorPoint: "l;lo" 0 -204 basechar 0
+AnchorPoint: "r;bl" 471 10 basechar 0
+AnchorPoint: "r;x" 471 389 basechar 0
+AnchorPoint: "r;hi" 471 675 basechar 0
+AnchorPoint: "r;o" 471 215 basechar 0
+AnchorPoint: "r;lo" 471 -204 basechar 0
+LayerCount: 3
+Fore
+SplineSet
+232 542 m 2xd8
+ 236 533 237 530 239 530 c 0
+ 243 530 248 540 253 556 c 0
+ 263 585 275 617 293 655 c 1
+ 293 656 l 1
+ 296 661 304 666 310 666 c 0
+ 316 666 324 661 324 650 c 0
+ 324 626 280 548 268 512 c 0
+ 264 501 262 491 262 483 c 0xd8
+ 262 457 266 454 274 454 c 0
+ 280 454 288 457 298 461 c 0
+ 319 470 376 499 408 512 c 0
+ 415 515 421 516 426 516 c 0
+ 437 516 442 509 442 502 c 0
+ 442 492 432 486 419 480 c 0
+ 384 464 345 452 328 447 c 0
+ 309 441 309 441 309 438 c 0
+ 309 435 315 431 336 424 c 0
+ 353 418 392 408 418 397 c 0
+ 430 392 437 386 437 373 c 0
+ 437 363 428 359 419 359 c 0
+ 411 359 402 362 396 365 c 0
+ 380 373 350 389 325 399 c 0
+ 309 406 292 410 276 414 c 0
+ 274 415 271 415 269 415 c 0
+ 264 415 261 413 261 398 c 2
+ 261 312 l 2
+ 261 193 266 97 266 -29 c 2
+ 266 -82 l 2xe8
+ 266 -116 253 -128 217 -128 c 0xd8
+ 201 -128 197 -118 197 -101 c 0xe8
+ 197 -54 208 -9 213 407 c 0
+ 213 412 209 413 203 413 c 0
+ 195 413 185 410 181 409 c 0
+ 129 395 73 364 47 364 c 0
+ 37 364 27 370 27 381 c 0
+ 27 394 42 402 60 406 c 0
+ 87 412 145 432 149 436 c 1
+ 149 442 133 448 122 453 c 0
+ 97 463 64 480 38 491 c 0
+ 31 493 29 501 29 506 c 0
+ 29 515 36 522 46 522 c 0
+ 48 522 51 522 53 521 c 0
+ 94 504 138 481 174 466 c 0
+ 182 462 196 455 206 455 c 0
+ 213 455 217 458 217 468 c 0
+ 217 477 215 491 209 506 c 0
+ 194 544 152 627 152 648 c 0
+ 152 656 156 666 170 666 c 0
+ 179 666 186 660 188 656 c 2
+ 232 542 l 2xd8
+EndSplineSet
 EndChar
 EndChars
 EndSplineFont
