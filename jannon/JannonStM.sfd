@@ -15,14 +15,13 @@ LayerCount: 3
 Layer: 0 0 "Back"  1
 Layer: 1 0 "Fore"  0
 Layer: 2 0 "backup"  0
-NeedsXUIDChange: 1
 XUID: [1021 658 797806517 9253483]
 FSType: 0
 OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1283672823
-ModificationTime: 1294961353
+ModificationTime: 1294963986
 OS2TypoAscent: 0
 OS2TypoAOffset: 1
 OS2TypoDescent: 0
@@ -264,7 +263,7 @@ AntiAlias: 1
 FitToEm: 1
 WinInfo: 65544 12 4
 BeginPrivate: 9
-BlueValues 23 [-28 4 400 443 663 708]
+BlueValues 31 [-28 4 400 443 600 637 663 708]
 OtherBlues 11 [-272 -254]
 StdHW 4 [34]
 StdVW 4 [67]
@@ -15210,7 +15209,7 @@ StartChar: daggerdbl.NOTUSED
 Encoding: 65576 -1 429
 Width: 471
 VWidth: 0
-Flags: HW
+Flags: HWO
 HStem: 415 39<158.92 212.979 262.314 310.248> 646 20G<163 174.5 307 313>
 VStem: 197 69<-124.179 124.834> 217 45<196.296 412.93 455.01 529.039> 293 31<621.244 665.867>
 AnchorPoint: "l;bl" 0 10 basechar 0
@@ -15318,7 +15317,7 @@ StartChar: one.u
 Encoding: 65578 -1 431
 Width: 470
 VWidth: 250
-Flags: HMW
+Flags: MW
 HStem: 0 43<85.1386 210.616 295.951 413.985> 576 59<131.51 210.996>
 VStem: 215 79<44.4085 575.068>
 AnchorPoint: "l;bl" 0 10 basechar 0
@@ -15334,7 +15333,7 @@ AnchorPoint: "r;lo" 470 -204 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-294 151 m 0
+294 151 m 0xb0
  294 106 296 72 296 60 c 0
  297 43 307 42 325 42 c 0
  345 42 374 41 390 41 c 0
@@ -15347,13 +15346,13 @@ SplineSet
  203 43 210 45 212 76 c 0
  214 112 215 172 215 238 c 0
  215 354 213 487 212 537 c 0
- 212 566 207 576 183 576 c 0
+ 212 566 207 576 183 576 c 0xb0
  154 576 120 571 114 571 c 0
  102 571 93 574 93 587 c 0
- 93 599 95 608 156 618 c 0
+ 93 599 95 608 156 618 c 0xd0
  180 622 263 635 275 635 c 0
  292 635 301 631 301 620 c 0
- 301 601 294 567 294 151 c 0
+ 301 601 294 567 294 151 c 0xb0
 EndSplineSet
 EndChar
 
@@ -15445,8 +15444,8 @@ StartChar: four.u
 Encoding: 65581 -1 434
 Width: 470
 VWidth: 250
-Flags: HMW
-HStem: 175 55<74.0037 281.903 344.204 422.303>
+Flags: MW
+HStem: 175 55<74.0037 281.903 344.204 422.303> 613 20G<335 342.5>
 VStem: 282 58<-24.925 174.938 232.109 467.573>
 AnchorPoint: "l;bl" 0 10 basechar 0
 AnchorPoint: "l;x" 0 389 basechar 0
@@ -15461,7 +15460,7 @@ AnchorPoint: "r;lo" 470 -204 basechar 0
 LayerCount: 3
 Fore
 SplineSet
-266 502 m 0
+266 502 m 0xd0
  206 422 138 340 80 257 c 0
  76 251 74 246 74 241 c 0
  74 234 79 230 93 230 c 2
@@ -15469,7 +15468,7 @@ SplineSet
  283 230 283 233 283 255 c 2
  288 501 l 2
  288 511 285 515 282 515 c 0
- 277 515 271 508 266 502 c 0
+ 277 515 271 508 266 502 c 0xd0
 344 247 m 0
  344 233 347 232 363 232 c 2
  395 232 l 2
@@ -15477,11 +15476,11 @@ SplineSet
  427 216 423 199 421 191 c 0
  418 179 416 175 404 175 c 2
  353 175 l 2
- 344 175 340 174 340 162 c 2
+ 344 175 340 174 340 162 c 2xd0
  340 -16 l 2
  340 -28 339 -38 325 -40 c 0
  319 -41 298 -45 289 -45 c 0
- 281 -45 274 -37 274 -26 c 0
+ 281 -45 274 -37 274 -26 c 0xe0
  274 -4 282 78 282 156 c 0
  282 174 278 175 269 175 c 2
  30 173 l 2
@@ -15585,7 +15584,7 @@ StartChar: seven.u
 Encoding: 65584 -1 437
 Width: 470
 VWidth: 250
-Flags: HWO
+Flags: HW
 HStem: 529 72<40.5327 370.997>
 DStem2: 220 92 225 -33 0.319088 0.947725<-144.668 455.527>
 AnchorPoint: "l;bl" 0 10 basechar 0
@@ -15625,9 +15624,9 @@ StartChar: eight.u
 Encoding: 65585 -1 438
 Width: 470
 VWidth: 250
-Flags: HMW
-HStem: -15 33<173.408 295.066> 605 33<162.547 277.78>
-VStem: 46 50<86.3983 231.748> 55 60<429.836 552.803> 329 55<422.988 560.925> 363 62<88.5581 210.609>
+Flags: MW
+HStem: -16 33<173.408 295.066> 604 33<162.547 277.78>
+VStem: 46 50<85.3983 230.748> 55 60<430.848 551.803> 329 55<421.988 559.925> 363 62<87.5581 209.609>
 AnchorPoint: "l;bl" 0 10 basechar 0
 AnchorPoint: "l;x" 0 389 basechar 0
 AnchorPoint: "l;hi" 0 675 basechar 0
