@@ -53,6 +53,7 @@ feature kern {
      \obreve.sc \ocircumflex.sc \oe.sc \ohungarumlaut.sc \omacron.sc \oslash.sc 
      \otilde.sc \q.sc];
 @l1_quotedblbase = [\quotedblbase \quotesinglbase];
+@l1_z = [\z \zacute \zcaron \zdotaccent];
 @l1_quotedblleft = [\quotedblleft \quotedblright \quoteleft \quotereversed \quoteright \uni201F];
 @l1_five.p = [\five.p \g \gbreve \gcircumflex \gcommaaccent \gdotaccent 
      \nine.p];
@@ -98,9 +99,8 @@ feature kern {
      \uni0218.c2 \uni0219 \uni0219.sc \uni021B \uni1E02.c2 \uni1E03.sc 
      \uni1E0A.c2 \uni1E0B.sc \uni1E1E.c2 \uni1E1F \uni1E1F.sc \uni1E22.c2 
      \uni1E23.sc \uni1E40.c2 \uni1E41 \uni1E41.sc \uni1E56.c2 \uni1E57.sc 
-     \uni1E60.c2 \uni1E61 \uni1E61.sc \uni1E6B \x.sc \z 
-     \z.sc \zacute \zacute.sc \zcaron \zcaron.sc \zdotaccent 
-     \zdotaccent.sc];
+     \uni1E60.c2 \uni1E61 \uni1E61.sc \uni1E6B \x.sc \z.sc 
+     \zacute.sc \zcaron.sc \zdotaccent.sc];
 @l1_braceleft = [\braceleft \braceleft.u];
 @l1_braceright = [\braceright \braceright.u \f_thorn];
 @l1_Edieresis.c2 = [\Edieresis.c2 \edieresis.sc];
@@ -252,6 +252,7 @@ feature kern {
 @l2_o.sc = [\o.sc \oacute.sc \obreve.sc \ocircumflex.sc \oe.sc \ohungarumlaut.sc 
      \omacron.sc \oslash.sc \otilde.sc \q.sc];
 @l2_quotedblbase = [\quotedblbase \quotesinglbase];
+@l2_z = [\z \zacute \zcaron \zdotaccent];
 @l2_quotedblleft = [\quotedblleft \quotedblright \quoteleft \quotereversed \quoteright \uni201F];
 @l2_five.p = [\five.p \g \gbreve \gcircumflex \gcommaaccent \gdotaccent 
      \nine.p];
@@ -283,8 +284,7 @@ feature kern {
      \tcaron \thorn.sc \two.p \uni0163 \uni0219 \uni0219.sc 
      \uni021B \uni1E03.sc \uni1E0B.sc \uni1E1F \uni1E1F.sc \uni1E23.sc 
      \uni1E41 \uni1E41.sc \uni1E57.sc \uni1E61 \uni1E61.sc \uni1E6B 
-     \x.sc \z \z.sc \zacute \zacute.sc \zcaron 
-     \zcaron.sc \zdotaccent \zdotaccent.sc];
+     \x.sc \z.sc \zacute.sc \zcaron.sc \zdotaccent.sc];
 @l2_braceleft = [\braceleft \braceleft.u];
 @l2_braceright = [\braceright \braceright.u \f_thorn];
 @l2_p = [\p \uni1E57];
@@ -670,7 +670,7 @@ feature kern {
      \m \n \ncaron \ncommaaccent \ntilde \uni1E23 
      \uni1E41];
 @r5_g = [\g \gbreve \gcircumflex \gcommaaccent \gdotaccent \q];
-@r5_four.p = [\four.p \two.p];
+@r5_four.p = [\four.p \two.p \z \zcaron \zdotaccent];
 @r5_f = [\f \uni1E1F];
 @r5_ij = [\ij \j];
 @r5_c = [\c \ccaron \ccedilla \ccircumflex \cdotaccent \dotlessi 
@@ -679,8 +679,7 @@ feature kern {
      \rcommaaccent \s \scaron \scedilla \scircumflex \t 
      \tbar \three.p \u \ubreve \ucircumflex \ugrave 
      \umacron \uni0163 \uni0219 \uni021B \uni0237 \uni1E61 
-     \uni1E6B \uogonek \uring \utilde \z \zcaron 
-     \zdotaccent];
+     \uni1E6B \uogonek \uring \utilde];
 @r5_w = [\w \wcircumflex \y \ycircumflex];
 @r5_i = [\i \i.TRK];
 @r5_a.numer = [\a.numer \b.numer \c.numer \d.numer \e.numer \f.numer 
@@ -712,6 +711,7 @@ feature kern {
      \egrave \emacron \eogonek \oe];
 
 @l5_quotedblbase = [\quotedblbase \quotesinglbase];
+@l5_z = [\z \zacute \zcaron \zdotaccent];
 @l5_quotedblleft = [\quotedblleft \quotedblright \quoteleft \quotereversed \quoteright \uni201F];
 @l5_five.p = [\five.p \g \gbreve \gcircumflex \gcommaaccent \gdotaccent 
      \nine.p];
@@ -732,7 +732,7 @@ feature kern {
      \rcaron \rcommaaccent \s \sacute \scaron \scedilla 
      \scircumflex \six.p \t \tbar \tcaron \two.p 
      \uni0163 \uni0219 \uni021B \uni1E1F \uni1E41 \uni1E61 
-     \uni1E6B \z \zacute \zcaron \zdotaccent];
+     \uni1E6B];
 @l5_braceleft = [\braceleft \braceleft.u];
 @l5_braceright = [\braceright \braceright.u \f_thorn];
 @l5_p = [\p \uni1E57];
@@ -917,7 +917,7 @@ pos @r1_f_b \x -25;
 pos @r1_logicalnot \AE -150;
 pos \backslash @l1_T -150;
 pos @r1_logicalnot @l1_Agrave.c2 -153;
-pos @r1_bracketleft [\l.denom @l1_five.p \slash @l1_p @l1_jcircumflex \j @l1_B.c2 @l1_Igrave.c2 @l1_hyphen \iogonek @l1_Edieresis.c2 @l1_Egrave.c2 \four.p @l1_A.c2 @l1_Adieresis.c2 @l1_Agrave.c2 @l1_A @l1_AE.c2 \AE @l1_IJ.c2 \ij] -20;
+pos @r1_bracketleft [\l.denom @l1_five.p \slash @l1_p @l1_jcircumflex \j @l1_B.c2 @l1_Igrave.c2 @l1_hyphen \iogonek @l1_Edieresis.c2 @l1_Egrave.c2 @l1_z \four.p @l1_A.c2 @l1_Adieresis.c2 @l1_Agrave.c2 @l1_A @l1_AE.c2 \AE @l1_IJ.c2 \ij] -20;
 pos [@r1_braceright @r1_bracketleft @r1_f_b @r1_afii00208.u] @l1_comma -20;
 pos [\backslash @r1_f_f_i @r1_comma @r1_f_b] @l1_b -20;
 pos [@r1_bracketleft \asterisk] @l1_quotedblbase -20;
@@ -937,6 +937,7 @@ pos [@r1_bracketleft \backslash @r1_logicalnot] @l1_C -20;
 pos @r1_logicalnot @l1_Ograve.c2 -147;
 pos [@r1_f_f_i @r1_f_f_k @r1_comma @r1_afii00208 \ampersand @r1_hyphen] \thorn -15;
 pos [@r1_quotedblleft @r1_braceright \asterisk @r1_f_b @r1_afii00208.u] \four.p -15;
+pos \slash @l1_z -15;
 pos [@r1_bracketleft @r1_logicalnot] \igrave -13;
 pos [@r1_f_f_i @r1_f_f_k] [@l1_c @l1_edieresis \odieresis \egrave \ograve] -10;
 pos \slash [@l1_J.c2 @l1_five.p @l1_p @l1_B.c2 \igrave @l1_germandbls @l1_Igrave.c2 @l1_hyphen \iogonek @l1_Edieresis.c2 @l1_Egrave.c2 @l1_IJ.c2 \ij] -10;
@@ -949,6 +950,7 @@ pos @r1_f_f_i [@l1_U \asterisk @l1_quotedblleft \napostrophe] -10;
 pos [@r1_quotedblleft \asterisk @r1_f_f_i @r1_f_f_k] [@l1_O.c2 @l1_Odieresis.c2 @l1_Ograve.c2] -10;
 pos [\slash @r1_bracketleft] \three.p -10;
 pos [\slash @r1_f_f_i @r1_comma @r1_f_b] [@l1_jcircumflex \j @l1_O] -10;
+pos [@r1_quotedblleft @r1_braceright \asterisk @r1_f_b @r1_afii00208.u] @l1_z -5;
 pos [@r1_braceright @r1_f_b @r1_afii00208.u] @l1_l -5;
 pos [@r1_f_f_i @r1_comma @r1_f_b] @l1_p -5;
 pos @r1_logicalnot @l1_A -130;
@@ -984,6 +986,7 @@ pos @r2_T [@l2_a \agrave @l2_o.sc \odieresis.sc \ograve.sc] -80;
 pos @r2_P @l2_A -80;
 pos @r2_F [\ae.sc \AE] -80;
 pos @r2_A @l2_W -80;
+pos @r2_T @l2_z -75;
 pos @r2_T [@l2_j.sc \three.p @l2_five.p @l2_p @l2_jcircumflex @l2_afii00208 \edieresis.sc \egrave.sc @l2_afii00208.u @l2_c.sc \udieresis \ugrave \seven.p @l2_u.sc \udieresis.sc \ugrave.sc @l2_v @l2_y \ydieresis @l2_t.sc @l2_y.sc \ydieresis.sc \v.sc \ij.sc] -70;
 pos [@r2_L \Lcaron] \V -70;
 pos [@r2_V @r2_Y] \x -70;
@@ -1004,6 +1007,7 @@ pos @r2_V [@l2_a \agrave @l2_o.sc \odieresis.sc \ograve.sc] -60;
 pos \Thorn [\slash @l2_bracketright @l2_T] -60;
 pos \X \v.sc -55;
 pos @r2_A [@l2_y.sc \ydieresis.sc] -55;
+pos [@r2_V @r2_Y] @l2_z -55;
 pos @r2_R [@l2_logicalnot \V @l2_T] -50;
 pos @r2_A \asterisk -50;
 pos [@r2_V @r2_Y] [@l2_j.sc \three.p @l2_five.p @l2_p @l2_jcircumflex @l2_afii00208 \iogonek \edieresis.sc \egrave.sc @l2_afii00208.u @l2_c.sc \udieresis \ugrave \seven.p @l2_u.sc \udieresis.sc \ugrave.sc @l2_t.sc @l2_y.sc \ydieresis.sc \v.sc \ij.sc] -50;
@@ -1063,6 +1067,7 @@ pos @r2_P [@l2_a \adieresis \agrave] -20;
 pos [@r2_D @r2_B @r2_G \Thorn] \thorn -20;
 pos [@r2_U @r2_B @r2_G] @l2_comma -20;
 pos [@r2_D \Q @r2_G \Thorn] @l2_W -20;
+pos @r2_P @l2_z -15;
 pos @r2_B [@l2_b \backslash] -15;
 pos [@r2_D @r2_U @r2_B @r2_G @r2_F \Thorn] \four.p -15;
 pos [\Q @r2_A @r2_L \Lcaron @r2_R] \thorn -15;
@@ -1077,11 +1082,12 @@ pos @r2_P [@l2_j.sc \three.p @l2_five.p @l2_p @l2_afii00208 \igrave @l2_germandb
 pos @r2_S [@l2_logicalnot \thorn @l2_bracketright \asterisk @l2_Y @l2_quotedblleft @l2_W \V @l2_T \napostrophe] -10;
 pos [@r2_D \Q \Thorn @r2_S] [@l2_b \backslash] -10;
 pos [@r2_D @r2_F \Thorn] [@l2_a \adieresis \agrave @l2_o.sc \odieresis.sc \ograve.sc] -10;
-pos [@r2_D @r2_B @r2_G \Thorn] @l2_l -5;
 pos @r2_B [@l2_jcircumflex \j @l2_v @l2_y \ydieresis @l2_O @l2_t.sc @l2_y.sc \ydieresis.sc \v.sc] -5;
+pos [@r2_B @r2_G @r2_A \X @r2_K @r2_L \Lcaron @r2_R @r2_S @r2_Z] @l2_p -5;
 pos @r2_K [@l2_logicalnot \thorn @l2_bracketright @l2_U @l2_b @l2_Y @l2_W \V @l2_T \backslash] -5;
 pos [@r2_B @r2_K] [\asterisk @l2_quotedblleft \napostrophe] -5;
-pos [@r2_B @r2_G @r2_A \X @r2_K @r2_L \Lcaron @r2_R @r2_S @r2_Z] @l2_p -5;
+pos [@r2_D @r2_B @r2_G \Thorn] @l2_l -5;
+pos [@r2_D @r2_U @r2_B @r2_G @r2_F \Thorn] @l2_z -5;
 pos @r2_T [@l2_a.sc \agrave.sc @l2_A] -130;
 
 subtable;
@@ -1246,7 +1252,7 @@ pos \dcaron @l5_braceleft 11;
 pos \aacute @l5_logicalnot -116;
 pos [\yacute \oacute] @l5_logicalnot -114;
 pos \lcaron [@l5_germandbls @l5_C] 15;
-pos \uacute @l5_logicalnot -168;
+pos \zacute @l5_logicalnot -111;
 pos @r5_f [@l5_J @l5_Euro @l5_logicalnot @l5_B @l5_l @l5_Z \X @l5_braceright \thorn @l5_bracketright @l5_U @l5_b \asterisk @l5_Y @l5_quotedblleft @l5_W \V @l5_T \napostrophe \backslash \IJ] 20;
 pos [@r5_a.denom @r5_d] \question 20;
 pos \longs @l5_braceleft 20;
@@ -1259,15 +1265,15 @@ pos \uhungarumlaut @l5_logicalnot -123;
 pos \eacute [@l5_logicalnot @l5_T] -94;
 pos \lcaron [@l5_J @l5_Euro @l5_logicalnot @l5_B @l5_l @l5_Z \X @l5_braceright \thorn @l5_bracketright @l5_U @l5_b \asterisk @l5_Y @l5_quotedblleft @l5_W \V @l5_T \napostrophe \backslash \IJ] 35;
 pos \dcaron \igrave 28;
-pos \zacute @l5_logicalnot -91;
+pos \longs \igrave 37;
 pos \v \AE -90;
 pos [\l.denom @r5_g @r5_a.denom] @l5_J 40;
 pos @r5_f \question 40;
 pos \dcaron [@l5_J @l5_Euro @l5_logicalnot @l5_B @l5_l @l5_Z \X @l5_braceright \thorn @l5_bracketright @l5_U @l5_b \asterisk @l5_Y @l5_quotedblleft @l5_W \V @l5_T \napostrophe \backslash \IJ] 41;
 pos \l.denom \napostrophe -209;
-pos @r5_four.p @l5_T -80;
 pos \v \slash -80;
 pos [@r5_w \yacute \ydieresis] \AE -80;
+pos [@r5_four.p \zacute] @l5_T -80;
 pos \cacute @l5_logicalnot -79;
 pos \longs [@l5_J @l5_Euro @l5_logicalnot @l5_B @l5_l @l5_Z \X @l5_braceright \thorn @l5_bracketright @l5_U @l5_b \asterisk @l5_Y @l5_quotedblleft @l5_W \V @l5_T \napostrophe \backslash \IJ] 50;
 pos \lcaron \question 55;
@@ -1278,72 +1284,72 @@ pos [@r5_ae \eacute @r5_a \napostrophe \nacute \aacute @r5_b \oacute] [\V \backs
 pos \ohungarumlaut [@l5_logicalnot \V @l5_T \backslash] -69;
 pos \dcaron \question 61;
 pos \sacute @l5_logicalnot -66;
-pos [\ldot \v \seven.p @r5_w \yacute @r5_g \x @r5_k @r5_c \uacute \uhungarumlaut \udieresis \zacute \cacute @r5_ij \sacute] @l5_T -60;
 pos [\ldot @r5_b \oacute \ohungarumlaut \odieresis \eth] \AE -60;
 pos [@r5_w \yacute \ydieresis] @l5_A -60;
 pos [@r5_ae \eacute @r5_a \napostrophe \nacute \aacute @r5_b \oacute \ohungarumlaut] @l5_W -60;
+pos [\ldot \v \seven.p @r5_w \yacute @r5_g \x @r5_k @r5_c \uacute \uhungarumlaut \udieresis \cacute @r5_ij \sacute] @l5_T -60;
 pos [\ldot \v @r5_w \yacute @r5_b \oacute \ohungarumlaut] @l5_bracketright -60;
 pos \longs \question 70;
 pos [\ldot @r5_b \oacute \ohungarumlaut \odieresis \eth] \slash -50;
 pos [@r5_ae \eacute] @l5_bracketright -50;
 pos \v [@l5_comma \X] -50;
 pos \iogonek [@l5_logicalnot @l5_T] -50;
-pos @r5_four.p [@l5_Y \V] -50;
+pos [@r5_four.p \zacute] [@l5_Y \V] -50;
+pos \uacute @l5_logicalnot -168;
 pos \adieresis [@l5_logicalnot @l5_W \V @l5_T \backslash] -47;
 pos \racute [@l5_logicalnot @l5_T] -46;
 pos \odieresis [@l5_W \V \backslash] -45;
 pos [\ydieresis \odieresis] [@l5_logicalnot @l5_bracketright @l5_T] -45;
 pos [@r5_ae \eacute @r5_a \napostrophe \nacute \aacute \adieresis @r5_b \oacute \ohungarumlaut \odieresis] [@l5_quotedblleft \napostrophe] -40;
+pos [@r5_four.p \zacute \eth] @l5_W -40;
 pos \l.denom [@l5_y \ydieresis @l5_O] -40;
 pos [@r5_w \yacute \ydieresis] [@l5_comma \X] -40;
 pos [\seven.p \eth] @l5_bracketright -40;
 pos \eth [@l5_logicalnot \V @l5_T] -40;
 pos [\ldot @r5_b \oacute \ohungarumlaut \odieresis \eth] @l5_A -40;
 pos [\v @r5_w \yacute \ydieresis] @l5_Z -40;
-pos [@r5_four.p \eth] @l5_W -40;
-pos \longs \igrave 37;
 pos \iacute [@l5_logicalnot @l5_T] -32;
-pos \v [@l5_quotedblbase @l5_c @l5_edieresis \odieresis \egrave \ograve] -30;
+pos [\ldot @r5_ae \eacute \v \seven.p @r5_w \yacute \ydieresis @r5_g \x @r5_k @r5_a \napostrophe \nacute \aacute \adieresis @r5_c \uacute \uhungarumlaut \udieresis \cacute @r5_ij \sacute \iogonek \racute \iacute @r5_i @r5_b \oacute \ohungarumlaut \odieresis \eth] @l5_Y -30;
 pos [@r5_ae \eacute \edieresis] [\l.denom \slash @l5_A \AE] -30;
+pos [@r5_four.p \zacute \eth] \backslash -30;
 pos \l.denom @l5_braceleft -30;
-pos [\ldot \v \seven.p @r5_w \yacute \ydieresis @r5_g \x @r5_k @r5_c \uacute \uhungarumlaut \udieresis \zacute \cacute @r5_ij \sacute \iogonek \racute \iacute @r5_i] \V -30;
+pos \v [@l5_quotedblbase @l5_c @l5_edieresis \odieresis \egrave \ograve] -30;
+pos [\ldot \v \seven.p @r5_w \yacute \ydieresis @r5_g \x @r5_k @r5_c \uacute \uhungarumlaut \udieresis \cacute @r5_ij \sacute \iogonek \racute \iacute @r5_i] \V -30;
 pos @r5_i [@l5_logicalnot @l5_T] -30;
-pos [\ldot @r5_ae \eacute \v \seven.p @r5_w \yacute \ydieresis @r5_g \x @r5_k @r5_a \napostrophe \nacute \aacute \adieresis @r5_c \uacute \uhungarumlaut \udieresis \zacute \cacute @r5_ij \sacute \iogonek \racute \iacute @r5_i @r5_b \oacute \ohungarumlaut \odieresis \eth] @l5_Y -30;
-pos [@r5_four.p \eth] \backslash -30;
 pos [@r5_ae \eacute \edieresis @r5_b \oacute \ohungarumlaut \odieresis \eth] \x -25;
 pos \edieresis [@l5_logicalnot @l5_bracketright @l5_Y @l5_quotedblleft @l5_W \V @l5_T \napostrophe \backslash] -25;
+pos [\seven.p @r5_w \yacute \ydieresis @r5_four.p \zacute \x] [@l5_c @l5_edieresis \odieresis \egrave \ograve] -20;
 pos [\seven.p \germandbls] [\l.denom \slash @l5_A \AE] -20;
-pos [\seven.p @r5_w \yacute \ydieresis @r5_four.p \x] [@l5_c @l5_edieresis \odieresis \egrave \ograve] -20;
-pos [\germandbls \l.denom @r5_g @r5_four.p \x @r5_k @r5_a \napostrophe \nacute \aacute \adieresis @r5_c \uacute \uhungarumlaut \udieresis \zacute \cacute @r5_ij \sacute \iogonek \racute \iacute @r5_i] @l5_bracketright -20;
+pos [\l.denom @r5_four.p \zacute] [\seven.p @l5_U @l5_C] -20;
+pos [@r5_four.p \zacute \eth] [@l5_quotedblleft \napostrophe] -20;
 pos [\ldot \v \seven.p \germandbls @r5_w \yacute \ydieresis] \x -20;
 pos \germandbls [@l5_logicalnot @l5_Y \V @l5_T \backslash] -20;
-pos [\ldot \v \seven.p \germandbls @r5_w \yacute \ydieresis @r5_g \x @r5_k @r5_c \uacute \uhungarumlaut \udieresis \zacute \cacute @r5_ij \sacute \iogonek \racute \iacute @r5_i] @l5_W -20;
 pos [\seven.p @r5_w \yacute \ydieresis] @l5_quotedblbase -20;
 pos [\ldot @r5_ae \eacute \edieresis \v \seven.p \germandbls @r5_w \yacute \ydieresis @r5_b \oacute \ohungarumlaut \odieresis \eth] \thorn -20;
-pos [@r5_ae \eacute \edieresis @r5_four.p @r5_a \napostrophe \nacute \aacute \adieresis @r5_b \oacute \ohungarumlaut \odieresis \eth] [@l5_v \asterisk @l5_y \ydieresis] -20;
-pos [\l.denom @r5_four.p] [\seven.p @l5_U @l5_C] -20;
-pos [@r5_ae \eacute \edieresis \germandbls \l.denom @r5_four.p @r5_a \napostrophe \nacute \aacute \adieresis @r5_b \oacute \ohungarumlaut \odieresis \eth] @l5_b -20;
+pos [@r5_ae \eacute \edieresis \germandbls \l.denom @r5_four.p \zacute @r5_a \napostrophe \nacute \aacute \adieresis @r5_b \oacute \ohungarumlaut \odieresis \eth] @l5_b -20;
+pos [\germandbls \l.denom @r5_g @r5_four.p \zacute \x @r5_k @r5_a \napostrophe \nacute \aacute \adieresis @r5_c \uacute \uhungarumlaut \udieresis \cacute @r5_ij \sacute \iogonek \racute \iacute @r5_i] @l5_bracketright -20;
+pos [@r5_ae \eacute \edieresis @r5_four.p \zacute @r5_a \napostrophe \nacute \aacute \adieresis @r5_b \oacute \ohungarumlaut \odieresis \eth] [@l5_v \asterisk @l5_y \ydieresis] -20;
 pos [\ldot @r5_ae \eacute \edieresis \seven.p \germandbls @r5_b \oacute \ohungarumlaut \odieresis \eth] [@l5_comma @l5_Z \X] -20;
-pos @r5_four.p [@l5_afii00208.u @l5_braceleft @l5_O] -20;
-pos [@r5_four.p \eth] [@l5_quotedblleft \napostrophe] -20;
+pos [\ldot \v \seven.p \germandbls @r5_w \yacute \ydieresis @r5_g \x @r5_k @r5_c \uacute \uhungarumlaut \udieresis \cacute @r5_ij \sacute \iogonek \racute \iacute @r5_i] @l5_W -20;
+pos [@r5_four.p \zacute] [@l5_afii00208.u @l5_braceleft @l5_O] -20;
 pos \ldot [\l.denom @l5_logicalnot] -147;
 pos \tcaron [@l5_logicalnot @l5_bracketright @l5_Y @l5_W \V @l5_T] -18;
 pos [\ldot @r5_ae \eacute \edieresis \v \seven.p \germandbls @r5_w \yacute \ydieresis @r5_b \oacute \ohungarumlaut \odieresis \eth] \four.p -15;
-pos [@r5_four.p \x @r5_k @r5_a \napostrophe \nacute \aacute \adieresis @r5_c \uacute \uhungarumlaut \udieresis \zacute \cacute @r5_ij \sacute \iogonek \racute \iacute @r5_i \tcaron] \thorn -15;
+pos [@r5_four.p \zacute \x @r5_k @r5_a \napostrophe \nacute \aacute \adieresis @r5_c \uacute \uhungarumlaut \udieresis \cacute @r5_ij \sacute \iogonek \racute \iacute @r5_i \tcaron] \thorn -15;
 pos \nacute @l5_logicalnot -140;
 pos \napostrophe @l5_logicalnot -514;
-pos [@r5_ae \eacute \edieresis \germandbls @r5_four.p @r5_a \napostrophe \nacute \aacute \adieresis @r5_b \oacute \ohungarumlaut \odieresis \eth] \j -10;
 pos [\l.denom @r5_g] \thorn -10;
 pos \germandbls [\asterisk @l5_quotedblleft \napostrophe] -10;
 pos [@r5_ae \eacute \edieresis \germandbls @r5_a \napostrophe \nacute \aacute \adieresis @r5_b \oacute \ohungarumlaut \odieresis \eth] @l5_O -10;
-pos [\ldot \v \seven.p @r5_w \yacute \ydieresis @r5_g \x @r5_k @r5_c \uacute \uhungarumlaut \udieresis \zacute \cacute @r5_ij \sacute \iogonek \racute \iacute @r5_i \tcaron] [@l5_b \backslash] -10;
-pos [@r5_ae \eacute \edieresis \germandbls @r5_four.p @r5_a \napostrophe \nacute \aacute \adieresis \longs @r5_b \oacute \ohungarumlaut \odieresis \eth] @l5_jcircumflex -10;
-pos @r5_k [@l5_c @l5_edieresis \odieresis \egrave \ograve] -10;
-pos [\l.denom @r5_four.p] [@l5_u \udieresis \ugrave] -10;
 pos [\germandbls \longs] [@l5_v @l5_y \ydieresis] -10;
+pos [@r5_ae \eacute \edieresis \germandbls @r5_four.p \zacute @r5_a \napostrophe \nacute \aacute \adieresis @r5_b \oacute \ohungarumlaut \odieresis \eth] \j -10;
+pos [\l.denom @r5_four.p \zacute] [@l5_u \udieresis \ugrave] -10;
+pos [\ldot \v \seven.p @r5_w \yacute \ydieresis @r5_g \x @r5_k @r5_c \uacute \uhungarumlaut \udieresis \cacute @r5_ij \sacute \iogonek \racute \iacute @r5_i \tcaron] [@l5_b \backslash] -10;
+pos [@r5_ae \eacute \edieresis \germandbls @r5_four.p \zacute @r5_a \napostrophe \nacute \aacute \adieresis \longs @r5_b \oacute \ohungarumlaut \odieresis \eth] @l5_jcircumflex -10;
+pos @r5_k [@l5_c @l5_edieresis \odieresis \egrave \ograve] -10;
 pos [\v \seven.p @r5_w \yacute \ydieresis] [@l5_a \adieresis \agrave] -10;
-pos [\ldot @r5_ae \eacute \edieresis \v \seven.p \germandbls @r5_w \yacute \ydieresis @r5_b \oacute \ohungarumlaut \odieresis \eth] @l5_l -5;
-pos [@r5_ae \eacute \edieresis \germandbls @r5_four.p @r5_a \napostrophe \nacute \aacute \adieresis \longs @r5_b \oacute \ohungarumlaut \odieresis \eth] @l5_p -5;
+pos [\ldot @r5_ae \eacute \edieresis \v \seven.p \germandbls @r5_w \yacute \ydieresis @r5_b \oacute \ohungarumlaut \odieresis \eth] [@l5_z @l5_l] -5;
+pos [@r5_ae \eacute \edieresis \germandbls @r5_four.p \zacute @r5_a \napostrophe \nacute \aacute \adieresis \longs @r5_b \oacute \ohungarumlaut \odieresis \eth] @l5_p -5;
 pos \l.denom \backslash -130;
 
 subtable;

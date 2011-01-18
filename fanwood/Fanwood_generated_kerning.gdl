@@ -53,6 +53,7 @@ l1O__c2 = postscript("O.c2", "OE.c2", "Oacute.c2", "Obreve.c2", "Ocircumflex.c2"
      "obreve.sc", "ocircumflex.sc", "oe.sc", "ohungarumlaut.sc", "omacron.sc", "oslash.sc", 
      "otilde.sc", "q.sc")
 l1quotedblbase = postscript("quotedblbase", "quotesinglbase")
+l1z = postscript("z", "zacute", "zcaron", "zdotaccent")
 l1quotedblleft = postscript("quotedblleft", "quotedblright", "quoteleft", "quotereversed", "quoteright", "uni201F")
 l1five__p = postscript("five.p", "g", "gbreve", "gcircumflex", "gcommaaccent", "gdotaccent", 
      "nine.p")
@@ -98,9 +99,8 @@ l1B__c2 = postscript("B.c2", "D.c2", "Dcaron.c2", "Dcroat.c2", "E.c2", "Eacute.c
      "uni0218.c2", "uni0219", "uni0219.sc", "uni021B", "uni1E02.c2", "uni1E03.sc", 
      "uni1E0A.c2", "uni1E0B.sc", "uni1E1E.c2", "uni1E1F", "uni1E1F.sc", "uni1E22.c2", 
      "uni1E23.sc", "uni1E40.c2", "uni1E41", "uni1E41.sc", "uni1E56.c2", "uni1E57.sc", 
-     "uni1E60.c2", "uni1E61", "uni1E61.sc", "uni1E6B", "x.sc", "z", 
-     "z.sc", "zacute", "zacute.sc", "zcaron", "zcaron.sc", "zdotaccent", 
-     "zdotaccent.sc")
+     "uni1E60.c2", "uni1E61", "uni1E61.sc", "uni1E6B", "x.sc", "z.sc", 
+     "zacute.sc", "zcaron.sc", "zdotaccent.sc")
 l1braceleft = postscript("braceleft", "braceleft.u")
 l1braceright = postscript("braceright", "braceright.u", "f_thorn")
 l1Edieresis__c2 = postscript("Edieresis.c2", "edieresis.sc")
@@ -252,6 +252,7 @@ r2R = postscript("R", "Racute", "Rcaron", "Rcommaaccent")
 l2o__sc = postscript("o.sc", "oacute.sc", "obreve.sc", "ocircumflex.sc", "oe.sc", "ohungarumlaut.sc", 
      "omacron.sc", "oslash.sc", "otilde.sc", "q.sc")
 l2quotedblbase = postscript("quotedblbase", "quotesinglbase")
+l2z = postscript("z", "zacute", "zcaron", "zdotaccent")
 l2quotedblleft = postscript("quotedblleft", "quotedblright", "quoteleft", "quotereversed", "quoteright", "uni201F")
 l2five__p = postscript("five.p", "g", "gbreve", "gcircumflex", "gcommaaccent", "gdotaccent", 
      "nine.p")
@@ -283,8 +284,7 @@ l2afii00208 = postscript("afii00208", "b.sc", "d.sc", "dcaron.sc", "dcroat.sc", 
      "tcaron", "thorn.sc", "two.p", "uni0163", "uni0219", "uni0219.sc", 
      "uni021B", "uni1E03.sc", "uni1E0B.sc", "uni1E1F", "uni1E1F.sc", "uni1E23.sc", 
      "uni1E41", "uni1E41.sc", "uni1E57.sc", "uni1E61", "uni1E61.sc", "uni1E6B", 
-     "x.sc", "z", "z.sc", "zacute", "zacute.sc", "zcaron", 
-     "zcaron.sc", "zdotaccent", "zdotaccent.sc")
+     "x.sc", "z.sc", "zacute.sc", "zcaron.sc", "zdotaccent.sc")
 l2braceleft = postscript("braceleft", "braceleft.u")
 l2braceright = postscript("braceright", "braceright.u", "f_thorn")
 l2p = postscript("p", "uni1E57")
@@ -670,7 +670,7 @@ r5a = postscript("a", "abreve", "acircumflex", "agrave", "amacron", "aogonek",
      "m", "n", "ncaron", "ncommaaccent", "ntilde", "uni1E23", 
      "uni1E41")
 r5g = postscript("g", "gbreve", "gcircumflex", "gcommaaccent", "gdotaccent", "q")
-r5four__p = postscript("four.p", "two.p")
+r5four__p = postscript("four.p", "two.p", "z", "zcaron", "zdotaccent")
 r5f = postscript("f", "uni1E1F")
 r5ij = postscript("ij", "j")
 r5c = postscript("c", "ccaron", "ccedilla", "ccircumflex", "cdotaccent", "dotlessi", 
@@ -679,8 +679,7 @@ r5c = postscript("c", "ccaron", "ccedilla", "ccircumflex", "cdotaccent", "dotles
      "rcommaaccent", "s", "scaron", "scedilla", "scircumflex", "t", 
      "tbar", "three.p", "u", "ubreve", "ucircumflex", "ugrave", 
      "umacron", "uni0163", "uni0219", "uni021B", "uni0237", "uni1E61", 
-     "uni1E6B", "uogonek", "uring", "utilde", "z", "zcaron", 
-     "zdotaccent")
+     "uni1E6B", "uogonek", "uring", "utilde")
 r5w = postscript("w", "wcircumflex", "y", "ycircumflex")
 r5i = postscript("i", "i.TRK")
 r5a__numer = postscript("a.numer", "b.numer", "c.numer", "d.numer", "e.numer", "f.numer", 
@@ -712,6 +711,7 @@ r5ae = postscript("ae", "e", "ebreve", "ecaron", "ecircumflex", "edotaccent",
      "egrave", "emacron", "eogonek", "oe")
 
 l5quotedblbase = postscript("quotedblbase", "quotesinglbase")
+l5z = postscript("z", "zacute", "zcaron", "zdotaccent")
 l5quotedblleft = postscript("quotedblleft", "quotedblright", "quoteleft", "quotereversed", "quoteright", "uni201F")
 l5five__p = postscript("five.p", "g", "gbreve", "gcircumflex", "gcommaaccent", "gdotaccent", 
      "nine.p")
@@ -732,7 +732,7 @@ l5afii00208 = postscript("afii00208", "dotlessi", "emdash", "endash", "eng", "f"
      "rcaron", "rcommaaccent", "s", "sacute", "scaron", "scedilla", 
      "scircumflex", "six.p", "t", "tbar", "tcaron", "two.p", 
      "uni0163", "uni0219", "uni021B", "uni1E1F", "uni1E41", "uni1E61", 
-     "uni1E6B", "z", "zacute", "zcaron", "zdotaccent")
+     "uni1E6B")
 l5braceleft = postscript("braceleft", "braceleft.u")
 l5braceright = postscript("braceright", "braceright.u", "f_thorn")
 l5p = postscript("p", "uni1E57")
@@ -920,7 +920,7 @@ r1f_b postscript("x") { kern.x = -25m };
 r1logicalnot postscript("AE") { kern.x = -150m };
 postscript("backslash") l1T { kern.x = -150m };
 r1logicalnot l1Agrave__c2 { kern.x = -153m };
-r1bracketleft (postscript("l.denom"), l1five__p, postscript("slash"), l1p, l1jcircumflex, postscript("j"), l1B__c2, l1Igrave__c2, l1hyphen, postscript("iogonek"), l1Edieresis__c2, l1Egrave__c2, postscript("four.p"), l1A__c2, l1Adieresis__c2, l1Agrave__c2, l1A, l1AE__c2, postscript("AE"), l1IJ__c2, postscript("ij")) { kern.x = -20m };
+r1bracketleft (postscript("l.denom"), l1five__p, postscript("slash"), l1p, l1jcircumflex, postscript("j"), l1B__c2, l1Igrave__c2, l1hyphen, postscript("iogonek"), l1Edieresis__c2, l1Egrave__c2, l1z, postscript("four.p"), l1A__c2, l1Adieresis__c2, l1Agrave__c2, l1A, l1AE__c2, postscript("AE"), l1IJ__c2, postscript("ij")) { kern.x = -20m };
 (r1braceright, r1bracketleft, r1f_b, r1afii00208__u) l1comma { kern.x = -20m };
 (postscript("backslash"), r1f_f_i, r1comma, r1f_b) l1b { kern.x = -20m };
 (r1bracketleft, postscript("asterisk")) l1quotedblbase { kern.x = -20m };
@@ -940,6 +940,7 @@ r1f_f_i postscript("backslash") { kern.x = -20m };
 r1logicalnot l1Ograve__c2 { kern.x = -147m };
 (r1f_f_i, r1f_f_k, r1comma, r1afii00208, postscript("ampersand"), r1hyphen) postscript("thorn") { kern.x = -15m };
 (r1quotedblleft, r1braceright, postscript("asterisk"), r1f_b, r1afii00208__u) postscript("four.p") { kern.x = -15m };
+postscript("slash") l1z { kern.x = -15m };
 (r1bracketleft, r1logicalnot) postscript("igrave") { kern.x = -13m };
 (r1f_f_i, r1f_f_k) (l1c, l1edieresis, postscript("odieresis"), postscript("egrave"), postscript("ograve")) { kern.x = -10m };
 postscript("slash") (l1J__c2, l1five__p, l1p, l1B__c2, postscript("igrave"), l1germandbls, l1Igrave__c2, l1hyphen, postscript("iogonek"), l1Edieresis__c2, l1Egrave__c2, l1IJ__c2, postscript("ij")) { kern.x = -10m };
@@ -952,6 +953,7 @@ r1f_f_i (l1U, postscript("asterisk"), l1quotedblleft, postscript("napostrophe"))
 (r1quotedblleft, postscript("asterisk"), r1f_f_i, r1f_f_k) (l1O__c2, l1Odieresis__c2, l1Ograve__c2) { kern.x = -10m };
 (postscript("slash"), r1bracketleft) postscript("three.p") { kern.x = -10m };
 (postscript("slash"), r1f_f_i, r1comma, r1f_b) (l1jcircumflex, postscript("j"), l1O) { kern.x = -10m };
+(r1quotedblleft, r1braceright, postscript("asterisk"), r1f_b, r1afii00208__u) l1z { kern.x = -5m };
 (r1braceright, r1f_b, r1afii00208__u) l1l { kern.x = -5m };
 (r1f_f_i, r1comma, r1f_b) l1p { kern.x = -5m };
 r1logicalnot l1A { kern.x = -130m };
@@ -985,6 +987,7 @@ r2T (l2a, postscript("agrave"), l2o__sc, postscript("odieresis.sc"), postscript(
 r2P l2A { kern.x = -80m };
 r2F (postscript("ae.sc"), postscript("AE")) { kern.x = -80m };
 r2A l2W { kern.x = -80m };
+r2T l2z { kern.x = -75m };
 r2T (l2j__sc, postscript("three.p"), l2five__p, l2p, l2jcircumflex, l2afii00208, postscript("edieresis.sc"), postscript("egrave.sc"), l2afii00208__u, l2c__sc, postscript("udieresis"), postscript("ugrave"), postscript("seven.p"), l2u__sc, postscript("udieresis.sc"), postscript("ugrave.sc"), l2v, l2y, postscript("ydieresis"), l2t__sc, l2y__sc, postscript("ydieresis.sc"), postscript("v.sc"), postscript("ij.sc")) { kern.x = -70m };
 (r2L, postscript("Lcaron")) postscript("V") { kern.x = -70m };
 (r2V, r2Y) postscript("x") { kern.x = -70m };
@@ -1005,6 +1008,7 @@ r2V (l2a, postscript("agrave"), l2o__sc, postscript("odieresis.sc"), postscript(
 postscript("Thorn") (postscript("slash"), l2bracketright, l2T) { kern.x = -60m };
 postscript("X") postscript("v.sc") { kern.x = -55m };
 r2A (l2y__sc, postscript("ydieresis.sc")) { kern.x = -55m };
+(r2V, r2Y) l2z { kern.x = -55m };
 r2R (l2logicalnot, postscript("V"), l2T) { kern.x = -50m };
 r2A postscript("asterisk") { kern.x = -50m };
 (r2V, r2Y) (l2j__sc, postscript("three.p"), l2five__p, l2p, l2jcircumflex, l2afii00208, postscript("iogonek"), postscript("edieresis.sc"), postscript("egrave.sc"), l2afii00208__u, l2c__sc, postscript("udieresis"), postscript("ugrave"), postscript("seven.p"), l2u__sc, postscript("udieresis.sc"), postscript("ugrave.sc"), l2t__sc, l2y__sc, postscript("ydieresis.sc"), postscript("v.sc"), postscript("ij.sc")) { kern.x = -50m };
@@ -1064,6 +1068,7 @@ r2P (l2a, postscript("adieresis"), postscript("agrave")) { kern.x = -20m };
 (r2D, r2B, r2G, postscript("Thorn")) postscript("thorn") { kern.x = -20m };
 (r2U, r2B, r2G) l2comma { kern.x = -20m };
 (r2D, postscript("Q"), r2G, postscript("Thorn")) l2W { kern.x = -20m };
+r2P l2z { kern.x = -15m };
 r2B (l2b, postscript("backslash")) { kern.x = -15m };
 (r2D, r2U, r2B, r2G, r2F, postscript("Thorn")) postscript("four.p") { kern.x = -15m };
 (postscript("Q"), r2A, r2L, postscript("Lcaron"), r2R) postscript("thorn") { kern.x = -15m };
@@ -1078,11 +1083,12 @@ r2P (l2j__sc, postscript("three.p"), l2five__p, l2p, l2afii00208, postscript("ig
 r2S (l2logicalnot, postscript("thorn"), l2bracketright, postscript("asterisk"), l2Y, l2quotedblleft, l2W, postscript("V"), l2T, postscript("napostrophe")) { kern.x = -10m };
 (r2D, postscript("Q"), postscript("Thorn"), r2S) (l2b, postscript("backslash")) { kern.x = -10m };
 (r2D, r2F, postscript("Thorn")) (l2a, postscript("adieresis"), postscript("agrave"), l2o__sc, postscript("odieresis.sc"), postscript("ograve.sc")) { kern.x = -10m };
-(r2D, r2B, r2G, postscript("Thorn")) l2l { kern.x = -5m };
 r2B (l2jcircumflex, postscript("j"), l2v, l2y, postscript("ydieresis"), l2O, l2t__sc, l2y__sc, postscript("ydieresis.sc"), postscript("v.sc")) { kern.x = -5m };
+(r2B, r2G, r2A, postscript("X"), r2K, r2L, postscript("Lcaron"), r2R, r2S, r2Z) l2p { kern.x = -5m };
 r2K (l2logicalnot, postscript("thorn"), l2bracketright, l2U, l2b, l2Y, l2W, postscript("V"), l2T, postscript("backslash")) { kern.x = -5m };
 (r2B, r2K) (postscript("asterisk"), l2quotedblleft, postscript("napostrophe")) { kern.x = -5m };
-(r2B, r2G, r2A, postscript("X"), r2K, r2L, postscript("Lcaron"), r2R, r2S, r2Z) l2p { kern.x = -5m };
+(r2D, r2B, r2G, postscript("Thorn")) l2l { kern.x = -5m };
+(r2D, r2U, r2B, r2G, r2F, postscript("Thorn")) l2z { kern.x = -5m };
 r2T (l2a__sc, postscript("agrave.sc"), l2A) { kern.x = -130m };
 postscript("uhungarumlaut.sc") l3logicalnot { kern.x = -127m };
 postscript("cacute.sc") l3logicalnot { kern.x = -124m };
@@ -1241,7 +1247,7 @@ postscript("dcaron") l5braceleft { kern.x = 11m };
 postscript("aacute") l5logicalnot { kern.x = -116m };
 (postscript("yacute"), postscript("oacute")) l5logicalnot { kern.x = -114m };
 postscript("lcaron") (l5germandbls, l5C) { kern.x = 15m };
-postscript("uacute") l5logicalnot { kern.x = -168m };
+postscript("zacute") l5logicalnot { kern.x = -111m };
 r5f (l5J, l5Euro, l5logicalnot, l5B, l5l, l5Z, postscript("X"), l5braceright, postscript("thorn"), l5bracketright, l5U, l5b, postscript("asterisk"), l5Y, l5quotedblleft, l5W, postscript("V"), l5T, postscript("napostrophe"), postscript("backslash"), postscript("IJ")) { kern.x = 20m };
 (r5a__denom, r5d) postscript("question") { kern.x = 20m };
 postscript("longs") l5braceleft { kern.x = 20m };
@@ -1254,15 +1260,15 @@ postscript("uhungarumlaut") l5logicalnot { kern.x = -123m };
 postscript("eacute") (l5logicalnot, l5T) { kern.x = -94m };
 postscript("lcaron") (l5J, l5Euro, l5logicalnot, l5B, l5l, l5Z, postscript("X"), l5braceright, postscript("thorn"), l5bracketright, l5U, l5b, postscript("asterisk"), l5Y, l5quotedblleft, l5W, postscript("V"), l5T, postscript("napostrophe"), postscript("backslash"), postscript("IJ")) { kern.x = 35m };
 postscript("dcaron") postscript("igrave") { kern.x = 28m };
-postscript("zacute") l5logicalnot { kern.x = -91m };
+postscript("longs") postscript("igrave") { kern.x = 37m };
 postscript("v") postscript("AE") { kern.x = -90m };
 (postscript("l.denom"), r5g, r5a__denom) l5J { kern.x = 40m };
 r5f postscript("question") { kern.x = 40m };
 postscript("dcaron") (l5J, l5Euro, l5logicalnot, l5B, l5l, l5Z, postscript("X"), l5braceright, postscript("thorn"), l5bracketright, l5U, l5b, postscript("asterisk"), l5Y, l5quotedblleft, l5W, postscript("V"), l5T, postscript("napostrophe"), postscript("backslash"), postscript("IJ")) { kern.x = 41m };
 postscript("l.denom") postscript("napostrophe") { kern.x = -209m };
-r5four__p l5T { kern.x = -80m };
 postscript("v") postscript("slash") { kern.x = -80m };
 (r5w, postscript("yacute"), postscript("ydieresis")) postscript("AE") { kern.x = -80m };
+(r5four__p, postscript("zacute")) l5T { kern.x = -80m };
 postscript("cacute") l5logicalnot { kern.x = -79m };
 postscript("longs") (l5J, l5Euro, l5logicalnot, l5B, l5l, l5Z, postscript("X"), l5braceright, postscript("thorn"), l5bracketright, l5U, l5b, postscript("asterisk"), l5Y, l5quotedblleft, l5W, postscript("V"), l5T, postscript("napostrophe"), postscript("backslash"), postscript("IJ")) { kern.x = 50m };
 postscript("lcaron") postscript("question") { kern.x = 55m };
@@ -1273,72 +1279,72 @@ postscript("v") l5A { kern.x = -70m };
 postscript("ohungarumlaut") (l5logicalnot, postscript("V"), l5T, postscript("backslash")) { kern.x = -69m };
 postscript("dcaron") postscript("question") { kern.x = 61m };
 postscript("sacute") l5logicalnot { kern.x = -66m };
-(postscript("ldot"), postscript("v"), postscript("seven.p"), r5w, postscript("yacute"), r5g, postscript("x"), r5k, r5c, postscript("uacute"), postscript("uhungarumlaut"), postscript("udieresis"), postscript("zacute"), postscript("cacute"), r5ij, postscript("sacute")) l5T { kern.x = -60m };
 (postscript("ldot"), r5b, postscript("oacute"), postscript("ohungarumlaut"), postscript("odieresis"), postscript("eth")) postscript("AE") { kern.x = -60m };
 (r5w, postscript("yacute"), postscript("ydieresis")) l5A { kern.x = -60m };
 (r5ae, postscript("eacute"), r5a, postscript("napostrophe"), postscript("nacute"), postscript("aacute"), r5b, postscript("oacute"), postscript("ohungarumlaut")) l5W { kern.x = -60m };
+(postscript("ldot"), postscript("v"), postscript("seven.p"), r5w, postscript("yacute"), r5g, postscript("x"), r5k, r5c, postscript("uacute"), postscript("uhungarumlaut"), postscript("udieresis"), postscript("cacute"), r5ij, postscript("sacute")) l5T { kern.x = -60m };
 (postscript("ldot"), postscript("v"), r5w, postscript("yacute"), r5b, postscript("oacute"), postscript("ohungarumlaut")) l5bracketright { kern.x = -60m };
 postscript("longs") postscript("question") { kern.x = 70m };
 (postscript("ldot"), r5b, postscript("oacute"), postscript("ohungarumlaut"), postscript("odieresis"), postscript("eth")) postscript("slash") { kern.x = -50m };
 (r5ae, postscript("eacute")) l5bracketright { kern.x = -50m };
 postscript("v") (l5comma, postscript("X")) { kern.x = -50m };
 postscript("iogonek") (l5logicalnot, l5T) { kern.x = -50m };
-r5four__p (l5Y, postscript("V")) { kern.x = -50m };
+(r5four__p, postscript("zacute")) (l5Y, postscript("V")) { kern.x = -50m };
+postscript("uacute") l5logicalnot { kern.x = -168m };
 postscript("adieresis") (l5logicalnot, l5W, postscript("V"), l5T, postscript("backslash")) { kern.x = -47m };
 postscript("racute") (l5logicalnot, l5T) { kern.x = -46m };
 postscript("odieresis") (l5W, postscript("V"), postscript("backslash")) { kern.x = -45m };
 (postscript("ydieresis"), postscript("odieresis")) (l5logicalnot, l5bracketright, l5T) { kern.x = -45m };
 (r5ae, postscript("eacute"), r5a, postscript("napostrophe"), postscript("nacute"), postscript("aacute"), postscript("adieresis"), r5b, postscript("oacute"), postscript("ohungarumlaut"), postscript("odieresis")) (l5quotedblleft, postscript("napostrophe")) { kern.x = -40m };
+(r5four__p, postscript("zacute"), postscript("eth")) l5W { kern.x = -40m };
 postscript("l.denom") (l5y, postscript("ydieresis"), l5O) { kern.x = -40m };
 (r5w, postscript("yacute"), postscript("ydieresis")) (l5comma, postscript("X")) { kern.x = -40m };
 (postscript("seven.p"), postscript("eth")) l5bracketright { kern.x = -40m };
 postscript("eth") (l5logicalnot, postscript("V"), l5T) { kern.x = -40m };
 (postscript("ldot"), r5b, postscript("oacute"), postscript("ohungarumlaut"), postscript("odieresis"), postscript("eth")) l5A { kern.x = -40m };
 (postscript("v"), r5w, postscript("yacute"), postscript("ydieresis")) l5Z { kern.x = -40m };
-(r5four__p, postscript("eth")) l5W { kern.x = -40m };
-postscript("longs") postscript("igrave") { kern.x = 37m };
 postscript("iacute") (l5logicalnot, l5T) { kern.x = -32m };
-postscript("v") (l5quotedblbase, l5c, l5edieresis, postscript("odieresis"), postscript("egrave"), postscript("ograve")) { kern.x = -30m };
+(postscript("ldot"), r5ae, postscript("eacute"), postscript("v"), postscript("seven.p"), r5w, postscript("yacute"), postscript("ydieresis"), r5g, postscript("x"), r5k, r5a, postscript("napostrophe"), postscript("nacute"), postscript("aacute"), postscript("adieresis"), r5c, postscript("uacute"), postscript("uhungarumlaut"), postscript("udieresis"), postscript("cacute"), r5ij, postscript("sacute"), postscript("iogonek"), postscript("racute"), postscript("iacute"), r5i, r5b, postscript("oacute"), postscript("ohungarumlaut"), postscript("odieresis"), postscript("eth")) l5Y { kern.x = -30m };
 (r5ae, postscript("eacute"), postscript("edieresis")) (postscript("l.denom"), postscript("slash"), l5A, postscript("AE")) { kern.x = -30m };
+(r5four__p, postscript("zacute"), postscript("eth")) postscript("backslash") { kern.x = -30m };
 postscript("l.denom") l5braceleft { kern.x = -30m };
-(postscript("ldot"), postscript("v"), postscript("seven.p"), r5w, postscript("yacute"), postscript("ydieresis"), r5g, postscript("x"), r5k, r5c, postscript("uacute"), postscript("uhungarumlaut"), postscript("udieresis"), postscript("zacute"), postscript("cacute"), r5ij, postscript("sacute"), postscript("iogonek"), postscript("racute"), postscript("iacute"), r5i) postscript("V") { kern.x = -30m };
+postscript("v") (l5quotedblbase, l5c, l5edieresis, postscript("odieresis"), postscript("egrave"), postscript("ograve")) { kern.x = -30m };
+(postscript("ldot"), postscript("v"), postscript("seven.p"), r5w, postscript("yacute"), postscript("ydieresis"), r5g, postscript("x"), r5k, r5c, postscript("uacute"), postscript("uhungarumlaut"), postscript("udieresis"), postscript("cacute"), r5ij, postscript("sacute"), postscript("iogonek"), postscript("racute"), postscript("iacute"), r5i) postscript("V") { kern.x = -30m };
 r5i (l5logicalnot, l5T) { kern.x = -30m };
-(postscript("ldot"), r5ae, postscript("eacute"), postscript("v"), postscript("seven.p"), r5w, postscript("yacute"), postscript("ydieresis"), r5g, postscript("x"), r5k, r5a, postscript("napostrophe"), postscript("nacute"), postscript("aacute"), postscript("adieresis"), r5c, postscript("uacute"), postscript("uhungarumlaut"), postscript("udieresis"), postscript("zacute"), postscript("cacute"), r5ij, postscript("sacute"), postscript("iogonek"), postscript("racute"), postscript("iacute"), r5i, r5b, postscript("oacute"), postscript("ohungarumlaut"), postscript("odieresis"), postscript("eth")) l5Y { kern.x = -30m };
-(r5four__p, postscript("eth")) postscript("backslash") { kern.x = -30m };
 (r5ae, postscript("eacute"), postscript("edieresis"), r5b, postscript("oacute"), postscript("ohungarumlaut"), postscript("odieresis"), postscript("eth")) postscript("x") { kern.x = -25m };
 postscript("edieresis") (l5logicalnot, l5bracketright, l5Y, l5quotedblleft, l5W, postscript("V"), l5T, postscript("napostrophe"), postscript("backslash")) { kern.x = -25m };
+(postscript("seven.p"), r5w, postscript("yacute"), postscript("ydieresis"), r5four__p, postscript("zacute"), postscript("x")) (l5c, l5edieresis, postscript("odieresis"), postscript("egrave"), postscript("ograve")) { kern.x = -20m };
 (postscript("seven.p"), postscript("germandbls")) (postscript("l.denom"), postscript("slash"), l5A, postscript("AE")) { kern.x = -20m };
-(postscript("seven.p"), r5w, postscript("yacute"), postscript("ydieresis"), r5four__p, postscript("x")) (l5c, l5edieresis, postscript("odieresis"), postscript("egrave"), postscript("ograve")) { kern.x = -20m };
-(postscript("germandbls"), postscript("l.denom"), r5g, r5four__p, postscript("x"), r5k, r5a, postscript("napostrophe"), postscript("nacute"), postscript("aacute"), postscript("adieresis"), r5c, postscript("uacute"), postscript("uhungarumlaut"), postscript("udieresis"), postscript("zacute"), postscript("cacute"), r5ij, postscript("sacute"), postscript("iogonek"), postscript("racute"), postscript("iacute"), r5i) l5bracketright { kern.x = -20m };
+(postscript("l.denom"), r5four__p, postscript("zacute")) (postscript("seven.p"), l5U, l5C) { kern.x = -20m };
+(r5four__p, postscript("zacute"), postscript("eth")) (l5quotedblleft, postscript("napostrophe")) { kern.x = -20m };
 (postscript("ldot"), postscript("v"), postscript("seven.p"), postscript("germandbls"), r5w, postscript("yacute"), postscript("ydieresis")) postscript("x") { kern.x = -20m };
 postscript("germandbls") (l5logicalnot, l5Y, postscript("V"), l5T, postscript("backslash")) { kern.x = -20m };
-(postscript("ldot"), postscript("v"), postscript("seven.p"), postscript("germandbls"), r5w, postscript("yacute"), postscript("ydieresis"), r5g, postscript("x"), r5k, r5c, postscript("uacute"), postscript("uhungarumlaut"), postscript("udieresis"), postscript("zacute"), postscript("cacute"), r5ij, postscript("sacute"), postscript("iogonek"), postscript("racute"), postscript("iacute"), r5i) l5W { kern.x = -20m };
 (postscript("seven.p"), r5w, postscript("yacute"), postscript("ydieresis")) l5quotedblbase { kern.x = -20m };
 (postscript("ldot"), r5ae, postscript("eacute"), postscript("edieresis"), postscript("v"), postscript("seven.p"), postscript("germandbls"), r5w, postscript("yacute"), postscript("ydieresis"), r5b, postscript("oacute"), postscript("ohungarumlaut"), postscript("odieresis"), postscript("eth")) postscript("thorn") { kern.x = -20m };
-(r5ae, postscript("eacute"), postscript("edieresis"), r5four__p, r5a, postscript("napostrophe"), postscript("nacute"), postscript("aacute"), postscript("adieresis"), r5b, postscript("oacute"), postscript("ohungarumlaut"), postscript("odieresis"), postscript("eth")) (l5v, postscript("asterisk"), l5y, postscript("ydieresis")) { kern.x = -20m };
-(postscript("l.denom"), r5four__p) (postscript("seven.p"), l5U, l5C) { kern.x = -20m };
-(r5ae, postscript("eacute"), postscript("edieresis"), postscript("germandbls"), postscript("l.denom"), r5four__p, r5a, postscript("napostrophe"), postscript("nacute"), postscript("aacute"), postscript("adieresis"), r5b, postscript("oacute"), postscript("ohungarumlaut"), postscript("odieresis"), postscript("eth")) l5b { kern.x = -20m };
+(r5ae, postscript("eacute"), postscript("edieresis"), postscript("germandbls"), postscript("l.denom"), r5four__p, postscript("zacute"), r5a, postscript("napostrophe"), postscript("nacute"), postscript("aacute"), postscript("adieresis"), r5b, postscript("oacute"), postscript("ohungarumlaut"), postscript("odieresis"), postscript("eth")) l5b { kern.x = -20m };
+(postscript("germandbls"), postscript("l.denom"), r5g, r5four__p, postscript("zacute"), postscript("x"), r5k, r5a, postscript("napostrophe"), postscript("nacute"), postscript("aacute"), postscript("adieresis"), r5c, postscript("uacute"), postscript("uhungarumlaut"), postscript("udieresis"), postscript("cacute"), r5ij, postscript("sacute"), postscript("iogonek"), postscript("racute"), postscript("iacute"), r5i) l5bracketright { kern.x = -20m };
+(r5ae, postscript("eacute"), postscript("edieresis"), r5four__p, postscript("zacute"), r5a, postscript("napostrophe"), postscript("nacute"), postscript("aacute"), postscript("adieresis"), r5b, postscript("oacute"), postscript("ohungarumlaut"), postscript("odieresis"), postscript("eth")) (l5v, postscript("asterisk"), l5y, postscript("ydieresis")) { kern.x = -20m };
 (postscript("ldot"), r5ae, postscript("eacute"), postscript("edieresis"), postscript("seven.p"), postscript("germandbls"), r5b, postscript("oacute"), postscript("ohungarumlaut"), postscript("odieresis"), postscript("eth")) (l5comma, l5Z, postscript("X")) { kern.x = -20m };
-r5four__p (l5afii00208__u, l5braceleft, l5O) { kern.x = -20m };
-(r5four__p, postscript("eth")) (l5quotedblleft, postscript("napostrophe")) { kern.x = -20m };
+(postscript("ldot"), postscript("v"), postscript("seven.p"), postscript("germandbls"), r5w, postscript("yacute"), postscript("ydieresis"), r5g, postscript("x"), r5k, r5c, postscript("uacute"), postscript("uhungarumlaut"), postscript("udieresis"), postscript("cacute"), r5ij, postscript("sacute"), postscript("iogonek"), postscript("racute"), postscript("iacute"), r5i) l5W { kern.x = -20m };
+(r5four__p, postscript("zacute")) (l5afii00208__u, l5braceleft, l5O) { kern.x = -20m };
 postscript("ldot") (postscript("l.denom"), l5logicalnot) { kern.x = -147m };
 postscript("tcaron") (l5logicalnot, l5bracketright, l5Y, l5W, postscript("V"), l5T) { kern.x = -18m };
 (postscript("ldot"), r5ae, postscript("eacute"), postscript("edieresis"), postscript("v"), postscript("seven.p"), postscript("germandbls"), r5w, postscript("yacute"), postscript("ydieresis"), r5b, postscript("oacute"), postscript("ohungarumlaut"), postscript("odieresis"), postscript("eth")) postscript("four.p") { kern.x = -15m };
-(r5four__p, postscript("x"), r5k, r5a, postscript("napostrophe"), postscript("nacute"), postscript("aacute"), postscript("adieresis"), r5c, postscript("uacute"), postscript("uhungarumlaut"), postscript("udieresis"), postscript("zacute"), postscript("cacute"), r5ij, postscript("sacute"), postscript("iogonek"), postscript("racute"), postscript("iacute"), r5i, postscript("tcaron")) postscript("thorn") { kern.x = -15m };
+(r5four__p, postscript("zacute"), postscript("x"), r5k, r5a, postscript("napostrophe"), postscript("nacute"), postscript("aacute"), postscript("adieresis"), r5c, postscript("uacute"), postscript("uhungarumlaut"), postscript("udieresis"), postscript("cacute"), r5ij, postscript("sacute"), postscript("iogonek"), postscript("racute"), postscript("iacute"), r5i, postscript("tcaron")) postscript("thorn") { kern.x = -15m };
 postscript("nacute") l5logicalnot { kern.x = -140m };
 postscript("napostrophe") l5logicalnot { kern.x = -514m };
-(r5ae, postscript("eacute"), postscript("edieresis"), postscript("germandbls"), r5four__p, r5a, postscript("napostrophe"), postscript("nacute"), postscript("aacute"), postscript("adieresis"), r5b, postscript("oacute"), postscript("ohungarumlaut"), postscript("odieresis"), postscript("eth")) postscript("j") { kern.x = -10m };
 (postscript("l.denom"), r5g) postscript("thorn") { kern.x = -10m };
 postscript("germandbls") (postscript("asterisk"), l5quotedblleft, postscript("napostrophe")) { kern.x = -10m };
 (r5ae, postscript("eacute"), postscript("edieresis"), postscript("germandbls"), r5a, postscript("napostrophe"), postscript("nacute"), postscript("aacute"), postscript("adieresis"), r5b, postscript("oacute"), postscript("ohungarumlaut"), postscript("odieresis"), postscript("eth")) l5O { kern.x = -10m };
-(postscript("ldot"), postscript("v"), postscript("seven.p"), r5w, postscript("yacute"), postscript("ydieresis"), r5g, postscript("x"), r5k, r5c, postscript("uacute"), postscript("uhungarumlaut"), postscript("udieresis"), postscript("zacute"), postscript("cacute"), r5ij, postscript("sacute"), postscript("iogonek"), postscript("racute"), postscript("iacute"), r5i, postscript("tcaron")) (l5b, postscript("backslash")) { kern.x = -10m };
-(r5ae, postscript("eacute"), postscript("edieresis"), postscript("germandbls"), r5four__p, r5a, postscript("napostrophe"), postscript("nacute"), postscript("aacute"), postscript("adieresis"), postscript("longs"), r5b, postscript("oacute"), postscript("ohungarumlaut"), postscript("odieresis"), postscript("eth")) l5jcircumflex { kern.x = -10m };
-r5k (l5c, l5edieresis, postscript("odieresis"), postscript("egrave"), postscript("ograve")) { kern.x = -10m };
-(postscript("l.denom"), r5four__p) (l5u, postscript("udieresis"), postscript("ugrave")) { kern.x = -10m };
 (postscript("germandbls"), postscript("longs")) (l5v, l5y, postscript("ydieresis")) { kern.x = -10m };
+(r5ae, postscript("eacute"), postscript("edieresis"), postscript("germandbls"), r5four__p, postscript("zacute"), r5a, postscript("napostrophe"), postscript("nacute"), postscript("aacute"), postscript("adieresis"), r5b, postscript("oacute"), postscript("ohungarumlaut"), postscript("odieresis"), postscript("eth")) postscript("j") { kern.x = -10m };
+(postscript("l.denom"), r5four__p, postscript("zacute")) (l5u, postscript("udieresis"), postscript("ugrave")) { kern.x = -10m };
+(postscript("ldot"), postscript("v"), postscript("seven.p"), r5w, postscript("yacute"), postscript("ydieresis"), r5g, postscript("x"), r5k, r5c, postscript("uacute"), postscript("uhungarumlaut"), postscript("udieresis"), postscript("cacute"), r5ij, postscript("sacute"), postscript("iogonek"), postscript("racute"), postscript("iacute"), r5i, postscript("tcaron")) (l5b, postscript("backslash")) { kern.x = -10m };
+(r5ae, postscript("eacute"), postscript("edieresis"), postscript("germandbls"), r5four__p, postscript("zacute"), r5a, postscript("napostrophe"), postscript("nacute"), postscript("aacute"), postscript("adieresis"), postscript("longs"), r5b, postscript("oacute"), postscript("ohungarumlaut"), postscript("odieresis"), postscript("eth")) l5jcircumflex { kern.x = -10m };
+r5k (l5c, l5edieresis, postscript("odieresis"), postscript("egrave"), postscript("ograve")) { kern.x = -10m };
 (postscript("v"), postscript("seven.p"), r5w, postscript("yacute"), postscript("ydieresis")) (l5a, postscript("adieresis"), postscript("agrave")) { kern.x = -10m };
-(postscript("ldot"), r5ae, postscript("eacute"), postscript("edieresis"), postscript("v"), postscript("seven.p"), postscript("germandbls"), r5w, postscript("yacute"), postscript("ydieresis"), r5b, postscript("oacute"), postscript("ohungarumlaut"), postscript("odieresis"), postscript("eth")) l5l { kern.x = -5m };
-(r5ae, postscript("eacute"), postscript("edieresis"), postscript("germandbls"), r5four__p, r5a, postscript("napostrophe"), postscript("nacute"), postscript("aacute"), postscript("adieresis"), postscript("longs"), r5b, postscript("oacute"), postscript("ohungarumlaut"), postscript("odieresis"), postscript("eth")) l5p { kern.x = -5m };
+(postscript("ldot"), r5ae, postscript("eacute"), postscript("edieresis"), postscript("v"), postscript("seven.p"), postscript("germandbls"), r5w, postscript("yacute"), postscript("ydieresis"), r5b, postscript("oacute"), postscript("ohungarumlaut"), postscript("odieresis"), postscript("eth")) (l5z, l5l) { kern.x = -5m };
+(r5ae, postscript("eacute"), postscript("edieresis"), postscript("germandbls"), r5four__p, postscript("zacute"), r5a, postscript("napostrophe"), postscript("nacute"), postscript("aacute"), postscript("adieresis"), postscript("longs"), r5b, postscript("oacute"), postscript("ohungarumlaut"), postscript("odieresis"), postscript("eth")) l5p { kern.x = -5m };
 postscript("l.denom") postscript("backslash") { kern.x = -130m };
 postscript("nine.numer") postscript("fraction") { kern.x = -40m };
 postscript("eight.numer") postscript("fraction") { kern.x = -15m };
