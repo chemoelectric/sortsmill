@@ -35,14 +35,14 @@ r1acute = postscript("acute", "acutecomb", "acutecomb.cap", "afii299", "afii300"
      "parenright.sup", "period.sub", "period.sup", "ring", "seven.sub", "seven.sup", 
      "six.sub", "six.sup", "space", "three.sub", "three.sup", "threequarters", 
      "tilde", "tildecomb", "tildecomb.cap", "two.sub", "two.sup", "uni00A0", 
-     "uni00B2", "uni00B3", "uni00B9", "uni02BB", "uni0302", "uni0302.cap", 
-     "uni0304", "uni0304.cap", "uni0305", "uni0306", "uni0306.cap", "uni0307", 
-     "uni0307.cap", "uni0308", "uni0308.cap", "uni0308.narrow", "uni030A", "uni030A.cap", 
-     "uni030B", "uni030B.cap", "uni030C", "uni030C.cap", "uni0312", "uni0315", 
-     "uni0326", "uni0327", "uni0328", "uni2000", "uni2001", "uni2002", 
-     "uni2003", "uni2004", "uni2005", "uni2006", "uni2007", "uni2008", 
-     "uni2009", "uni200A", "uni200B", "uni202F", "uni203E", "uni205F", 
-     "uni2060", "uniFEFF", "zero.sub", "zero.sup")
+     "uni00B2", "uni00B3", "uni00B9", "uni02BB", "uni02C0", "uni0302", 
+     "uni0302.cap", "uni0304", "uni0304.cap", "uni0305", "uni0306", "uni0306.cap", 
+     "uni0307", "uni0307.cap", "uni0308", "uni0308.cap", "uni0308.narrow", "uni030A", 
+     "uni030A.cap", "uni030B", "uni030B.cap", "uni030C", "uni030C.cap", "uni0312", 
+     "uni0315", "uni0326", "uni0327", "uni0328", "uni2000", "uni2001", 
+     "uni2002", "uni2003", "uni2004", "uni2005", "uni2006", "uni2007", 
+     "uni2008", "uni2009", "uni200A", "uni200B", "uni202F", "uni203E", 
+     "uni205F", "uni2060", "uniFEFF", "zero.sub", "zero.sup")
 r1quotedblleft = postscript("quotedblleft", "quotedblright", "quoteleft", "quotereversed", "quoteright", "uni201F")
 r1hyphen = postscript("hyphen", "hyphen.u", "uni00AD", "uni00AD.u", "uni2010", "uni2010.u", 
      "uni2011", "uni2011.u")
@@ -102,7 +102,7 @@ l1B__c2 = postscript("B.c2", "D.c2", "Dcaron.c2", "Dcroat.c2", "E.c2", "Eacute.c
      "uni1E60.c2", "uni1E61", "uni1E61.sc", "uni1E6B", "x.sc", "z.sc", 
      "zacute.sc", "zcaron.sc", "zdotaccent.sc")
 l1braceleft = postscript("braceleft", "braceleft.u")
-l1braceright = postscript("braceright", "braceright.u", "f_thorn")
+l1braceright = postscript("braceright", "braceright.u")
 l1Edieresis__c2 = postscript("Edieresis.c2", "edieresis.sc")
 l1Ograve__c2 = postscript("Ograve.c2", "ograve.sc")
 l1p = postscript("p", "uni1E57")
@@ -148,9 +148,9 @@ l1B = postscript("B", "D", "Dcaron", "Dcroat", "E", "Eacute",
      "Ncaron", "Ncommaaccent", "Ntilde", "P", "R", "Racute", 
      "Rcaron", "Rcommaaccent", "S", "Sacute", "Scaron", "Scedilla", 
      "Scircumflex", "Thorn", "ampersand", "eight.p", "exclam", "exclamdown", 
-     "h", "hbar", "hcircumflex", "k", "kcommaaccent", "questiondown", 
-     "uni0218", "uni1E02", "uni1E0A", "uni1E1E", "uni1E22", "uni1E23", 
-     "uni1E40", "uni1E56", "uni1E60")
+     "f_thorn", "h", "hbar", "hcircumflex", "k", "kcommaaccent", 
+     "questiondown", "uni0218", "uni1E02", "uni1E0A", "uni1E1E", "uni1E22", 
+     "uni1E23", "uni1E40", "uni1E56", "uni1E60")
 l1AE__c2 = postscript("AE.c2", "ae.sc")
 l1A = postscript("A", "Aacute", "Abreve", "Acircumflex", "Adieresis", "Agrave", 
      "Amacron", "Aogonek", "Aring", "Atilde")
@@ -205,15 +205,15 @@ l1a__sub = postscript("a.sub", "a.sup", "acute", "acutecomb", "acutecomb.cap", "
      "space", "t.sub", "t.sup", "three.sub", "three.sup", "threequarters", 
      "tilde", "tildecomb", "tildecomb.cap", "two.sub", "two.sup", "u.sub", 
      "u.sup", "uni00A0", "uni00B2", "uni00B3", "uni00B9", "uni02BB", 
-     "uni0302", "uni0302.cap", "uni0304", "uni0304.cap", "uni0305", "uni0306", 
-     "uni0306.cap", "uni0307", "uni0307.cap", "uni0308", "uni0308.cap", "uni0308.narrow", 
-     "uni030A", "uni030A.cap", "uni030B", "uni030B.cap", "uni030C", "uni030C.cap", 
-     "uni0312", "uni0315", "uni0326", "uni0327", "uni0328", "uni2000", 
-     "uni2001", "uni2002", "uni2003", "uni2004", "uni2005", "uni2006", 
-     "uni2007", "uni2008", "uni2009", "uni200A", "uni200B", "uni202F", 
-     "uni203E", "uni205F", "uni2060", "uniFEFF", "v.sub", "v.sup", 
-     "w.sub", "w.sup", "x.sub", "x.sup", "y.sub", "y.sup", 
-     "z.sub", "z.sup", "zero.sub", "zero.sup")
+     "uni02C0", "uni0302", "uni0302.cap", "uni0304", "uni0304.cap", "uni0305", 
+     "uni0306", "uni0306.cap", "uni0307", "uni0307.cap", "uni0308", "uni0308.cap", 
+     "uni0308.narrow", "uni030A", "uni030A.cap", "uni030B", "uni030B.cap", "uni030C", 
+     "uni030C.cap", "uni0312", "uni0315", "uni0326", "uni0327", "uni0328", 
+     "uni2000", "uni2001", "uni2002", "uni2003", "uni2004", "uni2005", 
+     "uni2006", "uni2007", "uni2008", "uni2009", "uni200A", "uni200B", 
+     "uni202F", "uni203E", "uni205F", "uni2060", "uniFEFF", "v.sub", 
+     "v.sup", "w.sub", "w.sup", "x.sub", "x.sup", "y.sub", 
+     "y.sup", "z.sub", "z.sup", "zero.sub", "zero.sup")
 l1IJ__c2 = postscript("IJ.c2", "ij.sc")
 l1W = postscript("W", "Wcircumflex")
 l1b = postscript("b", "uni1E03")
@@ -286,7 +286,7 @@ l2afii00208 = postscript("afii00208", "b.sc", "d.sc", "dcaron.sc", "dcroat.sc", 
      "uni1E41", "uni1E41.sc", "uni1E57.sc", "uni1E61", "uni1E61.sc", "uni1E6B", 
      "x.sc", "z.sc", "zacute.sc", "zcaron.sc", "zdotaccent.sc")
 l2braceleft = postscript("braceleft", "braceleft.u")
-l2braceright = postscript("braceright", "braceright.u", "f_thorn")
+l2braceright = postscript("braceright", "braceright.u")
 l2p = postscript("p", "uni1E57")
 l2a = postscript("a", "aacute", "abreve", "acircumflex", "ae", "amacron", 
      "aogonek", "aring", "atilde")
@@ -324,9 +324,9 @@ l2B = postscript("B", "D", "Dcaron", "Dcroat", "E", "Eacute",
      "Ncaron", "Ncommaaccent", "Ntilde", "P", "R", "Racute", 
      "Rcaron", "Rcommaaccent", "S", "Sacute", "Scaron", "Scedilla", 
      "Scircumflex", "Thorn", "ampersand", "eight.p", "exclam", "exclamdown", 
-     "h", "hbar", "hcircumflex", "k", "kcommaaccent", "questiondown", 
-     "uni0218", "uni1E02", "uni1E0A", "uni1E1E", "uni1E22", "uni1E23", 
-     "uni1E40", "uni1E56", "uni1E60")
+     "f_thorn", "h", "hbar", "hcircumflex", "k", "kcommaaccent", 
+     "questiondown", "uni0218", "uni1E02", "uni1E0A", "uni1E1E", "uni1E22", 
+     "uni1E23", "uni1E40", "uni1E56", "uni1E60")
 l2A = postscript("A", "Aacute", "Abreve", "Acircumflex", "Adieresis", "Agrave", 
      "Amacron", "Aogonek", "Aring", "Atilde")
 l2edieresis = postscript("edieresis", "eth")
@@ -375,15 +375,15 @@ l2a__sub = postscript("a.sub", "a.sup", "acute", "acutecomb", "acutecomb.cap", "
      "space", "t.sub", "t.sup", "three.sub", "three.sup", "threequarters", 
      "tilde", "tildecomb", "tildecomb.cap", "two.sub", "two.sup", "u.sub", 
      "u.sup", "uni00A0", "uni00B2", "uni00B3", "uni00B9", "uni02BB", 
-     "uni0302", "uni0302.cap", "uni0304", "uni0304.cap", "uni0305", "uni0306", 
-     "uni0306.cap", "uni0307", "uni0307.cap", "uni0308", "uni0308.cap", "uni0308.narrow", 
-     "uni030A", "uni030A.cap", "uni030B", "uni030B.cap", "uni030C", "uni030C.cap", 
-     "uni0312", "uni0315", "uni0326", "uni0327", "uni0328", "uni2000", 
-     "uni2001", "uni2002", "uni2003", "uni2004", "uni2005", "uni2006", 
-     "uni2007", "uni2008", "uni2009", "uni200A", "uni200B", "uni202F", 
-     "uni203E", "uni205F", "uni2060", "uniFEFF", "v.sub", "v.sup", 
-     "w.sub", "w.sup", "x.sub", "x.sup", "y.sub", "y.sup", 
-     "z.sub", "z.sup", "zero.sub", "zero.sup")
+     "uni02C0", "uni0302", "uni0302.cap", "uni0304", "uni0304.cap", "uni0305", 
+     "uni0306", "uni0306.cap", "uni0307", "uni0307.cap", "uni0308", "uni0308.cap", 
+     "uni0308.narrow", "uni030A", "uni030A.cap", "uni030B", "uni030B.cap", "uni030C", 
+     "uni030C.cap", "uni0312", "uni0315", "uni0326", "uni0327", "uni0328", 
+     "uni2000", "uni2001", "uni2002", "uni2003", "uni2004", "uni2005", 
+     "uni2006", "uni2007", "uni2008", "uni2009", "uni200A", "uni200B", 
+     "uni202F", "uni203E", "uni205F", "uni2060", "uniFEFF", "v.sub", 
+     "v.sup", "w.sub", "w.sup", "x.sub", "x.sup", "y.sub", 
+     "y.sup", "z.sub", "z.sup", "zero.sub", "zero.sup")
 l2W = postscript("W", "Wcircumflex")
 l2b = postscript("b", "uni1E03")
 l2U = postscript("U", "Uacute", "Ubreve", "Ucircumflex", "Udieresis", "Ugrave", 
@@ -453,7 +453,7 @@ l3B__c2 = postscript("B.c2", "D.c2", "Dcaron.c2", "Dcroat.c2", "E.c2", "Eacute.c
      "uni1E60.c2", "uni1E61.sc", "x.sc", "z.sc", "zacute.sc", "zcaron.sc", 
      "zdotaccent.sc")
 l3braceleft = postscript("braceleft", "braceleft.u")
-l3braceright = postscript("braceright", "braceright.u", "f_thorn")
+l3braceright = postscript("braceright", "braceright.u")
 l3Edieresis__c2 = postscript("Edieresis.c2", "edieresis.sc")
 l3Ograve__c2 = postscript("Ograve.c2", "ograve.sc")
 l3T__c2 = postscript("T.c2", "Tbar.c2", "Tcaron.c2", "W.c2", "Wcircumflex.c2", "t.sc", 
@@ -489,9 +489,9 @@ l3B = postscript("B", "D", "Dcaron", "Dcroat", "E", "Eacute",
      "Lcommaaccent", "Ldot", "Lslash", "M", "N", "Nacute", 
      "Ncaron", "Ncommaaccent", "Ntilde", "P", "R", "Racute", 
      "Rcaron", "Rcommaaccent", "S", "Sacute", "Scaron", "Scedilla", 
-     "Scircumflex", "Thorn", "ampersand", "exclam", "exclamdown", "questiondown", 
-     "uni0218", "uni1E02", "uni1E0A", "uni1E1E", "uni1E22", "uni1E40", 
-     "uni1E56", "uni1E60")
+     "Scircumflex", "Thorn", "ampersand", "exclam", "exclamdown", "f_thorn", 
+     "questiondown", "uni0218", "uni1E02", "uni1E0A", "uni1E1E", "uni1E22", 
+     "uni1E40", "uni1E56", "uni1E60")
 l3AE__c2 = postscript("AE.c2", "ae.sc")
 l3A = postscript("A", "Aacute", "Abreve", "Acircumflex", "Adieresis", "Agrave", 
      "Amacron", "Aogonek", "Aring", "Atilde")
@@ -525,14 +525,14 @@ l3acute = postscript("acute", "acutecomb", "acutecomb.cap", "afii299", "afii300"
      "parenright.sup", "period.sub", "period.sup", "ring", "seven.sub", "seven.sup", 
      "six.sub", "six.sup", "space", "three.sub", "three.sup", "threequarters", 
      "tilde", "tildecomb", "tildecomb.cap", "two.sub", "two.sup", "uni00A0", 
-     "uni00B2", "uni00B3", "uni00B9", "uni02BB", "uni0302", "uni0302.cap", 
-     "uni0304", "uni0304.cap", "uni0305", "uni0306", "uni0306.cap", "uni0307", 
-     "uni0307.cap", "uni0308", "uni0308.cap", "uni0308.narrow", "uni030A", "uni030A.cap", 
-     "uni030B", "uni030B.cap", "uni030C", "uni030C.cap", "uni0312", "uni0315", 
-     "uni0326", "uni0327", "uni0328", "uni2000", "uni2001", "uni2002", 
-     "uni2003", "uni2004", "uni2005", "uni2006", "uni2007", "uni2008", 
-     "uni2009", "uni200A", "uni200B", "uni202F", "uni203E", "uni205F", 
-     "uni2060", "uniFEFF", "zero.sub", "zero.sup")
+     "uni00B2", "uni00B3", "uni00B9", "uni02BB", "uni02C0", "uni0302", 
+     "uni0302.cap", "uni0304", "uni0304.cap", "uni0305", "uni0306", "uni0306.cap", 
+     "uni0307", "uni0307.cap", "uni0308", "uni0308.cap", "uni0308.narrow", "uni030A", 
+     "uni030A.cap", "uni030B", "uni030B.cap", "uni030C", "uni030C.cap", "uni0312", 
+     "uni0315", "uni0326", "uni0327", "uni0328", "uni2000", "uni2001", 
+     "uni2002", "uni2003", "uni2004", "uni2005", "uni2006", "uni2007", 
+     "uni2008", "uni2009", "uni200A", "uni200B", "uni202F", "uni203E", 
+     "uni205F", "uni2060", "uniFEFF", "zero.sub", "zero.sup")
 l3IJ__c2 = postscript("IJ.c2", "ij.sc")
 l3W = postscript("W", "Wcircumflex")
 l3U = postscript("U", "Uacute", "Ubreve", "Ucircumflex", "Udieresis", "Ugrave", 
@@ -597,7 +597,7 @@ l4B__c2 = postscript("B.c2", "D.c2", "Dcaron.c2", "Dcroat.c2", "E.c2", "Eacute.c
      "uni1E22.c2", "uni1E23.sc", "uni1E40.c2", "uni1E41.sc", "uni1E56.c2", "uni1E57.sc", 
      "uni1E60.c2", "uni1E61.sc", "x.sc", "z.sc", "zacute.sc", "zcaron.sc", 
      "zdotaccent.sc")
-l4braceright = postscript("braceright", "braceright.u", "f_thorn")
+l4braceright = postscript("braceright", "braceright.u")
 l4Edieresis__c2 = postscript("Edieresis.c2", "edieresis.sc")
 l4Ograve__c2 = postscript("Ograve.c2", "ograve.sc")
 l4T__c2 = postscript("T.c2", "Tbar.c2", "Tcaron.c2", "W.c2", "Wcircumflex.c2", "t.sc", 
@@ -622,7 +622,7 @@ l4hyphen = postscript("hyphen", "hyphen.u", "uni00AD", "uni00AD.u", "uni2010", "
      "uni2011", "uni2011.u")
 l4bracketright = postscript("bracketright", "bracketright.u", "parenright", "parenright.u")
 l4Odieresis__c2 = postscript("Odieresis.c2", "odieresis.sc")
-l4ampersand = postscript("ampersand", "exclam", "exclamdown", "questiondown")
+l4ampersand = postscript("ampersand", "exclam", "exclamdown", "f_thorn", "questiondown")
 l4AE__c2 = postscript("AE.c2", "ae.sc")
 l4logicalnot = postscript("logicalnot", "plusminus")
 l4Ugrave__c2 = postscript("Ugrave.c2", "ugrave.sc")
@@ -652,14 +652,14 @@ l4acute = postscript("acute", "acutecomb", "acutecomb.cap", "afii299", "afii300"
      "parenright.sup", "period.sub", "period.sup", "ring", "seven.sub", "seven.sup", 
      "six.sub", "six.sup", "space", "three.sub", "three.sup", "threequarters", 
      "tilde", "tildecomb", "tildecomb.cap", "two.sub", "two.sup", "uni00A0", 
-     "uni00B2", "uni00B3", "uni00B9", "uni02BB", "uni0302", "uni0302.cap", 
-     "uni0304", "uni0304.cap", "uni0305", "uni0306", "uni0306.cap", "uni0307", 
-     "uni0307.cap", "uni0308", "uni0308.cap", "uni0308.narrow", "uni030A", "uni030A.cap", 
-     "uni030B", "uni030B.cap", "uni030C", "uni030C.cap", "uni0312", "uni0315", 
-     "uni0326", "uni0327", "uni0328", "uni2000", "uni2001", "uni2002", 
-     "uni2003", "uni2004", "uni2005", "uni2006", "uni2007", "uni2008", 
-     "uni2009", "uni200A", "uni200B", "uni202F", "uni203E", "uni205F", 
-     "uni2060", "uniFEFF", "zero.sub", "zero.sup")
+     "uni00B2", "uni00B3", "uni00B9", "uni02BB", "uni02C0", "uni0302", 
+     "uni0302.cap", "uni0304", "uni0304.cap", "uni0305", "uni0306", "uni0306.cap", 
+     "uni0307", "uni0307.cap", "uni0308", "uni0308.cap", "uni0308.narrow", "uni030A", 
+     "uni030A.cap", "uni030B", "uni030B.cap", "uni030C", "uni030C.cap", "uni0312", 
+     "uni0315", "uni0326", "uni0327", "uni0328", "uni2000", "uni2001", 
+     "uni2002", "uni2003", "uni2004", "uni2005", "uni2006", "uni2007", 
+     "uni2008", "uni2009", "uni200A", "uni200B", "uni202F", "uni203E", 
+     "uni205F", "uni2060", "uniFEFF", "zero.sub", "zero.sup")
 l4IJ__c2 = postscript("IJ.c2", "ij.sc")
 l4Egrave__c2 = postscript("Egrave.c2", "egrave.sc")
 l4Udieresis__c2 = postscript("Udieresis.c2", "udieresis.sc")
@@ -734,7 +734,7 @@ l5afii00208 = postscript("afii00208", "dotlessi", "emdash", "endash", "eng", "f"
      "uni0163", "uni0219", "uni021B", "uni1E1F", "uni1E41", "uni1E61", 
      "uni1E6B")
 l5braceleft = postscript("braceleft", "braceleft.u")
-l5braceright = postscript("braceright", "braceright.u", "f_thorn")
+l5braceright = postscript("braceright", "braceright.u")
 l5p = postscript("p", "uni1E57")
 l5a = postscript("a", "aacute", "abreve", "acircumflex", "ae", "amacron", 
      "aogonek", "aring", "atilde")
@@ -765,9 +765,9 @@ l5B = postscript("B", "D", "Dcaron", "Dcroat", "E", "Eacute",
      "Ncaron", "Ncommaaccent", "Ntilde", "P", "R", "Racute", 
      "Rcaron", "Rcommaaccent", "S", "Sacute", "Scaron", "Scedilla", 
      "Scircumflex", "Thorn", "ampersand", "eight.p", "exclam", "exclamdown", 
-     "h", "hbar", "hcircumflex", "k", "kcommaaccent", "questiondown", 
-     "uni0218", "uni1E02", "uni1E0A", "uni1E1E", "uni1E22", "uni1E23", 
-     "uni1E40", "uni1E56", "uni1E60")
+     "f_thorn", "h", "hbar", "hcircumflex", "k", "kcommaaccent", 
+     "questiondown", "uni0218", "uni1E02", "uni1E0A", "uni1E1E", "uni1E22", 
+     "uni1E23", "uni1E40", "uni1E56", "uni1E60")
 l5A = postscript("A", "Aacute", "Abreve", "Acircumflex", "Adieresis", "Agrave", 
      "Amacron", "Aogonek", "Aring", "Atilde")
 l5edieresis = postscript("edieresis", "eth")
@@ -815,15 +815,15 @@ l5a__sub = postscript("a.sub", "a.sup", "acute", "acutecomb", "acutecomb.cap", "
      "space", "t.sub", "t.sup", "three.sub", "three.sup", "threequarters", 
      "tilde", "tildecomb", "tildecomb.cap", "two.sub", "two.sup", "u.sub", 
      "u.sup", "uni00A0", "uni00B2", "uni00B3", "uni00B9", "uni02BB", 
-     "uni0302", "uni0302.cap", "uni0304", "uni0304.cap", "uni0305", "uni0306", 
-     "uni0306.cap", "uni0307", "uni0307.cap", "uni0308", "uni0308.cap", "uni0308.narrow", 
-     "uni030A", "uni030A.cap", "uni030B", "uni030B.cap", "uni030C", "uni030C.cap", 
-     "uni0312", "uni0315", "uni0326", "uni0327", "uni0328", "uni2000", 
-     "uni2001", "uni2002", "uni2003", "uni2004", "uni2005", "uni2006", 
-     "uni2007", "uni2008", "uni2009", "uni200A", "uni200B", "uni202F", 
-     "uni203E", "uni205F", "uni2060", "uniFEFF", "v.sub", "v.sup", 
-     "w.sub", "w.sup", "x.sub", "x.sup", "y.sub", "y.sup", 
-     "z.sub", "z.sup", "zero.sub", "zero.sup")
+     "uni02C0", "uni0302", "uni0302.cap", "uni0304", "uni0304.cap", "uni0305", 
+     "uni0306", "uni0306.cap", "uni0307", "uni0307.cap", "uni0308", "uni0308.cap", 
+     "uni0308.narrow", "uni030A", "uni030A.cap", "uni030B", "uni030B.cap", "uni030C", 
+     "uni030C.cap", "uni0312", "uni0315", "uni0326", "uni0327", "uni0328", 
+     "uni2000", "uni2001", "uni2002", "uni2003", "uni2004", "uni2005", 
+     "uni2006", "uni2007", "uni2008", "uni2009", "uni200A", "uni200B", 
+     "uni202F", "uni203E", "uni205F", "uni2060", "uniFEFF", "v.sub", 
+     "v.sup", "w.sub", "w.sup", "x.sub", "x.sup", "y.sub", 
+     "y.sup", "z.sub", "z.sup", "zero.sub", "zero.sup")
 l5b = postscript("b", "uni1E03")
 l5U = postscript("U", "Uacute", "Ubreve", "Ucircumflex", "Udieresis", "Ugrave", 
      "Uhungarumlaut", "Umacron", "Uogonek", "Uring", "Utilde")

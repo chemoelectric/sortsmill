@@ -107,7 +107,7 @@ feature kern {
      \uni1E60.c2 \uni1E61 \uni1E61.sc \uni1E6B \x.sc \z.sc 
      \zacute.sc \zcaron.sc \zdotaccent.sc];
 @l1_braceleft = [\braceleft \braceleft.u];
-@l1_braceright = [\braceright \braceright.u \f_thorn];
+@l1_braceright = [\braceright \braceright.u];
 @l1_Edieresis.c2 = [\Edieresis.c2 \edieresis.sc];
 @l1_Ograve.c2 = [\Ograve.c2 \ograve.sc];
 @l1_p = [\p \uni1E57];
@@ -153,9 +153,9 @@ feature kern {
      \Ncaron \Ncommaaccent \Ntilde \P \R \Racute 
      \Rcaron \Rcommaaccent \S \Sacute \Scaron \Scedilla 
      \Scircumflex \Thorn \ampersand \eight.p \exclam \exclamdown 
-     \h \hbar \hcircumflex \k \kcommaaccent \questiondown 
-     \uni0218 \uni1E02 \uni1E0A \uni1E1E \uni1E22 \uni1E23 
-     \uni1E40 \uni1E56 \uni1E60];
+     \f_thorn \h \hbar \hcircumflex \k \kcommaaccent 
+     \questiondown \uni0218 \uni1E02 \uni1E0A \uni1E1E \uni1E22 
+     \uni1E23 \uni1E40 \uni1E56 \uni1E60];
 @l1_AE.c2 = [\AE.c2 \ae.sc];
 @l1_A = [\A \Aacute \Abreve \Acircumflex \Adieresis \Agrave 
      \Amacron \Aogonek \Aring \Atilde];
@@ -296,7 +296,7 @@ feature kern {
      \uni1E41 \uni1E41.sc \uni1E57.sc \uni1E61 \uni1E61.sc \uni1E6B 
      \x.sc \z.sc \zacute.sc \zcaron.sc \zdotaccent.sc];
 @l2_braceleft = [\braceleft \braceleft.u];
-@l2_braceright = [\braceright \braceright.u \f_thorn];
+@l2_braceright = [\braceright \braceright.u];
 @l2_p = [\p \uni1E57];
 @l2_a = [\a \aacute \abreve \acircumflex \ae \amacron 
      \aogonek \aring \atilde];
@@ -334,9 +334,9 @@ feature kern {
      \Ncaron \Ncommaaccent \Ntilde \P \R \Racute 
      \Rcaron \Rcommaaccent \S \Sacute \Scaron \Scedilla 
      \Scircumflex \Thorn \ampersand \eight.p \exclam \exclamdown 
-     \h \hbar \hcircumflex \k \kcommaaccent \questiondown 
-     \uni0218 \uni1E02 \uni1E0A \uni1E1E \uni1E22 \uni1E23 
-     \uni1E40 \uni1E56 \uni1E60];
+     \f_thorn \h \hbar \hcircumflex \k \kcommaaccent 
+     \questiondown \uni0218 \uni1E02 \uni1E0A \uni1E1E \uni1E22 
+     \uni1E23 \uni1E40 \uni1E56 \uni1E60];
 @l2_A = [\A \Aacute \Abreve \Acircumflex \Adieresis \Agrave 
      \Amacron \Aogonek \Aring \Atilde];
 @l2_edieresis = [\edieresis \eth];
@@ -468,7 +468,7 @@ feature kern {
      \uni1E60.c2 \uni1E61.sc \x.sc \z.sc \zacute.sc \zcaron.sc 
      \zdotaccent.sc];
 @l3_braceleft = [\braceleft \braceleft.u];
-@l3_braceright = [\braceright \braceright.u \f_thorn];
+@l3_braceright = [\braceright \braceright.u];
 @l3_Edieresis.c2 = [\Edieresis.c2 \edieresis.sc];
 @l3_Ograve.c2 = [\Ograve.c2 \ograve.sc];
 @l3_T.c2 = [\T.c2 \Tbar.c2 \Tcaron.c2 \W.c2 \Wcircumflex.c2 \t.sc 
@@ -504,9 +504,9 @@ feature kern {
      \Lcommaaccent \Ldot \Lslash \M \N \Nacute 
      \Ncaron \Ncommaaccent \Ntilde \P \R \Racute 
      \Rcaron \Rcommaaccent \S \Sacute \Scaron \Scedilla 
-     \Scircumflex \Thorn \ampersand \exclam \exclamdown \questiondown 
-     \uni0218 \uni1E02 \uni1E0A \uni1E1E \uni1E22 \uni1E40 
-     \uni1E56 \uni1E60];
+     \Scircumflex \Thorn \ampersand \exclam \exclamdown \f_thorn 
+     \questiondown \uni0218 \uni1E02 \uni1E0A \uni1E1E \uni1E22 
+     \uni1E40 \uni1E56 \uni1E60];
 @l3_AE.c2 = [\AE.c2 \ae.sc];
 @l3_A = [\A \Aacute \Abreve \Acircumflex \Adieresis \Agrave 
      \Amacron \Aogonek \Aring \Atilde];
@@ -618,7 +618,7 @@ feature kern {
      \uni1E60.c2 \uni1E61.sc \x.sc \z.sc \zacute.sc \zcaron.sc 
      \zdotaccent.sc];
 @l4_logicalnot = [\logicalnot \plusminus];
-@l4_braceright = [\braceright \braceright.u \f_thorn];
+@l4_braceright = [\braceright \braceright.u];
 @l4_Edieresis.c2 = [\Edieresis.c2 \edieresis.sc];
 @l4_Ograve.c2 = [\Ograve.c2 \ograve.sc];
 @l4_T.c2 = [\T.c2 \Tbar.c2 \Tcaron.c2 \W.c2 \Wcircumflex.c2 \t.sc 
@@ -643,7 +643,7 @@ feature kern {
      \uni2011 \uni2011.u];
 @l4_bracketright = [\bracketright \bracketright.u \parenright \parenright.u];
 @l4_Odieresis.c2 = [\Odieresis.c2 \odieresis.sc];
-@l4_ampersand = [\ampersand \exclam \exclamdown \questiondown];
+@l4_ampersand = [\ampersand \exclam \exclamdown \f_thorn \questiondown];
 @l4_AE.c2 = [\AE.c2 \ae.sc];
 @l4_J.c2 = [\J.c2 \Jcircumflex.c2 \j.sc \jcircumflex.sc];
 @l4_Ugrave.c2 = [\Ugrave.c2 \ugrave.sc];
@@ -759,7 +759,7 @@ feature kern {
      \uni0163 \uni0219 \uni021B \uni1E1F \uni1E41 \uni1E61 
      \uni1E6B];
 @l5_braceleft = [\braceleft \braceleft.u];
-@l5_braceright = [\braceright \braceright.u \f_thorn];
+@l5_braceright = [\braceright \braceright.u];
 @l5_p = [\p \uni1E57];
 @l5_a = [\a \aacute \abreve \acircumflex \ae \amacron 
      \aogonek \aring \atilde];
@@ -790,9 +790,9 @@ feature kern {
      \Ncaron \Ncommaaccent \Ntilde \P \R \Racute 
      \Rcaron \Rcommaaccent \S \Sacute \Scaron \Scedilla 
      \Scircumflex \Thorn \ampersand \eight.p \exclam \exclamdown 
-     \h \hbar \hcircumflex \k \kcommaaccent \questiondown 
-     \uni0218 \uni1E02 \uni1E0A \uni1E1E \uni1E22 \uni1E23 
-     \uni1E40 \uni1E56 \uni1E60];
+     \f_thorn \h \hbar \hcircumflex \k \kcommaaccent 
+     \questiondown \uni0218 \uni1E02 \uni1E0A \uni1E1E \uni1E22 
+     \uni1E23 \uni1E40 \uni1E56 \uni1E60];
 @l5_A = [\A \Aacute \Abreve \Acircumflex \Adieresis \Agrave 
      \Amacron \Aogonek \Aring \Atilde];
 @l5_edieresis = [\edieresis \eth];
