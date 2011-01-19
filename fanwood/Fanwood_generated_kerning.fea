@@ -29,20 +29,20 @@ feature kern {
      \breve \caron \cedilla \cent.sub \cent.sup \circumflex 
      \comma.sub \comma.sup \dieresis \dollar.sub \dollar.sup \dotaccent 
      \eight.sub \eight.sup \five.sub \five.sup \four.sub \four.sup 
-     \grave \gravecomb \gravecomb.cap \hungarumlaut \hyphen.sub \hyphen.sup 
-     \macron \nine.sub \nine.sup \ogonek \one.sub \one.sup 
-     \onehalf \onequarter \parenleft.sub \parenleft.sup \parenright.sub \parenright.sup 
-     \period.sub \period.sup \ring \seven.sub \seven.sup \six.sub 
-     \six.sup \space \three.sub \three.sup \threequarters \tilde 
-     \tildecomb \tildecomb.cap \two.sub \two.sup \uni00A0 \uni00B2 
-     \uni00B3 \uni00B9 \uni02BB \uni0302 \uni0302.cap \uni0304 
-     \uni0304.cap \uni0306 \uni0306.cap \uni0307 \uni0307.cap \uni0308 
-     \uni0308.cap \uni0308.narrow \uni030A \uni030A.cap \uni030B \uni030B.cap 
-     \uni030C \uni030C.cap \uni0312 \uni0315 \uni0326 \uni0327 
-     \uni0328 \uni2000 \uni2001 \uni2002 \uni2003 \uni2004 
-     \uni2005 \uni2006 \uni2007 \uni2008 \uni2009 \uni200A 
-     \uni200B \uni202F \uni203E \uni205F \uni2060 \uniFEFF 
-     \zero.sub \zero.sup];
+     \grave \gravecomb \gravecomb.cap \hookabovecomb \hungarumlaut \hyphen.sub 
+     \hyphen.sup \macron \nine.sub \nine.sup \ogonek \one.sub 
+     \one.sup \onehalf \onequarter \parenleft.sub \parenleft.sup \parenright.sub 
+     \parenright.sup \period.sub \period.sup \ring \seven.sub \seven.sup 
+     \six.sub \six.sup \space \three.sub \three.sup \threequarters 
+     \tilde \tildecomb \tildecomb.cap \two.sub \two.sup \uni00A0 
+     \uni00B2 \uni00B3 \uni00B9 \uni02BB \uni0302 \uni0302.cap 
+     \uni0304 \uni0304.cap \uni0305 \uni0306 \uni0306.cap \uni0307 
+     \uni0307.cap \uni0308 \uni0308.cap \uni0308.narrow \uni030A \uni030A.cap 
+     \uni030B \uni030B.cap \uni030C \uni030C.cap \uni0312 \uni0315 
+     \uni0326 \uni0327 \uni0328 \uni2000 \uni2001 \uni2002 
+     \uni2003 \uni2004 \uni2005 \uni2006 \uni2007 \uni2008 
+     \uni2009 \uni200A \uni200B \uni202F \uni203E \uni205F 
+     \uni2060 \uniFEFF \zero.sub \zero.sup];
 @r1_quotedblleft = [\quotedblleft \quotedblright \quoteleft \quotereversed \quoteright \uni201F];
 @r1_hyphen = [\hyphen \hyphen.u \uni00AD \uni00AD.u \uni2010 \uni2010.u 
      \uni2011 \uni2011.u];
@@ -194,26 +194,26 @@ feature kern {
      \dollar.sup \dotaccent \e.sub \e.sup \eight.sub \eight.sup 
      \f.sub \f.sup \five.sub \five.sup \four.sub \four.sup 
      \g.sub \g.sup \grave \gravecomb \gravecomb.cap \h.sub 
-     \h.sup \hungarumlaut \hyphen.sub \hyphen.sup \i.sub \i.sup 
-     \j.sub \j.sup \k.sub \k.sup \l.sub \l.sup 
-     \m.sub \m.sup \macron \n.sub \n.sup \nine.sub 
-     \nine.sup \o.sub \o.sup \ogonek \one.sub \one.sup 
-     \onehalf \onequarter \ordfeminine \ordmasculine \p.sub \p.sup 
-     \parenleft.sub \parenleft.sup \parenright.sub \parenright.sup \period.sub \period.sup 
-     \q.sub \q.sup \r.sub \r.sup \ring \s.sub 
-     \s.sup \seven.sub \seven.sup \six.sub \six.sup \space 
-     \t.sub \t.sup \three.sub \three.sup \threequarters \tilde 
-     \tildecomb \tildecomb.cap \two.sub \two.sup \u.sub \u.sup 
-     \uni00A0 \uni00B2 \uni00B3 \uni00B9 \uni02BB \uni0302 
-     \uni0302.cap \uni0304 \uni0304.cap \uni0306 \uni0306.cap \uni0307 
-     \uni0307.cap \uni0308 \uni0308.cap \uni0308.narrow \uni030A \uni030A.cap 
-     \uni030B \uni030B.cap \uni030C \uni030C.cap \uni0312 \uni0315 
-     \uni0326 \uni0327 \uni0328 \uni2000 \uni2001 \uni2002 
-     \uni2003 \uni2004 \uni2005 \uni2006 \uni2007 \uni2008 
-     \uni2009 \uni200A \uni200B \uni202F \uni203E \uni205F 
-     \uni2060 \uniFEFF \v.sub \v.sup \w.sub \w.sup 
-     \x.sub \x.sup \y.sub \y.sup \z.sub \z.sup 
-     \zero.sub \zero.sup];
+     \h.sup \hookabovecomb \hungarumlaut \hyphen.sub \hyphen.sup \i.sub 
+     \i.sup \j.sub \j.sup \k.sub \k.sup \l.sub 
+     \l.sup \m.sub \m.sup \macron \n.sub \n.sup 
+     \nine.sub \nine.sup \o.sub \o.sup \ogonek \one.sub 
+     \one.sup \onehalf \onequarter \ordfeminine \ordmasculine \p.sub 
+     \p.sup \parenleft.sub \parenleft.sup \parenright.sub \parenright.sup \period.sub 
+     \period.sup \q.sub \q.sup \r.sub \r.sup \ring 
+     \s.sub \s.sup \seven.sub \seven.sup \six.sub \six.sup 
+     \space \t.sub \t.sup \three.sub \three.sup \threequarters 
+     \tilde \tildecomb \tildecomb.cap \two.sub \two.sup \u.sub 
+     \u.sup \uni00A0 \uni00B2 \uni00B3 \uni00B9 \uni02BB 
+     \uni0302 \uni0302.cap \uni0304 \uni0304.cap \uni0305 \uni0306 
+     \uni0306.cap \uni0307 \uni0307.cap \uni0308 \uni0308.cap \uni0308.narrow 
+     \uni030A \uni030A.cap \uni030B \uni030B.cap \uni030C \uni030C.cap 
+     \uni0312 \uni0315 \uni0326 \uni0327 \uni0328 \uni2000 
+     \uni2001 \uni2002 \uni2003 \uni2004 \uni2005 \uni2006 
+     \uni2007 \uni2008 \uni2009 \uni200A \uni200B \uni202F 
+     \uni203E \uni205F \uni2060 \uniFEFF \v.sub \v.sup 
+     \w.sub \w.sup \x.sub \x.sup \y.sub \y.sup 
+     \z.sub \z.sup \zero.sub \zero.sup];
 @l1_IJ.c2 = [\IJ.c2 \ij.sc];
 @l1_W = [\W \Wcircumflex];
 @l1_b = [\b \uni1E03];
@@ -364,26 +364,26 @@ feature kern {
      \dollar.sup \dotaccent \e.sub \e.sup \eight.sub \eight.sup 
      \f.sub \f.sup \five.sub \five.sup \four.sub \four.sup 
      \g.sub \g.sup \grave \gravecomb \gravecomb.cap \h.sub 
-     \h.sup \hungarumlaut \hyphen.sub \hyphen.sup \i.sub \i.sup 
-     \j.sub \j.sup \k.sub \k.sup \l.sub \l.sup 
-     \m.sub \m.sup \macron \n.sub \n.sup \nine.sub 
-     \nine.sup \o.sub \o.sup \ogonek \one.sub \one.sup 
-     \onehalf \onequarter \ordfeminine \ordmasculine \p.sub \p.sup 
-     \parenleft.sub \parenleft.sup \parenright.sub \parenright.sup \period.sub \period.sup 
-     \q.sub \q.sup \r.sub \r.sup \ring \s.sub 
-     \s.sup \seven.sub \seven.sup \six.sub \six.sup \space 
-     \t.sub \t.sup \three.sub \three.sup \threequarters \tilde 
-     \tildecomb \tildecomb.cap \two.sub \two.sup \u.sub \u.sup 
-     \uni00A0 \uni00B2 \uni00B3 \uni00B9 \uni02BB \uni0302 
-     \uni0302.cap \uni0304 \uni0304.cap \uni0306 \uni0306.cap \uni0307 
-     \uni0307.cap \uni0308 \uni0308.cap \uni0308.narrow \uni030A \uni030A.cap 
-     \uni030B \uni030B.cap \uni030C \uni030C.cap \uni0312 \uni0315 
-     \uni0326 \uni0327 \uni0328 \uni2000 \uni2001 \uni2002 
-     \uni2003 \uni2004 \uni2005 \uni2006 \uni2007 \uni2008 
-     \uni2009 \uni200A \uni200B \uni202F \uni203E \uni205F 
-     \uni2060 \uniFEFF \v.sub \v.sup \w.sub \w.sup 
-     \x.sub \x.sup \y.sub \y.sup \z.sub \z.sup 
-     \zero.sub \zero.sup];
+     \h.sup \hookabovecomb \hungarumlaut \hyphen.sub \hyphen.sup \i.sub 
+     \i.sup \j.sub \j.sup \k.sub \k.sup \l.sub 
+     \l.sup \m.sub \m.sup \macron \n.sub \n.sup 
+     \nine.sub \nine.sup \o.sub \o.sup \ogonek \one.sub 
+     \one.sup \onehalf \onequarter \ordfeminine \ordmasculine \p.sub 
+     \p.sup \parenleft.sub \parenleft.sup \parenright.sub \parenright.sup \period.sub 
+     \period.sup \q.sub \q.sup \r.sub \r.sup \ring 
+     \s.sub \s.sup \seven.sub \seven.sup \six.sub \six.sup 
+     \space \t.sub \t.sup \three.sub \three.sup \threequarters 
+     \tilde \tildecomb \tildecomb.cap \two.sub \two.sup \u.sub 
+     \u.sup \uni00A0 \uni00B2 \uni00B3 \uni00B9 \uni02BB 
+     \uni0302 \uni0302.cap \uni0304 \uni0304.cap \uni0305 \uni0306 
+     \uni0306.cap \uni0307 \uni0307.cap \uni0308 \uni0308.cap \uni0308.narrow 
+     \uni030A \uni030A.cap \uni030B \uni030B.cap \uni030C \uni030C.cap 
+     \uni0312 \uni0315 \uni0326 \uni0327 \uni0328 \uni2000 
+     \uni2001 \uni2002 \uni2003 \uni2004 \uni2005 \uni2006 
+     \uni2007 \uni2008 \uni2009 \uni200A \uni200B \uni202F 
+     \uni203E \uni205F \uni2060 \uniFEFF \v.sub \v.sup 
+     \w.sub \w.sup \x.sub \x.sup \y.sub \y.sup 
+     \z.sub \z.sup \zero.sub \zero.sup];
 @l2_W = [\W \Wcircumflex];
 @l2_b = [\b \uni1E03];
 @l2_U = [\U \Uacute \Ubreve \Ucircumflex \Udieresis \Ugrave 
@@ -519,20 +519,20 @@ feature kern {
      \breve \caron \cedilla \cent.sub \cent.sup \circumflex 
      \comma.sub \comma.sup \dieresis \dollar.sub \dollar.sup \dotaccent 
      \eight.sub \eight.sup \five.sub \five.sup \four.sub \four.sup 
-     \grave \gravecomb \gravecomb.cap \hungarumlaut \hyphen.sub \hyphen.sup 
-     \macron \nine.sub \nine.sup \ogonek \one.sub \one.sup 
-     \onehalf \onequarter \parenleft.sub \parenleft.sup \parenright.sub \parenright.sup 
-     \period.sub \period.sup \ring \seven.sub \seven.sup \six.sub 
-     \six.sup \space \three.sub \three.sup \threequarters \tilde 
-     \tildecomb \tildecomb.cap \two.sub \two.sup \uni00A0 \uni00B2 
-     \uni00B3 \uni00B9 \uni02BB \uni0302 \uni0302.cap \uni0304 
-     \uni0304.cap \uni0306 \uni0306.cap \uni0307 \uni0307.cap \uni0308 
-     \uni0308.cap \uni0308.narrow \uni030A \uni030A.cap \uni030B \uni030B.cap 
-     \uni030C \uni030C.cap \uni0312 \uni0315 \uni0326 \uni0327 
-     \uni0328 \uni2000 \uni2001 \uni2002 \uni2003 \uni2004 
-     \uni2005 \uni2006 \uni2007 \uni2008 \uni2009 \uni200A 
-     \uni200B \uni202F \uni203E \uni205F \uni2060 \uniFEFF 
-     \zero.sub \zero.sup];
+     \grave \gravecomb \gravecomb.cap \hookabovecomb \hungarumlaut \hyphen.sub 
+     \hyphen.sup \macron \nine.sub \nine.sup \ogonek \one.sub 
+     \one.sup \onehalf \onequarter \parenleft.sub \parenleft.sup \parenright.sub 
+     \parenright.sup \period.sub \period.sup \ring \seven.sub \seven.sup 
+     \six.sub \six.sup \space \three.sub \three.sup \threequarters 
+     \tilde \tildecomb \tildecomb.cap \two.sub \two.sup \uni00A0 
+     \uni00B2 \uni00B3 \uni00B9 \uni02BB \uni0302 \uni0302.cap 
+     \uni0304 \uni0304.cap \uni0305 \uni0306 \uni0306.cap \uni0307 
+     \uni0307.cap \uni0308 \uni0308.cap \uni0308.narrow \uni030A \uni030A.cap 
+     \uni030B \uni030B.cap \uni030C \uni030C.cap \uni0312 \uni0315 
+     \uni0326 \uni0327 \uni0328 \uni2000 \uni2001 \uni2002 
+     \uni2003 \uni2004 \uni2005 \uni2006 \uni2007 \uni2008 
+     \uni2009 \uni200A \uni200B \uni202F \uni203E \uni205F 
+     \uni2060 \uniFEFF \zero.sub \zero.sup];
 @l3_IJ.c2 = [\IJ.c2 \ij.sc];
 @l3_W = [\W \Wcircumflex];
 @l3_U = [\U \Uacute \Ubreve \Ucircumflex \Udieresis \Ugrave 
@@ -646,20 +646,20 @@ feature kern {
      \breve \caron \cedilla \cent.sub \cent.sup \circumflex 
      \comma.sub \comma.sup \dieresis \dollar.sub \dollar.sup \dotaccent 
      \eight.sub \eight.sup \five.sub \five.sup \four.sub \four.sup 
-     \grave \gravecomb \gravecomb.cap \hungarumlaut \hyphen.sub \hyphen.sup 
-     \macron \nine.sub \nine.sup \ogonek \one.sub \one.sup 
-     \onehalf \onequarter \parenleft.sub \parenleft.sup \parenright.sub \parenright.sup 
-     \period.sub \period.sup \ring \seven.sub \seven.sup \six.sub 
-     \six.sup \space \three.sub \three.sup \threequarters \tilde 
-     \tildecomb \tildecomb.cap \two.sub \two.sup \uni00A0 \uni00B2 
-     \uni00B3 \uni00B9 \uni02BB \uni0302 \uni0302.cap \uni0304 
-     \uni0304.cap \uni0306 \uni0306.cap \uni0307 \uni0307.cap \uni0308 
-     \uni0308.cap \uni0308.narrow \uni030A \uni030A.cap \uni030B \uni030B.cap 
-     \uni030C \uni030C.cap \uni0312 \uni0315 \uni0326 \uni0327 
-     \uni0328 \uni2000 \uni2001 \uni2002 \uni2003 \uni2004 
-     \uni2005 \uni2006 \uni2007 \uni2008 \uni2009 \uni200A 
-     \uni200B \uni202F \uni203E \uni205F \uni2060 \uniFEFF 
-     \zero.sub \zero.sup];
+     \grave \gravecomb \gravecomb.cap \hookabovecomb \hungarumlaut \hyphen.sub 
+     \hyphen.sup \macron \nine.sub \nine.sup \ogonek \one.sub 
+     \one.sup \onehalf \onequarter \parenleft.sub \parenleft.sup \parenright.sub 
+     \parenright.sup \period.sub \period.sup \ring \seven.sub \seven.sup 
+     \six.sub \six.sup \space \three.sub \three.sup \threequarters 
+     \tilde \tildecomb \tildecomb.cap \two.sub \two.sup \uni00A0 
+     \uni00B2 \uni00B3 \uni00B9 \uni02BB \uni0302 \uni0302.cap 
+     \uni0304 \uni0304.cap \uni0305 \uni0306 \uni0306.cap \uni0307 
+     \uni0307.cap \uni0308 \uni0308.cap \uni0308.narrow \uni030A \uni030A.cap 
+     \uni030B \uni030B.cap \uni030C \uni030C.cap \uni0312 \uni0315 
+     \uni0326 \uni0327 \uni0328 \uni2000 \uni2001 \uni2002 
+     \uni2003 \uni2004 \uni2005 \uni2006 \uni2007 \uni2008 
+     \uni2009 \uni200A \uni200B \uni202F \uni203E \uni205F 
+     \uni2060 \uniFEFF \zero.sub \zero.sup];
 @l4_IJ.c2 = [\IJ.c2 \ij.sc];
 @l4_Egrave.c2 = [\Egrave.c2 \egrave.sc];
 @l4_Udieresis.c2 = [\Udieresis.c2 \udieresis.sc];
@@ -804,26 +804,26 @@ feature kern {
      \dollar.sup \dotaccent \e.sub \e.sup \eight.sub \eight.sup 
      \f.sub \f.sup \five.sub \five.sup \four.sub \four.sup 
      \g.sub \g.sup \grave \gravecomb \gravecomb.cap \h.sub 
-     \h.sup \hungarumlaut \hyphen.sub \hyphen.sup \i.sub \i.sup 
-     \j.sub \j.sup \k.sub \k.sup \l.sub \l.sup 
-     \m.sub \m.sup \macron \n.sub \n.sup \nine.sub 
-     \nine.sup \o.sub \o.sup \ogonek \one.sub \one.sup 
-     \onehalf \onequarter \ordfeminine \ordmasculine \p.sub \p.sup 
-     \parenleft.sub \parenleft.sup \parenright.sub \parenright.sup \period.sub \period.sup 
-     \q.sub \q.sup \r.sub \r.sup \ring \s.sub 
-     \s.sup \seven.sub \seven.sup \six.sub \six.sup \space 
-     \t.sub \t.sup \three.sub \three.sup \threequarters \tilde 
-     \tildecomb \tildecomb.cap \two.sub \two.sup \u.sub \u.sup 
-     \uni00A0 \uni00B2 \uni00B3 \uni00B9 \uni02BB \uni0302 
-     \uni0302.cap \uni0304 \uni0304.cap \uni0306 \uni0306.cap \uni0307 
-     \uni0307.cap \uni0308 \uni0308.cap \uni0308.narrow \uni030A \uni030A.cap 
-     \uni030B \uni030B.cap \uni030C \uni030C.cap \uni0312 \uni0315 
-     \uni0326 \uni0327 \uni0328 \uni2000 \uni2001 \uni2002 
-     \uni2003 \uni2004 \uni2005 \uni2006 \uni2007 \uni2008 
-     \uni2009 \uni200A \uni200B \uni202F \uni203E \uni205F 
-     \uni2060 \uniFEFF \v.sub \v.sup \w.sub \w.sup 
-     \x.sub \x.sup \y.sub \y.sup \z.sub \z.sup 
-     \zero.sub \zero.sup];
+     \h.sup \hookabovecomb \hungarumlaut \hyphen.sub \hyphen.sup \i.sub 
+     \i.sup \j.sub \j.sup \k.sub \k.sup \l.sub 
+     \l.sup \m.sub \m.sup \macron \n.sub \n.sup 
+     \nine.sub \nine.sup \o.sub \o.sup \ogonek \one.sub 
+     \one.sup \onehalf \onequarter \ordfeminine \ordmasculine \p.sub 
+     \p.sup \parenleft.sub \parenleft.sup \parenright.sub \parenright.sup \period.sub 
+     \period.sup \q.sub \q.sup \r.sub \r.sup \ring 
+     \s.sub \s.sup \seven.sub \seven.sup \six.sub \six.sup 
+     \space \t.sub \t.sup \three.sub \three.sup \threequarters 
+     \tilde \tildecomb \tildecomb.cap \two.sub \two.sup \u.sub 
+     \u.sup \uni00A0 \uni00B2 \uni00B3 \uni00B9 \uni02BB 
+     \uni0302 \uni0302.cap \uni0304 \uni0304.cap \uni0305 \uni0306 
+     \uni0306.cap \uni0307 \uni0307.cap \uni0308 \uni0308.cap \uni0308.narrow 
+     \uni030A \uni030A.cap \uni030B \uni030B.cap \uni030C \uni030C.cap 
+     \uni0312 \uni0315 \uni0326 \uni0327 \uni0328 \uni2000 
+     \uni2001 \uni2002 \uni2003 \uni2004 \uni2005 \uni2006 
+     \uni2007 \uni2008 \uni2009 \uni200A \uni200B \uni202F 
+     \uni203E \uni205F \uni2060 \uniFEFF \v.sub \v.sup 
+     \w.sub \w.sup \x.sub \x.sup \y.sub \y.sup 
+     \z.sub \z.sup \zero.sub \zero.sup];
 @l5_b = [\b \uni1E03];
 @l5_U = [\U \Uacute \Ubreve \Ucircumflex \Udieresis \Ugrave 
      \Uhungarumlaut \Umacron \Uogonek \Uring \Utilde];
