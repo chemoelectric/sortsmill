@@ -25,10 +25,11 @@ ACLOCAL_AMFLAGS = -I m4 --install
 
 MKFONT_FLAGS = --infer-licensing --no-instructions --ttf-emsize=4096 ${MKFONT_GRAPHITE_FLAGS}
 FAMILYNAME = fanwood
-FONTS = Fanwood Fanwood-Italic FanwoodText
+FONTS = Fanwood Fanwood-Italic FanwoodText FanwoodText-Italic
 FEA_Fanwood = case cpsp figures generated_kerning hist liga locl main sc
 FEA_Fanwood_Italic = case cpsp figures generated_kerning hist liga locl main
-FEA_FanwoodText = main
+FEA_FanwoodText = main generated_kerning
+FEA_FanwoodText_Italic = #main generated_kerning
 
 fonts_DATA = $(call expand_fonts, ${FONTS})
 
@@ -37,7 +38,8 @@ EXTRA_DIST = \
 	$(addsuffix _build.py, ${FONTS}) \
 	${FEA_Fanwood:%=Fanwood_%.fea} \
 	${FEA_Fanwood_Italic:%=Fanwood-Italic_%.fea} \
-	${FEA_FanwoodText:%=FanwoodText_%.fea}
+	${FEA_FanwoodText:%=FanwoodText_%.fea} \
+	${FEA_FanwoodText_Italic:%=FanwoodText-Italic_%.fea}
 
 Fanwood.otf: ${FEA_Fanwood:%=Fanwood_%.fea}
 FanwoodTT.ttf: ${FEA_Fanwood:%=Fanwood_%.fea}
@@ -45,6 +47,8 @@ Fanwood-Italic.otf: ${FEA_Fanwood_Italic:%=Fanwood-Italic_%.fea}
 FanwoodTT-Italic.ttf: ${FEA_Fanwood_Italic:%=Fanwood-Italic_%.fea}
 FanwoodText.otf: ${FEA_FanwoodText:%=FanwoodText_%.fea}
 FanwoodTextTT.ttf: ${FEA_FanwoodText:%=FanwoodText_%.fea}
+FanwoodText-Italic.otf: ${FEA_FanwoodText_Italic:%=FanwoodText-Italic_%.fea}
+FanwoodTextTT-Italic.ttf: ${FEA_FanwoodText_Italic:%=FanwoodText-Italic_%.fea}
 
 MOSTLYCLEANFILES = ${fonts_DATA} gdlerr.txt
 
