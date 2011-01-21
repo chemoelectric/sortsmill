@@ -29,7 +29,7 @@ FONTS = Fanwood Fanwood-Italic FanwoodText FanwoodText-Italic
 FEA_Fanwood = case cpsp figures generated_kerning hist liga locl main sc
 FEA_Fanwood_Italic = case cpsp figures generated_kerning hist liga locl main
 FEA_FanwoodText = main generated_kerning
-FEA_FanwoodText_Italic = #main generated_kerning
+FEA_FanwoodText_Italic = main generated_kerning
 
 fonts_DATA = $(call expand_fonts, ${FONTS})
 
