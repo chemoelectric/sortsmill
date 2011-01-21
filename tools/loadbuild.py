@@ -31,11 +31,14 @@ def build_file_exists(bitbucket, font):
     build_file_name = font.fontname + "_build.py"
     return exists(build_file_name)
 
-def load_build(bitbucket, font):
-    module_name = font.fontname + "_build"
+def load_build_by_fontname(font, fontname):
+    module_name = fontname + "_build"
     module = __import__(module_name)
     reload(module)
-    module.build_glyphs(bitbucket, font)
+    module.build_glyphs(None, font)
+
+def load_build(bitbucket, font):
+    load_build_by_fontname(font, font.fontname)
 
 def load_build_thoroughly(bitbucket, font):
     spacing_by_anchors.clear_cached_data(font)
