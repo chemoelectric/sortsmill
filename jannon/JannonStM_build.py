@@ -130,7 +130,7 @@ def build_glyphs(bitbucket, f):
         }
 
     for g in f:
-        if g[-3:] == '.sc' and g not in ['i.TRK.sc', 'l.CAT.sc']:
+        if g[-3:] == '.sc' and g not in ['i.TRK.sc', 'l.CAT.sc', 'germandbls.sc']:
             if g in special_cases:
                 make_glyph_reference(special_cases[g], f[g])
             elif g in ('ampersand.sc', 'periodcentered.sc'):
@@ -327,6 +327,8 @@ def build_glyphs(bitbucket, f):
     build_multigraph('IJ', [f['I'], f['J']])
     build_multigraph('ij', [f['i'], f['j']])
     build_multigraph('ij.sc', [f['i.sc'], f['j.sc']])
+
+    build_multigraph('germandbls.sc', [f['s.sc'], f['s.sc']])
 
     #--------------------------------------------------------------------------
 
