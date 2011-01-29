@@ -28,7 +28,7 @@ from sortsmill.glyphbuild import *
 from sortsmill.spacing_by_anchors import *
 
 emsize = 1000
-spacesize = 230
+spacesize = 210
 
 def build_glyphs(bitbucket, f):
 
