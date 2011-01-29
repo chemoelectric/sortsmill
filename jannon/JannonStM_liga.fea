@@ -39,6 +39,11 @@ feature liga {
   sub f l by f_l;
   sub f thorn by f_thorn;
 
+  # Should these be contextual alternates that look for a following letter L?
+  sub L.CAT periodcentered by Ldot;
+  sub l.CAT.sc periodcentered by ldot.sc;
+  sub L.CAT.c2 periodcentered by Ldot.c2;
+
 } liga;
 
 feature dlig {

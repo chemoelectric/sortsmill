@@ -18,26 +18,29 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-lookup romanian {
+lookup catalan {
+  sub L by L.CAT;
+  sub l by l.CAT;
+} catalan;
 
+lookup romanian {
  sub scedilla by uni0219;
  sub uni0163 by uni021B;
-
 } romanian;
 
-
 lookup turkish {
-
   # Replace the dotted 'i' with an equivalent glyph that does not
   # get replaced with f-ligatures.  See http://typophile.com/node/17787
   sub i by i.TRK;
-
 } turkish;
 
 
 feature locl {
 
   script latn;
+
+  language CAT exclude_dflt;
+  lookup catalan;
 
   language ROM exclude_dflt;
   lookup romanian;
