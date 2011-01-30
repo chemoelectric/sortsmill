@@ -23,6 +23,7 @@ THE SOFTWARE.
 """
 
 import fontforge
+import string
 from sortsmill import font_db
 from sortsmill.glyphbuild import *
 from sortsmill.spacing_by_anchors import *
@@ -56,15 +57,14 @@ def build_glyphs(bitbucket, f):
         }
 
     all_glyphs = set(f) - set(['.notdef'])
-#    (smallcaps, capssmall, uppercase, lowercase, fraction_bar, numerators, denominators, remaining) = \
-    (smallcaps, capssmall, uppercase, lowercase, fraction_bar, denominators, remaining) = \
+    (smallcaps, capssmall, uppercase, lowercase, fraction_bar, numerators, denominators, remaining) = \
         tuple(separate_strings(all_glyphs, [
                 (lambda s: s[-3:] == '.sc'),
                 (lambda s: s[-3:] == '.c2'),
                 (lambda s: is_uppercase(s, last_name)),
                 (lambda s: is_lowercase(s, last_name)),
                 (lambda s: s == 'fraction'),
-#                (lambda s: s[-6:] == '.numer'),
+                (lambda s: s[-6:] == '.numer'),
                 (lambda s: s[-6:] == '.denom'),
                 ]))
 
@@ -74,7 +74,7 @@ def build_glyphs(bitbucket, f):
         (smallcaps, uppercase | smallcaps | capssmall | remaining),
         (capssmall, smallcaps | capssmall | remaining),
         (lowercase, uppercase | lowercase | remaining),
-#        (numerators, fraction_bar),
+        (numerators, fraction_bar),
         (fraction_bar, denominators),
         ]
 
@@ -102,12 +102,12 @@ def build_glyphs(bitbucket, f):
     make_glyph_reference('quotedbl', f['second'])
 
     for extension in [('.numer', 250), ('.sub', -150), ('.sup', 350)]:
-#        for fig in figures + ['comma', 'period', 'hyphen',
-#                              'parenleft', 'parenright',
-#                              'bracketleft', 'bracketright',
+        for fig in figures + ['comma', 'period',
+                              'parenleft', 'parenright',
+                              'bracketleft', 'bracketright',
+#                              'hyphen',
 #                              'dollar', 'cent',
-#                              ] + [string.ascii_lowercase[i] for i in range(0, 26)]:
-        for fig in figures:
+                              ] + [string.ascii_lowercase[i] for i in range(0, 26)]:
             make_glyph_reference(fig + extension[0],
                                  f[fig + '.denom'],
                                  transformation = (1, 0, 0, 1, 0, extension[1]),
@@ -116,8 +116,8 @@ def build_glyphs(bitbucket, f):
     make_glyph_reference('uni00B9', f['one.sup'])
     make_glyph_reference('uni00B2', f['two.sup'])
     make_glyph_reference('uni00B3', f['three.sup'])
-#    make_glyph_reference('ordfeminine', f['a.sup'])
-#    make_glyph_reference('ordmasculine', f['o.sup'])
+    make_glyph_reference('ordfeminine', f['a.sup'])
+    make_glyph_reference('ordmasculine', f['o.sup'])
     build_multigraph('onequarter', [f['one.numer'], f['fraction'], f['four.denom']], copy_spacing_anchors = False)
     build_multigraph('onehalf', [f['one.numer'], f['fraction'], f['two.denom']], copy_spacing_anchors = False)
     build_multigraph('threequarters', [f['three.numer'], f['fraction'], f['four.denom']], copy_spacing_anchors = False)
