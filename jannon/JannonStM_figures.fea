@@ -24,106 +24,106 @@
 @LINING_FIGURES = [ zero.u one.u two.u three.u four.u five.u six.u seven.u eight.u nine.u ];
 #@PROPORTIONAL_FIGURES = [ zero.p one.p two.p three.p four.p five.p six.p seven.p eight.p nine.p ];
 
-#@NUMERATOR_FIGURES = [
-#  zero.numer one.numer two.numer three.numer four.numer
-#  five.numer six.numer seven.numer eight.numer nine.numer
-#];
+@NUMERATOR_FIGURES = [
+  zero.numer one.numer two.numer three.numer four.numer
+  five.numer six.numer seven.numer eight.numer nine.numer
+];
 
-#@DENOMINATOR_FIGURES = [
-#  zero.denom one.denom two.denom three.denom four.denom
-#  five.denom six.denom seven.denom eight.denom nine.denom
-#];
+@DENOMINATOR_FIGURES = [
+  zero.denom one.denom two.denom three.denom four.denom
+  five.denom six.denom seven.denom eight.denom nine.denom
+];
 
-#@INFERIOR_FIGURES = [
-#  zero.sub one.sub two.sub three.sub four.sub
-#  five.sub six.sub seven.sub eight.sub nine.sub
-#];
+@INFERIOR_FIGURES = [
+  zero.sub one.sub two.sub three.sub four.sub
+  five.sub six.sub seven.sub eight.sub nine.sub
+];
 
-#@SUPERIOR_FIGURES = [
-#  zero.sup one.sup two.sup three.sup four.sup
-#  five.sup six.sup seven.sup eight.sup nine.sup
-#];
+@SUPERIOR_FIGURES = [
+  zero.sup one.sup two.sup three.sup four.sup
+  five.sup six.sup seven.sup eight.sup nine.sup
+];
 
 #-----------------------------------------------------------------------
 
-#@FIGURES_AND_FRIENDS = [
-#  @OLDSTYLE_FIGURES
+@FIGURES_AND_FRIENDS = [
+  @OLDSTYLE_FIGURES
 #  \comma \period \hyphen
 #  \parenleft \parenright
 #  \bracketleft \bracketright
 #  \dollar \cent
 #  a-z
-#];
+];
 
-#@NUMERATORS = [
-#  @NUMERATOR_FIGURES
+@NUMERATORS = [
+  @NUMERATOR_FIGURES
 #  \comma.numer \period.numer \hyphen.numer
 #  \parenleft.numer \parenright.numer
 #  \bracketleft.numer \bracketright.numer
 #  \dollar.numer \cent.numer
 #  a.numer-z.numer
-#];
+];
 
-#@DENOMINATORS = [
-#  @DENOMINATOR_FIGURES
+@DENOMINATORS = [
+  @DENOMINATOR_FIGURES
 #  \comma.denom \period.denom \hyphen.denom
 #  \parenleft.denom \parenright.denom
 #  \bracketleft.denom \bracketright.denom
 #  \dollar.denom \cent.denom
 #  a.denom-z.denom
-#];
+];
 
-#@SUPERIORS = [
-#  @SUPERIOR_FIGURES
+@SUPERIORS = [
+  @SUPERIOR_FIGURES
 #  \comma.sup \period.sup \hyphen.sup
 #  \parenleft.sup \parenright.sup
 #  \bracketleft.sup \bracketright.sup
 #  \dollar.sup \cent.sup
 #  a.sup-z.sup
-#];
+];
 
-#@INFERIORS = [
-#  @INFERIOR_FIGURES
+@INFERIORS = [
+  @INFERIOR_FIGURES
 #  \comma.sub \period.sub \hyphen.sub
 #  \parenleft.sub \parenright.sub
 #  \bracketleft.sub \bracketright.sub
 #  \dollar.sub \cent.sub
 #  a.sub-z.sub
-#];
+];
 
 #-----------------------------------------------------------------------
 
-#lookup numerators {
-#  sub @FIGURES_AND_FRIENDS by @NUMERATORS;
-#  sub \slash by \fraction;
-#} numerators;
-#
-#lookup denominators {
-#  sub @FIGURES_AND_FRIENDS by @DENOMINATORS;
-#} denominators;
-#
-#feature numr {
-#  lookup numerators;
-#} numr;
-#
-#feature dnom {
-#  lookup denominators;
-#} dnom;
-#
-#feature frac {
-#  lookup numerators;
-#  sub [\fraction @DENOMINATORS]
-#      [@NUMERATORS]'
-#      by [@DENOMINATORS];
-#} frac;
-#
-#feature sups {
-#  sub @FIGURES_AND_FRIENDS by @SUPERIORS;
-#} sups;
-#
-#feature subs {
-#  sub @FIGURES_AND_FRIENDS by @INFERIORS;
-#} subs;
+lookup numerators {
+  sub @FIGURES_AND_FRIENDS by @NUMERATORS;
+  sub \slash by \fraction;
+} numerators;
+
+lookup denominators {
+  sub @FIGURES_AND_FRIENDS by @DENOMINATORS;
+} denominators;
+
+feature numr {
+  lookup numerators;
+} numr;
+
+feature dnom {
+  lookup denominators;
+} dnom;
+
+feature frac {
+  lookup numerators;
+  sub [\fraction @DENOMINATORS]
+      [@NUMERATORS]'
+      by [@DENOMINATORS];
+} frac;
+
+feature sups {
+  sub @FIGURES_AND_FRIENDS by @SUPERIORS;
+} sups;
+
+feature subs {
+  sub @FIGURES_AND_FRIENDS by @INFERIORS;
+} subs;
 
 #-----------------------------------------------------------------------
 
