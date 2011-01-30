@@ -20,25 +20,30 @@ r1ellipsis = postscript("ellipsis", "period")
 r1f_f_k = postscript("f_f_k", "f_k")
 r1f_f_l = postscript("f_f_l", "f_l")
 r1colon = postscript("colon", "guillemotleft", "guillemotright", "guilsinglleft", "guilsinglright")
-r1f_f_h = postscript("f_f_h", "f_f_hcircumflex", "f_f_i", "f_h", "f_hcircumflex", "f_i")
 r1acute = postscript("acute", "acutecomb", "acutecomb.cap", "afii299", "afii300", "afii301", 
-     "afii57929", "afii61664", "bracketleft.sub", "bracketleft.sup", "bracketright.sub", "bracketright.sup", 
-     "breve", "caron", "cedilla", "circumflex", "comma.sub", "comma.sup", 
-     "copyright", "dieresis", "dotaccent", "eight.sub", "eight.sup", "five.sub", 
-     "five.sup", "four.sub", "four.sup", "grave", "gravecomb", "gravecomb.cap", 
-     "hungarumlaut", "macron", "nine.sub", "nine.sup", "ogonek", "one.sub", 
-     "one.sup", "onehalf", "onequarter", "parenleft.sub", "parenleft.sup", "parenright.sub", 
-     "parenright.sup", "period.sub", "period.sup", "registered", "ring", "seven.sub", 
-     "seven.sup", "six.sub", "six.sup", "space", "three.sub", "three.sup", 
-     "threequarters", "tilde", "tildecomb", "tildecomb.cap", "two.sub", "two.sup", 
-     "uni00A0", "uni00B2", "uni00B3", "uni00B9", "uni02BB", "uni02C0", 
-     "uni0302", "uni0302.ascend", "uni0302.cap", "uni0304", "uni0304.cap", "uni0306", 
-     "uni0306.cap", "uni0307", "uni0307.cap", "uni0308", "uni0308.cap", "uni0308.narrow", 
-     "uni030A", "uni030A.cap", "uni030B", "uni030B.cap", "uni030C", "uni030C.cap", 
-     "uni0312", "uni0315", "uni0326", "uni0327", "uni0328", "uni2000", 
-     "uni2001", "uni2002", "uni2003", "uni2004", "uni2005", "uni2006", 
-     "uni2007", "uni2008", "uni2009", "uni200A", "uni200B", "uni202F", 
-     "uni203E", "uni205F", "uni2060", "uniFEFF", "zero.sub", "zero.sup")
+     "afii57929", "afii61664", "braceleft.u", "braceright.u", "bracketleft.sub", "bracketleft.sup", 
+     "bracketleft.u", "bracketright.sub", "bracketright.sup", "bracketright.u", "breve", "caron", 
+     "cedilla", "circumflex", "comma.sub", "comma.sup", "copyright", "dieresis", 
+     "dotaccent", "eight.sub", "eight.sup", "figuredash.u", "five.sub", "five.sup", 
+     "four.sub", "four.sup", "grave", "gravecomb", "gravecomb.cap", "hungarumlaut", 
+     "macron", "nine.sub", "nine.sup", "ogonek", "one.sub", "one.sup", 
+     "onehalf", "onequarter", "parenleft.sub", "parenleft.sup", "parenleft.u", "parenright.sub", 
+     "parenright.sup", "parenright.u", "period.sub", "period.sup", "registered", "ring", 
+     "seven.sub", "seven.sup", "six.sub", "six.sup", "space", "three.sub", 
+     "three.sup", "threequarters", "tilde", "tildecomb", "tildecomb.cap", "two.sub", 
+     "two.sup", "underscoredbl", "uni00A0", "uni00B2", "uni00B3", "uni00B9", 
+     "uni02BB", "uni02C0", "uni0302", "uni0302.ascend", "uni0302.cap", "uni0304", 
+     "uni0304.cap", "uni0306", "uni0306.cap", "uni0307", "uni0307.cap", "uni0308", 
+     "uni0308.cap", "uni0308.narrow", "uni030A", "uni030A.cap", "uni030B", "uni030B.cap", 
+     "uni030C", "uni030C.cap", "uni0312", "uni0315", "uni0326", "uni0327", 
+     "uni0328", "uni2000", "uni2001", "uni2002", "uni2003", "uni2004", 
+     "uni2005", "uni2006", "uni2007", "uni2008", "uni2009", "uni200A", 
+     "uni200B", "uni2016", "uni202F", "uni203E", "uni205F", "uni2060", 
+     "uniFEFF", "zero.sub", "zero.sup")
+r1afii00208__u = postscript("afii00208.u", "emdash.u", "endash.u", "guillemotleft.u", "guillemotright.u", "guilsinglleft.u", 
+     "guilsinglright.u")
+r1f_f_h = postscript("f_f_h", "f_f_hcircumflex", "f_f_i", "f_h", "f_hcircumflex", "f_i")
+r1hyphen__u = postscript("hyphen.u", "uni00AD.u", "uni2010.u", "uni2011.u")
 r1asterisk = postscript("asterisk", "degree")
 
 l1f = postscript("f", "germandbls", "longs", "uni1E1F")
@@ -104,31 +109,33 @@ l1f_b = postscript("f_b", "f_f", "f_f_b", "f_f_h", "f_f_hcircumflex", "f_f_i",
 l1Z = postscript("Z", "Zacute", "Zcaron", "Zdotaccent")
 l1a__sub = postscript("a.sub", "a.sup", "acute", "acutecomb", "acutecomb.cap", "afii299", 
      "afii300", "afii301", "afii57929", "afii61664", "b.sub", "b.sup", 
-     "bracketleft.sub", "bracketleft.sup", "bracketright.sub", "bracketright.sup", "breve", "c.sub", 
-     "c.sup", "caron", "cedilla", "circumflex", "comma.sub", "comma.sup", 
-     "copyright", "d.sub", "d.sup", "dieresis", "dotaccent", "e.sub", 
-     "e.sup", "eight.sub", "eight.sup", "f.sub", "f.sup", "five.sub", 
-     "five.sup", "four.sub", "four.sup", "g.sub", "g.sup", "grave", 
-     "gravecomb", "gravecomb.cap", "h.sub", "h.sup", "hungarumlaut", "i.sub", 
-     "i.sup", "j.sub", "j.sup", "k.sub", "k.sup", "l.sub", 
-     "l.sup", "m.sub", "m.sup", "macron", "n.sub", "n.sup", 
-     "nine.sub", "nine.sup", "o.sub", "o.sup", "ogonek", "one.sub", 
-     "one.sup", "onehalf", "onequarter", "ordfeminine", "ordmasculine", "p.sub", 
-     "p.sup", "parenleft.sub", "parenleft.sup", "parenright.sub", "parenright.sup", "period.sub", 
-     "period.sup", "q.sub", "q.sup", "r.sub", "r.sup", "registered", 
-     "ring", "s.sub", "s.sup", "seven.sub", "seven.sup", "six.sub", 
-     "six.sup", "space", "t.sub", "t.sup", "three.sub", "three.sup", 
-     "threequarters", "tilde", "tildecomb", "tildecomb.cap", "two.sub", "two.sup", 
-     "u.sub", "u.sup", "uni00A0", "uni00B2", "uni00B3", "uni00B9", 
-     "uni02BB", "uni02C0", "uni0302", "uni0302.ascend", "uni0302.cap", "uni0304", 
-     "uni0304.cap", "uni0306", "uni0306.cap", "uni0307", "uni0307.cap", "uni0308", 
-     "uni0308.cap", "uni0308.narrow", "uni030A", "uni030A.cap", "uni030B", "uni030B.cap", 
-     "uni030C", "uni030C.cap", "uni0312", "uni0315", "uni0326", "uni0327", 
-     "uni0328", "uni2000", "uni2001", "uni2002", "uni2003", "uni2004", 
-     "uni2005", "uni2006", "uni2007", "uni2008", "uni2009", "uni200A", 
-     "uni200B", "uni202F", "uni203E", "uni205F", "uni2060", "uniFEFF", 
-     "v.sub", "v.sup", "w.sub", "w.sup", "x.sub", "x.sup", 
-     "y.sub", "y.sup", "z.sub", "z.sup", "zero.sub", "zero.sup")
+     "braceleft.u", "braceright.u", "bracketleft.sub", "bracketleft.sup", "bracketleft.u", "bracketright.sub", 
+     "bracketright.sup", "bracketright.u", "breve", "c.sub", "c.sup", "caron", 
+     "cedilla", "circumflex", "comma.sub", "comma.sup", "copyright", "d.sub", 
+     "d.sup", "dieresis", "dotaccent", "e.sub", "e.sup", "eight.sub", 
+     "eight.sup", "f.sub", "f.sup", "figuredash.u", "five.sub", "five.sup", 
+     "four.sub", "four.sup", "g.sub", "g.sup", "grave", "gravecomb", 
+     "gravecomb.cap", "h.sub", "h.sup", "hungarumlaut", "i.sub", "i.sup", 
+     "j.sub", "j.sup", "k.sub", "k.sup", "l.sub", "l.sup", 
+     "m.sub", "m.sup", "macron", "n.sub", "n.sup", "nine.sub", 
+     "nine.sup", "o.sub", "o.sup", "ogonek", "one.sub", "one.sup", 
+     "onehalf", "onequarter", "ordfeminine", "ordmasculine", "p.sub", "p.sup", 
+     "parenleft.sub", "parenleft.sup", "parenleft.u", "parenright.sub", "parenright.sup", "parenright.u", 
+     "period.sub", "period.sup", "q.sub", "q.sup", "r.sub", "r.sup", 
+     "registered", "ring", "s.sub", "s.sup", "seven.sub", "seven.sup", 
+     "six.sub", "six.sup", "space", "t.sub", "t.sup", "three.sub", 
+     "three.sup", "threequarters", "tilde", "tildecomb", "tildecomb.cap", "two.sub", 
+     "two.sup", "u.sub", "u.sup", "underscoredbl", "uni00A0", "uni00B2", 
+     "uni00B3", "uni00B9", "uni02BB", "uni02C0", "uni0302", "uni0302.ascend", 
+     "uni0302.cap", "uni0304", "uni0304.cap", "uni0306", "uni0306.cap", "uni0307", 
+     "uni0307.cap", "uni0308", "uni0308.cap", "uni0308.narrow", "uni030A", "uni030A.cap", 
+     "uni030B", "uni030B.cap", "uni030C", "uni030C.cap", "uni0312", "uni0315", 
+     "uni0326", "uni0327", "uni0328", "uni2000", "uni2001", "uni2002", 
+     "uni2003", "uni2004", "uni2005", "uni2006", "uni2007", "uni2008", 
+     "uni2009", "uni200A", "uni200B", "uni2016", "uni202F", "uni203E", 
+     "uni205F", "uni2060", "uniFEFF", "v.sub", "v.sup", "w.sub", 
+     "w.sup", "x.sub", "x.sup", "y.sub", "y.sup", "z.sub", 
+     "z.sup", "zero.sub", "zero.sup")
 l1m = postscript("m", "uni1E41")
 l1J = postscript("J", "Jcircumflex")
 l1C = postscript("C", "Cacute", "Ccaron", "Ccedilla", "Ccircumflex", "Cdotaccent", 
@@ -149,7 +156,10 @@ l1C__c2 = postscript("C.c2", "Cacute.c2", "Ccaron.c2", "Ccedilla.c2", "Ccircumfl
      "gbreve.sc", "gcircumflex.sc", "gcommaaccent.sc", "gdotaccent.sc", "o.sc", "oacute.sc", 
      "obreve.sc", "ocircumflex.sc", "odieresis.sc", "oe.sc", "ograve.sc", "ohungarumlaut.sc", 
      "omacron.sc", "oslash.sc", "otilde.sc", "q.sc")
+l1afii00208__u = postscript("afii00208.u", "emdash.u", "endash.u", "guillemotleft.u", "guillemotright.u", "guilsinglleft.u", 
+     "guilsinglright.u")
 l1AE__c2 = postscript("AE.c2", "ae.sc")
+l1hyphen__u = postscript("hyphen.u", "uni00AD.u", "uni2010.u", "uni2011.u")
 l1afii00208 = postscript("afii00208", "c", "c_t", "cacute", "ccaron", "ccedilla", 
      "ccircumflex", "cdotaccent", "e", "eacute", "ebreve", "ecaron", 
      "ecircumflex", "edieresis", "edotaccent", "egrave", "emacron", "emdash", 
@@ -281,31 +291,33 @@ l2f_b = postscript("f_b", "f_f", "f_f_b", "f_f_h", "f_f_hcircumflex", "f_f_i",
 l2Z = postscript("Z", "Zacute", "Zcaron", "Zdotaccent")
 l2a__sub = postscript("a.sub", "a.sup", "acute", "acutecomb", "acutecomb.cap", "afii299", 
      "afii300", "afii301", "afii57929", "afii61664", "b.sub", "b.sup", 
-     "bracketleft.sub", "bracketleft.sup", "bracketright.sub", "bracketright.sup", "breve", "c.sub", 
-     "c.sup", "caron", "cedilla", "circumflex", "comma.sub", "comma.sup", 
-     "copyright", "d.sub", "d.sup", "dieresis", "dotaccent", "e.sub", 
-     "e.sup", "eight.sub", "eight.sup", "f.sub", "f.sup", "five.sub", 
-     "five.sup", "four.sub", "four.sup", "g.sub", "g.sup", "grave", 
-     "gravecomb", "gravecomb.cap", "h.sub", "h.sup", "hungarumlaut", "i.sub", 
-     "i.sup", "j.sub", "j.sup", "k.sub", "k.sup", "l.sub", 
-     "l.sup", "m.sub", "m.sup", "macron", "n.sub", "n.sup", 
-     "nine.sub", "nine.sup", "o.sub", "o.sup", "ogonek", "one.sub", 
-     "one.sup", "onehalf", "onequarter", "ordfeminine", "ordmasculine", "p.sub", 
-     "p.sup", "parenleft.sub", "parenleft.sup", "parenright.sub", "parenright.sup", "period.sub", 
-     "period.sup", "q.sub", "q.sup", "r.sub", "r.sup", "registered", 
-     "ring", "s.sub", "s.sup", "seven.sub", "seven.sup", "six.sub", 
-     "six.sup", "space", "t.sub", "t.sup", "three.sub", "three.sup", 
-     "threequarters", "tilde", "tildecomb", "tildecomb.cap", "two.sub", "two.sup", 
-     "u.sub", "u.sup", "uni00A0", "uni00B2", "uni00B3", "uni00B9", 
-     "uni02BB", "uni02C0", "uni0302", "uni0302.ascend", "uni0302.cap", "uni0304", 
-     "uni0304.cap", "uni0306", "uni0306.cap", "uni0307", "uni0307.cap", "uni0308", 
-     "uni0308.cap", "uni0308.narrow", "uni030A", "uni030A.cap", "uni030B", "uni030B.cap", 
-     "uni030C", "uni030C.cap", "uni0312", "uni0315", "uni0326", "uni0327", 
-     "uni0328", "uni2000", "uni2001", "uni2002", "uni2003", "uni2004", 
-     "uni2005", "uni2006", "uni2007", "uni2008", "uni2009", "uni200A", 
-     "uni200B", "uni202F", "uni203E", "uni205F", "uni2060", "uniFEFF", 
-     "v.sub", "v.sup", "w.sub", "w.sup", "x.sub", "x.sup", 
-     "y.sub", "y.sup", "z.sub", "z.sup", "zero.sub", "zero.sup")
+     "braceleft.u", "braceright.u", "bracketleft.sub", "bracketleft.sup", "bracketleft.u", "bracketright.sub", 
+     "bracketright.sup", "bracketright.u", "breve", "c.sub", "c.sup", "caron", 
+     "cedilla", "circumflex", "comma.sub", "comma.sup", "copyright", "d.sub", 
+     "d.sup", "dieresis", "dotaccent", "e.sub", "e.sup", "eight.sub", 
+     "eight.sup", "f.sub", "f.sup", "figuredash.u", "five.sub", "five.sup", 
+     "four.sub", "four.sup", "g.sub", "g.sup", "grave", "gravecomb", 
+     "gravecomb.cap", "h.sub", "h.sup", "hungarumlaut", "i.sub", "i.sup", 
+     "j.sub", "j.sup", "k.sub", "k.sup", "l.sub", "l.sup", 
+     "m.sub", "m.sup", "macron", "n.sub", "n.sup", "nine.sub", 
+     "nine.sup", "o.sub", "o.sup", "ogonek", "one.sub", "one.sup", 
+     "onehalf", "onequarter", "ordfeminine", "ordmasculine", "p.sub", "p.sup", 
+     "parenleft.sub", "parenleft.sup", "parenleft.u", "parenright.sub", "parenright.sup", "parenright.u", 
+     "period.sub", "period.sup", "q.sub", "q.sup", "r.sub", "r.sup", 
+     "registered", "ring", "s.sub", "s.sup", "seven.sub", "seven.sup", 
+     "six.sub", "six.sup", "space", "t.sub", "t.sup", "three.sub", 
+     "three.sup", "threequarters", "tilde", "tildecomb", "tildecomb.cap", "two.sub", 
+     "two.sup", "u.sub", "u.sup", "underscoredbl", "uni00A0", "uni00B2", 
+     "uni00B3", "uni00B9", "uni02BB", "uni02C0", "uni0302", "uni0302.ascend", 
+     "uni0302.cap", "uni0304", "uni0304.cap", "uni0306", "uni0306.cap", "uni0307", 
+     "uni0307.cap", "uni0308", "uni0308.cap", "uni0308.narrow", "uni030A", "uni030A.cap", 
+     "uni030B", "uni030B.cap", "uni030C", "uni030C.cap", "uni0312", "uni0315", 
+     "uni0326", "uni0327", "uni0328", "uni2000", "uni2001", "uni2002", 
+     "uni2003", "uni2004", "uni2005", "uni2006", "uni2007", "uni2008", 
+     "uni2009", "uni200A", "uni200B", "uni2016", "uni202F", "uni203E", 
+     "uni205F", "uni2060", "uniFEFF", "v.sub", "v.sup", "w.sub", 
+     "w.sup", "x.sub", "x.sup", "y.sub", "y.sup", "z.sub", 
+     "z.sup", "zero.sub", "zero.sup")
 l2m = postscript("m", "uni1E41")
 l2J = postscript("J", "Jcircumflex")
 l2C = postscript("C", "Cacute", "Ccaron", "Ccedilla", "Ccircumflex", "Cdotaccent", 
@@ -320,6 +332,9 @@ l2c__sc = postscript("c.sc", "cacute.sc", "ccaron.sc", "ccedilla.sc", "ccircumfl
      "g.sc", "gbreve.sc", "gcircumflex.sc", "gcommaaccent.sc", "gdotaccent.sc", "o.sc", 
      "oacute.sc", "obreve.sc", "ocircumflex.sc", "odieresis.sc", "oe.sc", "ograve.sc", 
      "ohungarumlaut.sc", "omacron.sc", "oslash.sc", "otilde.sc", "q.sc")
+l2afii00208__u = postscript("afii00208.u", "emdash.u", "endash.u", "guillemotleft.u", "guillemotright.u", "guilsinglleft.u", 
+     "guilsinglright.u")
+l2hyphen__u = postscript("hyphen.u", "uni00AD.u", "uni2010.u", "uni2011.u")
 l2afii00208 = postscript("afii00208", "c", "c_t", "cacute", "ccaron", "ccedilla", 
      "ccircumflex", "cdotaccent", "e", "eacute", "ebreve", "ecaron", 
      "ecircumflex", "edieresis", "edotaccent", "egrave", "emacron", "emdash", 
@@ -459,6 +474,9 @@ l3C__c2 = postscript("C.c2", "Cacute.c2", "Ccaron.c2", "Ccedilla.c2", "Ccircumfl
      "gbreve.sc", "gcircumflex.sc", "gcommaaccent.sc", "gdotaccent.sc", "o.sc", "oacute.sc", 
      "obreve.sc", "ocircumflex.sc", "odieresis.sc", "oe.sc", "ograve.sc", "ohungarumlaut.sc", 
      "omacron.sc", "oslash.sc", "otilde.sc", "q.sc")
+l3afii00208__u = postscript("afii00208.u", "emdash.u", "endash.u", "guillemotleft.u", "guillemotright.u", "guilsinglleft.u", 
+     "guilsinglright.u")
+l3hyphen__u = postscript("hyphen.u", "uni00AD.u", "uni2010.u", "uni2011.u")
 l3afii00208 = postscript("afii00208", "c_t", "emdash", "endash", "hyphen", "uni00AD", 
      "uni2010", "uni2011")
 l3ellipsis = postscript("ellipsis", "period")
@@ -486,23 +504,25 @@ l3A = postscript("A", "Aacute", "Abreve", "Acircumflex", "Adieresis", "Agrave",
 l3J__c2 = postscript("J.c2", "Jcircumflex.c2", "j.sc", "jcircumflex.sc")
 l3Napostrophe__c2 = postscript("Napostrophe.c2", "napostrophe.sc")
 l3acute = postscript("acute", "acutecomb", "acutecomb.cap", "afii299", "afii300", "afii301", 
-     "afii57929", "afii61664", "bracketleft.sub", "bracketleft.sup", "bracketright.sub", "bracketright.sup", 
-     "breve", "caron", "cedilla", "circumflex", "comma.sub", "comma.sup", 
-     "copyright", "dieresis", "dotaccent", "eight.sub", "eight.sup", "five.sub", 
-     "five.sup", "four.sub", "four.sup", "grave", "gravecomb", "gravecomb.cap", 
-     "hungarumlaut", "macron", "nine.sub", "nine.sup", "ogonek", "one.sub", 
-     "one.sup", "onehalf", "onequarter", "parenleft.sub", "parenleft.sup", "parenright.sub", 
-     "parenright.sup", "period.sub", "period.sup", "registered", "ring", "seven.sub", 
-     "seven.sup", "six.sub", "six.sup", "space", "three.sub", "three.sup", 
-     "threequarters", "tilde", "tildecomb", "tildecomb.cap", "two.sub", "two.sup", 
-     "uni00A0", "uni00B2", "uni00B3", "uni00B9", "uni02BB", "uni02C0", 
-     "uni0302", "uni0302.ascend", "uni0302.cap", "uni0304", "uni0304.cap", "uni0306", 
-     "uni0306.cap", "uni0307", "uni0307.cap", "uni0308", "uni0308.cap", "uni0308.narrow", 
-     "uni030A", "uni030A.cap", "uni030B", "uni030B.cap", "uni030C", "uni030C.cap", 
-     "uni0312", "uni0315", "uni0326", "uni0327", "uni0328", "uni2000", 
-     "uni2001", "uni2002", "uni2003", "uni2004", "uni2005", "uni2006", 
-     "uni2007", "uni2008", "uni2009", "uni200A", "uni200B", "uni202F", 
-     "uni203E", "uni205F", "uni2060", "uniFEFF", "zero.sub", "zero.sup")
+     "afii57929", "afii61664", "braceleft.u", "braceright.u", "bracketleft.sub", "bracketleft.sup", 
+     "bracketleft.u", "bracketright.sub", "bracketright.sup", "bracketright.u", "breve", "caron", 
+     "cedilla", "circumflex", "comma.sub", "comma.sup", "copyright", "dieresis", 
+     "dotaccent", "eight.sub", "eight.sup", "figuredash.u", "five.sub", "five.sup", 
+     "four.sub", "four.sup", "grave", "gravecomb", "gravecomb.cap", "hungarumlaut", 
+     "macron", "nine.sub", "nine.sup", "ogonek", "one.sub", "one.sup", 
+     "onehalf", "onequarter", "parenleft.sub", "parenleft.sup", "parenleft.u", "parenright.sub", 
+     "parenright.sup", "parenright.u", "period.sub", "period.sup", "registered", "ring", 
+     "seven.sub", "seven.sup", "six.sub", "six.sup", "space", "three.sub", 
+     "three.sup", "threequarters", "tilde", "tildecomb", "tildecomb.cap", "two.sub", 
+     "two.sup", "underscoredbl", "uni00A0", "uni00B2", "uni00B3", "uni00B9", 
+     "uni02BB", "uni02C0", "uni0302", "uni0302.ascend", "uni0302.cap", "uni0304", 
+     "uni0304.cap", "uni0306", "uni0306.cap", "uni0307", "uni0307.cap", "uni0308", 
+     "uni0308.cap", "uni0308.narrow", "uni030A", "uni030A.cap", "uni030B", "uni030B.cap", 
+     "uni030C", "uni030C.cap", "uni0312", "uni0315", "uni0326", "uni0327", 
+     "uni0328", "uni2000", "uni2001", "uni2002", "uni2003", "uni2004", 
+     "uni2005", "uni2006", "uni2007", "uni2008", "uni2009", "uni200A", 
+     "uni200B", "uni2016", "uni202F", "uni203E", "uni205F", "uni2060", 
+     "uniFEFF", "zero.sub", "zero.sup")
 l3asterisk = postscript("asterisk", "degree")
 l3Y__c2 = postscript("Y.c2", "Yacute.c2", "Ycircumflex.c2", "Ydieresis.c2", "y.sc", "yacute.sc", 
      "ycircumflex.sc", "ydieresis.sc")
@@ -578,7 +598,6 @@ l4B__c2 = postscript("B.c2", "D.c2", "Dcaron.c2", "Dcroat.c2", "E.c2", "Eacute.c
      "uni1E03.sc", "uni1E0A.c2", "uni1E0B.sc", "uni1E1E.c2", "uni1E1F.sc", "uni1E22.c2", 
      "uni1E23.sc", "uni1E40.c2", "uni1E41.sc", "uni1E56.c2", "uni1E57.sc", "uni1E60.c2", 
      "uni1E61.sc", "x.sc")
-l4J__c2 = postscript("J.c2", "Jcircumflex.c2", "j.sc", "jcircumflex.sc")
 l4A__c2 = postscript("A.c2", "Aacute.c2", "Abreve.c2", "Acircumflex.c2", "Adieresis.c2", "Agrave.c2", 
      "Amacron.c2", "Aogonek.c2", "Aring.c2", "Atilde.c2", "a.sc", "aacute.sc", 
      "abreve.sc", "acircumflex.sc", "adieresis.sc", "agrave.sc", "amacron.sc", "aogonek.sc", 
@@ -592,6 +611,9 @@ l4C__c2 = postscript("C.c2", "Cacute.c2", "Ccaron.c2", "Ccedilla.c2", "Ccircumfl
      "gbreve.sc", "gcircumflex.sc", "gcommaaccent.sc", "gdotaccent.sc", "o.sc", "oacute.sc", 
      "obreve.sc", "ocircumflex.sc", "odieresis.sc", "oe.sc", "ograve.sc", "ohungarumlaut.sc", 
      "omacron.sc", "oslash.sc", "otilde.sc", "q.sc")
+l4afii00208__u = postscript("afii00208.u", "emdash.u", "endash.u", "guillemotleft.u", "guillemotright.u", "guilsinglleft.u", 
+     "guilsinglright.u")
+l4hyphen__u = postscript("hyphen.u", "uni00AD.u", "uni2010.u", "uni2011.u")
 l4afii00208 = postscript("afii00208", "c_t", "emdash", "endash", "hyphen", "uni00AD", 
      "uni2010", "uni2011")
 l4Q_U = postscript("Q_U", "Q_u", "ampersand", "paragraph")
@@ -603,24 +625,27 @@ l4T__c2 = postscript("T.c2", "Tbar.c2", "Tcaron.c2", "U.c2", "Uacute.c2", "Ubrev
      "umacron.sc", "uni0162.c2", "uni0163.sc", "uni021A.c2", "uni021B.sc", "uni1E6A.c2", 
      "uni1E6B.sc", "uogonek.sc", "uring.sc", "utilde.sc")
 l4Napostrophe__c2 = postscript("Napostrophe.c2", "napostrophe.sc")
+l4J__c2 = postscript("J.c2", "Jcircumflex.c2", "j.sc", "jcircumflex.sc")
 l4acute = postscript("acute", "acutecomb", "acutecomb.cap", "afii299", "afii300", "afii301", 
-     "afii57929", "afii61664", "bracketleft.sub", "bracketleft.sup", "bracketright.sub", "bracketright.sup", 
-     "breve", "caron", "cedilla", "circumflex", "comma.sub", "comma.sup", 
-     "copyright", "dieresis", "dotaccent", "eight.sub", "eight.sup", "five.sub", 
-     "five.sup", "four.sub", "four.sup", "grave", "gravecomb", "gravecomb.cap", 
-     "hungarumlaut", "macron", "nine.sub", "nine.sup", "ogonek", "one.sub", 
-     "one.sup", "onehalf", "onequarter", "parenleft.sub", "parenleft.sup", "parenright.sub", 
-     "parenright.sup", "period.sub", "period.sup", "registered", "ring", "seven.sub", 
-     "seven.sup", "six.sub", "six.sup", "space", "three.sub", "three.sup", 
-     "threequarters", "tilde", "tildecomb", "tildecomb.cap", "two.sub", "two.sup", 
-     "uni00A0", "uni00B2", "uni00B3", "uni00B9", "uni02BB", "uni02C0", 
-     "uni0302", "uni0302.ascend", "uni0302.cap", "uni0304", "uni0304.cap", "uni0306", 
-     "uni0306.cap", "uni0307", "uni0307.cap", "uni0308", "uni0308.cap", "uni0308.narrow", 
-     "uni030A", "uni030A.cap", "uni030B", "uni030B.cap", "uni030C", "uni030C.cap", 
-     "uni0312", "uni0315", "uni0326", "uni0327", "uni0328", "uni2000", 
-     "uni2001", "uni2002", "uni2003", "uni2004", "uni2005", "uni2006", 
-     "uni2007", "uni2008", "uni2009", "uni200A", "uni200B", "uni202F", 
-     "uni203E", "uni205F", "uni2060", "uniFEFF", "zero.sub", "zero.sup")
+     "afii57929", "afii61664", "braceleft.u", "braceright.u", "bracketleft.sub", "bracketleft.sup", 
+     "bracketleft.u", "bracketright.sub", "bracketright.sup", "bracketright.u", "breve", "caron", 
+     "cedilla", "circumflex", "comma.sub", "comma.sup", "copyright", "dieresis", 
+     "dotaccent", "eight.sub", "eight.sup", "figuredash.u", "five.sub", "five.sup", 
+     "four.sub", "four.sup", "grave", "gravecomb", "gravecomb.cap", "hungarumlaut", 
+     "macron", "nine.sub", "nine.sup", "ogonek", "one.sub", "one.sup", 
+     "onehalf", "onequarter", "parenleft.sub", "parenleft.sup", "parenleft.u", "parenright.sub", 
+     "parenright.sup", "parenright.u", "period.sub", "period.sup", "registered", "ring", 
+     "seven.sub", "seven.sup", "six.sub", "six.sup", "space", "three.sub", 
+     "three.sup", "threequarters", "tilde", "tildecomb", "tildecomb.cap", "two.sub", 
+     "two.sup", "underscoredbl", "uni00A0", "uni00B2", "uni00B3", "uni00B9", 
+     "uni02BB", "uni02C0", "uni0302", "uni0302.ascend", "uni0302.cap", "uni0304", 
+     "uni0304.cap", "uni0306", "uni0306.cap", "uni0307", "uni0307.cap", "uni0308", 
+     "uni0308.cap", "uni0308.narrow", "uni030A", "uni030A.cap", "uni030B", "uni030B.cap", 
+     "uni030C", "uni030C.cap", "uni0312", "uni0315", "uni0326", "uni0327", 
+     "uni0328", "uni2000", "uni2001", "uni2002", "uni2003", "uni2004", 
+     "uni2005", "uni2006", "uni2007", "uni2008", "uni2009", "uni200A", 
+     "uni200B", "uni2016", "uni202F", "uni203E", "uni205F", "uni2060", 
+     "uniFEFF", "zero.sub", "zero.sup")
 l4asterisk = postscript("asterisk", "degree")
 l4Y__c2 = postscript("Y.c2", "Yacute.c2", "Ycircumflex.c2", "Ydieresis.c2", "y.sc", "yacute.sc", 
      "ycircumflex.sc", "ydieresis.sc")
@@ -711,31 +736,33 @@ l5f_b = postscript("f_b", "f_f", "f_f_b", "f_f_h", "f_f_hcircumflex", "f_f_i",
 l5Z = postscript("Z", "Zacute", "Zcaron", "Zdotaccent")
 l5a__sub = postscript("a.sub", "a.sup", "acute", "acutecomb", "acutecomb.cap", "afii299", 
      "afii300", "afii301", "afii57929", "afii61664", "b.sub", "b.sup", 
-     "bracketleft.sub", "bracketleft.sup", "bracketright.sub", "bracketright.sup", "breve", "c.sub", 
-     "c.sup", "caron", "cedilla", "circumflex", "comma.sub", "comma.sup", 
-     "copyright", "d.sub", "d.sup", "dieresis", "dotaccent", "e.sub", 
-     "e.sup", "eight.sub", "eight.sup", "f.sub", "f.sup", "five.sub", 
-     "five.sup", "four.sub", "four.sup", "g.sub", "g.sup", "grave", 
-     "gravecomb", "gravecomb.cap", "h.sub", "h.sup", "hungarumlaut", "i.sub", 
-     "i.sup", "j.sub", "j.sup", "k.sub", "k.sup", "l.sub", 
-     "l.sup", "m.sub", "m.sup", "macron", "n.sub", "n.sup", 
-     "nine.sub", "nine.sup", "o.sub", "o.sup", "ogonek", "one.sub", 
-     "one.sup", "onehalf", "onequarter", "ordfeminine", "ordmasculine", "p.sub", 
-     "p.sup", "parenleft.sub", "parenleft.sup", "parenright.sub", "parenright.sup", "period.sub", 
-     "period.sup", "q.sub", "q.sup", "r.sub", "r.sup", "registered", 
-     "ring", "s.sub", "s.sup", "seven.sub", "seven.sup", "six.sub", 
-     "six.sup", "space", "t.sub", "t.sup", "three.sub", "three.sup", 
-     "threequarters", "tilde", "tildecomb", "tildecomb.cap", "two.sub", "two.sup", 
-     "u.sub", "u.sup", "uni00A0", "uni00B2", "uni00B3", "uni00B9", 
-     "uni02BB", "uni02C0", "uni0302", "uni0302.ascend", "uni0302.cap", "uni0304", 
-     "uni0304.cap", "uni0306", "uni0306.cap", "uni0307", "uni0307.cap", "uni0308", 
-     "uni0308.cap", "uni0308.narrow", "uni030A", "uni030A.cap", "uni030B", "uni030B.cap", 
-     "uni030C", "uni030C.cap", "uni0312", "uni0315", "uni0326", "uni0327", 
-     "uni0328", "uni2000", "uni2001", "uni2002", "uni2003", "uni2004", 
-     "uni2005", "uni2006", "uni2007", "uni2008", "uni2009", "uni200A", 
-     "uni200B", "uni202F", "uni203E", "uni205F", "uni2060", "uniFEFF", 
-     "v.sub", "v.sup", "w.sub", "w.sup", "x.sub", "x.sup", 
-     "y.sub", "y.sup", "z.sub", "z.sup", "zero.sub", "zero.sup")
+     "braceleft.u", "braceright.u", "bracketleft.sub", "bracketleft.sup", "bracketleft.u", "bracketright.sub", 
+     "bracketright.sup", "bracketright.u", "breve", "c.sub", "c.sup", "caron", 
+     "cedilla", "circumflex", "comma.sub", "comma.sup", "copyright", "d.sub", 
+     "d.sup", "dieresis", "dotaccent", "e.sub", "e.sup", "eight.sub", 
+     "eight.sup", "f.sub", "f.sup", "figuredash.u", "five.sub", "five.sup", 
+     "four.sub", "four.sup", "g.sub", "g.sup", "grave", "gravecomb", 
+     "gravecomb.cap", "h.sub", "h.sup", "hungarumlaut", "i.sub", "i.sup", 
+     "j.sub", "j.sup", "k.sub", "k.sup", "l.sub", "l.sup", 
+     "m.sub", "m.sup", "macron", "n.sub", "n.sup", "nine.sub", 
+     "nine.sup", "o.sub", "o.sup", "ogonek", "one.sub", "one.sup", 
+     "onehalf", "onequarter", "ordfeminine", "ordmasculine", "p.sub", "p.sup", 
+     "parenleft.sub", "parenleft.sup", "parenleft.u", "parenright.sub", "parenright.sup", "parenright.u", 
+     "period.sub", "period.sup", "q.sub", "q.sup", "r.sub", "r.sup", 
+     "registered", "ring", "s.sub", "s.sup", "seven.sub", "seven.sup", 
+     "six.sub", "six.sup", "space", "t.sub", "t.sup", "three.sub", 
+     "three.sup", "threequarters", "tilde", "tildecomb", "tildecomb.cap", "two.sub", 
+     "two.sup", "u.sub", "u.sup", "underscoredbl", "uni00A0", "uni00B2", 
+     "uni00B3", "uni00B9", "uni02BB", "uni02C0", "uni0302", "uni0302.ascend", 
+     "uni0302.cap", "uni0304", "uni0304.cap", "uni0306", "uni0306.cap", "uni0307", 
+     "uni0307.cap", "uni0308", "uni0308.cap", "uni0308.narrow", "uni030A", "uni030A.cap", 
+     "uni030B", "uni030B.cap", "uni030C", "uni030C.cap", "uni0312", "uni0315", 
+     "uni0326", "uni0327", "uni0328", "uni2000", "uni2001", "uni2002", 
+     "uni2003", "uni2004", "uni2005", "uni2006", "uni2007", "uni2008", 
+     "uni2009", "uni200A", "uni200B", "uni2016", "uni202F", "uni203E", 
+     "uni205F", "uni2060", "uniFEFF", "v.sub", "v.sup", "w.sub", 
+     "w.sup", "x.sub", "x.sup", "y.sub", "y.sup", "z.sub", 
+     "z.sup", "zero.sub", "zero.sup")
 l5m = postscript("m", "uni1E41")
 l5J = postscript("J", "Jcircumflex")
 l5C = postscript("C", "Cacute", "Ccaron", "Ccedilla", "Ccircumflex", "Cdotaccent", 
@@ -749,6 +776,9 @@ l5afii00208 = postscript("afii00208", "c", "c_t", "cacute", "ccaron", "ccedilla"
 l5u = postscript("u", "uacute", "ubreve", "ucircumflex", "udieresis", "ugrave", 
      "uhungarumlaut", "umacron", "uogonek", "uring", "utilde")
 l5h = postscript("h", "hbar", "hcircumflex", "uni1E23")
+l5afii00208__u = postscript("afii00208.u", "emdash.u", "endash.u", "guillemotleft.u", "guillemotright.u", "guilsinglleft.u", 
+     "guilsinglright.u")
+l5hyphen__u = postscript("hyphen.u", "uni00AD.u", "uni2010.u", "uni2011.u")
 l5U = postscript("U", "Uacute", "Ubreve", "Ucircumflex", "Udieresis", "Ugrave", 
      "Uhungarumlaut", "Umacron", "Uogonek", "Uring", "Utilde")
 l5ellipsis = postscript("ellipsis", "period")
@@ -802,7 +832,7 @@ table(positioning)
 r1f_f_j l1J { kern.x = 2m };
 postscript("yen") postscript("section") { kern.x = -125m };
 postscript("backslash") l1T { kern.x = -125m };
-(postscript("slash"), r1f_f_j, postscript("periodcentered"), postscript("f_f"), r1asterisk, postscript("zero.u"), postscript("semicolon"), r1asciicircum, r1f_f_k, r1colon, postscript("ampersand"), r1quotedblleft) l1p { kern.x = 5m };
+(postscript("slash"), r1f_f_j, postscript("periodcentered"), postscript("f_f"), r1asterisk, postscript("zero.u"), postscript("semicolon"), r1asciicircum, r1f_f_k, r1colon, postscript("ampersand"), r1afii00208__u, r1quotedblleft) l1p { kern.x = 5m };
 postscript("zero.u") postscript("uni00B5") { kern.x = 5m };
 postscript("backslash") (l1W, postscript("V")) { kern.x = -120m };
 (postscript("backslash"), r1comma, postscript("semicolon"), r1asciicircum) postscript("uni00B5") { kern.x = 10m };
@@ -810,31 +840,31 @@ postscript("yen") (postscript("uni00B5"), postscript("comma"), postscript("slash
 (postscript("yen"), postscript("periodcentered")) postscript("AE") { kern.x = -115m };
 (postscript("backslash"), postscript("Q_u")) l1Y { kern.x = -110m };
 postscript("yen") (l1g, l1m) { kern.x = -110m };
-postscript("yen") (l1J__c2, l1quotedblbase, l1j, l1B__c2, l1s, postscript("ae"), l1a, l1t, l1C__c2, l1Z__c2, l1y, l1T__c2, l1afii00208, postscript("q"), l1u, l1Iogonek__c2, l1Y__c2, postscript("periodcentered"), l1V__c2, l1v, l1IJ__c2, postscript("ij")) { kern.x = -105m };
+postscript("yen") (l1J__c2, l1quotedblbase, l1j, l1B__c2, l1s, postscript("ae"), l1a, l1afii00208__u, l1hyphen__u, l1t, l1C__c2, l1Z__c2, l1y, l1T__c2, l1afii00208, postscript("q"), l1u, l1Iogonek__c2, l1Y__c2, postscript("periodcentered"), l1V__c2, l1v, l1IJ__c2, postscript("ij")) { kern.x = -105m };
 postscript("slash") postscript("AE") { kern.x = -101m };
 r1f_f_h l1Y { kern.x = -100m };
 postscript("yen") l1p { kern.x = -100m };
-(r1f_b, r1afii00208, r1comma, r1ellipsis, r1c_t) l1Y { kern.x = -95m };
+(r1f_b, r1afii00208, r1comma, r1ellipsis, r1c_t, r1hyphen__u) l1Y { kern.x = -95m };
 r1asterisk postscript("AE") { kern.x = -95m };
-(r1f_f_j, postscript("periodcentered"), postscript("f_f"), postscript("semicolon"), r1f_f_k, r1colon) l1Y { kern.x = -90m };
+(r1f_b, r1afii00208, r1comma, postscript("Q_u"), r1ellipsis, r1hyphen__u) l1T { kern.x = -90m };
+(r1f_f_j, postscript("periodcentered"), postscript("f_f"), postscript("semicolon"), r1f_f_k, r1colon, r1afii00208__u) l1Y { kern.x = -90m };
 (r1comma, r1ellipsis) l1W { kern.x = -90m };
-(r1f_b, r1afii00208, r1comma, postscript("Q_u"), r1ellipsis) l1T { kern.x = -90m };
 r1f_f_h l1T { kern.x = -80m };
 (postscript("slash"), postscript("periodcentered")) (postscript("slash"), l1AE__c2) { kern.x = -80m };
 postscript("backslash") (postscript("periodcentered"), l1v, postscript("backslash")) { kern.x = -80m };
 postscript("periodcentered") postscript("X") { kern.x = -80m };
 (r1comma, r1ellipsis) postscript("V") { kern.x = -80m };
-r1quotedblleft postscript("AE") { kern.x = -75m };
-(postscript("slash"), postscript("periodcentered")) l1A { kern.x = -75m };
 r1c_t l1T { kern.x = -75m };
-(r1f_f_j, postscript("periodcentered"), postscript("f_f"), postscript("semicolon"), r1f_f_k, r1colon) l1T { kern.x = -70m };
+(postscript("slash"), postscript("periodcentered")) l1A { kern.x = -75m };
+(r1hyphen__u, r1afii00208__u, r1quotedblleft) postscript("AE") { kern.x = -75m };
+(r1f_f_j, postscript("periodcentered"), postscript("f_f"), postscript("semicolon"), r1f_f_k, r1colon, r1afii00208__u) l1T { kern.x = -70m };
 postscript("section") l1J__c2 { kern.x = 60m };
 postscript("slash") (postscript("comma"), l1ellipsis) { kern.x = -61m };
-(r1f_b, r1afii00208, postscript("Q_u")) (l1W, postscript("V")) { kern.x = -60m };
+(r1f_b, r1afii00208, postscript("Q_u"), r1hyphen__u) (l1W, postscript("V")) { kern.x = -60m };
 postscript("backslash") (l1asterisk, l1V__c2, l1U) { kern.x = -60m };
-postscript("Q_U") postscript("AE") { kern.x = -60m };
-postscript("periodcentered") (postscript("comma"), l1ellipsis) { kern.x = -60m };
 (postscript("Q_U"), r1asterisk) (postscript("slash"), l1AE__c2) { kern.x = -60m };
+postscript("periodcentered") (postscript("comma"), l1ellipsis) { kern.x = -60m };
+postscript("Q_U") postscript("AE") { kern.x = -60m };
 (postscript("slash"), postscript("Q_U"), postscript("periodcentered"), r1asterisk) l1A__c2 { kern.x = -60m };
 (postscript("Q_U"), r1asterisk) l1A { kern.x = -55m };
 postscript("zero.u") l1J__c2 { kern.x = 75m };
@@ -845,25 +875,26 @@ postscript("section") l1J { kern.x = 82m };
 r1c_t (l1W, postscript("V")) { kern.x = -45m };
 postscript("slash") l1quotedblbase { kern.x = -41m };
 (postscript("section"), r1ellipsis) l1y { kern.x = -40m };
-(r1f_b, r1quotedblleft) (postscript("slash"), l1A__c2, l1AE__c2) { kern.x = -40m };
-(postscript("section"), r1comma, r1ellipsis) (postscript("periodcentered"), l1v, postscript("backslash")) { kern.x = -40m };
-postscript("backslash") (l1quotedblleft, l1C, l1Y__c2, l1Napostrophe__c2) { kern.x = -40m };
-postscript("periodcentered") (l1quotedblbase, l1Z) { kern.x = -40m };
-r1f_b (postscript("X"), postscript("AE")) { kern.x = -40m };
-postscript("Q_u") l1U { kern.x = -40m };
 (postscript("Q_U"), postscript("Q_u")) postscript("section") { kern.x = -40m };
+(r1f_b, r1hyphen__u, r1afii00208__u) postscript("X") { kern.x = -40m };
+(postscript("section"), r1comma, r1ellipsis) (postscript("periodcentered"), l1v, postscript("backslash")) { kern.x = -40m };
+postscript("backslash") (l1afii00208__u, l1quotedblleft, l1hyphen__u, l1C, l1Y__c2, l1Napostrophe__c2) { kern.x = -40m };
+postscript("periodcentered") (l1quotedblbase, l1Z) { kern.x = -40m };
+r1f_b postscript("AE") { kern.x = -40m };
+(r1f_f_j, postscript("periodcentered"), postscript("f_f"), postscript("section"), postscript("semicolon"), r1f_f_k, r1colon, r1afii00208__u) (l1W, postscript("V")) { kern.x = -40m };
 (postscript("Q_U"), r1asterisk) (postscript("comma"), l1ellipsis) { kern.x = -40m };
-(r1f_f_j, postscript("periodcentered"), postscript("f_f"), postscript("section"), postscript("semicolon"), r1f_f_k, r1colon) (l1W, postscript("V")) { kern.x = -40m };
+(r1f_b, r1hyphen__u, r1afii00208__u, r1quotedblleft) (postscript("slash"), l1A__c2, l1AE__c2) { kern.x = -40m };
 postscript("section") (l1Y, l1T) { kern.x = -40m };
+postscript("Q_u") l1U { kern.x = -40m };
 postscript("Q_U") postscript("x") { kern.x = -35m };
-(r1f_b, r1quotedblleft) l1A { kern.x = -35m };
+(r1f_b, r1hyphen__u, r1afii00208__u, r1quotedblleft) l1A { kern.x = -35m };
 postscript("zero.u") l1J { kern.x = 97m };
 (postscript("slash"), postscript("periodcentered"), postscript("paragraph"), postscript("backslash"), r1f_f_k) postscript("q") { kern.x = -30m };
 (postscript("paragraph"), postscript("f_f")) (postscript("comma"), postscript("slash"), l1ellipsis, l1A, l1A__c2, l1AE__c2, postscript("AE")) { kern.x = -30m };
 postscript("f_f") (l1Z, postscript("X")) { kern.x = -30m };
 (r1f_f_h, r1f_f_l) postscript("section") { kern.x = -30m };
 (postscript("paragraph"), postscript("backslash")) l1u { kern.x = -30m };
-postscript("paragraph") (l1J__c2, l1quotedblbase, l1j, l1g, l1B__c2, l1s, postscript("ae"), l1a, l1m, postscript("x"), l1t, l1C__c2, l1Z__c2, l1y, l1T__c2, l1afii00208, l1Iogonek__c2, l1Y__c2, postscript("periodcentered"), l1V__c2, l1v, l1IJ__c2, postscript("ij")) { kern.x = -30m };
+postscript("paragraph") (l1J__c2, l1quotedblbase, l1j, l1g, l1B__c2, l1s, postscript("ae"), l1a, l1m, postscript("x"), l1afii00208__u, l1hyphen__u, l1t, l1C__c2, l1Z__c2, l1y, l1T__c2, l1afii00208, l1Iogonek__c2, l1Y__c2, postscript("periodcentered"), l1V__c2, l1v, l1IJ__c2, postscript("ij")) { kern.x = -30m };
 r1f_f_h l1U { kern.x = -30m };
 (postscript("Q_U"), postscript("paragraph")) (l1f_b, l1f) { kern.x = -30m };
 (postscript("slash"), postscript("Q_U"), postscript("periodcentered"), postscript("paragraph"), r1asterisk) postscript("uni00B5") { kern.x = -30m };
@@ -872,49 +903,51 @@ postscript("paragraph") l1p { kern.x = -25m };
 postscript("Q_U") l1m { kern.x = -25m };
 postscript("f_f") postscript("uni00B5") { kern.x = -25m };
 (postscript("slash"), postscript("Q_U"), postscript("periodcentered"), r1asterisk) l1g { kern.x = -25m };
-(postscript("Q_U"), r1f_b, r1afii00208, postscript("Q_u")) (postscript("periodcentered"), l1v) { kern.x = -20m };
+(postscript("Q_U"), r1f_b, r1afii00208, postscript("Q_u"), r1hyphen__u) (postscript("periodcentered"), l1v) { kern.x = -20m };
+(postscript("slash"), postscript("Q_U"), postscript("periodcentered"), r1asterisk, r1f_f_k, postscript("Q_u")) l1hyphen__u { kern.x = -20m };
 (postscript("yen"), postscript("Q_U"), postscript("paragraph"), postscript("Q_u")) l1C { kern.x = -20m };
-(r1f_b, postscript("section"), r1afii00208, r1comma, postscript("Q_u"), r1ellipsis) l1asterisk { kern.x = -20m };
+(r1f_b, postscript("section"), r1afii00208, r1hyphen__u, r1afii00208__u, r1quotedblleft) (postscript("comma"), l1ellipsis) { kern.x = -20m };
+(r1f_b, postscript("section"), r1afii00208, r1hyphen__u, r1afii00208__u) l1Z { kern.x = -20m };
 postscript("f_f") l1g { kern.x = -20m };
-(postscript("Q_U"), r1f_b, postscript("section"), r1afii00208, r1comma, postscript("Q_u"), r1ellipsis) (l1Y__c2, l1V__c2) { kern.x = -20m };
-(postscript("slash"), postscript("periodcentered"), postscript("f_f"), r1asterisk) l1f { kern.x = -20m };
-(postscript("slash"), postscript("yen"), postscript("Q_U"), r1f_b, postscript("periodcentered"), postscript("paragraph"), postscript("f_f"), postscript("section"), r1afii00208, r1asterisk, r1quotedblleft) (l1l, l1ldot, l1k) { kern.x = -20m };
-(postscript("backslash"), postscript("Q_u")) l1O { kern.x = -20m };
-(r1f_b, postscript("section"), r1afii00208, r1quotedblleft) (postscript("comma"), l1ellipsis) { kern.x = -20m };
-(postscript("section"), r1afii00208) (postscript("slash"), l1A, l1A__c2, l1AE__c2, postscript("X"), postscript("AE")) { kern.x = -20m };
-(postscript("slash"), postscript("Q_U"), postscript("periodcentered"), r1asterisk, postscript("backslash"), r1f_f_k, postscript("Q_u")) l1afii00208 { kern.x = -20m };
-(postscript("slash"), postscript("yen"), postscript("Q_U"), postscript("periodcentered"), postscript("paragraph"), r1asterisk, postscript("backslash"), r1f_f_k, postscript("Q_u")) l1d { kern.x = -20m };
-(r1f_f_j, r1f_b, postscript("periodcentered"), postscript("f_f"), postscript("section"), r1afii00208, r1comma, postscript("semicolon"), r1f_f_k, r1ellipsis, r1c_t, r1colon) l1U { kern.x = -20m };
-postscript("Q_U") (l1J__c2, l1j, l1B__c2, l1s, postscript("ae"), l1t, l1C__c2, l1Iogonek__c2, l1IJ__c2, postscript("ij")) { kern.x = -20m };
-(postscript("slash"), r1f_f_j, r1f_b, postscript("periodcentered"), postscript("f_f"), postscript("section"), r1afii00208, r1asterisk, r1f_f_k, r1ellipsis, r1c_t, r1colon, postscript("ampersand"), r1quotedblleft) postscript("section") { kern.x = -20m };
-(postscript("Q_U"), postscript("Q_u")) l1u { kern.x = -20m };
 (postscript("Q_U"), postscript("backslash"), postscript("Q_u")) l1T__c2 { kern.x = -20m };
-(r1f_b, r1afii00208, postscript("Q_u")) postscript("backslash") { kern.x = -20m };
+(postscript("backslash"), postscript("Q_u")) l1O { kern.x = -20m };
+(postscript("section"), r1afii00208) (postscript("slash"), l1A, l1A__c2, l1AE__c2, postscript("X"), postscript("AE")) { kern.x = -20m };
+(postscript("Q_U"), r1f_b, r1afii00208, postscript("backslash"), r1comma, postscript("Q_u"), r1hyphen__u) l1y { kern.x = -20m };
+(postscript("slash"), postscript("yen"), postscript("Q_U"), postscript("periodcentered"), postscript("paragraph"), r1asterisk, postscript("backslash"), r1f_f_k, postscript("Q_u")) l1d { kern.x = -20m };
+postscript("Q_U") (l1J__c2, l1j, l1B__c2, l1s, postscript("ae"), l1t, l1C__c2, l1Iogonek__c2, l1IJ__c2, postscript("ij")) { kern.x = -20m };
+(postscript("slash"), postscript("yen"), postscript("Q_U"), r1f_b, postscript("periodcentered"), postscript("paragraph"), postscript("f_f"), postscript("section"), r1afii00208, r1asterisk, r1hyphen__u, r1afii00208__u, r1quotedblleft) (l1l, l1ldot, l1k) { kern.x = -20m };
+(r1f_b, postscript("section"), r1afii00208, r1comma, postscript("Q_u"), r1ellipsis, r1hyphen__u) l1asterisk { kern.x = -20m };
+(postscript("Q_U"), postscript("Q_u")) (l1afii00208__u, l1u) { kern.x = -20m };
+(r1f_b, postscript("section"), r1afii00208, r1hyphen__u) postscript("x") { kern.x = -20m };
+(postscript("slash"), postscript("periodcentered"), postscript("f_f"), r1asterisk) l1f { kern.x = -20m };
+(postscript("slash"), postscript("Q_U"), postscript("periodcentered"), r1asterisk, postscript("backslash"), r1f_f_k, postscript("Q_u")) l1afii00208 { kern.x = -20m };
 (postscript("Q_U"), r1asterisk, postscript("Q_u")) postscript("q") { kern.x = -20m };
-(r1f_b, postscript("section"), r1afii00208) (postscript("x"), l1Z) { kern.x = -20m };
+(postscript("slash"), r1f_f_j, r1f_b, postscript("periodcentered"), postscript("f_f"), postscript("section"), r1afii00208, r1asterisk, r1f_f_k, r1ellipsis, r1c_t, r1colon, postscript("ampersand"), r1hyphen__u, r1afii00208__u, r1quotedblleft) postscript("section") { kern.x = -20m };
 (postscript("slash"), postscript("Q_U"), postscript("periodcentered"), r1asterisk) (l1a, l1Z__c2) { kern.x = -20m };
+(r1f_f_j, r1f_b, postscript("periodcentered"), postscript("f_f"), postscript("section"), r1afii00208, r1comma, postscript("semicolon"), r1f_f_k, r1ellipsis, r1c_t, r1colon, r1hyphen__u, r1afii00208__u) l1U { kern.x = -20m };
+(postscript("Q_U"), r1f_b, postscript("section"), r1afii00208, r1comma, postscript("Q_u"), r1ellipsis, r1hyphen__u) (l1Y__c2, l1V__c2) { kern.x = -20m };
 postscript("Q_u") (l1quotedblleft, l1Napostrophe__c2) { kern.x = -20m };
 (postscript("Q_U"), r1asterisk) l1quotedblbase { kern.x = -20m };
-(postscript("Q_U"), r1f_b, r1afii00208, postscript("backslash"), r1comma, postscript("Q_u")) l1y { kern.x = -20m };
-(postscript("slash"), postscript("periodcentered"), postscript("f_f"), r1asterisk, r1quotedblleft) postscript("x") { kern.x = -15m };
+(r1f_b, r1afii00208, postscript("Q_u"), r1hyphen__u) postscript("backslash") { kern.x = -20m };
 postscript("Q_U") l1p { kern.x = -15m };
-postscript("f_f") (l1quotedblbase, l1a, l1Z__c2, l1afii00208, l1d, postscript("q")) { kern.x = -15m };
+postscript("f_f") (l1quotedblbase, l1a, l1hyphen__u, l1Z__c2, l1afii00208, l1d, postscript("q")) { kern.x = -15m };
 (postscript("slash"), postscript("periodcentered"), postscript("f_f"), r1asterisk) l1f_b { kern.x = -15m };
-(r1f_b, postscript("section"), r1afii00208, r1quotedblleft) (postscript("uni00B5"), l1f_b, l1f) { kern.x = -10m };
-(r1f_f_h, r1f_f_l) (l1quotedblleft, l1y, l1T__c2, l1O, l1afii00208, l1d, l1asterisk, postscript("q"), l1C, l1Y__c2, postscript("periodcentered"), l1V__c2, l1v, postscript("backslash"), l1Napostrophe__c2) { kern.x = -10m };
+(postscript("slash"), postscript("periodcentered"), postscript("f_f"), r1asterisk, r1afii00208__u, r1quotedblleft) postscript("x") { kern.x = -15m };
+(r1f_f_h, r1f_f_l) (l1afii00208__u, l1quotedblleft, l1hyphen__u, l1y, l1T__c2, l1O, l1afii00208, l1d, l1asterisk, postscript("q"), l1C, l1Y__c2, postscript("periodcentered"), l1V__c2, l1v, postscript("backslash"), l1Napostrophe__c2) { kern.x = -10m };
 (postscript("slash"), postscript("periodcentered"), postscript("f_f"), r1asterisk) postscript("ae") { kern.x = -10m };
-(postscript("slash"), postscript("yen"), postscript("Q_U"), r1f_b, postscript("periodcentered"), postscript("paragraph"), postscript("f_f"), postscript("section"), r1afii00208, r1asterisk, r1quotedblleft) l1h { kern.x = -10m };
+(r1f_b, postscript("section"), r1afii00208, r1comma, r1f_f_h, r1f_f_l, r1ellipsis, r1hyphen__u) l1u { kern.x = -10m };
 (postscript("slash"), postscript("yen"), postscript("Q_U"), postscript("paragraph"), r1asterisk, r1quotedblleft) postscript("X") { kern.x = -10m };
-(r1f_b, postscript("section"), r1afii00208, r1comma, r1f_f_h, r1f_f_l, r1ellipsis) l1u { kern.x = -10m };
 r1f_f_l (l1U, l1Y, l1T, l1W, postscript("V")) { kern.x = -10m };
 (postscript("backslash"), r1f_f_k, postscript("Q_u"), r1f_f_h, r1f_f_l) l1Z__c2 { kern.x = -10m };
+(r1f_b, postscript("section"), r1afii00208, r1hyphen__u, r1afii00208__u, r1quotedblleft) (postscript("uni00B5"), l1f_b, l1f) { kern.x = -10m };
+(postscript("slash"), postscript("yen"), postscript("Q_U"), r1f_b, postscript("periodcentered"), postscript("paragraph"), postscript("f_f"), postscript("section"), r1afii00208, r1asterisk, r1hyphen__u, r1afii00208__u, r1quotedblleft) l1h { kern.x = -10m };
 (postscript("slash"), postscript("periodcentered"), postscript("f_f"), r1asterisk, postscript("backslash"), r1f_f_k, postscript("Q_u"), r1f_f_h, r1f_f_l) l1C__c2 { kern.x = -10m };
+(postscript("slash"), postscript("yen"), r1f_f_j, postscript("Q_U"), r1f_b, postscript("periodcentered"), postscript("paragraph"), postscript("f_f"), postscript("section"), r1afii00208, r1asterisk, postscript("zero.u"), r1f_f_k, postscript("Q_u"), r1f_f_h, r1f_f_l, r1ellipsis, r1c_t, r1colon, postscript("ampersand"), r1hyphen__u, r1afii00208__u, r1quotedblleft) postscript("zero.u") { kern.x = -5m };
 r1c_t (l1y, l1asterisk, l1u, l1Y__c2, postscript("periodcentered"), l1V__c2, l1v, postscript("backslash")) { kern.x = -5m };
-(postscript("slash"), postscript("yen"), r1f_f_j, postscript("Q_U"), r1f_b, postscript("periodcentered"), postscript("paragraph"), postscript("f_f"), postscript("section"), r1afii00208, r1asterisk, postscript("zero.u"), r1f_f_k, postscript("Q_u"), r1f_f_h, r1f_f_l, r1ellipsis, r1c_t, r1colon, postscript("ampersand"), r1quotedblleft) postscript("zero.u") { kern.x = -5m };
 (postscript("slash"), postscript("periodcentered"), postscript("f_f"), r1asterisk, postscript("backslash"), r1f_f_k, postscript("Q_u"), r1f_f_h, r1f_f_l) l1t { kern.x = -5m };
 (postscript("slash"), postscript("periodcentered"), postscript("f_f"), r1asterisk) l1s { kern.x = -5m };
-(postscript("slash"), r1f_b, postscript("periodcentered"), postscript("f_f"), postscript("section"), r1afii00208, r1asterisk, r1quotedblleft) l1m { kern.x = -5m };
-(r1f_b, postscript("section"), r1afii00208, r1quotedblleft) l1g { kern.x = -5m };
+(r1f_b, postscript("section"), r1afii00208, r1hyphen__u, r1afii00208__u, r1quotedblleft) l1g { kern.x = -5m };
+(postscript("slash"), r1f_b, postscript("periodcentered"), postscript("f_f"), postscript("section"), r1afii00208, r1asterisk, r1hyphen__u, r1afii00208__u, r1quotedblleft) l1m { kern.x = -5m };
 postscript("zero.u") postscript("section") { kern.x = -5m };
 (postscript("yen"), postscript("Q_U"), postscript("paragraph")) postscript("thorn") { kern.x = -1m };
 (postscript("Aogonek"), r2R, r2A) l2T { kern.x = -125m };
@@ -933,7 +966,7 @@ r2Y (postscript("uni00B5"), postscript("slash"), l2f_b, l2f, postscript("x"), l2
 r2T (postscript("comma"), l2ellipsis) { kern.x = -110m };
 (postscript("Aogonek"), r2R, r2A) l2Y { kern.x = -110m };
 r2Y (l2g, l2m) { kern.x = -110m };
-r2Y (l2j__sc, l2quotedblbase, l2j, l2b__sc, l2s, postscript("ae"), l2a, l2t, l2c__sc, l2z__sc, l2y, l2t__sc, l2afii00208, postscript("q"), l2u, postscript("iogonek.sc"), l2y__sc, postscript("periodcentered"), l2v__sc, l2v, postscript("ij.sc"), postscript("ij")) { kern.x = -105m };
+r2Y (l2j__sc, l2quotedblbase, l2j, l2b__sc, l2s, postscript("ae"), l2a, l2afii00208__u, l2hyphen__u, l2t, l2c__sc, l2z__sc, l2y, l2t__sc, l2afii00208, postscript("q"), l2u, postscript("iogonek.sc"), l2y__sc, postscript("periodcentered"), l2v__sc, l2v, postscript("ij.sc"), postscript("ij")) { kern.x = -105m };
 postscript("V") (postscript("comma"), l2ellipsis) { kern.x = -105m };
 r2W l2a__sc { kern.x = -105m };
 r2Y l2p { kern.x = -100m };
@@ -943,7 +976,7 @@ r2T postscript("uni00B5") { kern.x = -95m };
 r2W l2quotedblbase { kern.x = -95m };
 (r2L, postscript("Lcaron")) l2T { kern.x = -90m };
 r2T (l2quotedblbase, l2g, postscript("q")) { kern.x = -90m };
-r2T (postscript("section"), l2a, l2f, l2z__sc, l2afii00208) { kern.x = -85m };
+r2T (postscript("section"), l2a, l2f, l2hyphen__u, l2z__sc, l2afii00208) { kern.x = -85m };
 postscript("V") l2quotedblbase { kern.x = -85m };
 (r2F, postscript("Thorn")) postscript("AE") { kern.x = -85m };
 r2P postscript("AE") { kern.x = -84m };
@@ -959,8 +992,8 @@ r2A (l2y, postscript("periodcentered"), l2v, postscript("backslash")) { kern.x =
 r2T (l2s, l2m, l2t) { kern.x = -70m };
 r2W l2g { kern.x = -70m };
 postscript("V") (postscript("uni00B5"), postscript("q")) { kern.x = -70m };
-r2T (l2j__sc, l2j, l2b__sc, l2y, l2t__sc, l2u, postscript("iogonek.sc"), l2y__sc, postscript("periodcentered"), l2v__sc, l2v, postscript("ij.sc"), postscript("ij")) { kern.x = -65m };
-r2W (postscript("section"), l2a, l2f, l2z__sc, l2afii00208) { kern.x = -65m };
+r2T (l2j__sc, l2j, l2b__sc, l2afii00208__u, l2y, l2t__sc, l2u, postscript("iogonek.sc"), l2y__sc, postscript("periodcentered"), l2v__sc, l2v, postscript("ij.sc"), postscript("ij")) { kern.x = -65m };
+r2W (postscript("section"), l2a, l2f, l2hyphen__u, l2z__sc, l2afii00208) { kern.x = -65m };
 postscript("V") l2g { kern.x = -65m };
 (r2F, r2P, r2U) l2a__sc { kern.x = -60m };
 r2T l2p { kern.x = -60m };
@@ -970,7 +1003,7 @@ r2U (postscript("slash"), postscript("ae.sc"), postscript("AE")) { kern.x = -60m
 (r2F, r2P) (postscript("comma"), l2ellipsis) { kern.x = -60m };
 (postscript("Aogonek"), r2R) (l2asterisk, l2U) { kern.x = -60m };
 (postscript("V"), postscript("Aogonek"), r2R, r2K, postscript("X")) postscript("section") { kern.x = -60m };
-postscript("V") (l2a, l2f, l2z__sc, l2afii00208) { kern.x = -60m };
+postscript("V") (l2a, l2f, l2hyphen__u, l2z__sc, l2afii00208) { kern.x = -60m };
 r2A (postscript("section"), l2asterisk, l2v__sc, l2U) { kern.x = -55m };
 r2W (postscript("ae"), l2c__sc) { kern.x = -55m };
 postscript("V") (l2f_b, postscript("x")) { kern.x = -55m };
@@ -979,22 +1012,24 @@ r2W (l2s, l2m, l2t) { kern.x = -50m };
 postscript("V") (postscript("ae"), l2c__sc) { kern.x = -50m };
 postscript("Thorn") (postscript("slash"), l2a__sc, postscript("ae.sc")) { kern.x = -50m };
 postscript("Q") l2j__sc { kern.x = 80m };
-r2W (l2j__sc, l2j, l2b__sc, l2y, l2t__sc, l2u, postscript("iogonek.sc"), l2y__sc, postscript("periodcentered"), l2v__sc, l2v, postscript("ij.sc"), postscript("ij")) { kern.x = -45m };
+r2W (l2j__sc, l2j, l2b__sc, l2afii00208__u, l2y, l2t__sc, l2u, postscript("iogonek.sc"), l2y__sc, postscript("periodcentered"), l2v__sc, l2v, postscript("ij.sc"), postscript("ij")) { kern.x = -45m };
 postscript("V") (l2s, l2m, l2t) { kern.x = -45m };
 postscript("Thorn") l2A { kern.x = -45m };
 r2D (postscript("slash"), l2a__sc, postscript("ae.sc"), postscript("AE")) { kern.x = -40m };
 r2W l2p { kern.x = -40m };
 (r2L, postscript("Lcaron")) postscript("backslash") { kern.x = -40m };
+(postscript("Aogonek"), r2R, r2K, postscript("X")) l2hyphen__u { kern.x = -40m };
 r2U (postscript("comma"), postscript("section"), l2ellipsis) { kern.x = -40m };
 (postscript("V"), postscript("Aogonek"), r2R, r2K, postscript("X"), r2A) l2y__sc { kern.x = -40m };
 (postscript("V"), r2L, postscript("Lcaron")) (l2y, postscript("periodcentered"), l2v) { kern.x = -40m };
 (r2F, r2P) l2quotedblbase { kern.x = -40m };
 (postscript("Aogonek"), r2R) (l2quotedblleft, l2C, l2napostrophe) { kern.x = -40m };
+(postscript("V"), postscript("Aogonek"), r2R, r2K, postscript("X")) l2afii00208__u { kern.x = -40m };
 postscript("V") (l2j__sc, l2j, l2b__sc, l2t__sc, l2u, postscript("iogonek.sc"), l2v__sc, postscript("ij.sc"), postscript("ij")) { kern.x = -40m };
 r2W postscript("AE") { kern.x = -165m };
-r2A (l2quotedblleft, l2C, l2napostrophe) { kern.x = -35m };
 r2U postscript("x") { kern.x = -35m };
 postscript("V") l2p { kern.x = -35m };
+r2A (l2afii00208__u, l2quotedblleft, l2hyphen__u, l2C, l2napostrophe) { kern.x = -35m };
 r2D l2A { kern.x = -35m };
 postscript("V") postscript("AE") { kern.x = -160m };
 (r2F, r2P, r2U) postscript("uni00B5") { kern.x = -30m };
@@ -1012,11 +1047,11 @@ r2U l2m { kern.x = -25m };
 (r2D, r2G, postscript("Q")) l2Z { kern.x = -20m };
 (r2D, r2Z, r2C, r2G, r2E) postscript("comma") { kern.x = -20m };
 (r2Z, r2C, r2G, r2E, postscript("Q")) (l2A, l2a__sc, postscript("ae.sc"), postscript("AE")) { kern.x = -20m };
-(r2F, r2P, r2U) (l2a, l2z__sc) { kern.x = -20m };
+(r2F, r2P, r2U) (l2a, l2hyphen__u, l2z__sc) { kern.x = -20m };
 (r2F, r2P, postscript("Thorn")) l2f { kern.x = -20m };
 (postscript("Aogonek"), r2R, r2A) l2O { kern.x = -20m };
 (r2F, r2P, r2U, postscript("Aogonek"), r2R, r2K, postscript("X"), r2A) l2afii00208 { kern.x = -20m };
-r2U (l2j__sc, l2quotedblbase, l2j, l2b__sc, l2s, postscript("ae"), l2t, l2c__sc, postscript("q"), l2u, postscript("iogonek.sc"), postscript("ij.sc"), postscript("ij")) { kern.x = -20m };
+r2U (l2j__sc, l2quotedblbase, l2j, l2b__sc, l2s, postscript("ae"), l2afii00208__u, l2t, l2c__sc, postscript("q"), l2u, postscript("iogonek.sc"), postscript("ij.sc"), postscript("ij")) { kern.x = -20m };
 (r2W, postscript("V"), r2T, r2Y, r2U, postscript("X")) l2C { kern.x = -20m };
 (r2U, r2Z, r2C) (l2y, postscript("periodcentered"), l2v) { kern.x = -20m };
 (r2U, postscript("Aogonek"), r2R, r2K, postscript("X"), r2A) l2t__sc { kern.x = -20m };
@@ -1042,7 +1077,7 @@ postscript("Thorn") l2g { kern.x = -15m };
 (r2W, postscript("V"), r2T, r2Y, r2F, r2P, r2U, r2D, r2Z, r2C, r2G, r2E, postscript("Thorn"), postscript("Q")) l2h { kern.x = -10m };
 (r2Z, r2C, r2L, postscript("Lcaron")) l2u { kern.x = -10m };
 r2Z l2Z { kern.x = -10m };
-postscript("Thorn") (l2quotedblbase, l2a, l2afii00208, l2d, postscript("q")) { kern.x = -10m };
+postscript("Thorn") (l2quotedblbase, l2a, l2hyphen__u, l2afii00208, l2d, postscript("q")) { kern.x = -10m };
 r2K (l2quotedblleft, l2O, l2napostrophe) { kern.x = -10m };
 (r2Z, r2K) (l2asterisk, l2U, l2Y, l2T, l2W, postscript("backslash"), postscript("V")) { kern.x = -10m };
 (r2W, postscript("V"), r2T, r2Y, r2F, r2P, r2U, r2C, r2E, postscript("Thorn")) postscript("X") { kern.x = -10m };
@@ -1086,22 +1121,22 @@ postscript("aogonek.sc") postscript("section") { kern.x = -50m };
 (r3ij__sc, r3v__sc, r3eng__sc, postscript("napostrophe.sc"), r3u__sc, postscript("iogonek.sc"), r3t__sc, r3c__sc, postscript("q.sc")) (l3W, postscript("V")) { kern.x = -40m };
 (r3ij__sc, r3d__sc, r3eng__sc, postscript("napostrophe.sc")) (postscript("slash"), l3A__c2, l3AE__c2, postscript("X"), postscript("AE")) { kern.x = -40m };
 r3v__sc (postscript("comma"), l3ellipsis, l3Z) { kern.x = -40m };
-(postscript("aogonek.sc"), r3a__sc, r3r__sc) (l3quotedblleft, l3C, l3Y__c2, l3Napostrophe__c2) { kern.x = -40m };
-r3k__sc (postscript("section"), l3U) { kern.x = -35m };
+(postscript("aogonek.sc"), r3a__sc, r3r__sc) (l3afii00208__u, l3quotedblleft, l3hyphen__u, l3C, l3Y__c2, l3Napostrophe__c2) { kern.x = -40m };
+r3k__sc (postscript("section"), l3hyphen__u, l3U) { kern.x = -35m };
 r3u__sc (postscript("slash"), l3A__c2, l3AE__c2, postscript("X"), postscript("AE")) { kern.x = -35m };
 (r3ij__sc, r3d__sc, r3eng__sc, postscript("napostrophe.sc"), r3u__sc) l3A { kern.x = -35m };
 r3u__sc (postscript("comma"), l3ellipsis, l3Z) { kern.x = -25m };
-r3v__sc (l3quotedblbase, l3Z__c2) { kern.x = -20m };
-(r3o__sc, r3t__sc) postscript("slash") { kern.x = -20m };
+r3v__sc (l3quotedblbase, l3hyphen__u, l3Z__c2) { kern.x = -20m };
+(r3d__sc, r3o__sc, r3g__sc, postscript("lcaron.sc")) (l3asterisk, l3Y__c2, postscript("periodcentered"), l3V__c2, postscript("backslash")) { kern.x = -20m };
 (r3ij__sc, r3v__sc, postscript("eogonek.sc"), r3d__sc, r3eng__sc, postscript("napostrophe.sc"), r3u__sc, postscript("iogonek.sc"), r3o__sc, r3t__sc, r3germandbls__sc, r3g__sc, postscript("lcaron.sc"), r3ae__sc, r3c__sc, postscript("q.sc")) l3U { kern.x = -20m };
 (postscript("aogonek.sc"), r3a__sc, r3r__sc) (l3T__c2, l3O) { kern.x = -20m };
 (r3o__sc, r3t__sc, postscript("q.sc")) (l3A, l3A__c2, l3AE__c2, postscript("X"), postscript("AE")) { kern.x = -20m };
-(r3d__sc, r3o__sc, r3g__sc, postscript("lcaron.sc")) (l3asterisk, l3Y__c2, postscript("periodcentered"), l3V__c2, postscript("backslash")) { kern.x = -20m };
+(r3o__sc, r3t__sc) postscript("slash") { kern.x = -20m };
 (r3ij__sc, r3v__sc, postscript("eogonek.sc"), r3d__sc, r3eng__sc, postscript("napostrophe.sc"), r3u__sc, postscript("iogonek.sc"), r3o__sc, r3t__sc, r3germandbls__sc, r3g__sc, postscript("lcaron.sc"), r3ae__sc, r3c__sc) postscript("section") { kern.x = -20m };
 (r3v__sc, postscript("aogonek.sc"), r3a__sc, r3r__sc, r3k__sc) l3afii00208 { kern.x = -20m };
 (r3ij__sc, r3d__sc, r3eng__sc, postscript("napostrophe.sc"), r3o__sc, r3t__sc, postscript("q.sc")) (l3ellipsis, l3Z) { kern.x = -20m };
 (r3ij__sc, r3d__sc, r3eng__sc, postscript("napostrophe.sc"), r3o__sc, r3t__sc) postscript("comma") { kern.x = -20m };
-r3k__sc (l3quotedblleft, l3T__c2, l3O, l3C, l3Napostrophe__c2) { kern.x = -15m };
+r3k__sc (l3afii00208__u, l3quotedblleft, l3T__c2, l3O, l3C, l3Napostrophe__c2) { kern.x = -15m };
 (r3germandbls__sc, r3k__sc) (l3asterisk, l3Y__c2, postscript("periodcentered"), l3V__c2, postscript("backslash")) { kern.x = -15m };
 r3germandbls__sc (postscript("comma"), postscript("slash"), l3ellipsis, l3Z, l3A, l3A__c2, l3AE__c2, postscript("X"), postscript("AE")) { kern.x = -15m };
 (r3v__sc, r3u__sc) l3f_b { kern.x = -15m };
@@ -1111,7 +1146,7 @@ r3germandbls__sc (postscript("comma"), postscript("slash"), l3ellipsis, l3Z, l3A
 (r3ij__sc, postscript("eogonek.sc"), r3d__sc, r3eng__sc, postscript("napostrophe.sc"), r3o__sc, r3t__sc, r3germandbls__sc, r3g__sc, postscript("lcaron.sc"), r3ae__sc, postscript("q.sc")) l3f_b { kern.x = -10m };
 (r3v__sc, postscript("aogonek.sc"), r3a__sc, r3r__sc, r3k__sc) l3C__c2 { kern.x = -10m };
 postscript("q.sc") l3J__c2 { kern.x = 120m };
-r3u__sc (l3quotedblbase, l3C__c2, l3Z__c2, l3afii00208) { kern.x = -5m };
+r3u__sc (l3quotedblbase, l3hyphen__u, l3C__c2, l3Z__c2, l3afii00208) { kern.x = -5m };
 (r3ij__sc, r3v__sc, postscript("aogonek.sc"), postscript("eogonek.sc"), r3d__sc, r3eng__sc, postscript("napostrophe.sc"), r3u__sc, postscript("iogonek.sc"), r3o__sc, r3t__sc, r3germandbls__sc, r3g__sc, postscript("lcaron.sc"), r3ae__sc, r3a__sc, r3r__sc, r3k__sc, r3c__sc) postscript("zero.u") { kern.x = -5m };
 (r3v__sc, r3u__sc) postscript("s_t") { kern.x = -5m };
 (postscript("Eogonek.c2"), r4D__c2, r4O__c2, r4S__c2, r4G__c2, postscript("Lcaron.c2"), r4AE__c2) postscript("yen") { kern.x = -95m };
@@ -1120,16 +1155,16 @@ r4V__c2 (postscript("slash"), l4A__c2, l4AE__c2) { kern.x = -60m };
 (r4A__c2, r4R__c2) postscript("section") { kern.x = -60m };
 (postscript("Aogonek.c2"), r4A__c2) (l4asterisk, postscript("periodcentered"), l4V__c2, postscript("backslash")) { kern.x = -60m };
 (r4IJ__c2, r4V__c2, r4Eng__c2, postscript("Napostrophe.c2"), r4U__c2, postscript("Iogonek.c2"), r4T__c2, r4C__c2, postscript("Q.c2")) postscript("yen") { kern.x = -90m };
-r4K__c2 (l4quotedblleft, l4T__c2, l4Napostrophe__c2) { kern.x = -15m };
+r4K__c2 (l4afii00208__u, l4quotedblleft, l4T__c2, l4Napostrophe__c2) { kern.x = -15m };
 (r4S__c2, r4K__c2) (l4asterisk, l4Y__c2, postscript("periodcentered"), l4V__c2, postscript("backslash")) { kern.x = -15m };
 r4S__c2 (postscript("comma"), postscript("slash"), l4ellipsis, l4A__c2, l4AE__c2) { kern.x = -15m };
 (r4V__c2, r4U__c2) l4f_b { kern.x = -15m };
 postscript("Q.c2") (l4quotedblbase, postscript("semicolon"), l4asciicircum, postscript("comma"), postscript("slash"), postscript("zero.u"), postscript("section")) { kern.x = 40m };
 r4U__c2 (postscript("comma"), l4ellipsis) { kern.x = -25m };
-r4V__c2 (l4quotedblbase, l4Z__c2) { kern.x = -20m };
+r4V__c2 (l4quotedblbase, l4hyphen__u, l4Z__c2) { kern.x = -20m };
 (r4O__c2, r4T__c2) postscript("slash") { kern.x = -20m };
-(r4O__c2, r4T__c2, postscript("Q.c2")) (l4A__c2, l4AE__c2) { kern.x = -20m };
 (postscript("Aogonek.c2"), r4A__c2, r4R__c2) l4T__c2 { kern.x = -20m };
+(r4O__c2, r4T__c2, postscript("Q.c2")) (l4A__c2, l4AE__c2) { kern.x = -20m };
 (r4D__c2, r4O__c2, r4G__c2, postscript("Lcaron.c2")) (l4asterisk, l4Y__c2, postscript("periodcentered"), l4V__c2, postscript("backslash")) { kern.x = -20m };
 (r4IJ__c2, r4V__c2, postscript("Eogonek.c2"), r4D__c2, r4Eng__c2, postscript("Napostrophe.c2"), r4U__c2, postscript("Iogonek.c2"), r4O__c2, r4T__c2, r4S__c2, r4G__c2, postscript("Lcaron.c2"), r4AE__c2, r4C__c2) postscript("section") { kern.x = -20m };
 (r4V__c2, postscript("Aogonek.c2"), r4A__c2, r4R__c2, r4K__c2) l4afii00208 { kern.x = -20m };
@@ -1140,7 +1175,7 @@ r4R__c2 (l4asterisk, postscript("periodcentered"), l4V__c2, postscript("backslas
 postscript("Aogonek.c2") postscript("section") { kern.x = -50m };
 (r4IJ__c2, r4D__c2, r4Eng__c2, postscript("Napostrophe.c2")) (postscript("slash"), l4A__c2, l4AE__c2) { kern.x = -40m };
 r4V__c2 (postscript("comma"), l4ellipsis) { kern.x = -40m };
-(postscript("Aogonek.c2"), r4A__c2, r4R__c2) (l4quotedblleft, l4Y__c2, l4Napostrophe__c2) { kern.x = -40m };
+(postscript("Aogonek.c2"), r4A__c2, r4R__c2) (l4afii00208__u, l4quotedblleft, l4hyphen__u, l4Y__c2, l4Napostrophe__c2) { kern.x = -40m };
 (postscript("Aogonek.c2"), r4A__c2, r4R__c2) postscript("yen") { kern.x = -110m };
 (postscript("Aogonek.c2"), r4A__c2, r4R__c2, r4K__c2) l4Z__c2 { kern.x = -10m };
 (r4IJ__c2, postscript("Eogonek.c2"), r4D__c2, r4Eng__c2, postscript("Napostrophe.c2"), r4O__c2, r4T__c2, r4S__c2, r4G__c2, postscript("Lcaron.c2"), r4AE__c2, postscript("Q.c2")) l4f_b { kern.x = -10m };
@@ -1149,10 +1184,10 @@ r4V__c2 (postscript("comma"), l4ellipsis) { kern.x = -40m };
 (r4V__c2, postscript("Aogonek.c2"), r4A__c2, r4R__c2, r4K__c2) l4C__c2 { kern.x = -10m };
 r4K__c2 postscript("yen") { kern.x = -105m };
 postscript("Q.c2") l4J__c2 { kern.x = 120m };
-r4U__c2 (l4quotedblbase, l4C__c2, l4Z__c2, l4afii00208) { kern.x = -5m };
+r4U__c2 (l4quotedblbase, l4hyphen__u, l4C__c2, l4Z__c2, l4afii00208) { kern.x = -5m };
 (r4IJ__c2, r4V__c2, postscript("Aogonek.c2"), postscript("Eogonek.c2"), r4D__c2, r4Eng__c2, postscript("Napostrophe.c2"), r4U__c2, postscript("Iogonek.c2"), r4O__c2, r4T__c2, r4S__c2, r4G__c2, postscript("Lcaron.c2"), r4AE__c2, r4A__c2, r4R__c2, r4K__c2, r4C__c2) postscript("zero.u") { kern.x = -5m };
 (r4V__c2, r4U__c2) postscript("s_t") { kern.x = -5m };
-r4K__c2 postscript("section") { kern.x = -35m };
+r4K__c2 (postscript("section"), l4hyphen__u) { kern.x = -35m };
 r4U__c2 (postscript("slash"), l4A__c2, l4AE__c2) { kern.x = -35m };
 postscript("Aogonek.c2") l4J__c2 { kern.x = 30m };
 r5ij l5J { kern.x = 2m };
@@ -1201,11 +1236,12 @@ r5a (l5y, l5asterisk, postscript("periodcentered"), l5v, postscript("backslash")
 r5b postscript("AE") { kern.x = -40m };
 (postscript("ldot"), r5b) (postscript("slash"), postscript("X")) { kern.x = -40m };
 (postscript("kgreenlandic"), r5u) (postscript("section"), l5U) { kern.x = -40m };
+postscript("kgreenlandic") l5hyphen__u { kern.x = -40m };
 postscript("iogonek") (postscript("section"), l5U) { kern.x = -35m };
 (postscript("ldot"), r5b) l5A { kern.x = -35m };
 (r5y, r5v) postscript("uni00B5") { kern.x = -30m };
 (r5dotlessi, postscript("napostrophe"), r5d, postscript("dcaron")) postscript("section") { kern.x = -30m };
-r5a (l5quotedblleft, l5u, l5C, postscript("napostrophe")) { kern.x = -30m };
+r5a (l5afii00208__u, l5quotedblleft, l5hyphen__u, l5u, l5C, postscript("napostrophe")) { kern.x = -30m };
 (r5dotlessi, postscript("napostrophe")) l5U { kern.x = -30m };
 (r5y, r5v, postscript("kgreenlandic"), r5k, r5a) postscript("q") { kern.x = -30m };
 r5a__denom l5J { kern.x = 102m };
@@ -1213,6 +1249,7 @@ r5a__denom l5J { kern.x = 102m };
 postscript("germandbls") (l5y, postscript("periodcentered"), l5v, l5Y, l5T, l5W, postscript("backslash"), postscript("V")) { kern.x = -25m };
 r5f (postscript("comma"), postscript("slash"), l5ellipsis, l5Z, l5A, postscript("X"), postscript("AE")) { kern.x = -25m };
 (r5y, r5v) l5g { kern.x = -25m };
+(r5y, r5v, r5r, r5k, r5u) l5hyphen__u { kern.x = -20m };
 (r5y, r5v, r5r) (l5a, l5f) { kern.x = -20m };
 (r5y, postscript("ldot"), r5v, r5b, r5f, r5r, r5o) (l5l, l5ldot, l5k) { kern.x = -20m };
 (r5r, r5o) (postscript("slash"), l5A, postscript("X"), postscript("AE")) { kern.x = -20m };
@@ -1225,9 +1262,9 @@ r5r (postscript("uni00B5"), l5quotedblbase, l5g) { kern.x = -20m };
 (r5b, r5o) postscript("x") { kern.x = -20m };
 (postscript("ldot"), r5b, r5r, r5o) (postscript("comma"), l5ellipsis, l5Z) { kern.x = -20m };
 (r5y, r5ij, postscript("ldot"), postscript("eng"), r5v, r5g, r5b, r5f, r5r, r5o, r5ae, r5c, postscript("eth"), r5k, postscript("x"), postscript("germandbls"), r5m, r5s, postscript("tcaron"), r5uni00B5) postscript("section") { kern.x = -20m };
-(postscript("kgreenlandic"), r5u) (l5quotedblleft, l5u, l5C, postscript("napostrophe")) { kern.x = -20m };
+(postscript("kgreenlandic"), r5u) (l5afii00208__u, l5quotedblleft, l5u, l5C, postscript("napostrophe")) { kern.x = -20m };
 (r5y, r5v, r5r, postscript("kgreenlandic"), r5k, r5a, r5u) (l5afii00208, l5d) { kern.x = -20m };
-postscript("iogonek") (l5quotedblleft, l5O, l5afii00208, l5d, postscript("q"), l5u, l5C, postscript("napostrophe")) { kern.x = -15m };
+postscript("iogonek") (l5afii00208__u, l5quotedblleft, l5hyphen__u, l5O, l5afii00208, l5d, postscript("q"), l5u, l5C, postscript("napostrophe")) { kern.x = -15m };
 (postscript("iogonek"), r5m) (l5y, l5asterisk, postscript("periodcentered"), l5v, postscript("backslash")) { kern.x = -15m };
 (r5y, r5v, r5f, r5r) l5f_b { kern.x = -15m };
 r5f (postscript("uni00B5"), l5f) { kern.x = -15m };
@@ -1237,11 +1274,12 @@ postscript("q") l5J { kern.x = 117m };
 (r5dotlessi, postscript("napostrophe"), r5d) (l5quotedblleft, l5O, l5C, postscript("napostrophe")) { kern.x = -10m };
 (r5b, r5o, r5ae, r5dotlessi, postscript("napostrophe"), r5d, postscript("dcaron"), postscript("germandbls"), r5m) l5u { kern.x = -10m };
 (r5y, r5v, r5g, r5r) postscript("ae") { kern.x = -10m };
+(r5dotlessi, postscript("napostrophe"), r5d, postscript("dcaron")) l5afii00208__u { kern.x = -10m };
 (r5g, r5f) l5g { kern.x = -10m };
 (r5ae, r5dotlessi, postscript("napostrophe"), r5d, postscript("dcaron")) (l5y, postscript("periodcentered"), l5v) { kern.x = -10m };
 r5d (l5U, l5Y, l5T, l5W, postscript("V")) { kern.x = -10m };
 (r5g, r5dotlessi, postscript("napostrophe"), r5d, postscript("x")) l5d { kern.x = -10m };
-(r5g, r5dotlessi, postscript("napostrophe"), r5d, postscript("dcaron"), postscript("x")) (l5afii00208, postscript("q")) { kern.x = -10m };
+(r5g, r5dotlessi, postscript("napostrophe"), r5d, postscript("dcaron"), postscript("x")) (l5hyphen__u, l5afii00208, postscript("q")) { kern.x = -10m };
 r5g (l5quotedblbase, l5a) { kern.x = -10m };
 (r5ae, r5dotlessi, postscript("napostrophe"), r5d) (l5asterisk, postscript("backslash")) { kern.x = -10m };
 (r5y, postscript("ldot"), r5v, r5g, r5b, r5f, r5r, r5o, r5ae, r5c) l5h { kern.x = -10m };
@@ -1250,12 +1288,13 @@ r5g (l5quotedblbase, l5a) { kern.x = -10m };
 (r5y, r5v, r5g, r5f, r5r) l5s { kern.x = -5m };
 (r5y, r5ij, postscript("ldot"), postscript("eng"), r5v, r5g, r5b, r5f, r5r, r5o, r5ae, r5c, postscript("eth"), postscript("kgreenlandic"), r5k, r5a, r5u, postscript("iogonek"), r5dotlessi, postscript("napostrophe"), r5d, postscript("x"), r5l, postscript("germandbls"), r5m, r5s, r5uni00B5) postscript("zero.u") { kern.x = -5m };
 r5l (l5quotedblleft, l5O, l5C, l5U, l5Y, l5T, l5W, postscript("V"), postscript("napostrophe")) { kern.x = -5m };
+(r5l, postscript("lcaron")) l5afii00208__u { kern.x = -5m };
 (r5l, r5s) (l5asterisk, postscript("backslash")) { kern.x = -5m };
 (r5f, r5l) l5d { kern.x = -5m };
 (r5y, postscript("ldot"), r5v, r5g, r5b, r5f, r5r, r5o, r5ae, r5c) l5m { kern.x = -5m };
 (r5y, r5v, r5g, r5f, r5r, postscript("kgreenlandic"), r5k, r5a, r5u, postscript("iogonek"), r5dotlessi, postscript("napostrophe"), r5d, postscript("dcaron"), postscript("x"), r5l, postscript("lcaron")) l5t { kern.x = -5m };
 r5f (l5quotedblbase, postscript("ae"), l5a) { kern.x = -5m };
-(r5f, r5l, postscript("lcaron")) (l5afii00208, postscript("q")) { kern.x = -5m };
+(r5f, r5l, postscript("lcaron")) (l5hyphen__u, l5afii00208, postscript("q")) { kern.x = -5m };
 (postscript("ldot"), r5b, r5o, r5ae, r5c) l5g { kern.x = -5m };
 postscript("tcaron") postscript("zero.u") { kern.x = -2m };
 postscript("three.numer") postscript("fraction") { kern.x = -30m };

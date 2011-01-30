@@ -18,35 +18,17 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-languagesystem DFLT dflt;
-languagesystem latn dflt;
-
-# Catalan
-languagesystem latn CAT;
-
-# Romanian, Moldovan
-languagesystem latn ROM; 
-languagesystem latn MOL;
-
-# Turkish, Azeri, Crimean Tatar
-languagesystem latn TRK;
-languagesystem latn AZE;
-languagesystem latn CRT;
-
-# Useful for spacing and kerning of capitals.
-# Comment this out for production.
-#include(CAPS.fea)
-
-include(JannonStM_locl.fea)
-#include(JannonStM_desc.fea)
-include(JannonStM_figures.fea)
-include(JannonStM_sc.fea)
-include(JannonStM_hist.fea)
-include(JannonStM_case.fea)
-include(JannonStM_salt.fea)
-include(JannonStM_liga.fea)
-include(JannonStM_cpsp.fea)
-include(JannonStM_generated_kerning.fea)
+feature case {
+  lookup lining_figures;
+  sub [\hyphen \uni00AD \uni2010 \uni2011] by [\hyphen.u \uni00AD.u \uni2010.u \uni2011.u];
+  sub [\endash \emdash \afii00208] by [\endash.u \emdash.u \afii00208.u];
+  sub [\parenleft \parenright] by [\parenleft.u \parenright.u];
+  sub [\bracketleft \bracketright] by [\bracketleft.u \bracketright.u];
+  sub [\braceleft \braceright] by [\braceleft.u \braceright.u];
+  sub [\guillemotleft \guillemotright] by [\guillemotleft.u \guillemotright.u];
+  sub [\guilsinglleft \guilsinglright] by [\guilsinglleft.u \guilsinglright.u];
+  sub \figuredash by \figuredash.u;
+} case;
 
 # local variables:
 # mode: fundamental

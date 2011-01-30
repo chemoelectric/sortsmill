@@ -1,0 +1,75 @@
+# Copyright (c) 2010 Barry Schwartz
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+@OLD_IRISH_CAPS = [
+  \uni1E02
+  \uni1E0A
+  \uni1E1E
+  \uni1E22
+  \uni1E40
+  \uni1E56
+  \uni1E60
+  \uni1E6A
+];
+
+
+@CAPS_ET_AL = [
+  \exclam \exclamdown 
+  \J \Jcircumflex 
+  \I \Igrave \Iacute \Icircumflex \Idieresis \Itilde \Imacron \Ibreve \Iogonek 
+  \question \questiondown 
+  \F 
+  \Z \Zacute \Zdotaccent \Zcaron 
+  \P 
+  \Thorn 
+  \S \Sacute \Scircumflex \Scedilla \uni0218 \Scaron 
+  \L \Lacute \Lcommaaccent \Lcaron \Ldot \Lslash \L.CAT
+  \E \Egrave \Eacute \Ecircumflex \Edieresis \Emacron \Ebreve \Edotaccent \Eogonek \Ecaron 
+  \IJ 
+  \B 
+  \T \uni0162 \uni021A \Tcaron \Tbar 
+  \Y \Yacute \Ydieresis \Ycircumflex 
+  \R \Racute \Rcommaaccent \Rcaron 
+  \K \Kcommaaccent 
+  \X 
+  \H \Hcircumflex \Hbar 
+  \D \Dcaron \Dcroat \Eth 
+  \N \Ntilde \Nacute \Ncommaaccent \Ncaron 
+  \C \Ccedilla \Cacute \Ccircumflex \Cdotaccent \Ccaron \V 
+  \A \Agrave \Aacute \Acircumflex \Atilde \Adieresis \Aring \Amacron \Abreve \Aogonek 
+  \U \Ugrave \Uacute \Ucircumflex \Udieresis \Utilde \Umacron \Ubreve \Uring \Uhungarumlaut \Uogonek 
+  \G \Gcircumflex \Gbreve \Gdotaccent \Gcommaaccent 
+  \Q 
+  \O \Ograve \Oacute \Ocircumflex \Otilde \Odieresis \Oslash \Omacron \Obreve \Ohungarumlaut 
+  \M 
+  \ampersand 
+  \AE 
+  \OE 
+  \W \Wcircumflex 
+  @OLD_IRISH_CAPS
+  ];
+
+feature cpsp {
+  pos @CAPS_ET_AL <5 0 10 0>;
+} cpsp;
+
+# local variables:
+# mode: fundamental
+# end:

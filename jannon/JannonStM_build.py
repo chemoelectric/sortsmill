@@ -84,7 +84,7 @@ def build_glyphs(bitbucket, f):
                                tabwidth = f['zero'].width)
 
     propagate_hyphens(f)
-#    propagate_hyphens(f, '.u')
+    propagate_hyphens(f, '.u')
     build_spacing_marks(f, width = 2 * 220)
 
     make_glyph_reference('asciitilde', f['uni2053']) # Swung dash.
@@ -336,6 +336,19 @@ def build_glyphs(bitbucket, f):
     build_multigraph('ij.sc', [f['i.sc'], f['j.sc']])
 
     build_multigraph('germandbls.sc', [f['s.sc'], f['s.sc']])
+
+    for g in ['parenleft', 'parenright',
+              'bracketleft', 'bracketright',
+              'braceleft', 'braceright',
+              ]:
+        make_glyph_reference(g + '.u', f[g],
+                             transformation = (1, 0, 0, 1, 0, 70),
+                             copy_spacing_anchors = False)
+
+    for g in ['figuredash']:
+        make_glyph_reference(g + '.u', f[g],
+                             transformation = (1, 0, 0, 1, 0, 70),
+                             copy_spacing_anchors = False)
 
     #--------------------------------------------------------------------------
 
