@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-Copyright (c) 2009, 2010 Barry Schwartz
+Copyright (c) 2009-2011 Barry Schwartz
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -48,13 +48,15 @@ def remove_glyph(glyph):
 #--------------------------------------------------------------------------
 
 parser = optparse.OptionParser(usage='%prog [OPTIONS] FONTNAME...')
-parser.set_defaults(licensing_inferred=False, no_instructions=False)
+parser.set_defaults(licensing_inferred=False, no_hints=False, no_instructions=False)
 parser.add_option('-C', '--input-directory', dest='input_dir', metavar='DIR',
                   help='where to read source files')
 parser.add_option('--output-directory', dest='output_dir', metavar='DIR',
                   help='where to put generated fonts')
 parser.add_option('--infer-licensing', dest='licensing_inferred', action='store_true',
                   help='set license (MIT or OFL) inferred from font name')
+parser.add_option('--no-hints', dest='no_hints', action='store_true',
+                  help='omit PostScript hints')
 parser.add_option('--ttf-emsize', dest='ttf_emsize', metavar='UNITS',
                   help='set the units-per-em in TrueType versions')
 parser.add_option('--no-instructions', dest='no_instructions', action='store_true',
@@ -66,6 +68,7 @@ parser.add_option('--graphite', '--enable-graphite', dest='graphite_enabled', ac
 input_dir = os.path.abspath(options.input_dir if options.input_dir else '.')
 output_dir = os.path.abspath(options.output_dir if options.output_dir else '.')
 licensing_inferred = options.licensing_inferred
+no_hints = options.no_hints
 ttf_emsize = int(options.ttf_emsize) if options.ttf_emsize != None else None
 no_instructions = options.no_instructions
 graphite_enabled = options.graphite_enabled
@@ -126,8 +129,9 @@ for sfd_filename in args:
                                       graphite_enabled = graphite_enabled)
     else:
         font_file = os.path.join(output_dir, f.fontname + font_extension)
+        hints_flags = ('no-hints', 'no-flex') if no_hints else ()
         print("Generating", font_file)
-        f.generate(font_file, flags = generation_flags, layer = layer_to_use)
+        f.generate(font_file, flags = generation_flags + hints_flags, layer = layer_to_use)
         print("Validating", font_file)
         subprocess.call(["fontlint", font_file])
 
