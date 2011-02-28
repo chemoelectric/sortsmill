@@ -21,7 +21,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1284878830
-ModificationTime: 1298849186
+ModificationTime: 1298873922
 OS2TypoAscent: 0
 OS2TypoAOffset: 1
 OS2TypoDescent: 0
@@ -36,8 +36,7 @@ HheadAOffset: 1
 HheadDescent: 0
 HheadDOffset: 1
 OS2Vendor: 'PfEd'
-Lookup: 4 0 1 "'liga' Standard Ligatures in Latin lookup 0"  {"'liga' Standard Ligatures in Latin lookup 0 subtable"  } ['liga' ('latn' <'dflt' > 'DFLT' <'dflt' > ) ]
-Lookup: 4 0 0 "'dlig' Discretionary Ligatures in Latin lookup 1"  {"'dlig' Discretionary Ligatures in Latin lookup 1 subtable"  } ['dlig' ('latn' <'dflt' > 'DFLT' <'dflt' > ) ]
+Lookup: 260 0 0 "spacing anchors"  {"spacing anchors-1"  } []
 MarkAttachClasses: 1
 DEI: 91125
 Encoding: UnicodeBmp
@@ -58,7 +57,8 @@ StdVW 4 [71]
 StemSnapV 7 [71 77]
 ForceBold 4 true
 EndPrivate
-BeginChars: 65545 91
+AnchorClass2: "r;k;lo"  "spacing anchors-1" "l;k;lo"  "spacing anchors-1" "r;lo"  "spacing anchors-1" "l;lo"  "spacing anchors-1" "r;k;o"  "spacing anchors-1" "l;k;o"  "spacing anchors-1" "r;o"  "spacing anchors-1" "l;o"  "spacing anchors-1" "r;k;hi"  "spacing anchors-1" "l;k;hi"  "spacing anchors-1" "r;hi"  "spacing anchors-1" "l;hi"  "spacing anchors-1" "r;k;x"  "spacing anchors-1" "l;k;x"  "spacing anchors-1" "r;x"  "spacing anchors-1" "l;x"  "spacing anchors-1" "r;k;bl"  "spacing anchors-1" "l;k;bl"  "spacing anchors-1" "r;bl"  "spacing anchors-1" "l;bl"  "spacing anchors-1" 
+BeginChars: 65545 121
 
 StartChar: A
 Encoding: 65 65 0
@@ -956,9 +956,17 @@ StartChar: T
 Encoding: 84 84 19
 Width: 642
 VWidth: 0
-Flags: W
+Flags: HW
 HStem: -3 43<181.006 268.408 372.409 459.931> 578 53<94.998 276.599 368.21 551.673>
 VStem: 23 32<474.143 525.056> 276 88<47.8117 574.046> 569 31<474.045 553.805>
+AnchorPoint: "l;bl" 0 10 basechar 0
+AnchorPoint: "l;x" 0 360 basechar 0
+AnchorPoint: "l;hi" 0 580 basechar 0
+AnchorPoint: "l;o" 0 180 basechar 0
+AnchorPoint: "r;bl" 642 10 basechar 0
+AnchorPoint: "r;x" 642 360 basechar 0
+AnchorPoint: "r;hi" 642 580 basechar 0
+AnchorPoint: "r;o" 642 180 basechar 0
 LayerCount: 3
 Fore
 SplineSet
@@ -974,19 +982,19 @@ SplineSet
  556 575 526 576 426 576 c 0
  386 576 369 576 368 555 c 0
  365 476 364 412 364 349 c 2
- 364 187 l 6
- 364 168 364 139 365 117 c 4
- 367 71 368 48 396 45 c 4
- 406 44 433 41 456 40 c 5
- 458 36 460 27 460 22 c 4
- 460 13 459 7 456 -1 c 5
- 456 -1 363 3 311 3 c 4
- 278 3 236 -3 208 -3 c 6
- 186 -3 l 5
- 183 3 181 10 181 18 c 4
- 181 26 183 34 187 40 c 5
- 216 41 l 6
- 266 43 276 42 276 136 c 6
+ 364 187 l 2
+ 364 168 364 139 365 117 c 0
+ 367 71 368 48 396 45 c 0
+ 406 44 433 41 456 40 c 1
+ 458 36 460 27 460 22 c 0
+ 460 13 459 7 456 -1 c 1
+ 456 -1 363 3 311 3 c 0
+ 278 3 236 -3 208 -3 c 2
+ 186 -3 l 1
+ 183 3 181 10 181 18 c 0
+ 181 26 183 34 187 40 c 1
+ 216 41 l 2
+ 266 43 276 42 276 136 c 2
  276 382 l 2
  276 440 278 504 278 559 c 0
  278 568 276 574 264 575 c 0
@@ -1684,7 +1692,7 @@ StartChar: i
 Encoding: 105 105 34
 Width: 269
 VWidth: 0
-Flags: HWO
+Flags: HW
 LayerCount: 3
 Fore
 SplineSet
@@ -1916,9 +1924,19 @@ StartChar: o
 Encoding: 111 111 40
 Width: 432
 VWidth: 0
-Flags: W
+Flags: HWO
 HStem: -6 41<175.271 281.072> 318 40<157.147 255.284>
 VStem: 34 83<100.084 257.058> 317 80<87.9263 246.662>
+AnchorPoint: "l;bl" 0 10 basechar 0
+AnchorPoint: "l;x" 0 360 basechar 0
+AnchorPoint: "l;hi" 0 580 basechar 0
+AnchorPoint: "l;o" 0 180 basechar 0
+AnchorPoint: "l;lo" 0 -240 basechar 0
+AnchorPoint: "r;bl" 432 10 basechar 0
+AnchorPoint: "r;x" 432 360 basechar 0
+AnchorPoint: "r;hi" 432 580 basechar 0
+AnchorPoint: "r;o" 432 180 basechar 0
+AnchorPoint: "r;lo" 432 -240 basechar 0
 LayerCount: 3
 Fore
 SplineSet
@@ -2349,9 +2367,9 @@ EndChar
 
 StartChar: space
 Encoding: 32 32 52
-Width: 238
+Width: 240
 VWidth: 0
-Flags: W
+Flags: HW
 LayerCount: 3
 EndChar
 
@@ -3065,7 +3083,6 @@ SplineSet
  776 313 753 317 730 324 c 1
  730 349 l 1
 EndSplineSet
-Ligature2: "'dlig' Discretionary Ligatures in Latin lookup 1 subtable" Q u
 EndChar
 
 StartChar: c_t
@@ -3115,7 +3132,6 @@ SplineSet
  332 316 332 322 332 331 c 2
  332 341 l 1x9740
 EndSplineSet
-Ligature2: "'dlig' Discretionary Ligatures in Latin lookup 1 subtable" c t
 EndChar
 
 StartChar: ampersand
@@ -3487,7 +3503,6 @@ SplineSet
  301 408 303 452 313 499 c 0
  318 521 327 541 340 560 c 1
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 0 subtable" f f
 LCarets2: 1 0 
 EndChar
 
@@ -3549,7 +3564,6 @@ SplineSet
  346 2 l 2
  311 2 293 0 250 -2 c 1
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 0 subtable" f i
 LCarets2: 1 0 
 EndChar
 
@@ -3611,7 +3625,6 @@ SplineSet
  303 581 274 605 237 605 c 0
  224 605 206 601 194 593 c 0
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 0 subtable" f l
 LCarets2: 1 0 
 EndChar
 
@@ -3693,7 +3706,6 @@ SplineSet
  295 45 301 55 301 73 c 2
  303 321 l 1
 EndSplineSet
-Ligature2: "'liga' Standard Ligatures in Latin lookup 0 subtable" f f i
 LCarets2: 2 0 0 
 EndChar
 
@@ -3777,7 +3789,262 @@ SplineSet
  340 560 l 2
 EndSplineSet
 LCarets2: 2 0 0 
-Ligature2: "'liga' Standard Ligatures in Latin lookup 0 subtable" f f l
+EndChar
+
+StartChar: uni00A0
+Encoding: 160 160 91
+Width: 240
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni2000
+Encoding: 8192 8192 92
+Width: 500
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni2001
+Encoding: 8193 8193 93
+Width: 1000
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni2002
+Encoding: 8194 8194 94
+Width: 500
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni2003
+Encoding: 8195 8195 95
+Width: 1000
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni2004
+Encoding: 8196 8196 96
+Width: 333
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni2005
+Encoding: 8197 8197 97
+Width: 250
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni2006
+Encoding: 8198 8198 98
+Width: 166
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni2007
+Encoding: 8199 8199 99
+Width: 470
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni2008
+Encoding: 8200 8200 100
+Width: 232
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni2009
+Encoding: 8201 8201 101
+Width: 166
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni200A
+Encoding: 8202 8202 102
+Width: 100
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni200B
+Encoding: 8203 8203 103
+Width: 0
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: afii61664
+Encoding: 8204 8204 104
+Width: 0
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: afii301
+Encoding: 8205 8205 105
+Width: 0
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: afii299
+Encoding: 8206 8206 106
+Width: 0
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: afii300
+Encoding: 8207 8207 107
+Width: 0
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni202F
+Encoding: 8239 8239 108
+Width: 166
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni205F
+Encoding: 8287 8287 109
+Width: 222
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni2060
+Encoding: 8288 8288 110
+Width: 0
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uniFEFF
+Encoding: 65279 65279 111
+Width: 0
+VWidth: 0
+Flags: HW
+LayerCount: 3
+EndChar
+
+StartChar: uni00AD
+Encoding: 173 173 112
+Width: 206
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 63 45 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni2010
+Encoding: 8208 8208 113
+Width: 206
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 63 45 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni2011
+Encoding: 8209 8209 114
+Width: 206
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 63 45 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: ellipsis
+Encoding: 8230 8230 115
+Width: 696
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 59 46 N 1 0 0 1 464 0 2
+Refer: 59 46 N 1 0 0 1 232 0 2
+Refer: 59 46 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: IJ
+Encoding: 306 306 116
+Width: 626
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 9 74 N 1 0 0 1 330 0 2
+Refer: 8 73 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: ij
+Encoding: 307 307 117
+Width: 495
+VWidth: 0
+Flags: HW
+LayerCount: 3
+Fore
+Refer: 35 106 N 1 0 0 1 269 0 2
+Refer: 34 105 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni1E26
+Encoding: 7718 7718 118
+Width: 1000
+VWidth: 0
+Flags: W
+LayerCount: 3
+EndChar
+
+StartChar: dieresis
+Encoding: 168 168 119
+Width: 1000
+VWidth: 0
+Flags: W
+LayerCount: 3
+EndChar
+
+StartChar: slash
+Encoding: 47 47 120
+Width: 1000
+VWidth: 0
+Flags: W
+LayerCount: 3
 EndChar
 EndChars
 EndSplineFont

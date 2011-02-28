@@ -1,4 +1,7 @@
-# Copyright (c) 2011 Barry Schwartz
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
+# Copyright (c) 2010 Barry Schwartz
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -18,33 +21,25 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-languagesystem DFLT dflt;
-languagesystem latn dflt;
+AC_PREREQ(2.65)
+AC_INIT([sortsmill-fanwood],[1.1],[http://code.google.com/p/sortsmill/issues/])
+AM_INIT_AUTOMAKE([foreign])
 
-# Romanian, Moldovan
-#languagesystem latn ROM; 
-#languagesystem latn MOL;
+STM_SORTSMILL_MIT_PREREQUISITES
+STM_INIT_SORTSMILL
+STM_TARGET_MIT_OPENTYPE_BINPACK
 
-# Turkish, Azeri, Crimean Tatar
-#languagesystem latn TRK;
-#languagesystem latn AZE;
-#languagesystem latn CRT;
+# Checks for programs.
+AC_PROG_MAKE_SET
 
-# Useful for spacing and kerning of capitals.
-# Comment this out for production.
-#include(CAPS.fea)
+# Checks for libraries.
 
-#include(CloisterStM_locl.fea)
-#include(CloisterStM_desc.fea)
-#include(CloisterStM_figures.fea)
-#include(CloisterStM_sc.fea)
-#include(CloisterStM_hist.fea)
-#include(CloisterStM_case.fea)
-#include(CloisterStM_salt.fea)
-include(CloisterStM_liga.fea)
-#include(CloisterStM_cpsp.fea)
-include(CloisterStM_generated_kerning.fea)
+# Checks for header files.
 
-# local variables:
-# mode: fundamental
-# end:
+# Checks for typedefs, structures, and compiler characteristics.
+
+# Checks for library functions.
+
+
+AC_CONFIG_FILES([Makefile])
+AC_OUTPUT
