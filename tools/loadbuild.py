@@ -27,7 +27,7 @@ import tools
 from os.path import exists
 from imp import reload
 
-def build_file_exists(bitbucket, font):
+def build_file_exists(font):
     build_file_name = font.fontname + "_build.py"
     return exists(build_file_name)
 
@@ -37,18 +37,20 @@ def load_build_by_fontname(font, fontname):
     reload(module)
     module.build_glyphs(None, font)
 
-def load_build(bitbucket, font):
+def load_build(font):
     load_build_by_fontname(font, font.fontname)
 
-def load_build_thoroughly(bitbucket, font):
+def load_build_thoroughly(font):
     spacing_by_anchors.clear_cached_data(font)
-    load_build(None, font)
-    load_build(None, font)
-    load_build(None, font)
+    load_build(font)
+    load_build(font)
+    load_build(font)
     tools.reautohint(font)
 
-fontforge.registerMenuItem(load_build, build_file_exists,
+fontforge.registerMenuItem((lambda _, font: load_build(font)),
+                           (lambda _, font: build_file_exists(font)),
                            None, "Font", "None", "Build glyphs")
 
-fontforge.registerMenuItem(load_build_thoroughly, build_file_exists,
+fontforge.registerMenuItem((lambda _, font: load_build_thoroughly(font)),
+                           (lambda _, font: build_file_exists(font)),
                            None, "Font", "None", "Thoroughly build glyphs")
