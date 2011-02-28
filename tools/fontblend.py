@@ -55,3 +55,31 @@ def interpolate_anchor_points(points1, points2, weight):
     return interpolated_points
 
 #--------------------------------------------------------------------------
+
+def interpolate_glyphs(blended_font, font1, font2, weight):
+    for g in font1:
+        if g in font2:
+            blended_font.createInterpolatedGlyph(font1[g], font2[g], weight)
+
+def interpolate_glyphs_anchor_points(blended_font, font1, font2, weight):
+    points_map = {}
+    anchor_classes = set()
+
+    for g in font1:
+        if g in font2:
+            points = interpolate_anchor_points(font1[g].anchorPointsWithSel,
+                                               font2[g].anchorPointsWithSel, weight)
+            points_map[g] = points
+            for p in points:
+                anchor_classes.add(p[0])
+
+    # FIX/TODO: support other lookup types, flags, etc.
+    blended_font.addLookup('blended_anchors', 'gpos_mark2base', (), ())
+    blended_font.addLookupSubtable('blended_anchors', 'blended_anchors-1')
+    for ac in anchor_classes:
+        blended_font.addAnchorClass('blended_anchors-1', ac)
+
+    for g in points_map:
+        blended_font[g].anchorPointsWithSel = points_map[g]
+
+#--------------------------------------------------------------------------
