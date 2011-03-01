@@ -23,10 +23,11 @@ f.copyright = 'Copyright (c) 2011 Barry Schwartz'
 f.fontname = 'CloisterStM-Semibold'
 f.familyname = 'Sorts Mill Cloister'
 f.fullname = 'Sorts Mill Cloister Semibold'
+f.weight = 'Semibold'
 
 lang = 'English (US)'
 f.appendSFNTName(lang, 'Family', 'Sorts Mill Cloister Semibold')
-f.appendSFNTName(lang, 'SubFamily', 'Semibold')
+f.appendSFNTName(lang, 'SubFamily', 'Regular')
 f.appendSFNTName(lang, 'Preferred Family', 'Sorts Mill Cloister')
 f.appendSFNTName(lang, 'Preferred Styles', 'Semibold')
 
