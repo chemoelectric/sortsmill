@@ -25,8 +25,14 @@ ACLOCAL_AMFLAGS = -I m4 --install
 
 MKFONT_FLAGS = --infer-licensing --no-hints --no-instructions --ttf-emsize=4096 ${MKFONT_GRAPHITE_FLAGS}
 FAMILYNAME = cloister
-FONTS = CloisterStM CloisterStM-Semibold CloisterStM-Bold
+
+# TODO: Make CLoisterStM be 0.8*CloisterStM-Light +
+# 0.2*CloisterStM-Bold, rather than directly edited.  Then the
+# blending of the Semibold or the like also can be reformulated.
+FONTS = CloisterStM-Light CloisterStM CloisterStM-Semibold CloisterStM-Bold
+
 #FEA_CloisterStM = #case cpsp figures generated_kerning hist liga locl main sc
+FEA_CloisterStM_Light = 
 FEA_CloisterStM = generated_kerning liga main
 FEA_CloisterStM_Bold = generated_kerning main
 FEA_CloisterStM_Semibold = generated_kerning main
@@ -36,6 +42,7 @@ fonts_DATA = $(call expand_fonts, ${FONTS})
 EXTRA_DIST = \
 	$(addsuffix .sfd, ${FONTS}) \
 	$(addsuffix _build.py, ${FONTS}) \
+	${FEA_CloisterStM_Light:%=CloisterStM-Light_%.fea} \
 	${FEA_CloisterStM:%=CloisterStM_%.fea} \
 	${FEA_CloisterStM_Bold:%=CloisterStM-Bold_%.fea} \
 	${FEA_CloisterStM_Semibold:%=CloisterStM-Semibold_%.fea}
