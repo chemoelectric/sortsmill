@@ -15,7 +15,7 @@ f2 = fontforge.open('CloisterStM-Bold.sfd')
 
 ########################################################
 for g in f1:
-    if g not in ['a', 'b', 'c', 'd', 'e']:
+    if g not in ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']:
         f1.removeGlyph(g)
 ########################################################
 
