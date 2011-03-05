@@ -9,8 +9,8 @@ from sortsmill import *
 from sortsmill.spacing_by_anchors import space_selected_by_anchors
 from sortsmill.spacing_by_anchors import generate_kerning_and_read_features
 
-weight = 0.5
-f1 = fontforge.open('CloisterStM.sfd')
+weight = 0.8
+f1 = fontforge.open('CloisterStM-Light.sfd')
 f2 = fontforge.open('CloisterStM-Bold.sfd')
 
 f = fontforge.font()
@@ -26,8 +26,8 @@ f.fullname = 'Sorts Mill Cloister Semibold'
 f.weight = 'Semibold'
 
 lang = 'English (US)'
-f.appendSFNTName(lang, 'Family', 'Sorts Mill Cloister Semibold')
-f.appendSFNTName(lang, 'SubFamily', 'Regular')
+f.appendSFNTName(lang, 'Family', 'Sorts Mill Cloister Light')
+f.appendSFNTName(lang, 'SubFamily', 'Bold')
 f.appendSFNTName(lang, 'Preferred Family', 'Sorts Mill Cloister')
 f.appendSFNTName(lang, 'Preferred Styles', 'Semibold')
 

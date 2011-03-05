@@ -47,7 +47,7 @@ EXTRA_DIST = \
 	${FEA_CloisterStM_Bold:%=CloisterStM-Bold_%.fea} \
 	${FEA_CloisterStM_Semibold:%=CloisterStM-Semibold_%.fea}
 
-CloisterStM-Semibold.sfd: CloisterStM.sfd CloisterStM-Bold.sfd blend_semibold.py
+CloisterStM-Semibold.sfd: CloisterStM-Light.sfd CloisterStM-Bold.sfd blend_semibold.py
 	./blend_semibold.py
 
 CloisterStM.otf: ${FEA_CloisterStM:%=CloisterStM_%.fea}
