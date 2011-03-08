@@ -28,7 +28,7 @@ string fontforge_contour_code(path p, string contour_name)
 {
   string s = '';
   s += contour_name + ' = fontforge.contour()\n';
-  s += contour_name + '.closed = True\n';
+  s += contour_name + '.closed = ' + (cyclic(p) ? 'True' : 'False') + '\n';
   for (int i = 0; i < length(p); i += 1)
     {
       s += contour_name + ' += fontforge.point(';
