@@ -19,6 +19,7 @@
 # THE SOFTWARE.
 
 __all__ = [
+    'asy',
     'cap_spacing',
     'glyphbuild',
     'loadbuild',
