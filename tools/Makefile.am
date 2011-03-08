@@ -21,6 +21,9 @@
 aclocaldir = ${datadir}/aclocal
 dist_aclocal_DATA = ${srcdir}/sortsmill.m4
 
+asydir = ${datadir}/asymptote
+dist_asy_DATA = ${srcdir}/fontforge.asy
+
 sortsmillmoduledir = ${pythondir}/sortsmill
 sortsmillmodule_PYTHON = __init__.py asy.py cap_spacing.py	\
 	glyphbuild.py loadbuild.py persistent_data.py tools.py	\
