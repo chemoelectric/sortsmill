@@ -27,6 +27,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
+import fontforge
+
 #--------------------------------------------------------------------------
 
 def asymptote_path(contour):
@@ -49,5 +51,15 @@ def asymptote_path(contour):
     if contour.closed:
         s += 'cycle'
     return s
+
+#--------------------------------------------------------------------------
+
+def print_asymptote_paths(glyph):
+    for c in glyph.layers[glyph.activeLayer]:
+        print(asymptote_path(c))
+
+fontforge.registerMenuItem((lambda _, glyph: print_asymptote_paths(glyph)),
+                           None, None, 'Glyph', 'None',
+                           'Output Asymptote paths')
 
 #--------------------------------------------------------------------------
