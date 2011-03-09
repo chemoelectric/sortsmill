@@ -25,43 +25,10 @@
 
 //-------------------------------------------------------------------------
 
-path chop(path p, path chop_shape)
-// Be aware that this algorithm can produce a self-intersecting result
-// path.
-{
-    real[][] xsect = intersections(p, chop_shape);
-    path result = nullpath;
-    int i = 0;
-    while (i < xsect.length) {
-        int i1 = (i + 1) % xsect.length;
-        real t = xsect[i][0];
-        real t1 = (i1 == 0 ? length(p) : 0) + xsect[i1][0];
-        path q = subpath(p, t, t1);
-        if (inside(chop_shape, midpoint(q))) {
-            t = xsect[i][1];
-            t1 = xsect[i1][1];
-            result = result & subpath(chop_shape, t, t1);
-        } else {
-            result = result & q;
-        }
-        i += 1;
-    }
-    result = result & cycle;
-    return result;
-}  
-
-path chop(path p, pair point, real angle)
-// Chop along a straight line.
-{
-    real bignum = 1e6;
-    path chop_shape = (bignum,0)--(bignum,bignum)--(-bignum,bignum)--(-bignum,0)--cycle;
-    chop_shape = shift(point) * rotate(angle) * chop_shape;
-    return chop(p, chop_shape);
-}
-
-//-------------------------------------------------------------------------
-
 path reshape_subpath(path p, real start_time, real end_time, path new_subpath(path subpath))
+// Replaces a subpath of |p| with a new subpath. The new subpath is
+// constructed by |new_subpath|, which is given the original subpath
+// as a parameter.
 {
     path p1 = new_subpath(subpath(p, start_time, end_time));
     path p2 = subpath(p, end_time, length(p) + start_time);
@@ -70,6 +37,8 @@ path reshape_subpath(path p, real start_time, real end_time, path new_subpath(pa
 }
 
 path reshape_subpath(path p, real start_time, real end_time, guide new_part = nullpath .. nullpath)
+// Replaces a subpath of |p| with a new subpath that is specified by
+// |new_part|.
 {
     path new_subpath(path q)
     {
@@ -80,6 +49,8 @@ path reshape_subpath(path p, real start_time, real end_time, guide new_part = nu
 }
 
 real time_at_distance_along_arc(path p, real time, real distance)
+// Finds the point that is at a given arclength from a point on the
+// path |p|.
 {
     real here_length = arclength(subpath(p, 0, time));
     real there_length = here_length + distance;
@@ -87,6 +58,9 @@ real time_at_distance_along_arc(path p, real time, real distance)
 }
 
 path reshape_arc(path p, real time, real distance_before, real distance_after, guide new_part = nullpath .. nullpath)
+// Calls |reshape_subpath| for a subpath extending given arclength
+// from a point on |p|. Can be used like a metal file; good for
+// rounding or beveling corners, for instance.
 {
     real t1 = time_at_distance_along_arc(p, time, -distance_before);
     real t2 = time_at_distance_along_arc(p, time, distance_after);
@@ -94,7 +68,8 @@ path reshape_arc(path p, real time, real distance_before, real distance_after, g
 }
 
 path reshape_arc(path p, real time, real distance, guide new_part = nullpath .. nullpath)
-// Good for rounding or beveling corners, for instance.
+// A version of |reshape_arc| that uses the same arclength on either
+// side of the point.
 {
     return reshape_arc(p, time, distance, distance, new_part);
 }
@@ -102,6 +77,8 @@ path reshape_arc(path p, real time, real distance, guide new_part = nullpath .. 
 //-------------------------------------------------------------------------
 
 string fontforge_contour_code(path p, string contour_name)
+// Converts a path to Python code for creating an instance of
+// |fontforge.contour| describing the same bezier spline.
 {
   string s = '';
   s += contour_name + ' = fontforge.contour()\n';
