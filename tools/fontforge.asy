@@ -23,7 +23,28 @@
 
 */
 
+//-------------------------------------------------------------------------
+
+path reshape_subpath(path p, real start_time, real end_time, path new_subpath(path subpath))
+{
+    path p1 = new_subpath(subpath(p, start_time, end_time));
+    path p2 = subpath(p, end_time, length(p) + start_time);
+    path q = p1 & p2;
+    return cyclic(p) ? q & cycle : q;
+}
+
+path reshape_subpath(path p, real start_time, real end_time, guide new_part = nullpath .. nullpath)
+{
+    path new_subpath(path q)
+    {
+        return point(q,0) {dir(q,0)} .. new_part .. {dir(q,length(q))} point(q,length(q));
+    }
+
+    return reshape_subpath(p, start_time, end_time, new_subpath);
+}
   
+//-------------------------------------------------------------------------
+
 string fontforge_contour_code(path p, string contour_name)
 {
   string s = '';
@@ -45,3 +66,5 @@ string fontforge_contour_code(path p, string contour_name)
     }
   return s;
 }
+
+//-------------------------------------------------------------------------
