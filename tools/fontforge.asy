@@ -42,7 +42,27 @@ path reshape_subpath(path p, real start_time, real end_time, guide new_part = nu
 
     return reshape_subpath(p, start_time, end_time, new_subpath);
 }
-  
+
+real time_at_distance_along_arc(path p, real time, real distance)
+{
+    real here_length = arclength(subpath(p, 0, time));
+    real there_length = here_length + distance;
+    return arctime(p, there_length);
+}
+
+path reshape_arc(path p, real time, real distance_before, real distance_after, guide new_part = nullpath .. nullpath)
+{
+    real t1 = time_at_distance_along_arc(p, time, -distance_before);
+    real t2 = time_at_distance_along_arc(p, time, distance_after);
+    return reshape_subpath(p, t1, t2, new_part);
+}
+
+path reshape_arc(path p, real time, real distance, guide new_part = nullpath .. nullpath)
+// Good for rounding or beveling corners, for instance.
+{
+    return reshape_arc(p, time, distance, distance, new_part);
+}
+
 //-------------------------------------------------------------------------
 
 string fontforge_contour_code(path p, string contour_name)
