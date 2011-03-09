@@ -25,6 +25,42 @@
 
 //-------------------------------------------------------------------------
 
+path chop(path p, path chop_shape)
+// Be aware that this algorithm can produce a self-intersecting result
+// path.
+{
+    real[][] xsect = intersections(p, chop_shape);
+    path result = nullpath;
+    int i = 0;
+    while (i < xsect.length) {
+        int i1 = (i + 1) % xsect.length;
+        real t = xsect[i][0];
+        real t1 = (i1 == 0 ? length(p) : 0) + xsect[i1][0];
+        path q = subpath(p, t, t1);
+        if (inside(chop_shape, midpoint(q))) {
+            t = xsect[i][1];
+            t1 = xsect[i1][1];
+            result = result & subpath(chop_shape, t, t1);
+        } else {
+            result = result & q;
+        }
+        i += 1;
+    }
+    result = result & cycle;
+    return result;
+}  
+
+path chop(path p, pair point, real angle)
+// Chop along a straight line.
+{
+    real bignum = 1e6;
+    path chop_shape = (bignum,0)--(bignum,bignum)--(-bignum,bignum)--(-bignum,0)--cycle;
+    chop_shape = shift(point) * rotate(angle) * chop_shape;
+    return chop(p, chop_shape);
+}
+
+//-------------------------------------------------------------------------
+
 path reshape_subpath(path p, real start_time, real end_time, path new_subpath(path subpath))
 {
     path p1 = new_subpath(subpath(p, start_time, end_time));
