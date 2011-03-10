@@ -27,9 +27,11 @@
 
 struct glyph_data {
     string name;
+    int unicode = -9999;
     path[] contours;
-    real lsb;
-    real rsb;
+    real baseline = 0;
+    real lsb = 25;
+    real rsb = 25;
 };
 
 glyph_data[] glyph_list;
@@ -168,6 +170,34 @@ string fontforge_contour_code(path p, string contour_name)
       s += format('%f, False)\n', precontrol(p,(i + 1) % length(p)).y);
     }
   return s;
+}
+
+void write_fontforge_glyph_list_code(string contour_name, file outp = stdout, string unicode_function = '')
+{
+    if (unicode_function == '') {
+        write(outp, 'from sortsmill.glyphbuild import preferred_unicode\n');
+        unicode_function = 'preferred_unicode';
+    }
+
+    for (glyph_data g : glyph_list) {
+        string uni;
+        if (-1 <= g.unicode)
+            uni = format('%d', g.unicode);
+        else
+            uni = unicode_function + '(\'' + g.name + '\')';
+        write(outp, 'glyph = f.createChar(' + uni + ', \'' + g.name + '\')\n');
+        write(outp, 'glyph.unicode = ' + uni + '\n');
+        for (path contour : g.contours) {
+            write(outp, fontforge_contour_code(shift(0,-g.baseline) * contour, 'contour'));
+            write(outp, 'glyph.foreground += contour\n');
+        }
+        write(outp, 'glyph.left_side_bearing = ');
+        write(outp, g.lsb);
+        write(outp, '\n');
+        write(outp, 'glyph.right_side_bearing = ');
+        write(outp, g.rsb);
+        write(outp, '\n');
+    }
 }
 
 //-------------------------------------------------------------------------
