@@ -76,6 +76,51 @@ path reshape_arc(path p, real time, real distance, guide new_part = nullpath .. 
 
 //-------------------------------------------------------------------------
 
+path chop(path p, path chop_shape)
+// Chops off a piece of a cycle path |p| that lies within the cyclic
+// path |chop_shape|. Can be used like a counterpunch or metal file.
+{
+    path result = p;
+    real[][] xsect = intersections(p, chop_shape);
+    
+    if (2 < xsect.length) {
+        abort('chop() cannot handle more than two intersections; ' +
+              format('%d', xsect.length) + ' intersections encountered');
+    } else if (xsect.length == 2) {
+        real[] xsect2;
+
+        // Choose the subpath of |p| that is outside |chop_shape|, and
+        // the subpath of |chop_shape| that is inside |p|.
+        xsect2[0] = xsect[1][1];
+        xsect2[1] = xsect[0][1];
+        path q1 = subpath(p, xsect[0][0], xsect[1][0]);
+        if (inside(chop_shape, midpoint(q1))) {
+            xsect2[0] = xsect[0][1];
+            xsect2[1] = xsect[1][1];
+            q1 = subpath(p, xsect[1][0], length(p) + xsect[0][0]);
+        }
+        if (xsect2[1] < xsect2[0])
+            xsect2[1] += length(chop_shape);
+        path q2 = subpath(chop_shape, xsect2[1], xsect2[0]);
+        if (!inside(p, midpoint(q2)))
+            q2 = subpath(chop_shape, length(chop_shape) + xsect2[0], xsect2[1]);
+
+        result = q1 & q2 & cycle;
+    }
+    return result;
+}  
+
+path chop(path p, pair point, real angle)
+// Chops along an angled straight line.
+{
+    real bignum = 1e6;
+    path chop_shape = (-bignum,0)---(-bignum,bignum)---(bignum,bignum)---(bignum,0)---cycle;
+    chop_shape = shift(point) * rotate(angle) * chop_shape;
+    return chop(p, chop_shape);
+}
+
+//-------------------------------------------------------------------------
+
 string fontforge_contour_code(path p, string contour_name)
 // Converts a path to Python code for creating an instance of
 // |fontforge.contour| describing the same bezier spline.
