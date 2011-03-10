@@ -25,6 +25,31 @@
 
 //-------------------------------------------------------------------------
 
+struct glyph_data {
+    string name;
+    path[] contours;
+    real lsb;
+    real rsb;
+};
+
+glyph_data[] glyph_list;
+
+int find_glyph(string glyphname)
+{
+    int i = 0;
+    while (i < glyph_list.length && glyph_list[i].name != glyphname)
+        i += 1;
+    return i;
+}
+
+void set_glyph(glyph_data glyph)
+{
+    int i = find_glyph(glyph.name);
+    glyph_list[i] = glyph;
+}
+
+//-------------------------------------------------------------------------
+
 path reshape_subpath(path p, real start_time, real end_time, path new_subpath(path subpath))
 // Replaces a subpath of |p| with a new subpath. The new subpath is
 // constructed by |new_subpath|, which is given the original subpath
@@ -108,7 +133,7 @@ path chop(path p, path chop_shape)
         result = q1 & q2 & cycle;
     }
     return result;
-}  
+}
 
 path chop(path p, pair point, real angle)
 // Chops along an angled straight line.
@@ -131,16 +156,16 @@ string fontforge_contour_code(path p, string contour_name)
   for (int i = 0; i < length(p); i += 1)
     {
       s += contour_name + ' += fontforge.point(';
-      s += format('%f, ', precontrol(p,i).x);
-      s += format('%f, False)\n', precontrol(p,i).y);
-
-      s += contour_name + ' += fontforge.point(';
       s += format('%f,', point(p,i).x);
       s += format('%f)\n', point(p,i).y);
 
       s += contour_name + ' += fontforge.point(';
       s += format('%f,', postcontrol(p,i).x);
       s += format('%f, False)\n', postcontrol(p,i).y);
+
+      s += contour_name + ' += fontforge.point(';
+      s += format('%f, ', precontrol(p,(i + 1) % length(p)).x);
+      s += format('%f, False)\n', precontrol(p,(i + 1) % length(p)).y);
     }
   return s;
 }
