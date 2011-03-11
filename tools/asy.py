@@ -28,6 +28,8 @@ THE SOFTWARE.
 """
 
 import fontforge
+import imp
+import subprocess
 
 #--------------------------------------------------------------------------
 
@@ -51,6 +53,22 @@ def asymptote_path(contour):
     if contour.closed:
         s += 'cycle'
     return s
+
+#--------------------------------------------------------------------------
+
+def load_glyph_data_from_given_asy(glyph, asy_file):
+    module_name = 'asy_glyph_data'
+    asy_command = 'write_glyph_data(\'' + glyph.glyphname + '\')'
+    pipe = subprocess.Popen(['asy', '-u', asy_command, asy_file], stdout=subprocess.PIPE).stdout
+    module = imp.load_module(module_name, pipe, "<stdin>", ('', '', imp.PY_SOURCE))
+
+def load_asy_glyph_data(glyph):
+    asy_file = glyph.font.fontname + '.asy'
+    load_glyph_data_from_given_asy(glyph, asy_file)
+
+fontforge.registerMenuItem((lambda _, glyph: load_asy_glyph_data(glyph)),
+                           None, None, 'Glyph', 'None',
+                           'Load Asymptote glyph data')
 
 #--------------------------------------------------------------------------
 

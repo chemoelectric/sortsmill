@@ -23,6 +23,10 @@
 
 */
 
+import geometry;
+
+real point_fuzz = 0.001;
+
 //-------------------------------------------------------------------------
 
 struct glyph_data {
@@ -42,6 +46,15 @@ int find_glyph(string glyphname)
     while (i < glyph_list.length && glyph_list[i].name != glyphname)
         i += 1;
     return i;
+}
+
+glyph_data get_glyph(string glyphname)
+{
+    glyph_data glyph;
+    int i = find_glyph(glyphname);
+    if (i < glyph_list.length)
+        glyph = glyph_list[i];
+    return glyph;
 }
 
 void set_glyph(glyph_data glyph)
@@ -109,6 +122,21 @@ real time_at_distance_along_arc(path p, real time, real distance)
     return arctime(p, there_length);
 }
 
+pair point_at_distance_along_arc(path p, real time, real distance)
+// Finds the point that is at a given arclength from a point on the
+// path |p|.
+{
+    return point(p, time_at_distance_along_arc(p, time, distance));
+}
+
+pair point_at_distance_along_arc(path p, pair point, real distance)
+// Finds the point that is at a given arclength from a point on the
+// path |p|.
+{
+    real[] time = intersect(p, point, point_fuzz);
+    return point_at_distance_along_arc(p, time[0], distance);
+}
+
 path reshape_arc(path p, real time, real distance_before, real distance_after, guide new_part = nullpath .. nullpath)
 // Calls |reshape_subpath| for a subpath extending given arclength
 // from a point on |p|. Can be used like a metal file; good for
@@ -124,6 +152,58 @@ path reshape_arc(path p, real time, real distance, guide new_part = nullpath .. 
 // side of the point.
 {
     return reshape_arc(p, time, distance, distance, new_part);
+}
+
+path reshape_arc(path p, real[] times, real distance_before, real distance_after, guide new_part = nullpath .. nullpath)
+// Calls |reshape_subpath| for a subpath extending given arclength
+// from two points on |p|. Can be used like a metal file; good for
+// rounding or beveling ends of serifs, for instance.
+{
+    real t1 = time_at_distance_along_arc(p, times[0], -distance_before);
+    real t2 = time_at_distance_along_arc(p, times[1], distance_after);
+    return reshape_subpath(p, t1, t2, new_part);
+}
+
+path reshape_arc(path p, real[] times, real distance, guide new_part = nullpath .. nullpath)
+// A version of |reshape_arc| that uses the same arclength on either
+// side of the two points.
+{
+    return reshape_arc(p, times, distance, distance, new_part);
+}
+
+path reshape_arc(path p, pair point, real distance_before, real distance_after, guide new_part = nullpath .. nullpath)
+// Calls |reshape_subpath| for a subpath extending given arclength
+// from a point on |p|. Can be used like a metal file; good for
+// rounding or beveling corners, for instance.
+{
+    real t = intersect(p, point, point_fuzz)[0];
+    real t1 = time_at_distance_along_arc(p, t, -distance_before);
+    real t2 = time_at_distance_along_arc(p, t, distance_after);
+    return reshape_subpath(p, t1, t2, new_part);
+}
+
+path reshape_arc(path p, pair point, real distance, guide new_part = nullpath .. nullpath)
+// A version of |reshape_arc| that uses the same arclength on either
+// side of the point.
+{
+    return reshape_arc(p, point, distance, distance, new_part);
+}
+
+path reshape_arc(path p, pair[] points, real distance_before, real distance_after, guide new_part = nullpath .. nullpath)
+// Calls |reshape_subpath| for a subpath extending given arclength
+// from two points on |p|. Can be used like a metal file; good for
+// rounding or beveling ends of serifs, for instance.
+{
+    real t1 = time_at_distance_along_arc(p, intersect(p, points[0], point_fuzz)[0], -distance_before);
+    real t2 = time_at_distance_along_arc(p, intersect(p, points[1], point_fuzz)[0], distance_after);
+    return reshape_subpath(p, t1, t2, new_part);
+}
+
+path reshape_arc(path p, pair[] points, real distance, guide new_part = nullpath .. nullpath)
+// A version of |reshape_arc| that uses the same arclength on either
+// side of the two points.
+{
+    return reshape_arc(p, points, distance, distance, new_part);
 }
 
 //-------------------------------------------------------------------------
@@ -179,7 +259,6 @@ string fontforge_contour_code(path p, string contour_name)
 {
   string s = '';
   s += contour_name + ' = fontforge.contour()\n';
-  s += contour_name + '.closed = ' + (cyclic(p) ? 'True' : 'False') + '\n';
   for (int i = 0; i < length(p); i += 1)
     {
       s += contour_name + ' += fontforge.point(';
@@ -194,6 +273,7 @@ string fontforge_contour_code(path p, string contour_name)
       s += format('%f, ', precontrol(p,(i + 1) % length(p)).x);
       s += format('%f, False)\n', precontrol(p,(i + 1) % length(p)).y);
     }
+  s += contour_name + '.closed = ' + (cyclic(p) ? 'True' : 'False') + '\n';
   return s;
 }
 
@@ -222,6 +302,24 @@ void write_fontforge_glyph_list_code(string contour_name, file outp = stdout, st
         write(outp, 'glyph.right_side_bearing = ');
         write(outp, g.rsb);
         write(outp, '\n');
+    }
+}
+
+void write_glyph_data(string glyphname)
+{
+    write('import fontforge');
+    glyph_data g = get_glyph(glyphname);
+    if (g.name != '') {
+        write('glyph = fontforge.activeGlyph()');
+        real min_x = 1e5;
+        for (path contour : g.contours)
+            min_x = min(min_x, min(contour).x);
+        write('glyph.foreground = fontforge.contour()');
+        for (path contour : g.contours) {
+            write(fontforge_contour_code(shift(g.lsb - min_x,0) * contour, 'contour'));
+            write('glyph.foreground += contour');
+        }
+        write('glyph.right_side_bearing = ', g.rsb);
     }
 }
 
