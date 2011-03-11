@@ -57,6 +57,8 @@ path reshape_subpath(path p, real start_time, real end_time, path new_subpath(pa
 // constructed by |new_subpath|, which is given the original subpath
 // as a parameter.
 {
+    while (end_time < start_time)
+        end_time += length(p);
     path p1 = new_subpath(subpath(p, start_time, end_time));
     path p2 = subpath(p, end_time, length(p) + start_time);
     path q = p1 & p2;
@@ -73,6 +75,29 @@ path reshape_subpath(path p, real start_time, real end_time, guide new_part = nu
     }
 
     return reshape_subpath(p, start_time, end_time, new_subpath);
+}
+
+path reshape_subpath(path p, real[] intersection_times, guide new_part = nullpath .. nullpath)
+{
+    return reshape_subpath(p, intersection_times[0], intersection_times[1], new_part);
+}
+
+path reshape_subpath(path p, real[][] intersection_times, guide new_part = nullpath .. nullpath)
+{
+    return reshape_subpath(p, intersection_times[0][1], intersection_times[1][1], new_part);
+}
+
+path reshape_subpath(path p, path intersecting_path, guide new_part = nullpath .. nullpath)
+{
+    path result = p;
+    real[][] xsect = intersections(intersecting_path, p);
+
+    if (2 < xsect.length)
+        abort('reshape_subpath(path,path[,guide]) cannot handle more than two intersections; ' +
+              format('%d', xsect.length) + ' intersections encountered');
+    else if (xsect.length == 2)
+        result = reshape_subpath(p, xsect[0][1], xsect[1][1], new_part);
+    return result;
 }
 
 real time_at_distance_along_arc(path p, real time, real distance)
@@ -111,7 +136,7 @@ path chop(path p, path chop_shape)
     real[][] xsect = intersections(p, chop_shape);
     
     if (2 < xsect.length) {
-        abort('chop() cannot handle more than two intersections; ' +
+        abort('chop(path,path) cannot handle more than two intersections; ' +
               format('%d', xsect.length) + ' intersections encountered');
     } else if (xsect.length == 2) {
         real[] xsect2;
@@ -141,9 +166,9 @@ path chop(path p, pair point, real angle)
 // Chops along an angled straight line.
 {
     real bignum = 1e6;
-    path chop_shape = (-bignum,0)---(-bignum,bignum)---(bignum,bignum)---(bignum,0)---cycle;
-    chop_shape = shift(point) * rotate(angle) * chop_shape;
-    return chop(p, chop_shape);
+    pair offset = bignum * dir(angle);
+    path cut_line = (point - offset) --- (point + offset);
+    return reshape_subpath(p, cut_line, nullpath---nullpath);
 }
 
 //-------------------------------------------------------------------------
