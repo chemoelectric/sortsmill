@@ -293,6 +293,30 @@ string fontforge_contour_code(path p, string contour_name)
   return s;
 }
 
+void write_fontforge_glyph_data(glyph_data g, string contour_name, file outp)
+{
+    real min_x = 1e5;
+    for (path contour : g.contours)
+        min_x = min(min_x, min(contour).x);
+    write(outp, 'glyph.foreground = fontforge.contour()\n');
+    for (path contour : g.contours) {
+        write(outp, fontforge_contour_code(shift(g.lsb - min_x,-g.baseline) * contour, 'contour'));
+        write(outp, 'glyph.foreground += contour\n');
+    }
+    write(outp, 'glyph.right_side_bearing = ');
+    write(outp, g.rsb);
+    write(outp, '\n');
+    if (round_points)
+        write(outp, 'glyph.round()\n');
+    if (simplify_slightly) {
+        write(outp, 'glyph.simplify(0)\n');
+        if (round_points)
+            write(outp, 'glyph.round()\n'); // Does this do anything?
+    }
+    write(outp, 'glyph.canonicalContours()\n');
+    write(outp, 'glyph.canonicalStart()\n');
+}
+
 void write_fontforge_glyph_list_code(string contour_name, file outp = stdout, string unicode_function = '')
 {
     if (unicode_function == '') {
@@ -308,22 +332,7 @@ void write_fontforge_glyph_list_code(string contour_name, file outp = stdout, st
             uni = unicode_function + '(\'' + g.name + '\')';
         write(outp, 'glyph = f.createChar(' + uni + ', \'' + g.name + '\')\n');
         write(outp, 'glyph.unicode = ' + uni + '\n');
-        for (path contour : g.contours) {
-            write(outp, fontforge_contour_code(shift(0,-g.baseline) * contour, 'contour'));
-            write(outp, 'glyph.foreground += contour\n');
-        }
-        write(outp, 'glyph.left_side_bearing = ');
-        write(outp, g.lsb);
-        write(outp, '\n');
-        write(outp, 'glyph.right_side_bearing = ');
-        write(outp, g.rsb);
-        write(outp, '\n');
-        if (round_points)
-            write(outp, 'glyph.round()\n');
-        if (simplify_slightly) {
-            write(outp, 'glyph.simplify(0)\n');
-            write(outp, 'glyph.round()\n'); // Does this do anything?
-        }
+        write_fontforge_glyph_data(g, contour_name, outp);
     }
 }
 
@@ -333,21 +342,7 @@ void write_glyph_data(string glyphname)
     glyph_data g = get_glyph(glyphname);
     if (g.name != '') {
         write('glyph = fontforge.activeGlyph()');
-        real min_x = 1e5;
-        for (path contour : g.contours)
-            min_x = min(min_x, min(contour).x);
-        write('glyph.foreground = fontforge.contour()');
-        for (path contour : g.contours) {
-            write(fontforge_contour_code(shift(g.lsb - min_x,0) * contour, 'contour'));
-            write('glyph.foreground += contour');
-        }
-        write('glyph.right_side_bearing = ', g.rsb);
-        if (round_points)
-            write('glyph.round()');
-        if (simplify_slightly) {
-            write('glyph.simplify(0)');
-            write('glyph.round()'); // Does this do anything?
-        }
+        write_fontforge_glyph_data(g, 'contour', stdout);
     }
 }
 
