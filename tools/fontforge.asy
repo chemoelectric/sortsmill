@@ -26,6 +26,8 @@
 import geometry;
 
 real point_fuzz = 0.001;
+bool round_points = false;
+bool simplify_slightly = false;
 
 //-------------------------------------------------------------------------
 
@@ -98,6 +100,20 @@ path reshape_subpath(path p, real[] intersection_times, guide new_part = nullpat
 path reshape_subpath(path p, real[][] intersection_times, guide new_part = nullpath .. nullpath)
 {
     return reshape_subpath(p, intersection_times[0][1], intersection_times[1][1], new_part);
+}
+
+path reshape_subpath(path p, pair point1, pair point2, guide new_part = nullpath .. nullpath)
+{
+    real t1 = intersect(p, point1, point_fuzz)[0];
+    real t2 = intersect(p, point2, point_fuzz)[0];
+    return reshape_subpath(p, t1, t2, new_part);
+}
+
+path reshape_subpath(path p, pair[] points, guide new_part = nullpath .. nullpath)
+{
+    real t1 = intersect(p, points[0], point_fuzz)[0];
+    real t2 = intersect(p, points[1], point_fuzz)[0];
+    return reshape_subpath(p, t1, t2, new_part);
 }
 
 path reshape_subpath(path p, path intersecting_path, guide new_part = nullpath .. nullpath)
@@ -302,6 +318,12 @@ void write_fontforge_glyph_list_code(string contour_name, file outp = stdout, st
         write(outp, 'glyph.right_side_bearing = ');
         write(outp, g.rsb);
         write(outp, '\n');
+        if (round_points)
+            write(outp, 'glyph.round()\n');
+        if (simplify_slightly) {
+            write(outp, 'glyph.simplify(0)\n');
+            write(outp, 'glyph.round()\n'); // Does this do anything?
+        }
     }
 }
 
@@ -320,6 +342,12 @@ void write_glyph_data(string glyphname)
             write('glyph.foreground += contour');
         }
         write('glyph.right_side_bearing = ', g.rsb);
+        if (round_points)
+            write('glyph.round()');
+        if (simplify_slightly) {
+            write('glyph.simplify(0)');
+            write('glyph.round()'); // Does this do anything?
+        }
     }
 }
 
