@@ -67,29 +67,29 @@ void set_glyph(glyph_data glyph)
 
 //-------------------------------------------------------------------------
 
-path reshape_subpath(path p, real start_time, real end_time, path new_subpath(path subpath))
-// Replaces a subpath of |p| with a new subpath. The new subpath is
-// constructed by |new_subpath|, which is given the original subpath
-// as a parameter.
+path reshape_subpath(path p, real start_time, real end_time, guide new_subpath_guide(path subpath))
+// Replaces a subpath of cyclic path |p| with a new subpath. The new
+// subpath is constructed by |new_subpath_guide|, which is given the
+// original subpath as a parameter.
 {
     while (end_time < start_time)
         end_time += length(p);
-    path p1 = new_subpath(subpath(p, start_time, end_time));
-    path p2 = subpath(p, end_time, length(p) + start_time);
-    path q = p1 & p2;
-    return cyclic(p) ? q & cycle : q;
+    guide g_new = new_subpath_guide(subpath(p, start_time, end_time));
+    guide g_old = subpath(p, end_time, length(p) + start_time);
+    path q = g_old & g_new & cycle;
+    return q;
 }
 
 path reshape_subpath(path p, real start_time, real end_time, guide new_part = nullpath .. nullpath)
 // Replaces a subpath of |p| with a new subpath that is specified by
 // |new_part|.
 {
-    path new_subpath(path q)
+    guide new_subpath_guide(path q)
     {
         return point(q,0) {dir(q,0)} .. new_part .. {dir(q,length(q))} point(q,length(q));
     }
 
-    return reshape_subpath(p, start_time, end_time, new_subpath);
+    return reshape_subpath(p, start_time, end_time, new_subpath_guide);
 }
 
 path reshape_subpath(path p, real[] intersection_times, guide new_part = nullpath .. nullpath)
