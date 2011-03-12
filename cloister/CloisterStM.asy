@@ -112,6 +112,10 @@ real t4 = round(intersect(outline, point4, point_fuzz)[0]);
 outline = reshape_arc(outline, t4 + 1, 35, 40, nullpath{right}..nullpath);
 real t4 = round(intersect(outline, point4, point_fuzz)[0]);
 outline = reshape_arc(outline, t4 + 1, 10, nullpath..nullpath);
+// Put a point at the vertical maximum, to assist rendering.
+real t_max = maxtimes(outline)[1];
+pair top_point = point(outline, t_max);
+outline = reshape_subpath(outline, (real)floor(t_max), (real)ceil(t_max), nullpath..{right}top_point..nullpath);
 
 // Round the sharp corners of the top serif.
 pair point5a = point_at_distance_along_arc(outline, point5, -corner_rounding_distance);
