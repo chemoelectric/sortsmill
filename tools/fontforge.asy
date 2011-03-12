@@ -347,3 +347,16 @@ void write_glyph_data(string glyphname)
 }
 
 //-------------------------------------------------------------------------
+
+pair point_after(path outline, pair point, int n = 1)
+{
+    real t = round(intersect(outline, point, point_fuzz)[0]);
+    return point(outline, t + n);
+}
+
+pair point_before(path outline, pair point, int n = 1)
+{
+    return point_after(outline, point, -n);
+}
+
+//-------------------------------------------------------------------------
