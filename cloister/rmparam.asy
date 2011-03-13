@@ -19,40 +19,13 @@
 // THE SOFTWARE.
 
 import common;
-import fontforge;
-import rmparam;
 
-round_points = true;
-simplify_slightly = true;
+real l_stem_left_pos;
+real l_stem_right_pos;
 
-fontname = 'CloisterStM';
-familyname = 'Sorts Mill Cloister';
-fullname = 'Sorts Mill Cloister';
-fontweight = 'Regular';
-sfnt_family = 'Sorts Mill Cloister';
-sfnt_style = 'Regular';
-design_size = 14;
+bottom_serif l_bottom_serif;
 
-//-------------------------------------------------------------------------
+real l_top_serif_angle1;
+real l_top_left_counter_angle;
 
-stem_width = 69;
-ascender_height = 644;
-l_stem_left_pos = 35;
-l_stem_right_pos = 36;
 
-l_bottom_serif = new bottom_serif;
-l_bottom_serif.lower_left = (-49,-5);
-l_bottom_serif.lower_right = (135,3);
-
-l_top_serif_angle1 = 27;
-l_top_left_counter_angle = -32;
-
-import rmlower;
-
-std_vw = stem_width;
-add_to_stemsnap_v(stem_width);
-bluefuzz = 0;
-
-usersetting();
-
-//-------------------------------------------------------------------------

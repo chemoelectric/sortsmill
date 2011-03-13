@@ -20,6 +20,16 @@
     
 import fontforge;
 
+real ascender_height;
+real stem_width;
+real corner_rounding_distance = 10;
+real corner_rounding_tension = 0.75;
+
+struct bottom_serif {
+    pair lower_left;
+    pair lower_right;
+};
+
 //-------------------------------------------------------------------------
 
 string version = '0.1';
@@ -62,6 +72,10 @@ string preferred_style = '';
 string wws_family = '';
 string wws_style = '';
 
+// FIXME: Support design ranges, once multiple design sizes are
+// available.
+real design_size = 0;
+
 //-------------------------------------------------------------------------
 
 void write_python()
@@ -101,9 +115,13 @@ f.appendSFNTName(lang, \'Designer\', \'' + designer_name + '\');
 f.appendSFNTName(lang, \'Designer URL\', \'' + designer_url + '\');
 ');
 
+    if (0 < design_size)
+        write('f.size_feature = (' + string(design_size) + ',)');
+
     write_fontforge_glyph_list_code('contour');
-    
+
     write('f.encoding = \'UnicodeBMP\'');
+    write(fontforge_ps_private_code('f'));
 }
 
 void write_sfd(string sfd_file)

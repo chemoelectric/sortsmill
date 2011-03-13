@@ -25,27 +25,27 @@ import rmparam;
 round_points = true;
 simplify_slightly = true;
 
-fontname = 'CloisterStM';
+fontname = 'CloisterStM-Bold';
 familyname = 'Sorts Mill Cloister';
-fullname = 'Sorts Mill Cloister';
-fontweight = 'Regular';
+fullname = 'Sorts Mill Cloister Bold';
+fontweight = 'Bold';
 sfnt_family = 'Sorts Mill Cloister';
-sfnt_style = 'Regular';
+sfnt_style = 'Bold';
 design_size = 14;
 
 //-------------------------------------------------------------------------
 
-stem_width = 69;
+stem_width = 92;
 ascender_height = 644;
-l_stem_left_pos = 35;
-l_stem_right_pos = 36;
+l_stem_left_pos = 38;
+l_stem_right_pos = 40;
 
 l_bottom_serif = new bottom_serif;
-l_bottom_serif.lower_left = (-49,-5);
-l_bottom_serif.lower_right = (135,3);
+l_bottom_serif.lower_left = (-52,-7);
+l_bottom_serif.lower_right = (149,3);
 
-l_top_serif_angle1 = 27;
-l_top_left_counter_angle = -32;
+l_top_serif_angle1 = 30;
+l_top_left_counter_angle = -40;
 
 import rmlower;
 

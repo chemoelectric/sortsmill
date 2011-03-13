@@ -360,6 +360,15 @@ path chop(path p, pair point, real angle)
     return reshape_subpath(p, cut_line, nullpath---nullpath);
 }
 
+path chop(path p, pair point1, pair point2)
+// Chops along the line that passes through two given points.
+{
+    real bignum = 1e6;
+    pair offset = bignum * dir(point1---point2);
+    path cut_line = (point1 - offset) --- (point1 + offset);
+    return reshape_subpath(p, cut_line, nullpath---nullpath);
+}
+
 //-------------------------------------------------------------------------
 
 string fontforge_contour_code(path p, string contour_name)
