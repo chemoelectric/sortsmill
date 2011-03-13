@@ -72,6 +72,22 @@ fontforge.registerMenuItem((lambda _, glyph: load_asy_glyph_data(glyph)),
 
 #--------------------------------------------------------------------------
 
+def load_private_data_from_given_asy(font, asy_file):
+    module_name = 'asy_private_data'
+    asy_command = 'write_private_data()'
+    pipe = subprocess.Popen(['asy', '-u', asy_command, asy_file], stdout=subprocess.PIPE).stdout
+    module = imp.load_module(module_name, pipe, "<stdin>", ('', '', imp.PY_SOURCE))
+
+def load_asy_private_data(font):
+    asy_file = font.fontname + '.asy'
+    load_private_data_from_given_asy(font, asy_file)
+
+fontforge.registerMenuItem((lambda _, font: load_asy_private_data(font)),
+                           None, None, 'Font', 'None',
+                           'Load Private table data from Asymptote')
+
+#--------------------------------------------------------------------------
+
 def print_asymptote_paths(glyph):
     for c in glyph.layers[glyph.activeLayer]:
         print(asymptote_path(c))
