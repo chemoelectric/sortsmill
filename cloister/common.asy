@@ -20,14 +20,34 @@
     
 import fontforge;
 
+real boldness;
+
 real ascender_height;
 real stem_width;
 real corner_rounding_distance = 10;
 real corner_rounding_tension = 0.75;
 
+struct left_stem_counter {
+    real stem_height;
+    real top_angle;
+    real bottom_angle;
+    real tension1;
+    real tension2;
+};
+
+struct right_stem_counter {
+    real stem_height;
+    real top_angle;
+    real bottom_angle;
+};
+
 struct bottom_serif {
     pair lower_left;
     pair lower_right;
+};
+
+struct ascender_serif {
+    real angle;
 };
 
 //-------------------------------------------------------------------------

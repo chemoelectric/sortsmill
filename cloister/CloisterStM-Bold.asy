@@ -35,17 +35,31 @@ design_size = 14;
 
 //-------------------------------------------------------------------------
 
-stem_width = 92;
+boldness = 2;
+
+stem_width = 90;
 ascender_height = 644;
-l_stem_left_pos = 38;
+l_stem_left_pos = 40;
 l_stem_right_pos = 40;
 
+l_left_stem_counter = new left_stem_counter;
+l_left_stem_counter.stem_height = 477;
+l_left_stem_counter.top_angle = -40;
+l_left_stem_counter.bottom_angle = 11;
+l_left_stem_counter.tension1 = 5 * boldness;
+l_left_stem_counter.tension2 = 20 * boldness;
+
+l_right_stem_counter = new right_stem_counter;
+l_right_stem_counter.stem_height = 512;
+l_right_stem_counter.top_angle = 77;
+l_right_stem_counter.bottom_angle = 1.4;
+
 l_bottom_serif = new bottom_serif;
-l_bottom_serif.lower_left = (-52,-7);
+l_bottom_serif.lower_left = (-53,-7);
 l_bottom_serif.lower_right = (149,3);
 
-l_top_serif_angle1 = 30;
-l_top_left_counter_angle = -40;
+l_ascender_serif = new ascender_serif;
+l_ascender_serif.angle = 30;
 
 import rmlower;
 

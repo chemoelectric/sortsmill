@@ -23,9 +23,11 @@ import common;
 real l_stem_left_pos;
 real l_stem_right_pos;
 
+left_stem_counter l_left_stem_counter;
+right_stem_counter l_right_stem_counter;
 bottom_serif l_bottom_serif;
+ascender_serif l_ascender_serif;
 
 real l_top_serif_angle1;
-real l_top_left_counter_angle;
 
 
