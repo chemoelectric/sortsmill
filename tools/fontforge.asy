@@ -29,6 +29,18 @@ real point_fuzz = 0.001;
 bool round_points = false;
 bool simplify_slightly = false;
 
+void add_to_sorted_list(real[] array, real v)
+{
+    real[] a = array;
+    int i = 0;
+    while (i < a.length && a[i] != v) // Maybe this test should have some fuzz?
+        i += 1;
+    a[i] = v;
+    a = sort(a);
+    for (i = 0; i < a.length; i += 1)
+        array[i] = a[i];
+}
+
 //-------------------------------------------------------------------------
 
 struct glyph_data {
@@ -38,6 +50,8 @@ struct glyph_data {
     real baseline = 0;
     real lsb = 25;
     real rsb = 25;
+    real[][] horiz_hints;
+    real[][] vert_hints;
 };
 
 glyph_data[] glyph_list;
@@ -63,6 +77,85 @@ void set_glyph(glyph_data glyph)
 {
     int i = find_glyph(glyph.name);
     glyph_list[i] = glyph;
+}
+
+void add_horiz_hint(glyph_data glyph, real x, real width)
+{
+    real[] hint = { x, width };
+    glyph.horiz_hints[glyph.horiz_hints.length] = hint;
+}
+
+void add_vert_hint(glyph_data glyph, real x, real width)
+{
+    real[] hint = { x, width };
+    glyph.vert_hints[glyph.vert_hints.length] = hint;
+}
+
+string pythonize_hints(real[][] hints, real offset)
+{
+    string s = '(';
+    for (real[] h : sort(hints)) {
+        s = s + '(';
+        s = s + format('%f', h[0] - offset);
+        s = s + ',';
+        s = s + format('%f', h[1]);
+        s = s + '),';
+    }
+    s = s + ')\n';
+    return s;
+}
+
+//-------------------------------------------------------------------------
+
+real std_hw = 0;
+real std_vw = 0;
+real[] stemsnap_h;
+real[] stemsnap_v;
+real bluefuzz = 0;
+real blueshift = 7;
+
+string pythonize_array(real[] a)
+{
+    string s = '[';
+    for (real element : a)
+        s = s + format('%f,', element);
+    return s;
+}
+
+string fontforge_ps_private_code(string font_obj_name)
+{
+    // FIXME: Add FontForge scripting support for clearing the Private
+    // dictionary, and use that support here. FontForge's Python
+    // support for the Private dictionary is spotty (12 March 2011).
+    string s = '';
+    if (0 < std_hw)
+        s = s + font_obj_name + '.private[\'StdHW\'] = [' + string(std_hw) + ']\n';
+    if (0 < std_vw)
+        s = s + font_obj_name + '.private[\'StdVW\'] = [' + string(std_vw) + ']\n';
+    if (0 < stemsnap_h.length)
+        s = s + font_obj_name + '.private[\'StemSnapH\'] = ' + pythonize_array(stemsnap_h) + ']\n';
+    if (0 < stemsnap_v.length)
+        s = s + font_obj_name + '.private[\'StemSnapV\'] = ' + pythonize_array(stemsnap_v) + ']\n';
+    s = s + font_obj_name + '.private[\'BlueShift\'] = ' + string(blueshift) + '\n';
+    s = s + font_obj_name + '.private[\'BlueFuzz\'] = ' + string(bluefuzz) + '\n';
+    return s;
+}
+
+void add_to_stemsnap_h(real v)
+{
+    add_to_sorted_list(stemsnap_h, v);
+}
+
+void add_to_stemsnap_v(real v)
+{
+    add_to_sorted_list(stemsnap_v, v);
+}
+
+void write_private_data()
+{
+    write('import fontforge');
+    write('font = fontforge.activeFont()');
+    write(fontforge_ps_private_code('font'));
 }
 
 //-------------------------------------------------------------------------
@@ -303,6 +396,12 @@ void write_fontforge_glyph_data(glyph_data g, string contour_name, file outp)
         write(outp, fontforge_contour_code(shift(g.lsb - min_x,-g.baseline) * contour, 'contour'));
         write(outp, 'glyph.foreground += contour\n');
     }
+
+    write(outp, 'glyph.hhints = ' + pythonize_hints(g.horiz_hints, g.baseline));
+    write(outp, 'glyph.vhints = ' + pythonize_hints(g.vert_hints, min_x - g.lsb));
+    // FIXME: Add hint mask support (when it becomes available and known about in FontForge).
+    // FIXME: Add diagonal hint code and support for TT instructions.
+
     write(outp, 'glyph.right_side_bearing = ');
     write(outp, g.rsb);
     write(outp, '\n');
