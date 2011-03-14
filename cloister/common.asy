@@ -27,18 +27,18 @@ real stem_width;
 real corner_rounding_distance = 10;
 real corner_rounding_tension = 0.75;
 
-struct left_stem_counter {
-    real stem_height;
-    real top_angle;
-    real bottom_angle;
-    real tension1;
-    real tension2;
+struct reshape_params {
+    real distance_before;
+    real distance_after;
+    guide shape;
 };
 
-struct right_stem_counter {
+struct stem_counter_params {
     real stem_height;
     real top_angle;
     real bottom_angle;
+    reshape_params top_corner;
+    reshape_params bottom_corner;
 };
 
 struct bottom_serif {
@@ -158,75 +158,77 @@ void generate(string otf_file)
 
 //-------------------------------------------------------------------------
 
-path left_stem_counter(real stem_position,
-                       real stem_height,
-                       real height_of_right_max,
-                       real top_angle,
-                       real bottom_angle,
-                       real shape_param1,
-                       real shape_param2,
-                       real shape_param3,
-                       real shape_param4,
-                       real tension1,
-                       real tension2,
-                       real tension3,
-                       real tension4,
-                       real tension5)
+path reshape_around_point(path p, pair point, reshape_params params)
+{
+    return reshape_arc(p, point, params.distance_before, params.distance_after, params.shape);
+}
+
+path smooth_a_corner(path p, pair point,
+                     real rounding_distance = corner_rounding_distance,
+                     guide new_subpath_guide = nullpath..tension corner_rounding_tension..nullpath)
+{
+    return reshape_arc(p, point, corner_rounding_distance, new_subpath_guide);
+}
+
+//-------------------------------------------------------------------------
+
+path smooth_close_points(path p,
+                         int start_time,
+                         int end_time,
+                         real max_distance = 15,
+                         real max_angle = 1)
+{
+    guide g;
+    for (int i = start_time; i < end_time; i += 1) {
+        pair dir1 = dir(p, i, 1);
+        pair dir2 = dir(p, i + 1, -1);
+        if (abs(degrees(dir2) - degrees(dir1)) <= max_angle) {
+            guide g1 = point(p,i)---point(p,i + 1);
+            if (arclength(g1) <= max_distance)
+                g = g & g1;
+            else
+                g = g & subpath(p, i, i + 1);
+        } else {
+            g = g & subpath(p, i, i + 1);
+        }
+    }
+    if (cyclic(p))
+        g = g & cycle;
+    return g;
+}
+
+path smooth_close_points(path outline,
+                         real max_distance = 15,
+                         real max_angle = 1)
+{
+    return smooth_close_points(outline, 0, size(outline), max_distance, max_angle);
+}
+
+//-------------------------------------------------------------------------
+
+path left_stem_counter(stem_counter_params params)
 // Counterpunch for the left side of roman 'l', 'i', etc.
 {
     real bignum = 2000;
 
     path counter = (-bignum,-bignum)---(-bignum,bignum)---(0,bignum)---(0,-bignum)---cycle;
-    counter = chop(counter, (0,stem_height), top_angle);
-    counter = chop(counter, (0,0), 180 + bottom_angle);
-
-    pair point1 = (0, height_of_right_max);
-    pair point2 = intersectionpoint(counter, (shape_param1,100)---(shape_param1,-100));
-    counter = reshape_subpath(counter, point1, point2, nullpath .. tension tension1 and tension2 .. nullpath);
-    counter = reshape_arc(counter, point2, shape_param2, shape_param3, nullpath..tension tension3 and tension4..nullpath);
-
-    counter = reshape_arc(counter, (0,stem_height), shape_param4, nullpath..tension tension5 ..nullpath);
-
-    counter = shift(0,stem_position) * counter;
+    counter = chop(counter, (0, params.stem_height), params.top_angle);
+    counter = chop(counter, (0,0), 180 + params.bottom_angle);
+    counter = reshape_around_point(counter, (0, params.stem_height), params.top_corner);
+    counter = reshape_around_point(counter, (0,0), params.bottom_corner);
     return counter;
 }
 
-path right_stem_counter(real stem_position,
-                        real stem_height,
-                        real height_of_left_min,
-                        real stem_indentation,
-                        real top_angle,
-                        real bottom_angle,
-                        real shape_param1,
-                        real shape_param2,
-                        real shape_param3,
-                        real shape_param4,
-                        real shape_param5,
-                        real tension1,
-                        real tension2,
-                        real tension3,
-                        real tension4,
-                        real tension5,
-                        real tension6)
+path right_stem_counter(stem_counter_params params)
 // Counterpunch for the right side of roman 'l', 'i', etc.
 {
     real bignum = 2000;
 
     path counter = (0,-bignum)---(0,bignum)---(bignum,bignum)---(bignum,-bignum)---cycle;
-    counter = chop(counter, (stem_indentation,stem_height), top_angle);
-    counter = chop(counter, (0,0), 180 + bottom_angle);
-
-    pair point1 = point_at_distance_along_arc(counter, (0,0), -shape_param1);
-    counter = reshape_arc(counter, (0,0), shape_param1, height_of_left_min, nullpath..tension tension1 and tension2..nullpath);
-    pair point2 = intersectionpoint(counter, (shape_param2,-50)---(shape_param2,50));
-    pair point3 = intersectionpoint(counter, (-50,shape_param3)---(50,shape_param3));
-    counter = reshape_subpath(counter, point2, point3, nullpath..tension tension3 and tension4..nullpath);
-
-    pair point4 = intersectionpoint(counter, (-50,stem_height + shape_param4)--(50,stem_height + shape_param4));
-    counter = reshape_subpath(counter, (0, height_of_left_min), point4, nullpath..tension tension5 and tension6..nullpath);
-    counter = reshape_arc(counter, point4, shape_param5);
-
-    counter = shift(-stem_indentation,stem_position) * counter;
+    counter = chop(counter, (0, params.stem_height), params.top_angle);
+    counter = chop(counter, (0,0), 180 + params.bottom_angle);
+    counter = reshape_around_point(counter, (0, params.stem_height), params.top_corner);
+    counter = reshape_around_point(counter, (0,0), params.bottom_corner);
     return counter;
 }
 

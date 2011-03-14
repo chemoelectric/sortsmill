@@ -20,14 +20,11 @@
 
 import common;
 
-real l_stem_left_pos;
-real l_stem_right_pos;
+pair l_left_stem_position;
+stem_counter_params l_left_stem_params;
 
-left_stem_counter l_left_stem_counter;
-right_stem_counter l_right_stem_counter;
+pair l_right_stem_position;
+stem_counter_params l_right_stem_params;
+
 bottom_serif l_bottom_serif;
 ascender_serif l_ascender_serif;
-
-real l_top_serif_angle1;
-
-

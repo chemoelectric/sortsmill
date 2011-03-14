@@ -29,28 +29,13 @@ import rmparam;
 // Create a rectangular blank.
 real bignum = 1000;
 real blank_width = 200 + stem_width;
-path outline = shift(stem_width/2,0) *
+path outline =
+    shift(stem_width/2,0) *
     ((-blank_width/2,-bignum)---(-blank_width/2,bignum)---(blank_width/2,bignum)---(blank_width/2,-bignum)---cycle);
 
 // Form the stem by "punching" a counter on either side.
-path left_counter = left_stem_counter(l_stem_left_pos,
-                                      l_left_stem_counter.stem_height,
-                                      0.9 * l_left_stem_counter.stem_height,
-                                      l_left_stem_counter.top_angle,
-                                      l_left_stem_counter.bottom_angle,
-                                      -12, 30, 20, 30,
-                                      l_left_stem_counter.tension1,
-                                      l_left_stem_counter.tension2,
-                                      0.9, 0.9, 1);
-path right_counter = right_stem_counter(l_stem_right_pos,
-                                        l_right_stem_counter.stem_height,
-                                        0.2 * l_right_stem_counter.stem_height,
-                                        3,
-                                        l_right_stem_counter.top_angle,
-                                        l_right_stem_counter.bottom_angle,
-                                        15, 40, 46, 15, 30, 3, 1, 0.9, 0.8, 1, 8);
-outline = chop(outline, left_counter);
-outline = chop(outline, shift(stem_width,0) * right_counter);
+outline = chop(outline, shift(l_left_stem_position) * left_stem_counter(l_left_stem_params));
+outline = chop(outline, shift(l_right_stem_position) * right_stem_counter(l_right_stem_params));
 
 //-------------------------------------------
 //
@@ -72,18 +57,10 @@ outline = reshape_subpath(outline, points2[1], points1[0],
                           nullpath);
 
 // Round the sharp corners of the bottom serif.
-  pair point3 = point_at_distance_along_arc(outline, points1[1], corner_rounding_distance);
-outline = reshape_arc(outline, points1[0], corner_rounding_distance, nullpath..tension corner_rounding_tension..nullpath);
-outline = reshape_arc(outline, points1[1], corner_rounding_distance, nullpath..tension corner_rounding_tension..nullpath);
-outline = reshape_arc(outline, points2[0], corner_rounding_distance, nullpath..tension corner_rounding_tension..nullpath);
-outline = reshape_arc(outline, points2[1], corner_rounding_distance, nullpath..tension corner_rounding_tension..nullpath);
-
-/*????????????????????????????????????????????????????????????????????????????????????????????????????????
-// Smooth a rough spot on the left top of the lower serif.
-// FIXME: Write a routine to go over an outline and recognize and fix these spots.
-real t3 = round(intersect(outline, point3, point_fuzz)[0]);
-outline = reshape_subpath(outline, t3, t3 + 1, nullpath---nullpath);
-????????????????????????????????????????????????????????????????????????????????????????????????????????*/
+outline = smooth_a_corner(outline, points1[0]);
+outline = smooth_a_corner(outline, points1[1]);
+outline = smooth_a_corner(outline, points2[0]);
+outline = smooth_a_corner(outline, points2[1]);
 
 //-------------------------------------------
 //
@@ -91,7 +68,7 @@ outline = reshape_subpath(outline, t3, t3 + 1, nullpath---nullpath);
 
 // Cut the upper left.
 pair top_serif_offset1 = (-41.5, 54);
-pair point4 = (0, l_stem_left_pos + l_left_stem_counter.stem_height) + top_serif_offset1;
+pair point4 = (0, l_left_stem_position.y + l_left_stem_params.stem_height) + top_serif_offset1;
 outline = chop(outline, point4, l_ascender_serif.angle);
 
 // Cut the far left.
@@ -107,19 +84,14 @@ outline = reshape_arc(outline, t4 + 1, 55, 60,
                       nullpath..tension 1.2..top_point{right}..right_point{down}..tension 2.0..nullpath);
 
 // Round the sharp corners of the top serif.
-pair point5a = point_at_distance_along_arc(outline, point5, -corner_rounding_distance);
-outline = reshape_arc(outline, point4, corner_rounding_distance, nullpath..tension corner_rounding_tension..nullpath);
-outline = reshape_arc(outline, point5, corner_rounding_distance, nullpath..tension corner_rounding_tension..nullpath);
-
-/*????????????????????????????????????????????????????????????????????????????????????????????????????????
-// Smooth a rough spot on the left bottom of the top serif.
-// FIXME: Write a routine to go over an outline and recognize and fix these spots.
-real t5a = round(intersect(outline, point5a, point_fuzz)[0]);
-outline = reshape_subpath(outline, t5a - 1, t5a, nullpath---nullpath);
-????????????????????????????????????????????????????????????????????????????????????????????????????????*/
+outline = smooth_a_corner(outline, point4);
+outline = smooth_a_corner(outline, point5);
 
 //-------------------------------------------
 
+outline = smooth_close_points(outline);
+
+pair top_point = point(outline, maxtimes(outline)[1]);
 pair bot_point = point(outline, mintimes(outline)[1]);
 
 glyph_data glyph;

@@ -35,24 +35,36 @@ design_size = 14;
 
 //-------------------------------------------------------------------------
 
-boldness = 2;
+boldness = 2;                   // FIXME: is this of any use?
 
 stem_width = 90;
 ascender_height = 644;
-l_stem_left_pos = 40;
-l_stem_right_pos = 40;
 
-l_left_stem_counter = new left_stem_counter;
-l_left_stem_counter.stem_height = 477;
-l_left_stem_counter.top_angle = -40;
-l_left_stem_counter.bottom_angle = 11;
-l_left_stem_counter.tension1 = 5 * boldness;
-l_left_stem_counter.tension2 = 20 * boldness;
+l_left_stem_position = (0,40);
 
-l_right_stem_counter = new right_stem_counter;
-l_right_stem_counter.stem_height = 512;
-l_right_stem_counter.top_angle = 77;
-l_right_stem_counter.bottom_angle = 1.4;
+l_left_stem_params = new stem_counter_params;
+l_left_stem_params.stem_height = 477;
+l_left_stem_params.top_angle = -40;
+l_left_stem_params.bottom_angle = 11;
+l_left_stem_params.top_corner.distance_before = 10;
+l_left_stem_params.top_corner.distance_after = 10;
+l_left_stem_params.top_corner.shape = nullpath..nullpath;
+l_left_stem_params.bottom_corner.distance_before = 10;
+l_left_stem_params.bottom_corner.distance_after = 10;
+l_left_stem_params.bottom_corner.shape = nullpath..nullpath;
+
+l_right_stem_position = (stem_width - 3,40);
+
+l_right_stem_params = new stem_counter_params;
+l_right_stem_params.stem_height = 512;
+l_right_stem_params.top_angle = 77;
+l_right_stem_params.bottom_angle = 1.4;
+l_right_stem_params.top_corner.distance_before = 0.85 * l_right_stem_params.stem_height;
+l_right_stem_params.top_corner.distance_after = 40;
+l_right_stem_params.top_corner.shape = nullpath..tension 1 and 1 ..nullpath;
+l_right_stem_params.bottom_corner.distance_before = 40;
+l_right_stem_params.bottom_corner.distance_after = 0.1 * l_right_stem_params.stem_height;
+l_right_stem_params.bottom_corner.shape = nullpath..tension 0.75 and 1.1..nullpath;
 
 l_bottom_serif = new bottom_serif;
 l_bottom_serif.lower_left = (-53,-7);
