@@ -25,7 +25,7 @@
 
 import geometry;
 
-real point_fuzz = 0.001;
+real point_fuzz = 0.001; // FIXME: Write intersect functions that use |point_fuzz| by default.
 bool round_points = false;
 bool simplify_slightly = false;
 
@@ -185,27 +185,10 @@ path reshape_subpath(path p, real start_time, real end_time, guide new_part = nu
     return reshape_subpath(p, start_time, end_time, new_subpath_guide);
 }
 
-path reshape_subpath(path p, real[] intersection_times, guide new_part = nullpath .. nullpath)
-{
-    return reshape_subpath(p, intersection_times[0], intersection_times[1], new_part);
-}
-
-path reshape_subpath(path p, real[][] intersection_times, guide new_part = nullpath .. nullpath)
-{
-    return reshape_subpath(p, intersection_times[0][1], intersection_times[1][1], new_part);
-}
-
 path reshape_subpath(path p, pair point1, pair point2, guide new_part = nullpath .. nullpath)
 {
     real t1 = intersect(p, point1, point_fuzz)[0];
     real t2 = intersect(p, point2, point_fuzz)[0];
-    return reshape_subpath(p, t1, t2, new_part);
-}
-
-path reshape_subpath(path p, pair[] points, guide new_part = nullpath .. nullpath)
-{
-    real t1 = intersect(p, points[0], point_fuzz)[0];
-    real t2 = intersect(p, points[1], point_fuzz)[0];
     return reshape_subpath(p, t1, t2, new_part);
 }
 
@@ -263,23 +246,6 @@ path reshape_arc(path p, real time, real distance, guide new_part = nullpath .. 
     return reshape_arc(p, time, distance, distance, new_part);
 }
 
-path reshape_arc(path p, real[] times, real distance_before, real distance_after, guide new_part = nullpath .. nullpath)
-// Calls |reshape_subpath| for a subpath extending given arclength
-// from two points on |p|. Can be used like a metal file; good for
-// rounding or beveling ends of serifs, for instance.
-{
-    real t1 = time_at_distance_along_arc(p, times[0], -distance_before);
-    real t2 = time_at_distance_along_arc(p, times[1], distance_after);
-    return reshape_subpath(p, t1, t2, new_part);
-}
-
-path reshape_arc(path p, real[] times, real distance, guide new_part = nullpath .. nullpath)
-// A version of |reshape_arc| that uses the same arclength on either
-// side of the two points.
-{
-    return reshape_arc(p, times, distance, distance, new_part);
-}
-
 path reshape_arc(path p, pair point, real distance_before, real distance_after, guide new_part = nullpath .. nullpath)
 // Calls |reshape_subpath| for a subpath extending given arclength
 // from a point on |p|. Can be used like a metal file; good for
@@ -296,23 +262,6 @@ path reshape_arc(path p, pair point, real distance, guide new_part = nullpath ..
 // side of the point.
 {
     return reshape_arc(p, point, distance, distance, new_part);
-}
-
-path reshape_arc(path p, pair[] points, real distance_before, real distance_after, guide new_part = nullpath .. nullpath)
-// Calls |reshape_subpath| for a subpath extending given arclength
-// from two points on |p|. Can be used like a metal file; good for
-// rounding or beveling ends of serifs, for instance.
-{
-    real t1 = time_at_distance_along_arc(p, intersect(p, points[0], point_fuzz)[0], -distance_before);
-    real t2 = time_at_distance_along_arc(p, intersect(p, points[1], point_fuzz)[0], distance_after);
-    return reshape_subpath(p, t1, t2, new_part);
-}
-
-path reshape_arc(path p, pair[] points, real distance, guide new_part = nullpath .. nullpath)
-// A version of |reshape_arc| that uses the same arclength on either
-// side of the two points.
-{
-    return reshape_arc(p, points, distance, distance, new_part);
 }
 
 //-------------------------------------------------------------------------
