@@ -63,13 +63,18 @@ outline = smooth_a_corner(outline, points2[0]);
 outline = smooth_a_corner(outline, points2[1]);
 
 //-------------------------------------------
+
+outline = form_ascender_serif(outline, l_ascender_serif_params);
+
+/*
+//-------------------------------------------
 //
 // Form the upper serif.
 
 // Cut the upper left.
 pair top_serif_offset1 = (-41.5, 54);
 pair point4 = (0, l_left_stem_position.y + l_left_stem_params.stem_height) + top_serif_offset1;
-outline = chop(outline, point4, l_ascender_serif.angle);
+outline = chop(outline, point4, l_ascender_serif_params.angle);
 
 // Cut the far left.
 pair point5 = intersectionpoint(outline, (point4 - (0,1))---(point4 - (0,100)));
@@ -86,6 +91,7 @@ outline = reshape_arc(outline, t4 + 1, 55, 60,
 // Round the sharp corners of the top serif.
 outline = smooth_a_corner(outline, point4);
 outline = smooth_a_corner(outline, point5);
+*/
 
 //-------------------------------------------
 

@@ -50,8 +50,8 @@ l_left_stem_params.top_corner.distance_before = 30;
 l_left_stem_params.top_corner.distance_after = 0.09 * l_left_stem_params.stem_height;
 l_left_stem_params.top_corner.shape = nullpath..nullpath;
 l_left_stem_params.bottom_corner.distance_before = 0.90 * l_left_stem_params.stem_height;
-l_left_stem_params.bottom_corner.distance_after = 20;
-l_left_stem_params.bottom_corner.shape = nullpath..controls (0,100) and (0,0)..nullpath;
+l_left_stem_params.bottom_corner.distance_after = 25;
+l_left_stem_params.bottom_corner.shape = nullpath..controls (0,50) and (-2,0)..nullpath;
 
 l_right_stem_position = (stem_width - 3,36);
 
@@ -73,8 +73,18 @@ l_bottom_serif = new bottom_serif;
 l_bottom_serif.lower_left = (-49,-5);
 l_bottom_serif.lower_right = (134,3);
 
-l_ascender_serif = new ascender_serif;
-l_ascender_serif.angle = 27;
+l_ascender_serif_params = new ascender_serif_params;
+l_ascender_serif_params.angle = 27;
+l_ascender_serif_params.right_corner.distance_before = 55;
+l_ascender_serif_params.right_corner.distance_after = 60;
+pair top_point = (stem_width - 1, ascender_height);
+pair right_point = top_point + (15,-15);
+l_ascender_serif_params.right_corner.shape =
+    nullpath..tension 1.1..
+    top_point{right}..tension 1.2..
+    right_point{down}..tension 1.2..
+    nullpath;
+l_ascender_serif_params.left_stem_top = l_left_stem_position + (0, l_left_stem_params.stem_height);
 
 import rmlower;
 

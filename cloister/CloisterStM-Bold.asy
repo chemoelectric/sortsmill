@@ -70,8 +70,18 @@ l_bottom_serif = new bottom_serif;
 l_bottom_serif.lower_left = (-53,-7);
 l_bottom_serif.lower_right = (149,3);
 
-l_ascender_serif = new ascender_serif;
-l_ascender_serif.angle = 30;
+l_ascender_serif_params = new ascender_serif_params;
+l_ascender_serif_params.angle = 30;
+l_ascender_serif_params.right_corner.distance_before = 55;
+l_ascender_serif_params.right_corner.distance_after = 60;
+pair top_point = (stem_width - 1, ascender_height);
+pair right_point = top_point + (15,-15);
+l_ascender_serif_params.right_corner.shape =
+    nullpath..tension 1.2..
+    top_point{right}..tension 2.0..
+    right_point{down}..tension 2.0..
+    nullpath;
+l_ascender_serif_params.left_stem_top = l_left_stem_position + (0, l_left_stem_params.stem_height);
 
 import rmlower;
 

@@ -46,8 +46,10 @@ struct bottom_serif {
     pair lower_right;
 };
 
-struct ascender_serif {
+struct ascender_serif_params {
     real angle;
+    reshape_params right_corner;
+    pair left_stem_top;//////////////////////////???????????????????????????????????????????????????????????????
 };
 
 //-------------------------------------------------------------------------
@@ -163,6 +165,11 @@ path reshape_around_point(path p, pair point, reshape_params params)
     return reshape_arc(p, point, params.distance_before, params.distance_after, params.shape);
 }
 
+path reshape_around_point(path p, real time, reshape_params params)
+{
+    return reshape_arc(p, time, params.distance_before, params.distance_after, params.shape);
+}
+
 path smooth_a_corner(path p, pair point,
                      real rounding_distance = corner_rounding_distance,
                      guide new_subpath_guide = nullpath..tension corner_rounding_tension..nullpath)
@@ -172,11 +179,14 @@ path smooth_a_corner(path p, pair point,
 
 //-------------------------------------------------------------------------
 
+real default_smoothing_max_distance = 25;
+real default_smoothing_max_angle = 1;
+
 path smooth_close_points(path p,
                          int start_time,
                          int end_time,
-                         real max_distance = 15,
-                         real max_angle = 1)
+                         real max_distance = default_smoothing_max_distance,
+                         real max_angle = default_smoothing_max_angle)
 {
     guide g;
     for (int i = start_time; i < end_time; i += 1) {
@@ -198,8 +208,8 @@ path smooth_close_points(path p,
 }
 
 path smooth_close_points(path outline,
-                         real max_distance = 15,
-                         real max_angle = 1)
+                         real max_distance = default_smoothing_max_distance,
+                         real max_angle = default_smoothing_max_angle)
 {
     return smooth_close_points(outline, 0, size(outline), max_distance, max_angle);
 }
@@ -230,6 +240,30 @@ path right_stem_counter(stem_counter_params params)
     counter = reshape_around_point(counter, (0, params.stem_height), params.top_corner);
     counter = reshape_around_point(counter, (0,0), params.bottom_corner);
     return counter;
+}
+
+//-------------------------------------------------------------------------
+
+path form_ascender_serif(path outline, ascender_serif_params params)
+{
+    // Cut the upper left.
+    pair top_serif_offset1 = (-41.5, 54);
+    pair point4 = params.left_stem_top + top_serif_offset1;
+    outline = chop(outline, point4, params.angle);
+
+    // Cut the far left.
+    pair point5 = intersectionpoint(outline, (point4 - (0,1))---(point4 - (0,100)));
+    outline = reshape_subpath(outline, point5, point4, nullpath---nullpath);
+
+    // Shape the upper right of the top serif.
+    real t4 = round(intersect(outline, point4, point_fuzz)[0]);
+    outline = reshape_around_point(outline, t4 + 1, params.right_corner);
+
+    // Round off the sharp corners.
+    outline = smooth_a_corner(outline, point4);
+    outline = smooth_a_corner(outline, point5);
+
+    return outline;
 }
 
 //-------------------------------------------------------------------------
