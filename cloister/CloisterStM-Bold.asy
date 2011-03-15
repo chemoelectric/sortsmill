@@ -81,7 +81,6 @@ l_ascender_serif_params.right_corner.shape =
     top_point{right}..tension 2.0..
     right_point{down}..tension 2.0..
     nullpath;
-l_ascender_serif_params.left_stem_top = l_left_stem_position + (0, l_left_stem_params.stem_height);
 
 import rmlower;
 

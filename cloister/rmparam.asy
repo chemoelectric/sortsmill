@@ -26,5 +26,5 @@ stem_counter_params l_left_stem_params;
 pair l_right_stem_position;
 stem_counter_params l_right_stem_params;
 
-bottom_serif l_bottom_serif;
+bottom_serif_params l_bottom_serif_params;
 ascender_serif_params l_ascender_serif_params;

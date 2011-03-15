@@ -37,64 +37,8 @@ path outline =
 outline = chop(outline, shift(l_left_stem_position) * left_stem_counter(l_left_stem_params));
 outline = chop(outline, shift(l_right_stem_position) * right_stem_counter(l_right_stem_params));
 
-//-------------------------------------------
-//
-// Form the bottom serif.
-
-outline = chop(outline, l_bottom_serif.lower_right, l_bottom_serif.lower_left);
-
-path cut_line = ((l_bottom_serif.lower_left.x,100) + dir(-90)*1000)---(l_bottom_serif.lower_left.x,100);
-pair[] points1 = intersectionpoints(cut_line, outline);
-outline = reshape_subpath(outline, cut_line, nullpath---nullpath);
-path cut_line = (l_bottom_serif.lower_right.x,100)---((l_bottom_serif.lower_right.x,100) + dir(-90)*1000);
-pair[] points2 = intersectionpoints(cut_line, outline);
-outline = reshape_subpath(outline, cut_line, nullpath---nullpath);
-
-outline = reshape_subpath(outline, points2[1], points1[0],
-                          nullpath{left} ..
-                          controls points2[1] + 0.7*(points2[1].x - points1[0].x)*dir(181)
-                          and points1[0] + 0.4 * (points2[1] - points1[0]) ..
-                          nullpath);
-
-// Round the sharp corners of the bottom serif.
-outline = smooth_a_corner(outline, points1[0]);
-outline = smooth_a_corner(outline, points1[1]);
-outline = smooth_a_corner(outline, points2[0]);
-outline = smooth_a_corner(outline, points2[1]);
-
-//-------------------------------------------
-
 outline = form_ascender_serif(outline, l_ascender_serif_params);
-
-/*
-//-------------------------------------------
-//
-// Form the upper serif.
-
-// Cut the upper left.
-pair top_serif_offset1 = (-41.5, 54);
-pair point4 = (0, l_left_stem_position.y + l_left_stem_params.stem_height) + top_serif_offset1;
-outline = chop(outline, point4, l_ascender_serif_params.angle);
-
-// Cut the far left.
-pair point5 = intersectionpoint(outline, (point4 - (0,1))---(point4 - (0,100)));
-outline = reshape_subpath(outline, point5, point4, nullpath---nullpath);
-
-// Shape the upper right of the top serif.
-real t4 = round(intersect(outline, point4, point_fuzz)[0]);
-pair point4a = point_at_distance_along_arc(outline, t4 + 1, -50);
-pair top_point = (point4a.x + 21, ascender_height);
-pair right_point = top_point + (14.5, -14);
-outline = reshape_arc(outline, t4 + 1, 55, 60,
-                      nullpath..tension 1.2..top_point{right}..right_point{down}..tension 2.0..nullpath);
-
-// Round the sharp corners of the top serif.
-outline = smooth_a_corner(outline, point4);
-outline = smooth_a_corner(outline, point5);
-*/
-
-//-------------------------------------------
-
+outline = form_bottom_serif(outline, l_bottom_serif_params);
 outline = smooth_close_points(outline);
 
 pair top_point = point(outline, maxtimes(outline)[1]);
@@ -102,7 +46,7 @@ pair bot_point = point(outline, mintimes(outline)[1]);
 
 glyph_data glyph;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-glyph.lsb = l_bottom_serif.lower_left.x;
+glyph.lsb = l_bottom_serif_params.lower_left.x;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 glyph.name = 'l';
 add_vert_hint(glyph, 0, stem_width);

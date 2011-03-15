@@ -28,9 +28,11 @@ real corner_rounding_distance = 10;
 real corner_rounding_tension = 0.75;
 
 struct reshape_params {
-    real distance_before;
-    real distance_after;
-    guide shape;
+    real distance_before = -infinity;
+    real distance_after = -infinity;
+    pair point_before = (-infinity, -infinity);
+    pair point_after = (-infinity, -infinity);
+    guide shape = nullpath..nullpath;
 };
 
 struct stem_counter_params {
@@ -41,15 +43,20 @@ struct stem_counter_params {
     reshape_params bottom_corner;
 };
 
-struct bottom_serif {
+struct bottom_serif_params {
+    real upper_left_x;
+    real upper_right_x;
     pair lower_left;
     pair lower_right;
+    pair lower_left_control;
+    pair lower_right_control;
 };
 
 struct ascender_serif_params {
-    real angle;
+    pair point_on_slope;
+    real slope_angle;
+    reshape_params left_corner;
     reshape_params right_corner;
-    pair left_stem_top;//////////////////////////???????????????????????????????????????????????????????????????
 };
 
 //-------------------------------------------------------------------------
@@ -162,12 +169,32 @@ void generate(string otf_file)
 
 path reshape_around_point(path p, pair point, reshape_params params)
 {
-    return reshape_arc(p, point, params.distance_before, params.distance_after, params.shape);
+    path q;
+    if (params.distance_before <= -infinity)
+        if (params.distance_after <= -infinity)
+            q = reshape_subpath(p, params.point_before, params.point_after, params.shape);
+        else
+            q = reshape_arc(p, point, params.point_before, params.distance_after, params.shape);
+    else if (params.distance_after <= -infinity)
+        q = reshape_arc(p, point, params.distance_before, params.point_after, params.shape);
+    else
+        q = reshape_arc(p, point, params.distance_before, params.distance_after, params.shape);
+    return q;
 }
 
 path reshape_around_point(path p, real time, reshape_params params)
 {
-    return reshape_arc(p, time, params.distance_before, params.distance_after, params.shape);
+    path q;
+    if (params.distance_before <= -infinity)
+        if (params.distance_after <= -infinity)
+            q = reshape_subpath(p, params.point_before, params.point_after, params.shape);
+        else
+            q = reshape_arc(p, time, params.point_before, params.distance_after, params.shape);
+    else if (params.distance_after <= -infinity)
+        q = reshape_arc(p, time, params.distance_before, params.point_after, params.shape);
+    else
+        q = reshape_arc(p, time, params.distance_before, params.distance_after, params.shape);
+    return q;
 }
 
 path smooth_a_corner(path p, pair point,
@@ -246,22 +273,49 @@ path right_stem_counter(stem_counter_params params)
 
 path form_ascender_serif(path outline, ascender_serif_params params)
 {
-    // Cut the upper left.
-    pair top_serif_offset1 = (-41.5, 54);
-    pair point4 = params.left_stem_top + top_serif_offset1;
-    outline = chop(outline, point4, params.angle);
+    // Cut the sloped top.
+    outline = chop(outline, params.point_on_slope, params.slope_angle);
 
-    // Cut the far left.
-    pair point5 = intersectionpoint(outline, (point4 - (0,1))---(point4 - (0,100)));
-    outline = reshape_subpath(outline, point5, point4, nullpath---nullpath);
+    // Shape the upper right corner.
+    real t_left_corner = floor(intersect(outline, params.point_on_slope, point_fuzz)[0]);
+    outline = reshape_around_point(outline, t_left_corner + 1, params.right_corner);
 
-    // Shape the upper right of the top serif.
-    real t4 = round(intersect(outline, point4, point_fuzz)[0]);
-    outline = reshape_around_point(outline, t4 + 1, params.right_corner);
+    // Shape the left corner.
+    t_left_corner = floor(intersect(outline, params.point_on_slope, point_fuzz)[0]);
+    outline = reshape_around_point(outline, t_left_corner, params.left_corner);
 
-    // Round off the sharp corners.
-    outline = smooth_a_corner(outline, point4);
-    outline = smooth_a_corner(outline, point5);
+    return outline;
+}
+
+//-------------------------------------------------------------------------
+
+path form_bottom_serif(path outline, bottom_serif_params params)
+{
+    // Cut the sloped unshaped bottom.
+    outline = chop(outline, params.lower_right, params.lower_left);
+
+    // Cut the left end of the serif.
+    path cut_line = (params.lower_left.x,-100)---(params.upper_left_x,100);
+    outline = reshape_subpath(outline, cut_line, nullpath---nullpath);
+
+    // Cut the right end of the serif.
+    cut_line = (params.upper_right_x,100)---(params.lower_right.x,-100);
+    outline = reshape_subpath(outline, cut_line, nullpath---nullpath);
+
+    // Round off the upper sharp corners
+    outline = smooth_a_corner(outline, point_after(outline, params.lower_left));
+    outline = smooth_a_corner(outline, point_before(outline, params.lower_right));
+
+    // Make the bottom of the serif convex.
+    outline = reshape_subpath(outline, params.lower_right, params.lower_left,
+                              nullpath..
+                              controls params.lower_right + 0.7*(params.lower_right.x - params.lower_left.x)*dir(181)
+                              and params.lower_left + 0.4 * (params.lower_right - params.lower_left)..
+                              nullpath);
+
+    // Round off the bottom sharp corners.
+    outline = smooth_a_corner(outline, params.lower_left);
+    outline = smooth_a_corner(outline, params.lower_right);
 
     return outline;
 }

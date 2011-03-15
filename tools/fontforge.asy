@@ -246,6 +246,26 @@ path reshape_arc(path p, real time, real distance, guide new_part = nullpath .. 
     return reshape_arc(p, time, distance, distance, new_part);
 }
 
+path reshape_arc(path p, real time, pair point_before, real distance_after, guide new_part = nullpath .. nullpath)
+// Calls |reshape_subpath| for a subpath extending given arclength
+// from a point on |p|. Can be used like a metal file; good for
+// rounding or beveling corners, for instance.
+{
+    real t1 = intersect(p, point_before, point_fuzz)[0];
+    real t2 = time_at_distance_along_arc(p, time, distance_after);
+    return reshape_subpath(p, t1, t2, new_part);
+}
+
+path reshape_arc(path p, real time, real distance_before, pair point_after, guide new_part = nullpath .. nullpath)
+// Calls |reshape_subpath| for a subpath extending given arclength
+// from a point on |p|. Can be used like a metal file; good for
+// rounding or beveling corners, for instance.
+{
+    real t1 = time_at_distance_along_arc(p, time, -distance_before);
+    real t2 = intersect(p, point_after, point_fuzz)[0];
+    return reshape_subpath(p, t1, t2, new_part);
+}
+
 path reshape_arc(path p, pair point, real distance_before, real distance_after, guide new_part = nullpath .. nullpath)
 // Calls |reshape_subpath| for a subpath extending given arclength
 // from a point on |p|. Can be used like a metal file; good for
@@ -262,6 +282,28 @@ path reshape_arc(path p, pair point, real distance, guide new_part = nullpath ..
 // side of the point.
 {
     return reshape_arc(p, point, distance, distance, new_part);
+}
+
+path reshape_arc(path p, pair point, pair point_before, real distance_after, guide new_part = nullpath .. nullpath)
+// Calls |reshape_subpath| for a subpath extending given arclength
+// from a point on |p|. Can be used like a metal file; good for
+// rounding or beveling corners, for instance.
+{
+    real t = intersect(p, point, point_fuzz)[0];
+    real t1 = intersect(p, point_before, point_fuzz)[0];
+    real t2 = time_at_distance_along_arc(p, t, distance_after);
+    return reshape_subpath(p, t1, t2, new_part);
+}
+
+path reshape_arc(path p, pair point, real distance_before, pair point_after, guide new_part = nullpath .. nullpath)
+// Calls |reshape_subpath| for a subpath extending given arclength
+// from a point on |p|. Can be used like a metal file; good for
+// rounding or beveling corners, for instance.
+{
+    real t = intersect(p, point, point_fuzz)[0];
+    real t1 = time_at_distance_along_arc(p, t, -distance_before);
+    real t2 = intersect(p, point_after, point_fuzz)[0];
+    return reshape_subpath(p, t1, t2, new_part);
 }
 
 //-------------------------------------------------------------------------
