@@ -310,8 +310,7 @@ path form_bottom_serif(path outline, bottom_serif_params params)
     // Make the bottom of the serif convex.
     outline = reshape_subpath(outline, params.lower_right, params.lower_left,
                               nullpath..
-                              controls params.lower_right + 0.7*(params.lower_right.x - params.lower_left.x)*dir(181)
-                              and params.lower_left + 0.4 * (params.lower_right - params.lower_left)..
+                              controls params.lower_right_control and params.lower_left_control..
                               nullpath);
 
     // Round off the bottom sharp corners.

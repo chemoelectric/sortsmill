@@ -68,8 +68,10 @@ l_bottom_serif_params.upper_left_x = -49 - (4/300)*(boldness - 400);
 l_bottom_serif_params.upper_right_x = 134 + (15/300)*(boldness - 400);
 l_bottom_serif_params.lower_left = (l_bottom_serif_params.upper_left_x,-5);
 l_bottom_serif_params.lower_right = (l_bottom_serif_params.upper_right_x,3);
-l_bottom_serif_params.lower_left_control = l_bottom_serif_params.lower_left + (60,3);
-l_bottom_serif_params.lower_right_control = l_bottom_serif_params.lower_right - (111,2);
+l_bottom_serif_params.lower_left_control =
+    l_bottom_serif_params.lower_left + (60,3) + ((-24,-2)/300)*(boldness - 400);
+l_bottom_serif_params.lower_right_control =
+    l_bottom_serif_params.lower_right - (111,2) - ((36,-1)/300)*(boldness - 400);
 
 pair l_left_stem_top = l_left_stem_position + (0,l_left_stem_params.stem_height);
 
