@@ -27,14 +27,14 @@ import rmparam;
 // Lowercase 'l'.
 
 real l_ascender_height = 644;
-real l_stem_width = 65 + (22/300)*(boldness - 400);
+real l_stem_width = transform(65, 22);
 
-l_left_stem_position = (0, 39 + (3/300)*(boldness - 400));
+l_left_stem_position = (0, transform(39, 3));
 
-real l_left_stem_rightmost = 0.90 + (0.02/300)*(boldness - 400);
+real l_left_stem_rightmost = transform(0.90, 0.02);
 l_left_stem_params = new stem_counter_params;
-l_left_stem_params.stem_height = 500 - (21/300)*(boldness - 400);
-l_left_stem_params.top_angle = -32 - (5/300)*(boldness - 400);
+l_left_stem_params.stem_height = transform(500, -21);
+l_left_stem_params.top_angle = transform(-32, -5);
 l_left_stem_params.bottom_angle = 13;
 l_left_stem_params.top_corner.distance_before = 30;
 l_left_stem_params.top_corner.distance_after = (1 - l_left_stem_rightmost - 0.01) * l_left_stem_params.stem_height;
@@ -43,14 +43,14 @@ l_left_stem_params.bottom_corner.distance_before = 0.90 * l_left_stem_params.ste
 l_left_stem_params.bottom_corner.distance_after = 35;
 l_left_stem_params.bottom_corner.shape =
     nullpath..tension 10.0..
-    (-2 - (2/300)*(boldness - 400),166)..controls (-3 - (3/300)*(boldness - 400),10) and (-3 - (3/300)*(boldness - 400),0)..
+    (transform(-2, -2),166)..controls (transform(-3, -3),10) and (transform(-3, -3),0)..
     nullpath;
 
-l_right_stem_position = (l_stem_width, 36 + (4/300)*(boldness - 400));
+l_right_stem_position = (l_stem_width, transform(36, 4));
 
-real l_right_stem_leftmost = 0.1 - (0.04/300)*(boldness - 400);
+real l_right_stem_leftmost = transform(0.1, -0.04);
 l_right_stem_params = new stem_counter_params;
-l_right_stem_params.stem_height = 515 - (9/300)*(boldness - 400);
+l_right_stem_params.stem_height = transform(515, -9);
 l_right_stem_params.top_angle = 77;
 l_right_stem_params.bottom_angle = 1.4;
 l_right_stem_params.top_corner.distance_before = (1 - l_right_stem_leftmost - 0.02) * l_right_stem_params.stem_height;
@@ -64,24 +64,23 @@ l_right_stem_params.bottom_corner.distance_after = l_right_stem_leftmost * l_rig
 l_right_stem_params.bottom_corner.shape = nullpath..tension 0.75 and 1.1..nullpath;
 
 l_bottom_serif_params = new bottom_serif_params;
-l_bottom_serif_params.upper_left_x = -49 - (4/300)*(boldness - 400);
-l_bottom_serif_params.upper_right_x = 134 + (15/300)*(boldness - 400);
+l_bottom_serif_params.upper_left_x = transform(-49, -4);
+l_bottom_serif_params.upper_right_x = transform(134, 15);
 l_bottom_serif_params.lower_left = (l_bottom_serif_params.upper_left_x,-5);
 l_bottom_serif_params.lower_right = (l_bottom_serif_params.upper_right_x,3);
-l_bottom_serif_params.lower_left_control =
-    l_bottom_serif_params.lower_left + (60,3) + ((-24,-2)/300)*(boldness - 400);
-l_bottom_serif_params.lower_right_control =
-    l_bottom_serif_params.lower_right - (111,2) - ((36,-1)/300)*(boldness - 400);
+l_bottom_serif_params.lower_left_control = l_bottom_serif_params.lower_left + transform((60,3), (-24,-2));
+l_bottom_serif_params.lower_right_control = l_bottom_serif_params.lower_right + transform(-(111,2), -(36,-1));
 
 pair l_left_stem_top = l_left_stem_position + (0,l_left_stem_params.stem_height);
 
 l_ascender_serif_params = new ascender_serif_params;
-pair point_on_slope_adjustment = (3/300,-2/300)*(boldness - 400);
-    l_ascender_serif_params.point_on_slope = l_left_stem_top + (-42, 54) + point_on_slope_adjustment;
+pair point_on_slope_boldness_adjustment = (3,-2);
+l_ascender_serif_params.point_on_slope = l_left_stem_top + transform((-42, 54), point_on_slope_boldness_adjustment);
 pair point_below_slope =
     intersectionpoint(l_left_stem_top---(l_left_stem_top - 200*dir(l_left_stem_params.top_angle)),
-                      (-42 + point_on_slope_adjustment.x,0)---(-42 + point_on_slope_adjustment.x,2000));
-l_ascender_serif_params.slope_angle = 27 + (3/300)*(boldness - 400);
+                      (transform(-42, point_on_slope_boldness_adjustment.x),0)---
+                      (transform(-42, point_on_slope_boldness_adjustment.x),2000));
+l_ascender_serif_params.slope_angle = transform(27, 3);
 l_ascender_serif_params.left_corner.point_before =
     point_below_slope + 10*dir(l_left_stem_params.top_angle);
 l_ascender_serif_params.left_corner.point_after =

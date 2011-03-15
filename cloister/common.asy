@@ -60,6 +60,16 @@ struct ascender_serif_params {
     reshape_params right_corner;
 };
 
+real transform(real value, real a)
+{
+    return value + (a/300)*(boldness - 400);
+}
+
+pair transform(explicit pair value, explicit pair a)
+{
+    return value + (a/300)*(boldness - 400);
+}
+
 //-------------------------------------------------------------------------
 
 string version = '0.1';
