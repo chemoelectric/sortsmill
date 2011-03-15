@@ -37,7 +37,7 @@ design_size = 14;
 
 boldness = 1;                   // FIXME: is this of any use?
 
-stem_width = 68;
+stem_width = 65;
 ascender_height = 644;
 
 l_left_stem_position = (0,39);
@@ -53,7 +53,7 @@ l_left_stem_params.bottom_corner.distance_before = 0.90 * l_left_stem_params.ste
 l_left_stem_params.bottom_corner.distance_after = 25;
 l_left_stem_params.bottom_corner.shape = nullpath..controls (0,50) and (-2,0)..nullpath;
 
-l_right_stem_position = (stem_width - 3,36);
+l_right_stem_position = (stem_width,36);
 
 l_right_stem_params = new stem_counter_params;
 l_right_stem_params.stem_height = 515;
@@ -98,7 +98,7 @@ l_ascender_serif_params.right_corner.point_before =
     intersectionpoint((l_right_stem_position - (24,0))---((l_right_stem_position - (24,0)) + 2000*dir(90)),
                       l_ascender_serif_params.point_on_slope---(l_ascender_serif_params.point_on_slope +
                                                                 1000*dir(l_ascender_serif_params.slope_angle)));
-pair top_point = (stem_width - 1, ascender_height);
+pair top_point = (stem_width + 2, ascender_height);
 pair right_point = top_point + (15,-15);
 pair l_right_stem_top = l_right_stem_position + (0,l_right_stem_params.stem_height);
 l_ascender_serif_params.right_corner.point_after =

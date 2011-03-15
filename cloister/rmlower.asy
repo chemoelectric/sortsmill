@@ -42,7 +42,7 @@ outline = form_bottom_serif(outline, l_bottom_serif_params);
 outline = smooth_close_points(outline);
 
 pair top_point = point(outline, maxtimes(outline)[1]);
-pair bot_point = point(outline, mintimes(outline)[1]);
+pair bottom_point = point(outline, mintimes(outline)[1]);
 
 glyph_data glyph;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -51,7 +51,7 @@ glyph.lsb = l_bottom_serif_params.lower_left.x;
 glyph.name = 'l';
 add_vert_hint(glyph, 0, stem_width);
 add_horiz_hint(glyph, top_point.y, -20);
-add_horiz_hint(glyph, bot_point.y + 21, -21);
+add_horiz_hint(glyph, bottom_point.y + 21, -21);
 glyph.contours[0] = outline;
 set_glyph(glyph);
 
