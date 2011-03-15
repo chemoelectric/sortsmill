@@ -65,7 +65,7 @@ l_right_stem_params.bottom_corner.shape = nullpath..tension 0.75 and 1.1..nullpa
 
 l_bottom_serif_params = new bottom_serif_params;
 l_bottom_serif_params.upper_left_x = transform(-49, -4);
-l_bottom_serif_params.upper_right_x = transform(134, 15);
+l_bottom_serif_params.upper_right_x = transform(133, 14);
 l_bottom_serif_params.lower_left = (l_bottom_serif_params.upper_left_x,-5);
 l_bottom_serif_params.lower_right = (l_bottom_serif_params.upper_right_x,3);
 l_bottom_serif_params.lower_left_control = l_bottom_serif_params.lower_left + transform((60,3), (-24,-2));
