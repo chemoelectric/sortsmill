@@ -18,23 +18,4 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import common;
-import fontforge;
-import rmparam;
-
-fontname = 'CloisterStM-Bold';
-familyname = 'Sorts Mill Cloister';
-fullname = 'Sorts Mill Cloister Bold';
-fontweight = 'Bold';
-sfnt_family = 'Sorts Mill Cloister';
-sfnt_style = 'Bold';
-design_size = 14;
-boldness = 700;
-
-import rm;
-
-//std_vw = stem_width;
-//add_to_stemsnap_v(stem_width);
-bluefuzz = 0;
-
-usersetting();
+import rmlower;

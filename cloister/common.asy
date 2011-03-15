@@ -20,10 +20,11 @@
     
 import fontforge;
 
+round_points = true;
+simplify_slightly = true;
+
 real boldness;
 
-real ascender_height;
-real stem_width;
 real corner_rounding_distance = 10;
 real corner_rounding_tension = 0.75;
 
