@@ -1,5 +1,5 @@
 /*
-  Intersection and overlap operations on collections of cyclic paths.
+  Intersection and overlap operations on lists of cyclic paths.
 
 
   Copyright (c) 2011 Barry Schwartz
@@ -25,6 +25,8 @@
   SOFTWARE.
 
 */
+
+from sortsmill_orientation access normalize_orientations;
 
 //-------------------------------------------------------------------------
 
@@ -287,15 +289,17 @@ Subpath[] join_subpaths(Subpath[] subpaths)
     int[] k = subpaths.keys;
     while (0 < k.length) {
         Subpath sp = subpaths[k[0]];
-        while (!sp.is_cyclic()) {
-            int i = 0;
-            while (!sp.is_appendable(subpaths[k[i]]))
-                ++i;
-            sp.append_if_possible(subpaths[k[i]]);
-            k.delete(i);
+        if (sp.is_cyclic()) {
+            k.delete(0);
+        } else {
+            while (!sp.is_cyclic()) {
+                int i = 0;
+                while (!sp.is_appendable(subpaths[k[i]]))
+                    ++i;
+                sp.append_if_possible(subpaths[k[i]]);
+                k.delete(i);
+            }
         }
-        if (0 < windingnumber(sp.path, inside(sp.path)))
-            sp.reverse();       // Make the path clockwise.
         paths.push(sp);
     }
     return paths;
@@ -310,6 +314,7 @@ path[] apply_punch(path[] punch, path[] target)
     path[] paths;
     for (Subpath sp : subpaths)
         paths.push(sp.path);
+    paths = normalize_orientations(paths);
 
     return paths;
 }
