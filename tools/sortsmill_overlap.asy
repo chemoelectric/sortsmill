@@ -26,6 +26,7 @@
 
 */
 
+import sortsmill_orientation;
 from sortsmill_orientation access normalize_orientations;
 
 //-------------------------------------------------------------------------
@@ -230,55 +231,15 @@ Subpath[] path2_subpaths(path[] paths, Intersection[] xsect)
     return subpaths;
 }
 
-bool in_path1_interior(pair point, Intersection[] xsect, pen fillrule = currentpen)
-{
-    int winding_no = 0;
-    for (Intersection xs : xsect) {
-        if (winding_no != undefined) {
-            int w = windingnumber(xs.path1, point);
-            if (w == undefined)
-                winding_no = undefined;
-            else
-                winding_no += w;
-        }
-    }
-    return (winding_no != undefined) ? interior(winding_no, fillrule) : false;
-}
-
-bool in_path2_interior(pair point, Intersection[] xsect, pen fillrule = currentpen)
-{
-    int winding_no = 0;
-    for (Intersection xs : xsect) {
-        if (winding_no != undefined) {
-            int w = windingnumber(xs.path2, point);
-            if (w == undefined)
-                winding_no = undefined;
-            else
-                winding_no += w;
-        }
-    }
-    return (winding_no != undefined) ? interior(winding_no, fillrule) : false;
-}
-
-bool non_end_point_in_path1_interior(path p, Intersection[] xsect, pen fillrule = currentpen)
-{
-    return in_path1_interior(midpoint(p), xsect, fillrule);
-}
-
-bool non_end_point_in_path2_interior(path p, Intersection[] xsect, pen fillrule = currentpen)
-{
-    return in_path2_interior(midpoint(p), xsect, fillrule);
-}
-
 Subpath[] apply_punch_and_output_Subpath_list(path[] punch, path[] target)
 {
     Subpath[] subpaths;
     Intersection[] xsect = find_intersections(punch, target);
     for (Subpath sp : path2_subpaths(target, xsect))
-        if (!non_end_point_in_path1_interior(sp.path, xsect))
+        if (!is_in_interior(midpoint(sp.path), punch))
             subpaths.push(sp);
      for (Subpath sp : path1_subpaths(punch, xsect))
-        if (non_end_point_in_path2_interior(sp.path, xsect))
+         if (is_in_interior(midpoint(sp.path), target))
             subpaths.push(sp);
    return subpaths;
 }
@@ -308,15 +269,21 @@ Subpath[] join_subpaths(Subpath[] subpaths)
 path[] apply_punch(path[] punch, path[] target)
 // Remove parts of the target that are overlapped by parts of the punch.
 {
-    Subpath[] subpaths = apply_punch_and_output_Subpath_list(punch, target);
-    subpaths = join_subpaths(subpaths);
-
     path[] paths;
+
+    Subpath[] subpaths = apply_punch_and_output_Subpath_list(punch, target);
+
+    //??????????????????????????????????????????????????????????????????????????????????????????????????
+    for (Subpath sp : subpaths) {
+        draw(sp.path);
+    }
+    //??????????????????????????????????????????????????????????????????????????????????????????????????
+
+    subpaths = join_subpaths(subpaths);
     for (Subpath sp : subpaths)
         paths.push(sp.path);
-    paths = normalize_orientations(paths);
 
-    return paths;
+    return normalize_orientations(paths);
 }
 
 //-------------------------------------------------------------------------

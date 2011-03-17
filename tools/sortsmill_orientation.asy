@@ -36,14 +36,23 @@ int orientation(path p)
     return windingnumber(p, inside(p));
 }
 
+bool is_oriented(path p)
+{
+    int d = orientation(p);
+    // Is d == 0 possible?
+    return cyclic(p) && d != undefined && d != 0;
+}
+
 bool is_clockwise(path p)
 {
-    return cyclic(p) && orientation(p) < 0;
+    int d = orientation(p);
+    return cyclic(p) && d != undefined && d < 0;
 }
 
 bool is_counterclockwise(path p)
 {
-    return cyclic(p) && 0 < orientation(p);
+    int d = orientation(p);
+    return cyclic(p) && d != undefined && 0 < d;
 }
 
 path make_clockwise(path p)
@@ -139,11 +148,30 @@ path[] walk_path_tree(PathTreeNode[] tree,
     return paths;
 }
 
+//-------------------------------------------------------------------------
+
 path[] normalize_orientations(path[] paths)
+// Make outer paths clockwise and nested paths appropriately
+// counterclockwise or clockwise.
 {
     PathTreeNode[] tree = make_path_tree(paths);
     path[] paths = walk_path_tree(tree);
     return paths;
+}
+
+bool is_in_interior(pair point, path[] paths, pen fillrule = currentpen)
+// Is the point within the would-be-filled interior of the oriented
+// paths?
+{
+    int winding_no = 0;
+    if (winding_no != undefined) {
+        int w = windingnumber(paths, point);
+        if (w == undefined)
+            winding_no = undefined;
+        else
+            winding_no += w;
+    }
+    return (winding_no != undefined) ? interior(winding_no, fillrule) : false;
 }
 
 //-------------------------------------------------------------------------
