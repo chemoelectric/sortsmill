@@ -23,6 +23,7 @@
 
 */
 
+import geometry;
 from sortsmill_orientation access is_oriented, is_clockwise, make_clockwise, normalize_orientations;
 from sortsmill_overlap access apply_punch;
 
@@ -122,8 +123,59 @@ struct Glyph {
     real[][] horiz_hints;
     real[][] vert_hints;
 
+    static struct OutlinePoint {
+        Glyph glyph;
+        int outline_no;
+        real time;
+        pair point;
+
+        void operator init(Glyph glyph, pair point) {
+            assert(glyph.outlines.length != 0);
+            this.glyph = glyph;
+            if (glyph.outlines.length == 1) {
+                outline_no = 0;
+                time = intersect(glyph.outlines[0], point)[0];
+                this.point = point(glyph.outlines[outline_no], time);
+            } else {
+                outline_no = 0;
+                time = intersect(glyph.outlines[0], point)[0];
+                this.point = point(glyph.outlines[0], time);
+                for (int i = 1; i < glyph.outlines.length; ++i) {
+                    real new_time = intersect(glyph.outlines[i], point)[0];
+                    pair new_point = point(glyph.outlines[i], new_time);
+                    if (abs(point - new_point) < abs(point - this.point)) {
+                        outline_no = i;
+                        time = new_time;
+                        this.point = new_point;
+                    }
+                }
+            }
+        }
+
+        OutlinePoint nearby_node(int n = 0) {
+            OutlinePoint p = new OutlinePoint;
+            p.glyph = glyph;
+            p.outline_no = outline_no;
+            p.time = round(time) + n;
+            p.point = point(glyph.outlines[outline_no], p.time);
+            return p;
+        }
+
+        void displace_along_outline(real displacement) {
+            path outline = glyph.outlines[outline_no];
+            real here_length = arclength(subpath(outline, 0, time));
+            real there_length = here_length + displacement;
+            time = arctime(outline, there_length);
+            point = point(outline, time);
+        }
+    };
+
     void operator init(path p) {
         outlines = new path[] { make_clockwise(p) };
+    }
+
+    void operator init(guide p) {
+        operator init((path) p);
     }
 
     void operator init(path[] outlines) {
@@ -156,6 +208,35 @@ struct Glyph {
 
     void apply_punch(Glyph punch) {
         outlines = apply_punch(punch.outlines, outlines);
+    }
+
+    void chop(pair point, real angle) {
+        // Cuts off a chunk (likely a big one), along an angled
+        // straight line.
+
+        real bignum = 1e6;
+        Glyph g = Glyph((-bignum,0)---(-bignum,bignum)---(bignum,bignum)---(bignum,0)---cycle);
+        g.apply_transform(shift(point)*rotate(angle));
+        apply_punch(g);
+    }
+
+    void chop(pair point1, pair point2) {
+        // Cuts off a chunk (likely a big one), along a line that
+        // passes through two points.
+
+        chop(point1, degrees(point2 - point1));
+    }
+
+    void splice_in(path new_part) {
+        OutlinePoint a = OutlinePoint(this, point(new_part, 0));
+        OutlinePoint b = OutlinePoint(this, point(new_part, length(new_part)));
+        if (a.outline_no != b.outline_no)
+            abort('splice points are on different outlines');
+        path outline = a.glyph.outlines[a.outline_no];
+        path p = (a.time < b.time) ?
+            subpath(outline, b.time, a.time + length(outline)) :
+            subpath(outline, b.time, a.time);
+        a.glyph.outlines[a.outline_no] = new_part & p & cycle;
     }
 
     void smooth_close_points(real max_distance = default_smoothing_max_distance,
@@ -223,6 +304,51 @@ Glyph operator * (transform t, Glyph glyph)
     Glyph new_glyph = copy(glyph);
     new_glyph.apply_transform(t);
     return new_glyph;
+}
+
+Glyph.OutlinePoint copy(Glyph.OutlinePoint p)
+{
+    Glyph.OutlinePoint q = new Glyph.OutlinePoint;
+    q.glyph = p.glyph;
+    q.outline_no = p.outline_no;
+    q.time = p.time;
+    q.point = p.point;
+    return q;
+}
+
+Glyph.OutlinePoint operator + (Glyph.OutlinePoint p, real distance)
+{
+    Glyph.OutlinePoint q = copy(p);
+    q.displace_along_outline(distance);
+    return q;
+}
+
+Glyph.OutlinePoint operator - (Glyph.OutlinePoint p, real distance)
+{
+    return p + (-distance);
+}
+
+real operator - (Glyph.OutlinePoint p, Glyph.OutlinePoint q)
+{
+    assert(p.glyph == q.glyph && p.outline_no == q.outline_no);
+    path outline = p.glyph.outlines[p.outline_no];
+    real p_length = arclength(subpath(outline, 0, p.time));
+    real q_length = arclength(subpath(outline, 0, q.time));
+    return p_length - q_length;
+}
+
+void splice_in(Glyph.OutlinePoint a, Glyph.OutlinePoint b, guide new_part)
+{
+    if (a.glyph != b.glyph)
+        abort('splice points are on different glyphs');
+    if (a.outline_no != b.outline_no)
+        abort('splice points are on different outlines');
+    path outline = a.glyph.outlines[a.outline_no];
+    path p = (a.time < b.time) ?
+        subpath(outline, b.time, a.time + length(outline)) :
+        subpath(outline, b.time, a.time);
+    path q = (a.point){dir(outline,a.time)}..new_part..{dir(outline,b.time)}(b.point);
+    a.glyph.outlines[a.outline_no] = q & p & cycle;
 }
 
 //-------------------------------------------------------------------------
