@@ -22,8 +22,9 @@ aclocaldir = ${datadir}/aclocal
 dist_aclocal_DATA = ${srcdir}/sortsmill.m4
 
 asydir = ${datadir}/asymptote
-dist_asy_DATA = ${srcdir}/fontforge.asy ${srcdir}/sortsmill_glyph.asy	\
- ${srcdir}/sortsmill_orientation.asy ${srcdir}/sortsmill_overlap.asy
+dist_asy_DATA = ${srcdir}/fontforge.asy ${srcdir}/sortsmill_font.asy	\
+ ${srcdir}/sortsmill_glyph.asy ${srcdir}/sortsmill_orientation.asy		\
+ ${srcdir}/sortsmill_overlap.asy
 
 sortsmillmoduledir = ${pythondir}/sortsmill
 sortsmillmodule_PYTHON = __init__.py asy.py cap_spacing.py	\
