@@ -160,6 +160,10 @@ struct Glyph {
             }
         }
 
+        pair dir(bool normalize=true) {
+            return dir(glyph.outlines[outline_no], time, normalize);
+        }
+
         OutlinePoint nearby_node(int n = 0) {
             OutlinePoint p = new OutlinePoint;
             p.glyph = glyph;
