@@ -22,6 +22,9 @@ import common;
 import fontforge;
 import rmparam;
 
+round_points = true;
+simplify_slightly = true;
+
 fontname = 'CloisterStM-Bold';
 familyname = 'Sorts Mill Cloister';
 fullname = 'Sorts Mill Cloister Bold';

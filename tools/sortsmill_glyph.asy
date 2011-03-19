@@ -1,27 +1,22 @@
-/*
-  Copyright (c) 2011 Barry Schwartz
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation files
-  (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify, merge,
-  publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so,
-  subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-
-*/
+// Copyright (c) 2011 Barry Schwartz
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 
 import geometry;
 from sortsmill_orientation access is_oriented, is_clockwise, make_clockwise, normalize_orientations;
@@ -124,7 +119,7 @@ path smooth_close_points(path outline,
 struct Glyph {
     path[] outlines;
     string name;
-    int unicode = -9999;
+    int unicode = undefined;
     real baseline = 0;
     int lsb = 25;
     int rsb = 25;
@@ -308,33 +303,35 @@ struct Glyph {
         vert_hints.push(hint);
     }
 
-    void write_fontforge_code(string contour_name, file outp) {
+    void write_fontforge_code(file outp = stdout,
+                              string glyphvar_name = 'my_glyph',
+                              string contourvar_name = 'my_contour') {
         real min_x = 1e5;
         for (path contour : outlines)
             min_x = min(min_x, min(contour).x);
-        write(outp, 'glyph.foreground = fontforge.layer()\n');
+        write(outp, glyphvar_name + '.foreground = fontforge.layer()\n');
         for (path contour : outlines) {
-            write(outp, fontforge_contour_code(shift(lsb - min_x,-baseline) * contour, 'contour'));
-            write(outp, 'glyph.foreground += contour\n');
+            write(outp, fontforge_contour_code(shift(lsb - min_x,-baseline) * contour, contourvar_name));
+            write(outp, glyphvar_name + '.foreground += ' + contourvar_name + '\n');
         }
 
-        write(outp, 'glyph.hhints = ' + pythonize_hints(horiz_hints, baseline));
-        write(outp, 'glyph.vhints = ' + pythonize_hints(vert_hints, min_x - lsb));
+        write(outp, glyphvar_name + '.hhints = ' + pythonize_hints(horiz_hints, baseline));
+        write(outp, glyphvar_name + '.vhints = ' + pythonize_hints(vert_hints, min_x - lsb));
         // FIXME: Add hint mask support (when it becomes available and known about in FontForge).
         // FIXME: Add diagonal hint code and support for TT instructions.
 
-        write(outp, 'glyph.right_side_bearing = ');
+        write(outp, glyphvar_name + '.right_side_bearing = ');
         write(outp, rsb);
         write(outp, '\n');
         if (round_points)
-            write(outp, 'glyph.round()\n');
+            write(outp, glyphvar_name + '.round()\n');
         if (simplify_slightly) {
-            write(outp, 'glyph.simplify(0)\n');
+            write(outp, glyphvar_name + '.simplify(0)\n');
             if (round_points)
-                write(outp, 'glyph.round()\n'); // Does this do anything?
+                write(outp, glyphvar_name + '.round()\n'); // Does this do anything?
         }
-        write(outp, 'glyph.canonicalContours()\n');
-        write(outp, 'glyph.canonicalStart()\n');
+        write(outp, glyphvar_name + '.canonicalContours()\n');
+        write(outp, glyphvar_name + '.canonicalStart()\n');
     }
 };
 
