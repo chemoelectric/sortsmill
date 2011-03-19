@@ -27,6 +27,14 @@ import geometry;
 from sortsmill_orientation access is_oriented, is_clockwise, make_clockwise, normalize_orientations;
 from sortsmill_overlap access apply_punch;
 
+real point_fuzz = 0.00001;
+
+real time_at_point(path p, pair point, real fuzz = point_fuzz)
+{
+    // This call can't be relied on without some fuzz.
+    return intersect(p, point, fuzz)[0];
+}
+
 //-------------------------------------------------------------------------
 //
 // FontForge-related stuff.
@@ -134,14 +142,14 @@ struct Glyph {
             this.glyph = glyph;
             if (glyph.outlines.length == 1) {
                 outline_no = 0;
-                time = intersect(glyph.outlines[0], point)[0];
+                time = time_at_point(glyph.outlines[0], point);
                 this.point = point(glyph.outlines[outline_no], time);
             } else {
                 outline_no = 0;
-                time = intersect(glyph.outlines[0], point)[0];
+                time = time_at_point(glyph.outlines[0], point);
                 this.point = point(glyph.outlines[0], time);
                 for (int i = 1; i < glyph.outlines.length; ++i) {
-                    real new_time = intersect(glyph.outlines[i], point)[0];
+                    real new_time = time_at_point(glyph.outlines[i], point);
                     pair new_point = point(glyph.outlines[i], new_time);
                     if (abs(point - new_point) < abs(point - this.point)) {
                         outline_no = i;
@@ -237,6 +245,47 @@ struct Glyph {
             subpath(outline, b.time, a.time + length(outline)) :
             subpath(outline, b.time, a.time);
         a.glyph.outlines[a.outline_no] = new_part & p & cycle;
+    }
+
+    OutlinePoint[] points_at_x(real x) {
+        bool y_less(OutlinePoint a, OutlinePoint b) {
+            return a.point.y < b.point.y;
+        }
+        OutlinePoint[] points;
+        for (int i = 0; i < outlines.length; ++i) {
+            path outline = outlines[i];
+            real[] t = times(outline, x);
+            for (int j = 0; j < t.length; ++j) {
+                OutlinePoint p = new OutlinePoint;
+                p.glyph = this;
+                p.outline_no = i;
+                p.time = t[j];
+                p.point = point(outline, t[j]);
+                points.push(p);
+            }
+        }
+
+        return sort(points, y_less);
+    }
+
+    OutlinePoint[] points_at_y(real y) {
+        bool x_less(OutlinePoint a, OutlinePoint b) {
+            return a.point.x < b.point.x;
+        }
+        OutlinePoint[] points;
+        for (int i = 0; i < outlines.length; ++i) {
+            path outline = outlines[i];
+            real[] t = times(outline, (0,y));
+            for (int j = 0; j < t.length; ++j) {
+                OutlinePoint p = new OutlinePoint;
+                p.glyph = this;
+                p.outline_no = i;
+                p.time = t[j];
+                p.point = point(outline, t[j]);
+                points.push(p);
+            }
+        }
+        return sort(points, x_less);
     }
 
     void smooth_close_points(real max_distance = default_smoothing_max_distance,
