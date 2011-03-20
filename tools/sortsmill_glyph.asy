@@ -248,6 +248,33 @@ struct Glyph {
         }
     }
 
+    OutlinePoint[] intersections(path p) {
+        real[][] xsect;
+        bool my_less(int a, int b) {
+            return xsect[a][0] < xsect[b][0];
+        }
+        OutlinePoint[] points;
+        for (int i = 0; i < outlines.length; ++i) {
+            path outline = outlines[i];
+            real[][] t = intersections(p, outline);
+            xsect.append(t);
+            for (int j = 0; j < t.length; ++j) {
+                OutlinePoint p = new OutlinePoint;
+                p.glyph = this;
+                p.outline_no = i;
+                p.time = t[j][1];
+                p.point = point(outline, p.time);
+                points.push(p);
+            }
+        }
+        int[] keys = xsect.keys;
+        keys = sort(keys, my_less);
+        OutlinePoint[] reordered_points;
+        for (int k : keys)
+            reordered_points.push(points[k]);
+        return reordered_points;
+    }
+
     OutlinePoint[] points_at_x(real x) {
         bool y_less(OutlinePoint a, OutlinePoint b) {
             return a.point.y < b.point.y;
@@ -265,7 +292,6 @@ struct Glyph {
                 points.push(p);
             }
         }
-
         return sort(points, y_less);
     }
 
