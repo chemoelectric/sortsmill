@@ -54,7 +54,7 @@ string fontforge_contour_code(path p, string contour_name)
       s += format('%f, False)\n', postcontrol(p,i).y);
 
       s += contour_name + ' += fontforge.point(';
-      s += format('%f, ', precontrol(p,(i + 1) % length(p)).x);
+      s += format('%f,', precontrol(p,(i + 1) % length(p)).x);
       s += format('%f, False)\n', precontrol(p,(i + 1) % length(p)).y);
     }
   s += contour_name + '.closed = ' + (cyclic(p) ? 'True' : 'False') + '\n';
@@ -235,15 +235,17 @@ struct Glyph {
     }
 
     void splice_in(path new_part) {
-        OutlinePoint a = OutlinePoint(this, point(new_part, 0));
-        OutlinePoint b = OutlinePoint(this, point(new_part, length(new_part)));
-        if (a.outline_no != b.outline_no)
-            abort('splice points are on different outlines');
-        path outline = a.glyph.outlines[a.outline_no];
-        path p = (a.time < b.time) ?
-            subpath(outline, b.time, a.time + length(outline)) :
-            subpath(outline, b.time, a.time);
-        a.glyph.outlines[a.outline_no] = new_part & p & cycle;
+        if (new_part != nullpath) {
+            OutlinePoint a = OutlinePoint(this, point(new_part, 0));
+            OutlinePoint b = OutlinePoint(this, point(new_part, length(new_part)));
+            if (a.outline_no != b.outline_no)
+                abort('splice points are on different outlines');
+            path outline = a.glyph.outlines[a.outline_no];
+            path p = (a.time < b.time) ?
+                subpath(outline, b.time, a.time + length(outline)) :
+                subpath(outline, b.time, a.time);
+            a.glyph.outlines[a.outline_no] = new_part & p & cycle;
+        }
     }
 
     OutlinePoint[] points_at_x(real x) {
@@ -366,19 +368,19 @@ Glyph.OutlinePoint copy(Glyph.OutlinePoint p)
     return q;
 }
 
-Glyph.OutlinePoint operator + (Glyph.OutlinePoint p, real distance)
+Glyph.OutlinePoint operator +(Glyph.OutlinePoint p, real distance)
 {
     Glyph.OutlinePoint q = copy(p);
     q.displace_along_outline(distance);
     return q;
 }
 
-Glyph.OutlinePoint operator - (Glyph.OutlinePoint p, real distance)
+Glyph.OutlinePoint operator -(Glyph.OutlinePoint p, real distance)
 {
     return p + (-distance);
 }
 
-real operator - (Glyph.OutlinePoint p, Glyph.OutlinePoint q)
+real operator -(Glyph.OutlinePoint p, Glyph.OutlinePoint q)
 {
     assert(p.glyph == q.glyph && p.outline_no == q.outline_no);
     path outline = p.glyph.outlines[p.outline_no];
@@ -387,8 +389,13 @@ real operator - (Glyph.OutlinePoint p, Glyph.OutlinePoint q)
     return p_length - q_length;
 }
 
-void splice_in(Glyph.OutlinePoint a, Glyph.OutlinePoint b, guide new_part)
+pair dir(Glyph.OutlinePoint p)
 {
+    return p.dir();
+}
+
+ void splice_in(Glyph.OutlinePoint a, Glyph.OutlinePoint b, guide new_part)
+ {
     if (a.glyph != b.glyph)
         abort('splice points are on different glyphs');
     if (a.outline_no != b.outline_no)
@@ -399,6 +406,18 @@ void splice_in(Glyph.OutlinePoint a, Glyph.OutlinePoint b, guide new_part)
         subpath(outline, b.time, a.time);
     path q = (a.point){dir(outline,a.time)}..new_part..{dir(outline,b.time)}(b.point);
     a.glyph.outlines[a.outline_no] = q & p & cycle;
-}
+    if (new_part != nullpath) {
+        if (a.glyph != b.glyph)
+            abort('splice points are on different glyphs');
+        if (a.outline_no != b.outline_no)
+            abort('splice points are on different outlines');
+        path outline = a.glyph.outlines[a.outline_no];
+        path p = (a.time < b.time) ?
+            subpath(outline, b.time, a.time + length(outline)) :
+            subpath(outline, b.time, a.time);
+        path q = (a.point){dir(outline,a.time)}..new_part..{dir(outline,b.time)}(b.point);
+        a.glyph.outlines[a.outline_no] = q & p & cycle;
+    }
+ }
 
 //-------------------------------------------------------------------------
