@@ -41,24 +41,23 @@ string fontforge_contour_code(path p, string contour_name)
 // Converts a path to Python code for creating an instance of
 // |fontforge.contour| describing the same bezier spline.
 {
-  string s = '';
-  s += contour_name + ' = fontforge.contour()\n';
-  for (int i = 0; i < length(p); i += 1)
-    {
-      s += contour_name + ' += fontforge.point(';
-      s += format('%f,', point(p,i).x);
-      s += format('%f)\n', point(p,i).y);
+    string s = '';
+    s += contour_name + ' = fontforge.contour()\n';
+    for (int i = 0; i < length(p); i += 1) {
+        s += contour_name + ' += fontforge.point(';
+        s += format('%f,', point(p,i).x);
+        s += format('%f)\n', point(p,i).y);
 
-      s += contour_name + ' += fontforge.point(';
-      s += format('%f,', postcontrol(p,i).x);
-      s += format('%f, False)\n', postcontrol(p,i).y);
+        s += contour_name + ' += fontforge.point(';
+        s += format('%f,', postcontrol(p,i).x);
+        s += format('%f, False)\n', postcontrol(p,i).y);
 
-      s += contour_name + ' += fontforge.point(';
-      s += format('%f,', precontrol(p,(i + 1) % length(p)).x);
-      s += format('%f, False)\n', precontrol(p,(i + 1) % length(p)).y);
+        s += contour_name + ' += fontforge.point(';
+        s += format('%f,', precontrol(p,(i + 1) % length(p)).x);
+        s += format('%f, False)\n', precontrol(p,(i + 1) % length(p)).y);
     }
-  s += contour_name + '.closed = ' + (cyclic(p) ? 'True' : 'False') + '\n';
-  return s;
+    s += contour_name + '.closed = ' + (cyclic(p) ? 'True' : 'False') + '\n';
+    return s;
 }
 
 string pythonize_hints(real[][] hints, real offset)
@@ -134,6 +133,24 @@ path add_extrema(path p)
     return q;
 }
 
+guide round(path p)
+// Round the path's coordinates to integers.
+{
+    guide q;
+    for (int i = 0; i < length(p); i += 1) {
+        pair point = point(p, i);
+        pair postcontrol = postcontrol(p, i);
+        pair precontrol = precontrol(p, i + 1);
+        pair i_point = (round(point.x), round(point.y));
+        pair i_postcontrol = (round(postcontrol.x), round(postcontrol.y));
+        pair i_precontrol = (round(precontrol.x), round(precontrol.y));
+        q = q .. (i_point..controls i_postcontrol and i_precontrol..nullpath);
+    }
+    if (cyclic(p))
+        q = q .. cycle;
+    return q;
+}
+
 //-------------------------------------------------------------------------
 
 struct Glyph {
@@ -141,8 +158,8 @@ struct Glyph {
     string name;
     int unicode = undefined;
     real baseline = 0;
-    int lsb = 25;
-    int rsb = 25;
+    real lsb = 25;
+    real rsb = 25;
     real[][] horiz_hints;
     real[][] vert_hints;
 
@@ -350,6 +367,22 @@ struct Glyph {
     void add_extrema() {
         for (int i = 0; i < outlines.length; ++i)
             outlines[i] = add_extrema(outlines[i]);
+    }
+
+    void round() {
+        for (int i = 0; i < outlines.length; ++i)
+            outlines[i] = round(outlines[i]);
+        baseline = round(baseline);
+        lsb = round(lsb);
+        rsb = round(rsb);
+        for (int i = 0; i < horiz_hints.length; ++i) {
+            horiz_hints[i][0] = round(horiz_hints[i][0]);
+            horiz_hints[i][1] = round(horiz_hints[i][1]);
+        }
+        for (int i = 0; i < vert_hints.length; ++i) {
+            vert_hints[i][0] = round(vert_hints[i][0]);
+            vert_hints[i][1] = round(vert_hints[i][1]);
+        }
     }
 
     void add_horiz_hint(real x, real width) {
