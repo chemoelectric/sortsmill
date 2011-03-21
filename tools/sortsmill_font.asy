@@ -137,7 +137,12 @@ struct Font {
                            string contourvar_name = 'my_contour',
                            string unicode_function = '') {
         if (unicode_function == '') {
-            write('\nfrom sortsmill.glyphbuild import preferred_unicode');
+            write('\ndef preferred_unicode(glyphname):\n'
+                  '    if \'_\' in glyphname:\n'
+                  '        uni = -1\n'
+                  '    else:\n'
+                  '        uni = fontforge.unicodeFromName(glyphname)\n'
+                  '    return uni');
             unicode_function = 'preferred_unicode';
         }
         for (Glyph glyph : glyph_list) {
