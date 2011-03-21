@@ -40,17 +40,17 @@ font.design_size = 14;
 
 Glyph make_letter_l_left_counter()
 {
-    real side_height = 499;
+    real side_height = 498;
     Glyph counter;
     counter = left_stem_counter_rough(top_angle=-32, side_angle=-90,
                                       bottom_angle=180 + 12, side_height=side_height);
     Glyph.OutlinePoint p1 = Glyph.OutlinePoint(counter, (0,side_height)) - 20;
-    Glyph.OutlinePoint p2 = Glyph.OutlinePoint(counter, (0,0)) + 12;
+    Glyph.OutlinePoint p2 = Glyph.OutlinePoint(counter, (0,0)) + 11;
     counter.splice_in(p1.point{dir(p1)}::
                       {down}(0,0.85*side_height)..tension 20 ..
                       {dir(p2)}p2.point);
     counter.splice_in(corner_shaper(counter, (0,0), 30, 30, nullpath..tension 1.3..nullpath));
-    counter = shift(0,39) * counter;
+    counter = shift(0,40) * counter;
     return counter;
 }
 
@@ -65,7 +65,7 @@ Glyph make_letter_l_right_counter()
     counter.splice_in(p1.point{dir(p1)}..tension 4.5 ..
                       {up}(0,0.2*side_height)..tension 10 ..
                       {dir(p2)}p2.point);
-    counter.splice_in(corner_shaper(counter, (0,0), 30, 30, nullpath..nullpath));
+    counter.splice_in(corner_shaper(counter, (0,0), 30, 30, nullpath..tension 1 ..nullpath));
     counter.splice_in(corner_shaper(counter, (0,side_height), 20, 50, nullpath::nullpath));
     counter = shift(0,37) * counter;
     return counter;
@@ -76,7 +76,7 @@ CornerParams my_corner_params = CornerParams(10, 10, nullpath..tension 0.75..nul
 Toolset tools = new Toolset;
 tools.letter_l_left_counter = make_letter_l_left_counter();
 tools.letter_l_right_counter = make_letter_l_right_counter();
-tools.letter_l_bottom_serif = BottomSerif(left_bottom_point=(-50,-5),
+tools.letter_l_bottom_serif = BottomSerif(left_bottom_point=(-52,-5),
                                           right_bottom_point=(135,3),
                                           left_side_angle=90,
                                           right_side_angle=90,
@@ -88,7 +88,7 @@ tools.letter_l_angle_serif = AngleSerif(top_point=(56,643),
                                         after_top_point=10,
                                         before_stem_join=20,
                                         right_corner_tensions=nullpath..tension 0.88..nullpath,
-                                        left_corner_params=CornerParams(35, 35, nullpath..nullpath));
+                                        left_corner_params=CornerParams(35, 35, nullpath..tension 0.9..nullpath));
 
 //-------------------------------------------------------------------------
 
@@ -98,6 +98,7 @@ glyph.apply_punch(shift(66,0) * tools.letter_l_right_counter);
 glyph = cut_bottom_serif(glyph, tools.letter_l_bottom_serif);
 glyph = cut_angle_serif(glyph, tools.letter_l_angle_serif);
 glyph.smooth_close_points();
+glyph.round();
 glyph.name = 'l';
 font.set_glyph(glyph);
 
