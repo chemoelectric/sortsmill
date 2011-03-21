@@ -19,12 +19,11 @@
 // THE SOFTWARE.
 
 import cloister_basics;
+import cloister_glyphs;
 import cloister_version;
 import sortsmill_font;
 
 //-------------------------------------------------------------------------
-
-Font font;
 
 font.version = version_string;
 
@@ -74,6 +73,9 @@ Glyph make_letter_l_right_counter()
 CornerParams my_corner_params = CornerParams(10, 10, nullpath..tension 0.75..nullpath);
 
 Toolset tools = new Toolset;
+tools.font = font;
+tools.space_width = 200;
+tools.letter_l_stem_width = 87;
 tools.letter_l_left_counter = make_letter_l_left_counter();
 tools.letter_l_right_counter = make_letter_l_right_counter();
 tools.letter_l_bottom_serif = BottomSerif(left_bottom_point=(-54,-5),
@@ -92,38 +94,7 @@ tools.letter_l_angle_serif = AngleSerif(top_point=(82,643),
 
 //-------------------------------------------------------------------------
 
-Glyph glyph = Glyph((-200,-200), (200,1200));
-glyph.apply_punch(tools.letter_l_left_counter);
-glyph.apply_punch(shift(87,0) * tools.letter_l_right_counter);
-glyph = cut_bottom_serif(glyph, tools.letter_l_bottom_serif);
-glyph = cut_angle_serif(glyph, tools.letter_l_angle_serif);
-glyph.smooth_close_points();
-glyph.round();
-glyph.name = 'l';
-font.set_glyph(glyph);
-
-//glyph.fill();
-
-//-------------------------------------------------------------------------
-
-void write_glyph_data(string glyphname)
-{
-    font.write_activeGlyph_update_code(glyphname);
-}
-
-void generate(string fontfile_name,
-              string flags = '("opentype",)')
-{
-    font.write_script_code();
-    write('my_font.generate(\'' + fontfile_name + '\', flags=' + flags + ')');
-}
-
-void save(string sfd_name)
-{
-    font.write_script_code();
-    write('my_font.save(\'' + sfd_name + '\')');
-}
-
+cut_glyphs(font, tools);
 usersetting();
 
 //-------------------------------------------------------------------------

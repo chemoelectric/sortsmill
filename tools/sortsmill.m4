@@ -18,7 +18,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-#serial 4
+#serial 5
 
 # STM_DISABLE_OPENTYPE
 # --------------------
@@ -132,6 +132,12 @@ test x"${HAVE_GRCOMPILER}" = x"yes" || AC_MSG_ERROR([Graphite compiler not found
 fi
 ])
 
+# STM_PROG_ASYMPTOTE
+# ------------------
+AC_DEFUN([STM_PROG_ASYMPTOTE],
+[AC_CHECK_PROG(HAVE_ASYMPTOTE, [asy], [yes])
+test x"${HAVE_ASYMPTOTE}" = x"yes" || AC_MSG_ERROR([I need Asymptote (http://asymptote.sourceforge.net/).])])
+
 # STM_CHECK_FONTFORGE_EXTENSION
 # -----------------------------
 AC_DEFUN([STM_CHECK_FONTFORGE_EXTENSION],
@@ -233,6 +239,26 @@ OFL%TT-BoldItalic.ttf : %-BoldItalic.sfd  ; ${MKFONT} $(basename [$]@)
 ])
 ])
 
+# STM_INIT_ASYMPTOTE
+# ------------------
+AC_DEFUN([STM_INIT_ASYMPTOTE],
+[
+AC_SUBST([asymptote_rules],['
+%.otf %.ttf %.woff : %.asy
+	((cd [$]{srcdir}; asy -u "generate(\"[$]@\",\"opentype\")" [$]*) | [$](PYTHON) -)
+
+%.svg %.ufo : %.asy
+	((cd [$]{srcdir}; asy -u "generate(\"[$]@\")" [$]*) | [$](PYTHON) -)
+
+%.pfa %.pfb %.cff %.t42 %.pt3 %.ps %.bin : %.asy
+	((cd [$]{srcdir}; asy -u "generate(\"[$]@\",\"afm\")" [$]*) | [$](PYTHON) -)
+
+%.sfd : %.asy
+	((cd [$]{srcdir}; asy -u "save(\"[$]@\")" [$]*) | [$](PYTHON) -)
+'
+])
+])
+
 # STM_TARGET_MIT_BINPACK
 # ----------------------
 AC_DEFUN([STM_TARGET_MIT_BINPACK],[
@@ -287,6 +313,20 @@ AC_SUBST([sortsmill_nonlicense_binpack_rules],['
 ${NONLICENSE_BINPACK}: ${NONLICENSE_BINPACK_FILES}
 	rm -f ${NONLICENSE_BINPACK}
 	zip -j ${NONLICENSE_BINPACK} ${NONLICENSE_BINPACK_FILES}
+'
+])
+])
+
+# STM_TARGET_BINPACK
+# -------------------------------
+AC_DEFUN([STM_TARGET_BINPACK],[
+AC_SUBST([BINPACK_FILES],['${srcdir}/COPYING $(addsuffix .otf, ${FONTS})'])
+AC_SUBST([BINPACK],['${FAMILYNAME}-${PACKAGE_VERSION}.zip'])
+AM_SUBST_NOTMAKE([sortsmill_binpack_rules])
+AC_SUBST([sortsmill_binpack_rules],['
+${BINPACK}: ${BINPACK_FILES}
+	rm -f ${BINPACK}
+	zip -j ${BINPACK} ${BINPACK_FILES}
 '
 ])
 ])

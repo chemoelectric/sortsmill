@@ -22,17 +22,19 @@
 # THE SOFTWARE.
 
 AC_PREREQ(2.65)
-AC_INIT([sortsmill-fanwood],[1.1],[http://code.google.com/p/sortsmill/issues/])
+AC_INIT([sortsmill-cloister],[0.1],[http://code.google.com/p/sortsmill/issues/])
 AM_INIT_AUTOMAKE([foreign])
-
-STM_SORTSMILL_MIT_PREREQUISITES
-STM_INIT_SORTSMILL
-STM_TARGET_MIT_OPENTYPE_BINPACK
+STM_INIT_ASYMPTOTE
+STM_FONTSDIR
+STM_TARGET_BINPACK
 
 # Checks for programs.
 AC_PROG_MAKE_SET
+AM_PATH_PYTHON([2.6])
+STM_PROG_ASYMPTOTE
 
 # Checks for libraries.
+STM_CHECK_FONTFORGE_EXTENSION
 
 # Checks for header files.
 

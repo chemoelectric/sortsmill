@@ -18,6 +18,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+import sortsmill_font;
 import sortsmill_glyph;
 
 simplify_slightly = true;
@@ -97,6 +98,9 @@ struct AngleSerif {
 };
 
 struct Toolset {
+    Font font;
+    real space_width;
+    real letter_l_stem_width;
     Glyph letter_l_left_counter;
     Glyph letter_l_right_counter;
     BottomSerif letter_l_bottom_serif;
@@ -214,6 +218,33 @@ Glyph cut_angle_serif(Glyph glyph, AngleSerif serif)
     glyph.splice_in((p3^-1).point{dir(p3^-1)}::{dir(p3^1)}(p3^1).point);
 
     return glyph;
+}
+
+//-------------------------------------------------------------------------
+//
+// Functions to call with "asy -u" (the usersetting() function).
+// These require that the Font be declared already.
+
+Font font;
+
+void write_glyph_data(string glyphname)
+{
+    font.write_activeGlyph_update_code(glyphname);
+}
+
+void generate(string fontfile_name ... string[] flags)
+{
+    font.write_script_code();
+    string flags_string;
+    for (string s : flags)
+        flags_string += '\'' + s + '\',';
+    write('my_font.generate(\'' + fontfile_name + '\', flags=[' + flags_string + '])');
+}
+
+void save(string sfd_name)
+{
+    font.write_script_code();
+    write('my_font.save(\'' + sfd_name + '\')');
 }
 
 //-------------------------------------------------------------------------
