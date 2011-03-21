@@ -132,27 +132,33 @@ struct Glyph {
         real time;
         pair point;
 
-        void operator init(Glyph glyph, pair point) {
-            assert(glyph.outlines.length != 0);
-            this.glyph = glyph;
+        void refresh() {
             if (glyph.outlines.length == 1) {
                 outline_no = 0;
-                time = time_at_point(glyph.outlines[0], point);
+                time = time_at_point(glyph.outlines[0], this.point);
                 this.point = point(glyph.outlines[outline_no], time);
             } else {
                 outline_no = 0;
                 time = time_at_point(glyph.outlines[0], point);
-                this.point = point(glyph.outlines[0], time);
+                pair pt = point(glyph.outlines[0], time);
                 for (int i = 1; i < glyph.outlines.length; ++i) {
                     real new_time = time_at_point(glyph.outlines[i], point);
                     pair new_point = point(glyph.outlines[i], new_time);
-                    if (abs(point - new_point) < abs(point - this.point)) {
+                    if (abs(this.point - new_point) < abs(this.point - pt)) {
                         outline_no = i;
                         time = new_time;
-                        this.point = new_point;
+                        pt = new_point;
                     }
                 }
+                this.point = pt;
             }
+        }
+
+        void operator init(Glyph glyph, pair point) {
+            assert(glyph.outlines.length != 0);
+            this.glyph = glyph;
+            this.point = point;
+            this.refresh();
         }
 
         pair dir(bool normalize=true) {
