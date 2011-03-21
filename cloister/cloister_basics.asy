@@ -20,7 +20,6 @@
 
 import sortsmill_glyph;
 
-round_points = true;
 simplify_slightly = true;
 
 //-------------------------------------------------------------------------
