@@ -92,7 +92,7 @@ path smooth_close_points(path p,
     for (int i = start_time; i < end_time; i += 1) {
         pair dir1 = dir(p, i, 1);
         pair dir2 = dir(p, i + 1, -1);
-        if (abs(degrees(dir2) - degrees(dir1)) <= max_angle) {
+        if (0 < abs(dir1) && 0 < abs(dir2) && abs(degrees(dir2) - degrees(dir1)) <= max_angle) {
             guide g1 = point(p,i)---point(p,i + 1);
             if (arclength(g1) <= max_distance)
                 g = g & g1;
@@ -112,6 +112,26 @@ path smooth_close_points(path outline,
                          real max_angle = default_smoothing_max_angle)
 {
     return smooth_close_points(outline, 0, size(outline), max_distance, max_angle);
+}
+
+path add_extrema(path p)
+{
+    path q;
+    for (int i = 0; i < length(p); ++i) {
+        path p_i = subpath(p, i, i + 1);
+        real[] times;
+        times.push(0);
+        times.append(mintimes(p_i));
+        times.append(maxtimes(p_i));
+        times.push(1);
+        times = sort(times);
+        for (int j = 0; j < 5; ++j)
+            if (times[j] < times[j + 1])
+                q = q & subpath(p_i, times[j], times[j + 1]);
+    }
+    if (cyclic(p))
+        q = q & cycle;
+    return q;
 }
 
 //-------------------------------------------------------------------------
@@ -325,6 +345,11 @@ struct Glyph {
                              real max_angle = default_smoothing_max_angle) {
         for (int i = 0; i < outlines.length; ++i)
             outlines[i] = smooth_close_points(outlines[i], max_distance, max_angle);
+    }
+
+    void add_extrema() {
+        for (int i = 0; i < outlines.length; ++i)
+            outlines[i] = add_extrema(outlines[i]);
     }
 
     void add_horiz_hint(real x, real width) {
