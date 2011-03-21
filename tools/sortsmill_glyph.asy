@@ -383,7 +383,7 @@ Glyph copy(Glyph glyph)
     return new_glyph;
 }
 
-Glyph operator * (transform t, Glyph glyph)
+Glyph operator *(transform t, Glyph glyph)
 {
     Glyph new_glyph = copy(glyph);
     new_glyph.apply_transform(t);
@@ -421,13 +421,17 @@ real operator -(Glyph.OutlinePoint p, Glyph.OutlinePoint q)
     return p_length - q_length;
 }
 
+Glyph.OutlinePoint operator ^(Glyph.OutlinePoint p, int n) {
+    return p.nearby_node(n);
+}
+
 pair dir(Glyph.OutlinePoint p)
 {
     return p.dir();
 }
 
- void splice_in(Glyph.OutlinePoint a, Glyph.OutlinePoint b, guide new_part)
- {
+void splice_in(Glyph.OutlinePoint a, Glyph.OutlinePoint b, guide new_part)
+{
     if (a.glyph != b.glyph)
         abort('splice points are on different glyphs');
     if (a.outline_no != b.outline_no)
@@ -450,6 +454,6 @@ pair dir(Glyph.OutlinePoint p)
         path q = (a.point){dir(outline,a.time)}..new_part..{dir(outline,b.time)}(b.point);
         a.glyph.outlines[a.outline_no] = q & p & cycle;
     }
- }
+}
 
 //-------------------------------------------------------------------------
