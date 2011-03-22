@@ -97,12 +97,53 @@ struct AngleSerif {
     }
 };
 
+struct StemCounter {
+    real vert_offset;
+    real top_angle;
+    real side_angle;
+    real bottom_angle;
+    real side_height;
+    real past_top;
+    real on_side;
+    real past_bottom;
+    guide top_tensions;
+    guide bottom_tensions;
+    CornerParams top_corner;
+    CornerParams bottom_corner;
+    
+    void operator init(real vert_offset,
+                       real top_angle,
+                       real side_angle,
+                       real bottom_angle,
+                       real side_height,
+                       real past_top,
+                       real on_side,
+                       real past_bottom,
+                       guide top_tensions,
+                       guide bottom_tensions,
+                       CornerParams top_corner,
+                       CornerParams bottom_corner) {
+        this.vert_offset = vert_offset;
+        this.top_angle = top_angle;
+        this.side_angle = side_angle;
+        this.bottom_angle = bottom_angle;
+        this.side_height = side_height;
+        this.past_top = past_top;
+        this.on_side = on_side;
+        this.past_bottom = past_bottom;
+        this.top_tensions = top_tensions;
+        this.bottom_tensions = bottom_tensions;
+        this.top_corner = top_corner;
+        this.bottom_corner = bottom_corner;
+    }
+};
+
 struct Toolset {
     Font font;
     real space_width;
     real letter_l_stem_width;
-    Glyph letter_l_left_counter;
-    Glyph letter_l_right_counter;
+    StemCounter letter_l_left_counter;
+    StemCounter letter_l_right_counter;
     BottomSerif letter_l_bottom_serif;
     AngleSerif letter_l_angle_serif;
 };
@@ -114,9 +155,13 @@ path corner_shaper(Glyph.OutlinePoint corner,
                    real arclength_after,
                    guide tensions)
 {
-    Glyph.OutlinePoint p1 = corner - arclength_before;
-    Glyph.OutlinePoint p2 = corner + arclength_after;
-    return p1.point{dir(p1)}..tensions..{dir(p2)}p2.point;
+    path corner_path;
+    if (arclength_before != infinity && arclength_after != infinity) {
+        Glyph.OutlinePoint p1 = corner - arclength_before;
+        Glyph.OutlinePoint p2 = corner + arclength_after;
+        corner_path = p1.point{dir(p1)}..tensions..{dir(p2)}p2.point;
+    }
+    return corner_path;
 }
 
 path corner_shaper(Glyph glyph,
@@ -149,33 +194,7 @@ path cup_shaper(Glyph glyph,
         point2;
 }
 
-Glyph left_stem_counter_rough(real top_angle,
-                              real side_angle,
-                              real bottom_angle,
-                              real side_height,
-                              pair corner1 = (-1000,-500),
-                              pair corner2 = (1000,1000))
-{
-    Glyph counter = Glyph(corner1, corner2);
-    counter.chop((0,side_height), top_angle);
-    counter.chop((0,side_height), side_angle);
-    counter.chop((0,0), bottom_angle);
-    return counter;
-}
-
-Glyph right_stem_counter_rough(real top_angle,
-                               real side_angle,
-                               real bottom_angle,
-                               real side_height,
-                               pair corner1 = (-1000,-500),
-                               pair corner2 = (1000,1000))
-{
-    Glyph counter = Glyph(corner1, corner2);
-    counter.chop((0,side_height), top_angle);
-    counter.chop((0,0), side_angle);
-    counter.chop((0,0), bottom_angle);
-    return counter;
-}
+//-------------------------------------------------------------------------
 
 Glyph cut_bottom_serif(Glyph glyph, BottomSerif serif)
 {
@@ -218,6 +237,42 @@ Glyph cut_angle_serif(Glyph glyph, AngleSerif serif)
     glyph.splice_in((p3^-1).point{dir(p3^-1)}::{dir(p3^1)}(p3^1).point);
 
     return glyph;
+}
+
+Glyph left_stem_counter(StemCounter params)
+{
+    real side_height = params.side_height;
+    Glyph counter = Glyph((-1000,-500), (1000,1000));
+    counter.chop((0,params.side_height), params.top_angle);
+    counter.chop((0,params.side_height), params.side_angle);
+    counter.chop((0,0), params.bottom_angle);
+    Glyph.OutlinePoint p1 = Glyph.OutlinePoint(counter, (0,params.side_height)) - params.past_top;
+    Glyph.OutlinePoint p2 = Glyph.OutlinePoint(counter, (0,0)) + params.past_bottom;
+    counter.splice_in(p1.point{dir(p1)}..params.top_tensions..
+                      {dir(params.side_angle)}(0,params.on_side)..params.bottom_tensions..
+                      {dir(p2)}p2.point);
+    counter.splice_in(corner_shaper(counter, (0,params.side_height), params.top_corner));
+    counter.splice_in(corner_shaper(counter, (0,0), params.bottom_corner));
+    counter = shift(0, params.vert_offset) * counter;
+    return counter;
+}
+
+Glyph right_stem_counter(StemCounter params)
+{
+    real side_height = params.side_height;
+    Glyph counter = Glyph((-1000,-500), (1000,1000));
+    counter.chop((0,params.side_height), params.top_angle);
+    counter.chop((0,0), params.side_angle);
+    counter.chop((0,0), params.bottom_angle);
+    Glyph.OutlinePoint p1 = Glyph.OutlinePoint(counter, (0,0)) - params.past_bottom;
+    Glyph.OutlinePoint p2 = Glyph.OutlinePoint(counter, (0,params.side_height)) + params.past_top;
+    counter.splice_in(p1.point{dir(p1)}..params.bottom_tensions..
+                      {dir(params.side_angle)}(0,params.on_side)..params.top_tensions..
+                      {dir(p2)}p2.point);
+    counter.splice_in(corner_shaper(counter, (0,params.side_height), params.top_corner));
+    counter.splice_in(corner_shaper(counter, (0,0), params.bottom_corner));
+    counter = shift(0, params.vert_offset) * counter;
+    return counter;
 }
 
 //-------------------------------------------------------------------------

@@ -36,8 +36,8 @@ Glyph make_space(Font font, Toolset tools)
 Glyph make_letter_l(Font font, Toolset tools)
 {
     Glyph glyph = Glyph((-200,-200), (200,1200));
-    glyph.apply_punch(tools.letter_l_left_counter);
-    glyph.apply_punch(shift(tools.letter_l_stem_width,0) * tools.letter_l_right_counter);
+    glyph.apply_punch(left_stem_counter(tools.letter_l_left_counter));
+    glyph.apply_punch(shift(tools.letter_l_stem_width,0) * right_stem_counter(tools.letter_l_right_counter));
     glyph = cut_bottom_serif(glyph, tools.letter_l_bottom_serif);
     glyph = cut_angle_serif(glyph, tools.letter_l_angle_serif);
     glyph.name = 'l';

@@ -37,47 +37,36 @@ font.design_size = 14;
 
 //-------------------------------------------------------------------------
 
-Glyph make_letter_l_left_counter()
-{
-    real side_height = 477;
-    Glyph counter;
-    counter = left_stem_counter_rough(top_angle=-36, side_angle=-90,
-                                      bottom_angle=180 + 12, side_height=side_height);
-    Glyph.OutlinePoint p1 = Glyph.OutlinePoint(counter, (0,side_height)) - 20;
-    Glyph.OutlinePoint p2 = Glyph.OutlinePoint(counter, (0,0)) + 11;
-    counter.splice_in(p1.point{dir(p1)}::
-                      {down}(0,0.9*side_height)..tension 100 ..
-                      {dir(p2)}p2.point);
-    counter.splice_in(corner_shaper(counter, (0,0), 30, 30, nullpath..tension 1.3..nullpath));
-    counter = shift(0,42) * counter;
-    return counter;
-}
-
-Glyph make_letter_l_right_counter()
-{
-    real side_height = 502;
-    Glyph counter;
-    counter = right_stem_counter_rough(top_angle=77, side_angle=90,
-                                       bottom_angle=180, side_height=side_height);
-    Glyph.OutlinePoint p1 = Glyph.OutlinePoint(counter, (0,0)) - 5;
-    Glyph.OutlinePoint p2 = Glyph.OutlinePoint(counter, (0,side_height)) + 25;
-    counter.splice_in(p1.point{dir(p1)}..tension 4.5 ..
-                      {up}(0,0.1*side_height)..tension 10 ..
-                      {dir(p2)}p2.point);
-    counter.splice_in(corner_shaper(counter, (0,0), 35, 35, nullpath..tension 0.75..nullpath));
-    counter.splice_in(corner_shaper(counter, (0,side_height), 20, 50, nullpath::nullpath));
-    counter = shift(0,42) * counter;
-    return counter;
-}
-
 CornerParams my_corner_params = CornerParams(10, 10, nullpath..tension 0.75..nullpath);
 
 Toolset tools = new Toolset;
 tools.font = font;
 tools.space_width = 200;
 tools.letter_l_stem_width = 87;
-tools.letter_l_left_counter = make_letter_l_left_counter();
-tools.letter_l_right_counter = make_letter_l_right_counter();
+tools.letter_l_left_counter = StemCounter(vert_offset=42,
+                                          top_angle=-36,
+                                          side_angle=-90,
+                                          bottom_angle=192,
+                                          side_height=477,
+                                          past_top=20,
+                                          on_side=0.9 * 477,
+                                          past_bottom=11,
+                                          top_tensions=nullpath::nullpath,
+                                          bottom_tensions=nullpath..tension 100.0..nullpath,
+                                          top_corner=CornerParams(infinity, infinity, nullpath),
+                                          bottom_corner=CornerParams(30, 30, nullpath..tension 1.3..nullpath));
+tools.letter_l_right_counter = StemCounter(vert_offset=42,
+                                           top_angle=77,
+                                           side_angle=90,
+                                           bottom_angle=180,
+                                           side_height=502,
+                                           past_top=25,
+                                           on_side=0.1 * 510,
+                                           past_bottom=5,
+                                           top_tensions=nullpath..tension 10.0..nullpath,
+                                           bottom_tensions=nullpath..tension 4.5..nullpath,
+                                           top_corner=CornerParams(20, 50, nullpath::nullpath),
+                                           bottom_corner=CornerParams(35, 35, nullpath..tension 0.75..nullpath));
 tools.letter_l_bottom_serif = BottomSerif(left_bottom_point=(-54,-5),
                                           right_bottom_point=(148,3),
                                           left_side_angle=90,
