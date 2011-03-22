@@ -270,7 +270,7 @@ struct Glyph {
         apply_punch(g);
     }
 
-    void chop(pair point1, pair point2) {
+    void chop(pair point1, explicit pair point2) {
         // Cuts off a chunk (likely a big one), along a line that
         // passes through two points.
 
