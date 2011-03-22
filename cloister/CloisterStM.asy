@@ -42,31 +42,30 @@ CornerParams my_corner_params = CornerParams(10, 10, nullpath..tension 0.75..nul
 Toolset tools = new Toolset;
 tools.font = font;
 tools.space_width = 200;
-tools.letter_l_stem_width = 66;
-tools.letter_l_left_counter = StemCounter(vert_offset=40,
-                                          top_angle=-32,
+tools.letter_l_left_counter = StemCounter(top_angle=-32,
                                           side_angle=-90,
                                           bottom_angle=192,
                                           side_height=498,
                                           past_top=20,
-                                          on_side=0.85 * 498,
+                                          on_side=423,
                                           past_bottom=11,
                                           top_tensions=nullpath::nullpath,
                                           bottom_tensions=nullpath..tension 20.0..nullpath,
                                           top_corner=CornerParams(infinity, infinity, nullpath),
                                           bottom_corner=CornerParams(30, 30, nullpath..tension 1.3..nullpath));
-tools.letter_l_right_counter = StemCounter(vert_offset=37,
-                                           top_angle=77,
+tools.letter_l_left_counter_position = (0,40);
+tools.letter_l_right_counter = StemCounter(top_angle=77,
                                            side_angle=90,
                                            bottom_angle=180,
                                            side_height=510,
                                            past_top=25,
-                                           on_side=0.2 * 510,
+                                           on_side=102,
                                            past_bottom=10,
                                            top_tensions=nullpath..tension 10.0..nullpath,
                                            bottom_tensions=nullpath..tension 4.5..nullpath,
                                            top_corner=CornerParams(20, 50, nullpath::nullpath),
-                                           bottom_corner=CornerParams(30, 30, nullpath..tension 1.0..nullpath));
+                                           bottom_corner=CornerParams(30, 30, nullpath..tension 1.05..nullpath));
+tools.letter_l_right_counter_position = (66,37);
 tools.letter_l_bottom_serif = BottomSerif(left_bottom_point=(-52,-5),
                                           right_bottom_point=(135,3),
                                           left_side_angle=90,

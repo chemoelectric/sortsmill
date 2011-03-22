@@ -98,7 +98,6 @@ struct AngleSerif {
 };
 
 struct StemCounter {
-    real vert_offset;
     real top_angle;
     real side_angle;
     real bottom_angle;
@@ -111,8 +110,7 @@ struct StemCounter {
     CornerParams top_corner;
     CornerParams bottom_corner;
     
-    void operator init(real vert_offset,
-                       real top_angle,
+    void operator init(real top_angle,
                        real side_angle,
                        real bottom_angle,
                        real side_height,
@@ -123,7 +121,6 @@ struct StemCounter {
                        guide bottom_tensions,
                        CornerParams top_corner,
                        CornerParams bottom_corner) {
-        this.vert_offset = vert_offset;
         this.top_angle = top_angle;
         this.side_angle = side_angle;
         this.bottom_angle = bottom_angle;
@@ -141,9 +138,10 @@ struct StemCounter {
 struct Toolset {
     Font font;
     real space_width;
-    real letter_l_stem_width;
     StemCounter letter_l_left_counter;
     StemCounter letter_l_right_counter;
+    pair letter_l_left_counter_position;
+    pair letter_l_right_counter_position;
     BottomSerif letter_l_bottom_serif;
     AngleSerif letter_l_angle_serif;
 };
@@ -253,7 +251,6 @@ Glyph left_stem_counter(StemCounter params)
                       {dir(p2)}p2.point);
     counter.splice_in(corner_shaper(counter, (0,params.side_height), params.top_corner));
     counter.splice_in(corner_shaper(counter, (0,0), params.bottom_corner));
-    counter = shift(0, params.vert_offset) * counter;
     return counter;
 }
 
@@ -271,7 +268,6 @@ Glyph right_stem_counter(StemCounter params)
                       {dir(p2)}p2.point);
     counter.splice_in(corner_shaper(counter, (0,params.side_height), params.top_corner));
     counter.splice_in(corner_shaper(counter, (0,0), params.bottom_corner));
-    counter = shift(0, params.vert_offset) * counter;
     return counter;
 }
 
