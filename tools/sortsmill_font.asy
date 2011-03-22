@@ -42,6 +42,7 @@ struct Font {
     string designer_name;
     string designer_url;
     real design_size;
+    real boldness;
 
     int find_glyph(string glyphname) {
         int i = 0;
@@ -132,6 +133,11 @@ struct Font {
             write('\n' + fontvar_name + '.size_feature = (' + format('%.1f', design_size) + ',)');
     }
 
+    void write_os2_values_code(string fontvar_name = 'my_font') {
+        if (0 < boldness)
+            write('\n' + fontvar_name + '.os2_weight = ' + string(boldness));
+    }
+
     void write_glyphs_code(string fontvar_name = 'my_font',
                            string glyphvar_name = 'my_glyph',
                            string contourvar_name = 'my_contour',
@@ -162,6 +168,7 @@ struct Font {
         write_font_open_code();
         write_font_names_code();
         write_size_feature_code();
+        write_os2_values_code();
         write_glyphs_code();
         write();
     }

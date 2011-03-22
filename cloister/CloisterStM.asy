@@ -20,6 +20,7 @@
 
 import cloister_basics;
 import cloister_glyphs;
+import cloister_params;
 import cloister_version;
 import sortsmill_font;
 
@@ -34,54 +35,9 @@ font.weight = 'Regular';
 font.sfnt_family = 'Sorts Mill Cloister';
 font.sfnt_subfamily = 'Regular';
 font.design_size = 14;
+font.boldness = 400;
 
-//-------------------------------------------------------------------------
-
-CornerParams my_corner_params = CornerParams(10, 10, nullpath..tension 0.75..nullpath);
-
-Toolset tools = new Toolset;
-tools.font = font;
-tools.space_width = 200;
-tools.letter_l_left_counter = StemCounter(top_angle=-32,
-                                          side_angle=-90,
-                                          bottom_angle=192,
-                                          side_height=498,
-                                          past_top=20,
-                                          on_side=423,
-                                          past_bottom=11,
-                                          top_tensions=nullpath::nullpath,
-                                          bottom_tensions=nullpath..tension 20.0..nullpath,
-                                          top_corner=CornerParams(infinity, infinity, nullpath),
-                                          bottom_corner=CornerParams(30, 30, nullpath..tension 1.3..nullpath));
-tools.letter_l_left_counter_position = (0,40);
-tools.letter_l_right_counter = StemCounter(top_angle=77,
-                                           side_angle=90,
-                                           bottom_angle=180,
-                                           side_height=510,
-                                           past_top=25,
-                                           on_side=102,
-                                           past_bottom=10,
-                                           top_tensions=nullpath..tension 10.0..nullpath,
-                                           bottom_tensions=nullpath..tension 4.5..nullpath,
-                                           top_corner=CornerParams(20, 50, nullpath::nullpath),
-                                           bottom_corner=CornerParams(30, 30, nullpath..tension 1.05..nullpath));
-tools.letter_l_right_counter_position = (66,37);
-tools.letter_l_bottom_serif = BottomSerif(left_bottom_point=(-52,-5),
-                                          right_bottom_point=(135,3),
-                                          left_side_angle=90,
-                                          right_side_angle=90,
-                                          cup_params=new pair[] { 0.6*dir(180.3), 0.1*dir(0) },
-                                          corner_params=my_corner_params);
-tools.letter_l_angle_serif = AngleSerif(top_point=(56,643),
-                                        top_slope=27,
-                                        before_top_point=30,
-                                        after_top_point=10,
-                                        before_stem_join=20,
-                                        right_corner_tensions=nullpath..tension 0.88..nullpath,
-                                        left_corner_params=CornerParams(35, 35, nullpath..tension 0.9..nullpath));
-
-//-------------------------------------------------------------------------
-
+Toolset tools = get_tools(font);
 cut_glyphs(font, tools);
 usersetting();
 

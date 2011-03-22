@@ -27,7 +27,7 @@ FAMILYNAME = cloister
 FONTS = CloisterStM CloisterStM-Bold
 fonts_DATA = $(addsuffix .otf, ${FONTS})
 EXTRA_FONT_SOURCES = cloister_basics.asy cloister_glyphs.asy	\
-	cloister_version.asy
+	cloister_params.asy cloister_version.asy
 
 EXTRA_DIST = $(addsuffix .asy, ${FONTS}) ${EXTRA_FONT_SOURCES}
 
