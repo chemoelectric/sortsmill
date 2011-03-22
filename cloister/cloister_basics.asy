@@ -26,9 +26,9 @@ simplify_slightly = true;
 //-------------------------------------------------------------------------
 
 struct CornerParams {
-    real before;
-    real after;
-    guide tensions;
+    real before = infinity;
+    real after = infinity;
+    guide tensions = nullpath;
 
     void operator init(real before, real after, guide tensions) {
         this.before = before;
@@ -241,16 +241,21 @@ Glyph left_stem_counter(StemCounter params)
 {
     real side_height = params.side_height;
     Glyph counter = Glyph((-1000,-500), (1000,1000));
-    counter.chop((0,params.side_height), params.top_angle);
-    counter.chop((0,params.side_height), params.side_angle);
+    real side_slope = Tan(90 - params.side_angle);
+    pair side_top = slant(side_slope) * (0,params.side_height);
+    counter.chop(side_top, params.top_angle);
+    counter.chop(side_top, params.side_angle);
     counter.chop((0,0), params.bottom_angle);
-    Glyph.OutlinePoint p1 = Glyph.OutlinePoint(counter, (0,params.side_height)) - params.past_top;
+    Glyph.OutlinePoint p1 = Glyph.OutlinePoint(counter, side_top) - params.past_top;
+    Glyph.OutlinePoint on_side = Glyph.OutlinePoint(counter, slant(side_slope)*(0,params.on_side));
     Glyph.OutlinePoint p2 = Glyph.OutlinePoint(counter, (0,0)) + params.past_bottom;
     counter.splice_in(p1.point{dir(p1)}..params.top_tensions..
-                      {dir(params.side_angle)}(0,params.on_side)..params.bottom_tensions..
+                      {dir(params.side_angle)}(on_side.point)..params.bottom_tensions..
                       {dir(p2)}p2.point);
-    counter.splice_in(corner_shaper(counter, (0,params.side_height), params.top_corner));
-    counter.splice_in(corner_shaper(counter, (0,0), params.bottom_corner));
+    on_side.refresh();
+    counter.splice_in(corner_shaper(on_side^-1, params.top_corner));
+    on_side.refresh();
+    counter.splice_in(corner_shaper(on_side^1, params.bottom_corner));
     return counter;
 }
 
@@ -258,16 +263,21 @@ Glyph right_stem_counter(StemCounter params)
 {
     real side_height = params.side_height;
     Glyph counter = Glyph((-1000,-500), (1000,1000));
-    counter.chop((0,params.side_height), params.top_angle);
+    real side_slope = Tan(90 - params.side_angle);
+    pair side_top = slant(side_slope) * (0,params.side_height);
+    counter.chop(side_top, params.top_angle);
     counter.chop((0,0), params.side_angle);
     counter.chop((0,0), params.bottom_angle);
     Glyph.OutlinePoint p1 = Glyph.OutlinePoint(counter, (0,0)) - params.past_bottom;
-    Glyph.OutlinePoint p2 = Glyph.OutlinePoint(counter, (0,params.side_height)) + params.past_top;
+    Glyph.OutlinePoint on_side = Glyph.OutlinePoint(counter, slant(side_slope)*(0,params.on_side));
+    Glyph.OutlinePoint p2 = Glyph.OutlinePoint(counter, side_top) + params.past_top;
     counter.splice_in(p1.point{dir(p1)}..params.bottom_tensions..
-                      {dir(params.side_angle)}(0,params.on_side)..params.top_tensions..
+                      {dir(params.side_angle)}(on_side.point)..params.top_tensions..
                       {dir(p2)}p2.point);
-    counter.splice_in(corner_shaper(counter, (0,params.side_height), params.top_corner));
-    counter.splice_in(corner_shaper(counter, (0,0), params.bottom_corner));
+    on_side.refresh();
+    counter.splice_in(corner_shaper(on_side^-1, params.bottom_corner));
+    on_side.refresh();
+    counter.splice_in(corner_shaper(on_side^1, params.top_corner));
     return counter;
 }
 
