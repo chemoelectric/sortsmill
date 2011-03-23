@@ -135,9 +135,65 @@ struct StemCounter {
     }
 };
 
+struct EyeCounter {             // The "eye" of a letter "e".
+    pair bounding_box;
+    real bottom_angle;
+    real apex_x;
+    guide left_tensions;
+    guide right_tensions;
+
+    void operator init(pair bounding_box,
+                       real bottom_angle,
+                       real apex_x,
+                       guide left_tensions,
+                       guide right_tensions) {
+        this.bounding_box = bounding_box;
+        this.bottom_angle = bottom_angle;
+        this.apex_x = apex_x;
+        this.left_tensions = left_tensions;
+        this.right_tensions = right_tensions;
+    }
+};
+
+struct Letter_e {
+    pair eye_position;
+    pair bowl_position;
+    pair left_point;
+    pair top_point;
+    pair bottom_point;
+    pair terminal_point;
+    real terminal_angle;
+    real knob_end_x;
+    real knob_angle;
+
+    void operator init(pair eye_position,
+                       pair bowl_position,
+                       pair left_point,
+                       pair top_point,
+                       pair bottom_point,
+                       pair terminal_point,
+                       real terminal_angle,
+                       real knob_end_x,
+                       real knob_angle) {
+        this.eye_position = eye_position;
+        this.bowl_position = bowl_position;
+        this.left_point = left_point;
+        this.top_point = top_point;
+        this.bottom_point = bottom_point;
+        this.terminal_point = terminal_point;
+        this.terminal_angle = terminal_angle;
+        this.knob_end_x = knob_end_x;
+        this.knob_angle = knob_angle;
+    }
+    
+};
+
 struct Toolset {
     Font font;
     real space_width;
+    EyeCounter letter_e_eye_counter;
+    EyeCounter letter_e_bowl_counter;
+    Letter_e letter_e;
     StemCounter letter_l_left_counter;
     StemCounter letter_l_right_counter;
     pair letter_l_left_counter_position;
@@ -151,7 +207,8 @@ struct Toolset {
 path corner_shaper(Glyph.OutlinePoint corner,
                    real arclength_before,
                    real arclength_after,
-                   guide tensions)
+                   guide tensions,
+                   bool add_extrema = false)
 {
     path corner_path;
     if (arclength_before != infinity && arclength_after != infinity) {
@@ -159,6 +216,8 @@ path corner_shaper(Glyph.OutlinePoint corner,
         Glyph.OutlinePoint p2 = corner + arclength_after;
         corner_path = p1.point{dir(p1)}..tensions..{dir(p2)}p2.point;
     }
+    if (add_extrema)
+        corner_path = add_extrema(corner_path);
     return corner_path;
 }
 
@@ -166,20 +225,26 @@ path corner_shaper(Glyph glyph,
                    pair corner_point,
                    real arclength_before,
                    real arclength_after,
-                   guide tensions)
+                   guide tensions,
+                   bool add_extrema = false)
 {
     return corner_shaper(Glyph.OutlinePoint(glyph, corner_point),
-                         arclength_before, arclength_after, tensions);
+                         arclength_before, arclength_after, tensions,
+                         add_extrema);
 }
 
-path corner_shaper(Glyph.OutlinePoint corner, CornerParams params)
+path corner_shaper(Glyph.OutlinePoint corner, CornerParams params,
+                   bool add_extrema = false)
 {
-    return corner_shaper(corner, params.before, params.after, params.tensions);
+    return corner_shaper(corner, params.before, params.after, params.tensions,
+                         add_extrema);
 }
 
-path corner_shaper(Glyph glyph, pair corner_point, CornerParams params)
+path corner_shaper(Glyph glyph, pair corner_point, CornerParams params,
+                   bool add_extrema = false)
 {
-    return corner_shaper(glyph, corner_point, params.before, params.after, params.tensions);
+    return corner_shaper(glyph, corner_point, params.before, params.after, params.tensions,
+                         add_extrema);
 }
 
 path cup_shaper(Glyph glyph,
@@ -279,6 +344,15 @@ Glyph right_stem_counter(StemCounter params)
     on_side.refresh();
     counter.splice_in(corner_shaper(on_side^1, params.top_corner));
     return counter;
+}
+
+Glyph eye_counter(EyeCounter params)
+{
+    real bottom_slope = Tan(params.bottom_angle);
+    path counter_path = ((0,0)..params.left_tensions..
+                         (params.apex_x,params.bounding_box.y){right}..params.right_tensions..
+                         (params.bounding_box.x,params.bounding_box.x * bottom_slope)---cycle);
+    return Glyph(counter_path);
 }
 
 //-------------------------------------------------------------------------

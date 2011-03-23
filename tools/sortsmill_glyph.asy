@@ -206,7 +206,7 @@ struct Glyph {
             OutlinePoint p = new OutlinePoint;
             p.glyph = glyph;
             p.outline_no = outline_no;
-            p.time = round(time) + n;
+            p.time = (int)round(time) + n;
             p.point = point(glyph.outlines[outline_no], p.time);
             return p;
         }
@@ -220,22 +220,26 @@ struct Glyph {
         }
     };
 
-    void operator init(path p) {
+    void operator init(path p, string name = '', int unicode = undefined) {
         outlines = new path[] { make_clockwise(p) };
+        this.name = name;
+        this.unicode = unicode;
     }
 
-    void operator init(guide p) {
-        operator init((path) p);
+    void operator init(guide p, string name = '', int unicode = undefined) {
+        operator init((path) p, name, unicode);
     }
 
-    void operator init(path[] outlines) {
+    void operator init(path[] outlines, string name = '', int unicode = undefined) {
         this.outlines = normalize_orientations(outlines);
+        this.name = name;
+        this.unicode = unicode;
     }
 
-    void operator init(pair corner1, pair corner2) {
+    void operator init(pair corner1, pair corner2, string name = '', int unicode = undefined) {
         // Make a rectangular blank.
         path rect = corner1---(corner1.x,corner2.y)---corner2---(corner2.x,corner1.y)---cycle;
-        operator init(rect);
+        operator init(rect, name, unicode);
     }
 
     void draw() {

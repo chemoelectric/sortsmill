@@ -47,6 +47,26 @@ Toolset get_tools(Font font)
     Toolset tools = new Toolset;
     tools.font = font;
     tools.space_width = 200;
+    tools.letter_e_eye_counter = EyeCounter(bounding_box=(131,102),
+                                            bottom_angle=14,
+                                            apex_x=60,
+                                            left_tensions=nullpath{curl 0}..tension atleast 1.1..nullpath,
+                                            right_tensions=nullpath..tension atleast 1.0..{curl 0}nullpath);
+    tools.letter_e_bowl_counter = EyeCounter(bounding_box=(350,207),
+                                             bottom_angle=11.5,
+                                             apex_x=257,
+                                             left_tensions=nullpath{curl 0}..tension atleast 1.15..nullpath,
+                                             right_tensions=nullpath..{curl 0.4}nullpath);
+    tools.letter_e = Letter_e(eye_position=(86,215),
+                              bowl_position=(82,180),
+                              left_point=(0,155),
+                              top_point=(165,358),
+                              bottom_point=(160,-9),
+                              terminal_point=(313,64),
+                              terminal_angle=115,
+                              knob_end_x=308,
+                              knob_angle=90,
+                              corner_params=my_corner_params);
     tools.letter_l_left_counter = StemCounter(top_angle=interpolate(font, -32, -36),
                                               side_angle=-90,
                                               bottom_angle=192,
