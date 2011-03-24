@@ -89,9 +89,9 @@ Glyph make_letter_e(Font font, Toolset tools)
 
     // Cut the terminal.
     pair vector = 300*dir(terminal_angle);
-    p1 = glyph.intersections((terminal_point + 0.001*vector)---(terminal_point + 500*vector))[0];
+    p1 = glyph.intersections((terminal_point + 0.1*vector)---(terminal_point + 500*vector))[0];
     glyph.splice_in(p1.point---terminal_point);
-    glyph.splice_in(corner_shaper(glyph, terminal_point, corner_params, add_extrema=true));
+    glyph.splice_in(corner_shaper(glyph, terminal_point, corner_params /*, add_extrema=true*/));
     glyph.splice_in(corner_shaper(glyph, p1.point, corner_params));
 
     // Finish the outline, except for the "knob".
@@ -110,14 +110,13 @@ Glyph make_letter_e(Font font, Toolset tools)
     points = glyph.points_at_x(knob_end_x);
     p1 = points[points.length - 2];
     vector = 300*dir(knob_angle);
-    p2 = glyph.intersections((p1.point + 0.001*vector)---(p1.point + 500*vector))[0];
+    p2 = glyph.intersections((p1.point + 0.1*vector)---(p1.point + 500*vector))[0];
     glyph.splice_in(p2.point---p1.point);
     p1.refresh();
-    glyph.splice_in(corner_shaper(glyph, p1.point, corner_params, add_extrema=true));
+    glyph.splice_in(corner_shaper(glyph, p1.point, corner_params /*, add_extrema=true*/));
     p2.refresh();
     real d = corner_params.after;
-    glyph.splice_in((p2^-1).point{dir(bowl_counter_params.bottom_angle)}..
-                    corner_params.tensions..
+    glyph.splice_in((p2^-1).point{dir(bowl_counter_params.bottom_angle)}..corner_params.tensions..
                     {-dir(knob_angle)}(p2 + d).point);
 
     return glyph;

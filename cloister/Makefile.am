@@ -24,14 +24,21 @@ ACLOCAL_AMFLAGS = -I m4 --install
 @sortsmill_binpack_rules@
 
 FAMILYNAME = cloister
-FONTS = CloisterStM CloisterStM-Medium CloisterStM-Semibold CloisterStM-Bold
+FONTS6 = CloisterStM6
+FONTS8 = CloisterStM8
+FONTS10 = CloisterStM10
+FONTS12 = CloisterStM12
+FONTS14 = CloisterStM14 CloisterStM14-Medium CloisterStM14-Semibold	\
+	CloisterStM14-Bold
+FONTS = ${FONTS6} ${FONTS8} ${FONTS10} ${FONTS12} ${FONTS14}
 fonts_DATA = $(addsuffix .otf, ${FONTS})
-EXTRA_FONT_SOURCES = cloister_basics.asy cloister_glyphs.asy	\
-	cloister_params.asy cloister_version.asy
 
-EXTRA_DIST = $(addsuffix .asy, ${FONTS}) ${EXTRA_FONT_SOURCES}
+FONTDEPS = cloister_basics.asy cloister_glyphs.asy cloister_params.asy	\
+	cloister_version.asy
 
-${fonts_DATA} : ${EXTRA_FONT_SOURCES}
+EXTRA_DIST = $(addsuffix .asy, ${FONTS}) ${FONT_DEPS}
+
+${fonts_DATA} : ${FONTDEPS}
 
 MOSTLYCLEANFILES = ${fonts_DATA} # gdlerr.txt
 

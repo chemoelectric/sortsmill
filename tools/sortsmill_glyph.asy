@@ -34,9 +34,6 @@ real time_at_point(path p, pair point, real fuzz = point_fuzz)
 //
 // FontForge-related stuff.
 
-bool round_points = false;
-bool simplify_slightly = false;
-
 string fontforge_contour_code(path p, string contour_name)
 // Converts a path to Python code for creating an instance of
 // |fontforge.contour| describing the same bezier spline.
@@ -133,6 +130,28 @@ path add_extrema(path p)
     return q;
 }
 
+guide remove_node_coincidences(guide p, real fuzz = point_fuzz)
+{
+    bool is_cyclic = cyclic(p);
+    if (is_cyclic)
+        p = subpath(p, 0, length(p));
+    guide q;
+    for (int i = 0; i < length(p); ++i) {
+        path p_i = subpath(p, i, i + 1);
+        pair post = postcontrol(p_i,0);
+        pair pre = precontrol(p_i, 1);
+        pair point1 = point(p_i, 0);
+        pair point2 = point(p_i, 1);
+        if (point_fuzz < abs(point2 - point1))
+            q = q..point1..controls post and pre..nullpath;
+    }
+    if (is_cyclic)
+        q = q..cycle;
+    else
+        q = q..point(p, size(p) - 1);
+    return q;
+}
+
 guide round(path p)
 // Round the path's coordinates to integers.
 {
@@ -148,6 +167,7 @@ guide round(path p)
     }
     if (cyclic(p))
         q = q .. cycle;
+    q = remove_node_coincidences(q);
     return q;
 }
 
@@ -419,13 +439,6 @@ struct Glyph {
         write(outp, glyphvar_name + '.right_side_bearing = ');
         write(outp, rsb);
         write(outp, '\n');
-        if (round_points)
-            write(outp, glyphvar_name + '.round()\n');
-        if (simplify_slightly) {
-            write(outp, glyphvar_name + '.simplify(0)\n');
-            if (round_points)
-                write(outp, glyphvar_name + '.round()\n'); // Does this do anything?
-        }
         write(outp, glyphvar_name + '.canonicalContours()\n');
         write(outp, glyphvar_name + '.canonicalStart()\n');
     }

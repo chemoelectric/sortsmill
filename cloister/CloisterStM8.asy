@@ -28,14 +28,16 @@ import sortsmill_font;
 
 font.version = version_string;
 
-font.fontname = 'CloisterStM-Bold';
-font.familyname = 'Sorts Mill Cloister';
-font.fullname = 'Sorts Mill Cloister Bold';
-font.weight = 'Bold';
-font.sfnt_family = 'Sorts Mill Cloister';
-font.sfnt_subfamily = 'Bold';
-font.design_size = 14;
-font.boldness = 700;
+font.fontname = 'CloisterStM8';
+font.familyname = 'Sorts Mill Cloister 8 Point';
+font.fullname = 'Sorts Mill Cloister 8 Point';
+font.weight = 'Regular';
+font.sfnt_family = 'Sorts Mill Cloister 8 Point';
+font.sfnt_subfamily = 'Regular';
+font.preferred_family = 'Sorts Mill Cloister';
+font.preferred_subfamily = '8 Point';
+font.design_size = 8;
+font.boldness = 400;
 
 Toolset tools = get_tools(font);
 cut_glyphs(font, tools);

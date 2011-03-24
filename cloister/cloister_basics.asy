@@ -21,8 +21,6 @@
 import sortsmill_font;
 import sortsmill_glyph;
 
-simplify_slightly = true;
-
 //-------------------------------------------------------------------------
 
 struct CornerParams {

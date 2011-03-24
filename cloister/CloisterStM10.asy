@@ -28,16 +28,16 @@ import sortsmill_font;
 
 font.version = version_string;
 
-font.fontname = 'CloisterStM-Semibold';
-font.familyname = 'Sorts Mill Cloister';
-font.fullname = 'Sorts Mill Cloister Semibold';
-font.weight = 'Semibold';
-font.sfnt_family = 'Sorts Mill Cloister Semibold';
+font.fontname = 'CloisterStM10';
+font.familyname = 'Sorts Mill Cloister 10 Point';
+font.fullname = 'Sorts Mill Cloister 10 Point';
+font.weight = 'Regular';
+font.sfnt_family = 'Sorts Mill Cloister 10 Point';
 font.sfnt_subfamily = 'Regular';
 font.preferred_family = 'Sorts Mill Cloister';
-font.preferred_subfamily = 'Semibold';
-font.design_size = 14;
-font.boldness = 600;
+font.preferred_subfamily = '10 Point';
+font.design_size = 10;
+font.boldness = 400;
 
 Toolset tools = get_tools(font);
 cut_glyphs(font, tools);
