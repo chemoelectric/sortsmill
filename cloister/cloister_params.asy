@@ -66,7 +66,7 @@ Toolset get_tools(Font font)
                               terminal_angle=interpolate(font, 115, 120),
                               arc_end_x=interpolate(font, 302, 356),
                               knob_end_x=interpolate(font, 308, 366),
-                              knob_angle=interpolate(font, 90, 100),
+                              knob_angle=interpolate(font, 90, 98),
                               flattening_point_relative=interpolate(font, 0.4, 0.2),
                               flattening_tensions=(nullpath..tension interpolate(font, 1.05, 1.08)..nullpath),
                               lower_right_tensions=nullpath{curl 0.3}..tension 1.2 and 0.9..nullpath,
