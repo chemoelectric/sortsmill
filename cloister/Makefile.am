@@ -24,7 +24,7 @@ ACLOCAL_AMFLAGS = -I m4 --install
 @sortsmill_binpack_rules@
 
 FAMILYNAME = cloister
-FONTS = CloisterStM CloisterStM-Bold
+FONTS = CloisterStM CloisterStM-Medium CloisterStM-Semibold CloisterStM-Bold
 fonts_DATA = $(addsuffix .otf, ${FONTS})
 EXTRA_FONT_SOURCES = cloister_basics.asy cloister_glyphs.asy	\
 	cloister_params.asy cloister_version.asy

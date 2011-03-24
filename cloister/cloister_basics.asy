@@ -163,8 +163,16 @@ struct Letter_e {
     pair bottom_point;
     pair terminal_point;
     real terminal_angle;
+    real arc_end_x;
     real knob_end_x;
     real knob_angle;
+    real flattening_point_relative;
+    guide lower_right_tensions;
+    guide lower_left_tensions;
+    guide upper_left_tensions;
+    guide upper_right_tensions;
+    guide flattening_tensions;
+    CornerParams corner_params;
 
     void operator init(pair eye_position,
                        pair bowl_position,
@@ -173,8 +181,16 @@ struct Letter_e {
                        pair bottom_point,
                        pair terminal_point,
                        real terminal_angle,
+                       real arc_end_x,
                        real knob_end_x,
-                       real knob_angle) {
+                       real knob_angle,
+                       real flattening_point_relative,
+                       guide lower_right_tensions,
+                       guide lower_left_tensions,
+                       guide upper_left_tensions,
+                       guide upper_right_tensions,
+                       guide flattening_tensions,
+                       CornerParams corner_params) {
         this.eye_position = eye_position;
         this.bowl_position = bowl_position;
         this.left_point = left_point;
@@ -182,8 +198,16 @@ struct Letter_e {
         this.bottom_point = bottom_point;
         this.terminal_point = terminal_point;
         this.terminal_angle = terminal_angle;
+        this.arc_end_x = arc_end_x;
         this.knob_end_x = knob_end_x;
         this.knob_angle = knob_angle;
+        this.flattening_point_relative = flattening_point_relative;
+        this.lower_right_tensions = lower_right_tensions;
+        this.lower_left_tensions = lower_left_tensions;
+        this.upper_left_tensions = upper_left_tensions;
+        this.upper_right_tensions = upper_right_tensions;
+        this.flattening_tensions = flattening_tensions;
+        this.corner_params = corner_params;
     }
     
 };

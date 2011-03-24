@@ -37,70 +37,88 @@ Glyph make_letter_e(Font font, Toolset tools)
 {
     Glyph.OutlinePoint p1;
     Glyph.OutlinePoint p2;
+    Letter_e le = tools.letter_e;
+    pair eye_position = le.eye_position;
+    pair bowl_position = le.bowl_position;
+    pair top_point = le.top_point;
+    pair left_point = le.left_point;
+    pair bottom_point = le.bottom_point;
+    pair terminal_point = le.terminal_point;
+    real terminal_angle = le.terminal_angle;
+    real arc_end_x = le.arc_end_x;
+    real knob_end_x = le.knob_end_x;
+    real knob_angle = le.knob_angle;
+    real flattening_point_relative = le.flattening_point_relative;
+    guide lower_right_tensions = le.lower_right_tensions;
+    guide lower_left_tensions = le.lower_left_tensions;
+    guide upper_left_tensions = le.upper_left_tensions;
+    guide upper_right_tensions = le.upper_right_tensions;
+    guide flattening_tensions = le.flattening_tensions;
+    CornerParams corner_params = le.corner_params;
+    EyeCounter eye_counter_params = tools.letter_e_eye_counter;
+    EyeCounter bowl_counter_params = tools.letter_e_bowl_counter;
 
-    real blank_width = tools.letter_e.terminal_point.x + 50;
-    Glyph glyph = Glyph((0,tools.letter_e.bottom_point.y), (blank_width,tools.letter_e.top_point.y), name='e');
+    real blank_width = terminal_point.x + 50;
+    Glyph glyph = Glyph((0,bottom_point.y), (blank_width,top_point.y), name='e');
 
     // Cut the outline.
-    glyph.splice_in(tools.letter_e.terminal_point{curl 0.3}..tension 1.2 and 0.9..
-                    tools.letter_e.bottom_point{left}..tension 0.85 and 1.0..
-                    {up}tools.letter_e.left_point..tension 0.95 and 1.0..
-                    {right}tools.letter_e.top_point);
+    glyph.splice_in((terminal_point + (50,0))---
+                    terminal_point..lower_right_tensions..
+                    bottom_point{left}..lower_left_tensions..
+                    {up}left_point..upper_left_tensions..
+                    {right}top_point);
 
     // Flatten the upper left.
-    Glyph.OutlinePoint left = Glyph.OutlinePoint(glyph, tools.letter_e.left_point)^0;
-    Glyph.OutlinePoint top = Glyph.OutlinePoint(glyph, tools.letter_e.top_point)^0;
-    p1 = left + 0.4*(top - left);
-    glyph.splice_in(p1.point{dir(p1)}..tension 1.05..{dir(top)}top.point);
+    Glyph.OutlinePoint left = Glyph.OutlinePoint(glyph, left_point)^0;
+    Glyph.OutlinePoint top = Glyph.OutlinePoint(glyph, top_point)^0;
+    p1 = left + flattening_point_relative*(top - left);
+    glyph.splice_in(p1.point{dir(p1)}..flattening_tensions..{dir(top)}top.point);
 
     // Punch the "eye".
-    glyph.apply_punch(shift(tools.letter_e.eye_position) * eye_counter(tools.letter_e_eye_counter));
+    glyph.apply_punch(shift(eye_position) * eye_counter(eye_counter_params));
 
     // Punch the bowl. This is an inverted "eye" counter.
-    real crossbar_slope = Tan(tools.letter_e_bowl_counter.bottom_angle);
-    pair crossbar_vector = (tools.letter_e_bowl_counter.bounding_box.x,
-                            tools.letter_e_bowl_counter.bounding_box.x * crossbar_slope);
-    Glyph bowl = eye_counter(tools.letter_e_bowl_counter);
+    real crossbar_slope = Tan(bowl_counter_params.bottom_angle);
+    pair crossbar_vector = (bowl_counter_params.bounding_box.x,
+                            bowl_counter_params.bounding_box.x * crossbar_slope);
+    Glyph bowl = eye_counter(bowl_counter_params);
     bowl = rotate(180) * bowl;
-    bowl = shift(tools.letter_e.bowl_position + crossbar_vector) * bowl;
+    bowl = shift(bowl_position + crossbar_vector) * bowl;
     bowl.add_extrema();
     glyph.apply_punch(bowl);
 
     // Cut the terminal.
-    pair vector = 300*dir(tools.letter_e.terminal_angle);
-    p1 = glyph.intersections((tools.letter_e.terminal_point + 0.001*vector)---
-                             (tools.letter_e.terminal_point + 500*vector))[0];
-    glyph.splice_in(p1.point---tools.letter_e.terminal_point);
-    glyph.splice_in(corner_shaper(glyph, tools.letter_e.terminal_point,
-                                  CornerParams(10, 10, nullpath..tension 0.75..nullpath),
-                                  add_extrema=true));
-    glyph.splice_in(corner_shaper(glyph, p1.point, CornerParams(10, 10, nullpath..tension 0.75..nullpath)));
+    pair vector = 300*dir(terminal_angle);
+    p1 = glyph.intersections((terminal_point + 0.001*vector)---(terminal_point + 500*vector))[0];
+    glyph.splice_in(p1.point---terminal_point);
+    glyph.splice_in(corner_shaper(glyph, terminal_point, corner_params, add_extrema=true));
+    glyph.splice_in(corner_shaper(glyph, p1.point, corner_params));
 
     // Finish the outline, except for the "knob".
-    Glyph.OutlinePoint[] points = glyph.points_at_x(302);
+    Glyph.OutlinePoint[] points = glyph.points_at_x(arc_end_x);
     Glyph.OutlinePoint hypothetical_arc_end = points[points.length - 2];
     top.refresh();
-    path arc = top.point{right}..{curl 0.7}hypothetical_arc_end.point;
-    path ray = tools.letter_e.eye_position---
-        (tools.letter_e.eye_position + 1000*dir(tools.letter_e_bowl_counter.bottom_angle));
+    path arc = top.point{right}..upper_right_tensions..hypothetical_arc_end.point;
+    path ray = eye_position---(eye_position + 1000*dir(bowl_counter_params.bottom_angle));
     path arc = subpath(arc, 0, intersect(arc, ray)[0]);
     pair arc_end = point(arc, 1);
-    ray = arc_end---(arc_end + 1000*dir(tools.letter_e_bowl_counter.bottom_angle));
+    ray = arc_end---(arc_end + 1000*dir(bowl_counter_params.bottom_angle));
     p1 = glyph.intersections(ray)[0];
     glyph.splice_in(arc & arc_end---p1.point);
 
     // Cut the "knob".
-    points = glyph.points_at_x(tools.letter_e.knob_end_x);
+    points = glyph.points_at_x(knob_end_x);
     p1 = points[points.length - 2];
-    vector = 300*dir(tools.letter_e.knob_angle);
+    vector = 300*dir(knob_angle);
     p2 = glyph.intersections((p1.point + 0.001*vector)---(p1.point + 500*vector))[0];
     glyph.splice_in(p2.point---p1.point);
     p1.refresh();
-    glyph.splice_in(corner_shaper(glyph, p1.point, CornerParams(10, 10, nullpath..tension 0.75..nullpath),
-                                  add_extrema=true));
+    glyph.splice_in(corner_shaper(glyph, p1.point, corner_params, add_extrema=true));
     p2.refresh();
-    glyph.splice_in((p2^-1).point{dir(tools.letter_e_bowl_counter.bottom_angle)}..tension 0.75..
-                    {-dir(tools.letter_e.knob_angle)}(p2 + 10).point);
+    real d = corner_params.after;
+    glyph.splice_in((p2^-1).point{dir(bowl_counter_params.bottom_angle)}..
+                    corner_params.tensions..
+                    {-dir(knob_angle)}(p2 + d).point);
 
     return glyph;
 }
