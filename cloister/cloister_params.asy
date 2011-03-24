@@ -29,9 +29,10 @@ real interpolate(Font font,
                  real a2, // Value for design size 14pt, boldness 700.
                  real b1) // Value for design size 6pt, boldness 400.
 {
+    real size = (font.interpolated_size != 0) ? font.interpolated_size : font.design_size;
     real b2 = b1; // FIXME: This is just until we make adjustments specific to boldface.
-    real ab1 = a1 - (b1 - a1)*(font.design_size - 14)/8.0;
-    real ab2 = a2 - (b2 - a2)*(font.design_size - 14)/8.0;
+    real ab1 = a1 - (b1 - a1)*(size - 14)/8.0;
+    real ab2 = a2 - (b2 - a2)*(size - 14)/8.0;
     return ab1 + (ab2 - ab1)*(font.boldness - 400)/300.0;
 }
 
@@ -40,9 +41,10 @@ pair interpolate(Font font,
                  explicit pair a2, // Value for design size 14pt, boldness 700.
                  explicit pair b1) // Value for design size 6pt, boldness 400.
 {
+    real size = (font.interpolated_size != 0) ? font.interpolated_size : font.design_size;
     pair b2 = b1; // FIXME: This is just until we make adjustments specific to boldface.
-    pair ab1 = a1 - (b1 - a1)*(font.design_size - 14)/8.0;
-    pair ab2 = a2 - (b2 - a2)*(font.design_size - 14)/8.0;
+    pair ab1 = a1 - (b1 - a1)*(size - 14)/8.0;
+    pair ab2 = a2 - (b2 - a2)*(size - 14)/8.0;
     return ab1 + (ab2 - ab1)*(font.boldness - 400)/300.0;
 }
 

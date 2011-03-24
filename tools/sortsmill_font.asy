@@ -44,6 +44,9 @@ struct Font {
     real design_size;
     real boldness;
 
+    // Set this if the design_size isn't interpolated as desired.
+    real interpolated_size;
+
     int find_glyph(string glyphname) {
         int i = 0;
         while (i < glyph_list.length && glyph_list[i].name != glyphname)

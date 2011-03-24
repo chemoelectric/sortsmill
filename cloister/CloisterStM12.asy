@@ -28,16 +28,16 @@ import sortsmill_font;
 
 font.version = version_string;
 
-font.fontname = 'CloisterStM10';
-font.familyname = 'Sorts Mill Cloister 10 Point';
-font.fullname = 'Sorts Mill Cloister 10 Point';
+font.fontname = 'CloisterStM12';
+font.familyname = 'Sorts Mill Cloister 12 Point';
+font.fullname = 'Sorts Mill Cloister 12 Point';
 font.weight = 'Regular';
-font.sfnt_family = 'Sorts Mill Cloister 10 Point';
+font.sfnt_family = 'Sorts Mill Cloister 12 Point';
 font.sfnt_subfamily = 'Regular';
 font.preferred_family = 'Sorts Mill Cloister';
-font.preferred_subfamily = '10 Point';
-font.design_size = 10;
-font.interpolated_size = 10.8;
+font.preferred_subfamily = '12 Point';
+font.design_size = 12;
+font.interpolated_size = 12.4;
 font.boldness = 400;
 
 Toolset tools = get_tools(font);
