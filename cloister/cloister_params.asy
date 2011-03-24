@@ -67,13 +67,13 @@ Toolset get_tools(Font font)
                                             apex_x=interpolate(font, 60, 62, 70),
                                             left_tensions=nullpath{curl 0}..tension atleast 1.1..nullpath,
                                             right_tensions=nullpath..tension atleast 1.0..{curl 0}nullpath);
-    tools.letter_e_bowl_counter = EyeCounter(bounding_box=interpolate(font, (350,207), (360,203), (475,238)),
+    tools.letter_e_bowl_counter = EyeCounter(bounding_box=interpolate(font, (350,207), (360,203), (475,239)),
                                              bottom_angle=11.5,
                                              apex_x=interpolate(font, 257, 264, 348),
                                              left_tensions=nullpath{curl 0}..tension atleast 1.15..nullpath,
                                              right_tensions=nullpath..{curl interpolate(font, 0.4, 0.4, 0.6)}nullpath);
-    tools.letter_e = Letter_e(eye_position=interpolate(font, (86,215), (117,215), (122,275)),
-                              bowl_position=interpolate(font, (82,180), (119,178), (115,217)),
+    tools.letter_e = Letter_e(eye_position=interpolate(font, (86,215), (117,215), (122,276)),
+                              bowl_position=interpolate(font, (82,180), (119,178), (115,218)),
                               left_point=interpolate(font, (0,155), (0,167), (0,200)),
                               top_point=interpolate(font, (165,358), (190,374), (229,460)),
                               bottom_point=interpolate(font, (160,-9), (190,-9), (225,-12)),
