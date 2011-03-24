@@ -22,12 +22,12 @@ import geometry;
 from sortsmill_orientation access is_oriented, is_clockwise, make_clockwise, normalize_orientations;
 from sortsmill_overlap access apply_punch;
 
-real point_fuzz = 0.00001;
+real point_fuzz = 0.01;
 
 real time_at_point(path p, pair point, real fuzz = point_fuzz)
 {
-    // This call can't be relied on without some fuzz.
-    return intersect(p, point, fuzz)[0];
+    /* This can be very slow without big fuzz. */
+    return intersect(p, attract(point, p, fuzz), fuzz)[0];
 }
 
 //-------------------------------------------------------------------------
