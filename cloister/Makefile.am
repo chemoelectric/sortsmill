@@ -24,7 +24,8 @@ ACLOCAL_AMFLAGS = -I m4 --install
 @sortsmill_binpack_rules@
 
 FAMILYNAME = cloister
-FONTS6 = CloisterStM6
+FONTS6 = CloisterStM6 CloisterStM6-Medium CloisterStM6-Semibold	\
+	CloisterStM6-Bold
 FONTS8 = CloisterStM8
 FONTS10 = CloisterStM10
 FONTS12 = CloisterStM12

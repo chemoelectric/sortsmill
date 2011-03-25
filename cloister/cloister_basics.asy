@@ -374,6 +374,7 @@ Glyph eye_counter(EyeCounter params)
     path counter_path = ((0,0)..params.left_tensions..
                          (params.apex_x,params.bounding_box.y){right}..params.right_tensions..
                          (params.bounding_box.x,params.bounding_box.x * bottom_slope)---cycle);
+    counter_path = add_extrema(counter_path);
     return Glyph(counter_path);
 }
 

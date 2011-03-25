@@ -112,12 +112,14 @@ Glyph make_letter_e(Font font, Toolset tools)
     vector = 300*dir(knob_angle);
     p2 = glyph.intersections((p1.point + 0.1*vector)---(p1.point + 500*vector))[0];
     glyph.splice_in(p2.point---p1.point);
-    p1.refresh();
-    glyph.splice_in(corner_shaper(glyph, p1.point, corner_params /*, add_extrema=true*/));
-    p2.refresh();
-    real d = corner_params.after;
-    glyph.splice_in((p2^-1).point{dir(bowl_counter_params.bottom_angle)}..corner_params.tensions..
-                    {-dir(knob_angle)}(p2 + d).point);
+    if (corner_params.before != infinity) {
+        p1.refresh();
+        glyph.splice_in(corner_shaper(glyph, p1.point, corner_params /*, add_extrema=true*/));
+        p2.refresh();
+        real d = corner_params.after;
+        glyph.splice_in((p2^-1).point{dir(bowl_counter_params.bottom_angle)}..corner_params.tensions..
+                        {-dir(knob_angle)}(p2 + d).point);
+    }
 
     return glyph;
 }
