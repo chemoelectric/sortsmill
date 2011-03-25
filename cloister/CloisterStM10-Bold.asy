@@ -37,6 +37,7 @@ font.sfnt_subfamily = 'Bold';
 font.preferred_family = 'Sorts Mill Cloister';
 font.preferred_subfamily = '10 Point Bold';
 font.design_size = 10;
+font.interpolated_size = 10.2;
 font.boldness = 700;
 
 Toolset tools = get_tools(font);
