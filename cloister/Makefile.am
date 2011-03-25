@@ -26,9 +26,12 @@ ACLOCAL_AMFLAGS = -I m4 --install
 FAMILYNAME = cloister
 FONTS6 = CloisterStM6 CloisterStM6-Medium CloisterStM6-Semibold	\
 	CloisterStM6-Bold
-FONTS8 = CloisterStM8
-FONTS10 = CloisterStM10
-FONTS12 = CloisterStM12
+FONTS8 = CloisterStM8 CloisterStM8-Medium CloisterStM8-Semibold	\
+	CloisterStM8-Bold
+FONTS10 = CloisterStM10 CloisterStM10-Medium CloisterStM10-Semibold	\
+	CloisterStM10-Bold
+FONTS12 = CloisterStM12 CloisterStM12-Medium CloisterStM12-Semibold	\
+	CloisterStM12-Bold
 FONTS14 = CloisterStM14 CloisterStM14-Medium CloisterStM14-Semibold	\
 	CloisterStM14-Bold
 FONTS = ${FONTS6} ${FONTS8} ${FONTS10} ${FONTS12} ${FONTS14}

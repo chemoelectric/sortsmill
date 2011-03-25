@@ -62,21 +62,21 @@ Toolset get_tools(Font font)
     Toolset tools = new Toolset;
     tools.font = font;
     tools.space_width = 200;
-    tools.letter_e_eye_counter = EyeCounter(bounding_box=interpolate(font, (131,102), (131,116), (153,107), (160,175)),
+    tools.letter_e_eye_counter = EyeCounter(bounding_box=interpolate(font, (131,102), (131,116), (150,110), (160,175)),
                                             bottom_angle=14,
-                                            apex_x=interpolate(font, 60, 62, 70, 87),
+                                            apex_x=interpolate(font, 60, 62, 70, 95),
                                             left_tensions=nullpath{curl 0}..tension atleast 1.1..nullpath,
                                             right_tensions=nullpath..tension atleast 1.0..{curl 0}nullpath);
-    tools.letter_e_bowl_counter = EyeCounter(bounding_box=interpolate(font, (350,207), (360,203), (475,239), (435,211)),
+    tools.letter_e_bowl_counter = EyeCounter(bounding_box=interpolate(font, (350,207), (360,203), (450,233), (435,211)),
                                              bottom_angle=11.5,
-                                             apex_x=interpolate(font, 257, 264, 348, 325),
+                                             apex_x=interpolate(font, 257, 264, 331, 325),
                                              left_tensions=nullpath{curl 0}..tension atleast 1.15..nullpath,
                                              right_tensions=nullpath..{curl interpolate(font, 0.4, 0.4, 0.6, 0.6)}nullpath);
     tools.letter_e = Letter_e(eye_position=interpolate(font, (86,215), (117,215), (122,276), (157,233)),
-                              bowl_position=interpolate(font, (82,180), (119,178), (115,218), (165,182)),
+                              bowl_position=interpolate(font, (82,180), (119,178), (119,218), (165,182)),
                               left_point=interpolate(font, (0,155), (0,167), (0,200), (0,200)),
                               top_point=interpolate(font, (165,358), (190,374), (229,460), (270,458)),
-                              bottom_point=interpolate(font, (160,-9), (190,-9), (225,-12), (240,-12)),
+                              bottom_point=interpolate(font, (160,-9), (190,-9), (220,-11), (240,-12)),
                               terminal_point=interpolate(font, (315,66), (370,77), (417,83), (480,90)),
                               terminal_angle=interpolate(font, 120, 120, 120, 120),
                               arc_end_x=interpolate(font, 302, 356, 415, 470),
