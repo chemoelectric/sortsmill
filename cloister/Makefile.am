@@ -34,7 +34,9 @@ FONTS12 = CloisterStM12 CloisterStM12-Medium CloisterStM12-Semibold	\
 	CloisterStM12-Bold
 FONTS14 = CloisterStM14 CloisterStM14-Medium CloisterStM14-Semibold	\
 	CloisterStM14-Bold
-FONTS = ${FONTS6} ${FONTS8} ${FONTS10} ${FONTS12} ${FONTS14}
+#FONTS = ${FONTS6} ${FONTS8} ${FONTS10} ${FONTS12} ${FONTS14}
+FONTS = CloisterStM CloisterStM-Medium CloisterStM-Semibold	\
+	CloisterStM-Bold
 fonts_DATA = $(addsuffix .otf, ${FONTS})
 
 FONTDEPS = cloister_basics.asy cloister_glyphs.asy cloister_params.asy	\
