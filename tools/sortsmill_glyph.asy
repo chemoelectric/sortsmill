@@ -256,6 +256,12 @@ struct Glyph {
         this.unicode = unicode;
     }
 
+    void operator init(string name = '', int unicode = undefined) {
+        this.outlines = new path[] {};
+        this.name = name;
+        this.unicode = unicode;
+    }
+
     void operator init(pair corner1, pair corner2, string name = '', int unicode = undefined) {
         // Make a rectangular blank.
         path rect = corner1---(corner1.x,corner2.y)---corner2---(corner2.x,corner1.y)---cycle;
