@@ -286,8 +286,12 @@ struct Glyph {
             outlines[i] = t * outlines[i];
     }
 
-    void apply_punch(Glyph punch) {
+    void punch(Glyph punch) {
         outlines = apply_punch(punch.outlines, outlines);
+    }
+
+    void apply_punch(Glyph punch) { // DEPRECATED. (FIXME by removal before release.)
+        this.punch(punch);
     }
 
     void chop(pair point, real angle) {
@@ -502,8 +506,14 @@ real operator -(Glyph.OutlinePoint p, Glyph.OutlinePoint q)
     return p_length - q_length;
 }
 
-Glyph.OutlinePoint operator ^(Glyph.OutlinePoint p, int n) {
+Glyph.OutlinePoint operator ^(Glyph.OutlinePoint p, int n)
+{
     return p.nearby_node(n);
+}
+
+Glyph.OutlinePoint operator @(Glyph g, pair p)
+{
+    return Glyph.OutlinePoint(g, p);
 }
 
 pair dir(Glyph.OutlinePoint p)
