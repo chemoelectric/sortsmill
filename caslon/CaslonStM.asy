@@ -67,7 +67,7 @@ e_top_counter.splice_in(add_extrema(corner((e_top_counter@(0,0))^0, 25, 50, null
 e_top_counter.splice_in(add_extrema(corner((e_top_counter@(190,2))^0, 70, 35, nullpath..tension 0.9..nullpath)));
 
 Glyph e_bowl = Glyph((150,-209){left}::(-4,-45){up}::{curl 1}(0,0)--(300,2){curl 1}::cycle);
-e_bowl.splice_in(add_extrema(corner((e_bowl@(0,0))^0, 50, 30, nullpath..tension 0.75 and 3.0..nullpath)));
+e_bowl.splice_in(add_extrema(corner((e_bowl@(0,0))^0, 40, 40, nullpath..tension 0.75 and 3.0..nullpath)));
 
 //.........................................................................
 
