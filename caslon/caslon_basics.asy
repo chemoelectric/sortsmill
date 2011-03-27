@@ -93,3 +93,21 @@ struct AngledTrim {
 };
 
 //-------------------------------------------------------------------------
+
+struct TwoPointTrim {
+    pair point1;
+    pair point2;
+    guide guide;
+
+    void operator init(pair point1, pair point2, guide guide) {
+        this.point1 = point1;
+        this.point2 = point2;
+        this.guide = guide;
+    }
+
+    path path(Glyph glyph) {
+        return point1{dir(glyph@point1)}..guide..{dir(glyph@point2)}point2;
+    }
+};
+
+//-------------------------------------------------------------------------

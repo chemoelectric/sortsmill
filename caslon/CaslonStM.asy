@@ -39,16 +39,23 @@ font.boldness = 400;
 
 //.........................................................................
 
-pair c_upper_terminal_point = (305,307);
+pair c_upper_terminal_point = (78,266);
+pair c_counter_position = (202,40);
 
-Glyph c_outline = shift(-13,0)*Glyph((185,-11){left}..tension 0.95 and 1.0..
-                                     (13,190){up}..(205,416){right}..tension 0.97..
-                                     (370,200){down}..tension 1.0 and 0.95..cycle);
-Glyph c_counter = shift(-227,-41)*Glyph((227,41){left}..(86,200){up}..(208,377){right}..
-                                        c_upper_terminal_point{right}..(370,200){down}..cycle);
+Glyph c_outline = Glyph((172,-12){left}..tension 0.95 and 1.0..
+                        (0,189){up}..(192,415){right}..tension 0.97..
+                        (357,199){down}..tension 1.0 and 0.95..cycle);
+Glyph c_counter = Glyph((0,0){left}..(-141,159){up}..(-19,336){right}..
+                        c_upper_terminal_point{right}..(143,159){down}..cycle);
 
 Pt p1 = c_outline.points_at_y(375)[1];
-Pt p2 = c_outline.points_at_y(63)[1];
+Pt p2 = c_outline.points_at_y(59)[1];
+
+TwoPointTrim c_upper_terminal = TwoPointTrim(p1.point,
+                                             shift(c_counter_position)*c_upper_terminal_point,
+                                             nullpath..tension 0.95..nullpath);
+AngledTrim c_lower_terminal = AngledTrim(p2.point, dir(130), 1, 1000,
+                                         nullpath..tension 2.0..nullpath, reversed = true);
 
 //.........................................................................
 
@@ -67,7 +74,7 @@ e_top_counter.splice_in(add_extrema(corner((e_top_counter@(0,0))^0, 25, 50, null
 e_top_counter.splice_in(add_extrema(corner((e_top_counter@(190,2))^0, 70, 35, nullpath..tension 0.9..nullpath)));
 
 Glyph e_bowl = Glyph((150,-209){left}::(-4,-45){up}::{curl 1}(0,0)--(300,2){curl 1}::cycle);
-e_bowl.splice_in(add_extrema(corner((e_bowl@(0,0))^0, 40, 40, nullpath..tension 0.75 and 3.0..nullpath)));
+e_bowl.splice_in(add_extrema(corner((e_bowl@(0,0))^0, 40, 40, nullpath..tension 1.0 and 2.0..nullpath)));
 
 //.........................................................................
 
@@ -76,9 +83,9 @@ Glyph o_outline = Glyph((185,-10){left}..tension 0.95 and 1.0..
                         (190,409){right}..
                         (384,200){down}..tension 1.0 and 0.95..cycle);
 Glyph o_counter = shift(-8,-1)*Glyph((3,1){left}..tension 1.4 and 0.75..
-                                    (-114,185){up}..tension 0.97..
+                                     (-114,185){up}..tension 0.97..
                                      (5,356){right}..
-                                    (134,170){down}..tension 0.75 and 1.4..cycle);
+                                     (134,170){down}..tension 0.75 and 1.4..cycle);
 
 //.........................................................................
 
@@ -88,8 +95,10 @@ Toolset tools = Toolset(
     ex_height=403,
     curve_overshoot=10,
 
-    c_outline=shift(0,-1)*c_outline,
-    c_counter=shift(202,40)*c_counter,
+    c_outline=c_outline,
+    c_counter=shift(c_counter_position)*c_counter,
+    c_upper_terminal=c_upper_terminal,
+    c_lower_terminal=c_lower_terminal,
 
     e_outline=e_outline,
     e_top_counter=shift(73,280)*e_top_counter,

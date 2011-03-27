@@ -30,6 +30,8 @@ struct Toolset {
 
     Glyph c_outline;
     Glyph c_counter;
+    TwoPointTrim c_upper_terminal;
+    AngledTrim c_lower_terminal;
 
     Glyph e_outline;
     Glyph e_top_counter;
@@ -46,6 +48,8 @@ struct Toolset {
                        real curve_overshoot,
                        Glyph c_outline,
                        Glyph c_counter,
+                       TwoPointTrim c_upper_terminal,
+                       AngledTrim c_lower_terminal,
                        Glyph e_outline,
                        Glyph e_top_counter,
                        Glyph e_bowl,
@@ -61,6 +65,8 @@ struct Toolset {
 
         this.c_outline = c_outline;
         this.c_counter = c_counter;
+        this.c_upper_terminal = c_upper_terminal;
+        this.c_lower_terminal = c_lower_terminal;
 
         this.e_outline = e_outline;
         this.e_top_counter = e_top_counter;
@@ -85,9 +91,7 @@ Glyph cut_space(Toolset tools)
 
 Glyph cut_c(Toolset tools)
 {
-    Glyph glyph = tools.c_outline;
-Pt p1a = tools.c_outline.points_at_y(375)[1];
-Pt p2a = tools.c_outline.points_at_y(63)[1];
+    Glyph glyph = copy(tools.c_outline);
     glyph.name = 'c';
     glyph.punch(tools.c_counter);
 
@@ -98,17 +102,16 @@ Pt p2a = tools.c_outline.points_at_y(63)[1];
     glyph.punch(Glyph(midpoint--(midpoint + (1000,0))--
                       (midpoint + (1000,-1))--(midpoint + (0,-1))--cycle));
 
-Pt p1 = glyph@(p1a.point);
-glyph.splice_in(add_extrema(p1.point{dir(p1)}..tension 0.95..{left}(305-25,307)));
-Pt p2 = glyph@(p2a.point);
-glyph.splice_in(AngledTrim(p2.point, dir(130), 1, 1000, nullpath..tension 2.0..nullpath, reversed = true).path(glyph));
+    // Finish the terminals.
+    glyph.splice_in(add_extrema(tools.c_upper_terminal.path(glyph)));
+    glyph.splice_in(tools.c_lower_terminal.path(glyph));
 
     return glyph;
 }
 
 Glyph cut_e(Toolset tools)
 {
-    Glyph glyph = tools.e_outline;
+    Glyph glyph = copy(tools.e_outline);
     glyph.name = 'e';
     glyph.punch(tools.e_top_counter);
     glyph.punch(tools.e_bowl);
@@ -120,7 +123,7 @@ Glyph cut_e(Toolset tools)
 
 Glyph cut_o(Toolset tools)
 {
-    Glyph glyph = tools.o_outline;
+    Glyph glyph = copy(tools.o_outline);
     glyph.name = 'o';
     glyph.punch(tools.o_counter);
     return glyph;
