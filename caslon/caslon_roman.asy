@@ -43,6 +43,11 @@ struct Toolset {
     Glyph o_outline;
     Glyph o_counter;
 
+    Glyph t_outline;
+    Glyph t_left_punch;
+    Glyph t_right_punch;
+    TwoPointTrim t_left_corner;
+
     void operator init(real space_width,
                        real ex_height,
                        real curve_overshoot,
@@ -56,7 +61,11 @@ struct Toolset {
                        Corner e_corner,
                        AngledTrim e_terminal,
                        Glyph o_outline,
-                       Glyph o_counter
+                       Glyph o_counter,
+                       Glyph t_outline,
+                       Glyph t_left_punch,
+                       Glyph t_right_punch,
+                       TwoPointTrim t_left_corner
                        /* */) {
 
         this.space_width = space_width;
@@ -76,6 +85,11 @@ struct Toolset {
 
         this.o_outline = o_outline;
         this.o_counter = o_counter;
+
+        this.t_outline = t_outline;
+        this.t_left_punch = t_left_punch;
+        this.t_right_punch = t_right_punch;
+        this.t_left_corner = t_left_corner;
     }
 };
 
@@ -129,6 +143,26 @@ Glyph cut_o(Toolset tools)
     return glyph;
 }
 
+Glyph cut_t(Toolset tools)
+{
+    Glyph glyph = copy(tools.t_outline);
+    glyph.name = 't';
+    glyph.punch(tools.t_left_punch);
+    glyph.punch(tools.t_right_punch);
+
+    //............................................................................................................
+    Pt p1 = (glyph@(116,525)) - 10;
+    Pt p2 = (glyph@(116,525))^1 + 15;
+    glyph.splice_in(add_extrema(p1.point{dir(p1)}..{dir(p2)}p2.point));
+
+    glyph.splice_in(AngledTrim(((glyph@(159,-18))^-1 - 0.1).point, dir(120), 1, 1000,
+                               nullpath..tension 2.0..nullpath, reversed=true).path(glyph));
+
+    //............................................................................................................
+    glyph.splice_in(add_extrema(tools.t_left_corner.path(glyph)));
+    return glyph;
+}
+
 //-------------------------------------------------------------------------
 
 typedef Glyph glyph_cutter(Toolset);
@@ -137,7 +171,8 @@ glyph_cutter[] cutters = new glyph_cutter[] {
     cut_space,
     cut_c,
     cut_e,
-    cut_o
+    cut_o,
+    cut_t
 };
 
 void cut_glyphs(Toolset tools)
