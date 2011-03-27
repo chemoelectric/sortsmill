@@ -60,20 +60,30 @@ struct Corner {
 //-------------------------------------------------------------------------
 
 struct AngledTrim {
-    pair start;
+    pair point;
     pair dir;
+    real before;
+    real after;
     guide guide;
     bool reversed;
 
-    void operator init(pair start, pair dir, guide guide, bool reversed) {
-        this.start = start;
+    void operator init(pair point,
+                       pair dir,
+                       real before,
+                       real after,
+                       guide guide,
+                       bool reversed) {
+        this.point = point;
         this.dir = dir;
+        this.before = before;
+        this.after = after;
         this.guide = guide;
         this.reversed = reversed;
     }
 
     path path(Glyph glyph) {
-        Pt xsect[] = glyph.intersections(shift(start)*scale(2000)*((0,0)--dir));
+        path p = ((0,0) - before*dir)--((0,0) + after*dir);
+        Pt xsect[] = glyph.intersections(shift(point)*p);
         if (xsect.length < 2)
             abort('intersections not found');
         Pt p1 = xsect[reversed ? 1 : 0];
