@@ -24,6 +24,11 @@ import caslon_font;
 //-------------------------------------------------------------------------
 
 struct Toolset {
+
+    real default_corner_side;
+    guide default_corner_guide;
+    static path default_corner(Pt);
+
     real space_width;
     real ex_height;
     real curve_overshoot;
@@ -47,8 +52,13 @@ struct Toolset {
     Glyph t_left_punch;
     Glyph t_right_punch;
     TwoPointTrim t_left_corner;
+    TwoPointTrim t_top_corner;
+    AngledTrim t_terminal;
 
-    void operator init(real space_width,
+    void operator init(real default_corner_side,
+                       guide default_corner_guide,
+                       path default_corner(Pt),
+                       real space_width,
                        real ex_height,
                        real curve_overshoot,
                        Glyph c_outline,
@@ -65,8 +75,14 @@ struct Toolset {
                        Glyph t_outline,
                        Glyph t_left_punch,
                        Glyph t_right_punch,
-                       TwoPointTrim t_left_corner
+                       TwoPointTrim t_left_corner,
+                       TwoPointTrim t_top_corner,
+                       AngledTrim t_terminal
                        /* */) {
+
+        this.default_corner_side = default_corner_side;
+        this.default_corner_guide = default_corner_guide;
+        this.default_corner = default_corner;
 
         this.space_width = space_width;
         this.ex_height = ex_height;
@@ -90,6 +106,8 @@ struct Toolset {
         this.t_left_punch = t_left_punch;
         this.t_right_punch = t_right_punch;
         this.t_left_corner = t_left_corner;
+        this.t_top_corner = t_top_corner;
+        this.t_terminal = t_terminal;
     }
 };
 
@@ -113,8 +131,7 @@ Glyph cut_c(Toolset tools)
     // ever add splicing between two outlines.)
     path counter = tools.c_counter.outlines[0];
     pair midpoint = 0.5*(max(counter) + min(counter));
-    glyph.punch(Glyph(midpoint--(midpoint + (1000,0))--
-                      (midpoint + (1000,-1))--(midpoint + (0,-1))--cycle));
+    glyph.punch(Glyph(midpoint--(midpoint + (1000,0))--(midpoint + (1000,-1))--(midpoint + (0,-1))--cycle));
 
     // Finish the terminals.
     glyph.splice_in(add_extrema(tools.c_upper_terminal.path(glyph)));
@@ -149,17 +166,9 @@ Glyph cut_t(Toolset tools)
     glyph.name = 't';
     glyph.punch(tools.t_left_punch);
     glyph.punch(tools.t_right_punch);
-
-    //............................................................................................................
-    Pt p1 = (glyph@(116,525)) - 10;
-    Pt p2 = (glyph@(116,525))^1 + 15;
-    glyph.splice_in(add_extrema(p1.point{dir(p1)}..{dir(p2)}p2.point));
-
-    glyph.splice_in(AngledTrim(((glyph@(159,-18))^-1 - 0.1).point, dir(120), 1, 1000,
-                               nullpath..tension 2.0..nullpath, reversed=true).path(glyph));
-
-    //............................................................................................................
     glyph.splice_in(add_extrema(tools.t_left_corner.path(glyph)));
+    glyph.splice_in(add_extrema(tools.t_top_corner.path(glyph)));
+    glyph.splice_in(tools.t_terminal.path(glyph));
     return glyph;
 }
 

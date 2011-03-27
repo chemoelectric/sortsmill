@@ -37,11 +37,6 @@ font.sfnt_subfamily = 'Regular';
 font.design_size = 12;
 font.boldness = 400;
 
-//-------------------------------------------------------------------------
-
-real corner_side = 10;
-guide corner_guide = nullpath..nullpath;
-
 //.........................................................................
 
 pair c_upper_terminal_point = (78,266);
@@ -56,8 +51,7 @@ Glyph c_counter = Glyph((0,0){left}..(-141,159){up}..(-19,336){right}..
 Pt p1 = c_outline.points_at_y(375)[1];
 Pt p2 = c_outline.points_at_y(59)[1];
 
-TwoPointTrim c_upper_terminal = TwoPointTrim(p1.point,
-                                             shift(c_counter_position)*c_upper_terminal_point,
+TwoPointTrim c_upper_terminal = TwoPointTrim(p1.point, shift(c_counter_position)*c_upper_terminal_point,
                                              nullpath..tension 0.95..nullpath);
 AngledTrim c_lower_terminal = AngledTrim(p2.point, dir(130), 1, 1000,
                                          nullpath..tension 2.0..nullpath, reversed = true);
@@ -99,33 +93,48 @@ Glyph o_counter = shift(-8,-1)*Glyph((3,1){left}..tension 1.4 and 0.75..
 
 //.........................................................................
 
+real t_approx_width = 266;
 pair t_top_slope_point = (0,366);
 pair t_left_punch_position = (159,-18);
 pair t_right_punch_position = (185,24);
-real t_left_crossbar_height = 345;
+pair t_top_point = (116,525);
 
-Glyph t_outline = Glyph((0,-18)--t_top_slope_point{dir(43)}..{dir(58)}(116,525)--(266,525)--(266,-18)--cycle);
+Glyph t_outline = Glyph((0,-18)--t_top_slope_point{dir(43)}..{dir(58)}t_top_point--
+                        (t_approx_width,t_top_point.y)--(t_approx_width,t_left_punch_position.y)--cycle);
 
 Glyph t_left_punch = Glyph((0,0)..(120,60)--(120,-1)--(-500, -1)--(-500,363)--
                            (-102,363){down}..tension 0.75..{down}(-108,100)::{right}cycle);
 t_left_punch.splice_in(corner(t_left_punch@(-102,363), 13, 50, nullpath::nullpath));
 
-pair p1 = (10, t_left_crossbar_height);
-pair p2 = (t_outline@t_top_slope_point + 10).point;
-TwoPointTrim t_left_corner = TwoPointTrim(p1, p2, nullpath..nullpath);
-
 Glyph t_crossbar_punch = Glyph((-170,46)--(14,53)--(0,0)--(-170,4)--cycle);
-t_crossbar_punch.splice_in(corner(t_crossbar_punch@(0,0), corner_side, corner_side, corner_guide));
-t_crossbar_punch.splice_in(corner(t_crossbar_punch@(14,53), corner_side, corner_side, corner_guide));
+t_crossbar_punch.splice_in(default_corner(t_crossbar_punch@(0,0)));
+t_crossbar_punch.splice_in(default_corner(t_crossbar_punch@(14,53)));
 Glyph t_right_punch = Glyph((0,0){left}..(-68,100)---(-68,322)..tension 3.0..(-42,550)--
                             (1000,550)---(1000,26)--(88,36)..cycle);
 t_right_punch.punch(shift(57,322)*t_crossbar_punch);
-t_right_punch.splice_in(corner((t_right_punch@(-68,322))^1, corner_side, corner_side, corner_guide));
-t_right_punch.splice_in(corner((t_right_punch@(-42,550))^-1, corner_side, corner_side, corner_guide));
+t_right_punch.splice_in(default_corner((t_right_punch@(-68,322))^1));
+t_right_punch.splice_in(default_corner((t_right_punch@(-42,550))^-1));
+
+TwoPointTrim t_left_corner =
+    TwoPointTrim(t_top_slope_point, t_top_slope_point, nullpath..nullpath,
+                 nodenum1=-1, nodenum2=0, before=10, after=10);
+
+TwoPointTrim t_top_corner =
+    TwoPointTrim(t_top_point, t_top_point, nullpath..nullpath,
+                 nodenum1=0, nodenum2=1, before=10, after=15);
+
+Pt p1 = t_left_punch.points_at_x(t_approx_width - t_left_punch_position.x)[1];
+AngledTrim t_terminal = AngledTrim(p1.point + t_left_punch_position,
+                                   dir(120), 1, 1000,
+                                   nullpath..tension 2.0..nullpath, reversed=true);
 
 //.........................................................................
 
 Toolset tools = Toolset(
+
+    default_corner_side = default_corner_side,
+    default_corner_guide = default_corner_guide,
+    default_corner = default_corner,
 
     space_width=200,
     ex_height=403,
@@ -148,7 +157,9 @@ Toolset tools = Toolset(
     t_outline=t_outline,
     t_left_punch=shift(t_left_punch_position)*t_left_punch,
     t_right_punch=shift(t_right_punch_position)*t_right_punch,
-    t_left_corner=t_left_corner
+    t_left_corner=t_left_corner,
+    t_top_corner=t_top_corner,
+    t_terminal=t_terminal
 
     /* */);
 

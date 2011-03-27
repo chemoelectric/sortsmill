@@ -39,6 +39,14 @@ path corner(Pt corner,
     return corner_path;
 }
 
+real default_corner_side = 10;
+guide default_corner_guide = nullpath..nullpath;
+
+path default_corner(Pt point)
+{
+    return corner(point, default_corner_side, default_corner_side, default_corner_guide);
+}
+
 struct Corner {
     pair point;
     real before;
@@ -62,32 +70,38 @@ struct Corner {
 struct AngledTrim {
     pair point;
     pair dir;
+    real segment_before;
+    real segment_after;
+    guide guide;
     real before;
     real after;
-    guide guide;
     bool reversed;
 
     void operator init(pair point,
                        pair dir,
-                       real before,
-                       real after,
+                       real segment_before,
+                       real segment_after,
                        guide guide,
-                       bool reversed) {
+                       bool reversed=false,
+                       real before=0,
+                       real after=0) {
         this.point = point;
         this.dir = dir;
-        this.before = before;
-        this.after = after;
+        this.segment_before = segment_before;
+        this.segment_after = segment_after;
         this.guide = guide;
         this.reversed = reversed;
+        this.before = before;
+        this.after = after;
     }
 
     path path(Glyph glyph) {
-        path p = ((0,0) - before*dir)--((0,0) + after*dir);
-        Pt xsect[] = glyph.intersections(shift(point)*p);
+        path intersector = ((0,0) - segment_before*dir)--((0,0) + segment_after*dir);
+        Pt xsect[] = glyph.intersections(shift(point)*intersector);
         if (xsect.length < 2)
             abort('intersections not found');
-        Pt p1 = xsect[reversed ? 1 : 0];
-        Pt p2 = xsect[reversed ? 0 : 1];
+        Pt p1 = xsect[reversed ? 1 : 0] - before;
+        Pt p2 = xsect[reversed ? 0 : 1] + after;
         return p1.point{dir(p1)}..guide..{dir(p2)}p2.point;
     }
 };
@@ -98,15 +112,27 @@ struct TwoPointTrim {
     pair point1;
     pair point2;
     guide guide;
+    real before;
+    real after;
+    int nodenum1;
+    int nodenum2;
 
-    void operator init(pair point1, pair point2, guide guide) {
+    void operator init(pair point1, pair point2, guide guide,
+                       real before=0, real after=0,
+                       int nodenum1=undefined, int nodenum2=undefined) {
         this.point1 = point1;
         this.point2 = point2;
         this.guide = guide;
+        this.before = before;
+        this.after = after;
+        this.nodenum1 = nodenum1;
+        this.nodenum2 = nodenum2;
     }
 
     path path(Glyph glyph) {
-        return point1{dir(glyph@point1)}..guide..{dir(glyph@point2)}point2;
+        Pt p1 = (glyph@point1)^nodenum1 - before;
+        Pt p2 = (glyph@point2)^nodenum2 + after;
+        return p1.point{dir(p1)}..guide..{dir(p2)}p2.point;
     }
 };
 

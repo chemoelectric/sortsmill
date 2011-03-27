@@ -226,7 +226,7 @@ struct Glyph {
             OutlinePoint p = new OutlinePoint;
             p.glyph = glyph;
             p.outline_no = outline_no;
-            p.time = (int)round(time) + n;
+            p.time = (n == undefined) ? time : round(time) + n;
             p.point = point(glyph.outlines[outline_no], p.time);
             return p;
         }
