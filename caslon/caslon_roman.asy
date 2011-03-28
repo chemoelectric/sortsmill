@@ -33,6 +33,10 @@ struct Toolset {
     real ex_height;
     real curve_overshoot;
 
+    // Shapes the shoulder of a handful of letters.
+    pair n_shoulder_point;
+    Glyph n_shoulder_punch;
+
     Glyph c_outline;
     Glyph c_counter;
     TwoPointTrim c_upper_terminal;
@@ -48,6 +52,10 @@ struct Toolset {
     Glyph o_outline;
     Glyph o_counter;
 
+    pair r_left_punch_position;
+    pair r_right_punch_position;
+    pair r_shoulder_punch_position;
+
     Glyph t_outline;
     Glyph t_left_punch;
     Glyph t_right_punch;
@@ -61,6 +69,8 @@ struct Toolset {
                        real space_width,
                        real ex_height,
                        real curve_overshoot,
+                       pair n_shoulder_point,
+                       Glyph n_shoulder_punch,
                        Glyph c_outline,
                        Glyph c_counter,
                        TwoPointTrim c_upper_terminal,
@@ -72,6 +82,9 @@ struct Toolset {
                        AngledTrim e_terminal,
                        Glyph o_outline,
                        Glyph o_counter,
+                       pair r_left_punch_position,
+                       pair r_right_punch_position,
+                       pair r_shoulder_punch_position,
                        Glyph t_outline,
                        Glyph t_left_punch,
                        Glyph t_right_punch,
@@ -88,6 +101,9 @@ struct Toolset {
         this.ex_height = ex_height;
         this.curve_overshoot = curve_overshoot;
 
+        this.n_shoulder_point = n_shoulder_point;
+        this.n_shoulder_punch = n_shoulder_punch;
+
         this.c_outline = c_outline;
         this.c_counter = c_counter;
         this.c_upper_terminal = c_upper_terminal;
@@ -101,6 +117,10 @@ struct Toolset {
 
         this.o_outline = o_outline;
         this.o_counter = o_counter;
+
+        this.r_left_punch_position = r_left_punch_position;
+        this.r_right_punch_position = r_right_punch_position;
+        this.r_shoulder_punch_position = r_shoulder_punch_position;
 
         this.t_outline = t_outline;
         this.t_left_punch = t_left_punch;
@@ -168,37 +188,30 @@ Glyph cut_r(Toolset tools)
     Glyph glyph = Glyph((0,below_baseline), (500,1000));
     glyph.name = 'r';
 
-    pair r_left_punch_position = (100,27);
     real r_serif_left = 53;
     pair r_serif_left_dir = dir(90);
-    pair r_right_punch_position = r_left_punch_position + (61,0);
     pair r_right_punch_point1 = (162,278);
     real r_serif_right = 63;
     pair r_serif_right_dir = dir(90);
-    pair r_top_punch_position = r_right_punch_position + (-2,280);
-    pair shoulder_point = (140,95); // Relative to the punch origin.
-    pair r_right_point = r_top_punch_position + (204,41);
-    pair r_top_point = r_top_punch_position + (0,112);
+    pair r_right_point = tools.r_shoulder_punch_position + (204,41);
+    pair r_top_point = tools.r_shoulder_punch_position + (0,112);
     real r_top_angle = 27;
 
     Glyph r_left_punch = Glyph(((0,305) + 1000*dir(145))--(0,280)--(0,0)--(1000*dir(180 + serif_angle))--cycle);
     r_left_punch.splice_in(corner((r_left_punch@(0,0))^0, 80, 16, nullpath..tension atleast 1.1..nullpath));
     r_left_punch.splice_in(add_extrema(corner((r_left_punch@(0,280))^0, 30, 50, nullpath::nullpath)));
-    glyph.punch(shift(r_left_punch_position)*r_left_punch);
+    glyph.punch(shift(tools.r_left_punch_position)*r_left_punch);
 
     Glyph r_right_punch = Glyph((0,0){up}..(-2,215){up}..{right}(78,307)..
                                 {right}r_right_punch_point1---(1000,278)--(1000*dir(360 - serif_angle))--cycle);
     r_right_punch.splice_in(corner((r_right_punch@(0,0))^0, 16, 80, nullpath..tension atleast 1.1..nullpath));
-    glyph.punch(shift(r_right_punch_position)*r_right_punch);
+    glyph.punch(shift(tools.r_right_punch_position)*r_right_punch);
 
-    // This is also an "m" and "n" top punch (FIXME: and perhaps an "h" punch).
-    Glyph r_top_punch = Glyph((0,0)--(0,1000)--(500,1000)--(500,95)---shoulder_point..{dir(230)}cycle);
-    r_top_punch.splice_in(corner((r_top_punch@(0,0))^0, 50, 30, nullpath..tension 0.8..nullpath));
-    glyph.punch(shift(r_top_punch_position)*r_top_punch);
+    glyph.punch(shift(tools.r_shoulder_punch_position)*tools.n_shoulder_punch);
 
-    path terminal = ((r_top_punch_position + shoulder_point){right}..
+    path terminal = ((tools.r_shoulder_punch_position + tools.n_shoulder_point){right}..
                      r_right_point{down}..
-                     {left}(r_right_punch_position + r_right_punch_point1));
+                     {left}(tools.r_right_punch_position + r_right_punch_point1));
     glyph.splice_in(terminal);
 
     path top_slope = AngledTrim(r_top_point, dir(r_top_angle), 500, 1,
@@ -207,9 +220,9 @@ Glyph cut_r(Toolset tools)
     glyph.splice_in(add_extrema(corner((glyph@r_top_point)^-1, 20, 20, nullpath..nullpath)));
     glyph.splice_in(add_extrema(corner((glyph@r_top_point)^0, 20, 20, nullpath..tension 0.75..nullpath)));
 
-    pair serif_left = (r_left_punch_position.x - r_serif_left, below_baseline);
-    pair serif_right = (r_right_punch_position.x + r_serif_right, below_baseline);
-    pair serif_between = (0.5*(r_left_punch_position.x + r_right_punch_position.x), 0);
+    pair serif_left = (tools.r_left_punch_position.x - r_serif_left, below_baseline);
+    pair serif_right = (tools.r_right_punch_position.x + r_serif_right, below_baseline);
+    pair serif_between = (0.5*(tools.r_left_punch_position.x + tools.r_right_punch_position.x), 0);
     glyph.splice_in(serif_right{left}..tension 0.75 and 1.5..
                     (serif_between + (5,0))---
                     (serif_between - (5,0))..tension 1.5 and 0.75..

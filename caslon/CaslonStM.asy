@@ -37,7 +37,13 @@ font.sfnt_subfamily = 'Regular';
 font.design_size = 12;
 font.boldness = 400;
 
-//.........................................................................
+//-------------------------------------------------------------------------
+
+pair n_shoulder_point = (140,95); // Relative to the punch origin.
+Glyph n_shoulder_punch = Glyph((0,0)--(0,1000)--(500,1000)--(500,95)---n_shoulder_point..{dir(230)}cycle);
+n_shoulder_punch.splice_in(corner((n_shoulder_punch@(0,0))^0, 50, 30, nullpath..tension 0.8..nullpath));
+
+//-------------------------------------------------------------------------
 
 pair c_upper_terminal_point = (78,266);
 pair c_counter_position = (202,40);
@@ -93,6 +99,13 @@ Glyph o_counter = shift(-8,-1)*Glyph((3,1){left}..tension 1.4 and 0.75..
 
 //.........................................................................
 
+
+pair r_left_punch_position = (100,27);
+pair r_right_punch_position = r_left_punch_position + (61,0);
+pair r_shoulder_punch_position = r_right_punch_position + (-2,280);
+
+//.........................................................................
+
 real t_approx_width = 262;
 pair t_top_slope_point = (0,366);
 pair t_left_punch_position = (160,-17);
@@ -142,6 +155,9 @@ Toolset tools = Toolset(
     ex_height=403,
     curve_overshoot=10,
 
+    n_shoulder_point = n_shoulder_point,
+    n_shoulder_punch = n_shoulder_punch,
+
     c_outline=c_outline,
     c_counter=shift(c_counter_position)*c_counter,
     c_upper_terminal=c_upper_terminal,
@@ -155,6 +171,10 @@ Toolset tools = Toolset(
 
     o_outline=o_outline,
     o_counter=shift(188,23)*o_counter,
+
+    r_left_punch_position=r_left_punch_position,
+    r_right_punch_position=r_right_punch_position,
+    r_shoulder_punch_position=r_shoulder_punch_position,
 
     t_outline=t_outline,
     t_left_punch=shift(t_left_punch_position)*t_left_punch,
