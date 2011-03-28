@@ -96,7 +96,7 @@ struct AngledTrim {
     }
 
     path path(Glyph glyph) {
-        path intersector = ((0,0) - segment_before*dir)--((0,0) + segment_after*dir);
+        path intersector = (-segment_before*dir)--(segment_after*dir);
         Pt xsect[] = glyph.intersections(shift(point)*intersector);
         if (xsect.length < 2)
             abort('intersections not found');
