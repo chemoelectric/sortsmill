@@ -93,27 +93,30 @@ Glyph o_counter = shift(-8,-1)*Glyph((3,1){left}..tension 1.4 and 0.75..
 
 //.........................................................................
 
-real t_approx_width = 266;
+real t_approx_width = 262;
 pair t_top_slope_point = (0,366);
-pair t_left_punch_position = (159,-18);
-pair t_right_punch_position = (185,24);
+pair t_left_punch_position = (160,-17);
+pair t_left_punch_right1 = (-104,363);
+pair t_left_punch_right2 = (-110,100);
+pair t_right_punch_position = (185,25);
 pair t_top_point = (116,525);
 
-Glyph t_outline = Glyph((0,-18)--t_top_slope_point{dir(43)}..{dir(58)}t_top_point--
+Glyph t_outline = Glyph((0,t_left_punch_position.y)--t_top_slope_point{dir(43)}..{dir(58)}t_top_point--
                         (t_approx_width,t_top_point.y)--(t_approx_width,t_left_punch_position.y)--cycle);
 
-Glyph t_left_punch = Glyph((0,0)..(120,60)--(120,-1)--(-500, -1)--(-500,363)--
-                           (-102,363){down}..tension 0.75..{down}(-108,100)::{right}cycle);
-t_left_punch.splice_in(corner(t_left_punch@(-102,363), 13, 50, nullpath::nullpath));
+Glyph t_left_punch = Glyph((0,0)..(120,72)--(120,-1)--(-500, -1)--(-500,t_left_punch_right1.y)--
+                           t_left_punch_right1{down}..tension atleast 0.75..{down}t_left_punch_right2::{right}cycle);
+t_left_punch.splice_in(corner(t_left_punch@t_left_punch_right1, 13, 50, nullpath::nullpath));
 
-Glyph t_crossbar_punch = Glyph((-170,46)--(14,53)--(0,0)--(-170,4)--cycle);
+Glyph t_crossbar_punch = Glyph((-170,48)--(14,54)--(0,0)--(-170,4)--cycle);
 t_crossbar_punch.splice_in(default_corner(t_crossbar_punch@(0,0)));
 t_crossbar_punch.splice_in(default_corner(t_crossbar_punch@(14,53)));
-Glyph t_right_punch = Glyph((0,0){left}..(-68,100)---(-68,322)..tension 3.0..(-42,550)--
-                            (1000,550)---(1000,26)--(88,36)..cycle);
+Glyph t_right_punch = Glyph((0,0){left}..(-70,101)---(-70,322)..tension 3.0..(-42,550)--
+                            (1000,550)---(1000,51)--(88,51)..tension 0.9 and 1.0..cycle);
 t_right_punch.punch(shift(57,322)*t_crossbar_punch);
-t_right_punch.splice_in(default_corner((t_right_punch@(-68,322))^1));
-t_right_punch.splice_in(default_corner((t_right_punch@(-42,550))^-1));
+t_right_punch.splice_in(corner((t_right_punch@(-68,322))^1, 15, 15, nullpath::nullpath));
+t_right_punch.splice_in(add_extrema(corner((t_right_punch@(-42,550))^-1, 20, 40,
+                                           nullpath..tension 0.75 and 10.0..nullpath)));
 
 TwoPointTrim t_left_corner =
     TwoPointTrim(t_top_slope_point, t_top_slope_point, nullpath..nullpath,
@@ -124,9 +127,8 @@ TwoPointTrim t_top_corner =
                  nodenum1=0, nodenum2=1, before=10, after=15);
 
 Pt p1 = t_left_punch.points_at_x(t_approx_width - t_left_punch_position.x)[1];
-AngledTrim t_terminal = AngledTrim(p1.point + t_left_punch_position,
-                                   dir(120), 1, 1000,
-                                   nullpath..tension 2.0..nullpath, reversed=true);
+AngledTrim t_terminal = AngledTrim(p1.point + t_left_punch_position, dir(120), 1, 1000,
+                                   nullpath..tension 2.0..nullpath, reversed=true, after=0.01);
 
 //.........................................................................
 
