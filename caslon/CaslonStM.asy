@@ -39,6 +39,9 @@ font.boldness = 400;
 
 //-------------------------------------------------------------------------
 
+real serif_below_baseline = -2;
+real serif_angle = 2;
+
 pair n_shoulder_point = (140,95); // Relative to the punch origin.
 Glyph n_shoulder_punch = Glyph((0,0)--(0,1000)--(500,1000)--(500,95)---n_shoulder_point..{dir(230)}cycle);
 n_shoulder_punch.splice_in(corner((n_shoulder_punch@(0,0))^0, 50, 30, nullpath..tension 0.8..nullpath));
@@ -104,6 +107,61 @@ pair r_left_punch_position = (100,27);
 pair r_right_punch_position = r_left_punch_position + (61,0);
 pair r_shoulder_punch_position = r_right_punch_position + (-2,280);
 
+real r_serif_left = 55;
+real r_serif_left_angle = 90;
+real r_serif_right = 60;
+real r_serif_right_angle = 90;
+guide r_serif_end_guide = nullpath..tension 2.5..nullpath;
+
+pair r_right_punch_point1 = (162,278);
+pair r_right_point = r_shoulder_punch_position + (204,41);
+pair r_top_point = r_shoulder_punch_position + (0,112);
+real r_top_angle = 27;
+
+pair serif_left = (r_left_punch_position.x - r_serif_left, serif_below_baseline);
+pair serif_right = (r_right_punch_position.x + r_serif_right, serif_below_baseline);
+pair serif_between = (0.5*(r_left_punch_position.x + r_right_punch_position.x), 0);
+
+Glyph r_left_punch = Glyph(((0,305) + 1000*dir(145))--(0,280)--(0,0)--(1000*dir(180 + serif_angle))--cycle);
+r_left_punch.splice_in(corner((r_left_punch@(0,0))^0, 80, 16, nullpath..tension atleast 1.1..nullpath));
+r_left_punch.splice_in(add_extrema(corner((r_left_punch@(0,280))^0, 30, 50, nullpath::nullpath)));
+
+Glyph r_right_punch = Glyph((0,0){up}..(-2,215){up}..{right}(78,307)..{right}r_right_punch_point1---
+                            (1000,278)--(1000*dir(360 - serif_angle))--cycle);
+r_right_punch.splice_in(corner((r_right_punch@(0,0))^0, 16, 80, nullpath..tension atleast 1.1..nullpath));
+
+path r_terminal = ((r_shoulder_punch_position + n_shoulder_point){right}..
+                   r_right_point{down}..
+                   {left}(r_right_punch_position + r_right_punch_point1));
+
+AngledTrim r_top_slope = AngledTrim(r_top_point, dir(r_top_angle), 500, 1,
+                                    nullpath{dir(r_top_angle - 5)}..{dir(r_top_angle + 5)}r_top_point);
+
+AngledTrim r_serif_left_end = AngledTrim(serif_left, dir(r_serif_left_angle), 500, 500,
+                                         nullpath..tension 2.5..nullpath, before=0.1, after=0.1);
+AngledTrim r_serif_right_end = AngledTrim(serif_right, dir(r_serif_right_angle), 500, 500,
+                                          nullpath..tension 2.5..nullpath, reversed=true, before=0.1, after=0.1);
+
+path r_top_corner(Pt point)
+{
+    return add_extrema(corner(point, 20, 20, nullpath..tension 0.75..nullpath));
+}
+
+path r_left_corner(Pt point)
+{
+    return add_extrema(corner(point, 20, 20, nullpath..nullpath));
+}
+
+/*
+  path r_serif_cup(pair first_point, pair between_point, pair last_point)
+{
+    return (first_point{left}..tension 0.75 and 1.5..(between_point + (5,0))---
+            (between_point - (5,0))..tension 1.5 and 0.75..{left}last_point);
+}
+*/
+path r_serif_cup = (serif_right{left}..tension 0.75 and 1.5..(serif_between + (5,0))---
+                    (serif_between - (5,0))..tension 1.5 and 0.75..{left}serif_left);
+
 //.........................................................................
 
 real t_approx_width = 262;
@@ -147,16 +205,19 @@ AngledTrim t_terminal = AngledTrim(p1.point + t_left_punch_position, dir(120), 1
 
 Toolset tools = Toolset(
 
-    default_corner_side = default_corner_side,
-    default_corner_guide = default_corner_guide,
-    default_corner = default_corner,
+    default_corner_side=default_corner_side,
+    default_corner_guide=default_corner_guide,
+    default_corner=default_corner,
+
+    serif_below_baseline=serif_below_baseline,
+    serif_angle=serif_angle,
 
     space_width=200,
     ex_height=403,
     curve_overshoot=10,
 
-    n_shoulder_point = n_shoulder_point,
-    n_shoulder_punch = n_shoulder_punch,
+    n_shoulder_point=n_shoulder_point,
+    n_shoulder_punch=n_shoulder_punch,
 
     c_outline=c_outline,
     c_counter=shift(c_counter_position)*c_counter,
@@ -175,6 +236,17 @@ Toolset tools = Toolset(
     r_left_punch_position=r_left_punch_position,
     r_right_punch_position=r_right_punch_position,
     r_shoulder_punch_position=r_shoulder_punch_position,
+    r_right_punch_point1=r_right_punch_point1,
+    r_top_point=r_top_point,
+    r_left_punch=r_left_punch,
+    r_right_punch=r_right_punch,
+    r_terminal=r_terminal,
+    r_top_slope=r_top_slope,
+    r_serif_left_end=r_serif_left_end,
+    r_serif_right_end=r_serif_right_end,
+    r_top_corner=r_top_corner,
+    r_left_corner=r_left_corner,
+    r_serif_cup=r_serif_cup,
 
     t_outline=t_outline,
     t_left_punch=shift(t_left_punch_position)*t_left_punch,
