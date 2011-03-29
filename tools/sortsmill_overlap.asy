@@ -23,6 +23,8 @@
 
 from sortsmill_orientation access is_in_interior, normalize_orientations;
 
+real overlap_fuzz = 0.001;
+
 //-------------------------------------------------------------------------
 
 struct Intersection {
@@ -97,7 +99,7 @@ void write(Intersection[] xsect)
     }
 }
 
-Intersection[] find_intersections(path[] paths1, path[] paths2, real fuzz = -1)
+Intersection[] find_intersections(path[] paths1, path[] paths2, real fuzz = overlap_fuzz)
 {
     Intersection[] xsect;
 
