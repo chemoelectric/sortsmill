@@ -20,7 +20,7 @@
 
 import geometry;
 from sortsmill_orientation access is_oriented, is_clockwise, make_clockwise, normalize_orientations;
-from sortsmill_overlap access apply_punch;
+from sortsmill_overlap access apply_punch, overlay;
 
 real point_fuzz = 0.01;
 
@@ -296,6 +296,10 @@ struct Glyph {
 
     void apply_punch(Glyph punch) { // DEPRECATED. (FIXME by removal before release.)
         this.punch(punch);
+    }
+
+    void overlay(Glyph other) {
+        outlines = overlay(other.outlines, outlines);
     }
 
     void chop(pair point, real angle) {
