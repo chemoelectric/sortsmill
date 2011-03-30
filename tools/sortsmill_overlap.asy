@@ -234,8 +234,21 @@ Subpath[] apply_punch_and_output_Subpath_list(path[] punch, path[] target)
     for (Subpath sp : path2_subpaths(target, xsect))
         if (!is_in_interior(midpoint(sp.path), punch))
             subpaths.push(sp);
-     for (Subpath sp : path1_subpaths(punch, xsect))
-         if (is_in_interior(midpoint(sp.path), target))
+    for (Subpath sp : path1_subpaths(punch, xsect))
+        if (is_in_interior(midpoint(sp.path), target))
+            subpaths.push(sp);
+   return subpaths;
+}
+
+Subpath[] overlay_and_output_Subpath_list(path[] punch, path[] target)
+{
+    Subpath[] subpaths;
+    Intersection[] xsect = find_intersections(punch, target);
+    for (Subpath sp : path2_subpaths(target, xsect))
+        if (!is_in_interior(midpoint(sp.path), punch))
+            subpaths.push(sp);
+    for (Subpath sp : path1_subpaths(punch, xsect))
+         if (!is_in_interior(midpoint(sp.path), target))
             subpaths.push(sp);
    return subpaths;
 }
@@ -267,6 +280,17 @@ path[] apply_punch(path[] punch, path[] target)
 {
     path[] paths;
     Subpath[] subpaths = apply_punch_and_output_Subpath_list(punch, target);
+    subpaths = join_subpaths(subpaths);
+    for (Subpath sp : subpaths)
+        paths.push(sp.path);
+    return normalize_orientations(paths);
+}
+
+path[] overlay(path[] punch, path[] target)
+// Remove parts of the target that are overlapped by parts of the punch.
+{
+    path[] paths;
+    Subpath[] subpaths = overlay_and_output_Subpath_list(punch, target);
     subpaths = join_subpaths(subpaths);
     for (Subpath sp : subpaths)
         paths.push(sp.path);
