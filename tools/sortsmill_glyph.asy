@@ -392,6 +392,28 @@ struct Glyph {
         return sort(points, x_less);
     }
 
+    pair min() {
+        real x_min = infinity;
+        real y_min = infinity;
+        for (path p : outlines) {
+            pair m = min(p);
+            x_min = min(x_min, m.x);
+            y_min = min(y_min, m.y);
+        }
+        return (x_min, y_min);
+    }
+
+    pair max() {
+        real x_max = -infinity;
+        real y_max = -infinity;
+        for (path p : outlines) {
+            pair m = max(p);
+            x_max = max(x_max, m.x);
+            y_max = max(y_max, m.y);
+        }
+        return (x_max, y_max);
+    }
+
     void smooth_close_points(real max_distance = default_smoothing_max_distance,
                              real max_angle = default_smoothing_max_angle) {
         for (int i = 0; i < outlines.length; ++i)
@@ -432,17 +454,15 @@ struct Glyph {
     void write_fontforge_code(file outp = stdout,
                               string glyphvar_name = 'my_glyph',
                               string contourvar_name = 'my_contour') {
-        real min_x = 1e5;
-        for (path contour : outlines)
-            min_x = min(min_x, min(contour).x);
+        real min_x = this.min().x;
         write(outp, glyphvar_name + '.foreground = fontforge.layer()\n');
         for (path contour : outlines) {
-            write(outp, fontforge_contour_code(shift(lsb - min_x,-baseline) * contour, contourvar_name));
+            write(outp, fontforge_contour_code(shift(round(lsb - min_x),-baseline) * contour, contourvar_name));
             write(outp, glyphvar_name + '.foreground += ' + contourvar_name + '\n');
         }
 
         write(outp, glyphvar_name + '.hhints = ' + pythonize_hints(horiz_hints, baseline));
-        write(outp, glyphvar_name + '.vhints = ' + pythonize_hints(vert_hints, min_x - lsb));
+        write(outp, glyphvar_name + '.vhints = ' + pythonize_hints(vert_hints, round(min_x - lsb)));
         // FIXME: Add hint mask support (when it becomes available and known about in FontForge).
         // FIXME: Add diagonal hint code and support for TT instructions.
 
