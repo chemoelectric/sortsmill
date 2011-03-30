@@ -133,11 +133,16 @@ AngledTrim e_terminal = AngledTrim(point=e_terminal_point - (0,0.01), angle=145,
 
 //.........................................................................
 
-pair i_left_punch_position = (100,30);
-pair i_right_punch_position = i_left_punch_position + (58,0);
-real i_left_side_height = 271;
+real i_left_serif_height = 30;
+real i_right_serif_height = 30;
+pair i_left_origin = (100,0);
+pair i_right_origin = i_left_origin + (58,0);
+pair i_left_punch_position = i_left_origin + (0,30);
+pair i_right_punch_position = i_right_origin + (0,30);
+pair i_dot_position = i_right_origin + (-42,623);
+real i_left_side_height = 301 - i_left_serif_height;
 real i_left_side_angle = 90;
-real i_right_side_height = 278;
+real i_right_side_height = 308 - i_right_serif_height;
 real i_right_side_angle = 90;
 real i_right_top_angle = 87;
 Glyph i_left_punch = left_stem_punch(top_angle=145, bottom_angle=180 + lowercase_serif_angle,
@@ -153,6 +158,8 @@ FlagSerifTrim i_flag_serif = flag_serif(top_point=(i_right_punch_position +
                                                    107*dir(i_right_top_angle)),
                                         angle=24);
 BottomSerifTrim i_bottom_serif = lowercase_baseline_serif(i_left_punch_position, i_right_punch_position, 60, 55);
+
+Glyph i_dot = Glyph(scale(54)*unitcircle);
 
 //.........................................................................
 
@@ -173,7 +180,7 @@ pair r_left_origin = (100,0);
 pair r_right_origin = r_left_origin + (59,0);
 pair r_left_punch_position = r_left_origin + (0,r_left_serif_height);
 pair r_right_punch_position = r_right_origin + (0,r_right_serif_height);
-pair r_shoulder_punch_position = r_right_punch_position + (-2,280);
+pair r_shoulder_punch_position = r_right_origin + (-2,309);
 pair r_shoulder_point = (142,91);
 pair r_point1 = (78,306);
 pair r_point2 = (162,278);
@@ -181,10 +188,11 @@ pair r_point2 = (162,278);
 Glyph r_shoulder_punch = shoulder_punch(left_angle=90, right_angle=50, shoulder_top=r_shoulder_point,
                                         notch=Corner(10, 10, nullpath..nullpath));
 Glyph r_left_punch = left_stem_punch(top_angle=145, bottom_angle=180 + lowercase_serif_angle,
-                                     side_angle=90, side_height=280,
+                                     side_angle=90, side_height=309 - r_left_serif_height,
                                      top_corner=Corner(20, 20, nullpath::nullpath),
                                      bottom_corner=Corner(80, 16, nullpath..tension atleast 1.1..nullpath));
-Glyph r_right_punch = right_r_punch(bottom_angle=-lowercase_serif_angle, side_angle=90, side_height=233,
+Glyph r_right_punch = right_r_punch(bottom_angle=-lowercase_serif_angle, side_angle=90,
+                                    side_height=262 - r_right_serif_height,
                                     top_guide=nullpath..tension 1.1..r_point1{right}..{right}r_point2,
                                     bottom_corner=Corner(16, 80, nullpath..tension atleast 1.1..nullpath));
 path r_terminal = ((r_shoulder_punch_position + r_shoulder_point){right}..
@@ -256,22 +264,18 @@ Toolset tools = Toolset(
     e_corner=e_corner,
     e_terminal=e_terminal,
 
-    i_left_punch_position=i_left_punch_position,
-    i_right_punch_position=i_right_punch_position,
-    i_left_punch=i_left_punch,
-    i_right_punch=i_right_punch,
+    i_left_punch=shift(i_left_punch_position)*i_left_punch,
+    i_right_punch=shift(i_right_punch_position)*i_right_punch,
+    i_dot=shift(i_dot_position)*i_dot,
     i_flag_serif=i_flag_serif,
     i_bottom_serif=i_bottom_serif,
 
     o_outline=o_outline,
     o_counter=shift(188,23)*o_counter,
 
-    r_left_punch_position=r_left_punch_position,
-    r_right_punch_position=r_right_punch_position,
-    r_shoulder_punch_position=r_shoulder_punch_position,
-    r_shoulder_punch=r_shoulder_punch,
-    r_left_punch=r_left_punch,
-    r_right_punch=r_right_punch,
+    r_left_punch=shift(r_left_punch_position)*r_left_punch,
+    r_right_punch=shift(r_right_punch_position)*r_right_punch,
+    r_shoulder_punch=shift(r_shoulder_punch_position)*r_shoulder_punch,
     r_terminal=r_terminal,
     r_flag_serif=r_flag_serif,
     r_bottom_serif=r_bottom_serif,

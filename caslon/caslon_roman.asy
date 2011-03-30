@@ -45,22 +45,18 @@ struct Toolset {
     Corner e_corner;
     AngledTrim e_terminal;
 
-    pair i_left_punch_position;
-    pair i_right_punch_position;
     Glyph i_left_punch;
     Glyph i_right_punch;
+    Glyph i_dot;
     FlagSerifTrim i_flag_serif;
     BottomSerifTrim i_bottom_serif;
 
     Glyph o_outline;
     Glyph o_counter;
 
-    pair r_left_punch_position;
-    pair r_right_punch_position;
-    pair r_shoulder_punch_position;
-    Glyph r_shoulder_punch;
     Glyph r_left_punch;
     Glyph r_right_punch;
+    Glyph r_shoulder_punch;
     path r_terminal;
     FlagSerifTrim r_flag_serif;
     BottomSerifTrim r_bottom_serif;
@@ -87,20 +83,16 @@ struct Toolset {
                        Glyph e_bowl,
                        Corner e_corner,
                        AngledTrim e_terminal,
-                       pair i_left_punch_position,
-                       pair i_right_punch_position,
                        Glyph i_left_punch,
                        Glyph i_right_punch,
+                       Glyph i_dot,
                        FlagSerifTrim i_flag_serif,
                        BottomSerifTrim i_bottom_serif,
                        Glyph o_outline,
                        Glyph o_counter,
-                       pair r_left_punch_position,
-                       pair r_right_punch_position,
-                       pair r_shoulder_punch_position,
-                       Glyph r_shoulder_punch,
                        Glyph r_left_punch,
                        Glyph r_right_punch,
+                       Glyph r_shoulder_punch,
                        Glyph t_outline,
                        Glyph t_left_punch,
                        Glyph t_right_punch,
@@ -131,22 +123,18 @@ struct Toolset {
         this.e_corner = e_corner;
         this.e_terminal = e_terminal;
 
-        this.i_left_punch_position = i_left_punch_position;
-        this.i_right_punch_position = i_right_punch_position;
         this.i_left_punch = i_left_punch;
         this.i_right_punch = i_right_punch;
+        this.i_dot = i_dot;
         this.i_flag_serif = i_flag_serif;
         this.i_bottom_serif = i_bottom_serif;
 
         this.o_outline = o_outline;
         this.o_counter = o_counter;
 
-        this.r_left_punch_position = r_left_punch_position;
-        this.r_right_punch_position = r_right_punch_position;
-        this.r_shoulder_punch_position = r_shoulder_punch_position;
-        this.r_shoulder_punch = r_shoulder_punch;
         this.r_left_punch = r_left_punch;
         this.r_right_punch = r_right_punch;
+        this.r_shoulder_punch = r_shoulder_punch;
         this.r_terminal = r_terminal;
         this.r_flag_serif = r_flag_serif;
         this.r_bottom_serif = r_bottom_serif;
@@ -205,8 +193,8 @@ Glyph cut_dotlessi(Toolset tools)
 {
     Glyph glyph = Glyph((0,-50), (500,1000));
     glyph.name = 'dotlessi';
-    glyph.punch(shift(tools.i_left_punch_position)*tools.i_left_punch);
-    glyph.punch(shift(tools.i_right_punch_position)*tools.i_right_punch);
+    glyph.punch(tools.i_left_punch);
+    glyph.punch(tools.i_right_punch);
     glyph.splice_in(tools.i_flag_serif.path(glyph));
     glyph.splice_in(tools.i_bottom_serif.path(glyph));
     return glyph;
@@ -216,7 +204,7 @@ Glyph cut_i(Toolset tools)
 {
     Glyph glyph = copy(font.get_glyph('dotlessi'));
     glyph.name = 'i';
-    glyph.overlay(Glyph(shift(tools.i_right_punch_position + (-42,593))*scale(55)*unitcircle));
+    glyph.overlay(tools.i_dot);
     return glyph;
 }
 
@@ -232,9 +220,9 @@ Glyph cut_r(Toolset tools)
 {
     Glyph glyph = Glyph((0,-50), (500,1000));
     glyph.name = 'r';
-    glyph.punch(shift(tools.r_left_punch_position)*tools.r_left_punch);
-    glyph.punch(shift(tools.r_right_punch_position)*tools.r_right_punch);
-    glyph.punch(shift(tools.r_shoulder_punch_position)*tools.r_shoulder_punch);
+    glyph.punch(tools.r_left_punch);
+    glyph.punch(tools.r_right_punch);
+    glyph.punch(tools.r_shoulder_punch);
     glyph.splice_in(tools.r_terminal);
     glyph.splice_in(tools.r_flag_serif.path(glyph));
     glyph.splice_in(tools.r_bottom_serif.path(glyph));
