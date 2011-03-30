@@ -238,6 +238,10 @@ struct Glyph {
             time = arctime(outline, there_length);
             point = point(outline, time);
         }
+
+        path path() {
+            return glyph.outlines[outline_no];
+        }
     };
 
     void operator init(path p, string name = '', int unicode = undefined) {
@@ -461,10 +465,12 @@ struct Glyph {
             write(outp, glyphvar_name + '.foreground += ' + contourvar_name + '\n');
         }
 
-        write(outp, glyphvar_name + '.hhints = ' + pythonize_hints(horiz_hints, baseline));
-        write(outp, glyphvar_name + '.vhints = ' + pythonize_hints(vert_hints, round(min_x - lsb)));
-        // FIXME: Add hint mask support (when it becomes available and known about in FontForge).
-        // FIXME: Add diagonal hint code and support for TT instructions.
+        if (min_x < infinity) {
+            write(outp, glyphvar_name + '.hhints = ' + pythonize_hints(horiz_hints, baseline));
+            write(outp, glyphvar_name + '.vhints = ' + pythonize_hints(vert_hints, round(min_x - lsb)));
+            // FIXME: Add hint mask support (when it becomes available and known about in FontForge).
+            // FIXME: Add diagonal hint code and support for TT instructions.
+        }
 
         write(outp, glyphvar_name + '.right_side_bearing = ');
         write(outp, rsb);
