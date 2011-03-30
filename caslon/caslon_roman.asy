@@ -29,16 +29,9 @@ struct Toolset {
     guide default_corner_guide;
     static path default_corner(Pt);
 
-    real serif_below_baseline;
-    real serif_angle;
-
     real space_width;
     real ex_height;
     real curve_overshoot;
-
-    // Shapes the shoulder of a handful of letters.
-    pair n_shoulder_point;
-    Glyph n_shoulder_punch;
 
     Glyph c_outline;
     Glyph c_counter;
@@ -58,17 +51,15 @@ struct Toolset {
     pair r_left_punch_position;
     pair r_right_punch_position;
     pair r_shoulder_punch_position;
-    pair r_right_punch_point1;
+    Glyph r_shoulder_punch;
     pair r_top_point;
     Glyph r_left_punch;
     Glyph r_right_punch;
     path r_terminal;
     AngledTrim r_top_slope;
-    AngledTrim r_serif_left_end;
-    AngledTrim r_serif_right_end;
     static path r_top_corner(Pt);
     static path r_left_corner(Pt);
-    path r_serif_cup;
+    BottomSerifTrim r_bottom_serif;
                  
     Glyph t_outline;
     Glyph t_left_punch;
@@ -80,13 +71,9 @@ struct Toolset {
     void operator init(real default_corner_side,
                        guide default_corner_guide,
                        path default_corner(Pt),
-                       real serif_below_baseline,
-                       real serif_angle,
                        real space_width,
                        real ex_height,
                        real curve_overshoot,
-                       pair n_shoulder_point,
-                       Glyph n_shoulder_punch,
                        Glyph c_outline,
                        Glyph c_counter,
                        TwoPointTrim c_upper_terminal,
@@ -101,11 +88,9 @@ struct Toolset {
                        pair r_left_punch_position,
                        pair r_right_punch_position,
                        pair r_shoulder_punch_position,
-                       pair r_right_punch_point1,
+                       Glyph r_shoulder_punch,
                        pair r_top_point,
                        AngledTrim r_top_slope,
-                       AngledTrim r_serif_left_end,
-                       AngledTrim r_serif_right_end,
                        Glyph r_left_punch,
                        Glyph r_right_punch,
                        Glyph t_outline,
@@ -114,7 +99,7 @@ struct Toolset {
                        path r_terminal,
                        path r_top_corner(Pt),
                        path r_left_corner(Pt),
-                       path r_serif_cup,
+                       BottomSerifTrim r_bottom_serif,
                        TwoPointTrim t_left_corner,
                        TwoPointTrim t_top_corner,
                        AngledTrim t_terminal
@@ -124,15 +109,9 @@ struct Toolset {
         this.default_corner_guide = default_corner_guide;
         this.default_corner = default_corner;
 
-        this.serif_below_baseline=serif_below_baseline;
-        this.serif_angle=serif_angle;
-
         this.space_width = space_width;
         this.ex_height = ex_height;
         this.curve_overshoot = curve_overshoot;
-
-        this.n_shoulder_point = n_shoulder_point;
-        this.n_shoulder_punch = n_shoulder_punch;
 
         this.c_outline = c_outline;
         this.c_counter = c_counter;
@@ -151,17 +130,15 @@ struct Toolset {
         this.r_left_punch_position = r_left_punch_position;
         this.r_right_punch_position = r_right_punch_position;
         this.r_shoulder_punch_position = r_shoulder_punch_position;
-        this.r_right_punch_point1 = r_right_punch_point1;
+        this.r_shoulder_punch = r_shoulder_punch;
         this.r_top_point = r_top_point;
-        this.r_left_punch=r_left_punch;
-        this.r_right_punch=r_right_punch;
-        this.r_terminal=r_terminal;
-        this.r_top_slope=r_top_slope;
-        this.r_serif_left_end=r_serif_left_end;
-        this.r_serif_right_end=r_serif_right_end;
-        this.r_top_corner=r_top_corner;
-        this.r_left_corner=r_left_corner;
-        this.r_serif_cup=r_serif_cup;
+        this.r_left_punch = r_left_punch;
+        this.r_right_punch = r_right_punch;
+        this.r_terminal = r_terminal;
+        this.r_top_slope = r_top_slope;
+        this.r_top_corner = r_top_corner;
+        this.r_left_corner = r_left_corner;
+        this.r_bottom_serif = r_bottom_serif;
 
         this.t_outline = t_outline;
         this.t_left_punch = t_left_punch;
@@ -213,6 +190,26 @@ Glyph cut_e(Toolset tools)
     return glyph;
 }
 
+Glyph cut_i(Toolset tools)
+{
+    Glyph glyph = Glyph((0,-50), (500,1000));
+    glyph.name = 'i';
+    real serif_angle = 2;
+    pair i_left_punch_position = (100,27);
+    pair i_right_punch_position = i_left_punch_position + (59,0);
+    Glyph i_left_punch = left_stem_punch(top_angle=145, bottom_angle=180 + serif_angle,
+                                         side_angle=90, side_height=280,
+                                         Corner(30, 50, nullpath::nullpath),
+                                         Corner(80, 16, nullpath..tension atleast 1.1..nullpath));
+    glyph.punch(shift(i_left_punch_position)*i_left_punch);
+    Glyph i_right_punch = right_stem_punch(top_angle=0, bottom_angle=-serif_angle,
+                                           side_angle=90, side_height=280,
+                                           Corner(infinity, infinity, nullpath),
+                                           Corner(80, 16, nullpath..tension atleast 1.1..nullpath));
+    glyph.punch(shift(i_right_punch_position)*i_right_punch);
+    return glyph;
+}
+
 Glyph cut_o(Toolset tools)
 {
     Glyph glyph = copy(tools.o_outline);
@@ -223,18 +220,16 @@ Glyph cut_o(Toolset tools)
 
 Glyph cut_r(Toolset tools)
 {
-    Glyph glyph = Glyph((0,tools.serif_below_baseline), (500,1000));
+    Glyph glyph = Glyph((0,-50), (500,1000));
     glyph.name = 'r';
     glyph.punch(shift(tools.r_left_punch_position)*tools.r_left_punch);
     glyph.punch(shift(tools.r_right_punch_position)*tools.r_right_punch);
-    glyph.punch(shift(tools.r_shoulder_punch_position)*tools.n_shoulder_punch);
+    glyph.punch(shift(tools.r_shoulder_punch_position)*tools.r_shoulder_punch);
     glyph.splice_in(tools.r_terminal);
     glyph.splice_in(tools.r_top_slope.path(glyph));
-    glyph.splice_in(tools.r_serif_cup);
     glyph.splice_in(tools.r_left_corner((glyph@tools.r_top_point)^-1));
     glyph.splice_in(tools.r_top_corner((glyph@tools.r_top_point)^0));
-    glyph.splice_in(add_extrema(tools.r_serif_left_end.path(glyph)));
-    glyph.splice_in(add_extrema(tools.r_serif_right_end.path(glyph)));
+    glyph.splice_in(tools.r_bottom_serif.path(glyph));
     return glyph;
 }
 
@@ -258,6 +253,7 @@ glyph_cutter[] cutters = new glyph_cutter[] {
     cut_space,
     cut_c,
     cut_e,
+    cut_i,
     cut_o,
     cut_r,
     cut_t

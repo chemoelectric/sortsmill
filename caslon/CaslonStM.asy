@@ -39,12 +39,37 @@ font.boldness = 400;
 
 //-------------------------------------------------------------------------
 
-real serif_below_baseline = -2;
-real serif_angle = 2;
+real lowercase_serif_below_baseline = -2;
+real lowercase_serif_angle = 2;
 
-pair n_shoulder_point = (142,95); // Relative to the punch origin.
-Glyph n_shoulder_punch = Glyph((0,0)--1000*dir(88)--(500,1000)--(500,95)---n_shoulder_point..{dir(230)}cycle);
-n_shoulder_punch.splice_in(corner((n_shoulder_punch@(0,0))^0, 50, 30, nullpath..tension 0.8..nullpath));
+BottomSerifTrim lowercase_bottom_serif(pair left_point,
+                                       pair right_point,
+                                       pair between_point,
+                                       real serif_angle = lowercase_serif_angle,
+                                       real segment_length = 10)
+{
+    return BottomSerifTrim(left_end=AngledTrim(point=left_point, angle=90, endpoint=left_point,
+                                               guide=nullpath{left}..tension 2.5..{dir(lowercase_serif_angle)}nullpath,
+                                               segment_before=-0.1),
+                           right_end=AngledTrim(point=right_point, angle=90, endpoint=right_point,
+                                                guide=nullpath{dir(-lowercase_serif_angle)}..tension 2.5..{left}nullpath,
+                                                reversed=true, segment_before=-0.1),
+                           bottom_guide=(right_point{left}..tension 0.75 and 1.5..
+                                         (between_point + (0.5*segment_length,0))---
+                                         (between_point - (0.5*segment_length,0))..
+                                         tension 1.5 and 0.75..{left}left_point));
+}
+
+BottomSerifTrim lowercase_baseline_serif(pair stem_left_position,
+                                         pair stem_right_position,
+                                         real left_length,
+                                         real right_length,
+                                         real segment_length = 10)
+{
+    return lowercase_bottom_serif(left_point=(stem_left_position.x - left_length, lowercase_serif_below_baseline),
+                                  right_point=(stem_right_position.x + right_length, lowercase_serif_below_baseline),
+                                  between_point=(0.5*(stem_left_position.x + stem_right_position.x), 0));
+}
 
 //-------------------------------------------------------------------------
 
@@ -62,8 +87,8 @@ Pt p2 = c_outline.points_at_y(59)[1];
 
 TwoPointTrim c_upper_terminal = TwoPointTrim(p1.point, shift(c_counter_position)*c_upper_terminal_point,
                                              nullpath..tension 0.95..nullpath);
-AngledTrim c_lower_terminal = AngledTrim(p2.point, dir(130), 1, 1000,
-                                         nullpath..tension 2.0..nullpath, reversed = true);
+AngledTrim c_lower_terminal = AngledTrim(point=p2.point, angle=130,
+                                         guide=nullpath..tension 2.0..nullpath, reversed = true);
 
 //.........................................................................
 
@@ -86,8 +111,8 @@ e_bowl.splice_in(add_extrema(corner((e_bowl@(0,0))^0, 40, 40, nullpath..tension 
 
 Corner e_corner = Corner(e_corner_point, 20, 20, nullpath..tension 1.1..nullpath);
 
-AngledTrim e_terminal = AngledTrim(e_terminal_point - (0,0.01), dir(145), 1, 1000,
-                                   nullpath..tension 2.0..nullpath, reversed=true);
+AngledTrim e_terminal = AngledTrim(point=e_terminal_point - (0,0.01), angle=145,
+                                   guide=nullpath..tension 2.0..nullpath, reversed=true);
 
 //.........................................................................
 
@@ -103,41 +128,33 @@ Glyph o_counter = shift(-8,-1)*Glyph((3,1){left}..tension 1.4 and 0.75..
 //.........................................................................
 
 pair r_left_punch_position = (100,27);
-pair r_right_punch_position = r_left_punch_position + (61,0);
-pair r_shoulder_punch_position = r_right_punch_position + (-4,280);
+pair r_right_punch_position = r_left_punch_position + (59,0);
 
-real r_serif_left = 55;
-real r_serif_left_angle = 90;
-real r_serif_right = 60;
-real r_serif_right_angle = 90;
-guide r_serif_end_guide = nullpath..tension 2.5..nullpath;
+pair r_shoulder_punch_position = r_right_punch_position + (-2,280);
+pair r_shoulder_point = (142,90); // Relative to the punch origin.
+Glyph r_shoulder_punch = shoulder_punch(left_angle=88, right_angle=50, shoulder_top=r_shoulder_point,
+                                        notch=Corner(50, 30, nullpath..tension 0.8..nullpath));
 
-pair r_right_punch_point1 = (162,278);
-pair r_right_point = r_shoulder_punch_position + (204,41);
+pair r_point1 = (78,306);
+pair r_point2 = (162,278);
+pair r_right_point = r_shoulder_punch_position + (206,41);
 pair r_top_point = r_shoulder_punch_position + 112*dir(88);
 real r_top_angle = 27;
 
-pair serif_left = (r_left_punch_position.x - r_serif_left, serif_below_baseline);
-pair serif_right = (r_right_punch_position.x + r_serif_right, serif_below_baseline);
-pair serif_between = (0.5*(r_left_punch_position.x + r_right_punch_position.x), 0);
+Glyph r_left_punch = left_stem_punch(top_angle=145, bottom_angle=180 + lowercase_serif_angle,
+                                     side_angle=90, side_height=280,
+                                     Corner(30, 50, nullpath::nullpath),
+                                     Corner(80, 16, nullpath..tension atleast 1.1..nullpath));
+Glyph r_right_punch = right_r_punch(bottom_angle=-lowercase_serif_angle, side_angle=90, side_height=244,
+                                    top_guide=nullpath..tension 1.3..r_point1{right}..{right}r_point2,
+                                    Corner(16, 80, nullpath..tension atleast 1.1..nullpath));
 
-Glyph r_left_punch = Glyph(((0,305) + 1000*dir(145))--(0,280)--(0,0)--(1000*dir(180 + serif_angle))--cycle);
-r_left_punch.splice_in(corner((r_left_punch@(0,0))^0, 80, 16, nullpath..tension atleast 1.1..nullpath));
-r_left_punch.splice_in(add_extrema(corner((r_left_punch@(0,280))^0, 30, 50, nullpath::nullpath)));
+path r_terminal = ((r_shoulder_punch_position + r_shoulder_point){right}..r_right_point{down}..
+                   {left}(r_right_punch_position + r_point2));
 
-Glyph r_right_punch = Glyph((0,0){up}..(-2,244){up}..tension 1.3..{right}(78,306)..{right}r_right_punch_point1---
-                            (1000,278)--(1000*dir(360 - serif_angle))--cycle);
-r_right_punch.splice_in(corner((r_right_punch@(0,0))^0, 16, 80, nullpath..tension atleast 1.1..nullpath));
-
-path r_terminal = ((r_shoulder_punch_position + n_shoulder_point){right}..r_right_point{down}..
-                   {left}(r_right_punch_position + r_right_punch_point1));
-
-AngledTrim r_top_slope = AngledTrim(r_top_point, dir(r_top_angle), 500, 1,
-                                    nullpath{dir(r_top_angle - 5)}..{dir(r_top_angle + 5)}r_top_point);
-AngledTrim r_serif_left_end = AngledTrim(serif_left, dir(r_serif_left_angle), 500, 500,
-                                         nullpath..tension 2.5..nullpath, before=0.1, after=0.1);
-AngledTrim r_serif_right_end = AngledTrim(serif_right, dir(r_serif_right_angle), 500, 500,
-                                          nullpath..tension 2.5..nullpath, reversed=true, before=0.1, after=0.1);
+AngledTrim r_top_slope = AngledTrim(point=r_top_point, angle=r_top_angle,
+                                    guide=nullpath{dir(r_top_angle - 5)}..{dir(r_top_angle + 5)}r_top_point,
+                                    segment_before=500, segment_after=1);
 
 path r_top_corner(Pt point)
 {
@@ -149,8 +166,7 @@ path r_left_corner(Pt point)
     return add_extrema(corner(point, 20, 20, nullpath..nullpath));
 }
 
-path r_serif_cup = (serif_right{left}..tension 0.75 and 1.5..(serif_between + (5,0))---
-                    (serif_between - (5,0))..tension 1.5 and 0.75..{left}serif_left);
+BottomSerifTrim r_bottom_serif = lowercase_baseline_serif(r_left_punch_position, r_right_punch_position, 55, 60);
 
 //.........................................................................
 
@@ -188,8 +204,9 @@ TwoPointTrim t_top_corner =
                  nodenum1=0, nodenum2=1, before=10, after=15);
 
 Pt p1 = t_left_punch.points_at_x(t_approx_width - t_left_punch_position.x)[1];
-AngledTrim t_terminal = AngledTrim(p1.point + t_left_punch_position, dir(120), 1, 1000,
-                                   nullpath..tension 2.0..nullpath, reversed=true, after=0.01);
+AngledTrim t_terminal = AngledTrim(point=p1.point + t_left_punch_position, angle=120,
+                                   guide=nullpath..tension 2.0..nullpath,
+                                   reversed=true, after=0.01);
 
 //.........................................................................
 
@@ -199,15 +216,9 @@ Toolset tools = Toolset(
     default_corner_guide=default_corner_guide,
     default_corner=default_corner,
 
-    serif_below_baseline=serif_below_baseline,
-    serif_angle=serif_angle,
-
     space_width=200,
     ex_height=403,
     curve_overshoot=10,
-
-    n_shoulder_point=n_shoulder_point,
-    n_shoulder_punch=n_shoulder_punch,
 
     c_outline=c_outline,
     c_counter=shift(c_counter_position)*c_counter,
@@ -226,17 +237,15 @@ Toolset tools = Toolset(
     r_left_punch_position=r_left_punch_position,
     r_right_punch_position=r_right_punch_position,
     r_shoulder_punch_position=r_shoulder_punch_position,
-    r_right_punch_point1=r_right_punch_point1,
+    r_shoulder_punch=r_shoulder_punch,
     r_top_point=r_top_point,
     r_left_punch=r_left_punch,
     r_right_punch=r_right_punch,
     r_terminal=r_terminal,
     r_top_slope=r_top_slope,
-    r_serif_left_end=r_serif_left_end,
-    r_serif_right_end=r_serif_right_end,
     r_top_corner=r_top_corner,
     r_left_corner=r_left_corner,
-    r_serif_cup=r_serif_cup,
+    r_bottom_serif=r_bottom_serif,
 
     t_outline=t_outline,
     t_left_punch=shift(t_left_punch_position)*t_left_punch,
