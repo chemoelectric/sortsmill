@@ -48,6 +48,28 @@ path corner(Pt corner,
     return corner_path;
 }
 
+path corner(pair corner,
+            path path1,
+            path path2,
+            real arclength_before,
+            real arclength_after,
+            guide guide)
+{
+    path corner_path;
+    if (arclength_before != infinity && arclength_after != infinity) {
+        real t1 = time_at_point(path1, corner);
+        real t2 = time_at_point(path2, corner);
+        real arclength1 = arclength(subpath(path1, 0, t1)) - arclength_before;
+        real arclength2 = arclength(subpath(path2, 0, t2)) + arclength_after;
+        real t1a = arctime(path1, arclength1);
+        real t2a = arctime(path2, arclength2);
+        pair p1 = point(path1, t1a);
+        pair p2 = point(path2, t2a);
+        corner_path = p1{dir(path1,t1a)}..guide..{dir(path2,t2a)}p2;
+    }
+    return corner_path;
+}
+
 real default_corner_side = 10;
 guide default_corner_guide = nullpath..nullpath;
 
@@ -87,6 +109,10 @@ struct Corner {
 
     path path(Pt p) {
         return postprocess(corner(p, before, after, guide));
+    }
+
+    path path(pair point, path path1, path path2) {
+        return postprocess(corner(point, path1, path2, before, after, guide));
     }
 };
 
@@ -202,6 +228,39 @@ struct BottomSerifTrim
         path left_path = left_end.path(glyph);
         path right_path = right_end.path(glyph);
         return postprocess(right_path..bottom_guide..left_path);
+    }
+}
+
+//-------------------------------------------------------------------------
+
+struct FlagSerifTrim
+{
+    AngledTrim top_slope;
+    Corner top_corner;
+    Corner left_corner;
+    postprocessor postprocess;
+
+    void operator init(AngledTrim top_slope, Corner top_corner, Corner left_corner,
+                       postprocessor postprocess=identity) {
+        this.top_slope = top_slope;
+        this.top_corner = top_corner;
+        this.left_corner = left_corner;
+        this.postprocess = postprocess;
+    }
+
+    path path(Glyph glyph) {
+        path slope = top_slope.path(glyph);
+        pair point1 = point(slope, 0);
+        pair point2 = point(slope, length(slope));
+        Pt p1 = glyph@point1;
+        Pt p2 = glyph@point2;
+        path left = left_corner.path(point1, p1.path(), slope);
+        path top = top_corner.path(point2, slope, p2.path());
+        pair point3 = point(left, length(left));
+        pair point4 = point(top, 0);
+        real t1 = time_at_point(slope, point3);
+        real t2 = time_at_point(slope, point4);
+        return postprocess(left & subpath(slope, t1, t2) & top);
     }
 }
 

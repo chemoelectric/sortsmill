@@ -45,6 +45,13 @@ struct Toolset {
     Corner e_corner;
     AngledTrim e_terminal;
 
+    pair i_left_punch_position;
+    pair i_right_punch_position;
+    Glyph i_left_punch;
+    Glyph i_right_punch;
+    FlagSerifTrim i_flag_serif;
+    BottomSerifTrim i_bottom_serif;
+
     Glyph o_outline;
     Glyph o_counter;
 
@@ -52,13 +59,10 @@ struct Toolset {
     pair r_right_punch_position;
     pair r_shoulder_punch_position;
     Glyph r_shoulder_punch;
-    pair r_top_point;
     Glyph r_left_punch;
     Glyph r_right_punch;
     path r_terminal;
-    AngledTrim r_top_slope;
-    static path r_top_corner(Pt);
-    static path r_left_corner(Pt);
+    FlagSerifTrim r_flag_serif;
     BottomSerifTrim r_bottom_serif;
                  
     Glyph t_outline;
@@ -83,22 +87,25 @@ struct Toolset {
                        Glyph e_bowl,
                        Corner e_corner,
                        AngledTrim e_terminal,
+                       pair i_left_punch_position,
+                       pair i_right_punch_position,
+                       Glyph i_left_punch,
+                       Glyph i_right_punch,
+                       FlagSerifTrim i_flag_serif,
+                       BottomSerifTrim i_bottom_serif,
                        Glyph o_outline,
                        Glyph o_counter,
                        pair r_left_punch_position,
                        pair r_right_punch_position,
                        pair r_shoulder_punch_position,
                        Glyph r_shoulder_punch,
-                       pair r_top_point,
-                       AngledTrim r_top_slope,
                        Glyph r_left_punch,
                        Glyph r_right_punch,
                        Glyph t_outline,
                        Glyph t_left_punch,
                        Glyph t_right_punch,
                        path r_terminal,
-                       path r_top_corner(Pt),
-                       path r_left_corner(Pt),
+                       FlagSerifTrim r_flag_serif,
                        BottomSerifTrim r_bottom_serif,
                        TwoPointTrim t_left_corner,
                        TwoPointTrim t_top_corner,
@@ -124,6 +131,13 @@ struct Toolset {
         this.e_corner = e_corner;
         this.e_terminal = e_terminal;
 
+        this.i_left_punch_position = i_left_punch_position;
+        this.i_right_punch_position = i_right_punch_position;
+        this.i_left_punch = i_left_punch;
+        this.i_right_punch = i_right_punch;
+        this.i_flag_serif = i_flag_serif;
+        this.i_bottom_serif = i_bottom_serif;
+
         this.o_outline = o_outline;
         this.o_counter = o_counter;
 
@@ -131,13 +145,10 @@ struct Toolset {
         this.r_right_punch_position = r_right_punch_position;
         this.r_shoulder_punch_position = r_shoulder_punch_position;
         this.r_shoulder_punch = r_shoulder_punch;
-        this.r_top_point = r_top_point;
         this.r_left_punch = r_left_punch;
         this.r_right_punch = r_right_punch;
         this.r_terminal = r_terminal;
-        this.r_top_slope = r_top_slope;
-        this.r_top_corner = r_top_corner;
-        this.r_left_corner = r_left_corner;
+        this.r_flag_serif = r_flag_serif;
         this.r_bottom_serif = r_bottom_serif;
 
         this.t_outline = t_outline;
@@ -190,23 +201,22 @@ Glyph cut_e(Toolset tools)
     return glyph;
 }
 
-Glyph cut_i(Toolset tools)
+Glyph cut_dotlessi(Toolset tools)
 {
     Glyph glyph = Glyph((0,-50), (500,1000));
+    glyph.name = 'dotlessi';
+    glyph.punch(shift(tools.i_left_punch_position)*tools.i_left_punch);
+    glyph.punch(shift(tools.i_right_punch_position)*tools.i_right_punch);
+    glyph.splice_in(tools.i_flag_serif.path(glyph));
+    glyph.splice_in(tools.i_bottom_serif.path(glyph));
+    return glyph;
+}
+
+Glyph cut_i(Toolset tools)
+{
+    Glyph glyph = copy(font.get_glyph('dotlessi'));
     glyph.name = 'i';
-    real serif_angle = 2;
-    pair i_left_punch_position = (100,27);
-    pair i_right_punch_position = i_left_punch_position + (59,0);
-    Glyph i_left_punch = left_stem_punch(top_angle=145, bottom_angle=180 + serif_angle,
-                                         side_angle=90, side_height=280,
-                                         Corner(30, 50, nullpath::nullpath),
-                                         Corner(80, 16, nullpath..tension atleast 1.1..nullpath));
-    glyph.punch(shift(i_left_punch_position)*i_left_punch);
-    Glyph i_right_punch = right_stem_punch(top_angle=0, bottom_angle=-serif_angle,
-                                           side_angle=90, side_height=280,
-                                           Corner(infinity, infinity, nullpath),
-                                           Corner(80, 16, nullpath..tension atleast 1.1..nullpath));
-    glyph.punch(shift(i_right_punch_position)*i_right_punch);
+    glyph.overlay(Glyph(shift(tools.i_right_punch_position + (-42,593))*scale(55)*unitcircle));
     return glyph;
 }
 
@@ -226,9 +236,7 @@ Glyph cut_r(Toolset tools)
     glyph.punch(shift(tools.r_right_punch_position)*tools.r_right_punch);
     glyph.punch(shift(tools.r_shoulder_punch_position)*tools.r_shoulder_punch);
     glyph.splice_in(tools.r_terminal);
-    glyph.splice_in(tools.r_top_slope.path(glyph));
-    glyph.splice_in(tools.r_left_corner((glyph@tools.r_top_point)^-1));
-    glyph.splice_in(tools.r_top_corner((glyph@tools.r_top_point)^0));
+    glyph.splice_in(tools.r_flag_serif.path(glyph));
     glyph.splice_in(tools.r_bottom_serif.path(glyph));
     return glyph;
 }
@@ -253,7 +261,10 @@ glyph_cutter[] cutters = new glyph_cutter[] {
     cut_space,
     cut_c,
     cut_e,
+
+    cut_dotlessi,
     cut_i,
+
     cut_o,
     cut_r,
     cut_t
