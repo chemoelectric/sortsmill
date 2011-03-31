@@ -32,6 +32,10 @@ path identity(path p)
     return p;
 }
 
+bool y_less(Pt a, Pt b) {
+    return a.point.y < b.point.y;
+}
+
 //-------------------------------------------------------------------------
 
 path corner(Pt corner,
@@ -70,8 +74,8 @@ path corner(pair corner,
     return corner_path;
 }
 
-real default_corner_side = 10;
-guide default_corner_guide = nullpath..nullpath;
+real default_corner_side = infinity;
+guide default_corner_guide = nullpath;
 
 path default_corner(Pt point)
 {
@@ -85,7 +89,10 @@ struct Corner {
     guide guide;
     postprocessor postprocess;
 
-    void operator init(pair point, real before, real after, guide guide,
+    void operator init(explicit pair point,
+                       real before=default_corner_side,
+                       real after=default_corner_side,
+                       guide guide=default_corner_guide,
                        postprocessor postprocess=identity) {
         this.point = point;
         this.before = before;
@@ -94,7 +101,9 @@ struct Corner {
         this.postprocess = postprocess;        
     }
 
-    void operator init(real before, real after, guide guide,
+    void operator init(real before=default_corner_side,
+                       real after=default_corner_side,
+                       guide guide=default_corner_guide,
                        postprocessor postprocess=identity) {
         this.point = (infinity,infinity);
         this.before = before;
@@ -186,7 +195,9 @@ struct TwoPointTrim {
     int nodenum2;
     postprocessor postprocess;
 
-    void operator init(pair point1, pair point2, guide guide,
+    void operator init(pair point1=(infinity,infinity),
+                       pair point2=(infinity,infinity),
+                       guide guide=nullpath,
                        real before=0, real after=0,
                        int nodenum1=undefined, int nodenum2=undefined,
                        postprocessor postprocess=identity) {
@@ -200,7 +211,11 @@ struct TwoPointTrim {
         this.postprocess = postprocess;
     }
 
-    path path(Glyph glyph) {
+    path path(Glyph glyph, pair point1=infinity, pair point2=infinity) {
+        if (point1 == infinity)
+            point1 = this.point1;
+        if (point2 == infinity)
+            point2 = this.point2;
         Pt p1 = (glyph@point1)^nodenum1 - before;
         Pt p2 = (glyph@point2)^nodenum2 + after;
         return postprocess(p1.point{dir(p1)}..guide..{dir(p2)}p2.point);
@@ -256,10 +271,8 @@ struct FlagSerifTrim
         Pt p2 = glyph@point2;
         path left = left_corner.path(point1, p1.path(), slope);
         path top = top_corner.path(point2, slope, p2.path());
-        pair point3 = point(left, length(left));
-        pair point4 = point(top, 0);
-        real t1 = time_at_point(slope, point3);
-        real t2 = time_at_point(slope, point4);
+        real t1 = (left == nullpath) ? 0 : time_at_point(slope, point(left, length(left)));
+        real t2 = (top == nullpath) ? length(slope) : time_at_point(slope, point(top, 0));
         return postprocess(left & subpath(slope, t1, t2) & top);
     }
 }
@@ -314,6 +327,43 @@ Glyph right_r_punch(real bottom_angle, real side_angle, real side_height, guide 
     pair top_right = (approx_width, top_path_end.y);
     Glyph punch = Glyph((0,0)--side_top & top_path & top_path_end---top_right--bottom_right--(0,0) & cycle);
     punch.splice_in(bottom_corner.path(punch@(0,0)));
+    return punch;
+}
+
+Glyph t_left_punch(pair side_point1, pair side_point2, pair tail_curve_point, guide tail_guide, Corner corner)
+{
+    Glyph punch = Glyph((0,0)..tail_guide..tail_curve_point--
+                        (tail_curve_point.x,-10000)--(-10000, -10000)--(-10000,side_point1.y)--
+                        side_point1{down}::{down}side_point2::{right}cycle);
+    punch.splice_in(corner.path(punch@side_point1));
+    return punch;
+}
+
+Glyph t_crossbar_punch(pair left_upper, pair left_lower, pair right_upper,
+                       Corner top_corner=Corner(infinity, infinity, nullpath),
+                       Corner bottom_corner=Corner(infinity, infinity, nullpath))
+{
+    pair t_crossbar_top_point = (14,54);
+    Glyph punch = Glyph(left_upper--right_upper--(0,0)--left_lower--cycle);
+    punch.splice_in(top_corner.path(punch));
+    punch.splice_in(bottom_corner.path(punch));
+    return punch;
+}
+
+Glyph t_right_punch(pair top_point, pair tail_point, pair side_point1, pair side_point2,
+                    guide top_guide, guide tail_left_guide, guide tail_right_guide,
+                    Glyph crossbar_punch, Corner upper_corner, Corner lower_corner)
+{
+    Glyph punch = Glyph((0,0){left}..tail_left_guide..side_point2---
+                        side_point1..top_guide..top_point--
+                        (top_point.x,10000)--(10000,10000)--
+                        (10000,51)--tail_point..tail_right_guide..cycle);
+    Pt xsect[] = sort(punch.intersections(crossbar_punch), y_less);
+    punch.punch(crossbar_punch);
+    pair p1 = xsect[0].point;
+    pair p2 = xsect[xsect.length - 1].point;
+    punch.splice_in(lower_corner.path(punch@p1));
+    punch.splice_in(upper_corner.path(punch@p2));
     return punch;
 }
 

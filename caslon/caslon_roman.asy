@@ -61,12 +61,13 @@ struct Toolset {
     FlagSerifTrim r_flag_serif;
     BottomSerifTrim r_bottom_serif;
                  
-    Glyph t_outline;
     Glyph t_left_punch;
     Glyph t_right_punch;
     TwoPointTrim t_left_corner;
-    TwoPointTrim t_top_corner;
-    AngledTrim t_terminal;
+    TwoPointTrim t_top_rounding;
+    AngledTrim t_tail_end;
+    AngledTrim t_top_trim;
+    FlagSerifTrim t_sheared_terminal;
 
     void operator init(real default_corner_side,
                        guide default_corner_guide,
@@ -93,15 +94,16 @@ struct Toolset {
                        Glyph r_left_punch,
                        Glyph r_right_punch,
                        Glyph r_shoulder_punch,
-                       Glyph t_outline,
                        Glyph t_left_punch,
                        Glyph t_right_punch,
                        path r_terminal,
                        FlagSerifTrim r_flag_serif,
                        BottomSerifTrim r_bottom_serif,
                        TwoPointTrim t_left_corner,
-                       TwoPointTrim t_top_corner,
-                       AngledTrim t_terminal
+                       TwoPointTrim t_top_rounding,
+                       AngledTrim t_tail_end,
+                       AngledTrim t_top_trim,
+                       FlagSerifTrim t_sheared_terminal
                        /* */) {
 
         this.default_corner_side = default_corner_side;
@@ -139,12 +141,13 @@ struct Toolset {
         this.r_flag_serif = r_flag_serif;
         this.r_bottom_serif = r_bottom_serif;
 
-        this.t_outline = t_outline;
         this.t_left_punch = t_left_punch;
         this.t_right_punch = t_right_punch;
         this.t_left_corner = t_left_corner;
-        this.t_top_corner = t_top_corner;
-        this.t_terminal = t_terminal;
+        this.t_top_rounding = t_top_rounding;
+        this.t_tail_end = t_tail_end;
+        this.t_top_trim = t_top_trim;
+        this.t_sheared_terminal = t_sheared_terminal;
     }
 };
 
@@ -231,13 +234,15 @@ Glyph cut_r(Toolset tools)
 
 Glyph cut_t(Toolset tools)
 {
-    Glyph glyph = copy(tools.t_outline);
+    Glyph glyph = Glyph((-500,-500), (1000,1000));
     glyph.name = 't';
     glyph.punch(tools.t_left_punch);
     glyph.punch(tools.t_right_punch);
-    glyph.splice_in(add_extrema(tools.t_left_corner.path(glyph)));
-    glyph.splice_in(add_extrema(tools.t_top_corner.path(glyph)));
-    glyph.splice_in(tools.t_terminal.path(glyph));
+    path top_trim = tools.t_top_trim.path(glyph);
+    glyph.splice_in(top_trim);
+    glyph.splice_in(tools.t_sheared_terminal.path(glyph));
+    glyph.splice_in(tools.t_top_rounding.path(glyph, point2=point(top_trim, 1)));
+    glyph.splice_in(tools.t_tail_end.path(glyph));
     return glyph;
 }
 
