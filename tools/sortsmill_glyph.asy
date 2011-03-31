@@ -360,6 +360,13 @@ struct Glyph {
         return reordered_points;
     }
 
+    OutlinePoint[] intersections(Glyph g) { // No return order is guaranteed.
+        OutlinePoint[] points;
+        for (path gpath : g.outlines)
+            points.append(intersections(gpath));
+        return points;
+    }
+
     OutlinePoint[] points_at_x(real x) {
         bool y_less(OutlinePoint a, OutlinePoint b) {
             return a.point.y < b.point.y;
