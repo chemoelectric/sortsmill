@@ -316,6 +316,73 @@ Glyph right_stem_punch(real top_angle, real bottom_angle, real side_angle, real 
     return punch;
 }
 
+Glyph c_outline(pair upper_terminal_point, pair upper_terminal_point_a,
+                pair top_point, pair left_point,
+                pair bottom_point, pair lower_terminal_point,
+                guide lower_right_guide, guide lower_left_guide,
+                guide upper_left_guide, guide upper_right_guide)
+{
+    Glyph outline =
+        Glyph(left_point{up}..upper_left_guide..
+              top_point{right}..upper_right_guide..
+              upper_terminal_point_a..
+              {down}(upper_terminal_point)..
+              lower_terminal_point..lower_right_guide..
+              bottom_point{left}..lower_left_guide..
+              cycle);
+    return outline;
+}
+
+Glyph c_counter(pair upper_terminal_point, pair top_point, pair left_point,
+                pair bottom_point, pair lower_terminal_point,
+                guide lower_right_guide, guide lower_left_guide,
+                guide upper_left_guide, guide upper_right_guide)
+{
+    Glyph punch =
+        Glyph(left_point{up}..upper_left_guide..
+              top_point{right}..upper_right_guide..
+              upper_terminal_point---
+              (3000,upper_terminal_point.y)--(3000,upper_terminal_point.y - 1)--
+              (lower_terminal_point.x,upper_terminal_point.y - 1)--
+              lower_terminal_point..lower_right_guide..
+              bottom_point{left}..lower_left_guide..
+              cycle);
+    return punch;
+}
+
+Glyph e_outline(pair left_point, pair top_point, pair bottom_point, pair corner_point, pair terminal_point,
+                guide lower_right_guide, guide lower_left_guide, guide upper_left_guide, guide upper_right_guide)
+{
+    Glyph outline = Glyph(terminal_point..lower_right_guide..
+                          bottom_point{left}..lower_left_guide..
+                          left_point{up}..upper_left_guide..
+                          {right}top_point..upper_right_guide..
+                          corner_point..tension atleast 0.75..
+                          {right}(terminal_point.x,0.5*(terminal_point.y + corner_point.y))--cycle);
+    outline.add_extrema();
+    return outline;
+}
+
+Glyph e_upper_counter(pair apex_point, pair left_point, pair right_point,
+                      guide left_guide, guide right_guide,
+                      Corner left_corner, Corner right_corner)
+{
+    Glyph punch = Glyph(left_point..left_guide..{right}apex_point..right_guide..right_point--cycle);
+    punch.splice_in(left_corner.path(punch@left_point));
+    punch.splice_in(right_corner.path(punch@right_point));
+    return punch;
+}
+
+Glyph e_lower_counter(pair left_point, pair right_point, pair bottom_point,
+                      guide left_guide, guide right_guide,
+                      Corner left_corner=Corner(infinity, infinity, nullpath))
+{
+    Glyph punch = Glyph(right_point..right_guide..bottom_point{left}..left_guide..left_point--cycle);
+    punch.add_extrema();
+    punch.splice_in(left_corner.path(punch@left_point));
+    return punch;
+}
+
 Glyph right_r_punch(real bottom_angle, real side_angle, real side_height, guide top_guide,
                     Corner bottom_corner=Corner(infinity, infinity, nullpath),
                     real approx_width=1000)

@@ -36,11 +36,11 @@ struct Toolset {
     Glyph c_outline;
     Glyph c_counter;
     TwoPointTrim c_upper_terminal;
-    AngledTrim c_lower_terminal;
+    TwoPointTrim c_lower_terminal;
 
     Glyph e_outline;
-    Glyph e_top_counter;
-    Glyph e_bowl;
+    Glyph e_upper_counter;
+    Glyph e_lower_counter;
     Glyph e_terminal_trim;
     Corner e_corner;
     AngledTrim e_terminal;
@@ -78,10 +78,10 @@ struct Toolset {
                        Glyph c_outline,
                        Glyph c_counter,
                        TwoPointTrim c_upper_terminal,
-                       AngledTrim c_lower_terminal,
+                       TwoPointTrim c_lower_terminal,
                        Glyph e_outline,
-                       Glyph e_top_counter,
-                       Glyph e_bowl,
+                       Glyph e_upper_counter,
+                       Glyph e_lower_counter,
                        Corner e_corner,
                        AngledTrim e_terminal,
                        Glyph i_left_punch,
@@ -120,8 +120,8 @@ struct Toolset {
         this.c_lower_terminal = c_lower_terminal;
 
         this.e_outline = e_outline;
-        this.e_top_counter = e_top_counter;
-        this.e_bowl = e_bowl;
+        this.e_upper_counter = e_upper_counter;
+        this.e_lower_counter = e_lower_counter;
         this.e_corner = e_corner;
         this.e_terminal = e_terminal;
 
@@ -163,20 +163,11 @@ Glyph cut_space(Toolset tools)
 
 Glyph cut_c(Toolset tools)
 {
-    Glyph glyph = copy(tools.c_outline);
+    Glyph glyph = tools.c_outline;
     glyph.name = 'c';
     glyph.punch(tools.c_counter);
-
-    // Cut through the right side. (FIXME: May become unnecessary if I
-    // ever add splicing between two outlines.)
-    path counter = tools.c_counter.outlines[0];
-    pair midpoint = 0.5*(max(counter) + min(counter));
-    glyph.punch(Glyph(midpoint--(midpoint + (1000,0))--(midpoint + (1000,-1))--(midpoint + (0,-1))--cycle));
-
-    // Finish the terminals.
-    glyph.splice_in(add_extrema(tools.c_upper_terminal.path(glyph)));
     glyph.splice_in(tools.c_lower_terminal.path(glyph));
-
+    glyph.splice_in(tools.c_upper_terminal.path(glyph));
     return glyph;
 }
 
@@ -184,18 +175,16 @@ Glyph cut_e(Toolset tools)
 {
     Glyph glyph = copy(tools.e_outline);
     glyph.name = 'e';
-    glyph.punch(tools.e_top_counter);
-    glyph.punch(tools.e_bowl);
-    glyph.punch(tools.e_terminal_trim);
-    glyph.splice_in(add_extrema(tools.e_corner.path(glyph)));
+    glyph.punch(tools.e_upper_counter);
+    glyph.punch(tools.e_lower_counter);
+    glyph.splice_in(tools.e_corner.path(glyph));
     glyph.splice_in(tools.e_terminal.path(glyph));
     return glyph;
 }
 
 Glyph cut_dotlessi(Toolset tools)
 {
-    Glyph glyph = Glyph((0,-50), (500,1000));
-    glyph.name = 'dotlessi';
+    Glyph glyph = Glyph((0,-50), (500,1000), name = 'dotlessi');
     glyph.punch(tools.i_left_punch);
     glyph.punch(tools.i_right_punch);
     glyph.splice_in(tools.i_flag_serif.path(glyph));
@@ -221,8 +210,7 @@ Glyph cut_o(Toolset tools)
 
 Glyph cut_r(Toolset tools)
 {
-    Glyph glyph = Glyph((0,-50), (500,1000));
-    glyph.name = 'r';
+    Glyph glyph = Glyph((0,-50), (500,1000), name = 'r');
     glyph.punch(tools.r_left_punch);
     glyph.punch(tools.r_right_punch);
     glyph.punch(tools.r_shoulder_punch);
@@ -234,8 +222,7 @@ Glyph cut_r(Toolset tools)
 
 Glyph cut_t(Toolset tools)
 {
-    Glyph glyph = Glyph((-500,-500), (1000,1000));
-    glyph.name = 't';
+    Glyph glyph = Glyph((-500,-500), (1000,1000), name = 't');
     glyph.punch(tools.t_left_punch);
     glyph.punch(tools.t_right_punch);
     path top_trim = tools.t_top_trim.path(glyph);

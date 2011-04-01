@@ -91,44 +91,77 @@ FlagSerifTrim flag_serif(pair top_point,
 
 //-------------------------------------------------------------------------
 
-pair c_upper_terminal_point = (78,266);
-pair c_counter_position = (202,40);
+pair c_upper_terminal_p1 = (334,339);
+pair c_upper_terminal_p1a = (316,374);
+pair c_upper_terminal_p2 = (305,305);
+pair c_lower_terminal_p1 = (334,69);
+pair c_lower_terminal_p2 = (320,78);
+real c_lower_terminal_angle1 = 15;
+real c_lower_terminal_angle2 = 45;
+guide c_outline_lower_right_guide=nullpath{dir(270 - c_lower_terminal_angle1)}..tension 1.1..nullpath;
+guide c_outline_lower_left_guide=nullpath..tension 0.95..nullpath;
+guide c_outline_upper_left_guide=nullpath..tension 0.95 and 1.0..nullpath;
+guide c_outline_upper_right_guide=nullpath..nullpath;
+guide c_counter_lower_right_guide=nullpath{dir(270 - c_lower_terminal_angle2)}..nullpath;
+guide c_counter_lower_left_guide=nullpath..tension 0.91..nullpath;
+guide c_counter_upper_left_guide=nullpath..nullpath;
+guide c_counter_upper_right_guide=nullpath..nullpath;
 
-Glyph c_outline = Glyph((172,-12){left}..tension 0.95 and 1.0..
-                        (0,189){up}..(192,415){right}..tension 0.97..
-                        (357,199){down}..tension 1.0 and 0.95..cycle);
-Glyph c_counter = Glyph((0,0){left}..(-141,159){up}..(-19,336){right}..
-                        c_upper_terminal_point{right}..(143,159){down}..cycle);
-
-Pt p1 = c_outline.points_at_y(375)[1];
-Pt p2 = c_outline.points_at_y(59)[1];
-
-TwoPointTrim c_upper_terminal = TwoPointTrim(p1.point, shift(c_counter_position)*c_upper_terminal_point,
-                                             nullpath..tension 0.95..nullpath);
-AngledTrim c_lower_terminal = AngledTrim(point=p2.point, angle=130,
-                                         guide=nullpath..tension 2.0..nullpath, reversed = true);
+Glyph c_outline = c_outline(upper_terminal_point=c_upper_terminal_p1,
+                            upper_terminal_point_a=c_upper_terminal_p1a,
+                            top_point=(215,414), left_point=(25,188), bottom_point=(200,-11),
+                            lower_terminal_point=c_lower_terminal_p1,
+                            lower_right_guide=c_outline_lower_right_guide,
+                            lower_left_guide=c_outline_lower_left_guide,
+                            upper_left_guide=c_outline_upper_left_guide,
+                            upper_right_guide=c_outline_upper_right_guide);
+Glyph c_counter = c_counter(upper_terminal_point=c_upper_terminal_p2,
+                            top_point=(211,375), left_point=(85,204), bottom_point=(227,41),
+                            lower_terminal_point=c_lower_terminal_p2,
+                            lower_right_guide=c_counter_lower_right_guide,
+                            lower_left_guide=c_counter_lower_left_guide,
+                            upper_left_guide=c_counter_upper_left_guide,
+                            upper_right_guide=c_counter_upper_right_guide);
+TwoPointTrim c_upper_terminal = TwoPointTrim(point1=c_upper_terminal_p1, point2=c_upper_terminal_p2, before=0.1,
+                                             guide=nullpath{down}..{left}nullpath);
+TwoPointTrim c_lower_terminal = TwoPointTrim(point1=c_lower_terminal_p2, point2=c_lower_terminal_p1,
+                                             guide=(nullpath{dir(c_lower_terminal_angle2)}..
+                                                    tension 2.0..{dir(270 - c_lower_terminal_angle1)}nullpath));
 
 //.........................................................................
 
-pair e_terminal_point = (349,97);
-pair e_corner_point = (332,260);
+pair e_left_point = (0,205);
+pair e_top_point = (181,414);
+pair e_bottom_point = (190,-11);
+pair e_corner_point = (332,259);
+pair e_terminal_point = (354,95);
+pair e_lower_counter_left = (0,0);
+pair e_lower_counter_right = (343,0);
+pair e_lower_counter_bottom = (150,-214);
+pair e_upper_counter_position = (77,282);
+pair e_lower_counter_position = (60,e_corner_point.y);
 
-Glyph e_outline = Glyph(e_terminal_point{curl 0.9}::
-                        (186,-9){left}..tension 1.0 and 0.85..
-                        (-2,200){up}..
-                        {right}(176,413)..tension 0.95..
-                        {down}e_corner_point..tension atleast 0.75..
-                        {right}(e_terminal_point.x,220)--cycle);
-
-Glyph e_top_counter = Glyph((0,0){curl 0.6}::{right}(100,109)..tension 0.92..{curl 0.6}(184,2)--cycle);
-e_top_counter.splice_in(add_extrema(corner((e_top_counter@(0,0))^0, 25, 50, nullpath..tension 0.75..nullpath)));
-e_top_counter.splice_in(add_extrema(corner((e_top_counter@(190,2))^0, 70, 35, nullpath..tension 0.9..nullpath)));
-
-Glyph e_bowl = Glyph((150,-209){left}::(-4,-45){up}::{curl 1}(0,0)--(300,2){curl 1}::cycle);
-e_bowl.splice_in(add_extrema(corner((e_bowl@(0,0))^0, 40, 40, nullpath..tension 1.0 and 2.0..nullpath)));
-
-Corner e_corner = Corner(e_corner_point, 20, 20, nullpath..tension 1.1..nullpath);
-
+Glyph e_outline = e_outline(left_point=e_left_point, top_point=e_top_point, bottom_point=e_bottom_point,
+                            corner_point=e_corner_point, terminal_point=e_terminal_point,
+                            lower_right_guide = nullpath{curl 0.9}..nullpath,
+                            lower_left_guide = nullpath..tension 1.0 and 0.85..nullpath,
+                            upper_left_guide = nullpath..nullpath,
+                            upper_right_guide = nullpath..{curl 1.4}nullpath);
+Glyph e_upper_counter =
+    e_upper_counter(apex_point=(100,109), left_point=(0,0), right_point=(177,0),
+                    left_guide=nullpath{curl 0.6}::nullpath, right_guide=nullpath..tension 0.92..{curl 0.6}nullpath,
+                    left_corner=Corner(before=45, after=30, guide=nullpath..tension atleast 0.75..nullpath),
+                    right_corner=Corner(before=70, after=30, guide=nullpath..tension 0.9..nullpath,
+                                        postprocess=add_extrema));
+Glyph e_lower_counter =
+    e_lower_counter(left_point=e_lower_counter_left,
+                    right_point=e_lower_counter_right,
+                    bottom_point=e_lower_counter_bottom,
+                    left_guide=nullpath..{curl 0.6}nullpath,
+                    right_guide=nullpath{dir(240)}..
+                    controls (e_lower_counter_right - (49,191)) and (e_lower_counter_bottom + (59,0))..nullpath,
+                    left_corner=Corner(before=50, after=50, guide=nullpath..nullpath, postprocess=add_extrema));
+Corner e_corner = Corner(point=e_corner_point, before=10, after=30, guide=nullpath::nullpath);
 AngledTrim e_terminal = AngledTrim(point=e_terminal_point - (0,0.01), angle=145,
                                    guide=nullpath..tension 2.0..nullpath, reversed=true);
 
@@ -167,14 +200,14 @@ Glyph i_dot = Glyph(scale(54)*unitcircle);
 
 //.........................................................................
 
-Glyph o_outline = Glyph((185,-10){left}..tension 0.95 and 1.0..
-                        (0,200){up}..tension 0.85 and 1.3..
-                        (190,409){right}..
-                        (384,200){down}..tension 1.0 and 0.95..cycle);
-Glyph o_counter = shift(-8,-1)*Glyph((3,1){left}..tension 1.4 and 0.75..
-                                     (-114,185){up}..tension 0.97..
+Glyph o_outline = shift(0,-2)*Glyph((185,-10){left}..tension 0.95 and 1.0..
+                                    (-1,200){up}..tension 0.85 and 1.3..
+                                    (190,409){right}..
+                                    (382,200){down}..tension 1.0 and 0.95..cycle);
+Glyph o_counter = shift(-8,-3)*Glyph((3,1){left}..tension 1.4 and 0.75..
+                                     (-115,185){up}..tension 0.97..
                                      (5,356){right}..
-                                     (134,170){down}..tension 0.75 and 1.4..cycle);
+                                     (135,170){down}..tension 0.75 and 1.4..cycle);
 
 //.........................................................................
 
@@ -259,13 +292,13 @@ Toolset tools = Toolset(
     curve_overshoot=10,
 
     c_outline=c_outline,
-    c_counter=shift(c_counter_position)*c_counter,
+    c_counter=c_counter,
     c_upper_terminal=c_upper_terminal,
     c_lower_terminal=c_lower_terminal,
 
     e_outline=e_outline,
-    e_top_counter=shift(73,280)*e_top_counter,
-    e_bowl=shift(56,256)*e_bowl,
+    e_upper_counter=shift(e_upper_counter_position)*e_upper_counter,
+    e_lower_counter=shift(e_lower_counter_position)*e_lower_counter,
     e_corner=e_corner,
     e_terminal=e_terminal,
 
