@@ -179,6 +179,7 @@ real i_left_side_angle = 90;
 real i_right_side_height = 308 - i_right_serif_height;
 real i_right_side_angle = 90;
 real i_right_top_angle = 86;
+
 Glyph i_left_punch = left_stem_punch(top_angle=145, bottom_angle=180 + lowercase_serif_angle,
                                      side_angle=i_left_side_angle, side_height=i_left_side_height,
                                      top_corner=Corner(25, i_left_side_height - 220 + i_left_serif_height,
@@ -197,6 +198,35 @@ FlagSerifTrim i_flag_serif = flag_serif(top_point=(i_right_punch_position +
 BottomSerifTrim i_bottom_serif = lowercase_baseline_serif(i_left_punch_position, i_right_punch_position, 65, 55);
 
 Glyph i_dot = Glyph(scale(54)*unitcircle);
+
+//.........................................................................
+
+real l_left_serif_height = 29;
+real l_right_serif_height = 29;
+pair l_left_origin = (100,0);
+pair l_right_origin = l_left_origin + (57,0);
+pair l_left_punch_position = l_left_origin + (0,l_left_serif_height);
+pair l_right_punch_position = l_right_origin + (0,l_left_serif_height);
+real l_left_side_angle = 90;
+real l_left_side_height = 596/Sin(l_left_side_angle) - l_left_serif_height;
+real l_right_side_angle = 88.7;
+real l_right_side_height = 709/Sin(l_right_side_angle) - l_right_serif_height;
+real l_right_top_angle = 0;
+
+Glyph l_left_punch = left_stem_punch(top_angle=145, bottom_angle=180 + lowercase_serif_angle,
+                                     side_angle=l_left_side_angle, side_height=l_left_side_height,
+                                     top_corner=Corner(30, 70, nullpath::nullpath),
+                                     bottom_corner=Corner(20, 20, nullpath::nullpath));
+Glyph l_right_punch = right_stem_punch(top_angle=l_right_top_angle, bottom_angle=-lowercase_serif_angle,
+                                       side_angle=l_right_side_angle, side_height=l_right_side_height,
+                                       top_corner=Corner(infinity, infinity, nullpath),
+                                       bottom_corner=Corner(20, 40, nullpath::nullpath, postprocess=add_extrema));
+FlagSerifTrim l_flag_serif = flag_serif(top_point=(l_right_punch_position +
+                                                   l_right_side_height*dir(l_right_side_angle)),
+                                        angle=20,
+                                        top_corner=Corner(before=20, after=20, nullpath..nullpath,
+                                                          postprocess=add_extrema));
+BottomSerifTrim l_bottom_serif = lowercase_baseline_serif(l_left_punch_position, l_right_punch_position, 100, 80);
 
 //.........................................................................
 
@@ -307,6 +337,11 @@ Toolset tools = Toolset(
     i_dot=shift(i_dot_position)*i_dot,
     i_flag_serif=i_flag_serif,
     i_bottom_serif=i_bottom_serif,
+
+    l_left_punch=shift(l_left_punch_position)*l_left_punch,
+    l_right_punch=shift(l_right_punch_position)*l_right_punch,
+    l_flag_serif=l_flag_serif,
+    l_bottom_serif=l_bottom_serif,
 
     o_outline=o_outline,
     o_counter=shift(188,23)*o_counter,

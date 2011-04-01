@@ -51,6 +51,11 @@ struct Toolset {
     FlagSerifTrim i_flag_serif;
     BottomSerifTrim i_bottom_serif;
 
+    Glyph l_left_punch;
+    Glyph l_right_punch;
+    FlagSerifTrim l_flag_serif;
+    BottomSerifTrim l_bottom_serif;
+
     Glyph o_outline;
     Glyph o_counter;
 
@@ -72,25 +77,36 @@ struct Toolset {
     void operator init(real default_corner_side,
                        guide default_corner_guide,
                        path default_corner(Pt),
+
                        real space_width,
                        real ex_height,
                        real curve_overshoot,
+
                        Glyph c_outline,
                        Glyph c_counter,
                        TwoPointTrim c_upper_terminal,
                        TwoPointTrim c_lower_terminal,
+
                        Glyph e_outline,
                        Glyph e_upper_counter,
                        Glyph e_lower_counter,
                        Corner e_corner,
                        AngledTrim e_terminal,
+
                        Glyph i_left_punch,
                        Glyph i_right_punch,
                        Glyph i_dot,
                        FlagSerifTrim i_flag_serif,
                        BottomSerifTrim i_bottom_serif,
+
+                       Glyph l_left_punch,
+                       Glyph l_right_punch,
+                       FlagSerifTrim l_flag_serif,
+                       BottomSerifTrim l_bottom_serif,
+
                        Glyph o_outline,
                        Glyph o_counter,
+
                        Glyph r_left_punch,
                        Glyph r_right_punch,
                        Glyph r_shoulder_punch,
@@ -99,6 +115,7 @@ struct Toolset {
                        path r_terminal,
                        FlagSerifTrim r_flag_serif,
                        BottomSerifTrim r_bottom_serif,
+
                        TwoPointTrim t_left_corner,
                        TwoPointTrim t_top_rounding,
                        AngledTrim t_tail_end,
@@ -130,6 +147,11 @@ struct Toolset {
         this.i_dot = i_dot;
         this.i_flag_serif = i_flag_serif;
         this.i_bottom_serif = i_bottom_serif;
+
+        this.l_left_punch = l_left_punch;
+        this.l_right_punch = l_right_punch;
+        this.l_flag_serif = l_flag_serif;
+        this.l_bottom_serif = l_bottom_serif;
 
         this.o_outline = o_outline;
         this.o_counter = o_counter;
@@ -200,6 +222,16 @@ Glyph cut_i(Toolset tools)
     return glyph;
 }
 
+Glyph cut_l(Toolset tools)
+{
+    Glyph glyph = Glyph((-500,-500), (500, 1000), name= 'l');
+    glyph.punch(tools.l_left_punch);
+    glyph.punch(tools.l_right_punch);
+    glyph.splice_in(tools.l_flag_serif.path(glyph));
+    glyph.splice_in(tools.l_bottom_serif.path(glyph));
+    return glyph;
+}
+
 Glyph cut_o(Toolset tools)
 {
     Glyph glyph = copy(tools.o_outline);
@@ -245,6 +277,7 @@ glyph_cutter[] cutters = new glyph_cutter[] {
     cut_dotlessi,
     cut_i,
 
+    cut_l,
     cut_o,
     cut_r,
     cut_t
