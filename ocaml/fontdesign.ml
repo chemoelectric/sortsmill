@@ -56,9 +56,7 @@ module type Cubic_point_type =
 sig
   type point
   type transformation
-  type t = { inh : point; pt : point; outh : point }
-  val zero : t
-  val one : t
+  type t = { ih : point; oc : point; oh : point }
   val add : t -> t -> t
   val sub : t -> t -> t
   val absolute : t -> t
@@ -74,8 +72,7 @@ sig
   type transformation
   type cubic_point
   val singleton : cubic_point -> t
-  val zero : t
-  val one : t
+  val construct : cubic_point list -> t    
   val transform : t -> transformation -> t
   val append : t -> t -> t
   val closed : t -> bool -> t
@@ -109,38 +106,35 @@ module Cubic_point
 struct
   type point = P.t
   type transformation = T.t
-  type t = { inh : point; pt : point; outh : point }
+  type t = { ih : point; oc : point; oh : point }
 
-  let zero = { inh=P.zero; pt=P.zero; outh=P.zero }
-  let one = { inh=P.zero; pt=P.one; outh=P.zero }
+  let add a b = { ih = P.add a.ih b.ih;
+                  oc = P.add a.oc b.oc;
+                  oh = P.add a.oh b.oh }
 
-  let add a b = { inh = P.add a.inh b.inh;
-                  pt = P.add a.pt b.pt;
-                  outh = P.add a.outh b.outh }
+  let sub a b = { ih = P.sub a.ih b.ih;
+                  oc = P.sub a.oc b.oc;
+                  oh = P.sub a.oh b.oh }
 
-  let sub a b = { inh = P.sub a.inh b.inh;
-                  pt = P.sub a.pt b.pt;
-                  outh = P.sub a.outh b.outh }
+  let absolute p = { ih = P.add p.oc p.ih;
+                     oc = p.oc;
+                     oh = P.add p.oc p.oh }
 
-  let absolute p = { inh = P.add p.pt p.inh;
-                     pt = p.pt;
-                     outh = P.add p.pt p.outh }
+  let relative p = { ih = P.sub p.ih p.oc;
+                     oc = p.oc;
+                     oh = P.sub p.oh p.oc }
 
-  let relative p = { inh = P.sub p.inh p.pt;
-                     pt = p.pt;
-                     outh = P.sub p.outh p.pt }
-
-  let transform p trans = { inh = T.transform p.inh trans;
-                            pt = T.transform p.pt trans;
-                            outh = T.transform p.outh trans }
+  let transform p trans = { ih = T.transform p.ih trans;
+                            oc = T.transform p.oc trans;
+                            oh = T.transform p.oh trans }
 
   let print outp p =
-    output_string outp "{inh=";
-    P.print outp p.inh;
-    output_string outp "; pt=";
-    P.print outp p.pt;
-    output_string outp "; outh=";
-    P.print outp p.outh;
+    output_string outp "{ih=";
+    P.print outp p.ih;
+    output_string outp "; oc=";
+    P.print outp p.oc;
+    output_string outp "; oh=";
+    P.print outp p.oh;
     output_string outp "}"
 end
 
@@ -155,8 +149,9 @@ struct
   }
 
   let singleton p = { spline = [CP.absolute p]; closed = false }
-  let zero = singleton CP.zero
-  let one = singleton CP.one
+
+  let construct p_list =
+    { spline = List.map CP.absolute p_list; closed = false }
 
   let transform contour trans =
     { contour with
@@ -197,8 +192,20 @@ struct
   end
 end
 
-module Ops =
-struct
-  let ( */ ) x y = { Complex.re = x; Complex.im = y }
-  let ( *> ) norm arg = Complex.polar norm ((Float.pi /. 180.) *. arg)
-end
+let cpx x y = { Complex.re = x; Complex.im = y }
+let pol norm arg = Complex.polar norm ((Float.pi /. 180.) *. arg)
+
+let x' x = { Complex.re = x; Complex.im = 0. }
+let y' y = { Complex.re = 0.; Complex.im = y }
+let dir theta = Complex.polar 1.0 ((Float.pi /. 180.) *. theta)
+let deg theta = (180. /. Float.pi) *. theta
+let rad theta = (Float.pi /. 180.) *. theta
+
+let dsin = sin -| rad
+let dcos = cos -| rad
+let dtan = tan -| rad
+
+let adsin = deg -| asin
+let adcos = deg -| acos
+let adtan = deg -| atan
+let adtan2 x y = deg (atan2 x y)

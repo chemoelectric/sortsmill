@@ -58,9 +58,10 @@ module type Cubic_point_type =
 sig
   type point
   type transformation
-  type t = { inh : point; pt : point; outh : point }
-  val zero : t
-  val one : t
+
+  type t = { ih : point; oc : point; oh : point }
+  (** ih = incoming handle, oc = on-curve point, oh = outgoing handle *)
+
   val add : t -> t -> t
   val sub : t -> t -> t
   val absolute : t -> t
@@ -77,12 +78,12 @@ sig
   type cubic_point
 
   val singleton : cubic_point -> t
-  (** An open contour consisting of a single on-curve point with zero
-      relative handles. *)
+  (** An open contour consisting of a single on-curve point with
+      handles. *)
 
-  val zero : t
-  val one : t
-  (* Singletons of zero and one. *)
+  val construct : cubic_point list -> t    
+  (** An open contour made from a list of on-curve points with
+      handles. *)
 
   val transform : t -> transformation -> t
   (** [transform c m] transforms contour [c] by the transformation
@@ -140,13 +141,36 @@ module Cubic_contour(CP : Cubic_point_type) :
                      and type transformation = CP.transformation
                      and type cubic_point = CP.t
 
-module Ops :
-sig
-  val ( */ ) : float -> float -> Complex.t
-  (** [x */ y] returns the complex x + iy. *)
+val cpx : float -> float -> Complex.t
+(** [cpx x y] return the complex x + i.y. *)
 
-  val ( *> ) : float -> float -> Complex.t
-(** [norm *> arg] returns the complex having norm [norm] and arg
-    [arg], where [arg] is given in degrees. *)
-end
+val pol : float -> float -> Complex.t
+(** [pol norm arg] returns the complex with norm [norm] and arg [arg],
+    where [arg] is in degrees. *)
 
+val x' : float -> Complex.t
+(** [x' x] returns the complex x + i.0 *)
+
+val y' : float -> Complex.t
+(** [y' y] returns the complex 0 + i.y *)
+
+val dir : float -> Complex.t
+(** [dir theta] returns the complex of norm 1 and arg [theta], where
+    [theta] is in degrees. *)
+
+val deg : float -> float
+(** Conversion from radians to degrees. *)
+
+val rad : float -> float
+(** Conversion from degrees to radians. *)
+
+val dsin : float -> float
+val dcos : float -> float
+val dtan : float -> float
+(** Trigonometric functions taking their arguments in degrees. *)
+
+val adsin : float -> float
+val adcos : float -> float
+val adtan : float -> float
+val adtan2 x y : float -> float -> float
+(** Inverse trigonometric functions returning values in degrees. *)
