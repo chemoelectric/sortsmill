@@ -29,6 +29,7 @@
   OTHER DEALINGS IN THE SOFTWARE.
 *)
 
+open Batteries
 
 module type S =
 sig
@@ -44,6 +45,7 @@ sig
   val compose : t list -> t
   val inv : t -> t
   val transform : float * float -> t -> float * float
+  val print : unit IO.output -> t -> unit
 end
 
 include S

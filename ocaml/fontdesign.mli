@@ -33,82 +33,120 @@ sig
   val zero : t
   val one : t
   val add : t -> t -> t
-  val print : 'a IO.output -> t -> unit
+  val sub : t -> t -> t
+  val print : unit IO.output -> t -> unit
 end
 
 module type Point_transformation_type =
 sig
   type t
   type point
-  val transform : point -> t -> point
+  val ident : t
   val scale : float -> t
+  val scalexy : float -> float -> t
+  val translate : point -> t
+  val rotate : float -> t
+  val skew : float -> t
+  val mul : t -> t -> t
+  val compose : t list -> t
+  val inv : t -> t
+  val transform : point -> t -> point
+  val print : unit IO.output -> t -> unit
 end
 
-module type Contour_type =
+module type Cubic_point_type =
+sig
+  type point
+  type transformation
+  type t = { inh : point; pt : point; outh : point }
+  val zero : t
+  val one : t
+  val add : t -> t -> t
+  val sub : t -> t -> t
+  val absolute : t -> t
+  val relative : t -> t
+  val transform : t -> transformation -> t
+  val print : unit IO.output -> t -> unit
+end
+
+module type Cubic_contour_type =
 sig
   type t
   type point
   type transformation
+  type cubic_point
 
-  val singleton : point -> t
+  val singleton : cubic_point -> t
   (** An open contour consisting of a single on-curve point with zero
       relative handles. *)
 
   val zero : t
-  (** A singleton of the zero point. *)
-
   val one : t
-  (** A singleton of the unit point. *)
+  (* Singletons of zero and one. *)
 
   val transform : t -> transformation -> t
   (** [transform c m] transforms contour [c] by the transformation
       [m]. *)
 
-  val set_inhandle : t -> point -> t
-  (** [set_inhandle c h] returns contour [c] with its incoming handle
-      set to [h] relative to the start point. *)
+  val append : t -> t -> t
+  (** [append c1 c2] concatenates splines [c1] and [c2]. The result is
+      closed if and only if [c1] is closed. *)
 
-  val set_outhandle : t -> point -> t
-  (** [set_outhandle c h] returns contour [c] with its outgoing handle
-      set to [h] relative to the finish point. *)
+  val closed : t -> bool -> t
+  val is_closed : t -> bool
+
+  val print : unit IO.output -> t -> unit
 
   module Ops :
   sig
-    val ( !. ) : point -> t
-    (** [!.p] returns point [p] with zero relative handles. *)
-
-    val ( |= ) : point -> t -> t
-    (** [h |= c] returns contour [c] with its incoming handle set to [h]
-        relative to the start point. *)
-
-    val ( =| ) : t -> point -> t
-    (** [c =| h] returns contour [c] with its outgoing handle set to [h]
-        relative to the finish point. *)
+    val ( <@> ) : t -> t -> t
+    (** [c1 <@> c2] concatenates splines [c1] and [c2]. The result is
+        closed if and only if [c1] is closed. *)
 
     val ( <*> ) : t -> transformation -> t
-  (** [c <*> m] transforms contour [c] by the transformation [m]. *)
+    (** [c <*> m] transforms contour [c] by the transformation [m]. *)
+
+    val ( <@@ ) : t -> bool -> t
+  (** [c <@@ true] marks contour [c] as closed; [c <@@ false] marks it
+      as open. *)
   end
 end
 
 module Mat :
 sig
-  include Psmat.S
+  type t = float * float * float * float * float * float
   type point = Complex.t
+  val ident : t
+  val scale : float -> t
+  val scalexy : float -> float -> t
+  val translate : point -> t
+  val rotate : float -> t
+  val skew : float -> t
+  val mul : t -> t -> t
+  val compose : t list -> t
+  val inv : t -> t
   val transform : point -> t -> point
+  val print : unit IO.output -> t -> unit
 end
 
-module Cubic_contour
+module Cubic_point
   (P : Point_type)
-  (T : (Point_transformation_type with type point = P.t))
-  : Contour_type with type point = P.t
-                 and type transformation = T.t
+  (T : (Point_transformation_type with type point = P.t)) :
+  Cubic_point_type with type point = P.t
+                   and  type transformation = T.t
+
+module Cubic_contour(CP : Cubic_point_type) :
+  Cubic_contour_type with type point = CP.point
+                     and type transformation = CP.transformation
+                     and type cubic_point = CP.t
 
 module Ops :
 sig
-  val ( +! ) : float -> float -> Complex.t
-  (** [(x +! y)] returns the complex x + iy. *)
+  val ( */ ) : float -> float -> Complex.t
+  (** [x */ y] returns the complex x + iy. *)
 
-  val ( >! ) : float -> float -> Complex.t
-(** [(norm >! arg)] returns the complex having norm [norm] and arg
+  val ( *> ) : float -> float -> Complex.t
+(** [norm *> arg] returns the complex having norm [norm] and arg
     [arg], where [arg] is given in degrees. *)
 end
+

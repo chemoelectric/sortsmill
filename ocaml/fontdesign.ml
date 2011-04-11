@@ -31,34 +31,61 @@ sig
   val zero : t
   val one : t
   val add : t -> t -> t
-  val print : 'a IO.output -> t -> unit
+  val sub : t -> t -> t
+  val print : unit IO.output -> t -> unit
 end
 
 module type Point_transformation_type =
 sig
   type t
   type point
-  val transform : point -> t -> point
+  val ident : t
   val scale : float -> t
+  val scalexy : float -> float -> t
+  val translate : point -> t
+  val rotate : float -> t
+  val skew : float -> t
+  val mul : t -> t -> t
+  val compose : t list -> t
+  val inv : t -> t
+  val transform : point -> t -> point
+  val print : unit IO.output -> t -> unit
 end
 
-module type Contour_type =
+module type Cubic_point_type =
+sig
+  type point
+  type transformation
+  type t = { inh : point; pt : point; outh : point }
+  val zero : t
+  val one : t
+  val add : t -> t -> t
+  val sub : t -> t -> t
+  val absolute : t -> t
+  val relative : t -> t
+  val transform : t -> transformation -> t
+  val print : unit IO.output -> t -> unit
+end
+
+module type Cubic_contour_type =
 sig
   type t
   type point
   type transformation
-  val singleton : point -> t
+  type cubic_point
+  val singleton : cubic_point -> t
   val zero : t
   val one : t
   val transform : t -> transformation -> t
-  val set_inhandle : t -> point -> t
-  val set_outhandle : t -> point -> t
+  val append : t -> t -> t
+  val closed : t -> bool -> t
+  val is_closed : t -> bool
+  val print : unit IO.output -> t -> unit
   module Ops :
   sig
-    val ( !. ) : point -> t
-    val ( |= ) : point -> t -> t
-    val ( =| ) : t -> point -> t
+    val ( <@> ) : t -> t -> t
     val ( <*> ) : t -> transformation -> t
+    val ( <@@ ) : t -> bool -> t
   end
 end
 
@@ -67,68 +94,111 @@ struct
   include Psmat
   type point = Complex.t
 
+  let translate pt =
+    Psmat.translate (pt.Complex.re, pt.Complex.im)
+
   let transform pt trans =
     let pair = (pt.Complex.re, pt.Complex.im) in
     let (x,y) = Psmat.transform pair trans in
     { Complex.re = x; Complex.im = y }
 end
 
-module Cubic_contour
+module Cubic_point
   (P : Point_type)
   (T : (Point_transformation_type with type point = P.t)) =
 struct
   type point = P.t
   type transformation = T.t
+  type t = { inh : point; pt : point; outh : point }
+
+  let zero = { inh=P.zero; pt=P.zero; outh=P.zero }
+  let one = { inh=P.zero; pt=P.one; outh=P.zero }
+
+  let add a b = { inh = P.add a.inh b.inh;
+                  pt = P.add a.pt b.pt;
+                  outh = P.add a.outh b.outh }
+
+  let sub a b = { inh = P.sub a.inh b.inh;
+                  pt = P.sub a.pt b.pt;
+                  outh = P.sub a.outh b.outh }
+
+  let absolute p = { inh = P.add p.pt p.inh;
+                     pt = p.pt;
+                     outh = P.add p.pt p.outh }
+
+  let relative p = { inh = P.sub p.inh p.pt;
+                     pt = p.pt;
+                     outh = P.sub p.outh p.pt }
+
+  let transform p trans = { inh = T.transform p.inh trans;
+                            pt = T.transform p.pt trans;
+                            outh = T.transform p.outh trans }
+
+  let print outp p =
+    output_string outp "{inh=";
+    P.print outp p.inh;
+    output_string outp "; pt=";
+    P.print outp p.pt;
+    output_string outp "; outh=";
+    P.print outp p.outh;
+    output_string outp "}"
+end
+
+module Cubic_contour(CP : Cubic_point_type) =
+struct
+  type point = CP.point
+  type transformation = CP.transformation
+  type cubic_point = CP.t
   type t = {
-    spline : (point * point * point) list;
+    spline : cubic_point list;
     closed : bool;
   }
 
-  let singleton pt = {
-    spline = [ (pt, pt, pt) ];
-    closed = false;
-  }
+  let singleton p = { spline = [CP.absolute p]; closed = false }
+  let zero = singleton CP.zero
+  let one = singleton CP.one
 
-  let zero = singleton P.zero
-  let one = singleton P.one
+  let transform contour trans =
+    { contour with
+      spline = List.map (fun p -> CP.transform p trans) contour.spline }
 
-  let transform contour trans = {
-    contour with
-      spline =
-      List.map
-        (fun (inhandle, p, outhandle) ->
-          (T.transform inhandle trans,
-           T.transform p trans,
-           T.transform outhandle trans))
-        contour.spline
-  }
+  let append contour1 contour2 =
+    { contour1 with spline = contour1.spline @ contour2.spline }
 
-  let set_inhandle contour rel_handle =
-    let (_,p,outh) = List.hd contour.spline in
-    let new_point = (P.add p rel_handle, p, outh) in
-    { contour with spline = new_point :: (List.tl contour.spline) }
+  let closed contour true_or_false =
+    { contour with closed = true_or_false }
 
-  let set_outhandle contour rel_handle =
-    let spline = List.rev contour.spline in
-    let (inh,p,_) = List.hd spline in
-    let new_point = (inh, p, P.add p rel_handle) in
-    let new_spline = new_point :: (List.tl spline) in
-    { contour with spline = List.rev new_spline }
+  let is_closed contour = contour.closed
+
+  let rec print_spline outp spline =
+    match spline with
+      | [] -> assert false
+      | [p] -> CP.print outp (CP.relative p)
+      | p :: remaining ->
+        CP.print outp (CP.relative p);
+        output_string outp "<@>";
+        print_spline outp remaining
+
+  let print_closed outp is_closed =
+    if is_closed then
+      output_string outp "<**true"
+    else
+      output_string outp "<**false"
+
+  let print outp contour =
+    print_spline outp contour.spline;
+    print_closed outp contour.closed
 
   module Ops =
   struct
-    let ( !. ) = singleton
-    let ( |= ) rel_handle my_mark = set_inhandle my_mark rel_handle
-    let ( =| ) = set_outhandle
+    let ( <@> ) = append
     let ( <*> ) = transform
-    let ( *> ) contour a = transform contour (T.scale a)
+    let ( <@@ ) = closed
   end
 end
 
-module TEST_SIGNATURE_CONSTRAINT : Contour_type = Cubic_contour(Complex)(Mat)
-
 module Ops =
 struct
-  let ( +! ) x y = { Complex.re = x; Complex.im = y }
-  let ( >! ) norm arg = Complex.polar norm ((Float.pi /. 180.) *. arg)
+  let ( */ ) x y = { Complex.re = x; Complex.im = y }
+  let ( *> ) norm arg = Complex.polar norm ((Float.pi /. 180.) *. arg)
 end
