@@ -34,7 +34,6 @@ open Batteries
 module type S =
 sig
   type t = float * float * float * float * float * float
-
   val ident : t
   val scale : float -> t
   val scalexy : float -> float -> t
@@ -45,6 +44,7 @@ sig
   val compose : t list -> t
   val inv : t -> t
   val transform : float * float -> t -> float * float
+  val op : t -> (float * float -> float * float)
   val print : unit IO.output -> t -> unit
 end
 

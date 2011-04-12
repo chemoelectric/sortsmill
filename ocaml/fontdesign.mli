@@ -27,136 +27,60 @@
 
 open Batteries
 
+module type Generalized_numeric =
+sig
+  type int (* A generalized [int]; for example, a function returning [int]. *)
+  type float (* A generalized [float]; for example, a function returning [float]. *)
+  include Number.Numeric
+end
+
 module type Point_type =
 sig
-  type t
-  val zero : t
-  val one : t
-  val add : t -> t -> t
-  val sub : t -> t -> t
+  include Generalized_numeric
   val print : unit IO.output -> t -> unit
 end
 
-module type Point_transformation_type =
+module type Node_type =
 sig
-  type t
   type point
-  val ident : t
-  val scale : float -> t
-  val scalexy : float -> float -> t
-  val translate : point -> t
-  val rotate : float -> t
-  val skew : float -> t
-  val mul : t -> t -> t
-  val compose : t list -> t
-  val inv : t -> t
-  val transform : point -> t -> point
+  type t
+  include Interfaces.Mappable with type 'a mappable = t
+  val map : (point -> point) -> (t -> t)
   val print : unit IO.output -> t -> unit
 end
 
-module type Cubic_point_type =
+module type Contour_type =
 sig
-  type point
-  type transformation
+  type 'node t
 
-  type t = { ih : point; oc : point; oh : point }
-  (** ih = incoming handle, oc = on-curve point, oh = outgoing handle *)
+  include Interfaces.Mappable with type 'node mappable = 'node t
+  include Enum.Enumerable with type 'node enumerable = 'node t
+  val backwards : 'node t -> 'node Enum.t
+  val of_backwards : 'node Enum.t -> 'node t
 
-  val add : t -> t -> t
-  val sub : t -> t -> t
-  val absolute : t -> t
-  val relative : t -> t
-  val transform : t -> transformation -> t
-  val print : unit IO.output -> t -> unit
-end
+  val of_node_list : 'node list -> 'node t    
+  (** Returns an open contour made from a list of nodes. *)
 
-module type Cubic_contour_type =
-sig
-  type t
-  type point
-  type transformation
-  type cubic_point
-
-  val singleton : cubic_point -> t
-  (** An open contour consisting of a single on-curve point with
-      handles. *)
-
-  val construct : cubic_point list -> t    
-  (** An open contour made from a list of on-curve points with
-      handles. *)
-
-  val transform : t -> transformation -> t
-  (** [transform c m] transforms contour [c] by the transformation
-      [m]. *)
-
-  val append : t -> t -> t
+  val append : 'node t -> 'node t -> 'node t
   (** [append c1 c2] concatenates splines [c1] and [c2]. The result is
       closed if and only if [c1] is closed. *)
 
-  val closed : t -> bool -> t
-  val is_closed : t -> bool
+  val closed : 'node t -> bool -> 'node t
+  val is_closed : 'node t -> bool
 
-  val print : unit IO.output -> t -> unit
+  val print : (unit IO.output -> 'node -> unit) -> unit IO.output -> 'node t -> unit
 
   module Ops :
   sig
-    val ( <@> ) : t -> t -> t
+    val ( <@> ) : 'node t -> 'node t -> 'node t
     (** [c1 <@> c2] concatenates splines [c1] and [c2]. The result is
         closed if and only if [c1] is closed. *)
 
-    val ( <*> ) : t -> transformation -> t
-    (** [c <*> m] transforms contour [c] by the transformation [m]. *)
-
-    val ( <@@ ) : t -> bool -> t
+    val ( <@@ ) : 'node t -> bool -> 'node t
   (** [c <@@ true] marks contour [c] as closed; [c <@@ false] marks it
       as open. *)
   end
 end
-
-module Mat :
-sig
-  type t = float * float * float * float * float * float
-  type point = Complex.t
-  val ident : t
-  val scale : float -> t
-  val scalexy : float -> float -> t
-  val translate : point -> t
-  val rotate : float -> t
-  val skew : float -> t
-  val mul : t -> t -> t
-  val compose : t list -> t
-  val inv : t -> t
-  val transform : point -> t -> point
-  val print : unit IO.output -> t -> unit
-end
-
-module Cubic_point
-  (P : Point_type)
-  (T : (Point_transformation_type with type point = P.t)) :
-  Cubic_point_type with type point = P.t
-                   and  type transformation = T.t
-
-module Cubic_contour(CP : Cubic_point_type) :
-  Cubic_contour_type with type point = CP.point
-                     and type transformation = CP.transformation
-                     and type cubic_point = CP.t
-
-val cpx : float -> float -> Complex.t
-(** [cpx x y] return the complex x + i.y. *)
-
-val pol : float -> float -> Complex.t
-(** [pol norm arg] returns the complex with norm [norm] and arg [arg],
-    where [arg] is in degrees. *)
-
-val x' : float -> Complex.t
-(** [x' x] returns the complex x + i.0 *)
-
-val y' : float -> Complex.t
-(** [y' y] returns the complex 0 + i.y *)
-
-val dir : float -> Complex.t
-(** [dir theta] returns the complex of norm 1 and arg [theta], where
-    [theta] is in degrees. *)
 
 val deg : float -> float
 (** Conversion from radians to degrees. *)
@@ -172,5 +96,60 @@ val dtan : float -> float
 val adsin : float -> float
 val adcos : float -> float
 val adtan : float -> float
-val adtan2 x y : float -> float -> float
+val adtan2 : float -> float -> float
 (** Inverse trigonometric functions returning values in degrees. *)
+
+module Extended_complex :
+(** A complex number type with extensions. (You could try
+    [module Complex = Fontdesign.Extended_complex] in your code.) *)
+sig
+  type int = Int.t
+  type float = Float.t
+  (** Type aliases necessary to make [Extended_complex] a valid
+      [Generalized_numeric]. It's also a valid [Point_type]. *)
+
+  include module type of Complex
+
+  val of_pair : float * float -> t
+  val to_pair : t -> float * float
+
+  val x' : float -> t
+  (** [x' x] returns the complex x + i.0 *)
+
+  val y' : float -> t
+  (** [y' y] returns the complex 0 + i.y *)
+
+  val dpolar : float -> float -> t
+  (** [dpolar norm arg] returns the complex with norm [norm] and
+      argument [arg], where [arg] is in degrees. *)
+
+  val rot : float -> t
+  (** [rot theta] returns the complex rotation of angle [theta], where
+      [theta] is in degrees; [rot theta] is a shorthand for
+      [dpolar 1.0 theta]. *)
+
+  val unit : t -> t
+  (** [unit c] returns the unit complex in the same direction as c;
+      that is, c/|c|. *)
+
+  val inner : t -> t -> float
+  (** The inner product of two complexes regarded as real vectors. *)
+
+  val proj : t -> t -> t
+(** [proj a b] returns the geometric projection of complex [a] on
+    complex [b]. *)
+end
+
+module Cubic_node(P : Point_type) :
+sig
+  type _node_points = { ih : P.t; oc : P.t; oh : P.t }
+  include Node_type with type point = P.t and type t = _node_points
+  val make_node : point -> point -> point -> t
+  val on_curve : t -> point
+  val inhandle : t -> point
+  val outhandle : t -> point
+  val rel_inhandle : t -> point
+  val rel_outhandle : t -> point
+end
+
+module Contour : Contour_type

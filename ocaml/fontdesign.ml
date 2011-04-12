@@ -25,179 +25,48 @@
 
 open Batteries
 
+module type Generalized_numeric =
+sig
+  type int (* A generalized [int]; for example, a function returning [int]. *)
+  type float (* A generalized [float]; for example, a function returning [float]. *)
+  include Number.Numeric
+end
+    
 module type Point_type =
 sig
-  type t
-  val zero : t
-  val one : t
-  val add : t -> t -> t
-  val sub : t -> t -> t
+  include Generalized_numeric
   val print : unit IO.output -> t -> unit
 end
 
-module type Point_transformation_type =
+module type Node_type =
 sig
-  type t
   type point
-  val ident : t
-  val scale : float -> t
-  val scalexy : float -> float -> t
-  val translate : point -> t
-  val rotate : float -> t
-  val skew : float -> t
-  val mul : t -> t -> t
-  val compose : t list -> t
-  val inv : t -> t
-  val transform : point -> t -> point
+  type t
+  include Interfaces.Mappable with type 'a mappable = t
+  val map : (point -> point) -> (t -> t)
   val print : unit IO.output -> t -> unit
 end
 
-module type Cubic_point_type =
+module type Contour_type =
 sig
-  type point
-  type transformation
-  type t = { ih : point; oc : point; oh : point }
-  val add : t -> t -> t
-  val sub : t -> t -> t
-  val absolute : t -> t
-  val relative : t -> t
-  val transform : t -> transformation -> t
-  val print : unit IO.output -> t -> unit
-end
+  type 'node t
+  include Interfaces.Mappable with type 'node mappable = 'node t
+  include Enum.Enumerable with type 'node enumerable = 'node t
+  val backwards : 'node t -> 'node Enum.t
+  val of_backwards : 'node Enum.t -> 'node t
+  val of_node_list : 'node list -> 'node t    
+  val append : 'node t -> 'node t -> 'node t
+  val closed : 'node t -> bool -> 'node t
+  val is_closed : 'node t -> bool
+  val print : (unit IO.output -> 'node -> unit) -> unit IO.output -> 'node t -> unit
 
-module type Cubic_contour_type =
-sig
-  type t
-  type point
-  type transformation
-  type cubic_point
-  val singleton : cubic_point -> t
-  val construct : cubic_point list -> t    
-  val transform : t -> transformation -> t
-  val append : t -> t -> t
-  val closed : t -> bool -> t
-  val is_closed : t -> bool
-  val print : unit IO.output -> t -> unit
   module Ops :
   sig
-    val ( <@> ) : t -> t -> t
-    val ( <*> ) : t -> transformation -> t
-    val ( <@@ ) : t -> bool -> t
+    val ( <@> ) : 'node t -> 'node t -> 'node t
+    val ( <@@ ) : 'node t -> bool -> 'node t
   end
 end
 
-module Mat =
-struct
-  include Psmat
-  type point = Complex.t
-
-  let translate pt =
-    Psmat.translate (pt.Complex.re, pt.Complex.im)
-
-  let transform pt trans =
-    let pair = (pt.Complex.re, pt.Complex.im) in
-    let (x,y) = Psmat.transform pair trans in
-    { Complex.re = x; Complex.im = y }
-end
-
-module Cubic_point
-  (P : Point_type)
-  (T : (Point_transformation_type with type point = P.t)) =
-struct
-  type point = P.t
-  type transformation = T.t
-  type t = { ih : point; oc : point; oh : point }
-
-  let add a b = { ih = P.add a.ih b.ih;
-                  oc = P.add a.oc b.oc;
-                  oh = P.add a.oh b.oh }
-
-  let sub a b = { ih = P.sub a.ih b.ih;
-                  oc = P.sub a.oc b.oc;
-                  oh = P.sub a.oh b.oh }
-
-  let absolute p = { ih = P.add p.oc p.ih;
-                     oc = p.oc;
-                     oh = P.add p.oc p.oh }
-
-  let relative p = { ih = P.sub p.ih p.oc;
-                     oc = p.oc;
-                     oh = P.sub p.oh p.oc }
-
-  let transform p trans = { ih = T.transform p.ih trans;
-                            oc = T.transform p.oc trans;
-                            oh = T.transform p.oh trans }
-
-  let print outp p =
-    output_string outp "{ih=";
-    P.print outp p.ih;
-    output_string outp "; oc=";
-    P.print outp p.oc;
-    output_string outp "; oh=";
-    P.print outp p.oh;
-    output_string outp "}"
-end
-
-module Cubic_contour(CP : Cubic_point_type) =
-struct
-  type point = CP.point
-  type transformation = CP.transformation
-  type cubic_point = CP.t
-  type t = {
-    spline : cubic_point list;
-    closed : bool;
-  }
-
-  let singleton p = { spline = [CP.absolute p]; closed = false }
-
-  let construct p_list =
-    { spline = List.map CP.absolute p_list; closed = false }
-
-  let transform contour trans =
-    { contour with
-      spline = List.map (fun p -> CP.transform p trans) contour.spline }
-
-  let append contour1 contour2 =
-    { contour1 with spline = contour1.spline @ contour2.spline }
-
-  let closed contour true_or_false =
-    { contour with closed = true_or_false }
-
-  let is_closed contour = contour.closed
-
-  let rec print_spline outp spline =
-    match spline with
-      | [] -> assert false
-      | [p] -> CP.print outp (CP.relative p)
-      | p :: remaining ->
-        CP.print outp (CP.relative p);
-        output_string outp "<@>";
-        print_spline outp remaining
-
-  let print_closed outp is_closed =
-    if is_closed then
-      output_string outp "<**true"
-    else
-      output_string outp "<**false"
-
-  let print outp contour =
-    print_spline outp contour.spline;
-    print_closed outp contour.closed
-
-  module Ops =
-  struct
-    let ( <@> ) = append
-    let ( <*> ) = transform
-    let ( <@@ ) = closed
-  end
-end
-
-let cpx x y = { Complex.re = x; Complex.im = y }
-let pol norm arg = Complex.polar norm ((Float.pi /. 180.) *. arg)
-
-let x' x = { Complex.re = x; Complex.im = 0. }
-let y' y = { Complex.re = 0.; Complex.im = y }
-let dir theta = Complex.polar 1.0 ((Float.pi /. 180.) *. theta)
 let deg theta = (180. /. Float.pi) *. theta
 let rad theta = (Float.pi /. 180.) *. theta
 
@@ -209,3 +78,111 @@ let adsin = deg -| asin
 let adcos = deg -| acos
 let adtan = deg -| atan
 let adtan2 x y = deg (atan2 x y)
+
+module Extended_complex =
+(* Extensions for the Complex module. *)
+struct
+  type int = Int.t
+  type float = Float.t
+
+  include Complex
+
+  let of_pair (x,y) = { re = x; im = y }
+  let to_pair c = (c.re, c.im)
+
+  let x' x = { re = x; im = 0. }
+  let y' y = { re = 0.; im = y }
+
+  let dpolar norm arg = polar norm (rad arg)
+  let rot theta = polar 1.0 (rad theta)
+  let unit c = c / abs(c)
+
+  let inner a b = (a.re *. b.re) +. (a.im *. b.im)
+
+  let proj a b =
+    let b' = unit b in
+    of_float (inner a b') * b'
+end
+
+module Cubic_node(P : Point_type) =
+struct
+  type point = P.t
+  type _node_points = { ih : point; oc : point; oh : point }
+  type t = _node_points
+  type 'a mappable = t
+
+  let map f p = { ih = f p.ih; oc = f p.oc; oh = f p.oh }
+
+  let make_node rel_inhandle on_curve_point rel_outhandle =
+    P.({ ih = on_curve_point + rel_inhandle;
+         oc = on_curve_point;
+         oh = on_curve_point + rel_outhandle })
+
+  let on_curve p = p.oc
+  let inhandle p = p.ih
+  let outhandle p = p.oh
+  let rel_inhandle p = P.(p.ih - p.oc)
+  let rel_outhandle p = P.(p.oh - p.oc)
+
+  let print outp p =
+    output_string outp "{ih=";
+    P.print outp p.ih;
+    output_string outp "; oc=";
+    P.print outp p.oc;
+    output_string outp "; oh=";
+    P.print outp p.oh;
+    output_string outp "}"
+end
+
+module Contour =
+struct
+  type 'node t = {
+    spline : 'node list;
+    closed : bool;
+  }
+  type 'node mappable = 'node t
+  type 'node enumerable = 'node t
+
+  let map f contour =
+    { contour with spline = List.map f contour.spline }
+
+  let enum contour = List.enum contour.spline
+  let of_enum e = { spline = List.of_enum e; closed = false }
+  let backwards contour = List.backwards contour.spline
+  let of_backwards e = { spline = List.of_backwards e; closed = false }
+
+  let of_node_list nlist = { spline = nlist; closed = false }
+
+  let append contour1 contour2 =
+    { contour1 with spline = contour1.spline @ contour2.spline }
+
+  let closed contour true_or_false =
+    { contour with closed = true_or_false }
+
+  let is_closed contour = contour.closed
+
+  let rec print_spline print_node outp spline =
+    match spline with
+      | [] -> assert false
+      | [p] -> print_node outp p
+      | p :: remaining ->
+        print_node outp p;
+        output_string outp "<@>";
+        print_spline print_node outp remaining
+
+  let print_closed outp is_closed =
+    if is_closed then
+      output_string outp "<**true"
+    else
+      output_string outp "<**false"
+
+  let print print_node outp contour =
+    print_spline print_node outp contour.spline;
+    print_closed outp contour.closed
+
+  module Ops =
+  struct
+    let ( <@> ) = append
+    let ( <@@ ) = closed
+  end
+end
