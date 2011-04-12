@@ -40,10 +40,11 @@ end
 
 module type Node_type =
 sig
-  type point
+  type element
   type t
   include Interfaces.Mappable with type 'a mappable = t
-  val map : (point -> point) -> (t -> t)
+  val map : (element -> element) -> (t -> t)
+  val apply : (element -> element) -> (t -> t)
   val print : unit IO.output -> t -> unit
 end
 
@@ -59,12 +60,9 @@ sig
   val closed : 'node t -> bool -> 'node t
   val is_closed : 'node t -> bool
   val print : (unit IO.output -> 'node -> unit) -> unit IO.output -> 'node t -> unit
-
-  module Ops :
-  sig
-    val ( <@> ) : 'node t -> 'node t -> 'node t
-    val ( <@@ ) : 'node t -> bool -> 'node t
-  end
+  val ( <@> ) : 'node t -> 'node t -> 'node t
+  val ( <@@ ) : 'node t -> bool -> 'node t
+  val ( <*> ) : 'node1 t -> ('node1 -> 'node2) -> 'node2 t
 end
 
 let deg theta = (180. /. Float.pi) *. theta
@@ -95,28 +93,65 @@ struct
 
   let dpolar norm arg = polar norm (rad arg)
   let rot theta = polar 1.0 (rad theta)
-  let unit c = c / abs(c)
+  let dir c = c / abs(c)
 
   let inner a b = (a.re *. b.re) +. (a.im *. b.im)
 
   let proj a b =
-    let b' = unit b in
+    let b' = dir b in
     of_float (inner a b') * b'
+end
+
+module Complex_point =
+struct
+  include Extended_complex
+
+  let print outp cp =
+    let x = cp.re and y = cp.im in
+    let format =
+      Float.(
+        if x < 0. && y < 0. then
+          p"x'(%F) + y'(%F)"
+        else if x < 0. then
+          p"x'(%F) + y' %F"
+        else if y < 0. then
+          p"x' %F + y'(%F)"
+        else
+          p"x' %F + y' %F"
+      )
+    in
+    Print.fprintf outp format x y
 end
 
 module Cubic_node(P : Point_type) =
 struct
   type point = P.t
   type _node_points = { ih : point; oc : point; oh : point }
+  type element = point
   type t = _node_points
   type 'a mappable = t
 
   let map f p = { ih = f p.ih; oc = f p.oc; oh = f p.oh }
+  let apply = map
 
   let make_node rel_inhandle on_curve_point rel_outhandle =
     P.({ ih = on_curve_point + rel_inhandle;
          oc = on_curve_point;
          oh = on_curve_point + rel_outhandle })
+
+  let make_pin on_curve_point = make_node P.zero on_curve_point P.zero
+
+  let make_flat on_curve_point direction inhandle_length outhandle_length =
+    let v = P.(direction / P.abs direction) in
+    let ilen = P.abs inhandle_length in
+    let olen = P.abs outhandle_length in
+    make_node P.(neg ilen * v) on_curve_point P.(olen * v)
+
+  let make_right on_curve_point inhandle_length outhandle_length =
+    make_flat on_curve_point P.one inhandle_length outhandle_length
+
+  let make_left on_curve_point inhandle_length outhandle_length =
+    make_flat on_curve_point P.(neg one) inhandle_length outhandle_length
 
   let on_curve p = p.oc
   let inhandle p = p.ih
@@ -125,13 +160,13 @@ struct
   let rel_outhandle p = P.(p.oh - p.oc)
 
   let print outp p =
-    output_string outp "{ih=";
-    P.print outp p.ih;
-    output_string outp "; oc=";
+    output_string outp "make_node (";
+    P.print outp P.(p.ih - p.oc);
+    output_string outp ") (";
     P.print outp p.oc;
-    output_string outp "; oh=";
-    P.print outp p.oh;
-    output_string outp "}"
+    output_string outp ") (";
+    P.print outp P.(p.oh - p.oc);
+    output_string outp ")"
 end
 
 module Contour =
@@ -164,25 +199,29 @@ struct
   let rec print_spline print_node outp spline =
     match spline with
       | [] -> assert false
-      | [p] -> print_node outp p
-      | p :: remaining ->
+      | [p] ->
+        output_string outp "  ";
         print_node outp p;
-        output_string outp "<@>";
+        output_string outp ";\n"
+      | p :: remaining ->
+        output_string outp "  ";
+        print_node outp p;
+        output_string outp ";\n";
         print_spline print_node outp remaining
 
   let print_closed outp is_closed =
     if is_closed then
-      output_string outp "<**true"
+      output_string outp " <@@ true"
     else
-      output_string outp "<**false"
+      output_string outp " <@@ false"
 
   let print print_node outp contour =
+    output_string outp "of_node_list [\n";
     print_spline print_node outp contour.spline;
+    output_string outp "]";
     print_closed outp contour.closed
 
-  module Ops =
-  struct
-    let ( <@> ) = append
-    let ( <@@ ) = closed
-  end
+  let ( <@> ) = append
+  let ( <@@ ) = closed
+  let ( <*> ) contour trans = map trans contour
 end

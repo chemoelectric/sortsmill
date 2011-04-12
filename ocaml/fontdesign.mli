@@ -42,10 +42,11 @@ end
 
 module type Node_type =
 sig
-  type point
+  type element
   type t
   include Interfaces.Mappable with type 'a mappable = t
-  val map : (point -> point) -> (t -> t)
+  val map : (element -> element) -> (t -> t)
+  val apply : (element -> element) -> (t -> t)
   val print : unit IO.output -> t -> unit
 end
 
@@ -70,16 +71,16 @@ sig
 
   val print : (unit IO.output -> 'node -> unit) -> unit IO.output -> 'node t -> unit
 
-  module Ops :
-  sig
-    val ( <@> ) : 'node t -> 'node t -> 'node t
-    (** [c1 <@> c2] concatenates splines [c1] and [c2]. The result is
-        closed if and only if [c1] is closed. *)
+  val ( <@> ) : 'node t -> 'node t -> 'node t
+  (** [c1 <@> c2] concatenates splines [c1] and [c2]. The result is
+      closed if and only if [c1] is closed. *)
 
-    val ( <@@ ) : 'node t -> bool -> 'node t
+  val ( <@@ ) : 'node t -> bool -> 'node t
   (** [c <@@ true] marks contour [c] as closed; [c <@@ false] marks it
       as open. *)
-  end
+
+  val ( <*> ) : 'node1 t -> ('node1 -> 'node2) -> 'node2 t
+(** [c <*> trans] applies node transformation [trans] to contour [c]. *)
 end
 
 val deg : float -> float
@@ -128,8 +129,8 @@ sig
       [theta] is in degrees; [rot theta] is a shorthand for
       [dpolar 1.0 theta]. *)
 
-  val unit : t -> t
-  (** [unit c] returns the unit complex in the same direction as c;
+  val dir : t -> t
+  (** [dir c] returns the unit complex in the same direction as c;
       that is, c/|c|. *)
 
   val inner : t -> t -> float
@@ -140,11 +141,18 @@ sig
     complex [b]. *)
 end
 
+module Complex_point : module type of Extended_complex
+
 module Cubic_node(P : Point_type) :
 sig
-  type _node_points = { ih : P.t; oc : P.t; oh : P.t }
-  include Node_type with type point = P.t and type t = _node_points
+  type point = P.t
+  type _node_points = { ih : point; oc : point; oh : point }
+  include Node_type with type element = point and type t = _node_points
   val make_node : point -> point -> point -> t
+  val make_pin : point -> t
+  val make_flat : point -> point -> point -> point -> t
+  val make_right : point -> point -> point -> t
+  val make_left : point -> point -> point -> t
   val on_curve : t -> point
   val inhandle : t -> point
   val outhandle : t -> point
