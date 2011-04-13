@@ -25,17 +25,174 @@
 
 open Batteries
 
-module type Generalized_numeric =
-sig
-  type int (* A generalized [int]; for example, a function returning [int]. *)
-  type float (* A generalized [float]; for example, a function returning [float]. *)
-  include Number.Numeric
+let deg theta = (180. /. Float.pi) *. theta
+let rad theta = (Float.pi /. 180.) *. theta
+
+let dsin = sin -| rad
+let dcos = cos -| rad
+let dtan = tan -| rad
+
+let adsin = deg -| asin
+let adcos = deg -| acos
+let adtan = deg -| atan
+let adtan2 x y = deg (atan2 x y)
+
+module Extended_complex =
+(* Extensions for the Complex module. *)
+struct
+  (* The following type aliases are needed to make Extended_complex a
+     valid Point_type. *)
+  type bool = Bool.t
+  type int = Int.t
+  type float = Float.t
+  type string = String.t
+
+  include Complex
+
+  let x' x = { re = x; im = 0. }
+  let y' y = { re = 0.; im = y }
+
+  let dpolar norm arg = polar norm (rad arg)
+  let rot theta = polar 1.0 (rad theta)
+  let dir c = c / abs(c)
+
+  let inner a b = (a.re *. b.re) +. (a.im *. b.im)
+
+  let proj a b =
+    let b' = dir b in
+    of_float (inner a b') * b'
 end
-    
+
 module type Point_type =
 sig
-  include Generalized_numeric
-  val print : unit IO.output -> t -> unit
+  type bool
+  type int
+  type float
+  type string
+  type t
+  val zero : t
+  val one : t
+  val i : t
+  val neg : t -> t
+  val conj : t -> t
+  val sqrt : t -> t
+  val norm2 : t -> float
+  val norm : t -> float
+  val arg : t -> float
+  val exp : t -> t
+  val log : t -> t
+  val inv : t -> t
+  val succ : t -> t
+  val pred : t -> t
+  val abs : t -> t
+  val dir : t -> t
+  val rot : float -> t
+  val x' : float -> t
+  val y' : float -> t
+  val of_int : int -> t
+  val to_int : t -> int
+  val of_float : float -> t
+  val to_float : t -> float
+  val of_string : string -> t
+  val to_string : t -> string
+  val add : t -> t -> t
+  val sub : t -> t -> t
+  val mul : t -> t -> t
+  val div : t -> t -> t
+  val modulo : t -> t -> t
+  val pow : t -> t -> t
+  val proj : t -> t -> t
+  val inner : t -> t -> float
+  val compare : t -> t -> int
+  val dpolar : float -> float -> t
+  val polar : float -> float -> t
+  val ( + ) : t -> t -> t
+  val ( - ) : t -> t -> t
+  val ( * ) : t -> t -> t
+  val ( / ) : t -> t -> t
+  val ( ** ) : t -> t -> t
+  val ( <> ) : t -> t -> bool
+  val ( >= ) : t -> t -> bool
+  val ( <= ) : t -> t -> bool
+  val ( > ) : t -> t -> bool
+  val ( < ) : t -> t -> bool
+  val ( = ) : t -> t -> bool
+  val print : unit BatIO.output -> t -> unit
+end
+
+module type Parameter_type =
+sig
+  type t
+end
+
+module Parameterized_complex(Param : Parameter_type) =
+struct
+  module Cx = Extended_complex
+
+  type pbool = Param.t -> Bool.t
+  type pint = Param.t -> Int.t
+  type pfloat = Param.t -> Float.t
+  type pstring = Param.t -> String.t
+  type bool = pbool
+  type int = pint
+  type float = pfloat
+  type string = pstring
+
+  type t = Param.t -> Cx.t
+
+  let zero = const Cx.zero
+  let one = const Cx.one
+  let i = const Cx.i
+
+  let neg v = Cx.neg -| v
+  let conj v = Cx.conj -| v
+  let sqrt v = Cx.sqrt -| v
+  let norm2 v = Cx.norm2 -| v
+  let norm v = Cx.norm -| v
+  let arg v = Cx.arg -| v
+  let exp v = Cx.exp -| v
+  let log v = Cx.log -| v
+  let inv v = Cx.inv -| v
+  let succ v = Cx.succ -| v
+  let pred v = Cx.pred -| v
+  let abs v = Cx.abs -| v
+  let dir v = Cx.dir -| v
+  let rot angle = Cx.rot -| angle
+  let x' r = Cx.x' -| r
+  let y' r = Cx.y' -| r
+
+  let of_int n = Cx.of_int -| n
+  let to_int v = Cx.to_int -| v
+  let of_float r = Cx.of_float -| r
+  let to_float v = Cx.to_float -| v
+  let of_string s = Cx.of_string -| s
+  let to_string v = Cx.to_string -| v
+
+  let add v w = fun p -> Cx.add (v p) (w p)
+  let sub v w = fun p -> Cx.sub (v p) (w p)
+  let mul v w = fun p -> Cx.mul (v p) (w p)
+  let div v w = fun p -> Cx.div (v p) (w p)
+  let modulo v w = fun p -> Cx.modulo (v p) (w p)
+  let pow v w = fun p -> Cx.pow (v p) (w p)
+  let proj v w = fun p -> Cx.proj (v p) (w p)
+  let inner v w = fun p -> Cx.inner (v p) (w p)
+  let compare v w = fun p -> Cx.compare (v p) (w p)
+  let dpolar r s = fun p -> Cx.dpolar (r p) (s p)
+  let polar r s = fun p -> Cx.polar (r p) (s p)
+  let ( + ) v w = fun p -> Cx.( + ) (v p) (w p)
+  let ( - ) v w = fun p -> Cx.( - ) (v p) (w p)
+  let ( * ) v w = fun p -> Cx.( * ) (v p) (w p)
+  let ( / ) v w = fun p -> Cx.( / ) (v p) (w p)
+  let ( ** ) v w = fun p -> Cx.( ** ) (v p) (w p)
+  let ( <> ) v w = fun p -> Cx.( <> ) (v p) (w p)
+  let ( >= ) v w = fun p -> Cx.( >= ) (v p) (w p)
+  let ( <= ) v w = fun p -> Cx.( <= ) (v p) (w p)
+  let ( > ) v w = fun p -> Cx.( > ) (v p) (w p)
+  let ( < ) v w = fun p -> Cx.( < ) (v p) (w p)
+  let ( = ) v w = fun p -> Cx.( = ) (v p) (w p)
+
+  let print outp _v =
+    output_string outp "fun: Param.t -> Fontdesign.Extended_complex.t"
 end
 
 module type Node_type =
@@ -44,7 +201,6 @@ sig
   type t
   include Interfaces.Mappable with type 'a mappable = t
   val map : (element -> element) -> (t -> t)
-  val apply : (element -> element) -> (t -> t)
   val print : unit IO.output -> t -> unit
 end
 
@@ -63,43 +219,6 @@ sig
   val ( <@> ) : 'node t -> 'node t -> 'node t
   val ( <@@ ) : 'node t -> bool -> 'node t
   val ( <*> ) : 'node1 t -> ('node1 -> 'node2) -> 'node2 t
-end
-
-let deg theta = (180. /. Float.pi) *. theta
-let rad theta = (Float.pi /. 180.) *. theta
-
-let dsin = sin -| rad
-let dcos = cos -| rad
-let dtan = tan -| rad
-
-let adsin = deg -| asin
-let adcos = deg -| acos
-let adtan = deg -| atan
-let adtan2 x y = deg (atan2 x y)
-
-module Extended_complex =
-(* Extensions for the Complex module. *)
-struct
-  type int = Int.t
-  type float = Float.t
-
-  include Complex
-
-  let of_pair (x,y) = { re = x; im = y }
-  let to_pair c = (c.re, c.im)
-
-  let x' x = { re = x; im = 0. }
-  let y' y = { re = 0.; im = y }
-
-  let dpolar norm arg = polar norm (rad arg)
-  let rot theta = polar 1.0 (rad theta)
-  let dir c = c / abs(c)
-
-  let inner a b = (a.re *. b.re) +. (a.im *. b.im)
-
-  let proj a b =
-    let b' = dir b in
-    of_float (inner a b') * b'
 end
 
 module Complex_point =
@@ -132,7 +251,6 @@ struct
   type 'a mappable = t
 
   let map f p = { ih = f p.ih; oc = f p.oc; oh = f p.oh }
-  let apply = map
 
   let make_node rel_inhandle on_curve_point rel_outhandle =
     P.({ ih = on_curve_point + rel_inhandle;
@@ -153,6 +271,12 @@ struct
   let make_left on_curve_point inhandle_length outhandle_length =
     make_flat on_curve_point P.(neg one) inhandle_length outhandle_length
 
+  let make_up on_curve_point inhandle_length outhandle_length =
+    make_flat on_curve_point P.i inhandle_length outhandle_length
+
+  let make_down on_curve_point inhandle_length outhandle_length =
+    make_flat on_curve_point (P.neg P.i) inhandle_length outhandle_length
+
   let on_curve p = p.oc
   let inhandle p = p.ih
   let outhandle p = p.oh
@@ -167,6 +291,11 @@ struct
     output_string outp ") (";
     P.print outp P.(p.oh - p.oc);
     output_string outp ")"
+end
+
+module Parameterized_cubic_node(Param : Parameter_type) =
+struct
+  type t
 end
 
 module Contour =

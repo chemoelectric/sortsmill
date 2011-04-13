@@ -27,18 +27,135 @@
 
 open Batteries
 
-module type Generalized_numeric =
+val deg : float -> float
+(** Conversion from radians to degrees. *)
+
+val rad : float -> float
+(** Conversion from degrees to radians. *)
+
+val dsin : float -> float
+val dcos : float -> float
+val dtan : float -> float
+(** Trigonometric functions taking their arguments in degrees. *)
+
+val adsin : float -> float
+val adcos : float -> float
+val adtan : float -> float
+val adtan2 : float -> float -> float
+(** Inverse trigonometric functions returning values in degrees. *)
+
+module Extended_complex :
+(** A complex number type with extensions. (You could try
+    [module Complex = Fontdesign.Extended_complex] in your code.) *)
 sig
-  type int (* A generalized [int]; for example, a function returning [int]. *)
-  type float (* A generalized [float]; for example, a function returning [float]. *)
-  include Number.Numeric
+  type bool = Bool.t
+  type int = Int.t
+  type float = Float.t
+  type string = String.t
+  (** These type aliases are needed to make Extended_complex a valid
+      Point_type. *)
+
+  include module type of Complex
+
+  val x' : float -> t
+  (** [x' x] returns the complex x + i.0 *)
+
+  val y' : float -> t
+  (** [y' y] returns the complex 0 + i.y *)
+
+  val dpolar : float -> float -> t
+  (** [dpolar norm arg] returns the complex with norm [norm] and
+      argument [arg], where [arg] is in degrees. *)
+
+  val rot : float -> t
+  (** [rot theta] returns the complex rotation of angle [theta], where
+      [theta] is in degrees; [rot theta] is a shorthand for
+      [dpolar 1.0 theta]. *)
+
+  val dir : t -> t
+  (** [dir c] returns the unit complex in the same direction as c;
+      that is, c/|c|. *)
+
+  val inner : t -> t -> float
+  (** The inner product of two complexes regarded as real vectors. *)
+
+  val proj : t -> t -> t
+(** [proj a b] returns the geometric projection of complex [a] on
+    complex [b]. *)
 end
 
 module type Point_type =
 sig
-  include Generalized_numeric
-  val print : unit IO.output -> t -> unit
+  type bool
+  type int
+  type float
+  type string
+  type t
+  val zero : t
+  val one : t
+  val i : t
+  val neg : t -> t
+  val conj : t -> t
+  val sqrt : t -> t
+  val norm2 : t -> float
+  val norm : t -> float
+  val arg : t -> float
+  val exp : t -> t
+  val log : t -> t
+  val inv : t -> t
+  val succ : t -> t
+  val pred : t -> t
+  val abs : t -> t
+  val dir : t -> t
+  val rot : float -> t
+  val x' : float -> t
+  val y' : float -> t
+  val of_int : int -> t
+  val to_int : t -> int
+  val of_float : float -> t
+  val to_float : t -> float
+  val of_string : string -> t
+  val to_string : t -> string
+  val add : t -> t -> t
+  val sub : t -> t -> t
+  val mul : t -> t -> t
+  val div : t -> t -> t
+  val modulo : t -> t -> t
+  val pow : t -> t -> t
+  val proj : t -> t -> t
+  val inner : t -> t -> float
+  val compare : t -> t -> int
+  val dpolar : float -> float -> t
+  val polar : float -> float -> t
+  val ( + ) : t -> t -> t
+  val ( - ) : t -> t -> t
+  val ( * ) : t -> t -> t
+  val ( / ) : t -> t -> t
+  val ( ** ) : t -> t -> t
+  val ( <> ) : t -> t -> bool
+  val ( >= ) : t -> t -> bool
+  val ( <= ) : t -> t -> bool
+  val ( > ) : t -> t -> bool
+  val ( < ) : t -> t -> bool
+  val ( = ) : t -> t -> bool
+  val print : unit BatIO.output -> t -> unit
 end
+
+module type Parameter_type =
+sig
+  type t
+end
+
+module Parameterized_complex(Param : Parameter_type) :
+sig
+  include Point_type with type bool = Param.t -> Bool.t
+                     and type int = Param.t -> Int.t
+                     and type float = Param.t -> Float.t
+                     and type string = Param.t -> String.t
+                     and type t = Param.t -> Complex.t
+end
+  
+module Complex_point : module type of Extended_complex
 
 module type Node_type =
 sig
@@ -46,7 +163,6 @@ sig
   type t
   include Interfaces.Mappable with type 'a mappable = t
   val map : (element -> element) -> (t -> t)
-  val apply : (element -> element) -> (t -> t)
   val print : unit IO.output -> t -> unit
 end
 
@@ -83,66 +199,6 @@ sig
 (** [c <*> trans] applies node transformation [trans] to contour [c]. *)
 end
 
-val deg : float -> float
-(** Conversion from radians to degrees. *)
-
-val rad : float -> float
-(** Conversion from degrees to radians. *)
-
-val dsin : float -> float
-val dcos : float -> float
-val dtan : float -> float
-(** Trigonometric functions taking their arguments in degrees. *)
-
-val adsin : float -> float
-val adcos : float -> float
-val adtan : float -> float
-val adtan2 : float -> float -> float
-(** Inverse trigonometric functions returning values in degrees. *)
-
-module Extended_complex :
-(** A complex number type with extensions. (You could try
-    [module Complex = Fontdesign.Extended_complex] in your code.) *)
-sig
-  type int = Int.t
-  type float = Float.t
-  (** Type aliases necessary to make [Extended_complex] a valid
-      [Generalized_numeric]. It's also a valid [Point_type]. *)
-
-  include module type of Complex
-
-  val of_pair : float * float -> t
-  val to_pair : t -> float * float
-
-  val x' : float -> t
-  (** [x' x] returns the complex x + i.0 *)
-
-  val y' : float -> t
-  (** [y' y] returns the complex 0 + i.y *)
-
-  val dpolar : float -> float -> t
-  (** [dpolar norm arg] returns the complex with norm [norm] and
-      argument [arg], where [arg] is in degrees. *)
-
-  val rot : float -> t
-  (** [rot theta] returns the complex rotation of angle [theta], where
-      [theta] is in degrees; [rot theta] is a shorthand for
-      [dpolar 1.0 theta]. *)
-
-  val dir : t -> t
-  (** [dir c] returns the unit complex in the same direction as c;
-      that is, c/|c|. *)
-
-  val inner : t -> t -> float
-  (** The inner product of two complexes regarded as real vectors. *)
-
-  val proj : t -> t -> t
-(** [proj a b] returns the geometric projection of complex [a] on
-    complex [b]. *)
-end
-
-module Complex_point : module type of Extended_complex
-
 module Cubic_node(P : Point_type) :
 sig
   type point = P.t
@@ -153,6 +209,8 @@ sig
   val make_flat : point -> point -> point -> point -> t
   val make_right : point -> point -> point -> t
   val make_left : point -> point -> point -> t
+  val make_up : point -> point -> point -> t
+  val make_down : point -> point -> point -> t
   val on_curve : t -> point
   val inhandle : t -> point
   val outhandle : t -> point
