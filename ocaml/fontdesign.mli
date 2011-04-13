@@ -219,3 +219,14 @@ sig
 end
 
 module Contour : Contour_type
+
+module Parameterized_cubics(Param : Parameter_type) :
+sig
+  module Node : module type of Cubic_node(Complex_point)
+  module PComplex : module type of Parameterized_complex(Param)
+  module PNode :
+  sig
+    include module type of Cubic_node(PComplex)
+    val resolve_node : Param.t -> t -> Node.t
+  end
+end

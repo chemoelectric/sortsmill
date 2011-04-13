@@ -129,20 +129,16 @@ module Parameterized_complex(Param : Parameter_type) =
 struct
   module Cx = Extended_complex
 
-  type pbool = Param.t -> Bool.t
-  type pint = Param.t -> Int.t
-  type pfloat = Param.t -> Float.t
-  type pstring = Param.t -> String.t
-  type bool = pbool
-  type int = pint
-  type float = pfloat
-  type string = pstring
+  type bool = Param.t -> Bool.t
+  type int = Param.t -> Int.t
+  type float = Param.t -> Float.t
+  type string = Param.t -> String.t
 
   type t = Param.t -> Cx.t
 
-  let zero = const Cx.zero
-  let one = const Cx.one
-  let i = const Cx.i
+  let zero p = const Cx.zero p
+  let one p = const Cx.one p
+  let i p = const Cx.i p
 
   let neg v = Cx.neg -| v
   let conj v = Cx.conj -| v
@@ -353,4 +349,22 @@ struct
   let ( <@> ) = append
   let ( <@@ ) = closed
   let ( <*> ) contour trans = map trans contour
+end
+
+module Parameterized_cubics(Param : Parameter_type) =
+struct
+  module Node = Cubic_node(Complex_point)
+
+  module PComplex = Parameterized_complex(Param)
+
+  module PNode =
+  struct
+    include Cubic_node(PComplex)
+
+    let resolve_node param pnode =
+      Node.make_node
+        ((rel_inhandle pnode) param)
+        ((on_curve pnode) param)
+        ((rel_outhandle pnode) param)
+  end
 end
