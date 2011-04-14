@@ -214,7 +214,7 @@ sig
   val print : (unit IO.output -> 'node -> unit) -> unit IO.output -> 'node t -> unit
   val ( <@> ) : 'node t -> 'node t -> 'node t
   val ( <@@ ) : 'node t -> bool -> 'node t
-  val ( <*> ) : 'node1 t -> ('node1 -> 'node2) -> 'node2 t
+  val ( <.> ) : 'node1 t -> ('node1 -> 'node2) -> 'node2 t
 end
 
 module Complex_point =
@@ -247,6 +247,12 @@ struct
   type 'a mappable = t
 
   let map f p = { ih = f p.ih; oc = f p.oc; oh = f p.oh }
+
+  let to_list p = [p.ih; p.oc; p.oh]
+  let of_list lst = { ih = List.hd lst;
+                      oc = List.hd (List.tl lst);
+                      oh = List.hd (List.tl (List.tl lst)) }
+  let to_list2 p = [(p.ih, false); (p.oc, true); (p.oh, false)]
 
   let make_node rel_inhandle on_curve_point rel_outhandle =
     P.({ ih = on_curve_point + rel_inhandle;
@@ -312,6 +318,7 @@ struct
   let of_backwards e = { spline = List.of_backwards e; closed = false }
 
   let of_node_list nlist = { spline = nlist; closed = false }
+  let to_node_list contour = contour.spline
 
   let append contour1 contour2 =
     { contour1 with spline = contour1.spline @ contour2.spline }
@@ -348,23 +355,50 @@ struct
 
   let ( <@> ) = append
   let ( <@@ ) = closed
-  let ( <*> ) contour trans = map trans contour
+  let ( <.> ) contour trans = map trans contour
 end
 
 module Parameterized_cubics(Param : Parameter_type) =
 struct
-  module Node = Cubic_node(Complex_point)
-
   module PComplex = Parameterized_complex(Param)
+  module Node_base = Cubic_node(Complex_point)
+  module PNode_base = Cubic_node(PComplex)
+
+  module Node =
+  struct 
+    include Node_base
+
+    let parameterize_node node =
+      PNode_base.make_node
+        (const (rel_inhandle node))
+        (const (on_curve node))
+        (const (rel_outhandle node))
+  end
 
   module PNode =
   struct
-    include Cubic_node(PComplex)
+    include PNode_base
 
     let resolve_node param pnode =
-      Node.make_node
+      Node_base.make_node
         ((rel_inhandle pnode) param)
         ((on_curve pnode) param)
         ((rel_outhandle pnode) param)
   end
+
+  let point_list_of_contour contour =
+    List.flatten (List.map Node.to_list2 (Contour.to_node_list contour))
+
+  let point_list_of_pcontour contour =
+    List.flatten (List.map PNode.to_list2 (Contour.to_node_list contour))
+
+  let print_python_code_for_contour outp contour =
+    let point_list = point_list_of_contour contour in
+    let point_list = (List.tl point_list) @ [List.hd point_list] in
+    output_string outp "fontforge.contour()";
+    List.iter
+      Complex.(fun (pt, on_curve) ->
+        let oc_string = if on_curve then "True" else "False" in
+        Print.fprintf outp p"+fontforge.point(%f,%f,%s)" pt.re pt.im oc_string)
+      point_list;
 end

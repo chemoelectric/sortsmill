@@ -44,6 +44,7 @@ sig
   val inv : t -> t
   val transform : float * float -> t -> float * float
   val op : t -> (float * float -> float * float)
+  val complex_op : t -> (Complex.t -> Complex.t)
   val print : unit IO.output -> t -> unit
 end
 
@@ -96,7 +97,12 @@ let inv (a11,a12,a21,a22,a31,a32) =
 let transform (x,y) (a11,a12,a21,a22,a31,a32) =
   ((x *. a11) +. (y *. a21) +. a31, (x *. a12) +. (y *. a22) +. a32)
 
-let op = flip transform
+let op mat pair = transform pair mat
+
+let complex_op mat c =
+  let pair = Complex.(c.re, c.im) in
+  let pair' = transform pair mat in
+  Complex.({ re = fst pair'; im = snd pair' })
 
 let print outp (a11,a12,a21,a22,a31,a32) =
   Print.fprintf outp p"(%F,%F|%F,%F|%F,%F)" a11 a12 a21 a22 a31 a32

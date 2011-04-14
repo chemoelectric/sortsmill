@@ -45,6 +45,7 @@ sig
   val inv : t -> t
   val transform : float * float -> t -> float * float
   val op : t -> (float * float -> float * float)
+  val complex_op : t -> (Complex.t -> Complex.t)
   val print : unit IO.output -> t -> unit
 end
 

@@ -195,8 +195,8 @@ sig
   (** [c <@@ true] marks contour [c] as closed; [c <@@ false] marks it
       as open. *)
 
-  val ( <*> ) : 'node1 t -> ('node1 -> 'node2) -> 'node2 t
-(** [c <*> trans] applies node transformation [trans] to contour [c]. *)
+  val ( <.> ) : 'node1 t -> ('node1 -> 'node2) -> 'node2 t
+(** [c <.> trans] applies node transformation [trans] to contour [c]. *)
 end
 
 module Cubic_node(P : Point_type) :
@@ -204,6 +204,9 @@ sig
   type point = P.t
   type _node_points = { ih : point; oc : point; oh : point }
   include Node_type with type element = point and type t = _node_points
+  val to_list : t -> point list
+  val of_list : point list -> t
+  val to_list2 : t -> (point * bool) list
   val make_node : point -> point -> point -> t
   val make_pin : point -> t
   val make_flat : point -> point -> point -> point -> t
@@ -222,11 +225,23 @@ module Contour : Contour_type
 
 module Parameterized_cubics(Param : Parameter_type) :
 sig
-  module Node : module type of Cubic_node(Complex_point)
   module PComplex : module type of Parameterized_complex(Param)
+  module Node_base : module type of Cubic_node(Complex_point)
+  module PNode_base : module type of Cubic_node(PComplex)
+
+  module Node :
+  sig
+    include module type of Node_base
+    val parameterize_node : t -> PNode_base.t
+  end
+
   module PNode :
   sig
-    include module type of Cubic_node(PComplex)
-    val resolve_node : Param.t -> t -> Node.t
+    include module type of PNode_base
+    val resolve_node : Param.t -> t -> Node_base.t
   end
+
+  val point_list_of_contour : Node.t Contour.t -> (Node.point * bool) list
+  val point_list_of_pcontour : PNode.t Contour.t -> (PNode.point * bool) list
+  val print_python_code_for_contour : unit IO.output -> Node.t Contour.t -> unit
 end
