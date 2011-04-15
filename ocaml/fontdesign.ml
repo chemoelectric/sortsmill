@@ -278,9 +278,11 @@ end
 module type Contour_type =
 sig
   type t
-  val closed : t -> bool -> t
-  val is_closed : t -> bool
+  val with_closed : bool -> t -> t
+  val closed : t -> bool
   val print_closed : unit IO.output -> t -> unit
+  val print : ?first:string -> ?last:string -> ?sep:string ->
+    unit IO.output -> t -> unit
   val ( <@@ ) : t -> bool -> t
 end
 
@@ -453,4 +455,116 @@ struct
           point_list;
         Print.fprintf outp p"%s.closed = %s\n" var_name
           (if Contour.closed contour then "True" else "False")
+end
+
+module Contour_list =
+struct
+  include List
+
+(* Here may go functions for intersection-related operations such as
+   "overlay" and "punch". *)
+end
+
+module Glyph =
+struct
+  type ('float, 'contour) t = {
+    name : string;
+    unicode : int option;
+    contours : 'contour Contour_list.t;
+    lsb : 'float option;
+    rsb : 'float option;
+    hints : ('float * 'float) list; (* FIXME: really implement hints. *)
+  }
+
+  let empty = {
+    name = "";
+    unicode = None;
+    contours = [];
+    lsb = None;
+    rsb = None;
+    hints = [];
+  }
+
+  let name glyph = glyph.name
+  let with_name name glyph = { glyph with name }
+
+  let has_unicode glyph = Option.is_some glyph.unicode
+  let unicode glyph = Option.get glyph.unicode
+  let with_unicode unicode glyph = { glyph with unicode = Some unicode }
+  let without_unicode glyph = { glyph with unicode = None }
+
+  let contours glyph = glyph.contours
+  let with_contours contours glyph = { glyph with contours }
+
+  let has_lsb glyph = Option.is_some glyph.lsb
+  let lsb glyph = Option.get glyph.lsb
+  let with_lsb lsb glyph = { glyph with lsb = Some lsb }
+  let without_lsb glyph = { glyph with lsb = None }
+
+  let has_rsb glyph = Option.is_some glyph.rsb
+  let rsb glyph = Option.get glyph.rsb
+  let with_rsb rsb glyph = { glyph with rsb = Some rsb }
+  let without_rsb glyph = { glyph with rsb = None }
+
+  let _print_python_glyph_code
+      ~glyph_variable
+      ~contour_variable
+      print_float
+      print_python_contour_code
+      outp glyph =
+    Print.fprintf outp p"%s.foreground = fontforge.layer()\n" glyph_variable;
+    Contour_list.iter
+      (fun contour ->
+        print_python_contour_code ?variable:(Some contour_variable) outp contour;
+        Print.fprintf outp p"%s.foreground += %s\n" glyph_variable contour_variable)
+      glyph.contours;
+    if Option.is_some glyph.lsb then
+      begin
+        Print.fprintf outp p"%s.transform(psMat.translate(" glyph_variable;
+        print_float outp (Option.get glyph.lsb);
+        output_string outp ",0))\n";
+      end;
+    if Option.is_some glyph.rsb then
+      begin
+        Print.fprintf outp p"%s.right_side_bearing = " glyph_variable; (* FIXME: Setting the width,
+                                                                          given max x, might give
+                                                                          more control. *)
+        print_float outp (Option.get glyph.rsb);
+        output_string outp "\n";
+      end;
+    Print.fprintf outp p"%s.canonicalContours()\n" glyph_variable;
+    Print.fprintf outp p"%s.canonicalStart()\n" glyph_variable
+
+  let print_python_glyph_code
+      ?(font_variable = "my_font")
+      ?(glyph_variable = "my_glyph")
+      ?(contour_variable = "my_contour")
+      print_float
+      print_python_contour_code
+      outp glyph =
+    begin
+      match glyph.unicode with
+        | None ->
+          Print.fprintf outp p"%s = %s.createChar(preferred_unicode(\"%s\"), \"%s\")\n"
+            glyph_variable font_variable glyph.name glyph.name;
+          Print.fprintf outp p"%s.unicode = preferred_unicode(\"%s\")\n"
+            glyph_variable glyph.name
+        | Some unicode ->
+          Print.fprintf outp p"%s = %s.createChar(%d, \"%s\")\n"
+            glyph_variable font_variable unicode glyph.name;
+          Print.fprintf outp p"%s.unicode = %d\n" glyph_variable unicode
+    end;
+    _print_python_glyph_code
+      ~glyph_variable:glyph_variable
+      ~contour_variable:contour_variable
+      print_float print_python_contour_code outp glyph
+
+  let print_python_glyph_update_module print_float print_python_contour_code outp glyph =
+    output_string outp "import fontforge\n";
+    output_string outp "import psMat\n";
+    output_string outp "my_glyph = fontforge.activeGlyph()\n";
+    _print_python_glyph_code
+      ~glyph_variable:"my_glyph"
+      ~contour_variable:"my_contour"
+      print_float print_python_contour_code outp glyph
 end

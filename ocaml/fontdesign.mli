@@ -190,9 +190,11 @@ end
 module type Contour_type =
 sig
   type t
-  val closed : t -> bool -> t
-  val is_closed : t -> bool
+  val with_closed : bool -> t -> t
+  val closed : t -> bool
   val print_closed : unit IO.output -> t -> unit
+  val print : ?first:string -> ?last:string -> ?sep:string ->
+    unit IO.output -> t -> unit
   val ( <@@ ) : t -> bool -> t
 end
 
@@ -230,13 +232,11 @@ module Node_spline : Node_spline_type
 module Node_contour(Node : Node_type) :
 sig
   module Spline : Node_spline_type
-  type t
+
+  include Contour_type
 
   val spline : t -> Node.t Spline.t
-  val closed : t -> bool
-
   val with_spline : Node.t Spline.t -> t -> t
-  val with_closed : bool -> t -> t
 
   val of_node_list : Node.t list -> t
   val to_node_list : t -> Node.t list
@@ -244,11 +244,6 @@ sig
   val apply_spline_op : t -> (Node.t Spline.t -> Node.t Spline.t) -> t
   val apply_node_op : t -> (Node.t -> Node.t) -> t
 
-  val print_closed : unit IO.output -> t -> unit
-  val print : ?first:string -> ?last:string -> ?sep:string ->
-    unit IO.output -> t -> unit
-
-  val ( <@@ ) : t -> bool -> t
   val ( <@> ) : t -> t -> t
 end
 
@@ -284,4 +279,57 @@ sig
 
   val print_python_contour_code : ?variable:string -> unit IO.output ->
     Contour.t -> unit
+end
+
+module Contour_list :
+sig
+  include module type of List
+end
+
+module Glyph :
+sig
+  type ('float, 'contour) t = {
+    name : string;
+    unicode : int option;
+    contours : 'contour Contour_list.t;
+    lsb : 'float option;
+    rsb : 'float option;
+    hints : ('float * 'float) list; (* FIXME: really implement hints. *)
+  }
+
+  val empty : ('float, 'contour) t
+
+  val name : ('float, 'contour) t -> string
+  val with_name : string -> ('float, 'contour) t -> ('float, 'contour) t
+
+  val has_unicode : ('float, 'contour) t -> bool
+  val unicode : ('float, 'contour) t -> int
+  val with_unicode : int -> ('float, 'contour) t -> ('float, 'contour) t
+  val without_unicode : ('float, 'contour) t -> ('float, 'contour) t
+
+  val contours : ('float, 'contour) t -> 'contour Contour_list.t
+  val with_contours : 'contour2 Contour_list.t -> ('float, 'contour1) t -> ('float, 'contour2) t
+
+  val has_lsb : ('float, 'contour) t -> bool
+  val lsb : ('float, 'contour) t -> 'float
+  val with_lsb : 'float -> ('float, 'contour) t -> ('float, 'contour) t
+  val without_lsb : ('float, 'contour) t -> ('float, 'contour) t
+
+  val has_rsb : ('float, 'contour) t -> bool
+  val rsb : ('float, 'contour) t -> 'float
+  val with_rsb : 'float -> ('float, 'contour) t -> ('float, 'contour) t
+  val without_rsb : ('float, 'contour) t -> ('float, 'contour) t
+
+  val print_python_glyph_code :
+    ?font_variable:string ->
+    ?glyph_variable:string ->
+    ?contour_variable:string ->
+    (unit IO.output -> 'float -> 'a) ->
+    (?variable:string -> unit IO.output -> 'contour -> 'b) ->
+    unit IO.output -> ('float, 'contour) t -> unit
+
+  val print_python_glyph_update_module :
+    (unit IO.output -> 'float -> 'a) ->
+    (?variable:string -> unit IO.output -> 'contour -> 'b) ->
+    unit IO.output -> ('float, 'contour) t -> unit
 end
