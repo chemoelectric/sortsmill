@@ -282,6 +282,6 @@ sig
   val parameterize_contour : Contour.t -> PContour.t
   val resolve_contour : PContour.t -> Param.t -> Contour.t
 
-  val print_python_code : ?variable:string -> unit IO.output ->
+  val print_python_contour_code : ?variable:string -> unit IO.output ->
     Contour.t -> unit
 end

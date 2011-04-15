@@ -426,7 +426,7 @@ struct
   let resolve_contour contour param =
     PContour.with_spline (resolve_spline (PContour.spline contour) param) contour
 
-  let print_python_code ?variable outp contour =
+  let print_python_contour_code ?variable outp contour =
     let point_list = Contour.to_point_bool_list contour in
     let point_list = (List.tl point_list) @ [List.hd point_list] in
     match variable with
