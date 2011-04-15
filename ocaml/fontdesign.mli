@@ -138,7 +138,7 @@ sig
   val ( > ) : t -> t -> bool
   val ( < ) : t -> t -> bool
   val ( = ) : t -> t -> bool
-  val print : unit BatIO.output -> t -> unit
+  val print : unit IO.output -> t -> unit
 end
 
 module type Parameter_type =
@@ -161,49 +161,15 @@ module type Node_type =
 sig
   type element
   type t
-  include Interfaces.Mappable with type 'a mappable = t
-  val map : (element -> element) -> (t -> t)
+  val apply : (element -> element) -> (t -> t)
   val print : unit IO.output -> t -> unit
-end
-
-module type Contour_type =
-sig
-  type 'node t
-
-  include Interfaces.Mappable with type 'node mappable = 'node t
-  include Enum.Enumerable with type 'node enumerable = 'node t
-  val backwards : 'node t -> 'node Enum.t
-  val of_backwards : 'node Enum.t -> 'node t
-
-  val of_node_list : 'node list -> 'node t    
-  (** Returns an open contour made from a list of nodes. *)
-
-  val append : 'node t -> 'node t -> 'node t
-  (** [append c1 c2] concatenates splines [c1] and [c2]. The result is
-      closed if and only if [c1] is closed. *)
-
-  val closed : 'node t -> bool -> 'node t
-  val is_closed : 'node t -> bool
-
-  val print : (unit IO.output -> 'node -> unit) -> unit IO.output -> 'node t -> unit
-
-  val ( <@> ) : 'node t -> 'node t -> 'node t
-  (** [c1 <@> c2] concatenates splines [c1] and [c2]. The result is
-      closed if and only if [c1] is closed. *)
-
-  val ( <@@ ) : 'node t -> bool -> 'node t
-  (** [c <@@ true] marks contour [c] as closed; [c <@@ false] marks it
-      as open. *)
-
-  val ( <.> ) : 'node1 t -> ('node1 -> 'node2) -> 'node2 t
-(** [c <.> trans] applies node transformation [trans] to contour [c]. *)
 end
 
 module Cubic_node(P : Point_type) :
 sig
   type point = P.t
-  type _node_points = { ih : point; oc : point; oh : point }
-  include Node_type with type element = point and type t = _node_points
+  type t = { ih : point; oc : point; oh : point }
+  include Node_type with type element = point and type t := t
   val to_list : t -> point list
   val of_list : point list -> t
   val to_list2 : t -> (point * bool) list
@@ -221,27 +187,101 @@ sig
   val rel_outhandle : t -> point
 end
 
-module Contour : Contour_type
+module type Contour_type =
+sig
+  type t
+  val closed : t -> bool -> t
+  val is_closed : t -> bool
+  val print_closed : unit IO.output -> t -> unit
+  val ( <@@ ) : t -> bool -> t
+end
+
+module type Node_spline_type =
+sig
+  type +'node t
+
+  include Enum.Enumerable with type 'node enumerable = 'node t
+  val backwards : 'node t -> 'node Enum.t
+  val of_backwards : 'node Enum.t -> 'node t
+
+  include Interfaces.Mappable with type 'node mappable = 'node t
+  val iter : ('node -> unit) -> 'node t -> unit
+
+  val to_list : 'node t -> 'node list
+  val of_list : 'node list -> 'node t
+
+  val first : 'node t -> 'node
+  val last : 'node t -> 'node
+  val at : 'node t -> int -> 'node
+  val append : 'node t -> 'node t -> 'node t
+  val concat : 'node t list -> 'node t
+  val flatten : 'node t list -> 'node t
+  val split_at : int -> 'node t -> 'node t * 'node t
+  val take : int -> 'node t -> 'node t
+  val drop : int -> 'node t -> 'node t
+
+  val print : ?first:string -> ?last:string -> ?sep:string ->
+    ('a IO.output -> 'node -> unit) -> 'a IO.output -> 'node t -> unit
+  val t_printer : 'node Value_printer.t -> 'node t Value_printer.t
+end
+
+module Node_spline : Node_spline_type
+
+module Node_contour(Node : Node_type) :
+sig
+  module Spline : Node_spline_type
+  type t
+
+  val spline : t -> Node.t Spline.t
+  val closed : t -> bool
+
+  val with_spline : Node.t Spline.t -> t -> t
+  val with_closed : bool -> t -> t
+
+  val of_node_list : Node.t list -> t
+  val to_node_list : t -> Node.t list
+
+  val apply_spline_op : t -> (Node.t Spline.t -> Node.t Spline.t) -> t
+  val apply_node_op : t -> (Node.t -> Node.t) -> t
+
+  val print_closed : unit IO.output -> t -> unit
+  val print : ?first:string -> ?last:string -> ?sep:string ->
+    unit IO.output -> t -> unit
+
+  val ( <@@ ) : t -> bool -> t
+  val ( <@> ) : t -> t -> t
+end
+
+module Cubic_contour(Point : Point_type) :
+sig
+  module Node : module type of Cubic_node(Point)
+  include module type of Node_contour(Node)
+  val to_point_bool_list : t -> (Point.t * bool) list
+  val ( <.> ) : t -> (Point.t -> Point.t) -> t
+  val ( <*> ) : t -> Point.t -> t
+  val ( </> ) : t -> Point.t -> t
+  val ( <+> ) : t -> Point.t -> t
+  val ( <-> ) : t -> Point.t -> t
+end
 
 module Parameterized_cubics(Param : Parameter_type) :
 sig
   module PComplex : module type of Parameterized_complex(Param)
-  module Node_base : module type of Cubic_node(Complex_point)
-  module PNode_base : module type of Cubic_node(PComplex)
+  module Contour : module type of Cubic_contour(Complex_point)
+  module PContour : module type of Cubic_contour(PComplex)
 
-  module Node :
-  sig
-    include module type of Node_base
-    val parameterize_node : t -> PNode_base.t
-  end
+  val parameterize_node : Contour.Node.t -> PContour.Node.t
+  val resolve_node : PContour.Node.t -> Param.t -> Contour.Node.t
 
-  module PNode :
-  sig
-    include module type of PNode_base
-    val resolve_node : Param.t -> t -> Node_base.t
-  end
+  val parameterize_spline : Contour.Node.t Contour.Spline.t ->
+    PContour.Node.t PContour.Spline.t
 
-  val point_list_of_contour : Node.t Contour.t -> (Node.point * bool) list
-  val point_list_of_pcontour : PNode.t Contour.t -> (PNode.point * bool) list
-  val print_python_code_for_contour : unit IO.output -> Node.t Contour.t -> unit
+  val resolve_spline : PContour.Node.t PContour.Spline.t ->
+    Param.t -> Contour.Node.t Contour.Spline.t
+
+  val parameterize_contour : Contour.t -> PContour.t
+  val resolve_contour : PContour.t -> Param.t -> Contour.t
+
+  val print_python_code : ?variable:string -> unit IO.output ->
+    Contour.t -> unit
 end

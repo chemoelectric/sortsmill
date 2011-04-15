@@ -191,32 +191,6 @@ struct
     output_string outp "fun: Param.t -> Fontdesign.Extended_complex.t"
 end
 
-module type Node_type =
-sig
-  type element
-  type t
-  include Interfaces.Mappable with type 'a mappable = t
-  val map : (element -> element) -> (t -> t)
-  val print : unit IO.output -> t -> unit
-end
-
-module type Contour_type =
-sig
-  type 'node t
-  include Interfaces.Mappable with type 'node mappable = 'node t
-  include Enum.Enumerable with type 'node enumerable = 'node t
-  val backwards : 'node t -> 'node Enum.t
-  val of_backwards : 'node Enum.t -> 'node t
-  val of_node_list : 'node list -> 'node t    
-  val append : 'node t -> 'node t -> 'node t
-  val closed : 'node t -> bool -> 'node t
-  val is_closed : 'node t -> bool
-  val print : (unit IO.output -> 'node -> unit) -> unit IO.output -> 'node t -> unit
-  val ( <@> ) : 'node t -> 'node t -> 'node t
-  val ( <@@ ) : 'node t -> bool -> 'node t
-  val ( <.> ) : 'node1 t -> ('node1 -> 'node2) -> 'node2 t
-end
-
 module Complex_point =
 struct
   include Extended_complex
@@ -238,15 +212,21 @@ struct
     Print.fprintf outp format x y
 end
 
+module type Node_type =
+sig
+  type element
+  type t
+  val apply : (element -> element) -> (t -> t)
+  val print : unit IO.output -> t -> unit
+end
+
 module Cubic_node(P : Point_type) =
 struct
   type point = P.t
-  type _node_points = { ih : point; oc : point; oh : point }
   type element = point
-  type t = _node_points
-  type 'a mappable = t
+  type t = { ih : point; oc : point; oh : point }
 
-  let map f p = { ih = f p.ih; oc = f p.oc; oh = f p.oh }
+  let apply f p = { ih = f p.ih; oc = f p.oc; oh = f p.oh }
 
   let to_list p = [p.ih; p.oc; p.oh]
   let of_list lst = { ih = List.hd lst;
@@ -295,110 +275,182 @@ struct
     output_string outp ")"
 end
 
-module Parameterized_cubic_node(Param : Parameter_type) =
-struct
+module type Contour_type =
+sig
   type t
+  val closed : t -> bool -> t
+  val is_closed : t -> bool
+  val print_closed : unit IO.output -> t -> unit
+  val ( <@@ ) : t -> bool -> t
 end
 
-module Contour =
+module type Node_spline_type =
+sig
+  type +'node t
+
+  include Enum.Enumerable with type 'node enumerable = 'node t
+  val backwards : 'node t -> 'node Enum.t
+  val of_backwards : 'node Enum.t -> 'node t
+
+  include Interfaces.Mappable with type 'node mappable = 'node t
+  val iter : ('node -> unit) -> 'node t -> unit
+
+  val to_list : 'node t -> 'node list
+  val of_list : 'node list -> 'node t
+
+  val first : 'node t -> 'node
+  val last : 'node t -> 'node
+  val at : 'node t -> int -> 'node
+  val append : 'node t -> 'node t -> 'node t
+  val concat : 'node t list -> 'node t
+  val flatten : 'node t list -> 'node t
+  val split_at : int -> 'node t -> 'node t * 'node t
+  val take : int -> 'node t -> 'node t
+  val drop : int -> 'node t -> 'node t
+
+  val print : ?first:string -> ?last:string -> ?sep:string ->
+    ('a IO.output -> 'node -> unit) -> 'a IO.output -> 'node t -> unit
+  val t_printer : 'node Value_printer.t -> 'node t Value_printer.t
+end
+
+module Node_spline : Node_spline_type =
 struct
-  type 'node t = {
-    spline : 'node list;
-    closed : bool;
-  }
-  type 'node mappable = 'node t
-  type 'node enumerable = 'node t
+  type +'node t = 'node list
+  type +'node mappable = 'node t
+  type +'node enumerable = 'node t
 
-  let map f contour =
-    { contour with spline = List.map f contour.spline }
+  let map = List.map
+  let iter = List.iter
 
-  let enum contour = List.enum contour.spline
-  let of_enum e = { spline = List.of_enum e; closed = false }
-  let backwards contour = List.backwards contour.spline
-  let of_backwards e = { spline = List.of_backwards e; closed = false }
+  let of_enum = List.of_enum
+  let enum = List.enum
+  let of_backwards = List.of_backwards
+  let backwards = List.backwards
 
-  let of_node_list nlist = { spline = nlist; closed = false }
-  let to_node_list contour = contour.spline
+  let to_list = identity
+  let of_list = identity
 
-  let append contour1 contour2 =
-    { contour1 with spline = contour1.spline @ contour2.spline }
+  let first = List.first
+  let last = List.last
+  let at = List.at
+  let append = List.append
+  let concat = List.concat
+  let flatten = List.flatten
+  let split_at = List.split_at
+  let take = List.take
+  let drop = List.drop
 
-  let closed contour true_or_false =
-    { contour with closed = true_or_false }
+  let print = List.print
+  let t_printer = List.t_printer
+end
 
-  let is_closed contour = contour.closed
+module Node_contour(Node : Node_type) =
+struct
+  module Spline = Node_spline
+  type t = 'node Spline.t * bool
+  constraint 'node = Node.t
 
-  let rec print_spline print_node outp spline =
-    match spline with
-      | [] -> assert false
-      | [p] ->
-        output_string outp "  ";
-        print_node outp p;
-        output_string outp ";\n"
-      | p :: remaining ->
-        output_string outp "  ";
-        print_node outp p;
-        output_string outp ";\n";
-        print_spline print_node outp remaining
+  let spline = fst
+  let closed = snd
 
-  let print_closed outp is_closed =
+  let with_spline spline (_, is_closed) = (spline, is_closed)
+  let with_closed is_closed (spline, _) = (spline, is_closed)
+
+  let of_node_list node_list = (Spline.of_list node_list, false)
+  let to_node_list (spline, _) = Spline.to_list spline
+
+  let apply_spline_op contour spline_op =
+    with_spline (spline_op (spline contour)) contour
+
+  let apply_node_op contour node_op =
+    apply_spline_op contour (Spline.map node_op)
+
+  let print_closed outp (_, is_closed) =
     if is_closed then
       output_string outp " <@@ true"
     else
       output_string outp " <@@ false"
 
-  let print print_node outp contour =
-    output_string outp "of_node_list [\n";
-    print_spline print_node outp contour.spline;
-    output_string outp "]";
-    print_closed outp contour.closed
+  let print
+      ?(first = "of_node_list [\n  ")
+      ?(last = ";\n]")
+      ?(sep = ";\n  ")
+      outp contour =
+    Spline.print ~first ~last ~sep Node.print outp (fst contour);
+    print_closed outp contour
 
-  let ( <@> ) = append
-  let ( <@@ ) = closed
-  let ( <.> ) contour trans = map trans contour
+  let ( <@@ ) contour is_closed = with_closed is_closed contour
+  let ( <@> ) (spline1, is_closed) (spline2, _) =
+    (Node_spline.append spline1 spline2, is_closed)
+end
+
+module Cubic_contour(Point : Point_type) =
+struct
+  module Node = Cubic_node(Point)
+  include Node_contour(Node)
+
+  let to_point_bool_list contour =
+    List.flatten (List.map Node.to_list2 (to_node_list contour))
+
+  let ( <.> ) contour point_op = apply_node_op contour (Node.apply point_op)
+  let ( <*> ) contour pt = apply_node_op contour (Node.apply (Point.mul pt))
+  let ( </> ) contour pt = apply_node_op contour (Node.apply (Point.div pt))
+  let ( <+> ) contour pt = apply_node_op contour (Node.apply (Point.add pt))
+  let ( <-> ) contour pt = apply_node_op contour (Node.apply (Point.sub pt))
 end
 
 module Parameterized_cubics(Param : Parameter_type) =
 struct
   module PComplex = Parameterized_complex(Param)
-  module Node_base = Cubic_node(Complex_point)
-  module PNode_base = Cubic_node(PComplex)
+  module Contour = Cubic_contour(Complex_point)
+  module PContour = Cubic_contour(PComplex)
 
-  module Node =
-  struct 
-    include Node_base
+  let parameterize_node node =
+    PContour.Node.make_node
+      (const (Contour.Node.rel_inhandle node))
+      (const (Contour.Node.on_curve node))
+      (const (Contour.Node.rel_outhandle node))
 
-    let parameterize_node node =
-      PNode_base.make_node
-        (const (rel_inhandle node))
-        (const (on_curve node))
-        (const (rel_outhandle node))
-  end
+  let resolve_node pnode param =
+    Contour.Node.make_node
+      ((PContour.Node.rel_inhandle pnode) param)
+      ((PContour.Node.on_curve pnode) param)
+      ((PContour.Node.rel_outhandle pnode) param)
 
-  module PNode =
-  struct
-    include PNode_base
+  let parameterize_spline = Contour.Spline.map parameterize_node
+  let resolve_spline spline param = PContour.Spline.map (flip resolve_node param) spline
 
-    let resolve_node param pnode =
-      Node_base.make_node
-        ((rel_inhandle pnode) param)
-        ((on_curve pnode) param)
-        ((rel_outhandle pnode) param)
-  end
+  let parameterize_contour contour =
+    Contour.with_spline (parameterize_spline (Contour.spline contour)) contour
 
-  let point_list_of_contour contour =
-    List.flatten (List.map Node.to_list2 (Contour.to_node_list contour))
+  let resolve_contour contour param =
+    PContour.with_spline (resolve_spline (PContour.spline contour) param) contour
 
-  let point_list_of_pcontour contour =
-    List.flatten (List.map PNode.to_list2 (Contour.to_node_list contour))
-
-  let print_python_code_for_contour outp contour =
-    let point_list = point_list_of_contour contour in
+  let print_python_code ?variable outp contour =
+    let point_list = Contour.to_point_bool_list contour in
     let point_list = (List.tl point_list) @ [List.hd point_list] in
-    output_string outp "fontforge.contour()";
-    List.iter
-      Complex.(fun (pt, on_curve) ->
-        let oc_string = if on_curve then "True" else "False" in
-        Print.fprintf outp p"+fontforge.point(%f,%f,%s)" pt.re pt.im oc_string)
-      point_list;
+    match variable with
+      | None ->
+        (* This branch doesn't set the closedness. *)
+        output_string outp "(fontforge.contour()";
+        List.iter
+          Complex.(fun (pt, on_curve) ->
+            let oc_string = if on_curve then "True" else "False" in
+            Print.fprintf outp p"+fontforge.point(%f,%f,%s)" pt.re pt.im oc_string
+          )
+          point_list;
+        output_string outp ")"
+
+      | Some var_name ->
+        Print.fprintf outp p"%s = fontforge.contour()\n" var_name;
+        List.iter
+          Complex.(fun (pt, on_curve) ->
+            if on_curve then
+              Print.fprintf outp p"%s += fontforge.point(%f,%f)\n" var_name pt.re pt.im
+            else
+              Print.fprintf outp p"%s += fontforge.point(%f,%f, False)\n" var_name pt.re pt.im
+          )
+          point_list;
+        Print.fprintf outp p"%s.closed = %s\n" var_name
+          (if Contour.closed contour then "True" else "False")
 end
