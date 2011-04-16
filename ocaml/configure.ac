@@ -36,22 +36,11 @@ AC_CONFIG_SRCDIR([fontdesign.ml])
 # Checks for programs.
 AC_ARG_VAR([OCAMLFIND], [ocamlfind command])
 AC_ARG_VAR([OCAMLFINDFLAGS], [ocamlfind flags])
-AC_ARG_VAR([CAMLP4O], [camlp4o command])
-AC_ARG_VAR([CAMLP4OFLAGS], [camlp4o flags])
 
 if test -z "${OCAMLFIND}" ; then
    AC_CHECK_PROGS(OCAMLFIND, [ocamlfind])
    if test -z "${OCAMLFIND}" ; then
-      echo "The ocamlfind program is required but not found. Giving up."
-      exit 1
-   fi
-fi
-
-if test -z "${CAMLP4O}" ; then
-   AC_CHECK_PROGS([CAMLP4O], [camlp4o])
-   if test -z "${CAMLP4O}" ; then
-      echo "The camlp4o program is required but not found. Giving up."
-      exit 1
+      AC_MSG_ERROR([The ocamlfind program is required but not found. Giving up.])
    fi
 fi
 
