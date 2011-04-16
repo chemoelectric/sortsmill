@@ -288,7 +288,7 @@ end
 
 module Glyph :
 sig
-  type ('float, 'contour) t = {
+  type (+'float, +'contour) t = {
     name : string;
     unicode : int option;
     contours : 'contour Contour_list.t;

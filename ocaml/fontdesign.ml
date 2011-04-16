@@ -467,7 +467,7 @@ end
 
 module Glyph =
 struct
-  type ('float, 'contour) t = {
+  type (+'float, +'contour) t = {
     name : string;
     unicode : int option;
     contours : 'contour Contour_list.t;
@@ -561,7 +561,6 @@ struct
 
   let print_python_glyph_update_module print_float print_python_contour_code outp glyph =
     output_string outp "import fontforge\n";
-    output_string outp "import psMat\n";
     output_string outp "my_glyph = fontforge.activeGlyph()\n";
     _print_python_glyph_code
       ~glyph_variable:"my_glyph"
