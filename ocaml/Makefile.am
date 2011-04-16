@@ -30,7 +30,6 @@ FONTDESIGN = fontdesign
 MLFIND = $(OCAMLFIND) $(OCAMLFINDFLAGS)
 OCAMLC = $(OCAMLFIND) c $(OCAMLFINDFLAGS) -g
 OCAMLOPT = $(OCAMLFIND) opt $(OCAMLFINDFLAGS) -g
-OCAMLMKTOP = $(OCAMLFIND) mktop -g
 
 OCAMLPACKAGES = camlp4,caml2geom,batteries,batteries.syntax
 OCAMLFINDFLAGS += -package $(OCAMLPACKAGES) -syntax camlp4o
