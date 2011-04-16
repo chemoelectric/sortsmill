@@ -20,20 +20,30 @@
 
 ACLOCAL_AMFLAGS = -I m4 --install
 
-@asymptote_rules@
+MLFIND = $(OCAMLFIND) $(OCAMLFINDFLAGS)
+OCAMLC = $(OCAMLFIND) c $(OCAMLFINDFLAGS) -g
+OCAMLOPT = $(OCAMLFIND) opt $(OCAMLFINDFLAGS) -g
+
+OCAMLPACKAGES = camlp4,batteries,batteries.syntax,sortsmill
+OCAMLFINDFLAGS += -package $(OCAMLPACKAGES) -syntax camlp4o
+
+@ocaml_rules@
 @sortsmill_binpack_rules@
+
+%_program: %_program.ml
+	$(OCAMLC) -thread -linkpkg $^ -o $@
 
 FAMILYNAME = caslon
 FONTS = CaslonStM
 fonts_DATA = $(addsuffix .otf, ${FONTS})
 
-FONTDEPS = caslon_basics.asy caslon_font.asy caslon_output.asy	\
-	caslon_roman.asy caslon_version.asy
+#FONTDEPS = caslon_basics.asy caslon_font.asy caslon_output.asy	\
+#	caslon_roman.asy caslon_version.asy
+FONTDEPS =
 
-EXTRA_DIST = $(addsuffix .asy, ${FONTS}) ${FONT_DEPS}
+EXTRA_DIST = $(addsuffix .ml, ${FONTS}) ${FONT_DEPS}
 
 ${fonts_DATA} : ${FONTDEPS}
-
 MOSTLYCLEANFILES = ${fonts_DATA} # gdlerr.txt
 
 ChangeLog::

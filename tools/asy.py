@@ -40,6 +40,7 @@ import subprocess
 
 #--------------------------------------------------------------------------
 
+"""
 def asymptote_path(contour):
     s = ''
     i = 0
@@ -60,6 +61,7 @@ def asymptote_path(contour):
     if contour.closed:
         s += 'cycle'
     return s
+"""
 
 #--------------------------------------------------------------------------
 
@@ -205,6 +207,7 @@ def caml_path(contour):
 
 #--------------------------------------------------------------------------
 
+"""
 def load_glyph_data_from_given_asy(glyph, asy_file):
     module_name = 'asy_glyph_data'
     asy_command = 'write_glyph_data(\'' + glyph.glyphname + '\')'
@@ -218,9 +221,11 @@ def load_asy_glyph_data(glyph):
 fontforge.registerMenuItem((lambda _, glyph: load_asy_glyph_data(glyph)),
                            None, None, 'Glyph', 'None',
                            'Load Asymptote glyph data')
+"""
 
 #--------------------------------------------------------------------------
 
+"""
 def load_private_data_from_given_asy(font, asy_file):
     module_name = 'asy_private_data'
     asy_command = 'write_private_data()'
@@ -234,9 +239,11 @@ def load_asy_private_data(font):
 fontforge.registerMenuItem((lambda _, font: load_asy_private_data(font)),
                            None, None, 'Font', 'None',
                            'Load Private table data from Asymptote')
+"""
 
 #--------------------------------------------------------------------------
 
+"""
 def print_asymptote_paths(glyph):
     for c in glyph.layers[glyph.activeLayer]:
         print(asymptote_path(c))
@@ -244,6 +251,22 @@ def print_asymptote_paths(glyph):
 fontforge.registerMenuItem((lambda _, glyph: print_asymptote_paths(glyph)),
                            None, None, 'Glyph', 'None',
                            'Output Asymptote paths')
+"""
+
+#--------------------------------------------------------------------------
+
+def load_glyph_data_from_program(glyph, program):
+    module_name = 'program_glyph_data'
+    pipe = subprocess.Popen([program, '-g', glyph.glyphname], stdout=subprocess.PIPE).stdout
+    module = imp.load_module(module_name, pipe, "<stdin>", ('', '', imp.PY_SOURCE))
+
+def load_program_glyph_data(glyph):
+    program = './' + glyph.font.fontname + '_program'
+    load_glyph_data_from_program(glyph, program)
+
+fontforge.registerMenuItem((lambda _, glyph: load_program_glyph_data(glyph)),
+                           None, None, 'Glyph', 'None',
+                           'Load glyph data from program')
 
 #--------------------------------------------------------------------------
 
