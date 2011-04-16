@@ -18,7 +18,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-#serial 5
+#serial 6
 
 # STM_DISABLE_OPENTYPE
 # --------------------
@@ -138,6 +138,18 @@ AC_DEFUN([STM_PROG_ASYMPTOTE],
 [AC_CHECK_PROG(HAVE_ASYMPTOTE, [asy], [yes])
 test x"${HAVE_ASYMPTOTE}" = x"yes" || AC_MSG_ERROR([I need Asymptote (http://asymptote.sourceforge.net/).])])
 
+# STM_PROG_OCAMLFIND
+# ------------------
+AC_DEFUN([STM_PROG_OCAMLFIND],
+[AC_ARG_VAR([OCAMLFIND], [ocamlfind command])
+AC_ARG_VAR([OCAMLFINDFLAGS], [ocamlfind flags])
+if test -z "${OCAMLFIND}" ; then
+   AC_CHECK_PROGS(OCAMLFIND, [ocamlfind])
+   if test -z "${OCAMLFIND}" ; then
+      AC_MSG_ERROR([The ocamlfind program is required but not found. Giving up.])
+   fi
+fi])
+
 # STM_CHECK_FONTFORGE_EXTENSION
 # -----------------------------
 AC_DEFUN([STM_CHECK_FONTFORGE_EXTENSION],
@@ -242,11 +254,11 @@ OFL%TT-BoldItalic.ttf : %-BoldItalic.sfd  ; ${MKFONT} $(basename [$]@)
 # STM_INIT_ASYMPTOTE
 # ------------------
 AC_DEFUN([STM_INIT_ASYMPTOTE],
-[
+ [
 AC_SUBST([asymptote_rules],['
 %.otf %.ttf %.woff : %.asy
 	((cd [$]{srcdir}; asy -u "generate(\"[$]@\",\"opentype\")" [$]*) | [$](PYTHON) -)
-
+ 
 %.svg %.ufo : %.asy
 	((cd [$]{srcdir}; asy -u "generate(\"[$]@\")" [$]*) | [$](PYTHON) -)
 
@@ -255,6 +267,23 @@ AC_SUBST([asymptote_rules],['
 
 %.sfd : %.asy
 	((cd [$]{srcdir}; asy -u "save(\"[$]@\")" [$]*) | [$](PYTHON) -)
+'
+])
+])
+
+# STM_INIT_OCAML
+# --------------
+AC_DEFUN([STM_INIT_OCAML],
+[
+AC_SUBST([ocaml_rules],['
+%.cmi: %.mli      ; [$](OCAMLC) -c [$]< -o [$]@
+%.cmo: %.ml %.cmi ; [$](OCAMLC) -c [$]< -o [$]@
+%.cmx: %.ml %.cmi ; [$](OCAMLOPT) -c [$]< -o [$]@
+
+%.otf %.ttf %.woff: %_program ; [$](builddir)/[$]< --font=[$]@ --flags=['\"\'opentype\'\"'] | [$](PYTHON) -
+%.svg %.ufo: %_program ; [$](builddir)/[$]< --font=[$]@ --flags=['\"\"'] | [$](PYTHON) -
+%.pfa %.pfb %.cff %.t42 %.pt3 %.ps %.bin: %_program ; [$](builddir)/[$]< --font=[$]@ --flags=['\"\'afm\'\"'] | [$](PYTHON) -
+%.sfd: %_program ; [$](builddir)/[$]< --sfd=[$]@ | [$](PYTHON) -
 '
 ])
 ])
