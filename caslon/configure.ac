@@ -25,6 +25,7 @@ AC_PREREQ([2.68])
 AC_INIT([sortsmill-caslon],[0.1],[http://code.google.com/p/sortsmill/issues/])
 AM_INIT_AUTOMAKE([foreign])
 STM_INIT_OCAML
+STM_ENABLE_OCAMLOPT
 STM_FONTSDIR
 STM_TARGET_BINPACK
 
@@ -35,6 +36,8 @@ STM_PROG_OCAMLFIND
 
 # Checks for libraries.
 STM_CHECK_FONTFORGE_EXTENSION
+STM_CHECK_OCAML_BATTERIES
+STM_CHECK_OCAML_SORTSMILL
 
 # Checks for header files.
 

@@ -27,24 +27,39 @@ OCAMLOPT = $(OCAMLFIND) opt $(OCAMLFINDFLAGS) -g
 OCAMLPACKAGES = camlp4,batteries,batteries.syntax,sortsmill
 OCAMLFINDFLAGS += -package $(OCAMLPACKAGES) -syntax camlp4o
 
+if USE_OCAMLOPT
+OCAMLCOMPILER = $(OCAMLOPT)
+CMO = cmx
+else
+OCAMLCOMPILER = $(OCAMLC)
+CMO = cmo
+endif
+
 @ocaml_rules@
 @sortsmill_binpack_rules@
 
-%_program: %_program.ml
-	$(OCAMLC) -thread -linkpkg $^ -o $@
+# Let's not bother writing interface files. (Note: make may issue a
+# warning about circular dependency.)
+%.cmi: %.cmo ; @:
+%.cmi: %.cmx ; @:
+
+CaslonStM_program: CaslonStM_program.ml caslon_roman.$(CMO)
+	$(OCAMLCOMPILER) -thread -linkpkg caslon_roman.$(CMO) $< -o $@
 
 FAMILYNAME = caslon
 FONTS = CaslonStM
 fonts_DATA = $(addsuffix .otf, ${FONTS})
 
-#FONTDEPS = caslon_basics.asy caslon_font.asy caslon_output.asy	\
-#	caslon_roman.asy caslon_version.asy
-FONTDEPS =
+dist_bin_SCRIPTS = $(addsuffix _glyph_update, ${FONTS})
 
-EXTRA_DIST = $(addsuffix .ml, ${FONTS}) ${FONT_DEPS}
+FONTDEPS = roman
 
-${fonts_DATA} : ${FONTDEPS}
-MOSTLYCLEANFILES = ${fonts_DATA} # gdlerr.txt
+EXTRA_DIST = $(addsuffix _program.ml, ${FONTS}) caslon_roman.ml
+$(addsuffix _program.$(CMO), ${FONTS}): $(addprefix caslon_roman., $(CMO) cmi)
+
+MOSTLYCLEANFILES = ${fonts_DATA} $(addsuffix _program, ${FONTS})		\
+	$(addsuffix _program.$(CMO), ${FONTS}) $(addsuffix _program.cmi,	\
+	${FONTS}) $(addprefix caslon_roman., $(CMO) cmi)
 
 ChangeLog::
 	hg log --style=changelog --only-branch=default "${top_srcdir}" > $@ 
