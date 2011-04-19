@@ -461,7 +461,6 @@ struct
       (Caml2geom.Path.append_curve ~stitch:Caml2geom.Path.NO_STITCHING path -|
           Caml2geom.Cubic_bezier.to_curve)
       curve_list;
-    Caml2geom.Path.close path (closed contour);
     path
 
   let bounds ?(fast = false) contour =
