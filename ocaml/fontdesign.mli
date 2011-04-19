@@ -76,12 +76,18 @@ sig
   (** [dir c] returns the unit complex in the same direction as c;
       that is, c/|c|. *)
 
+  val round : t -> t
+  (** [round c] rounds the components to integral values. *)
+
   val inner : t -> t -> float
   (** The inner product of two complexes regarded as real vectors. *)
 
   val proj : t -> t -> t
 (** [proj a b] returns the geometric projection of complex [a] on
     complex [b]. *)
+
+  val min_bound : t -> t -> t
+  val max_bound : t -> t -> t
 end
 
 module type Point_type =
@@ -107,6 +113,7 @@ sig
   val pred : t -> t
   val abs : t -> t
   val dir : t -> t
+  val round : t -> t
   val rot : float -> t
   val x' : float -> t
   val y' : float -> t
@@ -123,6 +130,8 @@ sig
   val modulo : t -> t -> t
   val pow : t -> t -> t
   val proj : t -> t -> t
+  val min_bound : t -> t -> t
+  val max_bound : t -> t -> t
   val inner : t -> t -> float
   val compare : t -> t -> int
   val dpolar : float -> float -> t
@@ -155,7 +164,12 @@ sig
                      and type t = Param.t -> Complex.t
 end
   
-module Complex_point : module type of Extended_complex
+module Complex_point :
+sig
+  include module type of Extended_complex
+  val of_bezier_point : Caml2geom.Point.t -> t
+  val to_bezier_point : t -> Caml2geom.Point.t
+end
 
 module type Node_type =
 sig
@@ -187,15 +201,10 @@ sig
   val rel_outhandle : t -> point
 end
 
-module type Contour_type =
+module Cubic_node_of_complex_point :
 sig
-  type t
-  val with_closed : bool -> t -> t
-  val closed : t -> bool
-  val print_closed : unit IO.output -> t -> unit
-  val print : ?first:string -> ?last:string -> ?sep:string ->
-    unit IO.output -> t -> unit
-  val ( <@@ ) : t -> bool -> t
+  include module type of Cubic_node(Complex_point)
+  val bezier_curve : t -> t -> Caml2geom.Cubic_bezier.t
 end
 
 module type Node_spline_type =
@@ -229,11 +238,20 @@ end
 
 module Node_spline : Node_spline_type
 
+val node_spline_to_cubic_beziers : Cubic_node_of_complex_point.t Node_spline.t ->
+  Caml2geom.Cubic_bezier.t list
+
 module Node_contour(Node : Node_type) :
 sig
   module Spline : Node_spline_type
+  type t
 
-  include Contour_type
+  val with_closed : bool -> t -> t
+  val closed : t -> bool
+  val print_closed : unit IO.output -> t -> unit
+  val print : ?first:string -> ?last:string -> ?sep:string ->
+    unit IO.output -> t -> unit
+  val ( <@@ ) : t -> bool -> t
 
   val spline : t -> Node.t Spline.t
   val with_spline : Node.t Spline.t -> t -> t
@@ -259,77 +277,111 @@ sig
   val ( <-> ) : t -> Point.t -> t
 end
 
-module Parameterized_cubics(Param : Parameter_type) :
+module Cubic :
+sig
+  include module type of Cubic_contour(Complex_point)
+  val to_path : t -> Caml2geom.Path.t
+  val bounds : ?fast:bool -> t -> Complex_point.t * Complex_point.t
+  val overall_bounds :
+    ?fast:bool ->
+    (Cubic_node_of_complex_point.t Spline.t * bool) Enum.t ->
+    Complex_point.t * Complex_point.t
+  val print_python_contour_code :
+    ?variable:string -> unit BatIO.output -> Node.t Spline.t * bool -> unit
+end
+
+module Parameterized_contour(Param : Parameter_type) :
 sig
   module PComplex : module type of Parameterized_complex(Param)
-  module Contour : module type of Cubic_contour(Complex_point)
-  module PContour : module type of Cubic_contour(PComplex)
+  module PCubic : module type of Cubic_contour(PComplex)
 
-  val parameterize_node : Contour.Node.t -> PContour.Node.t
-  val resolve_node : PContour.Node.t -> Param.t -> Contour.Node.t
+  type t =
+    [
+    | `Parameterized of Param.t -> t
+    | `Cubic of Cubic.t
+    | `PCubic of PCubic.t
+    ]
 
-  val parameterize_spline : Contour.Node.t Contour.Spline.t ->
-    PContour.Node.t PContour.Spline.t
+  val of_parameterized : (Param.t -> t) -> t
+  val of_cubic : Cubic.t -> t
+  val of_pcubic : PCubic.t -> t
 
-  val resolve_spline : PContour.Node.t PContour.Spline.t ->
-    Param.t -> Contour.Node.t Contour.Spline.t
+  val resolve_pcontour_node : PCubic.Node.t -> Param.t -> Cubic.Node.t
+  val resolve_pcontour_spline : PCubic.Node.t PCubic.Spline.t ->
+    Param.t -> Cubic.Node.t Cubic.Spline.t
 
-  val parameterize_contour : Contour.t -> PContour.t
-  val resolve_contour : PContour.t -> Param.t -> Contour.t
+  val resolve : t -> Param.t -> Cubic.t
 
-  val print_python_contour_code : ?variable:string -> unit IO.output ->
-    Contour.t -> unit
+  val bounds2 : ?fast:bool ->
+    ([< `Cubic of Cubic.Node.t Cubic.Spline.t * bool
+     | `PCubic of PCubic.Node.t PCubic.Spline.t * bool
+     | `Parameterized of Param.t -> 'a
+     ] as 'a) ->
+    (Param.t -> Complex_point.t * Complex_point.t)
+
+  val bounds : ?fast:bool ->
+    ([< `Cubic of Cubic.Node.t Cubic.Spline.t * bool
+     | `PCubic of PCubic.Node.t PCubic.Spline.t * bool
+     | `Parameterized of Param.t -> 'a
+     ] as 'a) ->
+    PComplex.t * PComplex.t
+
+  val overall_bounds2 :
+    ?fast:bool ->
+    ([< `Cubic of Cubic_node_of_complex_point.t Cubic.Spline.t * bool
+     | `PCubic of PCubic.Node.t PCubic.Spline.t * bool
+     | `Parameterized of Param.t -> 'a
+     ] as 'a) Enum.t ->
+    (Param.t -> Complex_point.t * Complex_point.t)
+
+  val overall_bounds :
+    ?fast:bool ->
+    ([< `Cubic of Cubic_node_of_complex_point.t Cubic.Spline.t * bool
+     | `PCubic of PCubic.Node.t PCubic.Spline.t * bool
+     | `Parameterized of Param.t -> 'a
+     ] as 'a) Enum.t ->
+    PComplex.t * PComplex.t
 end
 
-module Contour_list :
-sig
-  include module type of List
-end
+val transform_option : ('a -> 'b) -> 'a option -> 'b option
+val transform_pair : ('a -> 'b) -> ('c -> 'd) -> 'a * 'c -> 'b * 'd
 
 module Glyph :
 sig
   type (+'float, +'contour) t = {
     name : string;
     unicode : int option;
-    contours : 'contour Contour_list.t;
+    contours : 'contour list;
     lsb : 'float option;
     rsb : 'float option;
     hints : ('float * 'float) list; (* FIXME: really implement hints. *)
   }
-
   val empty : ('float, 'contour) t
+  val transform : ('float1 -> 'float2) -> ('contour1 -> 'contour2) ->
+    ('float1, 'contour1) t -> ('float2, 'contour2) t
+end
 
-  val name : ('float, 'contour) t -> string
-  val with_name : string -> ('float, 'contour) t -> ('float, 'contour) t
-
-  val has_unicode : ('float, 'contour) t -> bool
-  val unicode : ('float, 'contour) t -> int
-  val with_unicode : int -> ('float, 'contour) t -> ('float, 'contour) t
-  val without_unicode : ('float, 'contour) t -> ('float, 'contour) t
-
-  val contours : ('float, 'contour) t -> 'contour Contour_list.t
-  val with_contours : 'contour2 Contour_list.t -> ('float, 'contour1) t -> ('float, 'contour2) t
-
-  val has_lsb : ('float, 'contour) t -> bool
-  val lsb : ('float, 'contour) t -> 'float
-  val with_lsb : 'float -> ('float, 'contour) t -> ('float, 'contour) t
-  val without_lsb : ('float, 'contour) t -> ('float, 'contour) t
-
-  val has_rsb : ('float, 'contour) t -> bool
-  val rsb : ('float, 'contour) t -> 'float
-  val with_rsb : 'float -> ('float, 'contour) t -> ('float, 'contour) t
-  val without_rsb : ('float, 'contour) t -> ('float, 'contour) t
-
+module Cubic_glyph :
+sig
+  type t = {
+    name : string;
+    unicode : int option;
+    contours : Cubic.t list;
+    lsb : float option;
+    rsb : float option;
+    hints : (float * float) list;
+  }
+  val empty : t
+  val to_glyph : ('a, 'b) Glyph.t -> ('a, 'b) Glyph.t
+  val of_glyph : (float, Cubic.t) Glyph.t -> t
+  val _print_python_glyph_code :
+    glyph_variable:string ->
+    contour_variable:string ->
+    unit BatIO.output -> t -> unit
   val print_python_glyph_code :
     ?font_variable:string ->
     ?glyph_variable:string ->
     ?contour_variable:string ->
-    (unit IO.output -> 'float -> 'a) ->
-    (?variable:string -> unit IO.output -> 'contour -> 'b) ->
-    unit IO.output -> ('float, 'contour) t -> unit
-
-  val print_python_glyph_update_module :
-    (unit IO.output -> 'float -> 'a) ->
-    (?variable:string -> unit IO.output -> 'contour -> 'b) ->
-    unit IO.output -> ('float, 'contour) t -> unit
+    unit BatIO.output -> t -> unit
+  val print_python_glyph_update_module : unit BatIO.output -> t -> unit
 end

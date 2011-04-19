@@ -61,6 +61,13 @@ struct
   let proj a b =
     let b' = dir b in
     of_float (inner a b') * b'
+
+  let min_bound a b = { re = min a.re b.re; im = min a.im b.im }
+  let max_bound a b = { re = max a.re b.re; im = max a.im b.im }
+
+  let round c =
+    let rnd v = floor (v +. 0.5) in
+    { re = rnd c.re; im = rnd c.im }
 end
 
 module type Point_type =
@@ -86,6 +93,7 @@ sig
   val pred : t -> t
   val abs : t -> t
   val dir : t -> t
+  val round : t -> t
   val rot : float -> t
   val x' : float -> t
   val y' : float -> t
@@ -102,6 +110,8 @@ sig
   val modulo : t -> t -> t
   val pow : t -> t -> t
   val proj : t -> t -> t
+  val min_bound : t -> t -> t
+  val max_bound : t -> t -> t
   val inner : t -> t -> float
   val compare : t -> t -> int
   val dpolar : float -> float -> t
@@ -153,6 +163,7 @@ struct
   let pred v = Cx.pred -| v
   let abs v = Cx.abs -| v
   let dir v = Cx.dir -| v
+  let round v = Cx.round -| v
   let rot angle = Cx.rot -| angle
   let x' r = Cx.x' -| r
   let y' r = Cx.y' -| r
@@ -171,6 +182,8 @@ struct
   let modulo v w = fun p -> Cx.modulo (v p) (w p)
   let pow v w = fun p -> Cx.pow (v p) (w p)
   let proj v w = fun p -> Cx.proj (v p) (w p)
+  let min_bound v w = fun p -> Cx.min_bound (v p) (w p)
+  let max_bound v w = fun p -> Cx.max_bound (v p) (w p)
   let inner v w = fun p -> Cx.inner (v p) (w p)
   let compare v w = fun p -> Cx.compare (v p) (w p)
   let dpolar r s = fun p -> Cx.dpolar (r p) (s p)
@@ -194,6 +207,10 @@ end
 module Complex_point =
 struct
   include Extended_complex
+
+  let to_bezier_point pt = Caml2geom.Point.make pt.re pt.im
+  let of_bezier_point bp = { re = Caml2geom.Point.coord bp 0;
+                             im = Caml2geom.Point.coord bp 0 }
 
   let print outp cp =
     let x = cp.re and y = cp.im in
@@ -275,15 +292,16 @@ struct
     output_string outp ")"
 end
 
-module type Contour_type =
-sig
-  type t
-  val with_closed : bool -> t -> t
-  val closed : t -> bool
-  val print_closed : unit IO.output -> t -> unit
-  val print : ?first:string -> ?last:string -> ?sep:string ->
-    unit IO.output -> t -> unit
-  val ( <@@ ) : t -> bool -> t
+module Cubic_node_of_complex_point =
+struct
+  include Cubic_node(Complex_point)
+
+  let bezier_curve node1 node2 =
+    let p0 = Complex_point.to_bezier_point (on_curve node1) in
+    let p1 = Complex_point.to_bezier_point (outhandle node1) in
+    let p2 = Complex_point.to_bezier_point (inhandle node2) in
+    let p3 = Complex_point.to_bezier_point (on_curve node2) in
+    Caml2geom.Cubic_bezier.of_four_points p0 p1 p2 p3
 end
 
 module type Node_spline_type =
@@ -346,6 +364,16 @@ struct
   let t_printer = List.t_printer
 end
 
+let node_spline_to_cubic_beziers spline =
+  let rec make_curves node_list =
+    match node_list with
+      | [] | [_] -> []
+      | node1 :: node2 :: remaining ->
+        Cubic_node_of_complex_point.bezier_curve node1 node2 ::
+          make_curves (node2 :: remaining)
+  in
+  make_curves (Node_spline.to_list spline)
+
 module Node_contour(Node : Node_type) =
 struct
   module Spline = Node_spline
@@ -401,42 +429,58 @@ struct
   let ( <-> ) contour pt = apply_node_op contour (Node.apply (Point.sub pt))
 end
 
-module Parameterized_cubics(Param : Parameter_type) =
+module Cubic =
 struct
-  module PComplex = Parameterized_complex(Param)
-  module Contour = Cubic_contour(Complex_point)
-  module PContour = Cubic_contour(PComplex)
+  include Cubic_contour(Complex_point)
 
-  let parameterize_node node =
-    PContour.Node.make_node
-      (const (Contour.Node.rel_inhandle node))
-      (const (Contour.Node.on_curve node))
-      (const (Contour.Node.rel_outhandle node))
+  let to_path contour =
+    let spline' = spline contour in
+    let curve_list = node_spline_to_cubic_beziers spline' in
+    let first_node = Spline.first spline' in
+    let first_point = Node.on_curve first_node in
+    let path = Caml2geom.Path.make (Complex_point.to_bezier_point first_point) in
+    List.iter
+      (Caml2geom.Path.append_curve path -| Caml2geom.Cubic_bezier.to_curve)
+      curve_list;
+    Caml2geom.Path.close path (closed contour);
+    path
 
-  let resolve_node pnode param =
-    Contour.Node.make_node
-      ((PContour.Node.rel_inhandle pnode) param)
-      ((PContour.Node.on_curve pnode) param)
-      ((PContour.Node.rel_outhandle pnode) param)
+  let bounds ?(fast = false) contour =
+    let bounds_func =
+      if fast then
+        Caml2geom.Path.bounds_fast
+      else
+        Caml2geom.Path.bounds_exact
+    in
+    let opt_rect = bounds_func (to_path contour) in
+    match opt_rect with
+      | None -> (Complex_point.zero, Complex_point.zero)
+      | Some rect -> Complex_point.(of_bezier_point (Caml2geom.Rect.min rect),
+                                    of_bezier_point (Caml2geom.Rect.max rect))
 
-  let parameterize_spline = Contour.Spline.map parameterize_node
-  let resolve_spline spline param = PContour.Spline.map (flip resolve_node param) spline
-
-  let parameterize_contour contour =
-    Contour.with_spline (parameterize_spline (Contour.spline contour)) contour
-
-  let resolve_contour contour param =
-    PContour.with_spline (resolve_spline (PContour.spline contour) param) contour
+  let overall_bounds ?(fast = false) contour_enum =
+    if Enum.is_empty contour_enum then
+      raise Not_found
+    else
+      let most_positive = Complex_point.({ re = infinity; im = infinity }) in
+      let most_negative = Complex_point.({ re = neg_infinity; im = neg_infinity }) in
+      fold
+        (fun (current_min, current_max) contour ->
+          let (this_min, this_max) = bounds ~fast contour in
+          Complex_point.(min_bound current_min this_min,
+                         max_bound current_max this_max))
+        (most_positive, most_negative)
+        contour_enum
 
   let print_python_contour_code ?variable outp contour =
-    let point_list = Contour.to_point_bool_list contour in
+    let point_list = to_point_bool_list contour in
     let point_list = (List.tl point_list) @ [List.hd point_list] in
     match variable with
       | None ->
         (* This branch doesn't set the closedness. *)
         output_string outp "(fontforge.contour()";
         List.iter
-          Complex.(fun (pt, on_curve) ->
+          Complex_point.(fun (pt, on_curve) ->
             let oc_string = if on_curve then "True" else "False" in
             Print.fprintf outp p"+fontforge.point(%f,%f,%s)" pt.re pt.im oc_string
           )
@@ -446,7 +490,7 @@ struct
       | Some var_name ->
         Print.fprintf outp p"%s = fontforge.contour()\n" var_name;
         List.iter
-          Complex.(fun (pt, on_curve) ->
+          Complex_point.(fun (pt, on_curve) ->
             if on_curve then
               Print.fprintf outp p"%s += fontforge.point(%f,%f)\n" var_name pt.re pt.im
             else
@@ -454,23 +498,70 @@ struct
           )
           point_list;
         Print.fprintf outp p"%s.closed = %s\n" var_name
-          (if Contour.closed contour then "True" else "False")
+          (if closed contour then "True" else "False")
 end
 
-module Contour_list =
+module Parameterized_contour(Param : Parameter_type) =
 struct
-  include List
+  module PComplex = Parameterized_complex(Param)
+  module PCubic = Cubic_contour(PComplex)
 
-(* Here may go functions for intersection-related operations such as
-   "overlay" and "punch". *)
+  type t =
+    [
+    | `Parameterized of Param.t -> t
+    | `Cubic of Cubic.t
+    | `PCubic of PCubic.t
+    ]
+
+  let of_parameterized c = `Parameterized c
+  let of_cubic c = `Cubic c
+  let of_pcubic c = `PCubic c
+
+  let resolve_pcontour_node pnode param =
+    Cubic.Node.make_node
+      ((PCubic.Node.rel_inhandle pnode) param)
+      ((PCubic.Node.on_curve pnode) param)
+      ((PCubic.Node.rel_outhandle pnode) param)
+
+  let resolve_pcontour_spline spline param =
+    PCubic.Spline.map (flip resolve_pcontour_node param) spline
+
+  let rec resolve contour param =
+    (* Resolve to a de-parameterized cubic bezier contour. *)
+    match contour with
+      | `Parameterized c -> resolve (c param) param
+      | `Cubic c -> c
+      | `PCubic c ->
+        PCubic.with_spline (resolve_pcontour_spline (PCubic.spline c) param) c
+
+  let bounds2 ?(fast = false) contour =
+    fun p -> Cubic.bounds ~fast (resolve contour p)
+
+  let bounds ?(fast = false) contour =
+    let b = bounds2 ~fast contour in
+    ((fun p -> fst (b p)), (fun p -> snd (b p)))
+
+  let overall_bounds2 ?(fast = false) contour_enum =
+    fun p -> Cubic.overall_bounds ~fast (map (flip resolve p) contour_enum)
+
+  let overall_bounds ?(fast = false) contour_enum =
+    let ob = overall_bounds2 ~fast contour_enum in
+    ((fun p -> fst (ob p)), (fun p -> snd (ob p)))
 end
+
+let transform_option trans opt =
+  match opt with
+    | None -> None
+    | Some v -> Some (trans v)
+
+let transform_pair trans1 trans2 (a,b) = (trans1 a, trans2 b)
 
 module Glyph =
 struct
   type (+'float, +'contour) t = {
     name : string;
     unicode : int option;
-    contours : 'contour Contour_list.t;
+    contours : 'contour list;
     lsb : 'float option;
     rsb : 'float option;
     hints : ('float * 'float) list; (* FIXME: really implement hints. *)
@@ -485,52 +576,81 @@ struct
     hints = [];
   }
 
-  let name glyph = glyph.name
-  let with_name name glyph = { glyph with name }
+  let transform float_transformation contour_transformation glyph = {
+    glyph with
+      contours = List.map contour_transformation glyph.contours;
+      lsb = transform_option float_transformation glyph.lsb;
+      rsb = transform_option float_transformation glyph.rsb;
+      hints = List.map (transform_pair float_transformation float_transformation) glyph.hints;
+  }
+end
 
-  let has_unicode glyph = Option.is_some glyph.unicode
-  let unicode glyph = Option.get glyph.unicode
-  let with_unicode unicode glyph = { glyph with unicode = Some unicode }
-  let without_unicode glyph = { glyph with unicode = None }
+module Cubic_glyph =
+struct
+  type t = {
+    name : string;
+    unicode : int option;
+    contours : Cubic.t list;
+    lsb : float option;
+    rsb : float option;
+    hints : (float * float) list; (* FIXME: really implement hints. *)
+  }
 
-  let contours glyph = glyph.contours
-  let with_contours contours glyph = { glyph with contours }
+  let to_glyph cg =
+    Glyph.({
+      name = cg.name;
+      unicode = cg.unicode;
+      contours = cg.contours;
+      lsb = cg.lsb;
+      rsb = cg.rsb;
+      hints = cg.hints;
+    })
 
-  let has_lsb glyph = Option.is_some glyph.lsb
-  let lsb glyph = Option.get glyph.lsb
-  let with_lsb lsb glyph = { glyph with lsb = Some lsb }
-  let without_lsb glyph = { glyph with lsb = None }
+  let of_glyph g = {
+    name = g.Glyph.name;
+    unicode = g.Glyph.unicode;
+    contours = g.Glyph.contours;
+    lsb = g.Glyph.lsb;
+    rsb = g.Glyph.rsb;
+    hints = g.Glyph.hints;
+  }
 
-  let has_rsb glyph = Option.is_some glyph.rsb
-  let rsb glyph = Option.get glyph.rsb
-  let with_rsb rsb glyph = { glyph with rsb = Some rsb }
-  let without_rsb glyph = { glyph with rsb = None }
+  let empty = of_glyph Glyph.empty
 
   let _print_python_glyph_code
       ~glyph_variable
       ~contour_variable
-      print_float
-      print_python_contour_code
       outp glyph =
     Print.fprintf outp p"%s.foreground = fontforge.layer()\n" glyph_variable;
-    Contour_list.iter
+    List.iter
       (fun contour ->
-        print_python_contour_code ?variable:(Some contour_variable) outp contour;
+        Cubic.print_python_contour_code ?variable:(Some contour_variable) outp contour;
         Print.fprintf outp p"%s.foreground += %s\n" glyph_variable contour_variable)
       glyph.contours;
-    if Option.is_some glyph.lsb then
+    if Option.is_some glyph.lsb || Option.is_some glyph.rsb then
       begin
-        Print.fprintf outp p"%s.transform(psMat.translate(" glyph_variable;
-        print_float outp (Option.get glyph.lsb);
-        output_string outp ",0))\n";
-      end;
-    if Option.is_some glyph.rsb then
-      begin
-        Print.fprintf outp p"%s.right_side_bearing = " glyph_variable; (* FIXME: Setting the width,
-                                                                          given max x, might give
-                                                                          more control. *)
-        print_float outp (Option.get glyph.rsb);
-        output_string outp "\n";
+        if glyph.contours = [] then
+          (* A space character. Treat rsb as advance width. *)
+          if Option.is_some glyph.rsb then
+            Print.fprintf outp p"%s.width = %F\n" glyph_variable (Option.get glyph.rsb)
+          else
+            ()
+        else
+          let (min_pt, max_pt) = Cubic.overall_bounds (List.enum glyph.contours) in
+          if Option.is_some glyph.lsb then
+            begin
+              Print.fprintf outp p"%s.transform(psMat.translate(" glyph_variable;
+              Float.print outp (Option.get glyph.lsb);
+              output_string outp ",0))\n";
+            end;
+          if Option.is_some glyph.rsb then
+            begin
+              Print.fprintf outp p"%s.right_side_bearing = " glyph_variable; (* FIXME: Setting the width,
+                                                                                given max x, might give
+                                                                                more control. *)
+            end;
+          Float.print outp (Option.get glyph.rsb);
+          output_string outp "\n";
       end;
     Print.fprintf outp p"%s.canonicalContours()\n" glyph_variable;
     Print.fprintf outp p"%s.canonicalStart()\n" glyph_variable
@@ -539,8 +659,6 @@ struct
       ?(font_variable = "my_font")
       ?(glyph_variable = "my_glyph")
       ?(contour_variable = "my_contour")
-      print_float
-      print_python_contour_code
       outp glyph =
     begin
       match glyph.unicode with
@@ -557,13 +675,14 @@ struct
     _print_python_glyph_code
       ~glyph_variable:glyph_variable
       ~contour_variable:contour_variable
-      print_float print_python_contour_code outp glyph
+      outp glyph
 
-  let print_python_glyph_update_module print_float print_python_contour_code outp glyph =
+  let print_python_glyph_update_module outp glyph =
     output_string outp "import fontforge\n";
+    output_string outp "import psMat\n";
     output_string outp "my_glyph = fontforge.activeGlyph()\n";
     _print_python_glyph_code
       ~glyph_variable:"my_glyph"
       ~contour_variable:"my_contour"
-      print_float print_python_contour_code outp glyph
+      outp glyph
 end
