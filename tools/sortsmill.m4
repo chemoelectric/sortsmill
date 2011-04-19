@@ -288,6 +288,39 @@ AC_SUBST([ocaml_rules],['
 ])
 ])
 
+# STM_ENABLE_OCAML
+# ----------------
+AC_DEFUN([STM_ENABLE_OCAMLOPT],
+[AC_ARG_ENABLE(ocamlopt,
+        [AS_HELP_STRING([--enable-ocamlopt],
+                        [use ocamlopt instead of ocamlc])],
+        [ocamlopt=${enableval}],
+        [ocamlopt=no])
+AM_CONDITIONAL([USE_OCAMLOPT], [test x"${ocamlopt}" = xyes])
+])
+
+# STM_CHECK_OCAML_BATTERIES
+# -------------------------
+AC_DEFUN([STM_CHECK_OCAML_BATTERIES],
+[AC_MSG_CHECKING([for the OCaml Batteries module])
+if ${OCAMLFIND} query batteries 1>/dev/null 2>/dev/null ; then
+   AC_MSG_RESULT([yes])
+else
+   AC_MSG_RESULT([no])
+   AC_MSG_ERROR([I need OCaml Batteries. Giving up.])
+fi])
+
+# STM_CHECK_OCAML_SORTSMILL
+# -------------------------
+AC_DEFUN([STM_CHECK_OCAML_SORTSMILL],
+[AC_MSG_CHECKING([for the Sorts Mill OCaml module])
+if ${OCAMLFIND} query sortsmill 1>/dev/null 2>/dev/null ; then
+   AC_MSG_RESULT([yes])
+else
+   AC_MSG_RESULT([no])
+   AC_MSG_ERROR([I need the Sorts Mill OCaml module. Giving up.])
+fi])
+
 # STM_TARGET_MIT_BINPACK
 # ----------------------
 AC_DEFUN([STM_TARGET_MIT_BINPACK],[

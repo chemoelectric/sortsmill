@@ -25,6 +25,23 @@ open Caslon_roman
 open Param
 
 let param = {
+  version = "0.1";
+
+  fontname = "CaslonStM";
+  familyname = "Sorts Mill Caslon";
+  fullname = "Sorts Mill Caslon";
+  weight = "Regular";
+
+  family = "Sorts Mill Caslon";
+  subfamily = "Regular";
+  preferred_family = None;
+  preferred_subfamily = None;
+  wws_family = None;
+  wws_subfamily = None;
+
+  os2_weight = 400;
+
+  design_size = 12.;
   space_width = 200.;
   x_height = 399.;
   curve_overshoot = 10.;

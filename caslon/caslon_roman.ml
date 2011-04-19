@@ -31,6 +31,23 @@ open Fontdesign
 module Param =
 struct
   type t = {
+    version : string;
+
+    fontname : string;
+    familyname : string;
+    fullname : string;
+    weight : string;
+
+    family : string;
+    subfamily : string;
+    preferred_family : string option;
+    preferred_subfamily : string option;
+    wws_family : string option;
+    wws_subfamily : string option;
+
+    os2_weight : int;
+
+    design_size : float;
     space_width : float;
     x_height : float;
     curve_overshoot : float;
@@ -39,16 +56,17 @@ struct
   }
 end
 
+module Contour = Parameterized_contour(Param)
+open Contour
 open Param
-module PC = Parameterized_cubics(Param)
-open PC
 
 (*-----------------------------------------------------------------------*)
 
 let glyph_table = ref PMap.empty
 
 let resolve_glyph glyph param =
-  Glyph.transform (fun r -> r param) (flip resolve_contour param) glyph
+  Cubic_glyph.of_glyph
+    (Glyph.transform (fun r -> r param) (flip Contour.resolve param) glyph)
 
 let add_glyph glyph = glyph_table := Glyph.(PMap.add glyph.name glyph !glyph_table)
 let have_glyph name = PMap.mem name !glyph_table
@@ -60,69 +78,76 @@ let enum_resolve_glyphs param = map (flip resolve_glyph param) (enum_glyphs ())
 
 (*-----------------------------------------------------------------------*)
 
+let letter_o_contours = 
+  let width = 383. in
+  let outer_contour =
+    PCubic.(Node.(PComplex.(
+      of_node_list [
+        make_up
+          (y'(fun p -> 0.50 *. p.x_height))
+          (x'(fun p -> 0.29 *. p.x_height))
+          (x'(fun p -> 0.34 *. p.x_height));
+        make_right
+          (x'(fun _ -> 0.50 *. width) + y'(fun p -> p.x_height +. p.curve_overshoot))
+          (x'(fun _ -> 0.22 *. width))
+          (x'(fun _ -> 0.28 *. width));
+        make_down
+          (x'(const width) + y'(fun p -> 0.5 *. p.x_height))
+          (x'(fun p -> 0.28 *. p.x_height))
+          (x'(fun p -> 0.30 *. p.x_height));
+        make_left
+          (x'(fun _ -> 0.49 *. width) + y'(fun p -> -. p.curve_overshoot))
+          (x'(fun _ -> 0.29 *. width))
+          (x'(fun _ -> 0.30 *. width));
+      ] <@@ true <.> round
+    )))
+  in
+  let inner_contour =
+    let left = (fun p -> 1.16 *. p.lc_stem_width) in
+    let right = (fun p -> 1.16 *. p.lc_stem_width) in
+    let bottom = (fun p -> 0.58 *. p.lc_stem_width) in
+    let top = (fun p -> 0.54 *. p.lc_stem_width) in
+    PCubic.(Node.(PComplex.(
+      of_node_list [
+        make_down
+          (x' left + y'(fun p -> 0.52 *. p.x_height))
+          (x'(fun p -> 0.23 *. p.x_height))
+          (x'(fun p -> 0.32 *. p.x_height));
+        make_right
+          (x'(fun _ -> 0.49 *. width) + y'(fun p -> -. p.curve_overshoot) + y' bottom)
+          (x'(fun _ -> 0.16 *. width))
+          (x'(fun _ -> 0.14 *. width));
+        make_up
+          (x'(fun _ -> width) - x' right + y'(fun p -> 0.48 *. p.x_height))
+          (x'(fun p -> 0.30 *. p.x_height))
+          (x'(fun p -> 0.25 *. p.x_height));
+        make_left
+          (x'(fun _ -> 0.48 *. width) + y'(fun p -> p.x_height +. p.curve_overshoot) - y' top)
+          (x'(fun _ -> 0.22 *. width))
+          (x'(fun _ -> 0.19 *. width));
+      ] <@@ true <.> round
+    )))
+  in
+  [outer_contour;(* inner_contour *)]
+;;
+
+(*-----------------------------------------------------------------------*)
+
 (* Space character *)
 add_glyph Glyph.({
   empty with
     name = "space";
-    lsb = Some (const 0.);
     rsb = Some (fun p -> p.space_width);
 })
 ;;
 
 (* Letter "o" *)
-let width = 383. in
-let outer_contour =
-  PContour.(Node.(PComplex.(
-    of_node_list [
-      make_up
-        (y'(fun p -> 0.50 *. p.x_height))
-        (x'(fun p -> 0.29 *. p.x_height))
-        (x'(fun p -> 0.34 *. p.x_height));
-      make_right
-        (x'(fun _ -> 0.50 *. width) + y'(fun p -> p.x_height +. p.curve_overshoot))
-        (x'(fun _ -> 0.22 *. width))
-        (x'(fun _ -> 0.28 *. width));
-      make_down
-        (x'(const width) + y'(fun p -> 0.5 *. p.x_height))
-        (x'(fun p -> 0.28 *. p.x_height))
-        (x'(fun p -> 0.30 *. p.x_height));
-      make_left
-        (x'(fun _ -> 0.49 *. width) + y'(fun p -> -. p.curve_overshoot))
-        (x'(fun _ -> 0.29 *. width))
-        (x'(fun _ -> 0.30 *. width));
-    ] <@@ true <.> round
-  )))
-in
-let inner_contour =
-  let left = (fun p -> 1.16 *. p.lc_stem_width) in
-  let right = (fun p -> 1.16 *. p.lc_stem_width) in
-  let bottom = (fun p -> 0.58 *. p.lc_stem_width) in
-  let top = (fun p -> 0.54 *. p.lc_stem_width) in
-  PContour.(Node.(PComplex.(
-    of_node_list [
-      make_down
-        (x' left + y'(fun p -> 0.52 *. p.x_height))
-        (x'(fun p -> 0.23 *. p.x_height))
-        (x'(fun p -> 0.32 *. p.x_height));
-      make_right
-        (x'(fun _ -> 0.49 *. width) + y'(fun p -> -. p.curve_overshoot) + y' bottom)
-        (x'(fun _ -> 0.16 *. width))
-        (x'(fun _ -> 0.14 *. width));
-      make_up
-        (x'(fun _ -> width) - x' right + y'(fun p -> 0.48 *. p.x_height))
-        (x'(fun p -> 0.30 *. p.x_height))
-        (x'(fun p -> 0.25 *. p.x_height));
-      make_left
-        (x'(fun _ -> 0.48 *. width) + y'(fun p -> p.x_height +. p.curve_overshoot) - y' top)
-        (x'(fun _ -> 0.22 *. width))
-        (x'(fun _ -> 0.19 *. width));
-    ] <@@ true <.> round
-  )))
-in
 add_glyph Glyph.({
   empty with
     name = "o";
-    contours = [outer_contour; inner_contour];
+    contours = List.map of_pcubic letter_o_contours;
+    lsb = Some (const 25.);
+    rsb = Some (const 35.);
 })
 ;;
 
@@ -149,17 +174,29 @@ let run_command param =
       print_endline "";
       print_endline "my_font = fontforge.font()";
       print_endline "";
-      print_endline "my_font.version = '0.1'";
-      print_endline "my_font.fontname = 'CaslonStM'";
-      print_endline "my_font.familyname = 'Sorts Mill Caslon'";
-      print_endline "my_font.fullname = 'Sorts Mill Caslon'";
-      print_endline "my_font.weight = 'Regular'";
-      print_endline "my_font.appendSFNTName('English (US)', 'Family', 'Sorts Mill Caslon')";
-      print_endline "my_font.appendSFNTName('English (US)', 'SubFamily', 'Regular')";
+      Print.printf p"my_font.version = '%s'\n" param.version;
+      Print.printf p"my_font.fontname = '%s'\n" param.fontname;
+      Print.printf p"my_font.familyname = '%s'\n" param.familyname;
+      Print.printf p"my_font.fullname = '%s'\n" param.fullname;
+      Print.printf p"my_font.weight = '%s'\n" param.weight;
+      Print.printf p"my_font.appendSFNTName('English (US)', 'Family', '%s')\n" param.family;
+      Print.printf p"my_font.appendSFNTName('English (US)', 'SubFamily', '%s')\n" param.subfamily;
+      if Option.is_some param.preferred_family then
+        Print.printf p"my_font.appendSFNTName('English (US)', 'Preferred Family', '%s')\n"
+          (Option.get param.preferred_family);
+      if Option.is_some param.preferred_subfamily then
+        Print.printf p"my_font.appendSFNTName('English (US)', 'Preferred Styles', '%s')\n"
+          (Option.get param.preferred_subfamily);
+      if Option.is_some param.wws_family then
+        Print.printf p"my_font.appendSFNTName('English (US)', 'WWS Family', '%s')\n"
+          (Option.get param.wws_family);
+      if Option.is_some param.wws_subfamily then
+        Print.printf p"my_font.appendSFNTName('English (US)', 'WWS Subfamily', '%s')\n"
+          (Option.get param.wws_subfamily);
       print_endline "";
-      print_endline "my_font.size_feature = (12,)";
+      Print.printf p"my_font.size_feature = (%F,)\n" param.design_size;
       print_endline "";
-      print_endline "my_font.os2_weight = 400";
+      Print.printf p"my_font.os2_weight = %i\n" param.os2_weight;
       print_endline "";
       print_endline "def preferred_unicode(glyphname):";
       print_endline "    if '_' in glyphname:";
@@ -169,17 +206,15 @@ let run_command param =
       print_endline "    return uni";
       print_endline "";
 
-(*
-      Enum.iter
-        (Glyph.print_python_glyph_code Float.print Contour.print_python_contour_code stdout)
-        (Hashtbl.values glyphs);
-*)
+      iter
+        (Cubic_glyph.print_python_glyph_code stdout)
+        (enum_resolve_glyphs param);
 
       print_endline "";
       print_endline "my_font.encoding = 'UnicodeBMP'";
       print_endline "";
       if Option.is_some (Opt.opt sfd_opt) then
-        Print.printf p"my_font.save('%s')" (Option.get (Opt.opt sfd_opt));
+        Print.printf p"my_font.save('%s')\n" (Option.get (Opt.opt sfd_opt));
       if Option.is_some (Opt.opt font_opt) then
         if Option.is_some (Opt.opt font_flags_opt) then
           Print.printf p"my_font.generate('%s', flags=[%s])\n"
@@ -192,8 +227,6 @@ let run_command param =
     | Some glyph_name ->
       if have_glyph glyph_name then
         let glyph = get_resolve_glyph glyph_name param in
-        Glyph.print_python_glyph_update_module
-          Float.print print_python_contour_code
-          stdout glyph
+        Cubic_glyph.print_python_glyph_update_module stdout glyph
 
 (*-----------------------------------------------------------------------*)
