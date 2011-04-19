@@ -128,7 +128,7 @@ let letter_o_contours =
       ] <@@ true <.> round
     )))
   in
-  [outer_contour;(* inner_contour *)]
+  [outer_contour; inner_contour]
 ;;
 
 (*-----------------------------------------------------------------------*)

@@ -205,6 +205,7 @@ module Cubic_node_of_complex_point :
 sig
   include module type of Cubic_node(Complex_point)
   val bezier_curve : t -> t -> Caml2geom.Cubic_bezier.t
+  val bounds : ?fast:bool -> t -> t -> Complex_point.t * Complex_point.t
 end
 
 module type Node_spline_type =
@@ -238,8 +239,9 @@ end
 
 module Node_spline : Node_spline_type
 
-val node_spline_to_cubic_beziers : Cubic_node_of_complex_point.t Node_spline.t ->
-  Caml2geom.Cubic_bezier.t list
+val node_spline_to_cubic_beziers :
+  Cubic_node_of_complex_point.t Node_spline.t ->
+  bool -> Caml2geom.Cubic_bezier.t list
 
 module Node_contour(Node : Node_type) :
 sig
@@ -280,6 +282,7 @@ end
 module Cubic :
 sig
   include module type of Cubic_contour(Complex_point)
+  val to_cubic_beziers : t -> Caml2geom.Cubic_bezier.t list
   val to_path : t -> Caml2geom.Path.t
   val bounds : ?fast:bool -> t -> Complex_point.t * Complex_point.t
   val overall_bounds :

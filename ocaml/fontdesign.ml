@@ -210,7 +210,7 @@ struct
 
   let to_bezier_point pt = Caml2geom.Point.make pt.re pt.im
   let of_bezier_point bp = { re = Caml2geom.Point.coord bp 0;
-                             im = Caml2geom.Point.coord bp 0 }
+                             im = Caml2geom.Point.coord bp 1 }
 
   let print outp cp =
     let x = cp.re and y = cp.im in
@@ -302,6 +302,18 @@ struct
     let p2 = Complex_point.to_bezier_point (inhandle node2) in
     let p3 = Complex_point.to_bezier_point (on_curve node2) in
     Caml2geom.Cubic_bezier.of_four_points p0 p1 p2 p3
+
+  let bounds ?(fast = false) node1 node2 =
+    let bounds_func =
+      if fast then
+        Caml2geom.Cubic_bezier.bounds_fast
+      else
+        Caml2geom.Cubic_bezier.bounds_exact
+    in
+    let bez = bezier_curve node1 node2 in
+    let rect = bounds_func bez in
+    Complex_point.(of_bezier_point (Caml2geom.Rect.min rect),
+                   of_bezier_point (Caml2geom.Rect.max rect))
 end
 
 module type Node_spline_type =
@@ -364,7 +376,7 @@ struct
   let t_printer = List.t_printer
 end
 
-let node_spline_to_cubic_beziers spline =
+let node_spline_to_cubic_beziers spline is_closed =
   let rec make_curves node_list =
     match node_list with
       | [] | [_] -> []
@@ -372,7 +384,11 @@ let node_spline_to_cubic_beziers spline =
         Cubic_node_of_complex_point.bezier_curve node1 node2 ::
           make_curves (node2 :: remaining)
   in
-  make_curves (Node_spline.to_list spline)
+  let node_list = Node_spline.to_list spline in
+  if is_closed then
+    make_curves (node_list @ [List.hd node_list])
+  else
+    make_curves node_list
 
 module Node_contour(Node : Node_type) =
 struct
@@ -433,30 +449,43 @@ module Cubic =
 struct
   include Cubic_contour(Complex_point)
 
+  let to_cubic_beziers contour =
+    node_spline_to_cubic_beziers (spline contour) (closed contour)
+
   let to_path contour =
-    let spline' = spline contour in
-    let curve_list = node_spline_to_cubic_beziers spline' in
-    let first_node = Spline.first spline' in
+    let curve_list = to_cubic_beziers contour in
+    let first_node = Spline.first (spline contour) in
     let first_point = Node.on_curve first_node in
     let path = Caml2geom.Path.make (Complex_point.to_bezier_point first_point) in
     List.iter
-      (Caml2geom.Path.append_curve path -| Caml2geom.Cubic_bezier.to_curve)
+      (Caml2geom.Path.append_curve ~stitch:Caml2geom.Path.NO_STITCHING path -|
+          Caml2geom.Cubic_bezier.to_curve)
       curve_list;
     Caml2geom.Path.close path (closed contour);
     path
 
   let bounds ?(fast = false) contour =
-    let bounds_func =
-      if fast then
-        Caml2geom.Path.bounds_fast
-      else
-        Caml2geom.Path.bounds_exact
+    let most_positive = Complex_point.({ re = infinity; im = infinity }) in
+    let most_negative = Complex_point.({ re = neg_infinity; im = neg_infinity }) in
+    let rec get_bounds node_list =
+      match node_list with
+        | [] | [_] -> []
+        | node1 :: node2 :: remaining ->
+          Cubic_node_of_complex_point.bounds ~fast node1 node2 ::
+            get_bounds (node2 :: remaining)
     in
-    let opt_rect = bounds_func (to_path contour) in
-    match opt_rect with
-      | None -> (Complex_point.zero, Complex_point.zero)
-      | Some rect -> Complex_point.(of_bezier_point (Caml2geom.Rect.min rect),
-                                    of_bezier_point (Caml2geom.Rect.max rect))
+    let node_list = Node_spline.to_list (spline contour) in
+    let bounds_list =
+      if closed contour then
+        get_bounds (node_list @ [List.hd node_list])
+      else
+        get_bounds node_list
+    in
+    List.fold_left
+      (fun (min1, max1) (min2, max2) -> Complex_point.(min_bound min1 min2,
+                                                       max_bound max1 max2))
+      (most_positive, most_negative)
+      bounds_list
 
   let overall_bounds ?(fast = false) contour_enum =
     if Enum.is_empty contour_enum then
@@ -636,21 +665,21 @@ struct
           else
             ()
         else
-          let (min_pt, max_pt) = Cubic.overall_bounds (List.enum glyph.contours) in
-          if Option.is_some glyph.lsb then
-            begin
-              Print.fprintf outp p"%s.transform(psMat.translate(" glyph_variable;
-              Float.print outp (Option.get glyph.lsb);
-              output_string outp ",0))\n";
-            end;
+          let (min_pt, max_pt) = Cubic.overall_bounds ~fast:false (List.enum glyph.contours) in
+
+          let x_shift =
+            if Option.is_some glyph.lsb then
+              Option.get glyph.lsb -. min_pt.Complex_point.re
+            else
+              0.
+          in
+          if x_shift <> 0. then
+            Print.fprintf outp p"%s.transform(psMat.translate(%F,0))\n" glyph_variable x_shift;
+
           if Option.is_some glyph.rsb then
-            begin
-              Print.fprintf outp p"%s.right_side_bearing = " glyph_variable; (* FIXME: Setting the width,
-                                                                                given max x, might give
-                                                                                more control. *)
-            end;
-          Float.print outp (Option.get glyph.rsb);
-          output_string outp "\n";
+            Print.fprintf outp p"%s.width = %F\n"
+              glyph_variable
+              (floor (x_shift +. Option.get glyph.rsb +. max_pt.Complex_point.re +. 0.5));
       end;
     Print.fprintf outp p"%s.canonicalContours()\n" glyph_variable;
     Print.fprintf outp p"%s.canonicalStart()\n" glyph_variable
