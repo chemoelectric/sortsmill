@@ -357,7 +357,7 @@ struct
     let bez = bezier_curve node1 node2 in
     let (bez1, bez2) = Caml2geom.Cubic_bezier.subdivide bez time in
     let (_a0, a1, a2, a3) = bezier_curve_to_four_points bez1 in
-    let (_b0, b1, b2, b3) = bezier_curve_to_four_points bez1 in
+    let (_b0, b1, b2, b3) = bezier_curve_to_four_points bez2 in
     let n1 = { ih = node1.ih; oc = node1.oc; oh = a1 } in
     let n2 = { ih = a2; oc = a3; oh = b1 } in
     let n3 = { ih = b2; oc = node2.oc; oh = node2.oh } in
