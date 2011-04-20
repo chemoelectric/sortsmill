@@ -391,6 +391,11 @@ sig
   val take : int -> 'node t -> 'node t
   val drop : int -> 'node t -> 'node t
 
+  val is_empty : 'node t -> bool
+  val append_node : 'node t -> 'node -> 'node t
+  val prepend_node : 'node -> 'node t -> 'node t
+  val of_node : 'node -> 'node t
+
   val print : ?first:string -> ?last:string -> ?sep:string ->
     ('a IO.output -> 'node -> unit) -> 'a IO.output -> 'node t -> unit
   val t_printer : 'node Value_printer.t -> 'node t Value_printer.t
@@ -425,6 +430,11 @@ struct
   let split_at = List.split_at
   let take = List.take
   let drop = List.drop
+
+  let is_empty spline = spline = []
+  let append_node spline node = spline @ [node]
+  let prepend_node node spline = node :: spline
+  let of_node node = [node]
 
   let print = List.print
   let t_printer = List.t_printer
@@ -603,6 +613,34 @@ struct
                          max_bound current_max this_max))
         (most_positive, most_negative)
         contour_enum
+
+  let subdivide contour time =
+    let time_error () =
+      invalid_arg "time out of range"
+    in
+    if time < 0. then
+      time_error ();
+    let rec subdiv node_list time =
+      match node_list with
+        | [] -> time_error ()
+        | [node] when time = 0. ->
+          ([node], [node])
+        | node1 :: node2 :: remaining when time < 1. ->
+          let (n1, n2, n3) = Extended_node.subdivide node1 node2 time in
+          ([n1; n2], n2 :: n3 :: remaining)
+        | node :: remaining ->
+          let (node_list1, node_list2) = subdiv remaining (time -. 1.) in
+          (node :: node_list1, node_list2)
+    in
+    let spline =
+      let sp = spline contour in
+      if closed contour then
+        Node_spline.append_node sp (Node_spline.first sp)
+      else
+        sp
+    in
+    let (sp1, sp2) = subdiv (Node_spline.to_list spline) time in
+    ((Node_spline.of_list sp1, false), (Node_spline.of_list sp2, false))
 
   let print_python_contour_code ?variable outp contour =
     let point_list = to_point_bool_list contour in

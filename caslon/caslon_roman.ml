@@ -131,7 +131,6 @@ let letter_o_contours =
   [outer_contour; inner_contour]
 ;;
 
-(*
 let c = Cubic.(Node.(Complex_point.(
   let width = 383. in
   let height = 399. in
@@ -157,6 +156,9 @@ let c = Cubic.(Node.(Complex_point.(
 )))
 ;;
 Print.fprintf stderr p"%{Cubic.t}\n" c ;;
+let (c2,c3) = Cubic.subdivide c 0.0 ;;
+Print.fprintf stderr p"%{Cubic.t}\n%{Cubic.t}\n" c2 c3 ;;
+(*
 let c' = Cubic.of_path ~closed:(Cubic.closed c)
   ~rel_inhandle:(Complex_point.(y'(-119.)))
   ~rel_outhandle:(Complex_point.(x'(-115.)))
@@ -170,7 +172,9 @@ let (n1,n2) = Cubic.Node.(Complex_point.(
   (n1,n2)
 ))
 ;;
-let (m1,m2,m3) = Cubic_node_of_complex_point.subdivide n1 n2 0.5 ;;
+*)
+(*
+let (m1,m2,m3) = Cubic.Extended_node.subdivide n1 n2 0. ;;
 Print.fprintf stderr p"n1 = %{Cubic.Node.t}\n" n1 ;;
 Print.fprintf stderr p"n2 = %{Cubic.Node.t}\n" n2 ;;
 Print.fprintf stderr p"m1 = %{Cubic.Node.t}\n" m1 ;;

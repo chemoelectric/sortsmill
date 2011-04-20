@@ -246,6 +246,11 @@ sig
   val take : int -> 'node t -> 'node t
   val drop : int -> 'node t -> 'node t
 
+  val is_empty : 'node t -> bool
+  val append_node : 'node t -> 'node -> 'node t
+  val prepend_node : 'node -> 'node t -> 'node t
+  val of_node : 'node -> 'node t
+
   val print : ?first:string -> ?last:string -> ?sep:string ->
     ('a IO.output -> 'node -> unit) -> 'a IO.output -> 'node t -> unit
   val t_printer : 'node Value_printer.t -> 'node t Value_printer.t
@@ -319,6 +324,7 @@ sig
   val bounds : ?fast:bool -> t -> Complex_point.t * Complex_point.t
   val overall_bounds : ?fast:bool ->
     t Enum.t -> Complex_point.t * Complex_point.t
+  val subdivide : t -> float -> t * t
   val print_python_contour_code :
     ?variable:string -> unit BatIO.output -> t -> unit
 end
