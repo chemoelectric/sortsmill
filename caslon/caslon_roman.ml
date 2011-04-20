@@ -96,7 +96,7 @@ let letter_o_contours =
           (x'(fun p -> 0.28 *. p.x_height))
           (x'(fun p -> 0.30 *. p.x_height));
         make_left
-          (x'(fun _ -> 0.49 *. width) + y'(fun p -> -. p.curve_overshoot))
+          (x'(fun _ -> 0.49 *. width) + y'(fun p -> -. p.curve_undershoot))
           (x'(fun _ -> 0.29 *. width))
           (x'(fun _ -> 0.30 *. width));
       ] <@@ true <.> round
@@ -114,7 +114,7 @@ let letter_o_contours =
           (x'(fun p -> 0.23 *. p.x_height))
           (x'(fun p -> 0.32 *. p.x_height));
         make_right
-          (x'(fun _ -> 0.49 *. width) + y'(fun p -> -. p.curve_overshoot) + y' bottom)
+          (x'(fun _ -> 0.49 *. width) + y'(fun p -> -. p.curve_undershoot) + y' bottom)
           (x'(fun _ -> 0.16 *. width))
           (x'(fun _ -> 0.14 *. width));
         make_up
@@ -134,7 +134,7 @@ let letter_o_contours =
 (*
 let c = Cubic.(Node.(Complex_point.(
   let width = 383. in
-  let height = 409. in
+  let height = 399. in
   let curve_overshoot = 10. in
   of_node_list [
     make_up
@@ -164,6 +164,18 @@ let c' = Cubic.of_path ~closed:(Cubic.closed c)
   (Cubic.to_path c) ;;
 Print.fprintf stderr p"%{Cubic.t}\n" c' ;;
 Print.fprintf stderr p"%{Complex_point.t}\n" Complex_point.(x' 92. + y'(-0.56)) ;;
+let (n1,n2) = Cubic.Node.(Complex_point.(
+  let n1 = make_node (x' 0. + y'(-116.)) (x' 0. + y' 200.) (x' 0. + y' 135.) in
+  let n2 = make_node (x' 0. + y' 111.) (x' 383. + y' 200.) (x' 0. + y'(-120.)) in
+  (n1,n2)
+))
+;;
+let (m1,m2,m3) = Cubic_node_of_complex_point.subdivide n1 n2 0.5 ;;
+Print.fprintf stderr p"n1 = %{Cubic.Node.t}\n" n1 ;;
+Print.fprintf stderr p"n2 = %{Cubic.Node.t}\n" n2 ;;
+Print.fprintf stderr p"m1 = %{Cubic.Node.t}\n" m1 ;;
+Print.fprintf stderr p"m2 = %{Cubic.Node.t}\n" m2 ;;
+Print.fprintf stderr p"m3 = %{Cubic.Node.t}\n" m3 ;;
 *)
 
 (*-----------------------------------------------------------------------*)
