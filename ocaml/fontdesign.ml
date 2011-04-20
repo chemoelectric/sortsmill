@@ -350,6 +350,16 @@ struct
     let rect = bounds_func bez in
     Complex_point.(of_bezier_point (Caml2geom.Rect.min rect),
                    of_bezier_point (Caml2geom.Rect.max rect))
+
+  let subdivide node1 node2 time =
+    let bez = bezier_curve node1 node2 in
+    let (bez1, bez2) = Caml2geom.Cubic_bezier.subdivide bez time in
+    let (_a0, a1, a2, a3) = bezier_curve_to_four_points bez1 in
+    let (_b0, b1, b2, b3) = bezier_curve_to_four_points bez1 in
+    let n1 = { ih = node1.ih; oc = node1.oc; oh = a1 } in
+    let n2 = { ih = a2; oc = a3; oh = b1 } in
+    let n3 = { ih = b2; oc = node2.oc; oh = node2.oh } in
+    (n1, n2, n3)
 end
 
 module type Node_spline_type =
@@ -366,6 +376,7 @@ sig
   val to_list : 'node t -> 'node list
   val of_list : 'node list -> 'node t
 
+  val rev : 'node t -> 'node t
   val first : 'node t -> 'node
   val last : 'node t -> 'node
   val at : 'node t -> int -> 'node
@@ -398,6 +409,7 @@ struct
   let to_list = identity
   let of_list = identity
 
+  let rev = List.rev
   let first = List.first
   let last = List.last
   let at = List.at
@@ -446,6 +458,8 @@ struct
 
   let apply_node_op contour node_op =
     apply_spline_op contour (Spline.map node_op)
+
+  let rev contour = apply_spline_op contour Spline.rev
 
   let print_closed outp (_, is_closed) =
     if is_closed then

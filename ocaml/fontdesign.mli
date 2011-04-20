@@ -215,6 +215,7 @@ sig
   val of_bezier_curves : Caml2geom.Bezier_curve.t ->
     Caml2geom.Bezier_curve.t -> t
   val bounds : ?fast:bool -> t -> t -> Complex_point.t * Complex_point.t
+  val subdivide : t -> t -> float -> t * t * t
 end
 
 module type Node_spline_type =
@@ -231,6 +232,7 @@ sig
   val to_list : 'node t -> 'node list
   val of_list : 'node list -> 'node t
 
+  val rev : 'node t -> 'node t
   val first : 'node t -> 'node
   val last : 'node t -> 'node
   val at : 'node t -> int -> 'node
@@ -272,6 +274,7 @@ sig
 
   val apply_spline_op : t -> (Node.t Spline.t -> Node.t Spline.t) -> t
   val apply_node_op : t -> (Node.t -> Node.t) -> t
+  val rev : t -> t
 
   val ( <@@ ) : t -> bool -> t
   val ( <@> ) : t -> t -> t
