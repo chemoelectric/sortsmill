@@ -88,6 +88,8 @@ sig
 
   val min_bound : t -> t -> t
   val max_bound : t -> t -> t
+
+  val t_printer : t Value_printer.t
 end
 
 module type Point_type =
@@ -148,6 +150,7 @@ sig
   val ( < ) : t -> t -> bool
   val ( = ) : t -> t -> bool
   val print : unit IO.output -> t -> unit
+  val t_printer : t Value_printer.t
 end
 
 module type Parameter_type =
@@ -177,6 +180,7 @@ sig
   type t
   val apply : (element -> element) -> (t -> t)
   val print : unit IO.output -> t -> unit
+  val t_printer : t Value_printer.t
 end
 
 module Cubic_node(P : Point_type) :
@@ -201,10 +205,15 @@ sig
   val rel_outhandle : t -> point
 end
 
+val bezier_curve_to_four_points : Caml2geom.Bezier_curve.t ->
+  Complex.t * Complex.t * Complex.t * Complex.t
+
 module Cubic_node_of_complex_point :
 sig
   include module type of Cubic_node(Complex_point)
   val bezier_curve : t -> t -> Caml2geom.Cubic_bezier.t
+  val of_bezier_curves : Caml2geom.Bezier_curve.t ->
+    Caml2geom.Bezier_curve.t -> t
   val bounds : ?fast:bool -> t -> t -> Complex_point.t * Complex_point.t
 end
 
@@ -253,7 +262,7 @@ sig
   val print_closed : unit IO.output -> t -> unit
   val print : ?first:string -> ?last:string -> ?sep:string ->
     unit IO.output -> t -> unit
-  val ( <@@ ) : t -> bool -> t
+  val t_printer : t Value_printer.t
 
   val spline : t -> Node.t Spline.t
   val with_spline : Node.t Spline.t -> t -> t
@@ -264,6 +273,7 @@ sig
   val apply_spline_op : t -> (Node.t Spline.t -> Node.t Spline.t) -> t
   val apply_node_op : t -> (Node.t -> Node.t) -> t
 
+  val ( <@@ ) : t -> bool -> t
   val ( <@> ) : t -> t -> t
 end
 
@@ -284,13 +294,16 @@ sig
   include module type of Cubic_contour(Complex_point)
   val to_cubic_beziers : t -> Caml2geom.Cubic_bezier.t list
   val to_path : t -> Caml2geom.Path.t
+  val of_path :
+    ?closed:bool ->
+    ?rel_inhandle:Complex.t ->
+    ?rel_outhandle:Complex.t ->
+    tolerance:float -> Caml2geom.Path.t -> t
   val bounds : ?fast:bool -> t -> Complex_point.t * Complex_point.t
-  val overall_bounds :
-    ?fast:bool ->
-    (Cubic_node_of_complex_point.t Spline.t * bool) Enum.t ->
-    Complex_point.t * Complex_point.t
+  val overall_bounds : ?fast:bool ->
+    t Enum.t -> Complex_point.t * Complex_point.t
   val print_python_contour_code :
-    ?variable:string -> unit BatIO.output -> Node.t Spline.t * bool -> unit
+    ?variable:string -> unit BatIO.output -> t -> unit
 end
 
 module Parameterized_contour(Param : Parameter_type) :

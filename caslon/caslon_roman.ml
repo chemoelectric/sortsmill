@@ -131,6 +131,41 @@ let letter_o_contours =
   [outer_contour; inner_contour]
 ;;
 
+(*
+let c = Cubic.(Node.(Complex_point.(
+  let width = 383. in
+  let height = 409. in
+  let curve_overshoot = 10. in
+  of_node_list [
+    make_up
+      (y'(0.50 *. height))
+      (x'(0.29 *. height))
+      (x'(0.34 *. height));
+    make_right
+      (x'(0.50 *. width) + y'(height +. curve_overshoot))
+      (x'(0.22 *. width))
+      (x'(0.28 *. width));
+    make_down
+      (x'(width) + y'(0.5 *. height))
+      (x'(0.28 *. height))
+      (x'(0.30 *. height));
+    make_left
+      (x'(0.49 *. width) + y'(-. curve_overshoot))
+      (x'(0.29 *. width))
+      (x'(0.30 *. width));
+  ] <@@ false <.> round
+)))
+;;
+Print.fprintf stderr p"%{Cubic.t}\n" c ;;
+let c' = Cubic.of_path ~closed:(Cubic.closed c)
+  ~rel_inhandle:(Complex_point.(y'(-119.)))
+  ~rel_outhandle:(Complex_point.(x'(-115.)))
+  ~tolerance:0.001
+  (Cubic.to_path c) ;;
+Print.fprintf stderr p"%{Cubic.t}\n" c' ;;
+Print.fprintf stderr p"%{Complex_point.t}\n" Complex_point.(x' 92. + y'(-0.56)) ;;
+*)
+
 (*-----------------------------------------------------------------------*)
 
 (* Space character *)
@@ -153,7 +188,7 @@ add_glyph Glyph.({
 
 (*-----------------------------------------------------------------------*)
 
-let run_command param =
+let run_command ?(outp = stdout) param =
   let glyph_opt = StdOpt.str_option () in
   let font_opt = StdOpt.str_option () in
   let font_flags_opt = StdOpt.str_option () in
@@ -167,13 +202,13 @@ let run_command param =
   match Opt.opt glyph_opt with
 
     | None ->
-      print_endline "#!/usr/bin/env python";
-      print_endline "";
-      print_endline "import fontforge";
-      print_endline "import psMat";
-      print_endline "";
-      print_endline "my_font = fontforge.font()";
-      print_endline "";
+      output_string outp "#!/usr/bin/env python\n";
+      output_string outp "\n";
+      output_string outp "import fontforge\n";
+      output_string outp "import psMat\n";
+      output_string outp "\n";
+      output_string outp "my_font = fontforge.font()\n";
+      output_string outp "\n";
       Print.printf p"my_font.version = '%s'\n" param.version;
       Print.printf p"my_font.fontname = '%s'\n" param.fontname;
       Print.printf p"my_font.familyname = '%s'\n" param.familyname;
@@ -193,26 +228,26 @@ let run_command param =
       if Option.is_some param.wws_subfamily then
         Print.printf p"my_font.appendSFNTName('English (US)', 'WWS Subfamily', '%s')\n"
           (Option.get param.wws_subfamily);
-      print_endline "";
+      output_string outp "\n";
       Print.printf p"my_font.size_feature = (%F,)\n" param.design_size;
-      print_endline "";
+      output_string outp "\n";
       Print.printf p"my_font.os2_weight = %i\n" param.os2_weight;
-      print_endline "";
-      print_endline "def preferred_unicode(glyphname):";
-      print_endline "    if '_' in glyphname:";
-      print_endline "        uni = -1";
-      print_endline "    else:";
-      print_endline "        uni = fontforge.unicodeFromName(glyphname)";
-      print_endline "    return uni";
-      print_endline "";
+      output_string outp "\n";
+      output_string outp "def preferred_unicode(glyphname):\n";
+      output_string outp "    if '_' in glyphname:\n";
+      output_string outp "        uni = -1\n";
+      output_string outp "    else:\n";
+      output_string outp "        uni = fontforge.unicodeFromName(glyphname)\n";
+      output_string outp "    return uni\n";
+      output_string outp "\n";
 
       iter
-        (Cubic_glyph.print_python_glyph_code stdout)
+        (Cubic_glyph.print_python_glyph_code outp)
         (enum_resolve_glyphs param);
 
-      print_endline "";
-      print_endline "my_font.encoding = 'UnicodeBMP'";
-      print_endline "";
+      output_string outp "\n";
+      output_string outp "my_font.encoding = 'UnicodeBMP'\n";
+      output_string outp "\n";
       if Option.is_some (Opt.opt sfd_opt) then
         Print.printf p"my_font.save('%s')\n" (Option.get (Opt.opt sfd_opt));
       if Option.is_some (Opt.opt font_opt) then
@@ -227,6 +262,6 @@ let run_command param =
     | Some glyph_name ->
       if have_glyph glyph_name then
         let glyph = get_resolve_glyph glyph_name param in
-        Cubic_glyph.print_python_glyph_update_module stdout glyph
+        Cubic_glyph.print_python_glyph_update_module outp glyph
 
 (*-----------------------------------------------------------------------*)

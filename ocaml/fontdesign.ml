@@ -68,6 +68,11 @@ struct
   let round c =
     let rnd v = floor (v +. 0.5) in
     { re = rnd c.re; im = rnd c.im }
+
+  let t_printer paren outp c =
+    if paren then IO.write outp '(';
+    print outp c;
+    if paren then IO.write outp ')'
 end
 
 module type Point_type =
@@ -128,6 +133,7 @@ sig
   val ( < ) : t -> t -> bool
   val ( = ) : t -> t -> bool
   val print : unit BatIO.output -> t -> unit
+  val t_printer : t Value_printer.t
 end
 
 module type Parameter_type =
@@ -202,6 +208,11 @@ struct
 
   let print outp _v =
     output_string outp "fun: Param.t -> Fontdesign.Extended_complex.t"
+
+  let t_printer paren outp v =
+    if paren then IO.write outp '(';
+    print outp v;
+    if paren then IO.write outp ')'
 end
 
 module Complex_point =
@@ -227,6 +238,11 @@ struct
       )
     in
     Print.fprintf outp format x y
+
+  let t_printer paren outp c =
+    if paren then IO.write outp '(';
+    print outp c;
+    if paren then IO.write outp ')'
 end
 
 module type Node_type =
@@ -235,6 +251,7 @@ sig
   type t
   val apply : (element -> element) -> (t -> t)
   val print : unit IO.output -> t -> unit
+  val t_printer : t Value_printer.t
 end
 
 module Cubic_node(P : Point_type) =
@@ -290,7 +307,21 @@ struct
     output_string outp ") (";
     P.print outp P.(p.oh - p.oc);
     output_string outp ")"
+
+  let t_printer paren outp p =
+    if paren then IO.write outp '(';
+    print outp p;
+    if paren then IO.write outp ')'
 end
+
+let bezier_curve_to_four_points bez =
+  let points = Caml2geom.Bezier_curve.to_complex_array bez in
+  let len = Array.length points in
+  assert (len = 2 || len = 4); (* Only linears and cubics are allowed. *)
+  if len = 2 then
+    (points.(0), points.(0), points.(1), points.(1))
+  else
+    (points.(0), points.(1), points.(2), points.(3))
 
 module Cubic_node_of_complex_point =
 struct
@@ -302,6 +333,11 @@ struct
     let p2 = Complex_point.to_bezier_point (inhandle node2) in
     let p3 = Complex_point.to_bezier_point (on_curve node2) in
     Caml2geom.Cubic_bezier.of_four_points p0 p1 p2 p3
+
+  let of_bezier_curves bez1 bez2 =
+    let (_, _, ih, oc) = bezier_curve_to_four_points bez1 in
+    let (_, oh, _, _) = bezier_curve_to_four_points bez2 in
+    { ih; oc; oh }
 
   let bounds ?(fast = false) node1 node2 =
     let bounds_func =
@@ -425,6 +461,11 @@ struct
     Spline.print ~first ~last ~sep Node.print outp (fst contour);
     print_closed outp contour
 
+  let t_printer paren outp contour =
+    if paren then IO.write outp '(';
+    print outp contour;
+    if paren then IO.write outp ')'
+
   let ( <@@ ) contour is_closed = with_closed is_closed contour
   let ( <@> ) (spline1, is_closed) (spline2, _) =
     (Node_spline.append spline1 spline2, is_closed)
@@ -462,6 +503,39 @@ struct
           Caml2geom.Cubic_bezier.to_curve)
       curve_list;
     path
+
+  let of_path
+      ?(closed = false)
+      ?(rel_inhandle = Complex_point.zero)
+      ?(rel_outhandle = Complex_point.zero)
+      ~tolerance path =
+    let bez_curves = Caml2geom.Path.to_cubic_beziers_open path tolerance in
+    let curves = List.map bezier_curve_to_four_points bez_curves in
+    let first = List.first curves in
+    let last = List.last curves in
+    let curves' =
+      if closed then
+        last :: curves
+      else
+        let (a0, _, _, _) = first in
+        let (_, _, _, b3) = last in
+        let ih = Complex_point.(a0 + rel_inhandle) in
+        let oh = Complex_point.(b3 + rel_outhandle) in
+        let pre_first = Complex_point.(zero, zero, ih, a0) in
+        let post_last = Complex_point.(b3, oh, zero, zero) in
+        pre_first :: (curves @ [post_last])
+    in
+    let rec make_nodes =
+      function
+        | [] | [_] -> []
+        | curve1 :: curve2 :: remaining ->
+          let (_, _, ih, oc) = curve1 in
+          let (_, oh, _, _) = curve2 in
+          Node.({ ih; oc; oh }) ::
+            make_nodes (curve2 :: remaining)
+    in
+    let spline' = Node_spline.of_list (make_nodes curves') in
+    (spline', closed)
 
   let bounds ?(fast = false) contour =
     let most_positive = Complex_point.({ re = infinity; im = infinity }) in
@@ -691,12 +765,12 @@ struct
     begin
       match glyph.unicode with
         | None ->
-          Print.fprintf outp p"%s = %s.createChar(preferred_unicode(\"%s\"), \"%s\")\n"
+          Print.fprintf outp p"%s = %s.createChar(preferred_unicode('%s'), '%s')\n"
             glyph_variable font_variable glyph.name glyph.name;
-          Print.fprintf outp p"%s.unicode = preferred_unicode(\"%s\")\n"
+          Print.fprintf outp p"%s.unicode = preferred_unicode('%s')\n"
             glyph_variable glyph.name
         | Some unicode ->
-          Print.fprintf outp p"%s = %s.createChar(%d, \"%s\")\n"
+          Print.fprintf outp p"%s = %s.createChar(%d, '%s')\n"
             glyph_variable font_variable unicode glyph.name;
           Print.fprintf outp p"%s.unicode = %d\n" glyph_variable unicode
     end;
