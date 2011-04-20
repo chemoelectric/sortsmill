@@ -192,6 +192,7 @@ sig
   val of_list : point list -> t
   val to_list2 : t -> (point * bool) list
   val make_node : point -> point -> point -> t
+  val rev : t -> t
   val make_pin : point -> t
   val make_flat : point -> point -> point -> point -> t
   val make_right : point -> point -> point -> t
@@ -229,10 +230,12 @@ sig
   include Interfaces.Mappable with type 'node mappable = 'node t
   val iter : ('node -> unit) -> 'node t -> unit
 
+  val rev : 'node t -> 'node t
+  val rev_map : ('node -> 'node) -> 'node t -> 'node t
+
   val to_list : 'node t -> 'node list
   val of_list : 'node list -> 'node t
 
-  val rev : 'node t -> 'node t
   val first : 'node t -> 'node
   val last : 'node t -> 'node
   val at : 'node t -> int -> 'node
@@ -274,7 +277,6 @@ sig
 
   val apply_spline_op : t -> (Node.t Spline.t -> Node.t Spline.t) -> t
   val apply_node_op : t -> (Node.t -> Node.t) -> t
-  val rev : t -> t
 
   val ( <@@ ) : t -> bool -> t
   val ( <@> ) : t -> t -> t
@@ -285,6 +287,7 @@ sig
   module Node : module type of Cubic_node(Point)
   include module type of Node_contour(Node)
   val to_point_bool_list : t -> (Point.t * bool) list
+  val rev : t -> t
   val ( <.> ) : t -> (Point.t -> Point.t) -> t
   val ( <*> ) : t -> Point.t -> t
   val ( </> ) : t -> Point.t -> t
@@ -295,6 +298,17 @@ end
 module Cubic :
 sig
   include module type of Cubic_contour(Complex_point)
+
+  module Extended_node :
+  sig
+    include module type of Node
+    val bezier_curve : t -> t -> Caml2geom.Cubic_bezier.t
+    val of_bezier_curves : Caml2geom.Bezier_curve.t ->
+      Caml2geom.Bezier_curve.t -> t
+    val bounds : ?fast:bool -> t -> t -> Complex_point.t * Complex_point.t
+    val subdivide : t -> t -> float -> t * t * t
+  end
+
   val to_cubic_beziers : t -> Caml2geom.Cubic_bezier.t list
   val to_path : t -> Caml2geom.Path.t
   val of_path :
@@ -347,7 +361,7 @@ sig
 
   val overall_bounds2 :
     ?fast:bool ->
-    ([< `Cubic of Cubic_node_of_complex_point.t Cubic.Spline.t * bool
+    ([< `Cubic of Cubic.Extended_node.t Cubic.Spline.t * bool
      | `PCubic of PCubic.Node.t PCubic.Spline.t * bool
      | `Parameterized of Param.t -> 'a
      ] as 'a) Enum.t ->
@@ -355,7 +369,7 @@ sig
 
   val overall_bounds :
     ?fast:bool ->
-    ([< `Cubic of Cubic_node_of_complex_point.t Cubic.Spline.t * bool
+    ([< `Cubic of Cubic.Extended_node.t Cubic.Spline.t * bool
      | `PCubic of PCubic.Node.t PCubic.Spline.t * bool
      | `Parameterized of Param.t -> 'a
      ] as 'a) Enum.t ->

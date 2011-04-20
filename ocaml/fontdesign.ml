@@ -273,6 +273,8 @@ struct
          oc = on_curve_point;
          oh = on_curve_point + rel_outhandle })
 
+  let rev node = { ih = node.oh; oc = node.oc; oh = node.ih }
+
   let make_pin on_curve_point = make_node P.zero on_curve_point P.zero
 
   let make_flat on_curve_point direction inhandle_length outhandle_length =
@@ -373,10 +375,12 @@ sig
   include Interfaces.Mappable with type 'node mappable = 'node t
   val iter : ('node -> unit) -> 'node t -> unit
 
+  val rev : 'node t -> 'node t
+  val rev_map : ('node -> 'node) -> 'node t -> 'node t
+
   val to_list : 'node t -> 'node list
   val of_list : 'node list -> 'node t
 
-  val rev : 'node t -> 'node t
   val first : 'node t -> 'node
   val last : 'node t -> 'node
   val at : 'node t -> int -> 'node
@@ -401,6 +405,9 @@ struct
   let map = List.map
   let iter = List.iter
 
+  let rev = List.rev
+  let rev_map = List.rev_map
+
   let of_enum = List.of_enum
   let enum = List.enum
   let of_backwards = List.of_backwards
@@ -409,7 +416,6 @@ struct
   let to_list = identity
   let of_list = identity
 
-  let rev = List.rev
   let first = List.first
   let last = List.last
   let at = List.at
@@ -459,8 +465,6 @@ struct
   let apply_node_op contour node_op =
     apply_spline_op contour (Spline.map node_op)
 
-  let rev contour = apply_spline_op contour Spline.rev
-
   let print_closed outp (_, is_closed) =
     if is_closed then
       output_string outp " <@@ true"
@@ -493,6 +497,9 @@ struct
   let to_point_bool_list contour =
     List.flatten (List.map Node.to_list2 (to_node_list contour))
 
+  let rev contour =
+    with_spline (Node_spline.rev_map Node.rev (spline contour)) contour
+
   let ( <.> ) contour point_op = apply_node_op contour (Node.apply point_op)
   let ( <*> ) contour pt = apply_node_op contour (Node.apply (Point.mul pt))
   let ( </> ) contour pt = apply_node_op contour (Node.apply (Point.div pt))
@@ -503,6 +510,15 @@ end
 module Cubic =
 struct
   include Cubic_contour(Complex_point)
+
+  module Extended_node =
+  struct
+    include Node
+    let bezier_curve = Cubic_node_of_complex_point.bezier_curve
+    let of_bezier_curves = Cubic_node_of_complex_point.of_bezier_curves
+    let bounds = Cubic_node_of_complex_point.bounds
+    let subdivide = Cubic_node_of_complex_point.subdivide
+  end
 
   let to_cubic_beziers contour =
     node_spline_to_cubic_beziers (spline contour) (closed contour)
@@ -615,6 +631,7 @@ struct
           point_list;
         Print.fprintf outp p"%s.closed = %s\n" var_name
           (if closed contour then "True" else "False")
+
 end
 
 module Parameterized_contour(Param : Parameter_type) =
