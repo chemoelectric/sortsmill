@@ -83,24 +83,23 @@ let letter_o_contours =
   let width = 383. in
   let outer_contour =
     PCubic.(PComplex.(
-      List.flatten [
-        make_up
-          (y'(fun p -> 0.50 *. p.x_height))
-          (x'(fun p -> 0.29 *. p.x_height))
-          (x'(fun p -> 0.34 *. p.x_height));
-        make_right
-          (x'(fun _ -> 0.50 *. width) + y'(fun p -> p.x_height +. p.curve_overshoot))
-          (x'(fun _ -> 0.22 *. width))
-          (x'(fun _ -> 0.28 *. width));
-        make_down
-          (x'(const width) + y'(fun p -> 0.5 *. p.x_height))
-          (x'(fun p -> 0.28 *. p.x_height))
-          (x'(fun p -> 0.30 *. p.x_height));
-        make_left
-          (x'(fun _ -> 0.49 *. width) + y'(fun p -> -. p.curve_undershoot))
-          (x'(fun _ -> 0.29 *. width))
-          (x'(fun _ -> 0.30 *. width))
-      ] |> close <.> round
+      make_up
+        (y'(fun p -> 0.50 *. p.x_height))
+        (x'(fun p -> 0.29 *. p.x_height))
+        (x'(fun p -> 0.34 *. p.x_height))
+      @ make_right
+        (x'(fun _ -> 0.50 *. width) + y'(fun p -> p.x_height +. p.curve_overshoot))
+        (x'(fun _ -> 0.22 *. width))
+        (x'(fun _ -> 0.28 *. width))
+      @ make_down
+        (x'(const width) + y'(fun p -> 0.5 *. p.x_height))
+        (x'(fun p -> 0.28 *. p.x_height))
+        (x'(fun p -> 0.30 *. p.x_height))
+      @ make_left
+        (x'(fun _ -> 0.49 *. width) + y'(fun p -> -. p.curve_undershoot))
+        (x'(fun _ -> 0.29 *. width))
+        (x'(fun _ -> 0.30 *. width))
+      <@@ true <.> round
     ))
   in
   let inner_contour =
@@ -109,24 +108,23 @@ let letter_o_contours =
     let bottom = (fun p -> 0.58 *. p.lc_stem_width) in
     let top = (fun p -> 0.54 *. p.lc_stem_width) in
     PCubic.(PComplex.(
-      List.flatten [
-        make_down
-          (x' left + y'(fun p -> 0.52 *. p.x_height))
-          (x'(fun p -> 0.23 *. p.x_height))
-          (x'(fun p -> 0.32 *. p.x_height));
-        make_right
-          (x'(fun _ -> 0.49 *. width) + y'(fun p -> -. p.curve_undershoot) + y' bottom)
-          (x'(fun _ -> 0.16 *. width))
-          (x'(fun _ -> 0.14 *. width));
-        make_up
-          (x'(fun _ -> width) - x' right + y'(fun p -> 0.48 *. p.x_height))
-          (x'(fun p -> 0.30 *. p.x_height))
-          (x'(fun p -> 0.25 *. p.x_height));
-        make_left
-          (x'(fun _ -> 0.48 *. width) + y'(fun p -> p.x_height +. p.curve_overshoot) - y' top)
-          (x'(fun _ -> 0.22 *. width))
-          (x'(fun _ -> 0.19 *. width));
-      ] |> close <.> round
+      make_down
+        (x' left + y'(fun p -> 0.52 *. p.x_height))
+        (x'(fun p -> 0.23 *. p.x_height))
+        (x'(fun p -> 0.32 *. p.x_height))
+      @ make_right
+        (x'(fun _ -> 0.49 *. width) + y'(fun p -> -. p.curve_undershoot) + y' bottom)
+        (x'(fun _ -> 0.16 *. width))
+        (x'(fun _ -> 0.14 *. width))
+      @ make_up
+        (x'(fun _ -> width) - x' right + y'(fun p -> 0.48 *. p.x_height))
+        (x'(fun p -> 0.30 *. p.x_height))
+        (x'(fun p -> 0.25 *. p.x_height))
+      @ make_left
+        (x'(fun _ -> 0.48 *. width) + y'(fun p -> p.x_height +. p.curve_overshoot) - y' top)
+        (x'(fun _ -> 0.22 *. width))
+        (x'(fun _ -> 0.19 *. width))
+      <@@ true <.> round
     ))
   in
   [outer_contour; inner_contour]

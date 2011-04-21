@@ -98,7 +98,6 @@ sig
   type float'
   type string'
   type t
-  val linear_tolerance : t ref
   val zero : t
   val one : t
   val i : t
@@ -200,9 +199,6 @@ sig
   val make_down : P.t -> P.t -> P.t -> t
   val is_empty : t -> bool
   val is_singleton : t -> bool
-  val is_closed : ?tol:P.t -> t -> P.bool'
-  val is_open : ?tol:P.t -> t -> P.bool'
-  val close : t -> t
   val rev : t -> t
   val nodewise : ('a -> 'b) -> 'a L.t -> 'b L.t
   val pointwise : ('a -> 'b) -> ('a * 'a * 'a) L.t -> ('b * 'b * 'b) L.t
@@ -229,6 +225,11 @@ val bezier_curve_to_four_complexes :
 module Cubic :
 sig
   include module type of Cubic_base(List)(Complex_point)
+
+  val linear_tolerance : float ref
+  val is_closed : ?tol:float -> t -> bool
+  val close : ?tol:float -> t -> t
+  val unclose : ?tol:float -> t -> t
 
   val basis_conversion_tolerance : float ref
   (** Default tolerance for transformation of the basis of a 2geom
@@ -277,6 +278,8 @@ sig
 
   val print_python_contour_code :
     ?variable:string -> unit IO.output -> t -> unit
+
+  val ( <@@ ) : t -> bool -> t
 end
 
 (*-----------------------------------------------------------------------*)
@@ -284,7 +287,15 @@ end
 module Parameterized_contour(Param : Parameter_type) :
 sig
   module PComplex : module type of Parameterized_complex_point(Param)
-  module PCubic : module type of Cubic_base(List)(PComplex)
+
+  module PCubic :
+  sig
+    include module type of Cubic_base(List)(PComplex)
+    val is_closed : 'a list -> bool
+    val close : 'a list -> 'a list
+    val unclose : 'a list -> 'a list
+    val ( <@@ ) : 'a list -> bool -> 'a list
+  end
 
   type t =
     [

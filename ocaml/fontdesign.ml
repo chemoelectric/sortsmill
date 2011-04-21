@@ -81,7 +81,6 @@ sig
   type float'
   type string'
   type t
-  val linear_tolerance : t ref
   val zero : t
   val one : t
   val i : t
@@ -152,8 +151,6 @@ struct
 
   include Extended_complex
 
-  let linear_tolerance = ref Extended_complex.({ re = 0.001; im = 0. })
-
   let to_bezier_point pt = Caml2geom.Point.make pt.re pt.im
   let of_bezier_point bp = { re = Caml2geom.Point.coord bp 0;
                              im = Caml2geom.Point.coord bp 1 }
@@ -192,9 +189,6 @@ struct
   type string' = Param.t -> String.t
 
   type t = Param.t -> Cx.t
-
-  let linear_tolerance =
-    ref (fun (_p : Param.t) -> { Cx.re = 0.001; Cx.im = 0. })
 
   let zero p = const Cx.zero p
   let one p = const Cx.one p
@@ -298,18 +292,6 @@ struct
   let is_empty contour = contour = []
   let is_singleton contour = contour <> [] && L.tl contour = []
 
-  let is_closed ?(tol = !P.linear_tolerance) contour =
-    let (_, p1, _) = L.first contour in
-    let (_, p2, _) = L.last contour in
-    P.(abs (p1 - p2) <= tol)
-
-  let is_open ?(tol = !P.linear_tolerance) contour =
-    let (_, p1, _) = L.first contour in
-    let (_, p2, _) = L.last contour in
-    P.(tol < abs (p1 - p2))
-
-  let close contour = contour @ [L.first contour]
-
   let rev contour = L.rev_map (fun (ih,oc,oh) -> (oh,oc,ih)) contour
 
   (* Nodewise and pointwise mapping. *)
@@ -364,9 +346,27 @@ struct
   module L = List
   module P = Complex_point
 
+  let time_error = Invalid_argument "time out of range"
+
+  let linear_tolerance = ref 0.001
   let basis_conversion_tolerance = ref 0.001
 
-  let time_error = Invalid_argument "time out of range"
+  let is_closed ?(tol = !linear_tolerance) contour =
+    let (_, p1, _) = L.first contour in
+    let (_, p2, _) = L.last contour in
+    P.(norm (p1 - p2)) <= tol
+
+  let close ?tol contour =
+    if is_closed ?tol contour then
+      contour
+    else
+      contour @ [L.first contour]
+
+  let unclose ?tol contour =
+    if is_closed ?tol contour then
+      L.drop (L.length contour - 1) contour
+    else
+      contour
 
   let bezier_curve ?(pos = 0) contour =
     let c = L.drop pos contour in
@@ -518,6 +518,9 @@ struct
           point_list;
         Print.fprintf outp p"%s.closed = %s\n" var_name
           (if is_closed contour then "True" else "False")
+
+  let ( <@@ ) contour t_or_f =
+    (if t_or_f then close else unclose) contour
 end
 
 (*-----------------------------------------------------------------------*)
@@ -525,7 +528,29 @@ end
 module Parameterized_contour(Param : Parameter_type) =
 struct
   module PComplex = Parameterized_complex_point(Param)
-  module PCubic = Cubic_base(List)(PComplex)
+  module PCubic =
+  struct
+    include Cubic_base(List)(PComplex)
+    module L = List
+
+    let is_closed contour =
+      L.first contour == L.last contour
+
+    let close contour =
+      if is_closed contour then
+        contour
+      else
+        contour @ [L.first contour]
+
+    let unclose contour =
+      if is_closed contour then
+        L.drop (L.length contour - 1) contour
+      else
+        contour
+
+    let ( <@@ ) contour t_or_f =
+      (if t_or_f then close else unclose) contour
+  end
 
   type t =
     [
