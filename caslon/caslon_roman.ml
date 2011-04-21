@@ -24,6 +24,7 @@
 
 open Batteries
 open OptParse
+module StringMap = Map.StringMap
 
 module Complex = Fontdesign.Extended_complex
 open Fontdesign
@@ -62,16 +63,16 @@ open Param
 
 (*-----------------------------------------------------------------------*)
 
-let glyph_table = ref PMap.empty
+let glyph_table : (Param.t -> float, Contour.t) Glyph.t StringMap.t ref =
+  ref StringMap.empty
 
 let resolve_glyph glyph param =
-  Cubic_glyph.of_glyph
-    (Glyph.transform (fun r -> r param) (flip Contour.resolve param) glyph)
+    (Glyph.transform (fun r -> r param) (flip resolve param) glyph)
 
-let add_glyph glyph = glyph_table := Glyph.(PMap.add glyph.name glyph !glyph_table)
-let have_glyph name = PMap.mem name !glyph_table
-let get_glyph name = PMap.find name !glyph_table
-let enum_glyphs () = map snd (PMap.enum !glyph_table)
+let add_glyph glyph = glyph_table := Glyph.(StringMap.add glyph.name glyph !glyph_table)
+let have_glyph name = StringMap.mem name !glyph_table
+let get_glyph name = StringMap.find name !glyph_table
+let enum_glyphs () = map snd (StringMap.enum !glyph_table)
 let get_resolve_glyph name param = resolve_glyph (get_glyph name) param
 let enum_resolve_glyphs param = map (flip resolve_glyph param) (enum_glyphs ())
 ;;
@@ -81,8 +82,8 @@ let enum_resolve_glyphs param = map (flip resolve_glyph param) (enum_glyphs ())
 let letter_o_contours = 
   let width = 383. in
   let outer_contour =
-    PCubic.(Node.(PComplex.(
-      of_node_list [
+    PCubic.(PComplex.(
+      List.flatten [
         make_up
           (y'(fun p -> 0.50 *. p.x_height))
           (x'(fun p -> 0.29 *. p.x_height))
@@ -98,17 +99,17 @@ let letter_o_contours =
         make_left
           (x'(fun _ -> 0.49 *. width) + y'(fun p -> -. p.curve_undershoot))
           (x'(fun _ -> 0.29 *. width))
-          (x'(fun _ -> 0.30 *. width));
-      ] <@@ true <.> round
-    )))
+          (x'(fun _ -> 0.30 *. width))
+      ] |> close <.> round
+    ))
   in
   let inner_contour =
     let left = (fun p -> 1.16 *. p.lc_stem_width) in
     let right = (fun p -> 1.16 *. p.lc_stem_width) in
     let bottom = (fun p -> 0.58 *. p.lc_stem_width) in
     let top = (fun p -> 0.54 *. p.lc_stem_width) in
-    PCubic.(Node.(PComplex.(
-      of_node_list [
+    PCubic.(PComplex.(
+      List.flatten [
         make_down
           (x' left + y'(fun p -> 0.52 *. p.x_height))
           (x'(fun p -> 0.23 *. p.x_height))
@@ -125,62 +126,11 @@ let letter_o_contours =
           (x'(fun _ -> 0.48 *. width) + y'(fun p -> p.x_height +. p.curve_overshoot) - y' top)
           (x'(fun _ -> 0.22 *. width))
           (x'(fun _ -> 0.19 *. width));
-      ] <@@ true <.> round
-    )))
+      ] |> close <.> round
+    ))
   in
   [outer_contour; inner_contour]
 ;;
-
-let c = Cubic.(Node.(Complex_point.(
-  let width = 383. in
-  let height = 399. in
-  let curve_overshoot = 10. in
-  of_node_list [
-    make_up
-      (y'(0.50 *. height))
-      (x'(0.29 *. height))
-      (x'(0.34 *. height));
-    make_right
-      (x'(0.50 *. width) + y'(height +. curve_overshoot))
-      (x'(0.22 *. width))
-      (x'(0.28 *. width));
-    make_down
-      (x'(width) + y'(0.5 *. height))
-      (x'(0.28 *. height))
-      (x'(0.30 *. height));
-    make_left
-      (x'(0.49 *. width) + y'(-. curve_overshoot))
-      (x'(0.29 *. width))
-      (x'(0.30 *. width));
-  ] <@@ false <.> round
-)))
-;;
-Print.fprintf stderr p"%{Cubic.t}\n" c ;;
-let (c2,c3) = Cubic.subdivide c 0.0 ;;
-Print.fprintf stderr p"%{Cubic.t}\n%{Cubic.t}\n" c2 c3 ;;
-(*
-let c' = Cubic.of_path ~closed:(Cubic.closed c)
-  ~rel_inhandle:(Complex_point.(y'(-119.)))
-  ~rel_outhandle:(Complex_point.(x'(-115.)))
-  ~tolerance:0.001
-  (Cubic.to_path c) ;;
-Print.fprintf stderr p"%{Cubic.t}\n" c' ;;
-Print.fprintf stderr p"%{Complex_point.t}\n" Complex_point.(x' 92. + y'(-0.56)) ;;
-let (n1,n2) = Cubic.Node.(Complex_point.(
-  let n1 = make_node (x' 0. + y'(-116.)) (x' 0. + y' 200.) (x' 0. + y' 135.) in
-  let n2 = make_node (x' 0. + y' 111.) (x' 383. + y' 200.) (x' 0. + y'(-120.)) in
-  (n1,n2)
-))
-;;
-*)
-(*
-let (m1,m2,m3) = Cubic.Extended_node.subdivide n1 n2 0. ;;
-Print.fprintf stderr p"n1 = %{Cubic.Node.t}\n" n1 ;;
-Print.fprintf stderr p"n2 = %{Cubic.Node.t}\n" n2 ;;
-Print.fprintf stderr p"m1 = %{Cubic.Node.t}\n" m1 ;;
-Print.fprintf stderr p"m2 = %{Cubic.Node.t}\n" m2 ;;
-Print.fprintf stderr p"m3 = %{Cubic.Node.t}\n" m3 ;;
-*)
 
 (*-----------------------------------------------------------------------*)
 
@@ -281,3 +231,4 @@ let run_command ?(outp = stdout) param =
         Cubic_glyph.print_python_glyph_update_module outp glyph
 
 (*-----------------------------------------------------------------------*)
+

@@ -27,6 +27,8 @@
 
 open Batteries
 
+(*-----------------------------------------------------------------------*)
+
 val deg : float -> float
 (** Conversion from radians to degrees. *)
 
@@ -44,17 +46,12 @@ val adtan : float -> float
 val adtan2 : float -> float -> float
 (** Inverse trigonometric functions returning values in degrees. *)
 
+(*-----------------------------------------------------------------------*)
+
 module Extended_complex :
 (** A complex number type with extensions. (You could try
     [module Complex = Fontdesign.Extended_complex] in your code.) *)
 sig
-  type bool = Bool.t
-  type int = Int.t
-  type float = Float.t
-  type string = String.t
-  (** These type aliases are needed to make Extended_complex a valid
-      Point_type. *)
-
   include module type of Complex
 
   val x' : float -> t
@@ -92,22 +89,25 @@ sig
   val t_printer : t Value_printer.t
 end
 
+(*-----------------------------------------------------------------------*)
+
 module type Point_type =
 sig
-  type bool
-  type int
-  type float
-  type string
+  type bool'
+  type int'
+  type float'
+  type string'
   type t
+  val linear_tolerance : t ref
   val zero : t
   val one : t
   val i : t
   val neg : t -> t
   val conj : t -> t
   val sqrt : t -> t
-  val norm2 : t -> float
-  val norm : t -> float
-  val arg : t -> float
+  val norm2 : t -> float'
+  val norm : t -> float'
+  val arg : t -> float'
   val exp : t -> t
   val log : t -> t
   val inv : t -> t
@@ -116,15 +116,15 @@ sig
   val abs : t -> t
   val dir : t -> t
   val round : t -> t
-  val rot : float -> t
-  val x' : float -> t
-  val y' : float -> t
-  val of_int : int -> t
-  val to_int : t -> int
-  val of_float : float -> t
-  val to_float : t -> float
-  val of_string : string -> t
-  val to_string : t -> string
+  val rot : float' -> t
+  val x' : float' -> t
+  val y' : float' -> t
+  val of_int : int' -> t
+  val to_int : t -> int'
+  val of_float : float' -> t
+  val to_float : t -> float'
+  val of_string : string' -> t
+  val to_string : t -> string'
   val add : t -> t -> t
   val sub : t -> t -> t
   val mul : t -> t -> t
@@ -134,21 +134,21 @@ sig
   val proj : t -> t -> t
   val min_bound : t -> t -> t
   val max_bound : t -> t -> t
-  val inner : t -> t -> float
-  val compare : t -> t -> int
-  val dpolar : float -> float -> t
-  val polar : float -> float -> t
+  val inner : t -> t -> float'
+  val compare : t -> t -> int'
+  val dpolar : float' -> float' -> t
+  val polar : float' -> float' -> t
   val ( + ) : t -> t -> t
   val ( - ) : t -> t -> t
   val ( * ) : t -> t -> t
   val ( / ) : t -> t -> t
   val ( ** ) : t -> t -> t
-  val ( <> ) : t -> t -> bool
-  val ( >= ) : t -> t -> bool
-  val ( <= ) : t -> t -> bool
-  val ( > ) : t -> t -> bool
-  val ( < ) : t -> t -> bool
-  val ( = ) : t -> t -> bool
+  val ( <> ) : t -> t -> bool'
+  val ( >= ) : t -> t -> bool'
+  val ( <= ) : t -> t -> bool'
+  val ( > ) : t -> t -> bool'
+  val ( < ) : t -> t -> bool'
+  val ( = ) : t -> t -> bool'
   val print : unit IO.output -> t -> unit
   val t_printer : t Value_printer.t
 end
@@ -158,181 +158,133 @@ sig
   type t
 end
 
-module Parameterized_complex(Param : Parameter_type) :
-sig
-  include Point_type with type bool = Param.t -> Bool.t
-                     and type int = Param.t -> Int.t
-                     and type float = Param.t -> Float.t
-                     and type string = Param.t -> String.t
-                     and type t = Param.t -> Complex.t
-end
-  
+(*-----------------------------------------------------------------------*)
+
 module Complex_point :
 sig
-  include module type of Extended_complex
+  include Point_type with type bool' = Bool.t
+                     and type int' = Int.t
+                     and type float' = Float.t
+                     and type string' = String.t
+                     and type t = Complex.t
   val of_bezier_point : Caml2geom.Point.t -> t
   val to_bezier_point : t -> Caml2geom.Point.t
 end
 
-module type Node_type =
-sig
-  type element
-  type t
-  val apply : (element -> element) -> (t -> t)
-  val print : unit IO.output -> t -> unit
-  val t_printer : t Value_printer.t
-end
+(*-----------------------------------------------------------------------*)
 
-module Cubic_node(P : Point_type) :
+module Parameterized_complex_point(Param : Parameter_type) :
+sig
+  include Point_type with type bool' = Param.t -> Bool.t
+                     and type int' = Param.t -> Int.t
+                     and type float' = Param.t -> Float.t
+                     and type string' = Param.t -> String.t
+                     and type t = Param.t -> Complex.t
+end
+  
+(*-----------------------------------------------------------------------*)
+
+module Cubic_base
+  (L : module type of List)
+  (P : Point_type) :
 sig
   type point = P.t
-  type t = { ih : point; oc : point; oh : point }
-  include Node_type with type element = point and type t := t
-  val to_list : t -> point list
-  val of_list : point list -> t
-  val to_list2 : t -> (point * bool) list
-  val make_node : point -> point -> point -> t
+  type node = (P.t * P.t * P.t)
+  type t = (P.t * P.t * P.t) L.t
+  val make_node : P.t -> P.t -> P.t -> t
+  val make_pin : P.t -> t
+  val make_flat : P.t -> P.t -> P.t -> P.t -> t
+  val make_right : P.t -> P.t -> P.t -> t
+  val make_left : P.t -> P.t -> P.t -> t
+  val make_up : P.t -> P.t -> P.t -> t
+  val make_down : P.t -> P.t -> P.t -> t
+  val is_empty : t -> bool
+  val is_singleton : t -> bool
+  val is_closed : ?tol:P.t -> t -> P.bool'
+  val is_open : ?tol:P.t -> t -> P.bool'
+  val close : t -> t
   val rev : t -> t
-  val make_pin : point -> t
-  val make_flat : point -> point -> point -> point -> t
-  val make_right : point -> point -> point -> t
-  val make_left : point -> point -> point -> t
-  val make_up : point -> point -> point -> t
-  val make_down : point -> point -> point -> t
-  val on_curve : t -> point
-  val inhandle : t -> point
-  val outhandle : t -> point
-  val rel_inhandle : t -> point
-  val rel_outhandle : t -> point
-end
-
-val bezier_curve_to_four_points : Caml2geom.Bezier_curve.t ->
-  Complex.t * Complex.t * Complex.t * Complex.t
-
-module Cubic_node_of_complex_point :
-sig
-  include module type of Cubic_node(Complex_point)
-  val bezier_curve : t -> t -> Caml2geom.Cubic_bezier.t
-  val of_bezier_curves : Caml2geom.Bezier_curve.t ->
-    Caml2geom.Bezier_curve.t -> t
-  val bounds : ?fast:bool -> t -> t -> Complex_point.t * Complex_point.t
-  val subdivide : t -> t -> float -> t * t * t
-end
-
-module type Node_spline_type =
-sig
-  type +'node t
-
-  include Enum.Enumerable with type 'node enumerable = 'node t
-  val backwards : 'node t -> 'node Enum.t
-  val of_backwards : 'node Enum.t -> 'node t
-
-  include Interfaces.Mappable with type 'node mappable = 'node t
-  val iter : ('node -> unit) -> 'node t -> unit
-
-  val rev : 'node t -> 'node t
-  val rev_map : ('node -> 'node) -> 'node t -> 'node t
-
-  val to_list : 'node t -> 'node list
-  val of_list : 'node list -> 'node t
-
-  val first : 'node t -> 'node
-  val last : 'node t -> 'node
-  val at : 'node t -> int -> 'node
-  val append : 'node t -> 'node t -> 'node t
-  val concat : 'node t list -> 'node t
-  val flatten : 'node t list -> 'node t
-  val split_at : int -> 'node t -> 'node t * 'node t
-  val take : int -> 'node t -> 'node t
-  val drop : int -> 'node t -> 'node t
-
-  val is_empty : 'node t -> bool
-  val append_node : 'node t -> 'node -> 'node t
-  val prepend_node : 'node -> 'node t -> 'node t
-  val of_node : 'node -> 'node t
-
-  val print : ?first:string -> ?last:string -> ?sep:string ->
-    ('a IO.output -> 'node -> unit) -> 'a IO.output -> 'node t -> unit
-  val t_printer : 'node Value_printer.t -> 'node t Value_printer.t
-end
-
-module Node_spline : Node_spline_type
-
-val node_spline_to_cubic_beziers :
-  Cubic_node_of_complex_point.t Node_spline.t ->
-  bool -> Caml2geom.Cubic_bezier.t list
-
-module Node_contour(Node : Node_type) :
-sig
-  module Spline : Node_spline_type
-  type t
-
-  val with_closed : bool -> t -> t
-  val closed : t -> bool
-  val print_closed : unit IO.output -> t -> unit
+  val nodewise : ('a -> 'b) -> 'a L.t -> 'b L.t
+  val pointwise : ('a -> 'b) -> ('a * 'a * 'a) L.t -> ('b * 'b * 'b) L.t
+  val print_point : unit IO.output -> P.t -> unit
+  val point_printer : P.t Value_printer.t
+  val print_node : unit IO.output -> P.t * P.t * P.t -> unit
+  val node_printer : bool -> unit IO.output -> P.t * P.t * P.t -> unit
   val print : ?first:string -> ?last:string -> ?sep:string ->
     unit IO.output -> t -> unit
   val t_printer : t Value_printer.t
 
-  val spline : t -> Node.t Spline.t
-  val with_spline : Node.t Spline.t -> t -> t
-
-  val of_node_list : Node.t list -> t
-  val to_node_list : t -> Node.t list
-
-  val apply_spline_op : t -> (Node.t Spline.t -> Node.t Spline.t) -> t
-  val apply_node_op : t -> (Node.t -> Node.t) -> t
-
-  val ( <@@ ) : t -> bool -> t
-  val ( <@> ) : t -> t -> t
+  val ( <.> ) : ('a * 'a * 'a) L.t -> ('a -> 'b) -> ('b * 'b * 'b) L.t
+  val ( <*> ) : (P.t * P.t * P.t) L.t -> P.t -> (P.t * P.t * P.t) L.t
+  val ( </> ) : (P.t * P.t * P.t) L.t -> P.t -> (P.t * P.t * P.t) L.t
+  val ( <+> ) : (P.t * P.t * P.t) L.t -> P.t -> (P.t * P.t * P.t) L.t
+  val ( <-> ) : (P.t * P.t * P.t) L.t -> P.t -> (P.t * P.t * P.t) L.t
 end
 
-module Cubic_contour(Point : Point_type) :
-sig
-  module Node : module type of Cubic_node(Point)
-  include module type of Node_contour(Node)
-  val to_point_bool_list : t -> (Point.t * bool) list
-  val rev : t -> t
-  val ( <.> ) : t -> (Point.t -> Point.t) -> t
-  val ( <*> ) : t -> Point.t -> t
-  val ( </> ) : t -> Point.t -> t
-  val ( <+> ) : t -> Point.t -> t
-  val ( <-> ) : t -> Point.t -> t
-end
+(*-----------------------------------------------------------------------*)
+
+val bezier_curve_to_four_complexes :
+  Caml2geom.Bezier_curve.t -> Complex.t * Complex.t * Complex.t * Complex.t
 
 module Cubic :
 sig
-  include module type of Cubic_contour(Complex_point)
+  include module type of Cubic_base(List)(Complex_point)
 
-  module Extended_node :
-  sig
-    include module type of Node
-    val bezier_curve : t -> t -> Caml2geom.Cubic_bezier.t
-    val of_bezier_curves : Caml2geom.Bezier_curve.t ->
-      Caml2geom.Bezier_curve.t -> t
-    val bounds : ?fast:bool -> t -> t -> Complex_point.t * Complex_point.t
-    val subdivide : t -> t -> float -> t * t * t
-  end
+  val basis_conversion_tolerance : float ref
+  (** Default tolerance for transformation of the basis of a 2geom
+      path. *)
+
+  val time_error : exn
+  (** Invalid_argument exception for an out-of-range time. *)
+
+  val bezier_curve : ?pos:int -> t -> Caml2geom.Cubic_bezier.t
+  (** From the nodes at pos and pos + 1, create a bezier curve. *)
+
+  val of_bezier_curves : Caml2geom.Bezier_curve.t -> Caml2geom.Bezier_curve.t -> t
+  (** From a pair of bezier curves, create a node. *)
+
+  val curve_bounds : ?fast:bool -> ?pos:int -> t -> Complex.t * Complex.t
+  (** Computes an xy-aligned bounding box of the bezier curve between
+      two nodes. *)
+
+  val subdivide_curve : ?pos:int -> t -> float -> t * t
+  (** Cuts in two the bezier curve between two nodes, returning a pair
+      of two-node contours. *)
 
   val to_cubic_beziers : t -> Caml2geom.Cubic_bezier.t list
+  (** Creates a list of bezier curves from a contour. *)
+
   val to_path : t -> Caml2geom.Path.t
-  val of_path :
-    ?closed:bool ->
-    ?rel_inhandle:Complex.t ->
-    ?rel_outhandle:Complex.t ->
-    tolerance:float -> Caml2geom.Path.t -> t
-  val bounds : ?fast:bool -> t -> Complex_point.t * Complex_point.t
-  val overall_bounds : ?fast:bool ->
-    t Enum.t -> Complex_point.t * Complex_point.t
+  (** Converts a contour to a 2geom path. *)
+    
+  val of_path : ?tol:float -> ?rel_inhandle:Complex.t ->
+    ?rel_outhandle:Complex.t -> Caml2geom.Path.t -> t
+  (** Converts a 2geom path to a contour. *)
+
+  val bounds : ?fast:bool -> t -> Complex.t * Complex.t
+  (** Computes an xy-aligned bounding box of a contour. *)
+
+  val overall_bounds : ?fast:bool -> t Enum.t -> Complex.t * Complex.t
+  (** Computes an xy-aligned bounding box of an enumeration of
+      contours. *)
+
   val subdivide : t -> float -> t * t
+  (** Cut a contour in two. *)
+
+  val to_point_bool_list : t -> (Complex.t * bool) list
+  (** Convert a contour to list of points marked true/false =
+      on-curve/off-curve. *)
+
   val print_python_contour_code :
-    ?variable:string -> unit BatIO.output -> t -> unit
+    ?variable:string -> unit IO.output -> t -> unit
 end
+
+(*-----------------------------------------------------------------------*)
 
 module Parameterized_contour(Param : Parameter_type) :
 sig
-  module PComplex : module type of Parameterized_complex(Param)
-  module PCubic : module type of Cubic_contour(PComplex)
+  module PComplex : module type of Parameterized_complex_point(Param)
+  module PCubic : module type of Cubic_base(List)(PComplex)
 
   type t =
     [
@@ -341,46 +293,58 @@ sig
     | `PCubic of PCubic.t
     ]
 
-  val of_parameterized : (Param.t -> t) -> t
-  val of_cubic : Cubic.t -> t
-  val of_pcubic : PCubic.t -> t
+  val of_parameterized : 'a -> [> `Parameterized of 'a ]
+  val of_cubic : 'a -> [> `Cubic of 'a ]
+  val of_pcubic : 'a -> [> `PCubic of 'a ]
 
-  val resolve_pcontour_node : PCubic.Node.t -> Param.t -> Cubic.Node.t
-  val resolve_pcontour_spline : PCubic.Node.t PCubic.Spline.t ->
-    Param.t -> Cubic.Node.t Cubic.Spline.t
-
-  val resolve : t -> Param.t -> Cubic.t
-
-  val bounds2 : ?fast:bool ->
-    ([< `Cubic of Cubic.Node.t Cubic.Spline.t * bool
-     | `PCubic of PCubic.Node.t PCubic.Spline.t * bool
-     | `Parameterized of Param.t -> 'a
-     ] as 'a) ->
-    (Param.t -> Complex_point.t * Complex_point.t)
-
-  val bounds : ?fast:bool ->
-    ([< `Cubic of Cubic.Node.t Cubic.Spline.t * bool
-     | `PCubic of PCubic.Node.t PCubic.Spline.t * bool
-     | `Parameterized of Param.t -> 'a
-     ] as 'a) ->
-    PComplex.t * PComplex.t
-
+  val resolve_pcubic :
+    (('a -> 'b) * ('a -> 'b) * ('a -> 'b)) list ->
+    'a -> ('b * 'b * 'b) list
+  val resolve :
+    ([< `Cubic of ('b * 'b * 'b) list
+     | `PCubic of (('c -> 'b) * ('c -> 'b) * ('c -> 'b)) list
+     | `Parameterized of 'c -> 'a ]
+        as 'a) ->
+    'c -> ('b * 'b * 'b) list
+  val bounds2 :
+    ?fast:bool ->
+    ([< `Cubic of Cubic.t
+     | `PCubic of
+         (('b -> Complex.t) * ('b -> Complex.t) * ('b -> Complex.t))
+           list
+     | `Parameterized of 'b -> 'a ]
+        as 'a) ->
+    'b -> Complex.t * Complex.t
+  val bounds :
+    ?fast:bool ->
+    ([< `Cubic of Cubic.t
+     | `PCubic of
+         (('b -> Complex.t) * ('b -> Complex.t) * ('b -> Complex.t))
+           list
+     | `Parameterized of 'b -> 'a ]
+        as 'a) ->
+    ('b -> Complex.t) * ('b -> Complex.t)
   val overall_bounds2 :
     ?fast:bool ->
-    ([< `Cubic of Cubic.Extended_node.t Cubic.Spline.t * bool
-     | `PCubic of PCubic.Node.t PCubic.Spline.t * bool
-     | `Parameterized of Param.t -> 'a
-     ] as 'a) Enum.t ->
-    (Param.t -> Complex_point.t * Complex_point.t)
-
+    ([< `Cubic of Cubic.t
+     | `PCubic of
+         (('b -> Complex.t) * ('b -> Complex.t) * ('b -> Complex.t))
+           list
+     | `Parameterized of 'b -> 'a ]
+        as 'a)
+      Enum.t -> 'b -> Complex.t * Complex.t
   val overall_bounds :
     ?fast:bool ->
-    ([< `Cubic of Cubic.Extended_node.t Cubic.Spline.t * bool
-     | `PCubic of PCubic.Node.t PCubic.Spline.t * bool
-     | `Parameterized of Param.t -> 'a
-     ] as 'a) Enum.t ->
-    PComplex.t * PComplex.t
+    ([< `Cubic of Cubic.t
+     | `PCubic of
+         (('b -> Complex.t) * ('b -> Complex.t) * ('b -> Complex.t))
+           list
+     | `Parameterized of 'b -> 'a ]
+        as 'a)
+      Enum.t -> ('b -> Complex.t) * ('b -> Complex.t)
 end
+
+(*-----------------------------------------------------------------------*)
 
 val transform_option : ('a -> 'b) -> 'a option -> 'b option
 val transform_pair : ('a -> 'b) -> ('c -> 'd) -> 'a * 'c -> 'b * 'd
@@ -393,34 +357,26 @@ sig
     contours : 'contour list;
     lsb : 'float option;
     rsb : 'float option;
-    hints : ('float * 'float) list; (* FIXME: really implement hints. *)
+    hints : ('float * 'float) list;
   }
+
   val empty : ('float, 'contour) t
-  val transform : ('float1 -> 'float2) -> ('contour1 -> 'contour2) ->
-    ('float1, 'contour1) t -> ('float2, 'contour2) t
+  val transform : ('a -> 'b) -> ('c -> 'd) -> ('a, 'c) t -> ('b, 'd) t
 end
 
 module Cubic_glyph :
 sig
-  type t = {
-    name : string;
-    unicode : int option;
-    contours : Cubic.t list;
-    lsb : float option;
-    rsb : float option;
-    hints : (float * float) list;
-  }
-  val empty : t
-  val to_glyph : ('a, 'b) Glyph.t -> ('a, 'b) Glyph.t
-  val of_glyph : (float, Cubic.t) Glyph.t -> t
+  type t = (float, Cubic.t) Glyph.t
+
   val _print_python_glyph_code :
-    glyph_variable:string ->
-    contour_variable:string ->
-    unit BatIO.output -> t -> unit
+    glyph_variable:string -> contour_variable:string ->
+    unit IO.output -> t -> unit
+
   val print_python_glyph_code :
-    ?font_variable:string ->
-    ?glyph_variable:string ->
-    ?contour_variable:string ->
-    unit BatIO.output -> t -> unit
-  val print_python_glyph_update_module : unit BatIO.output -> t -> unit
+    ?font_variable:string -> ?glyph_variable:string ->
+    ?contour_variable:string -> unit IO.output -> t -> unit
+
+  val print_python_glyph_update_module : unit IO.output -> t -> unit
 end
+
+(*-----------------------------------------------------------------------*)

@@ -25,6 +25,8 @@
 
 open Batteries
 
+(*-----------------------------------------------------------------------*)
+
 let deg theta = (180. /. Float.pi) *. theta
 let rad theta = (Float.pi /. 180.) *. theta
 
@@ -37,16 +39,11 @@ let adcos = deg -| acos
 let adtan = deg -| atan
 let adtan2 x y = deg (atan2 x y)
 
+(*-----------------------------------------------------------------------*)
+
 module Extended_complex =
 (* Extensions for the Complex module. *)
 struct
-  (* The following type aliases are needed to make Extended_complex a
-     valid Point_type. *)
-  type bool = Bool.t
-  type int = Int.t
-  type float = Float.t
-  type string = String.t
-
   include Complex
 
   let x' x = { re = x; im = 0. }
@@ -75,22 +72,25 @@ struct
     if paren then IO.write outp ')'
 end
 
+(*-----------------------------------------------------------------------*)
+
 module type Point_type =
 sig
-  type bool
-  type int
-  type float
-  type string
+  type bool'
+  type int'
+  type float'
+  type string'
   type t
+  val linear_tolerance : t ref
   val zero : t
   val one : t
   val i : t
   val neg : t -> t
   val conj : t -> t
   val sqrt : t -> t
-  val norm2 : t -> float
-  val norm : t -> float
-  val arg : t -> float
+  val norm2 : t -> float'
+  val norm : t -> float'
+  val arg : t -> float'
   val exp : t -> t
   val log : t -> t
   val inv : t -> t
@@ -99,15 +99,15 @@ sig
   val abs : t -> t
   val dir : t -> t
   val round : t -> t
-  val rot : float -> t
-  val x' : float -> t
-  val y' : float -> t
-  val of_int : int -> t
-  val to_int : t -> int
-  val of_float : float -> t
-  val to_float : t -> float
-  val of_string : string -> t
-  val to_string : t -> string
+  val rot : float' -> t
+  val x' : float' -> t
+  val y' : float' -> t
+  val of_int : int' -> t
+  val to_int : t -> int'
+  val of_float : float' -> t
+  val to_float : t -> float'
+  val of_string : string' -> t
+  val to_string : t -> string'
   val add : t -> t -> t
   val sub : t -> t -> t
   val mul : t -> t -> t
@@ -117,22 +117,22 @@ sig
   val proj : t -> t -> t
   val min_bound : t -> t -> t
   val max_bound : t -> t -> t
-  val inner : t -> t -> float
-  val compare : t -> t -> int
-  val dpolar : float -> float -> t
-  val polar : float -> float -> t
+  val inner : t -> t -> float'
+  val compare : t -> t -> int'
+  val dpolar : float' -> float' -> t
+  val polar : float' -> float' -> t
   val ( + ) : t -> t -> t
   val ( - ) : t -> t -> t
   val ( * ) : t -> t -> t
   val ( / ) : t -> t -> t
   val ( ** ) : t -> t -> t
-  val ( <> ) : t -> t -> bool
-  val ( >= ) : t -> t -> bool
-  val ( <= ) : t -> t -> bool
-  val ( > ) : t -> t -> bool
-  val ( < ) : t -> t -> bool
-  val ( = ) : t -> t -> bool
-  val print : unit BatIO.output -> t -> unit
+  val ( <> ) : t -> t -> bool'
+  val ( >= ) : t -> t -> bool'
+  val ( <= ) : t -> t -> bool'
+  val ( > ) : t -> t -> bool'
+  val ( < ) : t -> t -> bool'
+  val ( = ) : t -> t -> bool'
+  val print : unit IO.output -> t -> unit
   val t_printer : t Value_printer.t
 end
 
@@ -141,16 +141,60 @@ sig
   type t
 end
 
-module Parameterized_complex(Param : Parameter_type) =
+(*-----------------------------------------------------------------------*)
+
+module Complex_point =
+struct
+  type bool' = Bool.t
+  type int' = Int.t
+  type float' = Float.t
+  type string' = String.t
+
+  include Extended_complex
+
+  let linear_tolerance = ref Extended_complex.({ re = 0.001; im = 0. })
+
+  let to_bezier_point pt = Caml2geom.Point.make pt.re pt.im
+  let of_bezier_point bp = { re = Caml2geom.Point.coord bp 0;
+                             im = Caml2geom.Point.coord bp 1 }
+
+  let print outp cp =
+    let x = cp.re and y = cp.im in
+    let format =
+      Float.(
+        if x < 0. && y < 0. then
+          p"x'(%F) + y'(%F)"
+        else if x < 0. then
+          p"x'(%F) + y' %F"
+        else if y < 0. then
+          p"x' %F + y'(%F)"
+        else
+          p"x' %F + y' %F"
+      )
+    in
+    Print.fprintf outp format x y
+
+  let t_printer paren outp c =
+    if paren then IO.write outp '(';
+    print outp c;
+    if paren then IO.write outp ')'
+end
+
+(*-----------------------------------------------------------------------*)
+
+module Parameterized_complex_point(Param : Parameter_type) =
 struct
   module Cx = Extended_complex
 
-  type bool = Param.t -> Bool.t
-  type int = Param.t -> Int.t
-  type float = Param.t -> Float.t
-  type string = Param.t -> String.t
+  type bool' = Param.t -> Bool.t
+  type int' = Param.t -> Int.t
+  type float' = Param.t -> Float.t
+  type string' = Param.t -> String.t
 
   type t = Param.t -> Cx.t
+
+  let linear_tolerance =
+    ref (fun (_p : Param.t) -> { Cx.re = 0.001; Cx.im = 0. })
 
   let zero p = const Cx.zero p
   let one p = const Cx.one p
@@ -215,70 +259,26 @@ struct
     if paren then IO.write outp ')'
 end
 
-module Complex_point =
-struct
-  include Extended_complex
+(*-----------------------------------------------------------------------*)
 
-  let to_bezier_point pt = Caml2geom.Point.make pt.re pt.im
-  let of_bezier_point bp = { re = Caml2geom.Point.coord bp 0;
-                             im = Caml2geom.Point.coord bp 1 }
-
-  let print outp cp =
-    let x = cp.re and y = cp.im in
-    let format =
-      Float.(
-        if x < 0. && y < 0. then
-          p"x'(%F) + y'(%F)"
-        else if x < 0. then
-          p"x'(%F) + y' %F"
-        else if y < 0. then
-          p"x' %F + y'(%F)"
-        else
-          p"x' %F + y' %F"
-      )
-    in
-    Print.fprintf outp format x y
-
-  let t_printer paren outp c =
-    if paren then IO.write outp '(';
-    print outp c;
-    if paren then IO.write outp ')'
-end
-
-module type Node_type =
-sig
-  type element
-  type t
-  val apply : (element -> element) -> (t -> t)
-  val print : unit IO.output -> t -> unit
-  val t_printer : t Value_printer.t
-end
-
-module Cubic_node(P : Point_type) =
+module Cubic_base
+  (L : module type of List)
+  (P : Point_type) =
 struct
   type point = P.t
-  type element = point
-  type t = { ih : point; oc : point; oh : point }
-
-  let apply f p = { ih = f p.ih; oc = f p.oc; oh = f p.oh }
-
-  let to_list p = [p.ih; p.oc; p.oh]
-  let of_list lst = { ih = List.hd lst;
-                      oc = List.hd (List.tl lst);
-                      oh = List.hd (List.tl (List.tl lst)) }
-  let to_list2 p = [(p.ih, false); (p.oc, true); (p.oh, false)]
+  type node = (P.t * P.t * P.t)
+  type t = (P.t * P.t * P.t) L.t
 
   let make_node rel_inhandle on_curve_point rel_outhandle =
-    P.({ ih = on_curve_point + rel_inhandle;
-         oc = on_curve_point;
-         oh = on_curve_point + rel_outhandle })
+    [P.(on_curve_point + rel_inhandle,
+        on_curve_point,
+        on_curve_point + rel_outhandle)]
 
-  let rev node = { ih = node.oh; oc = node.oc; oh = node.ih }
-
-  let make_pin on_curve_point = make_node P.zero on_curve_point P.zero
+  let make_pin on_curve_point =
+    make_node P.zero on_curve_point P.zero
 
   let make_flat on_curve_point direction inhandle_length outhandle_length =
-    let v = P.(direction / P.abs direction) in
+    let v = P.dir direction in
     let ilen = P.abs inhandle_length in
     let olen = P.abs outhandle_length in
     make_node P.(neg ilen * v) on_curve_point P.(olen * v)
@@ -295,28 +295,61 @@ struct
   let make_down on_curve_point inhandle_length outhandle_length =
     make_flat on_curve_point (P.neg P.i) inhandle_length outhandle_length
 
-  let on_curve p = p.oc
-  let inhandle p = p.ih
-  let outhandle p = p.oh
-  let rel_inhandle p = P.(p.ih - p.oc)
-  let rel_outhandle p = P.(p.oh - p.oc)
+  let is_empty contour = contour = []
+  let is_singleton contour = contour <> [] && L.tl contour = []
 
-  let print outp p =
+  let is_closed ?(tol = !P.linear_tolerance) contour =
+    let (_, p1, _) = L.first contour in
+    let (_, p2, _) = L.last contour in
+    P.(abs (p1 - p2) <= tol)
+
+  let is_open ?(tol = !P.linear_tolerance) contour =
+    let (_, p1, _) = L.first contour in
+    let (_, p2, _) = L.last contour in
+    P.(tol < abs (p1 - p2))
+
+  let close contour = contour @ [L.first contour]
+
+  let rev contour = L.rev_map (fun (ih,oc,oh) -> (oh,oc,ih)) contour
+
+  (* Nodewise and pointwise mapping. *)
+  let nodewise = L.map
+  let pointwise f = L.map (fun (ih,oc,oh) -> (f ih, f oc, f oh))
+
+  let print_point = P.print
+  let point_printer paren outp pt =
+    if paren then IO.write outp '(';
+    print_point outp pt;
+    if paren then IO.write outp ')'
+
+  let print_node outp (ih,oc,oh) =
     output_string outp "make_node (";
-    P.print outp P.(p.ih - p.oc);
+    P.print outp P.(ih - oc);
     output_string outp ") (";
-    P.print outp p.oc;
+    P.print outp oc;
     output_string outp ") (";
-    P.print outp P.(p.oh - p.oc);
+    P.print outp P.(oh - oc);
     output_string outp ")"
 
-  let t_printer paren outp p =
+  let node_printer paren outp node =
     if paren then IO.write outp '(';
-    print outp p;
+    print_node outp node;
     if paren then IO.write outp ')'
+
+  let print ?first ?last ?sep outp contour =
+    L.print ?first ?last ?sep print_node outp contour
+  let t_printer _paren outp contour = print outp contour
+
+  let ( <.> ) contour f = pointwise f contour
+  let ( <*> ) contour pt = pointwise (P.mul pt) contour
+  let ( </> ) contour pt = pointwise (P.div pt) contour
+  let ( <+> ) contour pt = pointwise (P.add pt) contour
+  let ( <-> ) contour pt = pointwise (P.sub pt) contour
 end
 
-let bezier_curve_to_four_points bez =
+(*-----------------------------------------------------------------------*)
+
+let bezier_curve_to_four_complexes bez =
   let points = Caml2geom.Bezier_curve.to_complex_array bez in
   let len = Array.length points in
   assert (len = 2 || len = 4); (* Only linears and cubics are allowed. *)
@@ -325,219 +358,66 @@ let bezier_curve_to_four_points bez =
   else
     (points.(0), points.(1), points.(2), points.(3))
 
-module Cubic_node_of_complex_point =
+module Cubic =
 struct
-  include Cubic_node(Complex_point)
+  include Cubic_base(List)(Complex_point)
+  module L = List
+  module P = Complex_point
 
-  let bezier_curve node1 node2 =
-    let p0 = Complex_point.to_bezier_point (on_curve node1) in
-    let p1 = Complex_point.to_bezier_point (outhandle node1) in
-    let p2 = Complex_point.to_bezier_point (inhandle node2) in
-    let p3 = Complex_point.to_bezier_point (on_curve node2) in
+  let basis_conversion_tolerance = ref 0.001
+
+  let time_error = Invalid_argument "time out of range"
+
+  let bezier_curve ?(pos = 0) contour =
+    let c = L.drop pos contour in
+    let (_, on_curve1, outhandle1) = L.hd c in
+    let (inhandle2, on_curve2, _) = L.hd (L.tl c) in
+    let p0 = P.to_bezier_point on_curve1 in
+    let p1 = P.to_bezier_point outhandle1 in
+    let p2 = P.to_bezier_point inhandle2 in
+    let p3 = P.to_bezier_point on_curve2 in
     Caml2geom.Cubic_bezier.of_four_points p0 p1 p2 p3
 
   let of_bezier_curves bez1 bez2 =
-    let (_, _, ih, oc) = bezier_curve_to_four_points bez1 in
-    let (_, oh, _, _) = bezier_curve_to_four_points bez2 in
-    { ih; oc; oh }
+    let (_, _, ih, oc) = bezier_curve_to_four_complexes bez1 in
+    let (_, oh, _, _) = bezier_curve_to_four_complexes bez2 in
+    [(ih, oc, oh)]
 
-  let bounds ?(fast = false) node1 node2 =
+  let curve_bounds ?(fast = false) ?pos contour =
     let bounds_func =
       if fast then
         Caml2geom.Cubic_bezier.bounds_fast
       else
         Caml2geom.Cubic_bezier.bounds_exact
     in
-    let bez = bezier_curve node1 node2 in
+    let bez = bezier_curve ?pos contour in
     let rect = bounds_func bez in
-    Complex_point.(of_bezier_point (Caml2geom.Rect.min rect),
-                   of_bezier_point (Caml2geom.Rect.max rect))
+    P.(of_bezier_point (Caml2geom.Rect.min rect),
+       of_bezier_point (Caml2geom.Rect.max rect))
 
-  let subdivide node1 node2 time =
-    let bez = bezier_curve node1 node2 in
+  let subdivide_curve ?(pos = 0) contour time =
+    let c = L.drop pos contour in
+    let (ih1, oc1, _) = L.hd c in
+    let (_, oc2, oh2) = L.hd (L.tl c) in
+    let bez = bezier_curve c in
     let (bez1, bez2) = Caml2geom.Cubic_bezier.subdivide bez time in
-    let (_a0, a1, a2, a3) = bezier_curve_to_four_points bez1 in
-    let (_b0, b1, b2, b3) = bezier_curve_to_four_points bez2 in
-    let n1 = { ih = node1.ih; oc = node1.oc; oh = a1 } in
-    let n2 = { ih = a2; oc = a3; oh = b1 } in
-    let n3 = { ih = b2; oc = node2.oc; oh = node2.oh } in
-    (n1, n2, n3)
-end
+    let (_a0, a1, a2, a3) = bezier_curve_to_four_complexes bez1 in
+    let (_b0, b1, b2, b3) = bezier_curve_to_four_complexes bez2 in
+    let node1 = (ih1, oc1, a1) in
+    let node2 = (a2, a3, b1) in
+    let node3 = (b2, oc2, oh2) in
+    ([node1; node2], [node2; node3])
 
-module type Node_spline_type =
-sig
-  type +'node t
-
-  include Enum.Enumerable with type 'node enumerable = 'node t
-  val backwards : 'node t -> 'node Enum.t
-  val of_backwards : 'node Enum.t -> 'node t
-
-  include Interfaces.Mappable with type 'node mappable = 'node t
-  val iter : ('node -> unit) -> 'node t -> unit
-
-  val rev : 'node t -> 'node t
-  val rev_map : ('node -> 'node) -> 'node t -> 'node t
-
-  val to_list : 'node t -> 'node list
-  val of_list : 'node list -> 'node t
-
-  val first : 'node t -> 'node
-  val last : 'node t -> 'node
-  val at : 'node t -> int -> 'node
-  val append : 'node t -> 'node t -> 'node t
-  val concat : 'node t list -> 'node t
-  val flatten : 'node t list -> 'node t
-  val split_at : int -> 'node t -> 'node t * 'node t
-  val take : int -> 'node t -> 'node t
-  val drop : int -> 'node t -> 'node t
-
-  val is_empty : 'node t -> bool
-  val append_node : 'node t -> 'node -> 'node t
-  val prepend_node : 'node -> 'node t -> 'node t
-  val of_node : 'node -> 'node t
-
-  val print : ?first:string -> ?last:string -> ?sep:string ->
-    ('a IO.output -> 'node -> unit) -> 'a IO.output -> 'node t -> unit
-  val t_printer : 'node Value_printer.t -> 'node t Value_printer.t
-end
-
-module Node_spline : Node_spline_type =
-struct
-  type +'node t = 'node list
-  type +'node mappable = 'node t
-  type +'node enumerable = 'node t
-
-  let map = List.map
-  let iter = List.iter
-
-  let rev = List.rev
-  let rev_map = List.rev_map
-
-  let of_enum = List.of_enum
-  let enum = List.enum
-  let of_backwards = List.of_backwards
-  let backwards = List.backwards
-
-  let to_list = identity
-  let of_list = identity
-
-  let first = List.first
-  let last = List.last
-  let at = List.at
-  let append = List.append
-  let concat = List.concat
-  let flatten = List.flatten
-  let split_at = List.split_at
-  let take = List.take
-  let drop = List.drop
-
-  let is_empty spline = spline = []
-  let append_node spline node = spline @ [node]
-  let prepend_node node spline = node :: spline
-  let of_node node = [node]
-
-  let print = List.print
-  let t_printer = List.t_printer
-end
-
-let node_spline_to_cubic_beziers spline is_closed =
-  let rec make_curves node_list =
-    match node_list with
+  let rec to_cubic_beziers contour =
+    match contour with
       | [] | [_] -> []
-      | node1 :: node2 :: remaining ->
-        Cubic_node_of_complex_point.bezier_curve node1 node2 ::
-          make_curves (node2 :: remaining)
-  in
-  let node_list = Node_spline.to_list spline in
-  if is_closed then
-    make_curves (node_list @ [List.hd node_list])
-  else
-    make_curves node_list
-
-module Node_contour(Node : Node_type) =
-struct
-  module Spline = Node_spline
-  type t = 'node Spline.t * bool
-  constraint 'node = Node.t
-
-  let spline = fst
-  let closed = snd
-
-  let with_spline spline (_, is_closed) = (spline, is_closed)
-  let with_closed is_closed (spline, _) = (spline, is_closed)
-
-  let of_node_list node_list = (Spline.of_list node_list, false)
-  let to_node_list (spline, _) = Spline.to_list spline
-
-  let apply_spline_op contour spline_op =
-    with_spline (spline_op (spline contour)) contour
-
-  let apply_node_op contour node_op =
-    apply_spline_op contour (Spline.map node_op)
-
-  let print_closed outp (_, is_closed) =
-    if is_closed then
-      output_string outp " <@@ true"
-    else
-      output_string outp " <@@ false"
-
-  let print
-      ?(first = "of_node_list [\n  ")
-      ?(last = ";\n]")
-      ?(sep = ";\n  ")
-      outp contour =
-    Spline.print ~first ~last ~sep Node.print outp (fst contour);
-    print_closed outp contour
-
-  let t_printer paren outp contour =
-    if paren then IO.write outp '(';
-    print outp contour;
-    if paren then IO.write outp ')'
-
-  let ( <@@ ) contour is_closed = with_closed is_closed contour
-  let ( <@> ) (spline1, is_closed) (spline2, _) =
-    (Node_spline.append spline1 spline2, is_closed)
-end
-
-module Cubic_contour(Point : Point_type) =
-struct
-  module Node = Cubic_node(Point)
-  include Node_contour(Node)
-
-  let to_point_bool_list contour =
-    List.flatten (List.map Node.to_list2 (to_node_list contour))
-
-  let rev contour =
-    with_spline (Node_spline.rev_map Node.rev (spline contour)) contour
-
-  let ( <.> ) contour point_op = apply_node_op contour (Node.apply point_op)
-  let ( <*> ) contour pt = apply_node_op contour (Node.apply (Point.mul pt))
-  let ( </> ) contour pt = apply_node_op contour (Node.apply (Point.div pt))
-  let ( <+> ) contour pt = apply_node_op contour (Node.apply (Point.add pt))
-  let ( <-> ) contour pt = apply_node_op contour (Node.apply (Point.sub pt))
-end
-
-module Cubic =
-struct
-  include Cubic_contour(Complex_point)
-
-  module Extended_node =
-  struct
-    include Node
-    let bezier_curve = Cubic_node_of_complex_point.bezier_curve
-    let of_bezier_curves = Cubic_node_of_complex_point.of_bezier_curves
-    let bounds = Cubic_node_of_complex_point.bounds
-    let subdivide = Cubic_node_of_complex_point.subdivide
-  end
-
-  let to_cubic_beziers contour =
-    node_spline_to_cubic_beziers (spline contour) (closed contour)
+      | _ :: remaining as c ->
+        bezier_curve c :: to_cubic_beziers remaining
 
   let to_path contour =
     let curve_list = to_cubic_beziers contour in
-    let first_node = Spline.first (spline contour) in
-    let first_point = Node.on_curve first_node in
-    let path = Caml2geom.Path.make (Complex_point.to_bezier_point first_point) in
+    let (_, first_point, _) = L.hd contour in
+    let path = Caml2geom.Path.make (P.to_bezier_point first_point) in
     List.iter
       (Caml2geom.Path.append_curve ~stitch:Caml2geom.Path.NO_STITCHING path -|
           Caml2geom.Cubic_bezier.to_curve)
@@ -545,137 +425,107 @@ struct
     path
 
   let of_path
-      ?(closed = false)
-      ?(rel_inhandle = Complex_point.zero)
-      ?(rel_outhandle = Complex_point.zero)
-      ~tolerance path =
-    let bez_curves = Caml2geom.Path.to_cubic_beziers_open path tolerance in
-    let curves = List.map bezier_curve_to_four_points bez_curves in
-    let first = List.first curves in
-    let last = List.last curves in
-    let curves' =
-      if closed then
-        last :: curves
-      else
-        let (a0, _, _, _) = first in
-        let (_, _, _, b3) = last in
-        let ih = Complex_point.(a0 + rel_inhandle) in
-        let oh = Complex_point.(b3 + rel_outhandle) in
-        let pre_first = Complex_point.(zero, zero, ih, a0) in
-        let post_last = Complex_point.(b3, oh, zero, zero) in
-        pre_first :: (curves @ [post_last])
-    in
+      ?(tol = !basis_conversion_tolerance)
+      ?(rel_inhandle = P.zero)
+      ?(rel_outhandle = P.zero)
+      path =
+    let bez_curves = Caml2geom.Path.to_cubic_beziers_open path tol in
+    let curves = List.map bezier_curve_to_four_complexes bez_curves in
+    let (a0, _, _, _) = List.first curves in
+    let (_, _, _, b3) = List.last curves in
+    let pre_first = P.(zero, zero, a0 + rel_inhandle, a0) in
+    let post_last = P.(b3, b3 + rel_outhandle, zero, zero) in
     let rec make_nodes =
       function
         | [] | [_] -> []
         | curve1 :: curve2 :: remaining ->
           let (_, _, ih, oc) = curve1 in
           let (_, oh, _, _) = curve2 in
-          Node.({ ih; oc; oh }) ::
-            make_nodes (curve2 :: remaining)
+          (ih, oc, oh) :: make_nodes (curve2 :: remaining)
     in
-    let spline' = Node_spline.of_list (make_nodes curves') in
-    (spline', closed)
+    make_nodes (pre_first :: (curves @ [post_last]))
 
-  let bounds ?(fast = false) contour =
-    let most_positive = Complex_point.({ re = infinity; im = infinity }) in
-    let most_negative = Complex_point.({ re = neg_infinity; im = neg_infinity }) in
-    let rec get_bounds node_list =
-      match node_list with
+  let bounds ?fast contour =
+    let most_positive = Complex.({ re = infinity; im = infinity }) in
+    let most_negative = Complex.({ re = neg_infinity; im = neg_infinity }) in
+    let rec get_bounds contour =
+      match contour with
         | [] | [_] -> []
-        | node1 :: node2 :: remaining ->
-          Cubic_node_of_complex_point.bounds ~fast node1 node2 ::
-            get_bounds (node2 :: remaining)
+        | _ :: remaining as c ->
+          curve_bounds ?fast c :: get_bounds remaining
     in
-    let node_list = Node_spline.to_list (spline contour) in
-    let bounds_list =
-      if closed contour then
-        get_bounds (node_list @ [List.hd node_list])
-      else
-        get_bounds node_list
-    in
+    let bounds_list = get_bounds contour in
     List.fold_left
-      (fun (min1, max1) (min2, max2) -> Complex_point.(min_bound min1 min2,
-                                                       max_bound max1 max2))
+      (fun (min1, max1) (min2, max2) -> P.(min_bound min1 min2,
+                                           max_bound max1 max2))
       (most_positive, most_negative)
       bounds_list
 
-  let overall_bounds ?(fast = false) contour_enum =
-    if Enum.is_empty contour_enum then
-      raise Not_found
+  let overall_bounds ?fast enum_of_contours =
+    if Enum.is_empty enum_of_contours then
+      invalid_arg "empty enum of contours"
     else
-      let most_positive = Complex_point.({ re = infinity; im = infinity }) in
-      let most_negative = Complex_point.({ re = neg_infinity; im = neg_infinity }) in
+      let most_positive = Complex.({ re = infinity; im = infinity }) in
+      let most_negative = Complex.({ re = neg_infinity; im = neg_infinity }) in
       fold
         (fun (current_min, current_max) contour ->
-          let (this_min, this_max) = bounds ~fast contour in
-          Complex_point.(min_bound current_min this_min,
-                         max_bound current_max this_max))
+          let (this_min, this_max) = bounds ?fast contour in
+          P.(min_bound current_min this_min,
+             max_bound current_max this_max))
         (most_positive, most_negative)
-        contour_enum
+        enum_of_contours
 
-  let subdivide contour time =
-    let time_error () =
-      invalid_arg "time out of range"
-    in
+  let rec subdivide contour time =
     if time < 0. then
-      time_error ();
-    let rec subdiv node_list time =
-      match node_list with
-        | [] -> time_error ()
-        | [node] when time = 0. ->
-          ([node], [node])
-        | node1 :: node2 :: remaining when time < 1. ->
-          let (n1, n2, n3) = Extended_node.subdivide node1 node2 time in
-          ([n1; n2], n2 :: n3 :: remaining)
-        | node :: remaining ->
-          let (node_list1, node_list2) = subdiv remaining (time -. 1.) in
-          (node :: node_list1, node_list2)
-    in
-    let spline =
-      let sp = spline contour in
-      if closed contour then
-        Node_spline.append_node sp (Node_spline.first sp)
-      else
-        sp
-    in
-    let (sp1, sp2) = subdiv (Node_spline.to_list spline) time in
-    ((Node_spline.of_list sp1, false), (Node_spline.of_list sp2, false))
+      raise time_error;
+    match contour with
+      | [] -> raise time_error
+      | [node] when time = 0. -> ([node], [node])
+      | node :: remaining when 1. <= time ->
+        let (contour1, contour2) = subdivide remaining (time -. 1.) in
+        (node :: contour1, contour2)
+      | c ->
+        let (c1, c2) = subdivide_curve c time in
+        (c1, c2 @ L.drop 2 c)
+
+  let to_point_bool_list contour =
+    let node_to_list (ih,oc,oh) = [(ih, false); (oc, true); (oh, false)] in
+    L.flatten (L.map node_to_list contour)
 
   let print_python_contour_code ?variable outp contour =
     let point_list = to_point_bool_list contour in
-    let point_list = (List.tl point_list) @ [List.hd point_list] in
     match variable with
       | None ->
         (* This branch doesn't set the closedness. *)
         output_string outp "(fontforge.contour()";
         List.iter
-          Complex_point.(fun (pt, on_curve) ->
-            let oc_string = if on_curve then "True" else "False" in
-            Print.fprintf outp p"+fontforge.point(%f,%f,%s)" pt.re pt.im oc_string
-          )
+          Complex.(fun (pt, on_curve) ->
+            if on_curve then
+              Print.fprintf outp p" + fontforge.point(%f,%f)" pt.re pt.im
+            else
+              Print.fprintf outp p" + fontforge.point(%f,%f, False)" pt.re pt.im)
           point_list;
         output_string outp ")"
 
       | Some var_name ->
         Print.fprintf outp p"%s = fontforge.contour()\n" var_name;
         List.iter
-          Complex_point.(fun (pt, on_curve) ->
+          Complex.(fun (pt, on_curve) ->
             if on_curve then
               Print.fprintf outp p"%s += fontforge.point(%f,%f)\n" var_name pt.re pt.im
             else
-              Print.fprintf outp p"%s += fontforge.point(%f,%f, False)\n" var_name pt.re pt.im
-          )
+              Print.fprintf outp p"%s += fontforge.point(%f,%f, False)\n" var_name pt.re pt.im)
           point_list;
         Print.fprintf outp p"%s.closed = %s\n" var_name
-          (if closed contour then "True" else "False")
-
+          (if is_closed contour then "True" else "False")
 end
+
+(*-----------------------------------------------------------------------*)
 
 module Parameterized_contour(Param : Parameter_type) =
 struct
-  module PComplex = Parameterized_complex(Param)
-  module PCubic = Cubic_contour(PComplex)
+  module PComplex = Parameterized_complex_point(Param)
+  module PCubic = Cubic_base(List)(PComplex)
 
   type t =
     [
@@ -688,44 +538,39 @@ struct
   let of_cubic c = `Cubic c
   let of_pcubic c = `PCubic c
 
-  let resolve_pcontour_node pnode param =
-    Cubic.Node.make_node
-      ((PCubic.Node.rel_inhandle pnode) param)
-      ((PCubic.Node.on_curve pnode) param)
-      ((PCubic.Node.rel_outhandle pnode) param)
-
-  let resolve_pcontour_spline spline param =
-    PCubic.Spline.map (flip resolve_pcontour_node param) spline
+  let resolve_pcubic contour param =
+    PCubic.pointwise (fun pt -> pt param) contour
 
   let rec resolve contour param =
     (* Resolve to a de-parameterized cubic bezier contour. *)
     match contour with
       | `Parameterized c -> resolve (c param) param
       | `Cubic c -> c
-      | `PCubic c ->
-        PCubic.with_spline (resolve_pcontour_spline (PCubic.spline c) param) c
+      | `PCubic c -> resolve_pcubic c param
 
-  let bounds2 ?(fast = false) contour =
-    fun p -> Cubic.bounds ~fast (resolve contour p)
+  let bounds2 ?fast contour =
+    fun p -> Cubic.bounds ?fast (resolve contour p)
 
-  let bounds ?(fast = false) contour =
-    let b = bounds2 ~fast contour in
+  let bounds ?fast contour =
+    let b = bounds2 ?fast contour in
     ((fun p -> fst (b p)), (fun p -> snd (b p)))
 
-  let overall_bounds2 ?(fast = false) contour_enum =
-    fun p -> Cubic.overall_bounds ~fast (map (flip resolve p) contour_enum)
+  let overall_bounds2 ?fast enum_of_contours =
+    fun p -> Cubic.overall_bounds ?fast (map (flip resolve p) enum_of_contours)
 
-  let overall_bounds ?(fast = false) contour_enum =
-    let ob = overall_bounds2 ~fast contour_enum in
+  let overall_bounds ?fast enum_of_contours =
+    let ob = overall_bounds2 ?fast enum_of_contours in
     ((fun p -> fst (ob p)), (fun p -> snd (ob p)))
 end
 
-let transform_option trans opt =
+(*-----------------------------------------------------------------------*)
+
+let transform_option f opt =
   match opt with
     | None -> None
-    | Some v -> Some (trans v)
+    | Some v -> Some (f v)
 
-let transform_pair trans1 trans2 (a,b) = (trans1 a, trans2 b)
+let transform_pair f1 f2 (a,b) = (f1 a, f2 b)
 
 module Glyph =
 struct
@@ -747,46 +592,20 @@ struct
     hints = [];
   }
 
-  let transform float_transformation contour_transformation glyph = {
+  let transform float_to_float contour_to_contour glyph = {
     glyph with
-      contours = List.map contour_transformation glyph.contours;
-      lsb = transform_option float_transformation glyph.lsb;
-      rsb = transform_option float_transformation glyph.rsb;
-      hints = List.map (transform_pair float_transformation float_transformation) glyph.hints;
+      contours = List.map contour_to_contour glyph.contours;
+      lsb = transform_option float_to_float glyph.lsb;
+      rsb = transform_option float_to_float glyph.rsb;
+      hints = List.map (transform_pair float_to_float float_to_float) glyph.hints;
   }
 end
 
 module Cubic_glyph =
 struct
-  type t = {
-    name : string;
-    unicode : int option;
-    contours : Cubic.t list;
-    lsb : float option;
-    rsb : float option;
-    hints : (float * float) list; (* FIXME: really implement hints. *)
-  }
+  type t = (float, Cubic.t) Glyph.t
 
-  let to_glyph cg =
-    Glyph.({
-      name = cg.name;
-      unicode = cg.unicode;
-      contours = cg.contours;
-      lsb = cg.lsb;
-      rsb = cg.rsb;
-      hints = cg.hints;
-    })
-
-  let of_glyph g = {
-    name = g.Glyph.name;
-    unicode = g.Glyph.unicode;
-    contours = g.Glyph.contours;
-    lsb = g.Glyph.lsb;
-    rsb = g.Glyph.rsb;
-    hints = g.Glyph.hints;
-  }
-
-  let empty = of_glyph Glyph.empty
+  open Glyph
 
   let _print_python_glyph_code
       ~glyph_variable
@@ -857,3 +676,5 @@ struct
       ~contour_variable:"my_contour"
       outp glyph
 end
+
+(*-----------------------------------------------------------------------*)
