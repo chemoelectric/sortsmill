@@ -188,7 +188,6 @@ module Cubic_base
   (P : Point_type) :
 sig
   type point = P.t
-  type node = (P.t * P.t * P.t)
   type t = (P.t * P.t * P.t) L.t
   val make_node : P.t -> P.t -> P.t -> t
   val make_pin : P.t -> t
@@ -204,8 +203,6 @@ sig
   val pointwise : ('a -> 'b) -> ('a * 'a * 'a) L.t -> ('b * 'b * 'b) L.t
   val print_point : unit IO.output -> P.t -> unit
   val point_printer : P.t Value_printer.t
-  val print_node : unit IO.output -> P.t * P.t * P.t -> unit
-  val node_printer : bool -> unit IO.output -> P.t * P.t * P.t -> unit
   val print : ?first:string -> ?last:string -> ?sep:string ->
     unit IO.output -> t -> unit
   val t_printer : t Value_printer.t

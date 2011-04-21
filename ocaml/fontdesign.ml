@@ -260,7 +260,6 @@ module Cubic_base
   (P : Point_type) =
 struct
   type point = P.t
-  type node = (P.t * P.t * P.t)
   type t = (P.t * P.t * P.t) L.t
 
   let make_node rel_inhandle on_curve_point rel_outhandle =
@@ -304,22 +303,18 @@ struct
     print_point outp pt;
     if paren then IO.write outp ')'
 
-  let print_node outp (ih,oc,oh) =
-    output_string outp "make_node (";
-    P.print outp P.(ih - oc);
-    output_string outp ") (";
-    P.print outp oc;
-    output_string outp ") (";
-    P.print outp P.(oh - oc);
-    output_string outp ")"
-
-  let node_printer paren outp node =
-    if paren then IO.write outp '(';
-    print_node outp node;
-    if paren then IO.write outp ')'
-
   let print ?first ?last ?sep outp contour =
+    let print_node outp (ih,oc,oh) =
+      output_string outp "make_node (";
+      P.print outp P.(ih - oc);
+      output_string outp ") (";
+      P.print outp oc;
+      output_string outp ") (";
+      P.print outp P.(oh - oc);
+      output_string outp ")"
+    in
     L.print ?first ?last ?sep print_node outp contour
+
   let t_printer _paren outp contour = print outp contour
 
   let ( <.> ) contour f = pointwise f contour
