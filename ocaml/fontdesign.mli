@@ -26,6 +26,7 @@
 *)
 
 open Batteries
+module Crossing : module type of Caml2geom.Crossing
 
 (*-----------------------------------------------------------------------*)
 
@@ -84,6 +85,7 @@ sig
     complex [b]. *)
 
   val x_shear : t -> float -> t
+  val y_shear : t -> float -> t
 
   val min_bound : t -> t -> t
   val max_bound : t -> t -> t
@@ -134,6 +136,7 @@ sig
   val pow : t -> t -> t
   val proj : t -> t -> t
   val x_shear : t -> float' -> t
+  val y_shear : t -> float' -> t
   val min_bound : t -> t -> t
   val max_bound : t -> t -> t
   val inner : t -> t -> float'
@@ -237,9 +240,14 @@ sig
   (** Computes an xy-aligned bounding box of the bezier curve between
       two nodes. *)
 
+  val curve_times_at_x : ?pos:int -> t -> float -> float array
+  val curve_times_at_y : ?pos:int -> t -> float -> float array
+
   val subdivide_curve : ?pos:int -> t -> float -> t * t
   (** Cuts in two the bezier curve between two nodes, returning a pair
       of two-node contours. *)
+
+  val curve_crossings : ?pos1:int -> t -> ?pos2:int -> t -> Crossing.t array
 
   val to_cubic_beziers : t -> Caml2geom.Cubic_bezier.t list
   (** Creates a list of bezier curves from a contour. *)
@@ -262,6 +270,14 @@ sig
   (** Cut a contour in two. *)
 
   val join : ?tol:float -> t -> t -> t
+
+  val times_at_x : t -> float -> float array
+  val times_at_y : t -> float -> float array
+
+  val crossings : t -> t -> Crossing.t array
+
+  val modify_inhandle : t -> Complex.t -> t
+  val modify_outhandle : t -> Complex.t -> t
 
   val to_point_bool_list : t -> (Complex.t * bool) list
   (** Convert a contour to list of points marked true/false =

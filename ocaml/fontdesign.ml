@@ -24,6 +24,7 @@
 *)
 
 open Batteries
+module Crossing = Caml2geom.Crossing
 
 (*-----------------------------------------------------------------------*)
 
@@ -59,7 +60,8 @@ struct
     let b' = dir b in
     of_float (inner a b') * b'
 
-  let x_shear c angle = c + x'(c.re *. (dtan angle))
+  let x_shear c angle = c + x'(c.im *. (dtan angle))
+  let y_shear c angle = c + y'(c.re *. (dtan angle))
 
   let min_bound a b = { re = min a.re b.re; im = min a.im b.im }
   let max_bound a b = { re = max a.re b.re; im = max a.im b.im }
@@ -117,6 +119,7 @@ sig
   val pow : t -> t -> t
   val proj : t -> t -> t
   val x_shear : t -> float' -> t
+  val y_shear : t -> float' -> t
   val min_bound : t -> t -> t
   val max_bound : t -> t -> t
   val inner : t -> t -> float'
@@ -246,9 +249,9 @@ struct
 
   let ( <.> ) contour f = pointwise f contour
   let ( <*> ) contour pt = pointwise (P.mul pt) contour
-  let ( </> ) contour pt = pointwise (P.div pt) contour
+  let ( </> ) contour pt = pointwise (flip P.div pt) contour
   let ( <+> ) contour pt = pointwise (P.add pt) contour
-  let ( <-> ) contour pt = pointwise (P.sub pt) contour
+  let ( <-> ) contour pt = pointwise (flip P.sub pt) contour
 end
 
 (*-----------------------------------------------------------------------*)
@@ -317,6 +320,19 @@ struct
     let rect = bounds_func bez in
     P.(of_bezier_point (Caml2geom.Rect.min rect),
        of_bezier_point (Caml2geom.Rect.max rect))
+
+  let curve_times_at_x ?pos contour x_coord =
+    let bez = bezier_curve ?pos contour in
+    Caml2geom.Cubic_bezier.roots bez x_coord Caml2geom.Coord.X
+
+  let curve_times_at_y ?pos contour y_coord =
+    let bez = bezier_curve ?pos contour in
+    Caml2geom.Cubic_bezier.roots bez y_coord Caml2geom.Coord.Y
+
+  let curve_crossings ?pos1 contour1 ?pos2 contour2 =
+    let bez1 = bezier_curve ?pos:pos1 contour1 in
+    let bez2 = bezier_curve ?pos:pos2 contour2 in
+    Caml2geom.Cubic_bezier.crossings bez1 bez2
 
   let subdivide_curve ?(pos = 0) contour time =
     let c = L.drop pos contour in
@@ -425,6 +441,30 @@ struct
         L.rev_append (joined_node :: L.tl rev1) contour2
       else
         L.append contour1 contour2
+
+  let times_at_x contour x_coord =
+    Caml2geom.Path.roots (to_path contour) x_coord Caml2geom.Coord.X
+
+  let times_at_y contour y_coord =
+    Caml2geom.Path.roots (to_path contour) y_coord Caml2geom.Coord.Y
+
+  let crossings contour1 contour2 =
+    Caml2geom.Path.crossings (to_path contour1) (to_path contour2)
+
+  let modify_inhandle path vector =
+    Complex_point.(
+      let (ih, oc, oh) = L.hd path in
+      let new_ih = oc + dir (ih - oc) * vector in
+      (new_ih, oc, oh) :: L.tl path
+    )
+
+  let modify_outhandle path vector =
+    Complex_point.(
+      let rev_path = L.rev path in
+      let (ih, oc, oh) = L.hd rev_path in
+      let new_oh = oc + dir (oh - oc) * vector in
+      L.rev ((ih, oc, new_oh) :: L.tl rev_path)
+    )
 
   let to_point_bool_list contour =
     let node_to_list (ih,oc,oh) = [(ih, false); (oc, true); (oh, false)] in

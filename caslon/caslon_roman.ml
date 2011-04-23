@@ -82,6 +82,7 @@ let enum_resolve_glyphs param = map (flip resolve_glyph param) (enum_glyphs ())
 (*-----------------------------------------------------------------------*)
 
 let letter_c_contour p =
+
   Cubic.(Complex_point.(
 
     let width = 315. *. p.extension in
@@ -95,15 +96,15 @@ let letter_c_contour p =
     let bottom = 0.81 *. p.lc_stem_width in
     let top = 0.68 *. p.lc_stem_width /. p.contrast in
 
-    let cut_angle = 140. in
+    let tail_cut_angle = -40. in
     let tail2 = x' width + y' 69.0000 in
-    let tail1 = tail2 + (x' 15.) * (rot cut_angle) in
+    let tail1 = tail2 + y_shear (x'(-12.)) tail_cut_angle in
 
     let outer =
       make_node
-        (y' 4.)
+        zero
         tail2
-        (proj (y'(-0.13 *. height)) (rot(-115.)))
+        (x_shear (y'(-0.11 *. height)) 25.)
       <@> make_left                     (* bottommost *)
         (x'(0.56 *. width) - y' undershoot)
         (x'(0.20 *. width))
@@ -147,14 +148,30 @@ let letter_c_contour p =
       <@> make_node
         (x' 35.3553 * rot 225.)
         tail1
-        (x' 5.)
+        zero
     in
-    outer <@> terminal <@> inner
+
+    let midpoint = x' 0.5 * (tail1 + tail2) in
+    let cut = make_node (x' 0.8 * (tail1 - midpoint)) midpoint (x' 0.8 * (tail2 - midpoint)) in
+
+    let inner' = inner <-> midpoint <*> rot (-90. -. tail_cut_angle) in
+    let times = times_at_x inner' (-7.) in
+    let time_inner = times.(Int.pred (Array.length times)) in
+    let outer' = outer <-> midpoint <*> rot (-90. -. tail_cut_angle) in
+    let time_outer = (times_at_x outer' (-7.)).(0) in
+    let (inner, _) = subdivide inner time_inner in
+    let (_, outer) = subdivide outer time_outer in
+    let inner = modify_outhandle inner (x' 5.) in
+    let outer = modify_inhandle outer (x' 5.) in
+
+    outer <@> terminal <@> inner <@> cut
     <@@ true <.> round
   ))
 
 let letter_o_contours = 
+
   let width = 383. in
+
   let outer_contour p =
     Cubic.(Complex_point.(
       let width = width *. p.extension in
@@ -184,7 +201,9 @@ let letter_o_contours =
     ))
   in
   let inner_contour p =
+
     Cubic.(Complex_point.(
+
       let width = width *. p.extension in
 
       let height = p.x_height +. p.curve_undershoot +. p.curve_overshoot in
@@ -214,6 +233,7 @@ let letter_o_contours =
       <@@ true <.> round
     ))
   in
+
   [outer_contour; inner_contour]
 ;;
 
