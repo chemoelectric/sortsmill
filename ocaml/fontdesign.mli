@@ -83,6 +83,8 @@ sig
 (** [proj a b] returns the geometric projection of complex [a] on
     complex [b]. *)
 
+  val x_shear : t -> float -> t
+
   val min_bound : t -> t -> t
   val max_bound : t -> t -> t
 
@@ -131,6 +133,7 @@ sig
   val modulo : t -> t -> t
   val pow : t -> t -> t
   val proj : t -> t -> t
+  val x_shear : t -> float' -> t
   val min_bound : t -> t -> t
   val max_bound : t -> t -> t
   val inner : t -> t -> float'
@@ -269,6 +272,8 @@ sig
   val subdivide : t -> float -> t * t
   (** Cut a contour in two. *)
 
+  val join : ?tol:float -> t -> t -> t
+
   val to_point_bool_list : t -> (Complex.t * bool) list
   (** Convert a contour to list of points marked true/false =
       on-curve/off-curve. *)
@@ -277,6 +282,7 @@ sig
     ?variable:string -> unit IO.output -> t -> unit
 
   val ( <@@ ) : t -> bool -> t
+  val ( <@> ) : t -> t -> t
 end
 
 (*-----------------------------------------------------------------------*)
@@ -288,10 +294,12 @@ sig
   module PCubic :
   sig
     include module type of Cubic_base(List)(PComplex)
-    val is_closed : 'a list -> bool
-    val close : 'a list -> 'a list
-    val unclose : 'a list -> 'a list
-    val ( <@@ ) : 'a list -> bool -> 'a list
+    val is_closed : t -> bool
+    val close : t -> t
+    val unclose : t -> t
+    val join : t -> t -> t
+    val ( <@@ ) : t -> bool -> t
+    val ( <@> ) : t -> t -> t
   end
 
   type t =
@@ -303,6 +311,8 @@ sig
 
   val of_parameterized : 'a -> [> `Parameterized of 'a ]
   val of_cubic : 'a -> [> `Cubic of 'a ]
+  val of_param_to_cubic :
+    ('a -> 'b) -> [> `Parameterized of 'a -> [> `Cubic of 'b ] ]
   val of_pcubic : 'a -> [> `PCubic of 'a ]
 
   val resolve_pcubic :

@@ -59,6 +59,8 @@ struct
     let b' = dir b in
     of_float (inner a b') * b'
 
+  let x_shear c angle = c + x'(c.re *. (dtan angle))
+
   let min_bound a b = { re = min a.re b.re; im = min a.im b.im }
   let max_bound a b = { re = max a.re b.re; im = max a.im b.im }
 
@@ -114,6 +116,7 @@ sig
   val modulo : t -> t -> t
   val pow : t -> t -> t
   val proj : t -> t -> t
+  val x_shear : t -> float' -> t
   val min_bound : t -> t -> t
   val max_bound : t -> t -> t
   val inner : t -> t -> float'
@@ -179,6 +182,7 @@ end
 
 (*-----------------------------------------------------------------------*)
 
+(* NOTE: It is not certain that we will keep this module. *)
 module Parameterized_complex_point(Param : Parameter_type) =
 struct
   module Cx = Extended_complex
@@ -226,6 +230,7 @@ struct
   let modulo v w = fun p -> Cx.modulo (v p) (w p)
   let pow v w = fun p -> Cx.pow (v p) (w p)
   let proj v w = fun p -> Cx.proj (v p) (w p)
+  let x_shear v r = fun p -> Cx.x_shear (v p) (r p)
   let min_bound v w = fun p -> Cx.min_bound (v p) (w p)
   let max_bound v w = fun p -> Cx.max_bound (v p) (w p)
   let inner v w = fun p -> Cx.inner (v p) (w p)
@@ -346,10 +351,11 @@ struct
   let linear_tolerance = ref 0.001
   let basis_conversion_tolerance = ref 0.001
 
-  let is_closed ?(tol = !linear_tolerance) contour =
-    let (_, p1, _) = L.first contour in
-    let (_, p2, _) = L.last contour in
+  let _nodes_coincide ?(tol = !linear_tolerance) (_, p1, _) (_, p2, _) =
     P.(norm (p1 - p2)) <= tol
+
+  let is_closed ?tol contour =
+    _nodes_coincide ?tol (L.first contour) (L.last contour)
 
   let close ?tol contour =
     if is_closed ?tol contour then
@@ -483,12 +489,33 @@ struct
         let (c1, c2) = subdivide_curve c time in
         (c1, c2 @ L.drop 2 c)
 
+  let join ?tol contour1 contour2 =
+    if contour1 == contour2 then
+      close ?tol contour1
+    else
+      let rev1 = L.rev contour1 in
+      let last1 = L.first rev1 in
+      let first2 = L.first contour2 in
+      if _nodes_coincide ?tol last1 first2 then
+        let (_, oc1, oh1) = last1 in
+        let (ih2, _, _) = first2 in
+        let joined_node = (ih2, oc1, oh1) in
+        L.rev_append (joined_node :: L.tl rev1) contour2
+      else
+        L.append contour1 contour2
+
   let to_point_bool_list contour =
     let node_to_list (ih,oc,oh) = [(ih, false); (oc, true); (oh, false)] in
     L.flatten (L.map node_to_list contour)
 
   let print_python_contour_code ?variable outp contour =
-    let point_list = to_point_bool_list contour in
+    let c =
+      if is_closed contour then
+        L.rev (L.tl (L.rev contour))
+      else
+        contour
+    in
+    let point_list = to_point_bool_list c in
     match variable with
       | None ->
         (* This branch doesn't set the closedness. *)
@@ -516,20 +543,29 @@ struct
 
   let ( <@@ ) contour t_or_f =
     (if t_or_f then close else unclose) contour
+
+  let ( <@> ) contour1 = join contour1
 end
 
 (*-----------------------------------------------------------------------*)
 
 module Parameterized_contour(Param : Parameter_type) =
 struct
+
+  (* NOTE: It is not certain that we will keep PComplex support. *)
   module PComplex = Parameterized_complex_point(Param)
+
+  (* NOTE: It is not certain that we will keep PCubic support. *)
   module PCubic =
   struct
     include Cubic_base(List)(PComplex)
     module L = List
 
+    let _nodes_coincide (_, p1, _) (_, p2, _) =
+      p1 == p2
+
     let is_closed contour =
-      L.first contour == L.last contour
+      _nodes_coincide (L.first contour) (L.last contour)
 
     let close contour =
       if is_closed contour then
@@ -543,8 +579,25 @@ struct
       else
         contour
 
+    let join contour1 contour2 =
+      if contour1 == contour2 then
+        close contour1
+      else
+        let rev1 = L.rev contour1 in
+        let last1 = L.first rev1 in
+        let first2 = L.first contour2 in
+        if _nodes_coincide last1 first2 then
+          let (_, oc1, oh1) = last1 in
+          let (ih2, _, _) = first2 in
+          let joined_node = (ih2, oc1, oh1) in
+          L.rev_append (joined_node :: L.tl rev1) contour2
+        else
+          L.append contour1 contour2
+
     let ( <@@ ) contour t_or_f =
       (if t_or_f then close else unclose) contour
+
+    let ( <@> ) = join
   end
 
   type t =
@@ -553,10 +606,6 @@ struct
     | `Cubic of Cubic.t
     | `PCubic of PCubic.t
     ]
-
-  let of_parameterized c = `Parameterized c
-  let of_cubic c = `Cubic c
-  let of_pcubic c = `PCubic c
 
   let resolve_pcubic contour param =
     PCubic.pointwise (fun pt -> pt param) contour
@@ -567,6 +616,11 @@ struct
       | `Parameterized c -> resolve (c param) param
       | `Cubic c -> c
       | `PCubic c -> resolve_pcubic c param
+
+  let of_parameterized c = `Parameterized c
+  let of_cubic c = `Cubic c
+  let of_param_to_cubic c = `Parameterized (fun p -> `Cubic (c p))
+  let of_pcubic c = `PCubic c
 
   let bounds2 ?fast contour =
     fun p -> Cubic.bounds ?fast (resolve contour p)

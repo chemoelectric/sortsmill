@@ -41,6 +41,8 @@ let param = {
 
   os2_weight = 400;
 
+  contrast = 1.;
+  extension = 1.;
   design_size = 12.;
   space_width = 200.;
   x_height = 399.;

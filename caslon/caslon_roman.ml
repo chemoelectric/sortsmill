@@ -48,6 +48,8 @@ struct
 
     os2_weight : int;
 
+    contrast : float;                   (* 1.0 = "normal" contrast. *)
+    extension : float;                  (* 1.0 = normal. *)
     design_size : float;
     space_width : float;
     x_height : float;
@@ -79,51 +81,136 @@ let enum_resolve_glyphs param = map (flip resolve_glyph param) (enum_glyphs ())
 
 (*-----------------------------------------------------------------------*)
 
+let letter_c_contour p =
+  Cubic.(Complex_point.(
+
+    let width = 315. *. p.extension in
+
+    let overshoot = p.curve_overshoot +. 3. in
+    let undershoot = p.curve_undershoot +. 1. in
+    let height = p.x_height +. undershoot +. overshoot in
+    let y_coord v = y'(v +. undershoot) in
+
+    let left = 1.05 *. p.lc_stem_width in
+    let bottom = 0.81 *. p.lc_stem_width in
+    let top = 0.68 *. p.lc_stem_width /. p.contrast in
+
+    let cut_angle = 140. in
+    let tail2 = x' width + y' 69.0000 in
+    let tail1 = tail2 + (x' 15.) * (rot cut_angle) in
+
+    let outer =
+      make_node
+        (y' 4.)
+        tail2
+        (proj (y'(-0.13 *. height)) (rot(-115.)))
+      <@> make_left                     (* bottommost *)
+        (x'(0.56 *. width) - y' undershoot)
+        (x'(0.20 *. width))
+        (x'(0.35 *. width))
+      <@> make_up                       (* leftmost *)
+        (y_coord(0.42 *. height))
+        (x'(0.26 *. height))
+        (x'(0.30 *. height))
+      <@> make_right                    (* topmost *)
+        (x'(0.61 *. width) + y'(p.x_height +. overshoot))
+        (x'(0.36 *. width))
+        (x'(0.12 *. width))
+      <@> make_node
+        (x'(-27.0000) + y' 26.0000)
+        (x' 291.0000 + y' 374.0000)
+        (x' 10.0000 + y'(-10.0000))
+    in
+    let terminal =
+      make_down
+        (x' 309.0000 + y' 339.0000)
+        (x' 14.0000)
+        (x' 18.0000)
+      <@> make_left
+        (x' 280.0000 + y' 305.0000)
+        (x' 17.0000)
+        (x' 43.0000)
+    in
+    let inner =
+      make_left
+        (x' 186.0000 + y' 375.0000)
+        (x' 43.0000)
+        (x' 79.0000)
+      <@> make_down
+        (x' 60.0000 + y' 204.0000)
+        (x' 87.0000)
+        (x' 95.0000)
+      <@> make_right
+        (x' 202.0000 + y' 41.0000)
+        (x' 91.0000)
+        (x' 35.0000)
+      <@> make_node
+        (x' 35.3553 * rot 225.)
+        tail1
+        (x' 5.)
+    in
+    outer <@> terminal <@> inner
+    <@@ true <.> round
+  ))
+
 let letter_o_contours = 
   let width = 383. in
-  let outer_contour =
-    PCubic.(PComplex.(
+  let outer_contour p =
+    Cubic.(Complex_point.(
+      let width = width *. p.extension in
+      let height = p.x_height +. p.curve_undershoot +. p.curve_overshoot in
+      let y_coord v = y'(v +. p.curve_undershoot) in
+      let left = 1.16 *. p.lc_stem_width in
+      let right = 1.16 *. p.lc_stem_width in
+      let bottom = 0.58 *. p.lc_stem_width /. p.contrast in
+      let top = 0.54 *. p.lc_stem_width /. p.contrast in
       make_up
-        (y'(fun p -> 0.50 *. p.x_height))
-        (x'(fun p -> 0.29 *. p.x_height))
-        (x'(fun p -> 0.34 *. p.x_height))
-      @ make_right
-        (x'(fun _ -> 0.50 *. width) + y'(fun p -> p.x_height +. p.curve_overshoot))
-        (x'(fun _ -> 0.22 *. width))
-        (x'(fun _ -> 0.28 *. width))
-      @ make_down
-        (x'(const width) + y'(fun p -> 0.5 *. p.x_height))
-        (x'(fun p -> 0.28 *. p.x_height))
-        (x'(fun p -> 0.30 *. p.x_height))
-      @ make_left
-        (x'(fun _ -> 0.49 *. width) + y'(fun p -> -. p.curve_undershoot))
-        (x'(fun _ -> 0.29 *. width))
-        (x'(fun _ -> 0.30 *. width))
+        (y_coord(0.45 *. height))
+        (x'(0.27 *. height))
+        (x'(0.33 *. height))
+      <@> make_right
+        (x'(0.50 *. width) + y'(p.x_height +. p.curve_overshoot))
+        (x'(0.22 *. width))
+        (x'(0.28 *. width))
+      <@> make_down
+        (x' width + y_coord(0.45 *. height))
+        (x'(0.27 *. height))
+        (x'(0.28 *. height))
+      <@> make_left
+        (x'(0.49 *. width) + y'(-. p.curve_undershoot))
+        (x'(0.29 *. width))
+        (x'(0.30 *. width))
       <@@ true <.> round
     ))
   in
-  let inner_contour =
-    let left = (fun p -> 1.16 *. p.lc_stem_width) in
-    let right = (fun p -> 1.16 *. p.lc_stem_width) in
-    let bottom = (fun p -> 0.58 *. p.lc_stem_width) in
-    let top = (fun p -> 0.54 *. p.lc_stem_width) in
-    PCubic.(PComplex.(
+  let inner_contour p =
+    Cubic.(Complex_point.(
+      let width = width *. p.extension in
+
+      let height = p.x_height +. p.curve_undershoot +. p.curve_overshoot in
+      let y_coord v = y'(v +. p.curve_undershoot) in
+
+      let left = 1.16 *. p.lc_stem_width in
+      let right = 1.16 *. p.lc_stem_width in
+      let bottom = 0.58 *. p.lc_stem_width /. p.contrast in
+      let top = 0.54 *. p.lc_stem_width /. p.contrast in
+
       make_down
-        (x' left + y'(fun p -> 0.52 *. p.x_height))
-        (x'(fun p -> 0.23 *. p.x_height))
-        (x'(fun p -> 0.32 *. p.x_height))
-      @ make_right
-        (x'(fun _ -> 0.49 *. width) + y'(fun p -> -. p.curve_undershoot) + y' bottom)
-        (x'(fun _ -> 0.16 *. width))
-        (x'(fun _ -> 0.14 *. width))
-      @ make_up
-        (x'(fun _ -> width) - x' right + y'(fun p -> 0.48 *. p.x_height))
-        (x'(fun p -> 0.30 *. p.x_height))
-        (x'(fun p -> 0.25 *. p.x_height))
-      @ make_left
-        (x'(fun _ -> 0.48 *. width) + y'(fun p -> p.x_height +. p.curve_overshoot) - y' top)
-        (x'(fun _ -> 0.22 *. width))
-        (x'(fun _ -> 0.19 *. width))
+        (x' left + y_coord(0.47 *. height))
+        (x'(0.22 *. height))
+        (x'(0.30 *. height))
+      <@> make_right
+        (x'(0.49 *. width) + y'(-. p.curve_undershoot) + y' bottom)
+        (x'(0.16 *. width))
+        (x'(0.14 *. width))
+      <@> make_up
+        (x' width - x' right + y_coord(0.43 *. height))
+        (x'(0.28 *. height))
+        (x'(0.24 *. height))
+      <@> make_left
+        (x'(0.48 *. width) + y'(p.x_height +. p.curve_overshoot) - y' top)
+        (x'(0.22 *. width))
+        (x'(0.19 *. width))
       <@@ true <.> round
     ))
   in
@@ -140,13 +227,23 @@ add_glyph Glyph.({
 })
 ;;
 
+(* Letter "c" *)
+add_glyph Glyph.({
+  empty with
+    name = "c";
+    contours = [Contour.of_param_to_cubic letter_c_contour];
+    lsb = Some (const 0.);
+    rsb = Some (const 50.);
+})
+;;
+
 (* Letter "o" *)
 add_glyph Glyph.({
   empty with
     name = "o";
-    contours = List.map of_pcubic letter_o_contours;
-    lsb = Some (const 25.);
-    rsb = Some (const 35.);
+    contours = List.map Contour.of_param_to_cubic letter_o_contours;
+    lsb = Some (const 0.);
+    rsb = Some (const 50.);
 })
 ;;
 
