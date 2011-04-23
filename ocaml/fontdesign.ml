@@ -182,84 +182,6 @@ end
 
 (*-----------------------------------------------------------------------*)
 
-(* NOTE: It is not certain that we will keep this module. *)
-module Parameterized_complex_point(Param : Parameter_type) =
-struct
-  module Cx = Extended_complex
-
-  type bool' = Param.t -> Bool.t
-  type int' = Param.t -> Int.t
-  type float' = Param.t -> Float.t
-  type string' = Param.t -> String.t
-
-  type t = Param.t -> Cx.t
-
-  let zero p = const Cx.zero p
-  let one p = const Cx.one p
-  let i p = const Cx.i p
-
-  let neg v = Cx.neg -| v
-  let conj v = Cx.conj -| v
-  let sqrt v = Cx.sqrt -| v
-  let norm2 v = Cx.norm2 -| v
-  let norm v = Cx.norm -| v
-  let arg v = Cx.arg -| v
-  let exp v = Cx.exp -| v
-  let log v = Cx.log -| v
-  let inv v = Cx.inv -| v
-  let succ v = Cx.succ -| v
-  let pred v = Cx.pred -| v
-  let abs v = Cx.abs -| v
-  let dir v = Cx.dir -| v
-  let round v = Cx.round -| v
-  let rot angle = Cx.rot -| angle
-  let x' r = Cx.x' -| r
-  let y' r = Cx.y' -| r
-
-  let of_int n = Cx.of_int -| n
-  let to_int v = Cx.to_int -| v
-  let of_float r = Cx.of_float -| r
-  let to_float v = Cx.to_float -| v
-  let of_string s = Cx.of_string -| s
-  let to_string v = Cx.to_string -| v
-
-  let add v w = fun p -> Cx.add (v p) (w p)
-  let sub v w = fun p -> Cx.sub (v p) (w p)
-  let mul v w = fun p -> Cx.mul (v p) (w p)
-  let div v w = fun p -> Cx.div (v p) (w p)
-  let modulo v w = fun p -> Cx.modulo (v p) (w p)
-  let pow v w = fun p -> Cx.pow (v p) (w p)
-  let proj v w = fun p -> Cx.proj (v p) (w p)
-  let x_shear v r = fun p -> Cx.x_shear (v p) (r p)
-  let min_bound v w = fun p -> Cx.min_bound (v p) (w p)
-  let max_bound v w = fun p -> Cx.max_bound (v p) (w p)
-  let inner v w = fun p -> Cx.inner (v p) (w p)
-  let compare v w = fun p -> Cx.compare (v p) (w p)
-  let dpolar r s = fun p -> Cx.dpolar (r p) (s p)
-  let polar r s = fun p -> Cx.polar (r p) (s p)
-  let ( + ) v w = fun p -> Cx.( + ) (v p) (w p)
-  let ( - ) v w = fun p -> Cx.( - ) (v p) (w p)
-  let ( * ) v w = fun p -> Cx.( * ) (v p) (w p)
-  let ( / ) v w = fun p -> Cx.( / ) (v p) (w p)
-  let ( ** ) v w = fun p -> Cx.( ** ) (v p) (w p)
-  let ( <> ) v w = fun p -> Cx.( <> ) (v p) (w p)
-  let ( >= ) v w = fun p -> Cx.( >= ) (v p) (w p)
-  let ( <= ) v w = fun p -> Cx.( <= ) (v p) (w p)
-  let ( > ) v w = fun p -> Cx.( > ) (v p) (w p)
-  let ( < ) v w = fun p -> Cx.( < ) (v p) (w p)
-  let ( = ) v w = fun p -> Cx.( = ) (v p) (w p)
-
-  let print outp _v =
-    output_string outp "fun: Param.t -> Fontdesign.Extended_complex.t"
-
-  let t_printer paren outp v =
-    if paren then IO.write outp '(';
-    print outp v;
-    if paren then IO.write outp ')'
-end
-
-(*-----------------------------------------------------------------------*)
-
 module Cubic_base
   (L : module type of List)
   (P : Point_type) =
@@ -551,76 +473,21 @@ end
 
 module Parameterized_contour(Param : Parameter_type) =
 struct
-
-  (* NOTE: It is not certain that we will keep PComplex support. *)
-  module PComplex = Parameterized_complex_point(Param)
-
-  (* NOTE: It is not certain that we will keep PCubic support. *)
-  module PCubic =
-  struct
-    include Cubic_base(List)(PComplex)
-    module L = List
-
-    let _nodes_coincide (_, p1, _) (_, p2, _) =
-      p1 == p2
-
-    let is_closed contour =
-      _nodes_coincide (L.first contour) (L.last contour)
-
-    let close contour =
-      if is_closed contour then
-        contour
-      else
-        contour @ [L.first contour]
-
-    let unclose contour =
-      if is_closed contour then
-        L.drop (L.length contour - 1) contour
-      else
-        contour
-
-    let join contour1 contour2 =
-      if contour1 == contour2 then
-        close contour1
-      else
-        let rev1 = L.rev contour1 in
-        let last1 = L.first rev1 in
-        let first2 = L.first contour2 in
-        if _nodes_coincide last1 first2 then
-          let (_, oc1, oh1) = last1 in
-          let (ih2, _, _) = first2 in
-          let joined_node = (ih2, oc1, oh1) in
-          L.rev_append (joined_node :: L.tl rev1) contour2
-        else
-          L.append contour1 contour2
-
-    let ( <@@ ) contour t_or_f =
-      (if t_or_f then close else unclose) contour
-
-    let ( <@> ) = join
-  end
-
   type t =
     [
     | `Parameterized of Param.t -> t
     | `Cubic of Cubic.t
-    | `PCubic of PCubic.t
     ]
-
-  let resolve_pcubic contour param =
-    PCubic.pointwise (fun pt -> pt param) contour
 
   let rec resolve contour param =
     (* Resolve to a de-parameterized cubic bezier contour. *)
     match contour with
       | `Parameterized c -> resolve (c param) param
       | `Cubic c -> c
-      | `PCubic c -> resolve_pcubic c param
 
   let of_parameterized c = `Parameterized c
   let of_cubic c = `Cubic c
   let of_param_to_cubic c = `Parameterized (fun p -> `Cubic (c p))
-  let of_pcubic c = `PCubic c
 
   let bounds2 ?fast contour =
     fun p -> Cubic.bounds ?fast (resolve contour p)

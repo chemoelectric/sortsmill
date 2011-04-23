@@ -175,17 +175,6 @@ end
 
 (*-----------------------------------------------------------------------*)
 
-module Parameterized_complex_point(Param : Parameter_type) :
-sig
-  include Point_type with type bool' = Param.t -> Bool.t
-                     and type int' = Param.t -> Int.t
-                     and type float' = Param.t -> Float.t
-                     and type string' = Param.t -> String.t
-                     and type t = Param.t -> Complex.t
-end
-  
-(*-----------------------------------------------------------------------*)
-
 module Cubic_base
   (L : module type of List)
   (P : Point_type) :
@@ -289,74 +278,43 @@ end
 
 module Parameterized_contour(Param : Parameter_type) :
 sig
-  module PComplex : module type of Parameterized_complex_point(Param)
-
-  module PCubic :
-  sig
-    include module type of Cubic_base(List)(PComplex)
-    val is_closed : t -> bool
-    val close : t -> t
-    val unclose : t -> t
-    val join : t -> t -> t
-    val ( <@@ ) : t -> bool -> t
-    val ( <@> ) : t -> t -> t
-  end
-
   type t =
     [
     | `Parameterized of Param.t -> t
     | `Cubic of Cubic.t
-    | `PCubic of PCubic.t
     ]
 
   val of_parameterized : 'a -> [> `Parameterized of 'a ]
   val of_cubic : 'a -> [> `Cubic of 'a ]
   val of_param_to_cubic :
     ('a -> 'b) -> [> `Parameterized of 'a -> [> `Cubic of 'b ] ]
-  val of_pcubic : 'a -> [> `PCubic of 'a ]
 
-  val resolve_pcubic :
-    (('a -> 'b) * ('a -> 'b) * ('a -> 'b)) list ->
-    'a -> ('b * 'b * 'b) list
   val resolve :
     ([< `Cubic of ('b * 'b * 'b) list
-     | `PCubic of (('c -> 'b) * ('c -> 'b) * ('c -> 'b)) list
      | `Parameterized of 'c -> 'a ]
         as 'a) ->
     'c -> ('b * 'b * 'b) list
   val bounds2 :
     ?fast:bool ->
     ([< `Cubic of Cubic.t
-     | `PCubic of
-         (('b -> Complex.t) * ('b -> Complex.t) * ('b -> Complex.t))
-           list
      | `Parameterized of 'b -> 'a ]
         as 'a) ->
     'b -> Complex.t * Complex.t
   val bounds :
     ?fast:bool ->
     ([< `Cubic of Cubic.t
-     | `PCubic of
-         (('b -> Complex.t) * ('b -> Complex.t) * ('b -> Complex.t))
-           list
      | `Parameterized of 'b -> 'a ]
         as 'a) ->
     ('b -> Complex.t) * ('b -> Complex.t)
   val overall_bounds2 :
     ?fast:bool ->
     ([< `Cubic of Cubic.t
-     | `PCubic of
-         (('b -> Complex.t) * ('b -> Complex.t) * ('b -> Complex.t))
-           list
      | `Parameterized of 'b -> 'a ]
         as 'a)
       Enum.t -> 'b -> Complex.t * Complex.t
   val overall_bounds :
     ?fast:bool ->
     ([< `Cubic of Cubic.t
-     | `PCubic of
-         (('b -> Complex.t) * ('b -> Complex.t) * ('b -> Complex.t))
-           list
      | `Parameterized of 'b -> 'a ]
         as 'a)
       Enum.t -> ('b -> Complex.t) * ('b -> Complex.t)
