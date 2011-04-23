@@ -94,9 +94,11 @@ def caml_path(contour):
             plist2 += [plist[i], plist[i + 1], plist[i + 1]]
             i += 2
 
-    s = "of_node_list [\n"
+    s = ""
     i = 0
     while i < len(plist2):
+        join = "<@> " if i != 0 else ""
+
         inhandle_x = plist2[i].x - plist2[i + 1].x
         inhandle_y = plist2[i].y - plist2[i + 1].y
         oncurve_x = plist2[i + 1].x
@@ -112,9 +114,9 @@ def caml_path(contour):
         a2 = abs(c_outhandle)
 
         if a1 < linear_tolerance and a2 < linear_tolerance:
-            s += "  make_pin (" + caml_complex(c_oncurve) + ");\n"
+            s += "  " + join + "make_pin (" + caml_complex(c_oncurve) + ");\n"
         elif a1 < linear_tolerance or a2 < linear_tolerance:
-            s += ("  make_node (" +
+            s += ("  " + join + "make_node (" +
                   caml_complex(c_inhandle) + ") (" +
                   caml_complex(c_oncurve) + ") (" +
                   caml_complex(c_outhandle) + ");\n")
@@ -138,38 +140,38 @@ def caml_path(contour):
             is_down = is_vertical and not is_up
 
             if is_right:
-                s += ("  make_right (" +
+                s += ("  " + join + "make_right (" +
                       caml_complex(c_oncurve) + ") (" +
                       caml_complex(a1) + ") (" +
-                      caml_complex(a2) + ");\n")
+                      caml_complex(a2) + ")\n")
             elif is_left:
-                s += ("  make_left (" +
+                s += ("  " + join + "make_left (" +
                       caml_complex(c_oncurve) + ") (" +
                       caml_complex(a1) + ") (" +
-                      caml_complex(a2) + ");\n")
+                      caml_complex(a2) + ")\n")
             elif is_up:
-                s += ("  make_up (" +
+                s += ("  " + join + "make_up (" +
                       caml_complex(c_oncurve) + ") (" +
                       caml_complex(a1) + ") (" +
-                      caml_complex(a2) + ");\n")
+                      caml_complex(a2) + ")\n")
             elif is_down:
-                s += ("  make_down (" +
+                s += ("  " + join + "make_down (" +
                       caml_complex(c_oncurve) + ") (" +
                       caml_complex(a1) + ") (" +
-                      caml_complex(a2) + ");\n")
+                      caml_complex(a2) + ")\n")
             elif is_flat:
-                s += ("  make_flat (" +
+                s += ("  " + join + "make_flat (" +
                       caml_complex(c_oncurve) + ") (" +
                       caml_complex(d2) + ") (" +
                       caml_complex(a1) + ") (" +
-                      caml_complex(a2) + ");\n")
+                      caml_complex(a2) + ")\n")
             else:
-                s += ("  make_node (" +
+                s += ("  " + join + "make_node (" +
                       caml_complex(c_inhandle) + ") (" +
                       caml_complex(c_oncurve) + ") (" +
-                      caml_complex(c_outhandle) + ");\n")
+                      caml_complex(c_outhandle) + ")\n")
         i += 3
-    s += "] <@@ " + ("true" if contour.closed else "false")
+    s += "  <@@ " + ("true" if contour.closed else "false")
 
     return s
 
