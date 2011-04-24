@@ -57,6 +57,64 @@ struct
     curve_undershoot : float;
     lc_stem_width : float;
   }
+
+  module type Tools_module =
+  sig
+    val width : float
+    val height : float
+    val left_overlap : float
+    val overshoot : float
+    val undershoot : float
+    val xrel : float -> float
+    val yrel : float -> float
+    val x'rel : float -> Complex.t
+    val y'rel : float -> Complex.t
+    val x'pos : float -> Complex.t
+    val y'pos : float -> Complex.t
+  end
+
+  let make_tools
+      ~width
+      ~height
+      ?(left_overlap = 0.)
+      ?(overshoot = 0.)
+      ?(undershoot = 0.)
+      ~param
+      () =
+
+    Complex_point.(
+      let p = param in
+      let extended_width = width *. p.extension in
+      let xrel amount = amount *. extended_width in
+      let yrel amount = amount *. height in
+      let x'rel = x' -| xrel in
+      let y'rel = y' -| yrel in
+      let x'pos v = x'rel v - x' left_overlap in
+      let y'pos v = y'rel v - y' undershoot in
+
+(*
+      let xy'rel angle amount = (x'rel (amount *. dcos angle) + y'rel (amount *. dsin angle)) in
+      let xyrel angle amount = norm (xy'rel angle amount) in
+      let xy'pos angle amount = xy'rel angle amount - y' undershoot in
+*)
+
+      let module Tools =
+          struct
+            let width = extended_width
+            let height = height
+            let left_overlap = left_overlap
+            let overshoot = overshoot
+            let undershoot = undershoot
+            let xrel = xrel
+            let yrel = yrel
+            let x'rel = x'rel
+            let y'rel = y'rel
+            let x'pos = x'pos
+            let y'pos = y'pos
+          end
+      in
+      (module Tools : Tools_module)
+    )
 end
 
 module Contour = Parameterized_contour(Param)
@@ -69,7 +127,7 @@ let glyph_table : (Param.t -> float, Contour.t) Glyph.t StringMap.t ref =
   ref StringMap.empty
 
 let resolve_glyph glyph param =
-    (Glyph.transform (fun r -> r param) (flip resolve param) glyph)
+  (Glyph.transform (fun r -> r param) (flip resolve param) glyph)
 
 let add_glyph glyph = glyph_table := Glyph.(StringMap.add glyph.name glyph !glyph_table)
 let have_glyph name = StringMap.mem name !glyph_table
@@ -83,74 +141,83 @@ let enum_resolve_glyphs param = map (flip resolve_glyph param) (enum_glyphs ())
 
 let letter_c_contour p =
 
-  Cubic.(Complex_point.(
+  let overshoot = p.curve_overshoot +. 2. in
+  let undershoot = p.curve_undershoot +. 2. in
 
-    let width = 315. *. p.extension in
+  let tools =
+    make_tools
+          ~width:320.
+          ~height:(p.x_height +. undershoot +. overshoot)
+          ~undershoot:undershoot
+          ~overshoot:overshoot
+          ~param:p
+          ()
+  in
 
-    let overshoot = p.curve_overshoot +. 3. in
-    let undershoot = p.curve_undershoot +. 1. in
-    let height = p.x_height +. undershoot +. overshoot in
-    let y_coord v = y'(v +. undershoot) in
+  let module Tools = (val tools : Tools_module) in
+  
+  Tools.(Cubic.(Complex_point.(
 
-    let left = 1.05 *. p.lc_stem_width in
-    let bottom = 0.81 *. p.lc_stem_width in
-    let top = 0.68 *. p.lc_stem_width /. p.contrast in
+    let left_breadth = 1.07 *. p.lc_stem_width in
+    let bottom_breadth = 0.92 *. p.lc_stem_width in
+    let top_breadth = 0.64 *. p.lc_stem_width /. p.contrast in
+
+    let bottom_pt = x'pos 0.56 + y'pos 0.00 in
+    let top_pt = x'pos 0.63 + y'pos 1.00 in
+    let left_pt = x'pos 0.0 + y'pos 0.5 in
 
     let tail_cut_angle = -40. in
-    let tail2 = x' width + y' 69.0000 in
-    let tail1 = tail2 + y_shear (x'(-12.)) tail_cut_angle in
+    let tail2 = x'pos 0.98 + y' 69.0000 in
+    let tail1 = tail2 + y_shear (x'(-13.)) tail_cut_angle in
 
     let outer =
-      make_node
-        zero
+      make_node                         (* tail *)
+        (x' 3. * rot (70.))
         tail2
-        (x_shear (y'(-0.11 *. height)) 25.)
-      <@> make_node                     (* bottommost *)
-        (x'(0.20 *. width))
-        (x'(0.56 *. width) - y' undershoot)
-        (x'(-0.35 *. width))
-      <@> make_node                     (* leftmost *)
-        (y'(-0.26 *. height))
-        (y_coord(0.42 *. height))
-        (y'(0.30 *. height))
-      <@> make_node                    (* topmost *)
-        (x'(-0.36 *. width))
-        (x'(0.61 *. width) + y'(p.x_height +. overshoot))
-        (x'(0.12 *. width))
-      <@> make_node
-        (x'(-27.0000) + y' 26.0000)
-        (x' 291.0000 + y' 374.0000)
-        (x' 10.0000 + y'(-10.0000))
+        (x' 40. * rot (70. -. 180.))
+      <@> make_node                     (* bottom *)
+        (x'rel 0.20)
+        bottom_pt
+        (x'rel (-0.37))
+      <@> make_node                     (* left *)
+        (y'rel (-0.27))
+        left_pt
+        (y'rel 0.30)
+      <@> make_node                     (* top *)
+        (x'rel (-0.36))
+        top_pt
+        (x'rel 0.19)
     in
     let terminal =
-      make_node
-        (y' 14.0000)
-        (x' 309.0000 + y' 339.0000)
-        (y'(-18.0000))
-      <@> make_node
-        (x' 17.0000)
-        (x' 280.0000 + y' 305.0000)
-        (x'(-43.0000))
+      make_node                         (* right *)
+        (y'rel 0.07)
+        (x'pos 0.98 + y'pos 0.82)
+        (y'rel (-0.04))
+      <@> make_node                     (* turning inward *)
+        (x'rel 0.05)
+        (x'pos 0.89 + y'pos 0.75)
+        (x'rel (-0.13))
     in
     let inner =
-      make_node
-        (x' 43.0000)
-        (x' 186.0000 + y' 375.0000)
-        (x'(-79.0000))
-      <@> make_node
-        (y' 87.0000)
-        (x' 60.0000 + y' 204.0000)
-        (y'(-95.0000))
-      <@> make_node
-        (x'(-91.0000))
-        (x' 202.0000 + y' 41.0000)
-        (x' 35.0000)
-      <@> make_node
-        (x' 35.3553 * rot 225.)
+      make_node                         (* inner top *)
+        (x'rel 0.17)
+        (top_pt - x'rel 0.05 - y' top_breadth)
+        (x'rel (-0.19))
+      <@> make_node                     (* inner left *)
+        (y'rel 0.26)
+        (left_pt + x' left_breadth + y'pos 0.05)
+        (y'rel (-0.21))
+      <@> make_node                     (* inner bottom *)
+        (x'rel (-0.29))
+        (bottom_pt + x'rel 0.09 + y' bottom_breadth)
+        (x'rel 0.10)
+      <@> make_node                     (* tail *)
+        (x' 35.3553 * rot 230.)
         tail1
-        zero
+        (x' 3. * rot (230. -. 180.))
     in
 
+(*
     let midpoint = x' 0.5 * (tail1 + tail2) in
     let cut = make_node (x' 0.8 * (tail1 - midpoint)) midpoint (x' 0.8 * (tail2 - midpoint)) in
 
@@ -163,10 +230,11 @@ let letter_c_contour p =
     let (_, outer) = subdivide outer time_outer in
     let inner = modify_outhandle inner (x' 5.) in
     let outer = modify_inhandle outer (x' 5.) in
+*)
 
-    outer <@> terminal <@> inner <@> cut
+    outer <@> terminal <@> inner
     <@@ true <.> round
-  ))
+  )))
 
 let letter_o_contours = 
 
@@ -174,28 +242,35 @@ let letter_o_contours =
 
   let outer_contour p =
     Cubic.(Complex_point.(
+
       let width = width *. p.extension in
-      let height = p.x_height +. p.curve_undershoot +. p.curve_overshoot in
-      let y_coord v = y'(v +. p.curve_undershoot) in
+      let overshoot = p.curve_overshoot in
+      let undershoot = p.curve_undershoot in
+      let height = p.x_height +. undershoot +. overshoot in
+      let y_coord v = y'(v -. undershoot) in
+      let xrel amount = amount *. width in
+      let yrel amount = amount *. height in
+
       let left = 1.16 *. p.lc_stem_width in
       let right = 1.16 *. p.lc_stem_width in
       let bottom = 0.58 *. p.lc_stem_width /. p.contrast in
       let top = 0.54 *. p.lc_stem_width /. p.contrast in
+
       make_node
         (y'(-0.27 *. height))
-        (y_coord(0.45 *. height))
-        (y'(0.33 *. height))
+        (y_coord(0.50 *. height))
+        (y'(0.32 *. height))
       <@> make_node
         (x'(-0.22 *. width))
-        (x'(0.50 *. width) + y'(p.x_height +. p.curve_overshoot))
+        (x'(0.50 *. width) + y'(p.x_height +. overshoot))
         (x'(0.28 *. width))
       <@> make_node
         (y'(0.27 *. height))
-        (x' width + y_coord(0.45 *. height))
+        (x' width + y_coord(0.50 *. height))
         (y'(-0.28 *. height))
       <@> make_node
         (x'(0.29 *. width))
-        (x'(0.49 *. width) + y'(-. p.curve_undershoot))
+        (x'(0.49 *. width) + y'(-. undershoot))
         (x'(-0.30 *. width))
       <@@ true <.> round
     ))
@@ -205,9 +280,12 @@ let letter_o_contours =
     Cubic.(Complex_point.(
 
       let width = width *. p.extension in
-
-      let height = p.x_height +. p.curve_undershoot +. p.curve_overshoot in
-      let y_coord v = y'(v +. p.curve_undershoot) in
+      let overshoot = p.curve_overshoot in
+      let undershoot = p.curve_undershoot in
+      let height = p.x_height +. undershoot +. overshoot in
+      let y_coord v = y'(v -. undershoot) in
+      let xrel amount = amount *. width in
+      let yrel amount = amount *. height in
 
       let left = 1.16 *. p.lc_stem_width in
       let right = 1.16 *. p.lc_stem_width in
@@ -215,21 +293,21 @@ let letter_o_contours =
       let top = 0.54 *. p.lc_stem_width /. p.contrast in
 
       make_node
-        (y'(0.22 *. height))
-        (x' left + y_coord(0.47 *. height))
-        (y'(-0.30 *. height))
+        (y'(yrel 0.22))
+        (x' left + y_coord (yrel 0.52))
+        (y'(yrel (-0.30)))
       <@> make_node
-        (x'(-0.16 *. width))
-        (x'(0.49 *. width) + y'(-. p.curve_undershoot) + y' bottom)
-        (x'(0.14 *. width))
+        (x'(xrel (-0.16)))
+        (x'(xrel 0.49) - y' undershoot + y' bottom)
+        (x'(xrel 0.14))
       <@> make_node
-        (y'(-0.28 *. height))
-        (x' width - x' right + y_coord(0.43 *. height))
-        (y'(0.24 *. height))
+        (y'(yrel (-0.28)))
+        (x' width - x' right + y_coord (yrel 0.48))
+        (y'(yrel 0.24))
       <@> make_node
-        (x'(0.22 *. width))
-        (x'(0.48 *. width) + y'(p.x_height +. p.curve_overshoot) - y' top)
-        (x'(-0.19 *. width))
+        (x'(xrel 0.22))
+        (x'(xrel 0.48) + y'(p.x_height +. overshoot) - y' top)
+        (x'(xrel (-0.19)))
       <@@ true <.> round
     ))
   in
