@@ -105,17 +105,17 @@ let letter_c_contour p =
         zero
         tail2
         (x_shear (y'(-0.11 *. height)) 25.)
-      <@> make_left                     (* bottommost *)
-        (x'(0.56 *. width) - y' undershoot)
+      <@> make_node                     (* bottommost *)
         (x'(0.20 *. width))
-        (x'(0.35 *. width))
-      <@> make_up                       (* leftmost *)
+        (x'(0.56 *. width) - y' undershoot)
+        (x'(-0.35 *. width))
+      <@> make_node                     (* leftmost *)
+        (y'(-0.26 *. height))
         (y_coord(0.42 *. height))
-        (x'(0.26 *. height))
-        (x'(0.30 *. height))
-      <@> make_right                    (* topmost *)
+        (y'(0.30 *. height))
+      <@> make_node                    (* topmost *)
+        (x'(-0.36 *. width))
         (x'(0.61 *. width) + y'(p.x_height +. overshoot))
-        (x'(0.36 *. width))
         (x'(0.12 *. width))
       <@> make_node
         (x'(-27.0000) + y' 26.0000)
@@ -123,27 +123,27 @@ let letter_c_contour p =
         (x' 10.0000 + y'(-10.0000))
     in
     let terminal =
-      make_down
+      make_node
+        (y' 14.0000)
         (x' 309.0000 + y' 339.0000)
-        (x' 14.0000)
-        (x' 18.0000)
-      <@> make_left
-        (x' 280.0000 + y' 305.0000)
+        (y'(-18.0000))
+      <@> make_node
         (x' 17.0000)
-        (x' 43.0000)
+        (x' 280.0000 + y' 305.0000)
+        (x'(-43.0000))
     in
     let inner =
-      make_left
-        (x' 186.0000 + y' 375.0000)
+      make_node
         (x' 43.0000)
-        (x' 79.0000)
-      <@> make_down
+        (x' 186.0000 + y' 375.0000)
+        (x'(-79.0000))
+      <@> make_node
+        (y' 87.0000)
         (x' 60.0000 + y' 204.0000)
-        (x' 87.0000)
-        (x' 95.0000)
-      <@> make_right
+        (y'(-95.0000))
+      <@> make_node
+        (x'(-91.0000))
         (x' 202.0000 + y' 41.0000)
-        (x' 91.0000)
         (x' 35.0000)
       <@> make_node
         (x' 35.3553 * rot 225.)
@@ -181,22 +181,22 @@ let letter_o_contours =
       let right = 1.16 *. p.lc_stem_width in
       let bottom = 0.58 *. p.lc_stem_width /. p.contrast in
       let top = 0.54 *. p.lc_stem_width /. p.contrast in
-      make_up
+      make_node
+        (y'(-0.27 *. height))
         (y_coord(0.45 *. height))
-        (x'(0.27 *. height))
-        (x'(0.33 *. height))
-      <@> make_right
+        (y'(0.33 *. height))
+      <@> make_node
+        (x'(-0.22 *. width))
         (x'(0.50 *. width) + y'(p.x_height +. p.curve_overshoot))
-        (x'(0.22 *. width))
         (x'(0.28 *. width))
-      <@> make_down
+      <@> make_node
+        (y'(0.27 *. height))
         (x' width + y_coord(0.45 *. height))
-        (x'(0.27 *. height))
-        (x'(0.28 *. height))
-      <@> make_left
-        (x'(0.49 *. width) + y'(-. p.curve_undershoot))
+        (y'(-0.28 *. height))
+      <@> make_node
         (x'(0.29 *. width))
-        (x'(0.30 *. width))
+        (x'(0.49 *. width) + y'(-. p.curve_undershoot))
+        (x'(-0.30 *. width))
       <@@ true <.> round
     ))
   in
@@ -214,22 +214,22 @@ let letter_o_contours =
       let bottom = 0.58 *. p.lc_stem_width /. p.contrast in
       let top = 0.54 *. p.lc_stem_width /. p.contrast in
 
-      make_down
+      make_node
+        (y'(0.22 *. height))
         (x' left + y_coord(0.47 *. height))
-        (x'(0.22 *. height))
-        (x'(0.30 *. height))
-      <@> make_right
+        (y'(-0.30 *. height))
+      <@> make_node
+        (x'(-0.16 *. width))
         (x'(0.49 *. width) + y'(-. p.curve_undershoot) + y' bottom)
-        (x'(0.16 *. width))
         (x'(0.14 *. width))
-      <@> make_up
+      <@> make_node
+        (y'(-0.28 *. height))
         (x' width - x' right + y_coord(0.43 *. height))
-        (x'(0.28 *. height))
-        (x'(0.24 *. height))
-      <@> make_left
-        (x'(0.48 *. width) + y'(p.x_height +. p.curve_overshoot) - y' top)
+        (y'(0.24 *. height))
+      <@> make_node
         (x'(0.22 *. width))
-        (x'(0.19 *. width))
+        (x'(0.48 *. width) + y'(p.x_height +. p.curve_overshoot) - y' top)
+        (x'(-0.19 *. width))
       <@@ true <.> round
     ))
   in

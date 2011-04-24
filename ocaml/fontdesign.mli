@@ -185,12 +185,6 @@ sig
   type point = P.t
   type t = (P.t * P.t * P.t) L.t
   val make_node : P.t -> P.t -> P.t -> t
-  val make_pin : P.t -> t
-  val make_flat : P.t -> P.t -> P.t -> P.t -> t
-  val make_right : P.t -> P.t -> P.t -> t
-  val make_left : P.t -> P.t -> P.t -> t
-  val make_up : P.t -> P.t -> P.t -> t
-  val make_down : P.t -> P.t -> P.t -> t
   val is_empty : t -> bool
   val is_singleton : t -> bool
   val rev : t -> t

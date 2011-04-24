@@ -197,27 +197,6 @@ struct
         on_curve_point,
         on_curve_point + rel_outhandle)]
 
-  let make_pin on_curve_point =
-    make_node P.zero on_curve_point P.zero
-
-  let make_flat on_curve_point direction inhandle_length outhandle_length =
-    let v = P.dir direction in
-    let ilen = P.abs inhandle_length in
-    let olen = P.abs outhandle_length in
-    make_node P.(neg ilen * v) on_curve_point P.(olen * v)
-
-  let make_right on_curve_point inhandle_length outhandle_length =
-    make_flat on_curve_point P.one inhandle_length outhandle_length
-
-  let make_left on_curve_point inhandle_length outhandle_length =
-    make_flat on_curve_point P.(neg one) inhandle_length outhandle_length
-
-  let make_up on_curve_point inhandle_length outhandle_length =
-    make_flat on_curve_point P.i inhandle_length outhandle_length
-
-  let make_down on_curve_point inhandle_length outhandle_length =
-    make_flat on_curve_point (P.neg P.i) inhandle_length outhandle_length
-
   let is_empty contour = contour = []
   let is_singleton contour = contour <> [] && L.tl contour = []
 
