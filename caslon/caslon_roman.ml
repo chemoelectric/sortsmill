@@ -67,6 +67,8 @@ struct
     val undershoot : float
     val xrel : float -> float
     val yrel : float -> float
+    val xpos : float -> float
+    val ypos : float -> float
     val x'rel : float -> Complex.t
     val y'rel : float -> Complex.t
     val x'pos : float -> Complex.t
@@ -85,12 +87,18 @@ struct
     Complex_point.(
       let p = param in
       let extended_width = width *. p.extension in
-      let xrel amount = amount *. extended_width in
-      let yrel amount = amount *. height in
+      let xrel v = v *. extended_width in
+      let yrel v = v *. height in
+      let xpos v = xrel v -. left_overlap in
+      let ypos v = yrel v -. undershoot in
       let x'rel = x' -| xrel in
       let y'rel = y' -| yrel in
+      let x'pos = x' -| xpos in
+      let y'pos = y' -| ypos in
+(*
       let x'pos v = x'rel v - x' left_overlap in
       let y'pos v = y'rel v - y' undershoot in
+*)
 
 (*
       let xy'rel angle amount = (x'rel (amount *. dcos angle) + y'rel (amount *. dsin angle)) in
@@ -107,6 +115,8 @@ struct
             let undershoot = undershoot
             let xrel = xrel
             let yrel = yrel
+            let xpos = xpos
+            let ypos = ypos
             let x'rel = x'rel
             let y'rel = y'rel
             let x'pos = x'pos
@@ -162,10 +172,6 @@ let letter_c_contour p =
     let bottom_breadth = 0.92 *. p.lc_stem_width in
     let top_breadth = 0.64 *. p.lc_stem_width /. p.contrast in
 
-    let bottom_pt = x'pos 0.56 + y'pos 0.00 in
-    let top_pt = x'pos 0.63 + y'pos 1.00 in
-    let left_pt = x'pos 0.0 + y'pos 0.5 in
-
     let tail_cut_angle = -40. in
     let tail2 = x'pos 0.98 + y' 69.0000 in
     let tail1 = tail2 + y_shear (x'(-13.)) tail_cut_angle in
@@ -175,62 +181,47 @@ let letter_c_contour p =
         (x' 3. * rot (70.))
         tail2
         (x' 40. * rot (70. -. 180.))
-      <@> make_node                     (* bottom *)
-        (x'rel 0.20)
-        bottom_pt
-        (x'rel (-0.37))
-      <@> make_node                     (* left *)
-        (y'rel (-0.27))
-        left_pt
-        (y'rel 0.30)
-      <@> make_node                     (* top *)
-        (x'rel (-0.36))
-        top_pt
-        (x'rel 0.19)
+      <@> make_horiz_node               (* bottom *)
+        (xpos 0.76)
+        (x'pos 0.56 + y'pos 0.00)
+        (xpos 0.19)
+      <@> make_vert_node                (* left *)
+        (ypos 0.23)
+        (x'pos 0.0 + y'pos 0.50)
+        (ypos 0.80)
+      <@> make_horiz_node               (* top *)
+        (xpos 0.27)
+        (x'pos 0.63 + y'pos 1.00)
+        (xpos 0.82)
     in
     let terminal =
-      make_node                         (* right *)
-        (y'rel 0.07)
+      make_vert_node                    (* right *)
+        (ypos 0.89)
         (x'pos 0.98 + y'pos 0.82)
-        (y'rel (-0.04))
-      <@> make_node                     (* turning inward *)
-        (x'rel 0.05)
+        (ypos 0.78)
+      <@> make_horiz_node               (* turning inward *)
+        (xpos 0.94)
         (x'pos 0.89 + y'pos 0.75)
-        (x'rel (-0.13))
+        (xpos 0.76)
     in
     let inner =
-      make_node                         (* inner top *)
-        (x'rel 0.17)
-        (top_pt - x'rel 0.05 - y' top_breadth)
-        (x'rel (-0.19))
-      <@> make_node                     (* inner left *)
-        (y'rel 0.26)
-        (left_pt + x' left_breadth + y'pos 0.05)
-        (y'rel (-0.21))
-      <@> make_node                     (* inner bottom *)
-        (x'rel (-0.29))
-        (bottom_pt + x'rel 0.09 + y' bottom_breadth)
-        (x'rel 0.10)
+      make_horiz_node                   (* inner top *)
+        (xpos 0.75)
+        (x'pos 0.58 + y'pos 1.00 - y' top_breadth)
+        (xpos 0.39)
+      <@> make_vert_node                (* inner left *)
+        (ypos 0.77)
+        (x'pos 0.00 + x' left_breadth + y'pos 0.54)
+        (ypos 0.30)
+      <@> make_horiz_node               (* inner bottom *)
+        (xpos 0.36)
+        (x'pos 0.65 + y'pos 0.00 + y' bottom_breadth)
+        (xpos 0.75)
       <@> make_node                     (* tail *)
         (x' 35.3553 * rot 230.)
         tail1
         (x' 3. * rot (230. -. 180.))
     in
-
-(*
-    let midpoint = x' 0.5 * (tail1 + tail2) in
-    let cut = make_node (x' 0.8 * (tail1 - midpoint)) midpoint (x' 0.8 * (tail2 - midpoint)) in
-
-    let inner' = inner <-> midpoint <*> rot (-90. -. tail_cut_angle) in
-    let times = times_at_x inner' (-7.) in
-    let time_inner = times.(Int.pred (Array.length times)) in
-    let outer' = outer <-> midpoint <*> rot (-90. -. tail_cut_angle) in
-    let time_outer = (times_at_x outer' (-7.)).(0) in
-    let (inner, _) = subdivide inner time_inner in
-    let (_, outer) = subdivide outer time_outer in
-    let inner = modify_outhandle inner (x' 5.) in
-    let outer = modify_inhandle outer (x' 5.) in
-*)
 
     outer <@> terminal <@> inner
     <@@ true <.> round

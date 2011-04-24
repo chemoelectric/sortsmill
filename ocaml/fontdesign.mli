@@ -105,6 +105,8 @@ sig
   val zero : t
   val one : t
   val i : t
+  val re : t -> float'
+  val im : t -> float'
   val neg : t -> t
   val conj : t -> t
   val sqrt : t -> t
@@ -185,6 +187,10 @@ sig
   type point = P.t
   type t = (P.t * P.t * P.t) L.t
   val make_node : P.t -> P.t -> P.t -> t
+  val make_vert_node :
+    P.float' -> P.t -> P.float' -> (P.t * P.t * P.t) list
+  val make_horiz_node :
+    P.float' -> P.t -> P.float' -> (P.t * P.t * P.t) list
   val is_empty : t -> bool
   val is_singleton : t -> bool
   val rev : t -> t

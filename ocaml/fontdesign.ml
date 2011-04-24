@@ -50,6 +50,9 @@ struct
   let x' x = { re = x; im = 0. }
   let y' y = { re = 0.; im = y }
 
+  let re c = c.re
+  let im c = c.im
+
   let dpolar norm arg = polar norm (rad arg)
   let rot theta = polar 1.0 (rad theta)
   let dir c = c / abs(c)
@@ -88,6 +91,8 @@ sig
   val zero : t
   val one : t
   val i : t
+  val re : t -> float'
+  val im : t -> float'
   val neg : t -> t
   val conj : t -> t
   val sqrt : t -> t
@@ -192,19 +197,29 @@ struct
   type point = P.t
   type t = (P.t * P.t * P.t) L.t
 
+  (* Nodewise and pointwise mapping. *)
+  let nodewise = L.map
+  let pointwise f = L.map (fun (ih,oc,oh) -> (f ih, f oc, f oh))
+
   let make_node rel_inhandle on_curve_point rel_outhandle =
     [P.(on_curve_point + rel_inhandle,
         on_curve_point,
         on_curve_point + rel_outhandle)]
 
+  let make_vert_node inhandle_height on_curve_point outhandle_height =
+    [P.(x'(re on_curve_point) + y' inhandle_height,
+        on_curve_point,
+        x'(re on_curve_point) + y' outhandle_height)]
+
+  let make_horiz_node inhandle_pos on_curve_point outhandle_pos =
+    [P.(x' inhandle_pos + y'(im on_curve_point),
+        on_curve_point,
+        x' outhandle_pos + y'(im on_curve_point))]
+
   let is_empty contour = contour = []
   let is_singleton contour = contour <> [] && L.tl contour = []
 
   let rev contour = L.rev_map (fun (ih,oc,oh) -> (oh,oc,ih)) contour
-
-  (* Nodewise and pointwise mapping. *)
-  let nodewise = L.map
-  let pointwise f = L.map (fun (ih,oc,oh) -> (f ih, f oc, f oh))
 
   let print_point = P.print
   let point_printer paren outp pt =
@@ -227,9 +242,9 @@ struct
   let t_printer _paren outp contour = print outp contour
 
   let ( <.> ) contour f = pointwise f contour
-  let ( <*> ) contour pt = pointwise (P.mul pt) contour
+  let ( <*> ) contour pt = pointwise (flip P.mul pt) contour
   let ( </> ) contour pt = pointwise (flip P.div pt) contour
-  let ( <+> ) contour pt = pointwise (P.add pt) contour
+  let ( <+> ) contour pt = pointwise (flip P.add pt) contour
   let ( <-> ) contour pt = pointwise (flip P.sub pt) contour
 end
 
