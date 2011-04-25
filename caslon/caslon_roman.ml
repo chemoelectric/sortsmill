@@ -162,9 +162,9 @@ let letter_c_contour p =
     let bottom_breadth = 0.92 *. p.lc_stem_width /. p.contrast in
     let top_breadth = 0.64 *. p.lc_stem_width /. p.contrast in
     let head_breadth = 1.00 *. p.lc_stem_width in
-    let tail_breadth = 0.20 *. p.lc_stem_width in
+    let tail_breadth = 0.24 *. p.lc_stem_width in
 
-    let tail_cut_angle = -35. in
+    let tail_cut_angle = -37. in
     let tail1 = x'pos 0.99 + y'pos 0.20 in
     let tail2 = tail1 - y_shear (x' tail_breadth) tail_cut_angle in
 
@@ -173,14 +173,14 @@ let letter_c_contour p =
     let head2 = head1 - y_shear (x' head_breadth) head_cut_angle in
 
     let outer =
-      let tail_angle = 75. in
+      let tail_angle = 74. in
       let head_angle = 100. in
       make_node                         (* tail *)
         (x' 3. * rot tail_angle)
         tail1
         (neg (x_shear (y'rel 0.09) (90. -. tail_angle)))
       <@> make_horiz_node               (* bottom *)
-        (xpos 0.78)
+        (xpos 0.77)
         (x'pos 0.56 + y'pos 0.00)
         (xpos 0.19)
       <@> make_vert_node                (* left *)
@@ -202,17 +202,17 @@ let letter_c_contour p =
       make_node                         (* head *)
         (neg (x_shear (y'rel 0.05) (90. -. head_angle)))
         head2
-        (x_shear (y'rel 0.05) (90. -. head_angle))
+        (x_shear (y'rel 0.06) (90. -. head_angle))
       <@> make_horiz_node               (* inner top *)
-        (xpos 0.68)
-        (x'pos 0.59 + y'pos 1.00 - y' top_breadth)
-        (xpos 0.40)
+        (xpos 0.69)
+        (x'pos 0.56 + y'pos 1.00 - y' top_breadth)
+        (xpos 0.39)
       <@> make_vert_node                (* inner left *)
         (ypos 0.79)
         (x'pos 0.00 + x' left_breadth + y'pos 0.52)
-        (ypos (0.32 +. p.contrast *. 0.01))
+        (ypos (0.32 +. (p.contrast -. 1.00) *. 0.02))
       <@> make_horiz_node               (* inner bottom *)
-        (xpos (0.33 +. p.contrast *. 0.05))
+        (xpos (0.36 +. (p.contrast -. 1.00) *. 0.05))
         (x'pos 0.64 + y'pos 0.00 + y' bottom_breadth)
         (xpos 0.78)
       <@> make_node                     (* tail *)
@@ -225,14 +225,111 @@ let letter_c_contour p =
     <@@ true <.> round
   )))
 
+(*.......................................................................*)
+
+let letter_e_contours =
+
+  let tools p =
+    let overshoot = p.curve_overshoot +. 2. in
+    let undershoot = p.curve_undershoot +. 2. in
+    make_tools
+      ~width:354.
+      ~height:(p.x_height +. undershoot +. overshoot)
+      ~undershoot:p.curve_undershoot
+      ~overshoot:p.curve_overshoot
+      ~param:p
+      ()
+  in
+
+  let outer_contour p =
+
+    let module Tools = (val tools p : Tools_module) in
+
+    Tools.(Cubic.(Complex_point.(
+
+      let left = 1.01 *. p.lc_stem_width in
+      let bottom = 1.00 *. p.lc_stem_width /. p.contrast in
+      let tail_breadth = 0.37 *. p.lc_stem_width /. p.contrast in
+
+      let tail_cut_angle = 145. in
+      let tail1 = x'pos 1.00 + y'pos 0.25 in
+      let tail2 = tail1 + x' tail_breadth * rot tail_cut_angle in
+      let tail1_angle = 65. in
+      let tail2_angle = 52. in
+
+      make_vert_node                    (* left *)
+        (ypos 0.19)
+        (x'pos 0.00 + y'pos 0.51)
+        (ypos 0.77)
+      <@> make_horiz_node               (* top *)
+        (xpos 0.20)
+        (x'pos 0.52 + y'pos 1.00)
+        (xpos 0.76)
+      <@> make_vert_node                (* right *)
+        (ypos 0.85)
+        (x'pos 0.95 + y'pos 0.66)
+        (ypos 0.64)
+      <@> make_horiz_node               (* crossbar right *)
+        (xpos 0.90)
+        (x'pos 0.85 + y'pos 0.64)
+        (xpos 0.85)
+      <@> make_horiz_node               (* crossbar left *)
+        (xpos 0.25)
+        (x'pos 0.25 + y'pos 0.64)
+        (xpos 0.21)
+      <@> make_vert_node                (* inner left *)
+        (ypos 0.64)
+        (x'pos 0.00 + x' left + y'pos 0.52)
+        (ypos 0.31)
+      <@> make_horiz_node               (* inner bottom *)
+        (xpos 0.35)
+        (x'pos 0.60 + y'pos 0.00 + y' bottom)
+        (xpos 0.70)
+      <@> make_node                     (* inner tail *)
+        (neg (x_shear (y'rel 0.13) (90. -. tail2_angle)))
+        tail2
+        (x' 5. * rot tail2_angle)
+      <@> make_node                     (* outer tail *)
+        (x' 5. * rot tail1_angle)
+        tail1
+        (neg (x_shear (y'rel 0.15) (90. -. tail1_angle)))
+      <@> make_horiz_node               (* bottom *)
+        (xpos 0.75)
+        (x'pos 0.54 + y'pos 0.00)
+        (xpos 0.22)
+      <@@ true <.> round
+    )))
+  in
+  let inner_contour p =
+
+    let module Tools = (val tools p : Tools_module) in
+
+    Tools.(Cubic.(Complex_point.(
+      make_node (x' 12.0000 + y' 44.0000) (x' 82.0000 + y' 312.0000) (x'(-7.0000) + y'(-24.0000))
+      <@> make_node (x'(-31.0000)) (x' 122.0000 + y' 282.0000) (x' 34.0000)
+      <@> make_node (x'(-34.0000)) (x' 224.0000 + y' 282.0000) (x' 21.0000)
+      <@> make_node (y'(-20.0000)) (x' 256.0000 + y' 317.0000) (y' 10.0000)
+      <@> make_node (x' 6.0000 + y'(-11.0000)) (x' 247.0000 + y' 350.0000) (x'(-12.0000) + y' 25.0000)
+      <@> make_node (x' 33.0000) (x' 177.0000 + y' 391.0000) (x'(-46.0000))
+      <@@ true <.> round
+    )))    
+  in
+
+  [outer_contour; inner_contour]
+;;
+
+(*.......................................................................*)
+
 let letter_o_contours =
 
   let tools p =
+    let overshoot = p.curve_overshoot in
+    let undershoot = p.curve_undershoot in
     make_tools
           ~width:383.
-          ~height:(p.x_height +. p.curve_undershoot +. p.curve_overshoot)
-          ~undershoot:p.curve_undershoot
-          ~overshoot:p.curve_overshoot
+          ~height:(p.x_height +. undershoot +. overshoot)
+          ~undershoot:undershoot
+          ~overshoot:overshoot
           ~param:p
           ()
   in
@@ -242,11 +339,6 @@ let letter_o_contours =
     let module Tools = (val tools p : Tools_module) in
 
     Tools.(Cubic.(Complex_point.(
-
-      let left = 1.16 *. p.lc_stem_width in
-      let right = 1.16 *. p.lc_stem_width in
-      let bottom = 0.58 *. p.lc_stem_width /. p.contrast in
-      let top = 0.54 *. p.lc_stem_width /. p.contrast in
 
       make_vert_node                    (* left *)
         (ypos 0.23)
@@ -316,6 +408,16 @@ add_glyph Glyph.({
   empty with
     name = "c";
     contours = [Contour.of_param_to_cubic letter_c_contour];
+    lsb = Some (const 0.);
+    rsb = Some (const 50.);
+})
+;;
+
+(* Letter "e" *)
+add_glyph Glyph.({
+  empty with
+    name = "e";
+    contours = List.map Contour.of_param_to_cubic letter_e_contours;
     lsb = Some (const 0.);
     rsb = Some (const 50.);
 })
