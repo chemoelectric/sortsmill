@@ -1,4 +1,0 @@
-#!/bin/sh
-
-make CaslonStM_program 1>/dev/null || exit $?
-exec ./CaslonStM_program --glyph=${1}

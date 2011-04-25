@@ -186,11 +186,20 @@ module Cubic_base
 sig
   type point = P.t
   type t = (P.t * P.t * P.t) L.t
+
   val make_node : P.t -> P.t -> P.t -> t
-  val make_vert_node :
-    P.float' -> P.t -> P.float' -> (P.t * P.t * P.t) list
-  val make_horiz_node :
-    P.float' -> P.t -> P.float' -> (P.t * P.t * P.t) list
+  (** Makes a node with handles specified as vectors relative to the
+      on-curve point. (This case is where the "handle" metaphor makes
+      the most sense. Another term for a handle is "direction
+      point".) *)
+
+  val make_vert_node : P.float' -> P.t -> P.float' -> (P.t * P.t * P.t) L.t
+  (** Makes a vertical node with handles at given heights
+      (y-coordinates). *)
+
+  val make_horiz_node : P.float' -> P.t -> P.float' -> (P.t * P.t * P.t) L.t
+  (** Makes a horizontal node with handles at given x-coordinates. *)
+
   val is_empty : t -> bool
   val is_singleton : t -> bool
   val rev : t -> t

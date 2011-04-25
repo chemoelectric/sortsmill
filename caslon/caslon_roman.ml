@@ -95,16 +95,6 @@ struct
       let y'rel = y' -| yrel in
       let x'pos = x' -| xpos in
       let y'pos = y' -| ypos in
-(*
-      let x'pos v = x'rel v - x' left_overlap in
-      let y'pos v = y'rel v - y' undershoot in
-*)
-
-(*
-      let xy'rel angle amount = (x'rel (amount *. dcos angle) + y'rel (amount *. dsin angle)) in
-      let xyrel angle amount = norm (xy'rel angle amount) in
-      let xy'pos angle amount = xy'rel angle amount - y' undershoot in
-*)
 
       let module Tools =
           struct
@@ -151,10 +141,10 @@ let enum_resolve_glyphs param = map (flip resolve_glyph param) (enum_glyphs ())
 
 let letter_c_contour p =
 
-  let overshoot = p.curve_overshoot +. 2. in
-  let undershoot = p.curve_undershoot +. 2. in
+  let overshoot = p.curve_overshoot +. 3. in
+  let undershoot = p.curve_undershoot +. 3. in
 
-  let tools =
+  let tools p =
     make_tools
           ~width:320.
           ~height:(p.x_height +. undershoot +. overshoot)
@@ -164,143 +154,148 @@ let letter_c_contour p =
           ()
   in
 
-  let module Tools = (val tools : Tools_module) in
+  let module Tools = (val tools p : Tools_module) in
   
   Tools.(Cubic.(Complex_point.(
 
-    let left_breadth = 1.07 *. p.lc_stem_width in
-    let bottom_breadth = 0.92 *. p.lc_stem_width in
+    let left_breadth = 1.12 *. p.lc_stem_width in
+    let bottom_breadth = 0.92 *. p.lc_stem_width /. p.contrast in
     let top_breadth = 0.64 *. p.lc_stem_width /. p.contrast in
+    let head_breadth = 1.00 *. p.lc_stem_width in
+    let tail_breadth = 0.20 *. p.lc_stem_width in
 
-    let tail_cut_angle = -40. in
-    let tail2 = x'pos 0.98 + y' 69.0000 in
-    let tail1 = tail2 + y_shear (x'(-13.)) tail_cut_angle in
+    let tail_cut_angle = -35. in
+    let tail1 = x'pos 0.99 + y'pos 0.20 in
+    let tail2 = tail1 - y_shear (x' tail_breadth) tail_cut_angle in
+
+    let head_cut_angle = 20. in
+    let head1 = x'pos 0.98 + y'pos 0.82 in
+    let head2 = head1 - y_shear (x' head_breadth) head_cut_angle in
 
     let outer =
+      let tail_angle = 75. in
+      let head_angle = 100. in
       make_node                         (* tail *)
-        (x' 3. * rot (70.))
-        tail2
-        (x' 40. * rot (70. -. 180.))
+        (x' 3. * rot tail_angle)
+        tail1
+        (neg (x_shear (y'rel 0.09) (90. -. tail_angle)))
       <@> make_horiz_node               (* bottom *)
-        (xpos 0.76)
+        (xpos 0.78)
         (x'pos 0.56 + y'pos 0.00)
         (xpos 0.19)
       <@> make_vert_node                (* left *)
         (ypos 0.23)
-        (x'pos 0.0 + y'pos 0.50)
-        (ypos 0.80)
+        (x'pos 0.0 + y'pos 0.49)
+        (ypos 0.79)
       <@> make_horiz_node               (* top *)
-        (xpos 0.27)
-        (x'pos 0.63 + y'pos 1.00)
+        (xpos 0.29)
+        (x'pos 0.62 + y'pos 1.00)
         (xpos 0.82)
-    in
-    let terminal =
-      make_vert_node                    (* right *)
-        (ypos 0.89)
-        (x'pos 0.98 + y'pos 0.82)
-        (ypos 0.78)
-      <@> make_horiz_node               (* turning inward *)
-        (xpos 0.94)
-        (x'pos 0.89 + y'pos 0.75)
-        (xpos 0.76)
+      <@> make_node                     (* head *)
+        (x_shear (y'rel 0.08) (90. -. head_angle))
+        head1
+        (neg (x_shear (y'rel 0.05) (90. -. head_angle)))
     in
     let inner =
-      make_horiz_node                   (* inner top *)
-        (xpos 0.75)
-        (x'pos 0.58 + y'pos 1.00 - y' top_breadth)
-        (xpos 0.39)
+      let tail_angle = 50. in
+      let head_angle = 130. in
+      make_node                         (* head *)
+        (neg (x_shear (y'rel 0.05) (90. -. head_angle)))
+        head2
+        (x_shear (y'rel 0.05) (90. -. head_angle))
+      <@> make_horiz_node               (* inner top *)
+        (xpos 0.68)
+        (x'pos 0.59 + y'pos 1.00 - y' top_breadth)
+        (xpos 0.40)
       <@> make_vert_node                (* inner left *)
-        (ypos 0.77)
-        (x'pos 0.00 + x' left_breadth + y'pos 0.54)
-        (ypos 0.30)
+        (ypos 0.79)
+        (x'pos 0.00 + x' left_breadth + y'pos 0.52)
+        (ypos (0.32 +. p.contrast *. 0.01))
       <@> make_horiz_node               (* inner bottom *)
-        (xpos 0.36)
-        (x'pos 0.65 + y'pos 0.00 + y' bottom_breadth)
-        (xpos 0.75)
+        (xpos (0.33 +. p.contrast *. 0.05))
+        (x'pos 0.64 + y'pos 0.00 + y' bottom_breadth)
+        (xpos 0.78)
       <@> make_node                     (* tail *)
-        (x' 35.3553 * rot 230.)
-        tail1
-        (x' 3. * rot (230. -. 180.))
+        (neg (x_shear (y'rel 0.06) (90. -. tail_angle)))
+        tail2
+        (x' 3. * rot tail_angle)
     in
 
-    outer <@> terminal <@> inner
+    outer <@> inner
     <@@ true <.> round
   )))
 
-let letter_o_contours = 
+let letter_o_contours =
 
-  let width = 383. in
+  let tools p =
+    make_tools
+          ~width:383.
+          ~height:(p.x_height +. p.curve_undershoot +. p.curve_overshoot)
+          ~undershoot:p.curve_undershoot
+          ~overshoot:p.curve_overshoot
+          ~param:p
+          ()
+  in
 
   let outer_contour p =
-    Cubic.(Complex_point.(
 
-      let width = width *. p.extension in
-      let overshoot = p.curve_overshoot in
-      let undershoot = p.curve_undershoot in
-      let height = p.x_height +. undershoot +. overshoot in
-      let y_coord v = y'(v -. undershoot) in
-      let xrel amount = amount *. width in
-      let yrel amount = amount *. height in
+    let module Tools = (val tools p : Tools_module) in
+
+    Tools.(Cubic.(Complex_point.(
 
       let left = 1.16 *. p.lc_stem_width in
       let right = 1.16 *. p.lc_stem_width in
       let bottom = 0.58 *. p.lc_stem_width /. p.contrast in
       let top = 0.54 *. p.lc_stem_width /. p.contrast in
 
-      make_node
-        (y'(-0.27 *. height))
-        (y_coord(0.50 *. height))
-        (y'(0.32 *. height))
-      <@> make_node
-        (x'(-0.22 *. width))
-        (x'(0.50 *. width) + y'(p.x_height +. overshoot))
-        (x'(0.28 *. width))
-      <@> make_node
-        (y'(0.27 *. height))
-        (x' width + y_coord(0.50 *. height))
-        (y'(-0.28 *. height))
-      <@> make_node
-        (x'(0.29 *. width))
-        (x'(0.49 *. width) + y'(-. undershoot))
-        (x'(-0.30 *. width))
+      make_vert_node                    (* left *)
+        (ypos 0.23)
+        (x'pos 0.00 + y'pos 0.50)
+        (ypos 0.82)
+      <@> make_horiz_node               (* top *)
+        (xpos 0.28)
+        (x'pos 0.50 + y'pos 1.00)
+        (xpos 0.78)
+      <@> make_vert_node                (* right *)
+        (ypos 0.77)
+        (x'pos 1.00 + y'pos 0.50)
+        (ypos 0.22)
+      <@> make_horiz_node               (* bottom *)
+        (xpos 0.78)
+        (x'pos 0.49 + y'pos 0.00)
+        (xpos 0.19)
       <@@ true <.> round
-    ))
+    )))
   in
   let inner_contour p =
 
-    Cubic.(Complex_point.(
+    let module Tools = (val tools p : Tools_module) in
 
-      let width = width *. p.extension in
-      let overshoot = p.curve_overshoot in
-      let undershoot = p.curve_undershoot in
-      let height = p.x_height +. undershoot +. overshoot in
-      let y_coord v = y'(v -. undershoot) in
-      let xrel amount = amount *. width in
-      let yrel amount = amount *. height in
+    Tools.(Cubic.(Complex_point.(
 
       let left = 1.16 *. p.lc_stem_width in
       let right = 1.16 *. p.lc_stem_width in
       let bottom = 0.58 *. p.lc_stem_width /. p.contrast in
       let top = 0.54 *. p.lc_stem_width /. p.contrast in
 
-      make_node
-        (y'(yrel 0.22))
-        (x' left + y_coord (yrel 0.52))
-        (y'(yrel (-0.30)))
-      <@> make_node
-        (x'(xrel (-0.16)))
-        (x'(xrel 0.49) - y' undershoot + y' bottom)
-        (x'(xrel 0.14))
-      <@> make_node
-        (y'(yrel (-0.28)))
-        (x' width - x' right + y_coord (yrel 0.48))
-        (y'(yrel 0.24))
-      <@> make_node
-        (x'(xrel 0.22))
-        (x'(xrel 0.48) + y'(p.x_height +. overshoot) - y' top)
-        (x'(xrel (-0.19)))
+      make_vert_node                    (* left *)
+        (ypos 0.74)
+        (x'pos 0.00 + x' left + y'pos 0.52)
+        (ypos 0.22)
+      <@> make_horiz_node               (* top *)
+        (xpos 0.33)
+        (x'pos 0.49 + y'pos 0.00 + y' bottom)
+        (xpos 0.63)
+      <@> make_vert_node                (* right *)
+        (ypos 0.20)
+        (x'pos 1.00 - x' right + y'pos 0.48)
+        (ypos 0.72)
+      <@> make_horiz_node               (* bottom *)
+        (xpos 0.70)
+        (x'pos 0.48 + y'pos 1.00 - y' top)
+        (xpos 0.29)
       <@@ true <.> round
-    ))
+    )))
   in
 
   [outer_contour; inner_contour]
@@ -415,4 +410,3 @@ let run_command ?(outp = stdout) param =
         Cubic_glyph.print_python_glyph_update_module outp glyph
 
 (*-----------------------------------------------------------------------*)
-

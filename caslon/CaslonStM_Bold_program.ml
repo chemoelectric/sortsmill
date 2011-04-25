@@ -27,9 +27,9 @@ open Param
 let param = {
   version = "0.1";
 
-  fontname = "CaslonStM";
+  fontname = "CaslonStM-Bold";
   familyname = "Sorts Mill Caslon";
-  fullname = "Sorts Mill Caslon";
+  fullname = "Sorts Mill Caslon Bold";
   weight = "Regular";
 
   family = "Sorts Mill Caslon";
@@ -39,16 +39,16 @@ let param = {
   wws_family = None;
   wws_subfamily = None;
 
-  os2_weight = 400;
+  os2_weight = 700;
   design_size = 12.;
 
-  contrast = 1.0;
-  extension = 1.0;
+  contrast = 1.5;
+  extension = 1.1;
   space_width = 200.;
   x_height = 399.;
   curve_overshoot = 10.;
   curve_undershoot = 10.;
-  lc_stem_width = 57.;
+  lc_stem_width = 90.;
 }
 in
 run_command param

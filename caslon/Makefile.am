@@ -46,15 +46,23 @@ endif
 CaslonStM_program: CaslonStM_program.ml caslon_roman.$(CMO)
 	$(OCAMLCOMPILER) -thread -linkpkg caslon_roman.$(CMO) $< -o $@
 
+CaslonStM-Bold_program: CaslonStM_Bold_program.ml caslon_roman.$(CMO)
+	$(OCAMLCOMPILER) -thread -linkpkg caslon_roman.$(CMO) $< -o $@
+
+%_glyph_update: Makefile
+	echo '#!/bin/sh' > $@
+	echo 'make '$*'_program 1>/dev/null || exit $$?' >> $@
+	echo 'exec ./'$*'_program --glyph=$${1}' >> $@
+	chmod +x $@
+
 FAMILYNAME = caslon
-FONTS = CaslonStM
+FONTS = CaslonStM CaslonStM-Bold
 fonts_DATA = $(addsuffix .otf, ${FONTS})
 
 dist_bin_SCRIPTS = $(addsuffix _glyph_update, ${FONTS})
 
-FONTDEPS = roman
-
 EXTRA_DIST = $(addsuffix _program.ml, ${FONTS}) caslon_roman.ml
+
 $(addsuffix _program.$(CMO), ${FONTS}): $(addprefix caslon_roman., $(CMO) cmi)
 
 MOSTLYCLEANFILES = ${fonts_DATA} $(addsuffix _program, ${FONTS})		\
