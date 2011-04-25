@@ -113,7 +113,7 @@ def caml_path(contour):
         s += ("  " + join + "make_node (" +
               caml_complex(c_inhandle) + ") (" +
               caml_complex(c_oncurve) + ") (" +
-              caml_complex(c_outhandle) + ");\n")
+              caml_complex(c_outhandle) + ")\n")
         i += 3
 
     s += " <@@ " + ("true" if contour.closed else "false")
