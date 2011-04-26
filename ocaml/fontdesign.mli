@@ -249,6 +249,8 @@ sig
   (** Computes an xy-aligned bounding box of the bezier curve between
       two nodes. *)
 
+  val curve_point_at : ?pos:int -> t -> float -> Complex.t
+
   val curve_times_at_x : ?pos:int -> t -> float -> float array
   val curve_times_at_y : ?pos:int -> t -> float -> float array
 
@@ -280,6 +282,8 @@ sig
 
   val join : ?tol:float -> t -> t -> t
 
+  val point_at : t -> float -> Complex.t
+
   val times_at_x : t -> float -> float array
   val times_at_y : t -> float -> float array
 
@@ -297,52 +301,6 @@ sig
 
   val ( <@@ ) : t -> bool -> t
   val ( <@> ) : t -> t -> t
-end
-
-(*-----------------------------------------------------------------------*)
-
-module Parameterized_contour(Param : Parameter_type) :
-sig
-  type t =
-    [
-    | `Parameterized of Param.t -> t
-    | `Cubic of Cubic.t
-    ]
-
-  val of_parameterized : 'a -> [> `Parameterized of 'a ]
-  val of_cubic : 'a -> [> `Cubic of 'a ]
-  val of_param_to_cubic :
-    ('a -> 'b) -> [> `Parameterized of 'a -> [> `Cubic of 'b ] ]
-
-  val resolve :
-    ([< `Cubic of ('b * 'b * 'b) list
-     | `Parameterized of 'c -> 'a ]
-        as 'a) ->
-    'c -> ('b * 'b * 'b) list
-  val bounds2 :
-    ?fast:bool ->
-    ([< `Cubic of Cubic.t
-     | `Parameterized of 'b -> 'a ]
-        as 'a) ->
-    'b -> Complex.t * Complex.t
-  val bounds :
-    ?fast:bool ->
-    ([< `Cubic of Cubic.t
-     | `Parameterized of 'b -> 'a ]
-        as 'a) ->
-    ('b -> Complex.t) * ('b -> Complex.t)
-  val overall_bounds2 :
-    ?fast:bool ->
-    ([< `Cubic of Cubic.t
-     | `Parameterized of 'b -> 'a ]
-        as 'a)
-      Enum.t -> 'b -> Complex.t * Complex.t
-  val overall_bounds :
-    ?fast:bool ->
-    ([< `Cubic of Cubic.t
-     | `Parameterized of 'b -> 'a ]
-        as 'a)
-      Enum.t -> ('b -> Complex.t) * ('b -> Complex.t)
 end
 
 (*-----------------------------------------------------------------------*)

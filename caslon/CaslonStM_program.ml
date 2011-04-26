@@ -48,6 +48,7 @@ let param = {
   x_height = 399.;
   curve_overshoot = 10.;
   curve_undershoot = 10.;
+  e_crossbar_height = 258.;
   lc_stem_width = 57.;
 }
 in

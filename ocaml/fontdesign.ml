@@ -315,6 +315,11 @@ struct
     P.(of_bezier_point (Caml2geom.Rect.min rect),
        of_bezier_point (Caml2geom.Rect.max rect))
 
+  let curve_point_at ?pos contour time =
+    let bez = bezier_curve ?pos contour in
+    let pt = Caml2geom.Cubic_bezier.point_at bez time in
+    P.of_bezier_point pt
+
   let curve_times_at_x ?pos contour x_coord =
     let bez = bezier_curve ?pos contour in
     Caml2geom.Cubic_bezier.roots bez x_coord Caml2geom.Coord.X
@@ -330,15 +335,15 @@ struct
 
   let subdivide_curve ?(pos = 0) contour time =
     let c = L.drop pos contour in
-    let (ih1, oc1, _) = L.hd c in
-    let (_, oc2, oh2) = L.hd (L.tl c) in
+    let (ih1, _, _) = L.hd c in
+    let (_, _, oh2) = L.hd (L.tl c) in
     let bez = bezier_curve c in
     let (bez1, bez2) = Caml2geom.Cubic_bezier.subdivide bez time in
-    let (_a0, a1, a2, a3) = bezier_curve_to_four_complexes bez1 in
+    let (a0, a1, a2, a3) = bezier_curve_to_four_complexes bez1 in
     let (_b0, b1, b2, b3) = bezier_curve_to_four_complexes bez2 in
-    let node1 = (ih1, oc1, a1) in
+    let node1 = (ih1, a0, a1) in
     let node2 = (a2, a3, b1) in
-    let node3 = (b2, oc2, oh2) in
+    let node3 = (b2, b3, oh2) in
     ([node1; node2], [node2; node3])
 
   let rec to_cubic_beziers contour =
@@ -429,12 +434,16 @@ struct
       let last1 = L.first rev1 in
       let first2 = L.first contour2 in
       if _nodes_coincide ?tol last1 first2 then
-        let (_, oc1, oh1) = last1 in
-        let (ih2, _, _) = first2 in
-        let joined_node = (ih2, oc1, oh1) in
-        L.rev_append (joined_node :: L.tl rev1) contour2
+        let (ih1, oc1, _) = last1 in
+        let (_, _, oh2) = first2 in
+        let joined_node = (ih1, oc1, oh2) in
+        L.rev_append (joined_node :: L.tl rev1) (L.tl contour2)
       else
         L.append contour1 contour2
+
+  let point_at contour time =
+    let pt = Caml2geom.Path.point_at (to_path contour) time in
+    P.of_bezier_point pt
 
   let times_at_x contour x_coord =
     Caml2geom.Path.roots (to_path contour) x_coord Caml2geom.Coord.X
@@ -501,41 +510,6 @@ struct
     (if t_or_f then close else unclose) contour
 
   let ( <@> ) contour1 = join contour1
-end
-
-(*-----------------------------------------------------------------------*)
-
-module Parameterized_contour(Param : Parameter_type) =
-struct
-  type t =
-    [
-    | `Parameterized of Param.t -> t
-    | `Cubic of Cubic.t
-    ]
-
-  let rec resolve contour param =
-    (* Resolve to a de-parameterized cubic bezier contour. *)
-    match contour with
-      | `Parameterized c -> resolve (c param) param
-      | `Cubic c -> c
-
-  let of_parameterized c = `Parameterized c
-  let of_cubic c = `Cubic c
-  let of_param_to_cubic c = `Parameterized (fun p -> `Cubic (c p))
-
-  let bounds2 ?fast contour =
-    fun p -> Cubic.bounds ?fast (resolve contour p)
-
-  let bounds ?fast contour =
-    let b = bounds2 ?fast contour in
-    ((fun p -> fst (b p)), (fun p -> snd (b p)))
-
-  let overall_bounds2 ?fast enum_of_contours =
-    fun p -> Cubic.overall_bounds ?fast (map (flip resolve p) enum_of_contours)
-
-  let overall_bounds ?fast enum_of_contours =
-    let ob = overall_bounds2 ?fast enum_of_contours in
-    ((fun p -> fst (ob p)), (fun p -> snd (ob p)))
 end
 
 (*-----------------------------------------------------------------------*)
