@@ -173,52 +173,22 @@ let letter_c_contours p =
       let outer =
         let tail_angle = 74. in
         let head_angle = 100. in
-        make_node                         (* tail *)
-          (x' 3. * rot tail_angle)
-          tail1
-          (neg (x_shear (y'rel 0.09) (90. -. tail_angle)))
-        <@> make_horiz_node               (* bottom *)
-          (xpos 0.77)
-          (x'pos 0.56 + y'pos 0.00)
-          (xpos 0.19)
-        <@> make_vert_node                (* left *)
-          (ypos 0.23)
-          (x'pos 0.0 + y'pos 0.49)
-          (ypos 0.79)
-        <@> make_horiz_node               (* top *)
-          (xpos 0.29)
-          (x'pos 0.62 + y'pos 1.00)
-          (xpos 0.82)
-        <@> make_node                     (* head *)
-          (x_shear (y'rel 0.08) (90. -. head_angle))
-          head1
-          (neg (x_shear (y'rel 0.05) (90. -. head_angle)))
+        make_dir_node (neg (rot tail_angle)) tail1 (* tail *)
+        <@-.> 1.2 <.-@> make_left_node (x'pos 0.56 + y'pos 0.00) (* bottom *)
+        <@-.> 0.93 <.-@> make_up_node (x'pos 0.0 + y'pos 0.49) (* left *)
+        <@-> make_right_node (x'pos 0.62 + y'pos 1.00) (* top *)
+        <@-.> 1.1 <.-@> make_dir_node (neg (rot head_angle)) head1 (* head *)
       in
       let inner =
         let tail_angle = 50. in
         let head_angle = 130. in
-        make_node                         (* head *)
-          (neg (x_shear (y'rel 0.05) (90. -. head_angle)))
-          head2
-          (x_shear (y'rel 0.06) (90. -. head_angle))
-        <@> make_horiz_node               (* inner top *)
-          (xpos 0.69)
-          (x'pos 0.56 + y'pos 1.00 - y' top_breadth)
-          (xpos 0.39)
-        <@> make_vert_node                (* inner left *)
-          (ypos 0.79)
-          (x'pos 0.00 + x' left_breadth + y'pos 0.52)
-          (ypos (0.32 +. (p.contrast -. 1.00) *. 0.02))
-        <@> make_horiz_node               (* inner bottom *)
-          (xpos (0.36 +. (p.contrast -. 1.00) *. 0.05))
-          (x'pos 0.64 + y'pos 0.00 + y' bottom_breadth)
-          (xpos 0.78)
-        <@> make_node                     (* tail *)
-          (neg (x_shear (y'rel 0.06) (90. -. tail_angle)))
-          tail2
-          (x' 3. * rot tail_angle)
+        make_dir_node (rot head_angle) head2 (* head *)
+        <@~.> 0.85 <.~@> make_left_node (x'pos 0.56 + y'pos 1.00 - y' top_breadth) (* inner top *)
+        <@-> make_down_node (x'pos 0.00 + x' left_breadth + y'pos 0.52) (* inner left *)
+        <@-> make_right_node (x'pos 0.64 + y'pos 0.00 + y' bottom_breadth) (* inner bottom *)
+        <@-> make_dir_node (rot tail_angle) tail2 (* tail *)
       in
-      outer <@> inner <@@ true <.> round
+      outer <@-.> 1.32 <.-@> inner <-@@ 2.0 <.> round
     in
     [contour]
   )))
@@ -264,26 +234,11 @@ let letter_e_contours p =
     let tail2_angle = 52. in
 
     let counter =
-      make_node
-        (y'(-0.60 *. crossbar_fillet_size))
-        (crossbar_top0 + y' crossbar_fillet_size)
-        (y' 3.)
-      <@> make_horiz_node               (* eye top *)
-        (xpos 1.00 -. right_breadth)
-        (x'pos 0.50 + y'pos 1.00 - y' top_breadth)
-        (xpos 0.00 +. left_breadth +. xrel 0.07)
-      <@> make_vert_node                (* inner left *)
-        crossbar_height
-        (x'pos 0.00 + x' left_breadth + y'pos 0.52)
-        (ypos 0.31)
-      <@> make_horiz_node               (* inner bottom *)
-        (xpos 0.35)
-        (x'pos 0.60 + y'pos 0.00 + y' bottom_breadth)
-        (xpos 0.70)
-      <@> make_node                     (* inner tail *)
-        (neg (x_shear (y'rel 0.13) (90. -. tail2_angle)))
-        tail2
-        (x' 5. * rot tail2_angle)
+      make_up_node (crossbar_top0 + y' crossbar_fillet_size)
+      <@-> make_left_node (x'pos 0.50 + y'pos 1.00 - y' top_breadth) (* eye top *)
+      <@-.> 1.05 <.-@> make_down_node (x'pos 0.00 + x' left_breadth + y'pos 0.52) (* inner left *)
+      <@-> make_right_node (x'pos 0.60 + y'pos 0.00 + y' bottom_breadth) (* inner bottom *)
+      <@-> make_dir_node (rot tail2_angle) tail2 (* inner tail *)
     in
     let crossbar_height_point =
       let time = (curve_times_at_y counter ~pos:1 crossbar_height).(0) in
@@ -358,42 +313,18 @@ let letter_o_contours p =
     let top_breadth = 0.54 *. p.lc_stem_width /. p.contrast in
 
     let outer_contour =
-      make_vert_node                    (* left *)
-        (ypos 0.23)
-        (x'pos 0.00 + y'pos 0.50)
-        (ypos 0.82)
-      <@> make_horiz_node               (* top *)
-        (xpos 0.28)
-        (x'pos 0.50 + y'pos 1.00)
-        (xpos 0.78)
-      <@> make_vert_node                (* right *)
-        (ypos 0.77)
-        (x'pos 1.00 + y'pos 0.50)
-        (ypos 0.22)
-      <@> make_horiz_node               (* bottom *)
-        (xpos 0.78)
-        (x'pos 0.49 + y'pos 0.00)
-        (xpos 0.19)
-      <@@ true <.> round
+      make_up_node (x'pos 0.00 + y'pos 0.50) (* left *)
+      <@-> make_right_node (x'pos 0.50 + y'pos 1.00) (* top *)
+      <@-> make_down_node (x'pos 1.00 + y'pos 0.50)  (* right *)
+      <@-> make_left_node (x'pos 0.49 + y'pos 0.00)  (* bottom *)
+      <-@@ 0.95 <.> round
     in
     let inner_contour =
-      make_vert_node                    (* left *)
-        (ypos 0.74)
-        (x'pos 0.00 + x' left_breadth + y'pos 0.52)
-        (ypos 0.22)
-      <@> make_horiz_node               (* top *)
-        (xpos 0.33)
-        (x'pos 0.49 + y'pos 0.00 + y' bottom_breadth)
-        (xpos 0.63)
-      <@> make_vert_node                (* right *)
-        (ypos 0.20)
-        (x'pos 1.00 - x' right_breadth + y'pos 0.48)
-        (ypos 0.72)
-      <@> make_horiz_node               (* bottom *)
-        (xpos 0.70)
-        (x'pos 0.48 + y'pos 1.00 - y' top_breadth)
-        (xpos 0.29)
-      <@@ true <.> round
+      make_down_node (x'pos 0.00 + x' left_breadth + y'pos 0.52) (* left *)
+      <@-.> 0.98 <.-@> make_right_node (x'pos 0.49 + y'pos 0.00 + y' bottom_breadth) (* bottom *)
+      <@-> make_up_node (x'pos 1.00 - x' right_breadth + y'pos 0.48) (* right *)
+      <@-> make_left_node (x'pos 0.48 + y'pos 1.00 - y' top_breadth) (* top *)
+      <-@@ 1.0 <.> round
     in
     [outer_contour; inner_contour]
   )))
