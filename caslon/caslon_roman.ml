@@ -296,36 +296,17 @@ let letter_e_contours p =
       subdivide counter intersection_time
     in
     let main_contour =
-      make_node                         (* outer tail *)
-        (x' 5. * rot tail1_angle)
-        tail1
-        (neg (x_shear (y'rel 0.15) (90. -. tail1_angle)))
-      <@> make_horiz_node               (* bottom *)
-        (xpos 0.75)
-        (x'pos 0.54 + y'pos 0.00)
-        (xpos 0.22)
-      <@> make_vert_node                (* left *)
-        (ypos 0.19)
-        (x'pos 0.00 + y'pos 0.51)
-        (ypos 0.77)
-      <@> make_horiz_node               (* top *)
-        (xpos 0.20)
-        (x'pos 0.52 + y'pos 1.00)
-        (xpos 0.76)
-      <@> make_vert_node                (* right *)
-        (ypos 0.85)
-        (x'pos 0.95 + y' crossbar_height + y'rel 0.02)
-        crossbar_height
-      <@> make_horiz_node               (* crossbar right *)
-        (xpos 0.90)
-        (x'pos 0.85 + y' crossbar_height)
-        (xpos 0.85)
-      <@> make_horiz_node               (* crossbar left *)
-        (re crossbar_height_point +. crossbar_fillet_size)
-        (crossbar_height_point + x' crossbar_fillet_size)
-        (re crossbar_height_point)
-      <@> modify_inhandle lower (x' 3.)
-      <@@ true <.> round
+      make_dir_node (neg (rot tail1_angle)) tail1   (* outer tail *)
+      <@-> make_left_node (x'pos 0.54 + y'pos 0.00) (* bottom *)
+      <@-.> 0.9 <.-@> make_up_node (x'pos 0.00 + y'pos 0.51) (* left *)
+      <@-> make_right_node (x'pos 0.52 + y'pos 1.00)         (* top *)
+      <@-> make_down_node (x'pos 0.95 + y' crossbar_height + y'rel 0.02) (* right *)
+      <@=> make_left_node (x'pos 0.85 + y' crossbar_height) (* crossbar right *)
+      <@-.> infinity <.-@>
+        make_left_node (crossbar_height_point + x' crossbar_fillet_size) (* crossbar left *)
+      <@-> lower                        (* inner bowl *)
+      <-@@ 2.                           (* tail end *)
+      <.> round
     in
     let crossbar_top1 =
       let time = (curve_times_at_y upper ~pos:1 crossbar_top).(0) in
@@ -346,12 +327,17 @@ let letter_e_contours p =
       <@> make_node                     (* crossbar top right *)
         zero
         (crossbar_top0 - x' crossbar_fillet_size)
-        (x'(0.60 *. crossbar_fillet_size))
-      <@> modify_outhandle eye_upper (x'(0.40 *. crossbar_fillet_size))
-      <@@ true <.> round
+        one
+      <@-> eye_upper
+      <-@@ 1.                           (* Close with tension 1.0. *)
+      <.> round
     in
     [main_contour; eye_contour]
-  )))    
+  (*
+    ;let c = make_vert_node 0. zero 1. <@==> (100.,0.75) <| make_horiz_node 0. (x' 100. + y' 100.) 100. in
+    [c]
+  *)
+  )))
 ;;
 
 (*.......................................................................*)

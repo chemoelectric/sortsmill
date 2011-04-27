@@ -200,6 +200,12 @@ sig
   val make_horiz_node : P.float' -> P.t -> P.float' -> (P.t * P.t * P.t) L.t
   (** Makes a horizontal node with handles at given x-coordinates. *)
 
+  val make_up_node : P.t -> t
+  val make_down_node : P.t -> t
+  val make_right_node : P.t -> t
+  val make_left_node : P.t -> t
+  val make_dir_node : P.t -> P.t -> t
+
   val is_empty : t -> bool
   val is_singleton : t -> bool
   val rev : t -> t
@@ -219,6 +225,13 @@ sig
 end
 
 (*-----------------------------------------------------------------------*)
+
+val find_intersection_of_lines :
+  ?first_is_segment:bool ->
+  ?second_is_segment:bool ->
+  Complex.t * Complex.t ->
+  Complex.t * Complex.t ->
+  Complex.t * Complex.t
 
 val bezier_curve_to_four_complexes :
   Caml2geom.Bezier_curve.t -> Complex.t * Complex.t * Complex.t * Complex.t
@@ -292,6 +305,15 @@ sig
   val modify_inhandle : t -> Complex.t -> t
   val modify_outhandle : t -> Complex.t -> t
 
+  val remove_inflection_from_curve : ?pos:int -> t -> t
+
+  val apply_tensions : ?pos:int -> ?no_inflection:bool -> t -> float -> float -> t
+  val apply_tension : ?pos:int -> ?no_inflection:bool -> t -> float -> t
+  val join_with_tensions : ?no_inflection:bool -> float -> float -> t -> t -> t
+  val join_with_tension : ?no_inflection:bool -> float -> t -> t -> t
+  val close_with_tensions : ?no_inflection:bool -> float -> float -> t -> t
+  val close_with_tension : ?no_inflection:bool -> float -> t -> t
+
   val to_point_bool_list : t -> (Complex.t * bool) list
   (** Convert a contour to list of points marked true/false =
       on-curve/off-curve. *)
@@ -299,8 +321,23 @@ sig
   val print_python_contour_code :
     ?variable:string -> unit IO.output -> t -> unit
 
-  val ( <@@ ) : t -> bool -> t
   val ( <@> ) : t -> t -> t
+  val ( <@@ ) : t -> bool -> t
+
+  val ( <@--.> ) : t -> float * float -> t -> t
+  val ( <@-.> ) : t -> float -> t -> t
+  val ( <.--@> ) : ('a -> 'b) -> 'a -> 'b
+  val ( <.-@> ) : ('a -> 'b) -> 'a -> 'b
+
+  val ( <@-> ) : t -> t -> t
+  (** Join contours, with tension 1. *)
+
+  val ( <@=> ) : t -> t -> t
+  (** Join contours, with tension "at least 1" (to suppress
+      inflection). *)
+
+  val ( <--@@ ) : t -> float * float -> t
+  val ( <-@@ ) : t -> float -> t
 end
 
 (*-----------------------------------------------------------------------*)

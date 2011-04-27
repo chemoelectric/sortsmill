@@ -50,6 +50,16 @@ let param = {
   curve_undershoot = 10.;
   e_crossbar_height = 258.;
   lc_stem_width = 57.;
+(*
+  contrast = 1.1;
+  extension = 0.88;
+  space_width = 200.;
+  x_height = 350.;
+  curve_overshoot = 10.;
+  curve_undershoot = 10.;
+  e_crossbar_height = 240.;
+  lc_stem_width = 50.;
+*)
 }
 in
 run_command param

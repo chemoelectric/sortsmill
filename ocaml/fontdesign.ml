@@ -216,6 +216,21 @@ struct
         on_curve_point,
         x' outhandle_pos + y'(im on_curve_point))]
 
+  let make_up_node on_curve_point =
+    P.(make_node (neg i) on_curve_point i)
+
+  let make_down_node on_curve_point =
+    P.(make_node i on_curve_point (neg i))
+
+  let make_right_node on_curve_point =
+    P.(make_node (neg one) on_curve_point one)
+
+  let make_left_node on_curve_point =
+    P.(make_node one on_curve_point (neg one))
+
+  let make_dir_node direction on_curve_point =
+    P.(make_node (neg direction) on_curve_point direction)
+
   let is_empty contour = contour = []
   let is_singleton contour = contour <> [] && L.tl contour = []
 
@@ -249,6 +264,45 @@ struct
 end
 
 (*-----------------------------------------------------------------------*)
+
+(*
+  See http://paulbourke.net/geometry/lineline2d/ --
+  "Intersection point of two lines (2 dimensions)"
+*)
+let find_intersection_of_lines
+    ?(first_is_segment = false)
+    ?(second_is_segment = false)
+    (p1,p2) (p3,p4) =
+  let (x1,y1) = Complex_point.(re p1, im p1) in
+  let (x2,y2) = Complex_point.(re p2, im p2) in
+  let (x3,y3) = Complex_point.(re p3, im p3) in
+  let (x4,y4) = Complex_point.(re p4, im p4) in
+  let denom = (y4 -. y3) *. (x2 -. x1) -. (x4 -. x3) *. (y2 -. y1) in
+  let numer_a = (x4 -. x3) *. (y1 -. y3) -. (y4 -. y3) *. (x1 -. x3) in
+  let numer_b = (x2 -. x1) *. (y1 -. y3) -. (y2 -. y1) *. (x1 -. x3) in
+  let ua = numer_a /. denom in
+  let ub = numer_b /. denom in
+  let x = x1 +. ua *. (x2 -. x1) in
+  let y = y1 +. ua *. (y2 -. y1) in
+  let pa =
+    if first_is_segment then
+      if 0. <= ua && ua <= 1. then
+        Complex.({ re = x; im = y })
+      else
+        Complex.({ re = nan; im = nan })
+    else
+      Complex.({ re = x; im = y })
+  in
+  let pb =
+    if second_is_segment then
+      if 0. <= ub && ub <= 1. then
+        Complex.({ re = x; im = y })
+      else
+        Complex.({ re = nan; im = nan })
+    else
+      Complex.({ re = x; im = y })
+  in
+  (pa, pb)
 
 let bezier_curve_to_four_complexes bez =
   let points = Caml2geom.Bezier_curve.to_complex_array bez in
@@ -469,6 +523,76 @@ struct
       L.rev ((ih, oc, new_oh) :: L.tl rev_path)
     )
 
+  let remove_inflection_from_curve ?(pos = 0) contour =
+    let (h, c) = L.split_at pos contour in
+    let (ih1, oc1, oh1) = L.hd c in
+    let (ih2, oc2, oh2) = L.hd (L.tl c) in
+    let (pa, pb) =
+      find_intersection_of_lines
+        ~first_is_segment:true
+        ~second_is_segment:true
+        (oc1, oh1) (oc2, ih2)
+    in
+    let new_oh1 = if Complex.norm pa < infinity then pa else oh1 in
+    let new_ih2 = if Complex.norm pb < infinity then pb else ih2 in
+    h @ [(ih1, oc1, new_oh1); (new_ih2, oc2, oh2)] @ L.tl (L.tl c)
+
+  (* A function (or factor) due to John Hobby. See the METAFONTbook *)
+  let _f_hobby theta phi =
+    let (sintheta, costheta) = (sin theta, cos theta) in
+    let (sinphi, cosphi) = (sin phi, cos phi) in
+    let root2 = sqrt 2. in
+    let root5 = sqrt 5. in
+    let top = 2. +. root2 *. (sintheta -. sinphi /. 16.) *. (sinphi -. sintheta /. 16.) *. (costheta -. cosphi) in
+    let bottom = 3. *. (1. +. 0.5 *. (root5 -. 1.) *. costheta +. 0.5 *. (3. -. root5) *. cosphi) in
+    top /. bottom
+
+  (* You can use Metafont-style "tension" to set handle lengths. *)
+  let apply_tensions ?(pos = 0) ?(no_inflection = false) contour tension1 tension2 =
+    Complex_point.(
+      let (h, c) = L.split_at pos contour in
+      let (ih1, oc1, oh1) = L.hd c in
+      let (ih2, oc2, oh2) = L.hd (L.tl c) in
+      let chord = oc2 - oc1 in
+      let dir1 = oh1 - oc1 in
+      let dir2 = oc2 - ih2 in
+      let theta = arg (dir1 / chord) in
+      let phi = arg (chord / dir2) in
+      let new_oh1 = oc1 + (polar 1. theta) * chord * x'(_f_hobby theta phi /. tension1) in
+      let new_ih2 = oc2 - (polar 1. (~-.phi)) * chord * x'(_f_hobby phi theta /. tension2) in
+      let c' = [(ih1, oc1, new_oh1); (new_ih2, oc2, oh2)] @ L.tl (L.tl c) in
+      if no_inflection then
+        h @ remove_inflection_from_curve c'
+      else
+        h @ c'
+    )
+
+  let apply_tension ?pos ?no_inflection contour tension =
+    apply_tensions ?pos ?no_inflection contour tension tension
+
+  let join_with_tensions ?no_inflection tension1 tension2 contour1 contour2 =
+    let rev1 = L.rev contour1 in
+    L.rev_append (L.tl rev1)
+      (apply_tensions ?no_inflection (L.hd rev1 :: contour2) tension1 tension2)
+
+  let join_with_tension ?no_inflection tension contour1 contour2 =
+    join_with_tensions ?no_inflection tension tension contour1 contour2
+
+  let close_with_tensions ?no_inflection tension1 tension2 contour =
+    if is_closed contour then
+      invalid_arg "close_with_tensions: the contour is closed already";
+    let rev_contour = L.rev contour in
+    let tensioned_nodes =
+      apply_tensions ?no_inflection [L.hd rev_contour; L.hd contour] tension1 tension2
+    in
+    let contour' = L.rev (L.tl rev_contour) @ tensioned_nodes in
+    L.hd (L.tl tensioned_nodes) :: L.tl contour'
+
+  let close_with_tension ?no_inflection tension contour =
+    if is_closed contour then
+      invalid_arg "close_with_tension: the contour is closed already";
+    close_with_tensions ?no_inflection tension tension contour
+
   let to_point_bool_list contour =
     let node_to_list (ih,oc,oh) = [(ih, false); (oc, true); (oh, false)] in
     L.flatten (L.map node_to_list contour)
@@ -506,10 +630,28 @@ struct
         Print.fprintf outp p"%s.closed = %s\n" var_name
           (if is_closed contour then "True" else "False")
 
+  let ( <@> ) contour1 = join contour1
+
   let ( <@@ ) contour t_or_f =
     (if t_or_f then close else unclose) contour
 
-  let ( <@> ) contour1 = join contour1
+  let ( <@--.> ) contour1 (tension1, tension2) contour2 =
+    join_with_tensions tension1 tension2 contour1 contour2
+
+  let ( <@-.> ) contour1 tension contour2 =
+    join_with_tension tension contour1 contour2
+
+  let ( <.--@> ) f a = f a
+  let ( <.-@> ) f a = f a
+
+  let ( <@-> ) contour1 = join_with_tension 1. contour1
+  let ( <@=> ) contour1 = join_with_tension ~no_inflection:true 1. contour1
+
+  let ( <--@@ ) contour (tension1, tension2) =
+    close_with_tensions tension1 tension2 contour
+
+  let ( <-@@ ) contour tension =
+    close_with_tension tension contour
 end
 
 (*-----------------------------------------------------------------------*)
