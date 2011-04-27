@@ -301,9 +301,9 @@ let letter_e_contours p =
       <@-.> 0.9 <.-@> make_up_node (x'pos 0.00 + y'pos 0.51) (* left *)
       <@-> make_right_node (x'pos 0.52 + y'pos 1.00)         (* top *)
       <@-> make_down_node (x'pos 0.95 + y' crossbar_height + y'rel 0.02) (* right *)
-      <@=> make_left_node (x'pos 0.85 + y' crossbar_height) (* crossbar right *)
+      <@-> make_left_node (x'pos 0.85 + y' crossbar_height) (* crossbar right *)
       <@-.> infinity <.-@>
-        make_left_node (crossbar_height_point + x' crossbar_fillet_size) (* crossbar left *)
+           make_left_node (crossbar_height_point + x' crossbar_fillet_size) (* crossbar left *)
       <@-> lower                        (* inner bowl *)
       <-@@ 2.                           (* tail end *)
       <.> round
@@ -320,23 +320,14 @@ let letter_e_contours p =
       upper'
     in
     let eye_contour =
-      make_node                         (* crossbar top left *)
-        (x'(-0.60 *. crossbar_fillet_size))
-        (crossbar_top1 + x' crossbar_fillet_size)
-        zero
-      <@> make_node                     (* crossbar top right *)
-        zero
-        (crossbar_top0 - x' crossbar_fillet_size)
-        one
+      make_right_node (crossbar_top1 + x' crossbar_fillet_size) (* crossbar top left *)
+      <@-.> infinity <.-@>
+        make_right_node (crossbar_top0 - x' crossbar_fillet_size) (* crossbar top right *)
       <@-> eye_upper
       <-@@ 1.                           (* Close with tension 1.0. *)
       <.> round
     in
     [main_contour; eye_contour]
-  (*
-    ;let c = make_vert_node 0. zero 1. <@==> (100.,0.75) <| make_horiz_node 0. (x' 100. + y' 100.) 100. in
-    [c]
-  *)
   )))
 ;;
 

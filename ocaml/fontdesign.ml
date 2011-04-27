@@ -635,23 +635,37 @@ struct
   let ( <@@ ) contour t_or_f =
     (if t_or_f then close else unclose) contour
 
-  let ( <@--.> ) contour1 (tension1, tension2) contour2 =
+  let ( <@~~.> ) contour1 (tension1, tension2) contour2 =
     join_with_tensions tension1 tension2 contour1 contour2
 
-  let ( <@-.> ) contour1 tension contour2 =
+  let ( <@--.> ) contour1 (tension1, tension2) contour2 =
+    join_with_tensions ~no_inflection:true tension1 tension2 contour1 contour2
+
+  let ( <@~.> ) contour1 tension contour2 =
     join_with_tension tension contour1 contour2
 
+  let ( <@-.> ) contour1 tension contour2 =
+    join_with_tension ~no_inflection:true tension contour1 contour2
+
+  let ( <.~~@> ) f a = f a
+  let ( <.~@> ) f a = f a
   let ( <.--@> ) f a = f a
   let ( <.-@> ) f a = f a
 
-  let ( <@-> ) contour1 = join_with_tension 1. contour1
-  let ( <@=> ) contour1 = join_with_tension ~no_inflection:true 1. contour1
+  let ( <@~> ) contour1 = join_with_tension 1. contour1
+  let ( <@-> ) contour1 = join_with_tension ~no_inflection:true 1. contour1
 
-  let ( <--@@ ) contour (tension1, tension2) =
+  let ( <~~@@ ) contour (tension1, tension2) =
     close_with_tensions tension1 tension2 contour
 
-  let ( <-@@ ) contour tension =
+  let ( <--@@ ) contour (tension1, tension2) =
+    close_with_tensions ~no_inflection:true tension1 tension2 contour
+
+  let ( <~@@ ) contour tension =
     close_with_tension tension contour
+
+  let ( <-@@ ) contour tension =
+    close_with_tension ~no_inflection:true tension contour
 end
 
 (*-----------------------------------------------------------------------*)

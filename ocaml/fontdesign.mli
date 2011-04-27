@@ -324,19 +324,25 @@ sig
   val ( <@> ) : t -> t -> t
   val ( <@@ ) : t -> bool -> t
 
+  val ( <@~~.> ) : t -> float * float -> t -> t
   val ( <@--.> ) : t -> float * float -> t -> t
+  val ( <@~.> ) : t -> float -> t -> t
   val ( <@-.> ) : t -> float -> t -> t
+  val ( <.~~@> ) : ('a -> 'b) -> 'a -> 'b
+  val ( <.~@> ) : ('a -> 'b) -> 'a -> 'b
   val ( <.--@> ) : ('a -> 'b) -> 'a -> 'b
   val ( <.-@> ) : ('a -> 'b) -> 'a -> 'b
 
-  val ( <@-> ) : t -> t -> t
+  val ( <@~> ) : t -> t -> t
   (** Join contours, with tension 1. *)
 
-  val ( <@=> ) : t -> t -> t
+  val ( <@-> ) : t -> t -> t
   (** Join contours, with tension "at least 1" (to suppress
       inflection). *)
 
+  val ( <~~@@ ) : t -> float * float -> t
   val ( <--@@ ) : t -> float * float -> t
+  val ( <~@@ ) : t -> float -> t
   val ( <-@@ ) : t -> float -> t
 end
 
