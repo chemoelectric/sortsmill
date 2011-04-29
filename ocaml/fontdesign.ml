@@ -291,9 +291,9 @@ struct
     let turn = Array.make (n - 1) 0. in
     iter (fun k -> turn.(k - 1) <- Complex.arg (Complex.div vector'.(k) vector'.(k - 1))) (1 --^ (n - 1));
 
-    (* Because the spline is open, the problem is a tridiagonal system
-       of n linear equations. The following arrays will store our
-       matrices. *)
+    (* Because the spline is non-cyclic, the problem is a tridiagonal
+       system of n linear equations. The following arrays will store
+       our matrices. *)
     let diag = Array.make n 0. in
     let subdiag = Array.make (n - 1) 0. in
     let superdiag = Array.make (n - 1) 0. in
@@ -302,9 +302,13 @@ struct
     begin
       match start_dir with
         | None ->        (* Use curl instead of a direction vector. *)
-          let chi = alpha.(0) *. alpha.(0) *. start_curl /. (beta.(0) *. beta.(0)) in
-          let c = chi *. alpha.(0) +. 3. -. beta.(0) in
-          let d = (3. -. alpha.(0)) *. chi +. beta.(0) in
+          (* Use the equations from Metafont, section 277, but with both
+             sides multiplied by the denominators, to prevent 0/0 in cases
+             where tension = IEEE floating point "infinity". *)
+          let chi_numer = alpha.(0) *. alpha.(0) *. start_curl in
+          let chi_denom = beta.(0) *. beta.(0) in
+          let c = alpha.(0) *. chi_numer +. (3. -. beta.(0)) *. chi_denom in
+          let d = (3. -. alpha.(0)) *. chi_numer +. beta.(0) *. chi_denom in
           diag.(0) <- c;
           superdiag.(0) <- d;
           right_side.(0) <- -.d *. turn.(0)
@@ -317,9 +321,13 @@ struct
     begin
       match end_dir with
         | None ->        (* Use curl instead of a direction vector. *)
-          let chi = beta.(n - 2) *. beta.(n - 2) *. end_curl /. (alpha.(n - 2) *. alpha.(n - 2)) in
-          let a = (3. -. beta.(n - 2)) *. chi +. alpha.(n - 2) in
-          let b = chi *. beta.(n - 2) +. 3. -. alpha.(n - 2) in
+          (* Use the equations from Metafont, section 277, but with both
+             sides multiplied by the denominators, to prevent 0/0 in cases
+             where tension = IEEE floating point "infinity". *)
+          let chi_numer = beta.(n - 2) *. beta.(n - 2) *. end_curl in
+          let chi_denom = alpha.(n - 2) *. alpha.(n - 2) in
+          let a = (3. -. beta.(n - 2)) *. chi_numer +. alpha.(n - 2) *. chi_denom in
+          let b = beta.(n - 2) *. chi_numer +. (3. -. alpha.(n - 2)) *. chi_denom in
           subdiag.(n - 2) <- a;
           diag.(n - 1) <- b
 
@@ -329,12 +337,15 @@ struct
     end;
 
     for k = 1 to n - 2 do
+      (* Use the equations from Metafont, section 276, but with both
+         sides multiplied by the denominators, to prevent 0/0 in cases
+         where tension = IEEE floating point "infinity". *)
       let denom_a_b = beta.(k - 1) *. beta.(k - 1) *. len.(k - 1) in
-      let a = alpha.(k - 1) /. denom_a_b in
-      let b = (3. -. alpha.(k - 1)) /. denom_a_b in
       let denom_c_d = alpha.(k) *. alpha.(k) *. len.(k) in
-      let c = (3. -. beta.(k)) /. denom_c_d in
-      let d = beta.(k) /. denom_c_d in
+      let a = denom_c_d *. alpha.(k - 1) in
+      let b = denom_c_d *. (3. -. alpha.(k - 1)) in
+      let c = denom_a_b *. (3. -. beta.(k)) in
+      let d = denom_a_b *. beta.(k) in
       subdiag.(k - 1) <- a;
       diag.(k) <- b +. c;
       superdiag.(k) <- d;
