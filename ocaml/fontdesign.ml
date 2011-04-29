@@ -270,16 +270,38 @@ module Direction_guessing =
 struct
   open Lacaml.Impl.D
 
-  let guess_directions ?start_dir ?end_dir ?(start_curl = 1.) ?(end_curl = 1.) points tension_pairs =
+  let extend_tensions_array ?(default = (1.,1.)) tensions count =
+    (* If necessary, extend the tensions array with default values. *)
+    let n_tensions = Array.length tensions in
+    if n_tensions < count then
+      Array.append tensions (Array.make (count - n_tensions) default)
+    else
+      tensions
+
+
+  let guess_directions
+      ?start_dir
+      ?end_dir
+      ?(start_curl = 1.)
+      ?(end_curl = 1.)
+      ?(tensions = [||])
+      points =
 
     let n = Array.length points in
+    let tensions = extend_tensions_array tensions (n - 1) in
 
     (* Reciprocals of the tensions. *)
-    let alpha = Array.map (fun (a,_) -> 1. /. a) tension_pairs in
-    let beta = Array.map (fun (_,b) -> 1. /. b) tension_pairs in
+    let alpha = Array.map (fun (a,_) -> 1. /. a) tensions in
+    let beta = Array.map (fun (_,b) -> 1. /. b) tensions in
 
     (* Point-to-point vectors. *)
-    let vector' = Array.of_enum (map (fun k -> Complex.sub points.(k + 1) points.(k)) (0 --^ (n - 1))) in
+    let vector' =
+      Array.of_enum
+        (map
+           (fun k -> Complex.sub points.(k + 1) points.(k))
+           (0 --^ (n - 1))
+        )
+    in
 
     (* The lengths of those vectors. *)
     let len = Array.map Complex.norm vector' in
@@ -289,11 +311,13 @@ struct
        is extended to express the same arbitrary choice. *)
     let vector = Array.append vector' [| vector'.(n - 2) |] in
     let turn = Array.make (n - 1) 0. in
-    iter (fun k -> turn.(k - 1) <- Complex.arg (Complex.div vector'.(k) vector'.(k - 1))) (1 --^ (n - 1));
+    iter
+      (fun k -> turn.(k - 1) <- Complex.arg (Complex.div vector'.(k) vector'.(k - 1)))
+      (1 --^ (n - 1));
 
     (* Because the spline is non-cyclic, the problem is a tridiagonal
        system of n linear equations. The following arrays will store
-       our matrices. *)
+       ourm atrices. *)
     let diag = Array.make n 0. in
     let subdiag = Array.make (n - 1) 0. in
     let superdiag = Array.make (n - 1) 0. in
@@ -379,6 +403,91 @@ struct
       else if k = n - 1 && Option.is_some end_dir then
         Option.get end_dir (* Avoid some arithmetic and roundoff by returning the original. *)
       else
+        Complex_point.(dir vector.(k) * polar 1. solution.(k))
+    in
+    Array.of_enum (map angle_to_dir (0 --^ n))
+
+
+  let guess_cycle_directions
+      ?(tensions = [||])
+      points =
+
+    let n = Array.length points in
+    let modn k =
+      let m = k mod n in
+      if m < 0 then
+        m + n
+      else
+        m
+    in
+
+    let tensions = extend_tensions_array tensions n in
+
+    (* Reciprocals of the tensions. *)
+    let alpha = Array.map (fun (a,_) -> 1. /. a) tensions in
+    let beta = Array.map (fun (_,b) -> 1. /. b) tensions in
+
+    (* Point-to-point vectors. *)
+    let vector =
+      Array.of_enum
+        (map
+           (fun k -> Complex.sub points.(modn (k + 1)) points.(k))
+           (0 --^ n)
+        )
+    in
+
+    (* The lengths of those vectors. *)
+    let len = Array.map Complex.norm vector in
+
+    (* The turning angles, in radians. *)
+    let turn = Array.make n 0. in
+    iter
+      (fun k -> turn.(modn (k - 1)) <-
+        Complex.arg (Complex.div vector.(k) vector.(modn (k - 1))))
+      (0 --^ n);
+
+    (* We need to solve a system of linear equations that is _almost_
+       but not quite tridiagonal in general. For now, at least, let's
+       just solve it as a general system. The following arrays will
+       store the matrices. (If the points are many, the left side will
+       be sparse.) *)
+    let left_side = Array.make_matrix n n 0. in
+    let right_side = Array.make n 0. in
+
+    (* Use the equations from Metafont, section 276, but with both
+       sides multiplied by the denominators, to prevent 0/0 in cases
+       where tension = IEEE floating point "infinity". *)
+    for k = 0 to n - 1 do
+      let denom_a_b = beta.(modn (k - 1)) *. beta.(modn (k - 1)) *. len.(modn (k - 1)) in
+      let denom_c_d = alpha.(k) *. alpha.(k) *. len.(k) in
+      let a = denom_c_d *. alpha.(modn (k - 1)) in
+      let b = denom_c_d *. (3. -. alpha.(modn (k - 1))) in
+      let c = denom_a_b *. (3. -. beta.(k)) in
+      let d = denom_a_b *. beta.(k) in
+      left_side.(k).(modn (k - 1)) <- a;
+      left_side.(k).(k) <- b +. c;
+      left_side.(k).(modn (k + 1)) <- d;
+      right_side.(k) <- -.(b *. turn.(modn (k - 1)) +. d *. turn.(k));
+    done;
+
+    (* Use LAPACK to solve the system. *)
+    let left_side' = Mat.of_array left_side in
+    let right_side' = Mat.mvec_of_array right_side in
+    gesv left_side' right_side';
+    let solution = Mat.mvec_to_array right_side' in
+
+(*
+    Print.fprintf stderr p"-------------------------------------------------\n";
+    Print.fprintf stderr p"alpha:\t\t%{float array}\n" alpha;
+    Print.fprintf stderr p"beta:\t\t%{float array}\n" beta;
+    Print.fprintf stderr p"len:\t\t%{float array}\n" len;
+    Print.fprintf stderr p"turn:\t\t%{float array}\n" (Array.map deg turn);
+    Print.fprintf stderr p"left_side:\t%{float array array}\n" left_side;
+    Print.fprintf stderr p"right_side:\t%{float array}\n" right_side;
+    Print.fprintf stderr p"solution:\t%{float array}\n" (Array.map deg solution);
+*)
+
+    let angle_to_dir k =
         Complex_point.(dir vector.(k) * polar 1. solution.(k))
     in
     Array.of_enum (map angle_to_dir (0 --^ n))

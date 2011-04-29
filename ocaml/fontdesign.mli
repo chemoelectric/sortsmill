@@ -231,7 +231,12 @@ sig
   val guess_directions :
     ?start_dir:Complex.t -> ?end_dir:Complex.t ->
     ?start_curl:float -> ?end_curl:float ->
-    Complex.t array -> (float * float) Array.t -> Complex.t array
+    ?tensions:(float * float) Array.t ->
+    Complex.t array -> Complex.t array
+
+  val guess_cycle_directions :
+    ?tensions:(float * float) array ->
+    Complex.t array -> Complex.t array
 end
 
 (*-----------------------------------------------------------------------*)

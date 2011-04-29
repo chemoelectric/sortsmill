@@ -338,7 +338,13 @@ let letter_o_contours p =
       ~end_curl:2.
 (*      ~start_dir *)
 (*      ~end_dir *)
-      points tensions in
+(*      ~tensions *)
+      points in
+    let _ = Print.fprintf stderr p"dirs:\t\t%{Complex_point.t array}\n" dirs in
+*)
+(*
+    let points = [| x' 0.; x' 100. + y' 150.; x' 200.; x' 100. - y' 100. |] in
+    let dirs = Direction_guessing.guess_cycle_directions points in
     let _ = Print.fprintf stderr p"dirs:\t\t%{Complex_point.t array}\n" dirs in
 *)
 
