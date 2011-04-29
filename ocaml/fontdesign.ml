@@ -265,6 +265,116 @@ end
 
 (*-----------------------------------------------------------------------*)
 
+(* John Hobby's direction-guessing formulas that were used in Metafont. *)
+module Direction_guessing =
+struct
+  open Lacaml.Impl.D
+
+  let guess_directions ?start_dir ?end_dir ?(start_curl = 1.) ?(end_curl = 1.) points tension_pairs =
+
+    let n = Array.length points in
+
+    (* Reciprocals of the tensions. *)
+    let alpha = Array.map (fun (a,_) -> 1. /. a) tension_pairs in
+    let beta = Array.map (fun (_,b) -> 1. /. b) tension_pairs in
+
+    (* Point-to-point vectors. *)
+    let vector' = Array.of_enum (map (fun k -> Complex.sub points.(k + 1) points.(k)) (0 --^ (n - 1))) in
+
+    (* The lengths of those vectors. *)
+    let len = Array.map Complex.norm vector' in
+
+    (* The turning angles, in radians. The last turning angle is
+       arbitrary and for convenience is set to zero. The vector array
+       is extended to express the same arbitrary choice. *)
+    let vector = Array.append vector' [| vector'.(n - 2) |] in
+    let turn = Array.make (n - 1) 0. in
+    iter (fun k -> turn.(k - 1) <- Complex.arg (Complex.div vector'.(k) vector'.(k - 1))) (1 --^ (n - 1));
+
+    (* Because the spline is open, the problem is a tridiagonal system
+       of n linear equations. The following arrays will store our
+       matrices. *)
+    let diag = Array.make n 0. in
+    let subdiag = Array.make (n - 1) 0. in
+    let superdiag = Array.make (n - 1) 0. in
+    let right_side = Array.make n 0. in
+
+    begin
+      match start_dir with
+        | None ->        (* Use curl instead of a direction vector. *)
+          let chi = alpha.(0) *. alpha.(0) *. start_curl /. (beta.(0) *. beta.(0)) in
+          let c = chi *. alpha.(0) +. 3. -. beta.(0) in
+          let d = (3. -. alpha.(0)) *. chi +. beta.(0) in
+          diag.(0) <- c;
+          superdiag.(0) <- d;
+          right_side.(0) <- -.d *. turn.(0)
+
+        | Some dir_vector ->     (* Use the given direction vector. *)
+          diag.(0) <- 1.;
+          right_side.(0) <- Complex.(arg (dir_vector / vector.(0)))
+    end;
+
+    begin
+      match end_dir with
+        | None ->        (* Use curl instead of a direction vector. *)
+          let chi = beta.(n - 2) *. beta.(n - 2) *. end_curl /. (alpha.(n - 2) *. alpha.(n - 2)) in
+          let a = (3. -. beta.(n - 2)) *. chi +. alpha.(n - 2) in
+          let b = chi *. beta.(n - 2) +. 3. -. alpha.(n - 2) in
+          subdiag.(n - 2) <- a;
+          diag.(n - 1) <- b
+
+        | Some dir_vector ->     (* Use the given direction vector. *)
+          diag.(n - 1) <- 1.;
+          right_side.(n - 1) <- Complex.(arg (dir_vector / vector.(Int.(n - 2))))
+    end;
+
+    for k = 1 to n - 2 do
+      let denom_a_b = beta.(k - 1) *. beta.(k - 1) *. len.(k - 1) in
+      let a = alpha.(k - 1) /. denom_a_b in
+      let b = (3. -. alpha.(k - 1)) /. denom_a_b in
+      let denom_c_d = alpha.(k) *. alpha.(k) *. len.(k) in
+      let c = (3. -. beta.(k)) /. denom_c_d in
+      let d = beta.(k) /. denom_c_d in
+      subdiag.(k - 1) <- a;
+      diag.(k) <- b +. c;
+      superdiag.(k) <- d;
+      right_side.(k) <- -.(b *. turn.(k - 1) +. d *. turn.(k));
+    done;
+
+    (* Use LAPACK to solve the system. *)
+    let subdiag' = Vec.of_array subdiag in
+    let diag' = Vec.of_array diag in
+    let superdiag' = Vec.of_array superdiag in
+    let right_side' = Mat.mvec_of_array right_side in
+    gtsv subdiag' diag' superdiag' right_side';
+    let solution = Mat.mvec_to_array right_side' in
+
+(*
+    Print.fprintf stderr p"-------------------------------------------------\n";
+    Print.fprintf stderr p"alpha:\t\t%{float array}\n" alpha;
+    Print.fprintf stderr p"beta:\t\t%{float array}\n" beta;
+    Print.fprintf stderr p"len:\t\t%{float array}\n" len;
+    Print.fprintf stderr p"turn:\t\t%{float array}\n" (Array.map deg turn);
+    Print.fprintf stderr p"subdiag:\t%{float array}\n" subdiag;
+    Print.fprintf stderr p"diag:\t\t%{float array}\n" diag;
+    Print.fprintf stderr p"superdiag:\t%{float array}\n" superdiag;
+    Print.fprintf stderr p"right_side:\t%{float array}\n" right_side;
+    Print.fprintf stderr p"solution:\t%{float array}\n" (Array.map deg solution);
+*)
+
+    let angle_to_dir k =
+      if k = 0 && Option.is_some start_dir then
+        Option.get start_dir (* Avoid some arithmetic and roundoff by returning the original. *)
+      else if k = n - 1 && Option.is_some end_dir then
+        Option.get end_dir (* Avoid some arithmetic and roundoff by returning the original. *)
+      else
+        Complex_point.(dir vector.(k) * polar 1. solution.(k))
+    in
+    Array.of_enum (map angle_to_dir (0 --^ n))
+end
+
+(*-----------------------------------------------------------------------*)
+
 (*
   See http://paulbourke.net/geometry/lineline2d/ --
   "Intersection point of two lines (2 dimensions)"
@@ -578,8 +688,8 @@ struct
   let join_with_tension ?no_inflection tension contour1 contour2 =
     join_with_tensions ?no_inflection tension tension contour1 contour2
 
-  let close_with_tensions ?no_inflection tension1 tension2 contour =
-    if is_closed contour then
+  let close_with_tensions ?tol ?no_inflection tension1 tension2 contour =
+    if is_closed ?tol contour then
       invalid_arg "close_with_tensions: the contour is closed already";
     let rev_contour = L.rev contour in
     let tensioned_nodes =
@@ -588,8 +698,8 @@ struct
     let contour' = L.rev (L.tl rev_contour) @ tensioned_nodes in
     L.hd (L.tl tensioned_nodes) :: L.tl contour'
 
-  let close_with_tension ?no_inflection tension contour =
-    if is_closed contour then
+  let close_with_tension ?tol ?no_inflection tension contour =
+    if is_closed ?tol contour then
       invalid_arg "close_with_tension: the contour is closed already";
     close_with_tensions ?no_inflection tension tension contour
 

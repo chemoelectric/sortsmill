@@ -326,6 +326,21 @@ let letter_o_contours p =
       <@-> make_left_node (x'pos 0.48 + y'pos 1.00 - y' top_breadth) (* top *)
       <-@@ 1.0 <.> round
     in
+
+(*
+    let points = [| x' 0.; x' 100. + y' 100.; x' 200. |] in
+    let tensions = [| (1.,1.); (100., 100.) |] in
+    let start_dir = rot 90. in
+    let end_dir = rot (-90.) in
+    let dirs = Direction_guessing.guess_directions
+      ~start_curl:2.
+      ~end_curl:2.
+      (* ~start_dir *)
+      (* ~end_dir *)
+      points tensions in
+    let _ = Print.fprintf stderr p"dirs:\t\t%{Complex_point.t array}\n" dirs in
+*)
+
     [outer_contour; inner_contour]
   )))
 ;;

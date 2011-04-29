@@ -31,7 +31,7 @@ MLFIND = $(OCAMLFIND) $(OCAMLFINDFLAGS)
 OCAMLC = $(OCAMLFIND) c $(OCAMLFINDFLAGS) -g
 OCAMLOPT = $(OCAMLFIND) opt $(OCAMLFINDFLAGS) -g
 
-OCAMLPACKAGES = camlp4,caml2geom,batteries,batteries.syntax
+OCAMLPACKAGES = camlp4,caml2geom,batteries,batteries.syntax,lacaml
 OCAMLFINDFLAGS += -package $(OCAMLPACKAGES) -syntax camlp4o
 
 EXTRA_DIST = META $(PSMAT).ml $(PSMAT).mli $(FONTDESIGN).ml	\

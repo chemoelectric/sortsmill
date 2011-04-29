@@ -226,6 +226,16 @@ end
 
 (*-----------------------------------------------------------------------*)
 
+module Direction_guessing :
+sig
+  val guess_directions :
+    ?start_dir:Complex.t -> ?end_dir:Complex.t ->
+    ?start_curl:float -> ?end_curl:float ->
+    Complex.t array -> (float * float) Array.t -> Complex.t array
+end
+
+(*-----------------------------------------------------------------------*)
+
 val find_intersection_of_lines :
   ?first_is_segment:bool ->
   ?second_is_segment:bool ->
@@ -311,8 +321,8 @@ sig
   val apply_tension : ?pos:int -> ?no_inflection:bool -> t -> float -> t
   val join_with_tensions : ?no_inflection:bool -> float -> float -> t -> t -> t
   val join_with_tension : ?no_inflection:bool -> float -> t -> t -> t
-  val close_with_tensions : ?no_inflection:bool -> float -> float -> t -> t
-  val close_with_tension : ?no_inflection:bool -> float -> t -> t
+  val close_with_tensions : ?tol:float -> ?no_inflection:bool -> float -> float -> t -> t
+  val close_with_tension : ?tol:float -> ?no_inflection:bool -> float -> t -> t
 
   val to_point_bool_list : t -> (Complex.t * bool) list
   (** Convert a contour to list of points marked true/false =
