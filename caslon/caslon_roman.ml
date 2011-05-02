@@ -170,27 +170,55 @@ let letter_c_contours p =
       let head1 = x'pos 0.98 + y'pos 0.82 in
       let head2 = head1 - y_shear (x' head_breadth) head_cut_angle in
 
+      let outer_tail =
+        resolve_point_string
+          [`Curl 1.5;
+           `Point tail1;
+           `Tension 1.0; `Tension 1.1;
+           `Point (x'pos 0.56 + y'pos 0.00);
+           `Dir (neg one)]
+      in
       let outer =
-        let tail_angle = 74. in
         let head_angle = 100. in
-        make_dir_node (neg (rot tail_angle)) tail1 (* tail *)
-        <@-.> 1.2 <.-@> make_left_node (x'pos 0.56 + y'pos 0.00) (* bottom *)
+        outer_tail
+        <@> make_left_node (x'pos 0.56 + y'pos 0.00) (* bottom *)
         <@-.> 0.93 <.-@> make_up_node (x'pos 0.0 + y'pos 0.49) (* left *)
         <@-> make_right_node (x'pos 0.62 + y'pos 1.00) (* top *)
         <@-.> 1.1 <.-@> make_dir_node (neg (rot head_angle)) head1 (* head *)
       in
+      let inner_tail =
+        resolve_point_string
+          [`Dir one;
+           `Point (x'pos 0.64 + y'pos 0.00 + y' bottom_breadth); `Point tail2;
+           `Curl 1.5]
+      in
       let inner =
-        let tail_angle = 50. in
         let head_angle = 130. in
         make_dir_node (rot head_angle) head2 (* head *)
         <@~.> 0.85 <.~@> make_left_node (x'pos 0.56 + y'pos 1.00 - y' top_breadth) (* inner top *)
         <@-> make_down_node (x'pos 0.00 + x' left_breadth + y'pos 0.52) (* inner left *)
         <@-> make_right_node (x'pos 0.64 + y'pos 0.00 + y' bottom_breadth) (* inner bottom *)
-        <@-> make_dir_node (rot tail_angle) tail2 (* tail *)
+        <@> inner_tail
       in
       outer <@-.> 1.32 <.-@> inner <-@@ 2.0 <.> round
     in
     [contour]
+
+
+    ;let c =
+       Metacubic.close (
+         Vect.of_array
+           [|
+             (`Open 1., x' 0. + y' 0., `Open 1.);
+(*             (`Open 1., x' 100. + y' 100., `Open 1.); *)
+(*             (`Open 1., x' 0. + y' 0., `Open 1.); *)
+(*             (`Open 1., x' 100. + y' 100., `Open 1.);  *)
+             (`Open 2., x' 200. + y' 0., `Open 1.);
+(*             (`Open 1., x' 100. - y' 100., `Open 1.);  *)
+           |]
+       ) in
+     [Metacubic.to_cubic c]
+
   )))
 ;;
 
@@ -326,28 +354,6 @@ let letter_o_contours p =
       <@-> make_left_node (x'pos 0.48 + y'pos 1.00 - y' top_breadth) (* top *)
       <-@@ 1.0 <.> round
     in
-
-(*
-    let points = [| x' 0.; x' 100. + y' 100.; x' 200. |] in
-(*    let tensions = [| (infinity,infinity); (infinity, infinity) |] in *)
-    let tensions = [| (1.,1.); (1.,1.) |] in
-    let start_dir = rot 90. in
-    let end_dir = rot (-90.) in
-    let dirs = Direction_guessing.guess_directions
-      ~start_curl:2.
-      ~end_curl:2.
-(*      ~start_dir *)
-(*      ~end_dir *)
-(*      ~tensions *)
-      points in
-    let _ = Print.fprintf stderr p"dirs:\t\t%{Complex_point.t array}\n" dirs in
-*)
-(*
-    let points = [| x' 0.; x' 100. + y' 150.; x' 200.; x' 100. - y' 100. |] in
-    let dirs = Direction_guessing.guess_cycle_directions points in
-    let _ = Print.fprintf stderr p"dirs:\t\t%{Complex_point.t array}\n" dirs in
-*)
-
     [outer_contour; inner_contour]
   )))
 ;;

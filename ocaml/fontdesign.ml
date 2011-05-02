@@ -290,9 +290,10 @@ struct
     let n = Array.length points in
     let tensions = extend_tensions_array tensions (n - 1) in
 
-    (* Reciprocals of the tensions. *)
-    let alpha = Array.map (fun (a,_) -> 1. /. a) tensions in
-    let beta = Array.map (fun (_,b) -> 1. /. b) tensions in
+    (* Reciprocals of the tensions. Allow for negative tensions, which
+       can be used to represent an "inflectionless" requirement. *)
+    let alpha = Array.map (fun (a,_) -> 1. /. abs_float a) tensions in
+    let beta = Array.map (fun (_,b) -> 1. /. abs_float b) tensions in
 
     (* Point-to-point vectors. *)
     let vector' =
@@ -312,7 +313,13 @@ struct
     let vector = Array.append vector' [| vector'.(n - 2) |] in
     let turn = Array.make (n - 1) 0. in
     iter
-      (fun k -> turn.(k - 1) <- Complex.arg (Complex.div vector'.(k) vector'.(k - 1)))
+      (fun k -> turn.(k - 1) <-
+        let angle = Complex.arg (Complex.div vector'.(k) vector'.(k - 1)) in
+        if abs_float (angle +. Float.pi) < Float.epsilon then
+          Float.pi                      (* Convert -pi to pi *)
+        else
+          angle
+      )
       (1 --^ (n - 1));
 
     (* Because the spline is non-cyclic, the problem is a tridiagonal
@@ -384,19 +391,6 @@ struct
     gtsv subdiag' diag' superdiag' right_side';
     let solution = Mat.mvec_to_array right_side' in
 
-(*
-    Print.fprintf stderr p"-------------------------------------------------\n";
-    Print.fprintf stderr p"alpha:\t\t%{float array}\n" alpha;
-    Print.fprintf stderr p"beta:\t\t%{float array}\n" beta;
-    Print.fprintf stderr p"len:\t\t%{float array}\n" len;
-    Print.fprintf stderr p"turn:\t\t%{float array}\n" (Array.map deg turn);
-    Print.fprintf stderr p"subdiag:\t%{float array}\n" subdiag;
-    Print.fprintf stderr p"diag:\t\t%{float array}\n" diag;
-    Print.fprintf stderr p"superdiag:\t%{float array}\n" superdiag;
-    Print.fprintf stderr p"right_side:\t%{float array}\n" right_side;
-    Print.fprintf stderr p"solution:\t%{float array}\n" (Array.map deg solution);
-*)
-
     let angle_to_dir k =
       if k = 0 && Option.is_some start_dir then
         Option.get start_dir (* Avoid some arithmetic and roundoff by returning the original. *)
@@ -423,9 +417,10 @@ struct
 
     let tensions = extend_tensions_array tensions n in
 
-    (* Reciprocals of the tensions. *)
-    let alpha = Array.map (fun (a,_) -> 1. /. a) tensions in
-    let beta = Array.map (fun (_,b) -> 1. /. b) tensions in
+    (* Reciprocals of the tensions. Allow for negative tensions, which
+       can be used to represent an "inflectionless" requirement. *)
+    let alpha = Array.map (fun (a,_) -> 1. /. abs_float a) tensions in
+    let beta = Array.map (fun (_,b) -> 1. /. abs_float b) tensions in
 
     (* Point-to-point vectors. *)
     let vector =
@@ -443,7 +438,12 @@ struct
     let turn = Array.make n 0. in
     iter
       (fun k -> turn.(modn (k - 1)) <-
-        Complex.arg (Complex.div vector.(k) vector.(modn (k - 1))))
+        let angle = Complex.arg (Complex.div vector.(k) vector.(modn (k - 1))) in
+        if abs_float (angle +. Float.pi) < Float.epsilon then
+          Float.pi                      (* Convert -pi to pi *)
+        else
+          angle
+      )
       (0 --^ n);
 
     (* We need to solve a system of linear equations that is _almost_
@@ -466,7 +466,7 @@ struct
       let d = denom_a_b *. beta.(k) in
       left_side.(k).(modn (k - 1)) <- a;
       left_side.(k).(k) <- b +. c;
-      left_side.(k).(modn (k + 1)) <- d;
+      left_side.(k).(modn (k + 1)) <- left_side.(k).(modn (k + 1)) +. d;
       right_side.(k) <- -.(b *. turn.(modn (k - 1)) +. d *. turn.(k));
     done;
 
@@ -477,20 +477,108 @@ struct
     let solution = Mat.mvec_to_array right_side' in
 
 (*
-    Print.fprintf stderr p"-------------------------------------------------\n";
-    Print.fprintf stderr p"alpha:\t\t%{float array}\n" alpha;
-    Print.fprintf stderr p"beta:\t\t%{float array}\n" beta;
-    Print.fprintf stderr p"len:\t\t%{float array}\n" len;
-    Print.fprintf stderr p"turn:\t\t%{float array}\n" (Array.map deg turn);
-    Print.fprintf stderr p"left_side:\t%{float array array}\n" left_side;
-    Print.fprintf stderr p"right_side:\t%{float array}\n" right_side;
-    Print.fprintf stderr p"solution:\t%{float array}\n" (Array.map deg solution);
+    Print.fprintf stderr p"-----------------------------------------------------------------------\n";
+    Print.fprintf stderr p"%{float array array}\n" left_side;
+    Print.fprintf stderr p"%{float array}\n" right_side;
+    Print.fprintf stderr p"solution: %{float array}\n" (Array.map deg solution);
+    Array.print (Pair.print Float.print Float.print) stderr tensions;
+    Print.fprintf stderr p"\nalpha: %{float array}\n" alpha;
+    Print.fprintf stderr p"beta: %{float array}\n" beta;
+    Print.fprintf stderr p"turn: %{float array}\n" (Array.map deg turn);
+    Print.fprintf stderr p"vector: %{Complex_point.t array}\n" vector;
+    Print.fprintf stderr p"dir: %{Complex_point.t array}\n" (let angle_to_dir k =
+        Complex_point.(dir vector.(k) * polar 1. solution.(k))  in Array.of_enum (map angle_to_dir (0 --^ n)));
+    Print.fprintf stderr p"-----------------------------------------------------------------------\n";
 *)
 
     let angle_to_dir k =
         Complex_point.(dir vector.(k) * polar 1. solution.(k))
     in
     Array.of_enum (map angle_to_dir (0 --^ n))
+end
+
+(*-----------------------------------------------------------------------*)
+
+(* FIXME: Remove this Point_string stuff *)
+module Point_string =
+struct
+  type elt =
+    [
+    | `Point of Complex.t
+    | `Dir of Complex.t
+    | `Curl of float
+    | `Tension of float
+    ]
+
+  type t = elt list
+
+  type parse_result = {
+    points : Complex.t list;
+    tensions : (float * float) list;
+    in_dir : Complex.t option;
+    out_dir : Complex.t option;
+    in_curl : float option;
+    out_curl : float option;
+  }
+
+  let rec parse_points s =
+    match s with
+      | [`Point p] -> {
+        points = [p];
+        tensions = [];
+        in_dir = None;
+        out_dir = None;
+        in_curl = None;
+        out_curl = None;
+      }
+
+      | [`Point p; `Dir d] -> {
+        points = [p];
+        tensions = [];
+        in_dir = None;
+        out_dir = Some d;
+        in_curl = None;
+        out_curl = None;
+      }
+
+      | [`Point p; `Curl u] ->
+        {
+          points = [p];
+          tensions = [];
+          in_dir = None;
+          out_dir = None;
+          in_curl = None;
+          out_curl = Some u;
+        }
+
+      | `Point p1 :: `Tension t1 :: `Tension t2 :: (`Point p2 :: _ as remaining) ->
+        let subresult = parse_points remaining in {
+          subresult with
+            points = p1 :: subresult.points;
+            tensions = (t1,t2) :: subresult.tensions
+        }
+
+      | `Point p1 :: `Tension t :: (`Point p2 :: _ as remaining) ->
+        let subresult = parse_points remaining in {
+          subresult with
+            points = p1 :: subresult.points;
+            tensions = (t,t) :: subresult.tensions
+        }
+
+      | `Point p1 :: (`Point p2 :: _ as remaining) ->
+        let subresult = parse_points remaining in {
+          subresult with
+            points = p1 :: subresult.points;
+            tensions = (1.,1.) :: subresult.tensions
+        }
+
+      | _ -> failwith "parse_points"
+
+  let parse s =
+    match s with
+      | `Dir d :: points -> { parse_points points with in_dir = Some d }
+      | `Curl u :: points -> { parse_points points with in_curl = Some u }
+      | points -> parse_points points
 end
 
 (*-----------------------------------------------------------------------*)
@@ -534,6 +622,42 @@ let find_intersection_of_lines
   in
   (pa, pb)
 
+let remove_inflection point1 point2 control1 control2 =
+  let (pa, pb) =
+    find_intersection_of_lines
+      ~first_is_segment:true
+      ~second_is_segment:true
+      (point1, control1) (point2, control2)
+  in
+  let new_control1 = if Complex.norm pa < infinity then pa else control1 in
+  let new_control2 = if Complex.norm pb < infinity then pb else control2 in
+  (new_control1, new_control2)
+
+(* A function (or factor) due to John Hobby. See the METAFONTbook *)
+let f_hobby theta phi =
+  let (sintheta, costheta) = (sin theta, cos theta) in
+  let (sinphi, cosphi) = (sin phi, cos phi) in
+  let root2 = sqrt 2. in
+  let root5 = sqrt 5. in
+  let top = 2. +. root2 *. (sintheta -. sinphi /. 16.) *. (sinphi -. sintheta /. 16.) *. (costheta -. cosphi) in
+  let bottom = 3. *. (1. +. 0.5 *. (root5 -. 1.) *. costheta +. 0.5 *. (3. -. root5) *. cosphi) in
+  top /. bottom
+
+let tensions_to_controls ?(no_inflection = false) point1 point2 dir1 dir2 tension1 tension2 =
+  Complex_point.(
+    let chord = point2 - point1 in
+    let theta = arg (dir1 / chord) in
+    let phi = arg (chord / dir2) in
+    let control1 = point1 + (polar 1. theta) * chord * x'(f_hobby theta phi /. tension1) in
+    let control2 = point2 - (polar 1. (-.phi)) * chord * x'(f_hobby phi theta /. tension2) in
+    if no_inflection then
+      remove_inflection point1 point2 control1 control2
+    else
+      (control1, control2)
+  )
+
+(*-----------------------------------------------------------------------*)
+
 let bezier_curve_to_four_complexes bez =
   let points = Caml2geom.Bezier_curve.to_complex_array bez in
   let len = Array.length points in
@@ -554,8 +678,11 @@ struct
   let linear_tolerance = ref 0.001
   let basis_conversion_tolerance = ref 0.001
 
-  let _nodes_coincide ?(tol = !linear_tolerance) (_, p1, _) (_, p2, _) =
-    P.(norm (p1 - p2)) <= tol
+  let points_coincide ?(tol = !linear_tolerance) p1 p2 =
+    P.(norm (p1 - p2)) < tol
+
+  let _nodes_coincide ?tol (_, p1, _) (_, p2, _) =
+    points_coincide ?tol p1 p2
 
   let is_closed ?tol contour =
     _nodes_coincide ?tol (L.first contour) (L.last contour)
@@ -767,16 +894,6 @@ struct
     let new_ih2 = if Complex.norm pb < infinity then pb else ih2 in
     h @ [(ih1, oc1, new_oh1); (new_ih2, oc2, oh2)] @ L.tl (L.tl c)
 
-  (* A function (or factor) due to John Hobby. See the METAFONTbook *)
-  let _f_hobby theta phi =
-    let (sintheta, costheta) = (sin theta, cos theta) in
-    let (sinphi, cosphi) = (sin phi, cos phi) in
-    let root2 = sqrt 2. in
-    let root5 = sqrt 5. in
-    let top = 2. +. root2 *. (sintheta -. sinphi /. 16.) *. (sinphi -. sintheta /. 16.) *. (costheta -. cosphi) in
-    let bottom = 3. *. (1. +. 0.5 *. (root5 -. 1.) *. costheta +. 0.5 *. (3. -. root5) *. cosphi) in
-    top /. bottom
-
   (* You can use Metafont-style "tension" to set handle lengths. *)
   let apply_tensions ?(pos = 0) ?(no_inflection = false) contour tension1 tension2 =
     Complex_point.(
@@ -788,8 +905,8 @@ struct
       let dir2 = oc2 - ih2 in
       let theta = arg (dir1 / chord) in
       let phi = arg (chord / dir2) in
-      let new_oh1 = oc1 + (polar 1. theta) * chord * x'(_f_hobby theta phi /. tension1) in
-      let new_ih2 = oc2 - (polar 1. (~-.phi)) * chord * x'(_f_hobby phi theta /. tension2) in
+      let new_oh1 = oc1 + (polar 1. theta) * chord * x'(f_hobby theta phi /. tension1) in
+      let new_ih2 = oc2 - (polar 1. (~-.phi)) * chord * x'(f_hobby phi theta /. tension2) in
       let c' = [(ih1, oc1, new_oh1); (new_ih2, oc2, oh2)] @ L.tl (L.tl c) in
       if no_inflection then
         h @ remove_inflection_from_curve c'
@@ -822,6 +939,25 @@ struct
     if is_closed ?tol contour then
       invalid_arg "close_with_tension: the contour is closed already";
     close_with_tensions ?no_inflection tension tension contour
+
+  let resolve_point_string ps =
+    Point_string.(
+      let p = parse ps in
+      let tensions = Array.of_list p.tensions in
+      let points = Array.of_list p.points in
+      let dirs = (Direction_guessing.guess_directions
+                    ?start_dir:p.in_dir ?end_dir:p.out_dir
+                    ?start_curl:p.in_curl ?end_curl:p.out_curl
+                    ~tensions points) in
+      fold
+        (fun contour k ->
+          let (tension1, tension2) = tensions.(k) in
+          let node = make_dir_node dirs.(k + 1) points.(k + 1) in
+          join_with_tensions tension1 tension2 contour node
+        )
+        (make_dir_node dirs.(0) points.(0))
+        (0 --^ (Array.length tensions))
+    )
 
   let to_point_bool_list contour =
     let node_to_list (ih,oc,oh) = [(ih, false); (oc, true); (oh, false)] in
@@ -896,6 +1032,185 @@ struct
 
   let ( <-@@ ) contour tension =
     close_with_tension ~no_inflection:true tension contour
+end
+
+(*-----------------------------------------------------------------------*)
+
+module Metacubic =
+struct
+  type knot_side =
+    [
+    | `Ctrl of Complex.t               (* control point *)
+    | `Dir of Complex.t * float        (* (direction, tension) *)
+    | `Curl of float * float           (* (curl parameter, tension) *)
+    | `Open of float                   (* tension *)
+    ]
+
+  type knot = knot_side * Complex.t * knot_side
+  type t = knot Vect.t
+
+  let print_knot_side outp ks =
+    match ks with
+      | `Ctrl p ->
+        output_string outp "`Ctrl (";
+        Complex_point.print outp p;
+        IO.write outp ')'
+      | `Dir (p,t) ->
+        output_string outp "`Dir (";
+        Complex_point.print outp p;
+        output_string outp ", ";
+        Float.print outp t;
+        IO.write outp ')'
+      | `Curl (u,t) ->
+        output_string outp "`Curl (";
+        Float.print outp u;
+        output_string outp ", ";
+        Float.print outp t;
+        IO.write outp ')'
+      | `Open t ->
+        output_string outp "`Open ";
+        Float.print outp t
+
+  let knot_side_printer paren outp ks =
+    if paren then IO.write outp '(';
+    print_knot_side outp ks;
+    if paren then IO.write outp ')'
+
+  let print_knot outp (incoming, point, outgoing) =
+    IO.write outp '(';
+    print_knot_side outp incoming;
+    output_string outp ", ";
+    Complex_point.print outp point;
+    output_string outp ", ";
+    print_knot_side outp outgoing;
+    IO.write outp ')'
+
+  let knot_printer _paren outp ks = print_knot outp ks
+
+  let print = Vect.print print_knot
+  let t_printer _paren outp contour = print outp contour
+
+  let _knots_coincide ?tol (_,point1,_) (_,point2,_) =
+    Cubic.points_coincide ?tol point1 point2
+
+  let is_closed ?tol contour =
+    _knots_coincide ?tol (Vect.at contour 0) (Vect.at contour (Vect.length contour - 1))
+
+  let close ?tol contour =
+    if is_closed ?tol contour then
+      contour
+    else
+      Vect.append (Vect.at contour 0) contour
+
+  let unclose ?tol contour =
+    if is_closed ?tol contour then
+      Vect.sub 0 (Vect.length contour - 1) contour
+    else
+      contour
+
+  let join_coincident_knots ?tol contour =
+    let n = Vect.length contour in
+    fold
+      (fun c k ->
+        let (incoming1, point1, _) = Vect.at c k in
+        let (_, point2, outgoing2) = Vect.at c (k + 1) in
+        if Cubic.points_coincide ?tol point1 point2 then
+          let c' = Vect.set c k (incoming1, point1, `Ctrl point1) in
+          let c' = Vect.set c' (k + 1) (`Ctrl point2, point2, outgoing2) in
+          c'
+        else
+          c
+      )
+      contour
+      (0 --^ (n - 1))
+
+  let find_first_breakpoint contour =
+    let n = Vect.length contour in
+    let rec find_it k =
+      if k = n then
+        n                               (* No breakpoints. *)
+      else
+        match Vect.at contour k with
+          | (`Open _, _, `Open _) -> find_it (k + 1)
+          | _ -> k
+    in
+    find_it 0
+
+  let find_next_breakpoint contour k =
+    let n = Vect.length contour in
+    let rec find_it j =
+      match Vect.at contour j with
+          | (`Open _, _, `Open _) -> find_it ((j + 1) mod n)
+          | _ -> j
+    in
+    find_it ((k + 1) mod n)
+
+  let fill_in_cycle_control_points ?tol contour =
+    let contour = unclose ?tol contour in
+    let n = Vect.length contour in
+    let points = Array.init n (fun k -> let (_,pt,_) = Vect.at contour k in pt) in
+    let tensions =
+      Array.init n
+        (fun k ->
+          let t1 =
+            match Vect.at contour k with
+              | (_, _, `Open t1) -> t1
+              | _ -> failwith "fill_in_cycle_control_points"
+          in
+          let t2 =
+            match Vect.at contour ((k + 1) mod n) with
+              | (`Open t2, _, _) -> t2
+              | _ -> failwith "fill_in_cycle_control_points"
+          in
+          (t1,t2))
+    in
+    let dirs = Direction_guessing.guess_cycle_directions ~tensions points in
+    let contour =
+      fold
+        (fun c k ->
+          let (incoming1, point1, _) = Vect.at c k in
+          let (_, point2, outgoing2) = Vect.at c ((k + 1) mod n) in
+          let dir1 = dirs.(k) in
+          let dir2 = dirs.((k + 1) mod n) in
+          let (tension1, tension2) = tensions.(k) in
+          let no_inflection = tension1 < 0. in
+          let (control1, control2) =
+            tensions_to_controls ~no_inflection point1 point2 dir1 dir2
+              (abs_float tension1) (abs_float tension2)
+          in
+          let c' = Vect.set c k (incoming1, point1, `Ctrl control1) in
+          let c' = Vect.set c' ((k + 1) mod n) (`Ctrl control2, point2, outgoing2) in
+          c')
+        contour
+        (0 --^ n)
+    in
+    close ?tol contour
+
+  let guess_directions ?tol contour =
+    let n = Vect.length contour in
+    let contour' = join_coincident_knots ?tol contour in
+    let first_bp = find_first_breakpoint contour' in
+    if first_bp = n then
+      (* There are no breakpoints. *)
+      if is_closed ?tol contour' then
+        fill_in_cycle_control_points ?tol contour'
+      else
+        failwith "Not yet implemented 1"
+    else
+      failwith "Not yet implemented 2"
+
+  let to_cubic ?tol contour =
+    let contour' = guess_directions ?tol contour in
+    let node_vect =
+      Vect.map
+        (fun knot ->
+          match knot with
+            | (`Ctrl ctrl1, point1, `Ctrl ctrl2) -> (ctrl1, point1, ctrl2)
+            | _ -> failwith "to_cubic"
+        )
+        contour'
+    in
+    Vect.to_list node_vect
 end
 
 (*-----------------------------------------------------------------------*)
