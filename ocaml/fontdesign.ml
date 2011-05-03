@@ -1352,17 +1352,21 @@ struct
         contour
 
   let to_cubic ?tol contour =
-    let contour' = fix_endpoints ?tol (guess_directions ?tol contour) in
-    let node_vect =
-      Vect.map
-        (fun knot ->
+    let make_cycle = if is_closed ?tol contour then Cubic.close else Cubic.unclose in
+    let contour = unclose ?tol (fix_endpoints ?tol (guess_directions ?tol contour)) in
+    let cubic =
+      Vect.fold
+        (fun cubic_contour knot ->
           match knot with
-            | (`Ctrl ctrl1, point1, `Ctrl ctrl2) -> (ctrl1, point1, ctrl2)
-            | _ -> failwith "to_cubic"
-        )
-        contour'
+            | (`Ctrl ctrl1, point1, `Ctrl ctrl2) ->
+              Cubic.join ?tol cubic_contour [(ctrl1, point1, ctrl2)]
+            | _ -> failwith "to_cubic")
+        (match Vect.at contour 0 with
+          | (`Ctrl ctrl1, point1, `Ctrl ctrl2) -> [(ctrl1, point1, ctrl2)]
+          | _ -> failwith "to_cubic")
+        (Vect.sub 1 (Vect.length contour - 1) contour)
     in
-    Vect.to_list node_vect
+    make_cycle cubic
 
   let knot
       ?in_tension ?out_tension
