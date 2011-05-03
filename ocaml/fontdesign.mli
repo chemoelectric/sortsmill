@@ -30,6 +30,10 @@ module Crossing : module type of Caml2geom.Crossing
 
 (*-----------------------------------------------------------------------*)
 
+val posmod : int -> int -> int
+(** [posmod n k] is similar to [k mod n] but always returns the
+    positive modulus. *)
+
 val deg : float -> float
 (** Conversion from radians to degrees. *)
 
@@ -422,14 +426,18 @@ sig
   val print : unit IO.output -> t -> unit
   val t_printer : bool -> unit IO.output -> t -> unit
 
+  val knot_side_tension : knot_side -> float
+
   val is_closed : ?tol:float -> t -> bool
   val close : ?tol:float -> t -> t
   val unclose : ?tol:float -> t -> t
   val join_coincident_knots : ?tol:float -> t -> t
+(*
   val find_first_breakpoint : t -> int
-  val find_next_breakpoint : t -> int -> int
+  val find_next_breakpoint : t -> int -> int -> int
   val fill_in_cycle_control_points : ?tol:float -> t -> t
   val guess_directions : ?tol:float -> t -> t
+*)
   val to_cubic : ?tol:float -> t -> Cubic.t
 end
 

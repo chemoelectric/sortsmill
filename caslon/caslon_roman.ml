@@ -204,21 +204,20 @@ let letter_c_contours p =
     in
     [contour]
 
-
+(*
     ;let c =
-       Metacubic.close (
+       let huge = 1e100 in
+       Metacubic.unclose (
          Vect.of_array
            [|
              (`Open 1., x' 0. + y' 0., `Open 1.);
-(*             (`Open 1., x' 100. + y' 100., `Open 1.); *)
-(*             (`Open 1., x' 0. + y' 0., `Open 1.); *)
-(*             (`Open 1., x' 100. + y' 100., `Open 1.);  *)
-             (`Open 2., x' 200. + y' 0., `Open 1.);
-(*             (`Open 1., x' 100. - y' 100., `Open 1.);  *)
+             (`Open 1., x' 200. + y' 100., `Dir (one,1.));
+             (`Open 1., x' 300. + y'(-100.), `Open 1.);
+             (`Open 1., x' 100. + y' 0., `Open 1.);
            |]
        ) in
      [Metacubic.to_cubic c]
-
+*)
   )))
 ;;
 

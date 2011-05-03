@@ -28,6 +28,13 @@ module Crossing = Caml2geom.Crossing
 
 (*-----------------------------------------------------------------------*)
 
+let posmod n k =
+  let m = k mod n in
+  if m < 0 then
+    m + n
+  else
+    m
+
 let deg theta = (180. /. Float.pi) *. theta
 let rad theta = (Float.pi /. 180.) *. theta
 
@@ -407,13 +414,7 @@ struct
       points =
 
     let n = Array.length points in
-    let modn k =
-      let m = k mod n in
-      if m < 0 then
-        m + n
-      else
-        m
-    in
+    let modn = posmod n in
 
     let tensions = extend_tensions_array tensions n in
 
@@ -475,21 +476,6 @@ struct
     let right_side' = Mat.mvec_of_array right_side in
     gesv left_side' right_side';
     let solution = Mat.mvec_to_array right_side' in
-
-(*
-    Print.fprintf stderr p"-----------------------------------------------------------------------\n";
-    Print.fprintf stderr p"%{float array array}\n" left_side;
-    Print.fprintf stderr p"%{float array}\n" right_side;
-    Print.fprintf stderr p"solution: %{float array}\n" (Array.map deg solution);
-    Array.print (Pair.print Float.print Float.print) stderr tensions;
-    Print.fprintf stderr p"\nalpha: %{float array}\n" alpha;
-    Print.fprintf stderr p"beta: %{float array}\n" beta;
-    Print.fprintf stderr p"turn: %{float array}\n" (Array.map deg turn);
-    Print.fprintf stderr p"vector: %{Complex_point.t array}\n" vector;
-    Print.fprintf stderr p"dir: %{Complex_point.t array}\n" (let angle_to_dir k =
-        Complex_point.(dir vector.(k) * polar 1. solution.(k))  in Array.of_enum (map angle_to_dir (0 --^ n)));
-    Print.fprintf stderr p"-----------------------------------------------------------------------\n";
-*)
 
     let angle_to_dir k =
         Complex_point.(dir vector.(k) * polar 1. solution.(k))
@@ -685,7 +671,8 @@ struct
     points_coincide ?tol p1 p2
 
   let is_closed ?tol contour =
-    _nodes_coincide ?tol (L.first contour) (L.last contour)
+    L.tl contour <> [] &&
+      _nodes_coincide ?tol (L.first contour) (L.last contour)
 
   let close ?tol contour =
     if is_closed ?tol contour then
@@ -694,6 +681,8 @@ struct
       contour @ [L.first contour]
 
   let unclose ?tol contour =
+    (* FIXME: There may be coincident points. Have this loop as long
+       as the contour remains closed. *)
     if is_closed ?tol contour then
       L.drop (L.length contour - 1) contour
     else
@@ -1090,11 +1079,19 @@ struct
   let print = Vect.print print_knot
   let t_printer _paren outp contour = print outp contour
 
+  let knot_side_tension ks =
+    match ks with
+      | `Ctrl _ -> failwith "knot_side_tension"
+      | `Dir (_, t) -> t
+      | `Curl (_, t) -> t
+      | `Open t -> t
+
   let _knots_coincide ?tol (_,point1,_) (_,point2,_) =
     Cubic.points_coincide ?tol point1 point2
 
   let is_closed ?tol contour =
-    _knots_coincide ?tol (Vect.at contour 0) (Vect.at contour (Vect.length contour - 1))
+    Vect.length contour <> 1 &&
+      _knots_coincide ?tol (Vect.at contour 0) (Vect.at contour (Vect.length contour - 1))
 
   let close ?tol contour =
     if is_closed ?tol contour then
@@ -1103,6 +1100,8 @@ struct
       Vect.append (Vect.at contour 0) contour
 
   let unclose ?tol contour =
+    (* FIXME: There may be coincident points. Have this loop as long
+       as the contour remains closed. *)
     if is_closed ?tol contour then
       Vect.sub 0 (Vect.length contour - 1) contour
     else
@@ -1131,15 +1130,20 @@ struct
         n                               (* No breakpoints. *)
       else
         match Vect.at contour k with
+          | (`Open t1, _, `Open t2) when t1 = infinity && t2 = infinity -> k
           | (`Open _, _, `Open _) -> find_it (k + 1)
           | _ -> k
     in
     find_it 0
 
-  let find_next_breakpoint contour k =
+  let find_next_breakpoint contour k last_bp =
     let n = Vect.length contour in
     let rec find_it j =
-      match Vect.at contour j with
+      if j = last_bp then
+        j
+      else
+        match Vect.at contour j with
+          | (`Open t1, _, `Open t2) when t1 = infinity && t2 = infinity -> k
           | (`Open _, _, `Open _) -> find_it ((j + 1) mod n)
           | _ -> j
     in
@@ -1173,7 +1177,7 @@ struct
           let dir1 = dirs.(k) in
           let dir2 = dirs.((k + 1) mod n) in
           let (tension1, tension2) = tensions.(k) in
-          let no_inflection = tension1 < 0. in
+          let no_inflection = tension1 < 0. || tension2 < 0. in
           let (control1, control2) =
             tensions_to_controls ~no_inflection point1 point2 dir1 dir2
               (abs_float tension1) (abs_float tension2)
@@ -1186,21 +1190,272 @@ struct
     in
     close ?tol contour
 
-  let guess_directions ?tol contour =
+  let rec fix_breakpoints ?tol contour start_bp end_bp =
     let n = Vect.length contour in
-    let contour' = join_coincident_knots ?tol contour in
-    let first_bp = find_first_breakpoint contour' in
-    if first_bp = n then
-      (* There are no breakpoints. *)
-      if is_closed ?tol contour' then
-        fill_in_cycle_control_points ?tol contour'
+    let modn = posmod n in
+    let (incoming1, point1, outgoing1) = Vect.at contour start_bp in
+    let (incoming2, point2, outgoing2) = Vect.at contour end_bp in
+    match (outgoing1, incoming2) with
+      | (`Dir _, `Dir _) | (`Dir _, `Curl _) |
+          (`Curl _, `Dir _) | (`Curl _, `Curl _) | (`Ctrl _, `Ctrl _) -> contour
+
+      | (`Ctrl ctrl, _) ->
+        let (ks, _, _) = Vect.at contour (modn (start_bp + 1)) in
+        let tension = knot_side_tension ks in
+        if Cubic.points_coincide ?tol point1 ctrl then
+          fix_breakpoints ?tol
+            (Vect.set contour start_bp (incoming1, point1, `Curl (1., tension)))
+            start_bp end_bp
+        else
+          let d = Complex_point.(dir (ctrl - point1)) in
+          fix_breakpoints ?tol
+            (Vect.set contour start_bp (incoming1, point1, `Dir (d, tension)))
+            start_bp end_bp
+
+      | (_, `Ctrl ctrl) ->
+        let (ks, _, _) = Vect.at contour (modn (end_bp - 1)) in
+        let tension = knot_side_tension ks in
+        if Cubic.points_coincide ?tol ctrl point2 then
+          fix_breakpoints ?tol
+            (Vect.set contour end_bp (`Curl (1., tension), point2, outgoing2))
+            start_bp end_bp
+        else
+          let d = Complex_point.(dir (point2 - ctrl)) in
+          fix_breakpoints ?tol
+            (Vect.set contour end_bp (`Dir (d, tension), point2, outgoing2))
+            start_bp end_bp
+
+      | (`Open tension, _) ->
+        begin
+          match incoming1 with
+            | `Dir (d,_) ->
+              fix_breakpoints ?tol
+                (Vect.set contour start_bp (incoming1, point1, `Dir (d, tension)))
+                start_bp end_bp
+            | `Ctrl ctrl when not (Cubic.points_coincide ?tol point1 ctrl) ->
+              let d = Complex_point.dir (Complex.sub point1 ctrl) in
+              fix_breakpoints ?tol
+                (Vect.set contour start_bp (incoming1, point1, `Dir (d, tension)))
+                start_bp end_bp
+            | _ ->
+              fix_breakpoints ?tol
+                (Vect.set contour start_bp (incoming1, point1, `Curl (1., tension)))
+                start_bp end_bp
+        end
+
+      | (_, `Open tension) ->
+        begin
+          match outgoing2 with
+            | `Dir (d,_) ->
+              fix_breakpoints ?tol
+                (Vect.set contour end_bp (`Dir (d, tension), point2, outgoing2))
+                start_bp end_bp
+            | `Ctrl ctrl when not (Cubic.points_coincide ?tol ctrl point2) ->
+              let d = Complex_point.dir (Complex.sub ctrl point2) in
+              fix_breakpoints ?tol
+                (Vect.set contour end_bp (`Dir (d, tension), point2, outgoing2))
+                start_bp end_bp
+            | _ ->
+              fix_breakpoints ?tol
+                (Vect.set contour end_bp (`Curl (1., tension), point2, outgoing2))
+                start_bp end_bp
+        end
+
+  let fill_in_length1_segment_control_points ?tol contour start_bp end_bp =
+    let contour = fix_breakpoints ?tol contour start_bp end_bp in
+    let (incoming1, point1, outgoing1) = Vect.at contour start_bp in
+    let (incoming2, point2, outgoing2) = Vect.at contour end_bp in
+    match (outgoing1, incoming2) with
+      | (`Ctrl _, `Ctrl _) -> contour
+
+      | (`Curl _, `Curl _) ->
+          (* A straight line segment. *)
+        let c = Vect.set contour start_bp (incoming1, point1, `Ctrl point1) in
+        Vect.set c end_bp (`Ctrl point2, point2, outgoing2)
+
+      | (`Dir (d1,t1), `Dir (d2,t2)) ->
+        let (ctrl1, ctrl2) =
+          tensions_to_controls ~no_inflection:(t1 < 0. || t2 < 0.) point1 point2 d1 d2
+            (abs_float t1) (abs_float t2)
+        in
+        let c = Vect.set contour start_bp (incoming1, point1, `Ctrl ctrl1) in
+        Vect.set c end_bp (`Ctrl ctrl2, point2, outgoing2)
+
+      | (`Dir (d1, t1), `Curl (u2, t2)) ->
+        let dirs =
+          Direction_guessing.guess_directions ~start_dir:d1 ~end_curl:u2
+            ~tensions:[|(t1,t2)|] [|point1; point2|]
+        in
+        let (ctrl1, ctrl2) =
+          tensions_to_controls ~no_inflection:(t1 < 0. || t2 < 0.) point1 point2
+            dirs.(0) dirs.(1) (abs_float t1) (abs_float t2)
+        in
+        let c = Vect.set contour start_bp (incoming1, point1, `Ctrl ctrl1) in
+        Vect.set c end_bp (`Ctrl ctrl2, point2, outgoing2)
+
+      | (`Curl (u1, t1), `Dir (d2, t2)) ->
+        let dirs =
+          Direction_guessing.guess_directions ~start_curl:u1 ~end_dir:d2
+            ~tensions:[|(t1,t2)|] [|point1; point2|]
+        in
+        let (ctrl1, ctrl2) =
+          tensions_to_controls ~no_inflection:(t1 < 0. || t2 < 0.) point1 point2
+            dirs.(0) dirs.(1) (abs_float t1) (abs_float t2)
+        in
+        let c = Vect.set contour start_bp (incoming1, point1, `Ctrl ctrl1) in
+        Vect.set c end_bp (`Ctrl ctrl2, point2, outgoing2)
+
+      | (`Ctrl _, _) | (_, `Ctrl _) | (`Open _, _) | (_, `Open _) ->
+        failwith "fill_in_length1_segment_control_points"
+
+  let fill_in_longer_segment_control_points ?tol contour start_bp end_bp =
+    let contour = fix_breakpoints ?tol contour start_bp end_bp in
+    let n = Vect.length contour in
+    let modn = posmod n in
+    let point_count =
+      if start_bp < end_bp then
+        end_bp - start_bp + 1
       else
-        failwith "Not yet implemented 1"
+        n - start_bp + end_bp + 1
+    in
+    let (incoming1, point1, outgoing1) = Vect.at contour start_bp in
+    let (incoming2, point2, outgoing2) = Vect.at contour end_bp in
+    let (dir1, curl1) =
+      match outgoing1 with
+        | `Curl (u,_) -> (None, Some u)
+        | `Dir (d,_) -> (Some d, None)
+        | _ -> failwith "fill_in_longer_segment_control_points"
+    in
+    let (dir2, curl2) =
+      match incoming2 with
+        | `Curl (u,_) -> (None, Some u)
+        | `Dir (d,_) -> (Some d, None)
+        | _ -> failwith "fill_in_longer_segment_control_points"
+    in
+    let points =
+      Array.init
+        point_count
+        (fun k -> let (_,pt,_) = Vect.at contour (modn (start_bp + k)) in pt)
+    in
+    let tensions =
+      Array.init
+        (point_count - 1)
+        (fun k ->
+          let t1 =
+            match Vect.at contour (modn (start_bp + k)) with
+              | (_, _, `Open t1) | (_, _, `Dir (_,t1)) | (_, _, `Curl(_,t1)) -> t1
+              | (_, _, `Ctrl _) -> failwith "fill_in_longer_segment_control_points"
+          in
+          let t2 =
+            match Vect.at contour (modn (start_bp + k + 1)) with
+              | (`Open t2, _, _) | (`Dir (_,t2), _, _) | (`Curl (_,t2), _, _) -> t2
+              | (`Ctrl _, _, _) -> failwith "fill_in_longer_segment_control_points"
+          in
+          (t1,t2))
+    in
+    let dirs =
+      Direction_guessing.guess_directions ?start_dir:dir1 ?end_dir:dir2
+        ?start_curl:curl1 ?end_curl:curl2 ~tensions points
+    in
+    let contour =
+      fold
+        (fun c k ->
+          let j1 = modn (start_bp + k) in
+          let j2 = modn (start_bp + k + 1) in
+          let (incoming1, point1, _) = Vect.at c j1 in
+          let (_, point2, outgoing2) = Vect.at c j2 in
+          let dir1 = dirs.(k) in
+          let dir2 = dirs.(k + 1) in
+          let (tension1, tension2) = tensions.(k) in
+          let no_inflection = tension1 < 0. || tension2 < 0. in
+          let (control1, control2) =
+            tensions_to_controls ~no_inflection point1 point2 dir1 dir2
+              (abs_float tension1) (abs_float tension2)
+          in
+          let c' = Vect.set c j1 (incoming1, point1, `Ctrl control1) in
+          let c' = Vect.set c' j2 (`Ctrl control2, point2, outgoing2) in
+          c')
+        contour
+        (0 --^ (Array.length dirs - 1))
+    in
+    contour
+
+  let fill_in_segment_control_points ?tol contour start_bp end_bp =
+    let n = Vect.length contour in
+    if (start_bp + 1) mod n = end_bp then
+      fill_in_length1_segment_control_points ?tol contour start_bp end_bp
     else
-      failwith "Not yet implemented 2"
+      fill_in_longer_segment_control_points ?tol contour start_bp end_bp
+
+  let fill_in_all_segment_control_points ?tol contour first_bp last_bp =
+    let rec fill c bp =
+      let next_bp = find_next_breakpoint c bp last_bp in
+      let c = fill_in_segment_control_points ?tol c bp next_bp in
+      if next_bp = last_bp then
+        c
+      else
+        fill c next_bp
+    in
+    fill contour first_bp
+
+  let guess_directions ?tol contour =
+    let contour = join_coincident_knots ?tol contour in
+    let n = Vect.length contour in
+    if is_closed ?tol contour then
+      let first_bp = find_first_breakpoint contour in
+      if first_bp = n then
+        (* There are no breakpoints. *)
+        if n = 2 then
+          contour
+        else
+          fill_in_cycle_control_points ?tol contour
+      else
+        (close ?tol
+           (fill_in_all_segment_control_points ?tol (unclose ?tol contour) first_bp first_bp))
+    else
+      if n = 1 then
+        contour
+      else if n = 2 then
+        fill_in_segment_control_points ?tol contour 0 (n - 1)
+      else
+        fill_in_all_segment_control_points ?tol contour 0 (n - 1)
+
+  let rec fix_endpoints ?tol contour =
+    let n = Vect.length contour in
+    let (incoming1, point1, outgoing1) = Vect.at contour 0 in
+    let (incoming2, point2, outgoing2) = Vect.at contour (n - 1) in
+    match (incoming1, outgoing2)  with
+      | (`Ctrl _, `Ctrl _) -> contour
+      | _ ->
+        let incoming =
+          match incoming1 with
+            | `Ctrl _ -> incoming1
+            | `Dir (d,_) -> `Ctrl Complex_point.(point1 - d)
+            | `Curl _ -> `Ctrl point1
+            | `Open _ ->
+              match outgoing1 with
+                | `Ctrl ctrl when Cubic.points_coincide ?tol ctrl point1 -> `Ctrl point1
+                | `Ctrl ctrl -> `Ctrl Complex_point.(point1 + dir (point1 - ctrl))
+                | `Dir (d,_) -> `Ctrl Complex_point.(point1 - d)
+                | `Curl _ | `Open _ -> `Ctrl point1
+        in
+        let outgoing =
+          match outgoing2 with
+            | `Ctrl _ -> outgoing2
+            | `Dir (d,_) -> `Ctrl Complex.(d - point2)
+            | `Curl _ -> `Ctrl point2
+            | `Open _ ->
+              match incoming2 with
+                | `Ctrl ctrl when Cubic.points_coincide ?tol ctrl point2 -> `Ctrl point2
+                | `Ctrl ctrl -> `Ctrl Complex_point.(point2 + dir (point2 - ctrl))
+                | `Dir _ | `Curl _ | `Open _ -> failwith "fix_endpoints"
+        in
+        let contour = Vect.set contour 0 (incoming, point1, outgoing1) in
+        let contour = Vect.set contour (n - 1) (incoming2, point2, outgoing) in
+        contour
 
   let to_cubic ?tol contour =
-    let contour' = guess_directions ?tol contour in
+    let contour' = fix_endpoints ?tol (guess_directions ?tol contour) in
     let node_vect =
       Vect.map
         (fun knot ->
