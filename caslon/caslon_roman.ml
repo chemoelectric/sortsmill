@@ -170,54 +170,35 @@ let letter_c_contours p =
       let head1 = x'pos 0.98 + y'pos 0.82 in
       let head2 = head1 - y_shear (x' head_breadth) head_cut_angle in
 
-      let outer_tail =
-        resolve_point_string
-          [`Curl 1.5;
-           `Point tail1;
-           `Tension 1.0; `Tension 1.1;
-           `Point (x'pos 0.56 + y'pos 0.00);
-           `Dir (neg one)]
-      in
       let outer =
-        let head_angle = 100. in
-        outer_tail
-        <@> make_left_node (x'pos 0.56 + y'pos 0.00) (* bottom *)
-        <@-.> 0.93 <.-@> make_up_node (x'pos 0.0 + y'pos 0.49) (* left *)
-        <@-> make_right_node (x'pos 0.62 + y'pos 1.00) (* top *)
-        <@-.> 1.1 <.-@> make_dir_node (neg (rot head_angle)) head1 (* head *)
-      in
-      let inner_tail =
-        resolve_point_string
-          [`Dir one;
-           `Point (x'pos 0.64 + y'pos 0.00 + y' bottom_breadth); `Point tail2;
-           `Curl 1.5]
+        Metacubic.to_cubic
+          Metacubic.(
+            let head_angle = 100. in
+            Vect.of_list [
+              knot ~out_curl:1.5 tail1; (* tail *)
+              left_knot ~in_tension:1.1 ~out_tension:0.93 (x'pos 0.56 + y'pos 0.00); (* bottom *)
+              up_knot ~in_tension:0.93 (x'pos 0.0 + y'pos 0.49); (* left *)
+              right_knot ~out_tension:1.1 (x'pos 0.62 + y'pos 1.00); (* top *)
+              dir_knot ~in_tension:1.1 (neg (rot head_angle)) head1; (* head *)
+            ]
+          )
       in
       let inner =
-        let head_angle = 130. in
-        make_dir_node (rot head_angle) head2 (* head *)
-        <@~.> 0.85 <.~@> make_left_node (x'pos 0.56 + y'pos 1.00 - y' top_breadth) (* inner top *)
-        <@-> make_down_node (x'pos 0.00 + x' left_breadth + y'pos 0.52) (* inner left *)
-        <@-> make_right_node (x'pos 0.64 + y'pos 0.00 + y' bottom_breadth) (* inner bottom *)
-        <@> inner_tail
+        Metacubic.to_cubic
+          Metacubic.(
+            let head_angle = 130. in
+            Vect.of_list [
+              dir_knot (rot head_angle) ~out_tension:0.85 head2; (* head *)
+              left_knot ~in_tension:0.85 (x'pos 0.56 + y'pos 1.00 - y' top_breadth); (* inner top *)
+              down_knot (x'pos 0.00 + x' left_breadth + y'pos 0.52); (* inner left *)
+              right_knot (x'pos 0.64 + y'pos 0.00 + y' bottom_breadth); (* inner bottom *)
+              knot ~in_curl:1.5 tail2;  (* tail *)
+            ]
+          )
       in
       outer <@-.> 1.32 <.-@> inner <-@@ 2.0 <.> round
     in
     [contour]
-
-(*
-    ;let c =
-       let huge = 1e100 in
-       Metacubic.unclose (
-         Vect.of_array
-           [|
-             (`Open 1., x' 0. + y' 0., `Open 1.);
-             (`Open 1., x' 200. + y' 100., `Dir (one,1.));
-             (`Open 1., x' 300. + y'(-100.), `Open 1.);
-             (`Open 1., x' 100. + y' 0., `Open 1.);
-           |]
-       ) in
-     [Metacubic.to_cubic c]
-*)
   )))
 ;;
 

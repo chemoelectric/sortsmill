@@ -485,90 +485,6 @@ end
 
 (*-----------------------------------------------------------------------*)
 
-(* FIXME: Remove this Point_string stuff *)
-module Point_string =
-struct
-  type elt =
-    [
-    | `Point of Complex.t
-    | `Dir of Complex.t
-    | `Curl of float
-    | `Tension of float
-    ]
-
-  type t = elt list
-
-  type parse_result = {
-    points : Complex.t list;
-    tensions : (float * float) list;
-    in_dir : Complex.t option;
-    out_dir : Complex.t option;
-    in_curl : float option;
-    out_curl : float option;
-  }
-
-  let rec parse_points s =
-    match s with
-      | [`Point p] -> {
-        points = [p];
-        tensions = [];
-        in_dir = None;
-        out_dir = None;
-        in_curl = None;
-        out_curl = None;
-      }
-
-      | [`Point p; `Dir d] -> {
-        points = [p];
-        tensions = [];
-        in_dir = None;
-        out_dir = Some d;
-        in_curl = None;
-        out_curl = None;
-      }
-
-      | [`Point p; `Curl u] ->
-        {
-          points = [p];
-          tensions = [];
-          in_dir = None;
-          out_dir = None;
-          in_curl = None;
-          out_curl = Some u;
-        }
-
-      | `Point p1 :: `Tension t1 :: `Tension t2 :: (`Point p2 :: _ as remaining) ->
-        let subresult = parse_points remaining in {
-          subresult with
-            points = p1 :: subresult.points;
-            tensions = (t1,t2) :: subresult.tensions
-        }
-
-      | `Point p1 :: `Tension t :: (`Point p2 :: _ as remaining) ->
-        let subresult = parse_points remaining in {
-          subresult with
-            points = p1 :: subresult.points;
-            tensions = (t,t) :: subresult.tensions
-        }
-
-      | `Point p1 :: (`Point p2 :: _ as remaining) ->
-        let subresult = parse_points remaining in {
-          subresult with
-            points = p1 :: subresult.points;
-            tensions = (1.,1.) :: subresult.tensions
-        }
-
-      | _ -> failwith "parse_points"
-
-  let parse s =
-    match s with
-      | `Dir d :: points -> { parse_points points with in_dir = Some d }
-      | `Curl u :: points -> { parse_points points with in_curl = Some u }
-      | points -> parse_points points
-end
-
-(*-----------------------------------------------------------------------*)
-
 (*
   See http://paulbourke.net/geometry/lineline2d/ --
   "Intersection point of two lines (2 dimensions)"
@@ -928,25 +844,6 @@ struct
     if is_closed ?tol contour then
       invalid_arg "close_with_tension: the contour is closed already";
     close_with_tensions ?no_inflection tension tension contour
-
-  let resolve_point_string ps =
-    Point_string.(
-      let p = parse ps in
-      let tensions = Array.of_list p.tensions in
-      let points = Array.of_list p.points in
-      let dirs = (Direction_guessing.guess_directions
-                    ?start_dir:p.in_dir ?end_dir:p.out_dir
-                    ?start_curl:p.in_curl ?end_curl:p.out_curl
-                    ~tensions points) in
-      fold
-        (fun contour k ->
-          let (tension1, tension2) = tensions.(k) in
-          let node = make_dir_node dirs.(k + 1) points.(k + 1) in
-          join_with_tensions tension1 tension2 contour node
-        )
-        (make_dir_node dirs.(0) points.(0))
-        (0 --^ (Array.length tensions))
-    )
 
   let to_point_bool_list contour =
     let node_to_list (ih,oc,oh) = [(ih, false); (oc, true); (oh, false)] in
@@ -1442,7 +1339,7 @@ struct
         let outgoing =
           match outgoing2 with
             | `Ctrl _ -> outgoing2
-            | `Dir (d,_) -> `Ctrl Complex.(d - point2)
+            | `Dir (d,_) -> `Ctrl Complex.(point2 + d)
             | `Curl _ -> `Ctrl point2
             | `Open _ ->
               match incoming2 with
@@ -1466,6 +1363,56 @@ struct
         contour'
     in
     Vect.to_list node_vect
+
+  let knot
+      ?in_tension ?out_tension
+      ?in_curl ?out_curl
+      ?in_dir ?out_dir ?dir
+      ?in_control ?out_control
+      point =
+    if (Option.is_some in_dir || Option.is_some out_dir) && Option.is_some dir ||
+      1 < ((if Option.is_some in_curl then 1 else 0)
+            + (if Option.is_some in_dir then 1 else 0)
+            + (if Option.is_some in_control then 1 else 0)) ||
+      1 < ((if Option.is_some out_curl then 1 else 0)
+           + (if Option.is_some out_dir then 1 else 0)
+           + (if Option.is_some out_control then 1 else 0)) ||
+      (Option.is_some in_control && Option.is_some in_tension) ||
+      (Option.is_some out_control && Option.is_some out_tension) then
+      invalid_arg "point";
+    let t1 = if Option.is_some in_tension then Option.get in_tension else 1. in
+    let t2 = if Option.is_some out_tension then Option.get out_tension else 1. in
+    let in_dir = if Option.is_some dir then dir else in_dir in
+    let out_dir = if Option.is_some dir then dir else out_dir in
+    let incoming =
+      if Option.is_some in_curl then
+        `Curl (Option.get in_curl, t1)
+      else if Option.is_some in_dir then
+        `Dir (Option.get in_dir, t1)
+      else if Option.is_some in_control then
+        `Ctrl (Option.get in_control)
+      else
+        `Open t1
+    in
+    let outgoing =
+      if Option.is_some out_curl then
+        `Curl (Option.get out_curl, t2)
+      else if Option.is_some out_dir then
+        `Dir (Option.get out_dir, t2)
+      else if Option.is_some out_control then
+        `Ctrl (Option.get out_control)
+      else
+        `Open t2
+    in
+    (incoming, point, outgoing)
+
+  let dir_knot dir ?in_tension ?out_tension point =
+    knot ~dir ?in_tension ?out_tension point
+
+  let left_knot = dir_knot Complex.(neg one)
+  let right_knot = dir_knot Complex.one
+  let up_knot = dir_knot Complex.i
+  let down_knot = dir_knot Complex.(neg i)
 end
 
 (*-----------------------------------------------------------------------*)

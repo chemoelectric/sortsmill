@@ -245,36 +245,6 @@ end
 
 (*-----------------------------------------------------------------------*)
 
-module Point_string :
-sig
-  type elt =
-    [ `Curl of float
-    | `Dir of Batteries.Complex.t
-    | `Point of Batteries.Complex.t
-    | `Tension of float ]
-  type t = elt list
-  type parse_result = {
-    points : Batteries.Complex.t list;
-    tensions : (float * float) list;
-    in_dir : Batteries.Complex.t option;
-    out_dir : Batteries.Complex.t option;
-    in_curl : float option;
-    out_curl : float option;
-  }
-  val parse_points :
-    [> `Curl of float
-    | `Dir of Batteries.Complex.t
-    | `Point of Batteries.Complex.t
-    | `Tension of float ] list -> parse_result
-  val parse :
-  [> `Curl of float
-  | `Dir of Batteries.Complex.t
-  | `Point of Batteries.Complex.t
-  | `Tension of float ] list -> parse_result
-end
-
-(*-----------------------------------------------------------------------*)
-
 val find_intersection_of_lines :
   ?first_is_segment:bool ->
   ?second_is_segment:bool ->
@@ -364,12 +334,6 @@ sig
   val close_with_tensions : ?tol:float -> ?no_inflection:bool -> float -> float -> t -> t
   val close_with_tension : ?tol:float -> ?no_inflection:bool -> float -> t -> t
 
- val resolve_point_string :
-      [> `Curl of float
-       | `Dir of Complex.t
-       | `Point of Complex.t
-       | `Tension of float ] list -> t
-
   val to_point_bool_list : t -> (Complex.t * bool) list
   (** Convert a contour to list of points marked true/false =
       on-curve/off-curve. *)
@@ -432,13 +396,19 @@ sig
   val close : ?tol:float -> t -> t
   val unclose : ?tol:float -> t -> t
   val join_coincident_knots : ?tol:float -> t -> t
-(*
-  val find_first_breakpoint : t -> int
-  val find_next_breakpoint : t -> int -> int -> int
-  val fill_in_cycle_control_points : ?tol:float -> t -> t
-  val guess_directions : ?tol:float -> t -> t
-*)
   val to_cubic : ?tol:float -> t -> Cubic.t
+
+  val knot :
+    ?in_tension:float -> ?out_tension:float ->
+    ?in_curl:float -> ?out_curl:float ->
+    ?in_dir:Complex.t -> ?out_dir:Complex.t -> ?dir:Complex.t ->
+    ?in_control:Complex.t -> ?out_control:Complex.t ->
+    Complex.t -> knot
+  val dir_knot : Complex.t -> ?in_tension:float -> ?out_tension:float -> Complex.t -> knot
+  val left_knot : ?in_tension:float -> ?out_tension:float -> Complex.t -> knot
+  val right_knot : ?in_tension:float -> ?out_tension:float -> Complex.t -> knot
+  val up_knot : ?in_tension:float -> ?out_tension:float -> Complex.t -> knot
+  val down_knot : ?in_tension:float -> ?out_tension:float -> Complex.t -> knot
 end
 
 (*-----------------------------------------------------------------------*)
