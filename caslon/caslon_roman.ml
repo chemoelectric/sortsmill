@@ -171,32 +171,32 @@ let letter_c_contours p =
       let head2 = head1 - y_shear (x' head_breadth) head_cut_angle in
 
       let outer =
-        Metacubic.to_cubic
-          Metacubic.(
-            let head_angle = 100. in
-            Vect.of_list [
-              knot ~out_curl:1.5 tail1; (* tail *)
-              left_knot ~in_tension:1.1 ~out_tension:0.93 (x'pos 0.56 + y'pos 0.00); (* bottom *)
-              up_knot ~in_tension:0.93 (x'pos 0.0 + y'pos 0.49); (* left *)
-              right_knot ~out_tension:1.1 (x'pos 0.62 + y'pos 1.00); (* top *)
-              dir_knot ~in_tension:1.1 (neg (rot head_angle)) head1; (* head *)
-            ]
-          )
+        Metacubic.(
+          let head_angle = 100. in
+          Vect.of_list [
+            knot ~out_curl:1.5 tail1;   (* tail *)
+            left_knot ~in_tension:1.1 ~out_tension:0.93 (x'pos 0.56 + y'pos 0.00); (* bottom *)
+            up_knot ~in_tension:0.93 (x'pos 0.0 + y'pos 0.49); (* left *)
+            right_knot ~out_tension:1.1 (x'pos 0.62 + y'pos 1.00); (* top *)
+            dir_knot ~in_tension:1.1 (neg (rot head_angle)) head1; (* head *)
+          ]
+        )
       in
       let inner =
-        Metacubic.to_cubic
-          Metacubic.(
-            let head_angle = 130. in
-            Vect.of_list [
-              dir_knot (rot head_angle) ~out_tension:0.85 head2; (* head *)
-              left_knot ~in_tension:0.85 (x'pos 0.56 + y'pos 1.00 - y' top_breadth); (* inner top *)
-              down_knot (x'pos 0.00 + x' left_breadth + y'pos 0.52); (* inner left *)
-              right_knot (x'pos 0.64 + y'pos 0.00 + y' bottom_breadth); (* inner bottom *)
-              knot ~in_curl:1.5 tail2;  (* tail *)
-            ]
-          )
+        Metacubic.(
+          let head_angle = 130. in
+          Vect.of_list [
+            dir_knot (rot head_angle) ~out_tension:0.85 head2; (* head *)
+            left_knot ~in_tension:0.85 (x'pos 0.56 + y'pos 1.00 - y' top_breadth); (* inner top *)
+            down_knot (x'pos 0.00 + x' left_breadth + y'pos 0.52); (* inner left *)
+            right_knot (x'pos 0.64 + y'pos 0.00 + y' bottom_breadth); (* inner bottom *)
+            knot ~in_curl:1.5 tail2;    (* tail *)
+          ]
+        )
       in
-      outer <@-.> 1.32 <.-@> inner <-@@ 2.0 <.> round
+      let c = Metacubic.join ~tension:1.32 outer inner in
+      let c = Metacubic.close ~tension:2.0 c in
+      Metacubic.to_cubic c <.> round
     in
     [contour]
   )))

@@ -983,18 +983,19 @@ struct
       | `Curl (_, t) -> t
       | `Open t -> t
 
+  let set_knot_side_tension ks tension =
+    match ks with
+      | `Ctrl _ -> ks
+      | `Dir (d, _) -> `Dir (d, tension)
+      | `Curl (u, _) -> `Curl (u, tension)
+      | `Open _ -> `Open tension
+
   let _knots_coincide ?tol (_,point1,_) (_,point2,_) =
     Cubic.points_coincide ?tol point1 point2
 
   let is_closed ?tol contour =
     Vect.length contour <> 1 &&
       _knots_coincide ?tol (Vect.at contour 0) (Vect.at contour (Vect.length contour - 1))
-
-  let close ?tol contour =
-    if is_closed ?tol contour then
-      contour
-    else
-      Vect.append (Vect.at contour 0) contour
 
   let unclose ?tol contour =
     (* FIXME: There may be coincident points. Have this loop as long
@@ -1003,6 +1004,62 @@ struct
       Vect.sub 0 (Vect.length contour - 1) contour
     else
       contour
+
+  let set_incoming_tension ?tol contour tension =
+    if is_closed ?tol contour then
+      failwith "set_incoming_tension";
+    let (incoming, point, outgoing) = Vect.at contour 0 in
+    Vect.set contour 0 (set_knot_side_tension incoming tension, point, outgoing)
+
+  let set_outgoing_tension ?tol contour tension =
+    if is_closed ?tol contour then
+      failwith "set_outgoing_tension";
+    let k = Vect.length contour - 1 in
+    let (incoming, point, outgoing) = Vect.at contour k in
+    Vect.set contour k (incoming, point, set_knot_side_tension outgoing tension)
+
+  let join ?tol ?in_tension ?out_tension ?tension contour1 contour2 =
+    if (Option.is_some tension && Option.is_some in_tension) ||
+      (Option.is_some tension && Option.is_some out_tension) then
+      invalid_arg "join";
+    let t1 =
+      if Option.is_some tension then
+        Option.get tension
+      else if Option.is_some out_tension then
+        Option.get out_tension
+      else
+        1.
+    in
+    let t2 =
+      if Option.is_some tension then
+        Option.get tension
+      else if Option.is_some in_tension then
+        Option.get in_tension
+      else
+        1.
+    in
+    if contour1 == contour2 then
+      if not (is_closed ?tol contour1) then
+        let contour = set_incoming_tension (set_outgoing_tension contour1 t1) t2 in
+        Vect.append (Vect.at contour 0) contour
+      else
+        contour1
+    else
+      let last1 = Vect.at contour1 (Vect.length contour1 - 1) in
+      let first2 = Vect.at contour2 0 in
+      if _knots_coincide ?tol last1 first2 then
+        let (incoming, point, _) = last1 in
+        let (_, _, outgoing) = first2 in
+        let joined_knot = (incoming, point, outgoing) in
+        Vect.concat (Vect.set contour1 (Vect.length contour1 - 1) joined_knot)
+          (Vect.sub 1 (Vect.length contour2 - 1) contour2)
+      else
+        Vect.concat
+          (set_outgoing_tension contour1 t1)
+          (set_incoming_tension contour2 t2)
+
+  let close ?tol ?in_tension ?out_tension ?tension contour =
+    join ?tol ?in_tension ?out_tension ?tension contour contour
 
   let join_coincident_knots ?tol contour =
     let n = Vect.length contour in
@@ -1383,7 +1440,7 @@ struct
            + (if Option.is_some out_control then 1 else 0)) ||
       (Option.is_some in_control && Option.is_some in_tension) ||
       (Option.is_some out_control && Option.is_some out_tension) then
-      invalid_arg "point";
+      invalid_arg "knot";
     let t1 = if Option.is_some in_tension then Option.get in_tension else 1. in
     let t2 = if Option.is_some out_tension then Option.get out_tension else 1. in
     let in_dir = if Option.is_some dir then dir else in_dir in

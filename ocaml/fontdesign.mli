@@ -391,10 +391,16 @@ sig
   val t_printer : bool -> unit IO.output -> t -> unit
 
   val knot_side_tension : knot_side -> float
+  val set_knot_side_tension : knot_side -> float -> knot_side
 
   val is_closed : ?tol:float -> t -> bool
-  val close : ?tol:float -> t -> t
   val unclose : ?tol:float -> t -> t
+  val close : ?tol:float -> ?in_tension:float -> ?out_tension:float ->
+    ?tension:float -> t -> t
+  val join : ?tol:float -> ?in_tension:float -> ?out_tension:float ->
+    ?tension:float -> t -> t -> t
+  val set_incoming_tension : ?tol:float -> t -> float -> t
+  val set_outgoing_tension : ?tol:float -> t -> float -> t
   val join_coincident_knots : ?tol:float -> t -> t
   val to_cubic : ?tol:float -> t -> Cubic.t
 
