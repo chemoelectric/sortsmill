@@ -990,6 +990,48 @@ struct
       | `Curl (u, _) -> `Curl (u, tension)
       | `Open _ -> `Open tension
 
+  let knot_incoming_dir ?tol (incoming, point, _) =
+    match incoming with
+      | `Ctrl ctrl when not (Cubic.points_coincide ?tol point ctrl) ->
+        Complex_point.(dir (point - ctrl))
+      | `Dir (d, _) -> d
+      | `Ctrl _ | `Curl _ | `Open _ -> failwith "knot_incoming_dir"
+
+  let knot_outgoing_dir ?tol (_, point, outgoing) =
+    match outgoing with
+      | `Ctrl ctrl when not (Cubic.points_coincide ?tol ctrl point) ->
+        Complex_point.(dir (ctrl - point))
+      | `Dir (d, _) -> d
+      | `Ctrl _ | `Curl _ | `Open _ -> failwith "knot_outgoing_dir"
+
+  let set_knot_incoming_dir ?tol ?dir knot =
+    let (incoming, point, outgoing) = knot in
+    let tension = try knot_side_tension incoming with _ -> 1. in
+    let incoming_dir =
+      match dir with
+        | Some d -> d
+        | None ->
+          try
+            knot_outgoing_dir ?tol knot
+          with Failure "knot_outgoing_dir" ->
+            failwith "set_knot_incoming_dir"
+    in
+    (`Dir (incoming_dir, tension), point, outgoing)
+
+  let set_knot_outgoing_dir ?tol ?dir knot =
+    let (incoming, point, outgoing) = knot in
+    let tension = try knot_side_tension outgoing with _ -> 1. in
+    let outgoing_dir =
+      match dir with
+        | Some d -> d
+        | None ->
+          try
+            knot_incoming_dir ?tol knot
+          with Failure "knot_incoming_dir" ->
+            failwith "set_knot_outgoing_dir"
+    in
+    (incoming, point, `Dir (outgoing_dir, tension))
+
   let _knots_coincide ?tol (_,point1,_) (_,point2,_) =
     Cubic.points_coincide ?tol point1 point2
 
@@ -1352,7 +1394,7 @@ struct
     in
     fill contour first_bp
 
-  let guess_directions ?tol contour =
+  let guess_dirs ?tol contour =
     let contour = join_coincident_knots ?tol contour in
     let n = Vect.length contour in
     if is_closed ?tol contour then
@@ -1373,6 +1415,31 @@ struct
         fill_in_segment_control_points ?tol contour 0 (n - 1)
       else
         fill_in_all_segment_control_points ?tol contour 0 (n - 1)
+
+  let incoming_dir ?tol contour =
+    try
+      knot_incoming_dir ?tol (Vect.at contour 0)
+    with Failure "knot_incoming_dir" -> failwith "incoming_dir"
+
+  let outgoing_dir ?tol contour =
+    try
+      knot_outgoing_dir ?tol (Vect.at contour (Vect.length contour - 1))
+    with Failure "knot_outgoing_dir" -> failwith "outgoing_dir"
+
+  let set_incoming_dir ?tol ?(guess = true) ?dir contour =
+    let contour = if guess then guess_dirs ?tol contour else contour in
+    let first_knot = Vect.at contour 0 in
+    Vect.set contour 0 (set_knot_incoming_dir ?tol ?dir first_knot)
+
+  let set_outgoing_dir ?tol ?(guess = true) ?dir contour =
+    let contour = if guess then guess_dirs ?tol contour else contour in
+    let k = Vect.length contour - 1 in
+    let last_knot = Vect.at contour k in
+    Vect.set contour k (set_knot_outgoing_dir ?tol ?dir last_knot)
+
+  let set_dirs ?tol ?(guess = true) ?in_dir ?out_dir contour =
+    let contour = if guess then guess_dirs ?tol contour else contour in
+    set_outgoing_dir ?tol ?dir:out_dir (set_incoming_dir ?tol ?dir:in_dir contour)
 
   let rec fix_endpoints ?tol contour =
     let n = Vect.length contour in
@@ -1410,7 +1477,7 @@ struct
 
   let to_cubic ?tol contour =
     let make_cycle = if is_closed ?tol contour then Cubic.close else Cubic.unclose in
-    let contour = unclose ?tol (fix_endpoints ?tol (guess_directions ?tol contour)) in
+    let contour = unclose ?tol (fix_endpoints ?tol (guess_dirs ?tol contour)) in
     let cubic =
       Vect.fold
         (fun cubic_contour knot ->

@@ -401,6 +401,17 @@ sig
     ?tension:float -> t -> t -> t
   val set_incoming_tension : ?tol:float -> t -> float -> t
   val set_outgoing_tension : ?tol:float -> t -> float -> t
+  val knot_incoming_dir : ?tol:float -> knot -> Complex.t
+  val knot_outgoing_dir : ?tol:float -> knot -> Complex.t
+  val set_knot_incoming_dir : ?tol:float -> ?dir:Complex.t -> knot -> knot
+  val set_knot_outgoing_dir : ?tol:float -> ?dir:Complex.t -> knot -> knot
+  val guess_dirs : ?tol:float -> t -> t
+  val incoming_dir : ?tol : float -> t -> Complex.t
+  val outgoing_dir : ?tol : float -> t -> Complex.t
+  val set_incoming_dir : ?tol:float -> ?guess:bool -> ?dir:Complex.t -> t -> t
+  val set_outgoing_dir : ?tol:float -> ?guess:bool -> ?dir:Complex.t -> t -> t
+  val set_dirs : ?tol:float -> ?guess:bool ->
+    ?in_dir:Complex.t -> ?out_dir:Complex.t -> t -> t
   val join_coincident_knots : ?tol:float -> t -> t
   val to_cubic : ?tol:float -> t -> Cubic.t
 
