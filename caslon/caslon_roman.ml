@@ -48,8 +48,8 @@ struct
 
     os2_weight : int;
 
-    contrast : float;                   (* 1.0 = "normal" contrast. *)
-    extension : float;                  (* 1.0 = normal. *)
+    contrast : float;                   (* 0. = "normal" contrast. *)
+    extension : float;                  (* 0. = normal. *)
     design_size : float;
     space_width : float;
     x_height : float;
@@ -87,7 +87,7 @@ struct
 
     Complex_point.(
       let p = param in
-      let extended_width = width *. p.extension in
+      let extended_width = width *. (1. +. p.extension) in
       let xrel v = v *. extended_width in
       let yrel v = v *. height in
       let xpos v = xrel v -. left_overlap in
@@ -135,6 +135,10 @@ let enum_resolve_glyphs param = map (fun glyph -> glyph param) (enum_glyphs ())
 
 (*-----------------------------------------------------------------------*)
 
+let huge = 1e100 ;;
+
+(*-----------------------------------------------------------------------*)
+
 (* The letter "c" *)
 
 let letter_c_contours p =
@@ -157,48 +161,54 @@ let letter_c_contours p =
     let contour =
 
       let left_breadth = 1.12 *. p.lc_stem_width in
-      let bottom_breadth = 0.92 *. p.lc_stem_width /. p.contrast in
-      let top_breadth = 0.64 *. p.lc_stem_width /. p.contrast in
-      let head_breadth = 1.15 *. p.lc_stem_width in
-      let tail_breadth = 0.24 *. p.lc_stem_width in
+      let bottom_breadth = 0.92 *. p.lc_stem_width /. (1. +. p.contrast) in
+      let top_breadth = 0.64 *. p.lc_stem_width /. (1. +. p.contrast) in
+      let head_breadth = 1.15 *. p.lc_stem_width /. (1. +. 0.3 *. p.contrast) in
+      let tail_breadth = 0.25 *. p.lc_stem_width in
 
-      let tail_cut_angle = -37. in
-      let tail1 = x'pos 0.99 + y'pos 0.20 in
+      let tail_cut_angle = -35. in
+      let tail1 = x'pos 0.98 + y'pos 0.18 in
       let tail2 = tail1 - y_shear (x' tail_breadth) tail_cut_angle in
 
-      let head1 = x'pos 0.97 + y'pos 0.86 in
+      let head1 = x'pos 0.98 + y'pos 0.84 in
 
       let outer =
         Metacubic.(
           set_dirs (
-            Vect.of_list [
-              knot ~out_curl:1.5 tail1;   (* tail *)
-              left_knot ~in_tension:1.1 ~out_tension:0.93 (x'pos 0.56 + y'pos 0.00); (* bottom *)
-              up_knot ~in_tension:0.93 (x'pos 0.0 + y'pos 0.49); (* left *)
-              right_knot ~out_tension:1.(* 1  *) (x'pos 0.62 + y'pos 1.00); (* top *)
-              knot ~in_curl:2. ~in_tension:1. (* 1 *) head1; (* head *)
-            ]
+            point ~out_curl:1.5 tail1                    (* tail *)
+            <@-> left (x'pos 0.56 + y'pos 0.00)          (* bottom *)
+            <@-.> 0.95 <.-@> up (x'pos 0.0 + y'pos 0.50) (* left *)
+            <@-> right (x'pos 0.62 + y'pos 1.00)         (* top *)
+            <@-> point ~in_curl:1.5 head1                (* head *)
           )   
         )
       in
       let across_head_dir = Metacubic.outgoing_dir outer / rot 90. in
       let head2 = head1 + (x' head_breadth) * across_head_dir in
+      let top = x'pos 0.60 + y'pos 1.00 - y' top_breadth in
+      let partway_pt = head2 + x' 0.5 * (top - head2) + x'(0.1 *. (re head2 -. re top))  in
       let inner =
         Metacubic.(
           set_dirs (
-            Vect.of_list [
-              knot ~dir:(across_head_dir / rot 85.) head2; (* head *)
-              left_knot (x'pos 0.56 + y'pos 1.00 - y' top_breadth); (* inner top *)
-              down_knot (x'pos 0.00 + x' left_breadth + y'pos 0.52); (* inner left *)
-              right_knot (x'pos 0.64 + y'pos 0.00 + y' bottom_breadth); (* inner bottom *)
-              knot ~in_curl:1.5 tail2;    (* tail *)
-            ]
+            point head2
+            <@-.> 1000. <.-@> point partway_pt
+            <@-.> 0.75 <.-@> left top   (* inner top *)
+            <@-> down (x'pos 0.00 + x' left_breadth + y'pos 0.52) (* inner left *)
+            <@-> right (x'pos 0.64 + y'pos 0.00 + y' bottom_breadth) (* inner bottom *)
+            <@-> point ~in_curl:1.5 tail2 (* tail *)
           )
         )
       in
-      let c = Metacubic.join outer inner in
-      let c = Metacubic.close ~tension:2.0 c in
-      Metacubic.to_cubic c <.> round
+      let outer' = Metacubic.to_cubic outer in
+      let inner' = Metacubic.to_cubic inner in
+      let c = outer' <@-> inner' in
+      let (x_times, y_times) = curve_extrema_and_inflections ~pos:Int.(Vect.length outer - 1) c in
+      let y_time = y_times.(0) in
+      let x_time = x_times.(0) /. y_time in
+      let (c2,c3) = subdivide c (float_of_int (Vect.length outer) -. 1. +. y_time) in
+      let (c1,c2) = subdivide c2 (float_of_int (Vect.length outer) -. 1. +. x_time) in
+      let c = c1 <@> c2 <@> c3 <-@@ 1. in
+      c <.> round
     in
     [contour]
   )))
@@ -225,13 +235,13 @@ let letter_e_contours p =
 
   Tools.(Cubic.(Complex_point.(
 
-    let top_breadth = 0.41 *. p.lc_stem_width /. p.contrast in
+    let top_breadth = 0.41 *. p.lc_stem_width /. (1. +. p.contrast) in
     let left_breadth = 1.01 *. p.lc_stem_width in
-    let right_breadth = 1.68 *. p.lc_stem_width in
-    let bottom_breadth = 1.00 *. p.lc_stem_width /. p.contrast in
-    let tail_breadth = 0.37 *. p.lc_stem_width /. p.contrast in
+    let right_breadth = 1.68 *. p.lc_stem_width /. (1. +. 0.5 *. p.contrast) in
+    let bottom_breadth = 1.00 *. p.lc_stem_width /. (1. +. p.contrast) in
+    let tail_breadth = 0.37 *. p.lc_stem_width /. (1. +. p.contrast) in
 
-    let crossbar_breadth = 0.42 *. p.lc_stem_width /. p.contrast in
+    let crossbar_breadth = 0.42 *. p.lc_stem_width /. (1. +. p.contrast) in
     let crossbar_height = p.e_crossbar_height in
     let crossbar_top = p.e_crossbar_height +. crossbar_breadth in
     let crossbar_fillet_size = crossbar_breadth in
@@ -240,15 +250,17 @@ let letter_e_contours p =
     let tail_cut_angle = 145. in
     let tail1 = x'pos 1.00 + y'pos 0.25 in
     let tail2 = tail1 + x' tail_breadth * rot tail_cut_angle in
-    let tail1_angle = 65. in
-    let tail2_angle = 52. in
 
     let counter =
-      make_up_node (crossbar_top0 + y' crossbar_fillet_size)
-      <@-> make_left_node (x'pos 0.50 + y'pos 1.00 - y' top_breadth) (* eye top *)
-      <@-.> 1.05 <.-@> make_down_node (x'pos 0.00 + x' left_breadth + y'pos 0.52) (* inner left *)
-      <@-> make_right_node (x'pos 0.60 + y'pos 0.00 + y' bottom_breadth) (* inner bottom *)
-      <@-> make_dir_node (rot tail2_angle) tail2 (* inner tail *)
+      Metacubic.(
+        to_cubic (
+          up (crossbar_top0 + y' crossbar_fillet_size)
+          <@-> left (x'pos 0.50 + y'pos 1.00 - y' top_breadth) (* eye top *)
+          <@-> down (x'pos 0.00 + x' left_breadth + y'pos 0.52) (* inner left *)
+          <@-> right (x'pos 0.60 + y'pos 0.00 + y' bottom_breadth) (* inner bottom *)
+          <@-> point ~in_curl:1.0 tail2 (* inner tail *)
+        )
+      )
     in
     let crossbar_height_point =
       let time = (curve_times_at_y counter ~pos:1 crossbar_height).(0) in
@@ -261,17 +273,19 @@ let letter_e_contours p =
       subdivide counter intersection_time
     in
     let main_contour =
-      make_dir_node (neg (rot tail1_angle)) tail1   (* outer tail *)
-      <@-> make_left_node (x'pos 0.54 + y'pos 0.00) (* bottom *)
-      <@-.> 0.9 <.-@> make_up_node (x'pos 0.00 + y'pos 0.51) (* left *)
-      <@-> make_right_node (x'pos 0.52 + y'pos 1.00)         (* top *)
-      <@-> make_down_node (x'pos 0.95 + y' crossbar_height + y'rel 0.02) (* right *)
-      <@-> make_left_node (x'pos 0.85 + y' crossbar_height) (* crossbar right *)
-      <@-.> infinity <.-@>
-           make_left_node (crossbar_height_point + x' crossbar_fillet_size) (* crossbar left *)
-      <@-> lower                        (* inner bowl *)
-      <-@@ 2.                           (* tail end *)
-      <.> round
+        Metacubic.(
+          to_cubic (
+            point ~out_curl:1.0 tail1 (* outer tail *)
+            <@-> left (x'pos 0.54 + y'pos 0.00) (* bottom *)
+            <@-.> 0.9 <.-@> up (x'pos 0.00 + y'pos 0.51) (* left *)
+            <@-> right (x'pos 0.52 + y'pos 1.00)         (* top *)
+            <@-> down (x'pos 0.95 + y' crossbar_height + y'rel 0.02) (* right *)
+            <@-> left (x'pos 0.85 + y' crossbar_height) (* crossbar right *)
+            <@-.> huge <.-@> left (crossbar_height_point + x' crossbar_fillet_size) (* crossbar left *)
+            <@-> set_dirs (of_cubic lower) (* inner bowl *)
+            |> close ~tension:2.
+          )
+        ) <.> round
     in
     let crossbar_top1 =
       let time = (curve_times_at_y upper ~pos:1 crossbar_top).(0) in
@@ -285,12 +299,13 @@ let letter_e_contours p =
       upper'
     in
     let eye_contour =
-      make_right_node (crossbar_top1 + x' crossbar_fillet_size) (* crossbar top left *)
-      <@-.> infinity <.-@>
-        make_right_node (crossbar_top0 - x' crossbar_fillet_size) (* crossbar top right *)
-      <@-> eye_upper
-      <-@@ 1.                           (* Close with tension 1.0. *)
-      <.> round
+        Metacubic.(
+          to_cubic (
+            right (crossbar_top1 + x' crossbar_fillet_size) (* crossbar top left *)
+            <@-.> huge <.-@> right (crossbar_top0 - x' crossbar_fillet_size) (* crossbar top right *)
+            <@-> set_dirs (of_cubic eye_upper) |> close
+          )
+        ) <.> round
     in
     [main_contour; eye_contour]
   )))
@@ -319,8 +334,8 @@ let letter_o_contours p =
 
     let left_breadth = 1.16 *. p.lc_stem_width in
     let right_breadth = 1.16 *. p.lc_stem_width in
-    let bottom_breadth = 0.58 *. p.lc_stem_width /. p.contrast in
-    let top_breadth = 0.54 *. p.lc_stem_width /. p.contrast in
+    let bottom_breadth = 0.58 *. p.lc_stem_width /. (1. +. p.contrast) in
+    let top_breadth = 0.54 *. p.lc_stem_width /. (1. +. p.contrast) in
 
     let outer_contour =
       make_up_node (x'pos 0.00 + y'pos 0.50) (* left *)

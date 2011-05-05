@@ -287,11 +287,13 @@ sig
   val curve_times_at_x : ?pos:int -> t -> float -> float array
   val curve_times_at_y : ?pos:int -> t -> float -> float array
 
+  val curve_crossings : ?pos1:int -> t -> ?pos2:int -> t -> Crossing.t array
+
   val subdivide_curve : ?pos:int -> t -> float -> t * t
   (** Cuts in two the bezier curve between two nodes, returning a pair
       of two-node contours. *)
 
-  val curve_crossings : ?pos1:int -> t -> ?pos2:int -> t -> Crossing.t array
+  val curve_extrema_and_inflections : ?pos:int -> t -> float array * float array
 
   val to_cubic_beziers : t -> Caml2geom.Cubic_bezier.t list
   (** Creates a list of bezier curves from a contour. *)
@@ -312,6 +314,8 @@ sig
 
   val subdivide : t -> float -> t * t
   (** Cut a contour in two. *)
+
+  (*  val portion : t -> float -> float -> t *)
 
   val join : ?tol:float -> t -> t -> t
 
@@ -414,6 +418,7 @@ sig
     ?in_dir:Complex.t -> ?out_dir:Complex.t -> t -> t
   val join_coincident_knots : ?tol:float -> t -> t
   val to_cubic : ?tol:float -> t -> Cubic.t
+  val of_cubic : Cubic.t -> t
 
   val knot :
     ?in_tension:float -> ?out_tension:float ->
@@ -426,6 +431,42 @@ sig
   val right_knot : ?in_tension:float -> ?out_tension:float -> Complex.t -> knot
   val up_knot : ?in_tension:float -> ?out_tension:float -> Complex.t -> knot
   val down_knot : ?in_tension:float -> ?out_tension:float -> Complex.t -> knot
+
+  val point : ?in_tension:float -> ?out_tension:float ->
+    ?in_curl:float -> ?out_curl:float ->
+    ?in_dir:Complex.t -> ?out_dir:Complex.t -> ?dir:Complex.t ->
+    ?in_control:Complex.t -> ?out_control:Complex.t ->
+    Complex.t -> t
+  val along : Complex.t -> ?in_tension:float -> ?out_tension:float -> Complex.t -> t
+  val left : ?in_tension:float -> ?out_tension:float -> Complex.t -> t
+  val right : ?in_tension:float -> ?out_tension:float -> Complex.t -> t
+  val up : ?in_tension:float -> ?out_tension:float -> Complex.t -> t
+  val down : ?in_tension:float -> ?out_tension:float -> Complex.t -> t
+
+  val ( <@> ) : t -> t -> t
+
+  val ( <@~> ) : t -> t -> t
+  (** Join contours, with tension 1. *)
+
+  val ( <@-> ) : t -> t -> t
+  (** Join contours, with tension "at least 1" (to suppress
+      inflection). *)
+
+  val ( <@~~.> ) : t -> float * float -> t -> t
+  val ( <@--.> ) : t -> float * float -> t -> t
+  val ( <@~.> ) : t -> float -> t -> t
+  val ( <@-.> ) : t -> float -> t -> t
+  val ( <.~~@> ) : ('a -> 'b) -> 'a -> 'b
+  val ( <.~@> ) : ('a -> 'b) -> 'a -> 'b
+  val ( <.--@> ) : ('a -> 'b) -> 'a -> 'b
+  val ( <.-@> ) : ('a -> 'b) -> 'a -> 'b
+(*
+  val ( <@@ ) : t -> bool -> t
+  val ( <~~@@ ) : t -> float * float -> t
+  val ( <--@@ ) : t -> float * float -> t
+  val ( <~@@ ) : t -> float -> t
+  val ( <-@@ ) : t -> float -> t
+*)
 end
 
 (*-----------------------------------------------------------------------*)

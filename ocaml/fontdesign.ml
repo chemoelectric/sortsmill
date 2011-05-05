@@ -662,6 +662,16 @@ struct
     let node3 = (b2, b3, oh2) in
     ([node1; node2], [node2; node3])
 
+  let _curve_derivative ?pos contour =
+    let bez = bezier_curve ?pos contour in
+    Caml2geom.Cubic_bezier.derivative bez
+
+  let curve_extrema_and_inflections ?pos contour =
+    let deriv = _curve_derivative ?pos contour in
+    let x_times = Caml2geom.Bezier_curve.roots deriv 0. Caml2geom.Coord.X in
+    let y_times = Caml2geom.Bezier_curve.roots deriv 0. Caml2geom.Coord.Y in
+    (x_times, y_times)
+
   let rec to_cubic_beziers contour =
     match contour with
       | [] | [_] -> []
@@ -741,6 +751,15 @@ struct
       | c ->
         let (c1, c2) = subdivide_curve c time in
         (c1, c2 @ L.drop 2 c)
+
+(* FIXME: Write this so it includes handles.
+  let portion contour time1 time2 =
+    if time < 0. then
+      raise time_error;
+    let path = to_path contour in
+    let subpath = Caml2geom.Path.portion path time1 time2 in
+    of_path subpath
+*)
 
   let join ?tol contour1 contour2 =
     if contour1 == contour2 then
@@ -822,6 +841,8 @@ struct
   let apply_tension ?pos ?no_inflection contour tension =
     apply_tensions ?pos ?no_inflection contour tension tension
 
+  (* FIXME: Bring these sorts of functions into harmony with their
+     Metacubic equivalents. Then remove these old versions. *)
   let join_with_tensions ?no_inflection tension1 tension2 contour1 contour2 =
     let rev1 = L.rev contour1 in
     L.rev_append (L.tl rev1)
@@ -924,6 +945,10 @@ end
 
 module Metacubic =
 struct
+  (* FIXME: 1. Use Vect.modify instead of Vect.set where doing so
+     improves things.  2. Subroutinize the code more, and otherwise
+     increase its terseness. *)
+
   type knot_side =
     [
     | `Ctrl of Complex.t               (* control point *)
@@ -1492,6 +1517,9 @@ struct
     in
     make_cycle cubic
 
+  let of_cubic cubic =
+    Vect.of_list (List.map (fun (ih, oc, oh) -> (`Ctrl ih, oc, `Ctrl oh)) cubic)
+
   let knot
       ?in_tension ?out_tension
       ?in_curl ?out_curl
@@ -1541,6 +1569,68 @@ struct
   let right_knot = dir_knot Complex.one
   let up_knot = dir_knot Complex.i
   let down_knot = dir_knot Complex.(neg i)
+
+  let point
+      ?in_tension ?out_tension
+      ?in_curl ?out_curl
+      ?in_dir ?out_dir ?dir
+      ?in_control ?out_control
+      pt =
+    Vect.make 1
+      (knot
+         ?in_tension ?out_tension
+         ?in_curl ?out_curl
+         ?in_dir ?out_dir ?dir
+         ?in_control ?out_control
+         pt)
+  let along dir ?in_tension ?out_tension point =
+    Vect.make 1 (knot ~dir  ?in_tension ?out_tension point)
+  let left ?in_tension ?out_tension point =
+    Vect.make 1 (left_knot  ?in_tension ?out_tension point)
+  let right ?in_tension ?out_tension point =
+    Vect.make 1 (right_knot  ?in_tension ?out_tension point)
+  let up ?in_tension ?out_tension point =
+    Vect.make 1 (up_knot  ?in_tension ?out_tension point)
+  let down ?in_tension ?out_tension point =
+    Vect.make 1 (down_knot  ?in_tension ?out_tension point)
+
+  let ( <@> ) contour1 = join contour1
+  let ( <@~> ) contour1 = join ~tension:1. contour1
+  let ( <@-> ) contour1 = join ~tension:(-1.) contour1
+
+  let ( <@~~.> ) contour1 (in_tension, out_tension) contour2 =
+    join ~in_tension ~out_tension contour1 contour2
+
+  let ( <@--.> ) contour1 (in_tension, out_tension) contour2 =
+    join ~in_tension:(-.in_tension) ~out_tension:(-.out_tension)
+      contour1 contour2
+
+  let ( <@~.> ) contour1 tension contour2 =
+    join ~tension contour1 contour2
+
+  let ( <@-.> ) contour1 tension contour2 =
+    join ~tension:(-.tension) contour1 contour2
+
+  let ( <.~~@> ) f a = f a
+  let ( <.~@> ) f a = f a
+  let ( <.--@> ) f a = f a
+  let ( <.-@> ) f a = f a
+(*
+  let ( <@@ ) contour t_or_f =
+    (if t_or_f then close else unclose) contour
+
+  let ( <~~@@ ) contour (tension1, tension2) =
+    close_with_tensions tension1 tension2 contour
+
+  let ( <--@@ ) contour (tension1, tension2) =
+    close_with_tensions ~no_inflection:true tension1 tension2 contour
+
+  let ( <~@@ ) contour tension =
+    close_with_tension tension contour
+
+  let ( <-@@ ) contour tension =
+    close_with_tension ~no_inflection:true tension contour
+*)
 end
 
 (*-----------------------------------------------------------------------*)

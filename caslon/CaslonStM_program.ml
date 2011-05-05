@@ -42,8 +42,8 @@ let param = {
   os2_weight = 400;
   design_size = 12.;
 
-  contrast = 1.0;
-  extension = 1.0;
+  contrast = 0.;
+  extension = 0.;
   space_width = 200.;
   x_height = 399.;
   curve_overshoot = 10.;
@@ -51,8 +51,8 @@ let param = {
   e_crossbar_height = 258.;
   lc_stem_width = 57.;
 (*
-  contrast = 1.1;
-  extension = 0.88;
+  contrast = 0.1;
+  extension = -0.22;
   space_width = 200.;
   x_height = 350.;
   curve_overshoot = 10.;

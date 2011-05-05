@@ -42,8 +42,8 @@ let param = {
   os2_weight = 700;
   design_size = 12.;
 
-  contrast = 1.5;
-  extension = 1.1;
+  contrast = 0.5;
+  extension = 0.1;
   space_width = 200.;
   x_height = 399.;
   curve_overshoot = 10.;
