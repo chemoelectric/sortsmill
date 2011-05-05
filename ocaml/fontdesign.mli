@@ -293,6 +293,8 @@ sig
   (** Cuts in two the bezier curve between two nodes, returning a pair
       of two-node contours. *)
 
+  val curve_portion : ?pos:int -> t -> float -> float -> t
+
   val curve_extrema_and_inflections : ?pos:int -> t -> float array * float array
 
   val to_cubic_beziers : t -> Caml2geom.Cubic_bezier.t list
@@ -315,7 +317,7 @@ sig
   val subdivide : t -> float -> t * t
   (** Cut a contour in two. *)
 
-  (*  val portion : t -> float -> float -> t *)
+  val portion : ?tol:float -> t -> float -> float -> t
 
   val join : ?tol:float -> t -> t -> t
 

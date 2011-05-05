@@ -662,6 +662,27 @@ struct
     let node3 = (b2, b3, oh2) in
     ([node1; node2], [node2; node3])
 
+  let curve_portion ?(pos = 0) contour time1 time2 =
+    let c = L.drop pos contour in
+    let reversed = time2 < time1 in
+    let (t1,t2) = if reversed then (time2, time1) else (time1, time2) in
+    let portion =
+      if t1 = 0. then
+        if t2 = 1. then
+          L.take 2 c
+        else
+          fst (subdivide_curve c t2)
+      else if t2 = 1. then
+        snd (subdivide_curve c t1)
+      else
+        let (c1,_) = subdivide_curve c t2 in
+        snd (subdivide_curve c1 (t1 /. t2))
+    in
+    if reversed then
+      rev portion
+    else
+      portion
+
   let _curve_derivative ?pos contour =
     let bez = bezier_curve ?pos contour in
     Caml2geom.Cubic_bezier.derivative bez
@@ -752,14 +773,39 @@ struct
         let (c1, c2) = subdivide_curve c time in
         (c1, c2 @ L.drop 2 c)
 
-(* FIXME: Write this so it includes handles.
-  let portion contour time1 time2 =
-    if time < 0. then
-      raise time_error;
-    let path = to_path contour in
-    let subpath = Caml2geom.Path.portion path time1 time2 in
-    of_path subpath
-*)
+  let portion ?(tol = !basis_conversion_tolerance) contour time1 time2 =
+    (* FIXME: Either give this function the ability to handle cycles,
+       or write something cycle-handling in terms of it. *)
+    let node_count = L.length contour in
+    let curve_count = node_count - 1 in
+    let max_time = float_of_int curve_count in
+    let reversed = time2 < time1 in
+    let (t1,t2) = if reversed then (time2, time1) else (time1, time2) in
+    let t1 = max t1 0. in
+    let t2 = min t2 max_time in
+    let t1_floor = Float.floor t1 in
+    let t2_floor = Float.floor t2 in
+    let t2 = if t2 -. t2_floor < tol then t2_floor else t2 in
+    let t1_int = int_of_float t1_floor in
+    let t2_int = int_of_float t2_floor in
+    let c = L.drop t1_int contour in
+    let part =
+      if t1_int = t2_int || (t1_int + 1 = t2_int && t2 = t2_floor) then
+        curve_portion c (t1 -. t1_floor) (t2 -. t1_floor)
+      else
+        let (_,c1) = subdivide_curve c (t1 -. t1_floor) in
+        if t2 = t2_floor then
+          let tail = L.take (t2_int - t1_int) (L.tl c) in
+          L.append c1 tail
+        else
+          let (c2,_) = subdivide_curve ~pos:(t2_int - t1_int) c (t2 -. t2_floor) in
+          let c_middle = L.take (t2_int - t1_int) (L.tl c) in
+          L.append c1 (L.append (L.tl c_middle) (L.tl c2))
+    in
+    if reversed then
+      rev part
+    else
+      part
 
   let join ?tol contour1 contour2 =
     if contour1 == contour2 then
