@@ -418,6 +418,8 @@ sig
   val set_outgoing_dir : ?tol:float -> ?guess:bool -> ?dir:Complex.t -> t -> t
   val set_dirs : ?tol:float -> ?guess:bool ->
     ?in_dir:Complex.t -> ?out_dir:Complex.t -> t -> t
+  val knotwise : (knot -> knot) -> t -> t
+  val pointwise : (Complex.t -> Complex.t) -> t -> t
   val join_coincident_knots : ?tol:float -> t -> t
   val to_cubic : ?tol:float -> t -> Cubic.t
   val of_cubic : Cubic.t -> t
@@ -469,6 +471,26 @@ sig
   val ( <~@@ ) : t -> float -> t
   val ( <-@@ ) : t -> float -> t
 *)
+
+  val ( <.> ) :
+    (([> `Ctrl of 'b ] as 'a) * 'b * ([> `Ctrl of 'b ] as 'c))
+      Vect.t -> ('b -> 'b) -> ('a * 'b * 'c) Vect.t
+  val ( <*> ) :
+    (([> `Ctrl of Complex.t ] as 'a) * Complex.t *
+        ([> `Ctrl of Complex.t ] as 'b))
+      Vect.t -> Complex.t -> ('a * Complex.t * 'b) Vect.t
+  val ( </> ) :
+    (([> `Ctrl of Complex.t ] as 'a) * Complex.t *
+        ([> `Ctrl of Complex.t ] as 'b))
+      Vect.t -> Complex.t -> ('a * Complex.t * 'b) Vect.t
+  val ( <+> ) :
+    (([> `Ctrl of Complex.t ] as 'a) * Complex.t *
+        ([> `Ctrl of Complex.t ] as 'b))
+      Vect.t -> Complex.t -> ('a * Complex.t * 'b) Vect.t
+  val ( <-> ) :
+    (([> `Ctrl of Complex.t ] as 'a) * Complex.t *
+        ([> `Ctrl of Complex.t ] as 'b))
+      Vect.t -> Complex.t -> ('a * Complex.t * 'b) Vect.t
 end
 
 (*-----------------------------------------------------------------------*)

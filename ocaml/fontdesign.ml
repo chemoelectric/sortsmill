@@ -1065,14 +1065,14 @@ struct
     match incoming with
       | `Ctrl ctrl when not (Cubic.points_coincide ?tol point ctrl) ->
         Complex_point.(dir (point - ctrl))
-      | `Dir (d, _) -> d
+      | `Dir (d, _) -> Complex_point.dir d
       | `Ctrl _ | `Curl _ | `Open _ -> failwith "knot_incoming_dir"
 
   let knot_outgoing_dir ?tol (_, point, outgoing) =
     match outgoing with
       | `Ctrl ctrl when not (Cubic.points_coincide ?tol ctrl point) ->
         Complex_point.(dir (ctrl - point))
-      | `Dir (d, _) -> d
+      | `Dir (d, _) -> Complex_point.dir d
       | `Ctrl _ | `Curl _ | `Open _ -> failwith "knot_outgoing_dir"
 
   let set_knot_incoming_dir ?tol ?dir knot =
@@ -1080,7 +1080,7 @@ struct
     let tension = try knot_side_tension incoming with _ -> 1. in
     let incoming_dir =
       match dir with
-        | Some d -> d
+        | Some d -> Complex_point.dir d
         | None ->
           try
             knot_outgoing_dir ?tol knot
@@ -1094,7 +1094,7 @@ struct
     let tension = try knot_side_tension outgoing with _ -> 1. in
     let outgoing_dir =
       match dir with
-        | Some d -> d
+        | Some d -> Complex_point.dir d
         | None ->
           try
             knot_incoming_dir ?tol knot
@@ -1173,6 +1173,24 @@ struct
 
   let close ?tol ?in_tension ?out_tension ?tension contour =
     join ?tol ?in_tension ?out_tension ?tension contour contour
+
+  (* knotwise and pointwise mapping. *)
+  let knotwise = Vect.map
+  let pointwise f =
+    Vect.map
+      (fun (incoming, point, outgoing) ->
+        let new_incoming =
+          match incoming with
+            | `Ctrl ctrl -> `Ctrl (f ctrl)
+            | _ -> incoming
+        in
+        let new_outgoing =
+          match outgoing with
+            | `Ctrl ctrl -> `Ctrl (f ctrl)
+            | _ -> outgoing
+        in
+        (new_incoming, f point, new_outgoing)
+      )
 
   let join_coincident_knots ?tol contour =
     let n = Vect.length contour in
@@ -1590,7 +1608,7 @@ struct
       if Option.is_some in_curl then
         `Curl (Option.get in_curl, t1)
       else if Option.is_some in_dir then
-        `Dir (Option.get in_dir, t1)
+        `Dir (Complex_point.dir (Option.get in_dir), t1)
       else if Option.is_some in_control then
         `Ctrl (Option.get in_control)
       else
@@ -1600,7 +1618,7 @@ struct
       if Option.is_some out_curl then
         `Curl (Option.get out_curl, t2)
       else if Option.is_some out_dir then
-        `Dir (Option.get out_dir, t2)
+        `Dir (Complex_point.dir (Option.get out_dir), t2)
       else if Option.is_some out_control then
         `Ctrl (Option.get out_control)
       else
@@ -1630,7 +1648,7 @@ struct
          ?in_control ?out_control
          pt)
   let along dir ?in_tension ?out_tension point =
-    Vect.make 1 (knot ~dir  ?in_tension ?out_tension point)
+    Vect.make 1 (knot ~dir ?in_tension ?out_tension point)
   let left ?in_tension ?out_tension point =
     Vect.make 1 (left_knot  ?in_tension ?out_tension point)
   let right ?in_tension ?out_tension point =
@@ -1677,6 +1695,12 @@ struct
   let ( <-@@ ) contour tension =
     close_with_tension ~no_inflection:true tension contour
 *)
+
+  let ( <.> ) contour f = pointwise f contour
+  let ( <*> ) contour pt = pointwise (flip Complex.mul pt) contour
+  let ( </> ) contour pt = pointwise (flip Complex.div pt) contour
+  let ( <+> ) contour pt = pointwise (flip Complex.add pt) contour
+  let ( <-> ) contour pt = pointwise (flip Complex.sub pt) contour
 end
 
 (*-----------------------------------------------------------------------*)
