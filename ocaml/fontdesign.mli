@@ -472,25 +472,11 @@ sig
   val ( <-@@ ) : t -> float -> t
 *)
 
-  val ( <.> ) :
-    (([> `Ctrl of 'b ] as 'a) * 'b * ([> `Ctrl of 'b ] as 'c))
-      Vect.t -> ('b -> 'b) -> ('a * 'b * 'c) Vect.t
-  val ( <*> ) :
-    (([> `Ctrl of Complex.t ] as 'a) * Complex.t *
-        ([> `Ctrl of Complex.t ] as 'b))
-      Vect.t -> Complex.t -> ('a * Complex.t * 'b) Vect.t
-  val ( </> ) :
-    (([> `Ctrl of Complex.t ] as 'a) * Complex.t *
-        ([> `Ctrl of Complex.t ] as 'b))
-      Vect.t -> Complex.t -> ('a * Complex.t * 'b) Vect.t
-  val ( <+> ) :
-    (([> `Ctrl of Complex.t ] as 'a) * Complex.t *
-        ([> `Ctrl of Complex.t ] as 'b))
-      Vect.t -> Complex.t -> ('a * Complex.t * 'b) Vect.t
-  val ( <-> ) :
-    (([> `Ctrl of Complex.t ] as 'a) * Complex.t *
-        ([> `Ctrl of Complex.t ] as 'b))
-      Vect.t -> Complex.t -> ('a * Complex.t * 'b) Vect.t
+  val ( <.> ) : t -> (Complex.t -> Complex.t) -> t
+  val ( <*> ) : t -> Complex.t -> t
+  val ( </> ) : t -> Complex.t -> t
+  val ( <+> ) : t -> Complex.t -> t
+  val ( <-> ) : t -> Complex.t -> t
 end
 
 (*-----------------------------------------------------------------------*)

@@ -1174,22 +1174,35 @@ struct
   let close ?tol ?in_tension ?out_tension ?tension contour =
     join ?tol ?in_tension ?out_tension ?tension contour contour
 
-  (* knotwise and pointwise mapping. *)
+  (* Knotwise mapping. *)
   let knotwise = Vect.map
+
+  (* Pointwise mapping. *)
   let pointwise f =
     Vect.map
       (fun (incoming, point, outgoing) ->
+        let new_point = f point in
         let new_incoming =
           match incoming with
             | `Ctrl ctrl -> `Ctrl (f ctrl)
+            | `Dir (d,t) ->
+              Complex_point.(
+                let dir_pt = point - d in
+                `Dir (dir (new_point - f dir_pt), t)
+              )
             | _ -> incoming
         in
         let new_outgoing =
           match outgoing with
             | `Ctrl ctrl -> `Ctrl (f ctrl)
+            | `Dir (d,t) ->
+              Complex_point.(
+                let dir_pt = d - point in
+                `Dir (dir (f dir_pt - new_point), t)
+              )
             | _ -> outgoing
         in
-        (new_incoming, f point, new_outgoing)
+        (new_incoming, new_point, new_outgoing)
       )
 
   let join_coincident_knots ?tol contour =
