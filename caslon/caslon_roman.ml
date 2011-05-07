@@ -150,26 +150,6 @@ let enum_resolve_glyphs param = map (fun glyph -> glyph param) (enum_glyphs ())
 
 let huge = 1e100 ;;
 
-(*
-let round_together points =
-  let rec find_min_distance point_list current_min current_index k =
-    match point_list with
-      | [] -> current_index
-      | pt :: remaining ->
-        let d = Complex_point.(norm (round pt - pt)) in
-        if d < current_min then
-          find_min_distance remaining d k (k + 1)
-        else
-          find_min_distance remaining current_min current_index (k + 1)
-  in
-  let min_distance_index = find_min_distance points infinity (-1) 0 in
-  if min_distance_index < 0 then
-    failwith "round_together";
-  let min_distance_pt = List.at points min_distance_index in
-  let vector = Complex_point.(round min_distance_pt - min_distance_pt) in
-  List.map (fun pt -> Complex_point.(round (pt + vector))) points
-*)
-
 let make_end_of_left_serif height bottom_corner_radius top_corner_radius shear_angle =
   let flat_height = height -. bottom_corner_radius -. top_corner_radius in
   let shear_vector = floor ((flat_height -. 1.) *. dtan shear_angle +. 0.5) in
@@ -212,6 +192,33 @@ let make_end_of_right_serif height bottom_corner_radius top_corner_radius shear_
     make_end_of_left_serif height top_corner_radius bottom_corner_radius (-.shear_angle)
   in
   Cubic.(Complex_point.(left_serif <*> rot 180. <+> y' height))
+
+let make_flag
+    ~upper_angle ~lower_angle
+    ~top_corner ~right_point
+    ~left_notch ~left_point
+    ~top_corner_radius ~flag_corner_radius
+    ~top_cupping =
+  Complex_point.(
+    let (flag_corner, _) =
+      find_intersection_of_lines
+        (left_notch, left_notch + rot (180. -. lower_angle))
+        (top_corner, top_corner + rot upper_angle)
+    in
+    let top_point = top_corner + dpolar top_corner_radius (180. +. upper_angle) in
+    let flag_upper = flag_corner + dpolar flag_corner_radius upper_angle in
+    let flag_lower = flag_corner + dpolar flag_corner_radius (-.lower_angle) in
+    let notch_point = left_notch + dpolar 20. (180. -. lower_angle) in
+    let cupping_vector = dpolar top_cupping (upper_angle -. 90.) in
+    Metacubic.(
+      point left_point
+      <@> point notch_point
+      <@~.> 1.5 <.~@> along (rot (180. -. lower_angle)) flag_lower
+      <@> point ~out_control:(x' 0.35 * flag_upper + x' 0.65 * top_point + cupping_vector) flag_upper
+      <@> point ~in_control:(top_point - x' (0.3 *. top_corner_radius)) top_point
+      <@-> point ~in_dir:(neg i) ~out_control:(left_point - i) right_point
+    )
+  )
 
 (*-----------------------------------------------------------------------*)
 
@@ -405,48 +412,69 @@ let letter_l_contours glyph_name p =
 
   Tools.(Cubic.(Complex_point.(
 
-    let stem_width = p.lc_stem_width +. 4. in
+    let stem_width = p.lc_stem_width +. 3. in
     let serif_height = p.lc_serif_height in
     let left_pos = (-0.5) *. stem_width in
     let right_pos = 0.5 *. stem_width in
-    let serif_to_top = p.ascender_height -. serif_height in
+    let ascender_height = p.ascender_height +. 2. in
+    let serif_to_top = ascender_height -. serif_height in
     let left_serif_width = 105. in
     let right_serif_width = 85. in
-    
+
     let serif_end_angle () = p.serif_end_angle rand in
     let corner_radius () = p.corner_radius rand in
     let left_serif_end =
-      Cubic.(make_end_of_left_serif (serif_height +. 3.)
+      Cubic.(make_end_of_left_serif (serif_height +. 4.)
                (corner_radius ()) (corner_radius ()) (serif_end_angle ())
-             <+> x' left_pos - x' left_serif_width - y' 2.)
+             <+> x' left_pos - x' left_serif_width - y' 3.)
                                   |> Metacubic.of_cubic |> Metacubic.set_dirs
     in
     let right_serif_end =
-      Cubic.(make_end_of_right_serif (serif_height +. 3.)
+      Cubic.(make_end_of_right_serif (serif_height +. 4.)
                (corner_radius ()) (corner_radius ()) (serif_end_angle ())
-             <+> x' right_pos + x' right_serif_width - y' 2.)
+             <+> x' right_pos + x' right_serif_width - y' 3.)
                                   |> Metacubic.of_cubic |> Metacubic.set_dirs
+    in
+    let top_cupping = 2. in
+    let top_corner_radius = 15. in
+    let flag_corner_radius = 20. in
+    let left_notch = x' left_pos + y' serif_height + (x_shear (y'(serif_to_top -. 105.)) (-0.5)) in
+    let left_point = x' left_pos + y' serif_height + (x_shear (y'(serif_to_top -. 105. -. 40.)) (-0.5)) in
+    let top_corner = x' right_pos + y' serif_height + (x_shear (y' serif_to_top) 1.2) in
+    let right_point = x' right_pos + y' serif_height + (x_shear (y'(serif_to_top -. top_corner_radius)) 1.2) in
+    let upper_angle = 20. in
+    let lower_angle = 30. in
+    let flag =
+      make_flag
+        ~upper_angle ~lower_angle
+        ~top_corner ~right_point
+        ~left_notch ~left_point
+        ~top_corner_radius ~flag_corner_radius
+        ~top_cupping
     in
     let left_side =
       Metacubic.(
         left zero
-        <@-> left_serif_end
-        <@-> right (x' left_pos + y' serif_height - x' 20.)
+        <@-.> 4. <.-@> left_serif_end
+        <@-> right (x' left_pos + y' serif_height - x' 25.)
         <@-> up (x' left_pos + y' serif_height + y' 45.)
-        <@> point (x' left_pos + y' serif_height + (x_shear (y' serif_to_top) (-0.5)))
+        <@-> point left_point
       )
     in
+    let right_stem_point = x' right_pos + y' serif_height + y' 45. in
     let right_side =
       Metacubic.(
-        point (x' right_pos + y' serif_height + (x_shear (y' serif_to_top) 1.0))
-        <@-> down (x' right_pos + y' serif_height + y' 45.)
+        point ~in_dir:(neg i) ~out_control:(right_point - y' 20.) right_point
+        <@> point ~in_control:(right_stem_point + y'(0.7 *. serif_to_top)) ~out_dir:(neg i) right_stem_point
         <@-> right (x' right_pos + y' serif_height + x' 20.)
         <@-> right_serif_end
-        <@-> left zero
+        <@-.> 4. <.-@> left zero
       )
     in
     let contour =
-      Metacubic.to_cubic right_side <@> Metacubic.to_cubic left_side |> close <.> round
+      Metacubic.(
+        to_cubic (flag <@> right_side <@> left_side)
+      ) <.> round
     in
     let (lower_left, _) = bounds contour in
     [contour <-> x' (re lower_left)]
