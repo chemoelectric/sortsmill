@@ -418,8 +418,11 @@ sig
   val set_outgoing_dir : ?tol:float -> ?guess:bool -> ?dir:Complex.t -> t -> t
   val set_dirs : ?tol:float -> ?guess:bool ->
     ?in_dir:Complex.t -> ?out_dir:Complex.t -> t -> t
+(*
   val knotwise : (knot -> knot) -> t -> t
   val pointwise : (Complex.t -> Complex.t) -> t -> t
+*)
+  val rev : t -> t
   val join_coincident_knots : ?tol:float -> t -> t
   val to_cubic : ?tol:float -> t -> Cubic.t
   val of_cubic : Cubic.t -> t
@@ -471,12 +474,13 @@ sig
   val ( <~@@ ) : t -> float -> t
   val ( <-@@ ) : t -> float -> t
 *)
-
+(*
   val ( <.> ) : t -> (Complex.t -> Complex.t) -> t
   val ( <*> ) : t -> Complex.t -> t
   val ( </> ) : t -> Complex.t -> t
   val ( <+> ) : t -> Complex.t -> t
   val ( <-> ) : t -> Complex.t -> t
+*)
 end
 
 (*-----------------------------------------------------------------------*)

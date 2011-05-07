@@ -56,11 +56,17 @@ struct
     curve_overshoot : float;
     curve_undershoot : float;
     e_crossbar_height : float;
+    ascender_height : float;
     lc_stem_width : float;
+    lc_serif_height : float;
+
+    corner_radius : Random.State.t -> float;
+    serif_end_angle : Random.State.t -> float;
   }
 
   module type Tools_module =
   sig
+    val rand : Random.State.t
     val width : float
     val height : float
     val left_overlap : float
@@ -77,8 +83,9 @@ struct
   end
 
   let make_tools
-      ~width
-      ~height
+      ~glyph_name
+      ?(width = nan)
+      ?(height = nan)
       ?(left_overlap = 0.)
       ?(overshoot = 0.)
       ?(undershoot = 0.)
@@ -87,6 +94,11 @@ struct
 
     Complex_point.(
       let p = param in
+      let rand =
+        Random.State.make
+          (Array.of_list (int_of_float p.design_size :: p.os2_weight ::
+                            List.map Char.code (String.explode glyph_name)))
+      in
       let extended_width = width *. (1. +. p.extension) in
       let xrel v = v *. extended_width in
       let yrel v = v *. height in
@@ -99,6 +111,7 @@ struct
 
       let module Tools =
           struct
+            let rand = rand
             let width = extended_width
             let height = height
             let left_overlap = left_overlap
@@ -137,16 +150,80 @@ let enum_resolve_glyphs param = map (fun glyph -> glyph param) (enum_glyphs ())
 
 let huge = 1e100 ;;
 
+(*
+let round_together points =
+  let rec find_min_distance point_list current_min current_index k =
+    match point_list with
+      | [] -> current_index
+      | pt :: remaining ->
+        let d = Complex_point.(norm (round pt - pt)) in
+        if d < current_min then
+          find_min_distance remaining d k (k + 1)
+        else
+          find_min_distance remaining current_min current_index (k + 1)
+  in
+  let min_distance_index = find_min_distance points infinity (-1) 0 in
+  if min_distance_index < 0 then
+    failwith "round_together";
+  let min_distance_pt = List.at points min_distance_index in
+  let vector = Complex_point.(round min_distance_pt - min_distance_pt) in
+  List.map (fun pt -> Complex_point.(round (pt + vector))) points
+*)
+
+let make_end_of_left_serif height bottom_corner_radius top_corner_radius shear_angle =
+  let flat_height = height -. bottom_corner_radius -. top_corner_radius in
+  let shear_vector = floor ((flat_height -. 1.) *. dtan shear_angle +. 0.5) in
+  Complex_point.(Metacubic.(
+    let point1 = Complex_point.(y' bottom_corner_radius) in
+    let point2 = Complex_point.(point1 + x' shear_vector + y' flat_height) in
+    let metacubic =
+      if Float.(re point2 = re point1) then
+        (left (x' bottom_corner_radius)
+         <@-> up point1
+         <@-.> huge <.-@> up point2
+         <@-> right (x' top_corner_radius + y' height))
+      else
+        let bottom_ratio = x'(bottom_corner_radius /. flat_height) in
+        let top_ratio = x'(top_corner_radius /. flat_height) in
+        let bottom_corner_vector = bottom_ratio * (point1 - point2) in
+        let top_corner_vector = top_ratio * (point2 - point1) in
+        let bottom_corner = point1 + bottom_corner_vector in
+        let top_corner = point2 + top_corner_vector in
+        let start_point = round (bottom_corner + x' bottom_corner_radius) in
+        let end_point = round (top_corner + x' top_corner_radius) in
+        if Float.(re point1 < re point2) then
+          (left start_point
+           <@-> point ~in_dir:i ~out_control:(point1 + i) point1
+           <@> point ~in_control:(point1 + i) ~out_dir:(point2 - point1 - i) point2
+           <@-> right end_point)
+        else
+          (left start_point
+           <@-> point ~in_dir:(point2 - i - point1) ~out_control:(point2 - i) point1
+           <@> point ~in_control:(point2 - i) ~out_dir:i point2
+           <@-> right end_point)
+    in
+    let cubic = to_cubic metacubic in
+    let offset = Float.(floor (0.5 *. (re point1 -. re point2) +. 0.5)) in
+    Cubic.(cubic <+> x' offset <.> round)
+  ))
+
+let make_end_of_right_serif height bottom_corner_radius top_corner_radius shear_angle =
+  let left_serif =
+    make_end_of_left_serif height top_corner_radius bottom_corner_radius (-.shear_angle)
+  in
+  Cubic.(Complex_point.(left_serif <*> rot 180. <+> y' height))
+
 (*-----------------------------------------------------------------------*)
 
 (* The letter "c" *)
 
-let letter_c_contours p =
+let letter_c_contours glyph_name p =
 
   let tools =
     let overshoot = p.curve_overshoot +. 3. in
     let undershoot = p.curve_undershoot +. 3. in
     make_tools
+      ~glyph_name
       ~width:320.
       ~height:(p.x_height +. undershoot +. overshoot)
       ~undershoot:undershoot
@@ -205,8 +282,8 @@ let letter_c_contours p =
       let (x_times, y_times) = curve_extrema_and_inflections ~pos:Int.(Vect.length outer - 1) c in
       let y_time = y_times.(0) in
       let x_time = x_times.(0) /. y_time in
-      let (c2,c3) = subdivide c (float_of_int (Vect.length outer) -. 1. +. y_time) in
-      let (c1,c2) = subdivide c2 (float_of_int (Vect.length outer) -. 1. +. x_time) in
+      let (c2,c3) = subdivide c (float_of_int Int.(Vect.length outer - 1) +. y_time) in
+      let (c1,c2) = subdivide c2 (float_of_int Int.(Vect.length outer - 1) +. x_time) in
       let c = c1 <@> c2 <@> c3 <-@@ 1. in
       c <.> round
     in
@@ -218,12 +295,13 @@ let letter_c_contours p =
 
 (* The letter "e" *)
 
-let letter_e_contours p =
+let letter_e_contours glyph_name p =
 
   let tools =
     let overshoot = p.curve_overshoot +. 2. in
     let undershoot = p.curve_undershoot +. 2. in
     make_tools
+      ~glyph_name
       ~width:354.
       ~height:(p.x_height +. undershoot +. overshoot)
       ~undershoot:p.curve_undershoot
@@ -303,7 +381,7 @@ let letter_e_contours p =
           to_cubic (
             right (crossbar_top1 + x' crossbar_fillet_size) (* crossbar top left *)
             <@-.> huge <.-@> right (crossbar_top0 - x' crossbar_fillet_size) (* crossbar top right *)
-            <@-> set_dirs (of_cubic eye_upper) |> close
+            <@-> set_dirs ~guess:false (of_cubic eye_upper) |> close
           )
         ) <.> round
     in
@@ -313,14 +391,85 @@ let letter_e_contours p =
 
 (*.......................................................................*)
 
+(* The letter "l" *)
+
+let letter_l_contours glyph_name p =
+
+  let tools =
+    make_tools
+      ~glyph_name
+      ~param:p
+      ()
+  in
+  let module Tools = (val tools : Tools_module) in
+
+  Tools.(Cubic.(Complex_point.(
+
+    let stem_width = p.lc_stem_width +. 4. in
+    let serif_height = p.lc_serif_height in
+    let bracket_width = p.lc_serif_height in
+    let left_pos = (-0.5) *. stem_width in
+    let right_pos = 0.5 *. stem_width in
+    let serif_to_top = p.ascender_height -. serif_height in
+    let left_serif_width = 105. in
+    let right_serif_width = 85. in
+    
+    let rand_init =
+      int_of_float p.design_size :: p.os2_weight ::
+        List.map Char.code (String.explode "l")
+    in
+    let rand = Random.State.make (Array.of_list rand_init) in
+    let rand_angle () = p.serif_end_angle rand in
+    let rand_radius () = p.corner_radius rand in
+    let left_serif_end =
+      Cubic.(make_end_of_left_serif (serif_height +. 3.)
+               (rand_radius ()) (rand_radius ()) (rand_angle ())
+             <+> x' left_pos - x' left_serif_width - y' 2.)
+                                  |> Metacubic.of_cubic |> Metacubic.set_dirs
+    in
+    let right_serif_end =
+      Cubic.(make_end_of_right_serif (serif_height +. 3.)
+               (rand_radius ()) (rand_radius ()) (rand_angle ())
+             <+> x' right_pos + x' right_serif_width - y' 2.)
+                                  |> Metacubic.of_cubic |> Metacubic.set_dirs
+    in
+    let left_side =
+      Metacubic.(
+        left zero
+        <@-> left_serif_end
+        <@-> right (x' left_pos + y' serif_height - x' 20.)
+        <@-> up (x' left_pos + y' serif_height + y' 45.)
+        <@> point (x' left_pos + y' serif_height + (x_shear (y' serif_to_top) (-0.5)))
+      )
+    in
+    let right_side =
+      Metacubic.(
+        point (x' right_pos + y' serif_height + (x_shear (y' serif_to_top) 1.0))
+        <@-> down (x' right_pos + y' serif_height + y' 45.)
+        <@-> right (x' right_pos + y' serif_height + x' 20.)
+        <@-> right_serif_end
+        <@-> left zero
+      )
+    in
+    let contour =
+      Metacubic.to_cubic right_side <@> Metacubic.to_cubic left_side |> close <.> round
+    in
+    let (lower_left, _) = bounds contour in
+    [contour <-> x' (re lower_left)]
+  )))
+;;
+
+(*.......................................................................*)
+
 (* The letter "o" *)
 
-let letter_o_contours p =
+let letter_o_contours glyph_name p =
 
   let tools =
     let overshoot = p.curve_overshoot in
     let undershoot = p.curve_undershoot in
     make_tools
+      ~glyph_name
       ~width:383.
       ~height:(p.x_height +. undershoot +. overshoot)
       ~undershoot:undershoot
@@ -369,7 +518,7 @@ add_glyph "c"
   Glyph.(fun p -> {
     empty with
       name = "c";
-      contours = letter_c_contours p;
+      contours = letter_c_contours "c" p;
       lsb = Some 0.;
       rsb = Some 50.;
   })
@@ -379,7 +528,17 @@ add_glyph "e"
   Glyph.(fun p -> {
     empty with
       name = "e";
-      contours = letter_e_contours p;
+      contours = letter_e_contours "e" p;
+      lsb = Some 0.;
+      rsb = Some 50.;
+  })
+;;
+
+add_glyph "l"
+  Glyph.(fun p -> {
+    empty with
+      name = "l";
+      contours = letter_l_contours "l" p;
       lsb = Some 0.;
       rsb = Some 50.;
   })
@@ -389,7 +548,7 @@ add_glyph "o"
   Glyph.(fun p -> {
     empty with
       name = "o";
-      contours = letter_o_contours p;
+      contours = letter_o_contours "o" p;
       lsb = Some 0.;
       rsb = Some 50.;
   })

@@ -49,7 +49,13 @@ let param = {
   curve_overshoot = 10.;
   curve_undershoot = 10.;
   e_crossbar_height = 258.;
+  ascender_height = 700.;
   lc_stem_width = 57.;
+  lc_serif_height = 24.;
+
+  serif_end_angle = (fun state -> float_of_int (Random.State.int state 101 - 50) /. 9.);
+  corner_radius = (fun state -> float_of_int (Random.State.int state 3 + 4));
+
 (*
   contrast = 0.1;
   extension = -0.22;

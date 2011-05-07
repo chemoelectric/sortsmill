@@ -991,9 +991,8 @@ end
 
 module Metacubic =
 struct
-  (* FIXME: 1. Use Vect.modify instead of Vect.set where doing so
-     improves things.  2. Subroutinize the code more, and otherwise
-     increase its terseness. *)
+  (* FIXME: Subroutinize the code more, and otherwise increase its
+     terseness. *)
 
   type knot_side =
     [
@@ -1121,15 +1120,16 @@ struct
   let set_incoming_tension ?tol contour tension =
     if is_closed ?tol contour then
       failwith "set_incoming_tension";
-    let (incoming, point, outgoing) = Vect.at contour 0 in
-    Vect.set contour 0 (set_knot_side_tension incoming tension, point, outgoing)
+    Vect.modify contour 0
+      (fun (incoming, point, outgoing) ->
+        set_knot_side_tension incoming tension, point, outgoing)
 
   let set_outgoing_tension ?tol contour tension =
     if is_closed ?tol contour then
       failwith "set_outgoing_tension";
-    let k = Vect.length contour - 1 in
-    let (incoming, point, outgoing) = Vect.at contour k in
-    Vect.set contour k (incoming, point, set_knot_side_tension outgoing tension)
+    Vect.modify contour (Vect.length contour - 1)
+      (fun (incoming, point, outgoing) ->
+        incoming, point, set_knot_side_tension outgoing tension)
 
   let join ?tol ?in_tension ?out_tension ?tension contour1 contour2 =
     if (Option.is_some tension && Option.is_some in_tension) ||
@@ -1174,6 +1174,8 @@ struct
   let close ?tol ?in_tension ?out_tension ?tension contour =
     join ?tol ?in_tension ?out_tension ?tension contour contour
 
+(* FIXME: May need to restrict these to certain kinds of transformations.
+
   (* Knotwise mapping. *)
   let knotwise = Vect.map
 
@@ -1185,24 +1187,36 @@ struct
         let new_incoming =
           match incoming with
             | `Ctrl ctrl -> `Ctrl (f ctrl)
-            | `Dir (d,t) ->
-              Complex_point.(
-                let dir_pt = point - d in
-                `Dir (dir (new_point - f dir_pt), t)
-              )
-            | _ -> incoming
+            | `Dir (d,t) -> FIXME
+            | `Curl _ | `Open _ -> incoming
         in
         let new_outgoing =
           match outgoing with
             | `Ctrl ctrl -> `Ctrl (f ctrl)
-            | `Dir (d,t) ->
-              Complex_point.(
-                let dir_pt = d - point in
-                `Dir (dir (f dir_pt - new_point), t)
-              )
-            | _ -> outgoing
+            | `Dir (d,t) -> FIXME
+            | `Curl _ | `Open _ -> outgoing
         in
         (new_incoming, new_point, new_outgoing)
+      )
+*)
+
+  let rev contour =
+    let n = Vect.length contour in
+    Vect.init
+      n
+      (fun k ->
+        let (incoming, point, outgoing) = Vect.at contour (n - k - 1) in
+        let new_incoming =
+          match outgoing with
+            | `Ctrl _ | `Curl _ | `Open _ -> outgoing
+            | `Dir (d,t) -> `Dir (Complex.neg d, t)
+        in
+        let new_outgoing =
+          match incoming with
+            | `Ctrl _ | `Curl _ | `Open _ -> incoming
+            | `Dir (d,t) -> `Dir (Complex.neg d, t)
+        in
+        (new_incoming, point, new_outgoing)
       )
 
   let join_coincident_knots ?tol contour =
@@ -1530,14 +1544,12 @@ struct
 
   let set_incoming_dir ?tol ?(guess = true) ?dir contour =
     let contour = if guess then guess_dirs ?tol contour else contour in
-    let first_knot = Vect.at contour 0 in
-    Vect.set contour 0 (set_knot_incoming_dir ?tol ?dir first_knot)
+    Vect.modify contour 0 (fun knot -> set_knot_incoming_dir ?tol ?dir knot)
 
   let set_outgoing_dir ?tol ?(guess = true) ?dir contour =
     let contour = if guess then guess_dirs ?tol contour else contour in
     let k = Vect.length contour - 1 in
-    let last_knot = Vect.at contour k in
-    Vect.set contour k (set_knot_outgoing_dir ?tol ?dir last_knot)
+    Vect.modify contour k (fun knot -> set_knot_outgoing_dir ?tol ?dir knot)
 
   let set_dirs ?tol ?(guess = true) ?in_dir ?out_dir contour =
     let contour = if guess then guess_dirs ?tol contour else contour in
@@ -1709,11 +1721,13 @@ struct
     close_with_tension ~no_inflection:true tension contour
 *)
 
+(* FIXME: These depend on how "pointwise" gets repaired.
   let ( <.> ) contour f = pointwise f contour
   let ( <*> ) contour pt = pointwise (flip Complex.mul pt) contour
   let ( </> ) contour pt = pointwise (flip Complex.div pt) contour
   let ( <+> ) contour pt = pointwise (flip Complex.add pt) contour
   let ( <-> ) contour pt = pointwise (flip Complex.sub pt) contour
+*)
 end
 
 (*-----------------------------------------------------------------------*)
