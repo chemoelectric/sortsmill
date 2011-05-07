@@ -407,29 +407,23 @@ let letter_l_contours glyph_name p =
 
     let stem_width = p.lc_stem_width +. 4. in
     let serif_height = p.lc_serif_height in
-    let bracket_width = p.lc_serif_height in
     let left_pos = (-0.5) *. stem_width in
     let right_pos = 0.5 *. stem_width in
     let serif_to_top = p.ascender_height -. serif_height in
     let left_serif_width = 105. in
     let right_serif_width = 85. in
     
-    let rand_init =
-      int_of_float p.design_size :: p.os2_weight ::
-        List.map Char.code (String.explode "l")
-    in
-    let rand = Random.State.make (Array.of_list rand_init) in
-    let rand_angle () = p.serif_end_angle rand in
-    let rand_radius () = p.corner_radius rand in
+    let serif_end_angle () = p.serif_end_angle rand in
+    let corner_radius () = p.corner_radius rand in
     let left_serif_end =
       Cubic.(make_end_of_left_serif (serif_height +. 3.)
-               (rand_radius ()) (rand_radius ()) (rand_angle ())
+               (corner_radius ()) (corner_radius ()) (serif_end_angle ())
              <+> x' left_pos - x' left_serif_width - y' 2.)
                                   |> Metacubic.of_cubic |> Metacubic.set_dirs
     in
     let right_serif_end =
       Cubic.(make_end_of_right_serif (serif_height +. 3.)
-               (rand_radius ()) (rand_radius ()) (rand_angle ())
+               (corner_radius ()) (corner_radius ()) (serif_end_angle ())
              <+> x' right_pos + x' right_serif_width - y' 2.)
                                   |> Metacubic.of_cubic |> Metacubic.set_dirs
     in
