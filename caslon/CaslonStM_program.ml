@@ -48,13 +48,29 @@ let param = {
   x_height = 399.;
   curve_overshoot = 10.;
   curve_undershoot = 10.;
+  flag_overshoot = 8.;
   e_crossbar_height = 258.;
-  ascender_height = 702.;
+  i_dot_height = 623.;
+  ascender_height = 697.;
   lc_stem_width = 57.;
   lc_serif_height = 24.;
 
   serif_end_angle = (fun state -> float_of_int (Random.State.int state 101 - 50) /. 9.);
   corner_radius = (fun state -> float_of_int (Random.State.int state 4 + 6));
+  left_bracket =
+    (fun state -> {
+      bracket_horiz = float_of_int (Random.State.int state 21 + 10);
+      bracket_vert = 70.;
+      bracket_horiz_tension = 0.01 *. float_of_int (Random.State.int state 51 + 100);
+      bracket_vert_tension = 0.01 *. float_of_int (Random.State.int state 51 + 100);
+    } );
+  right_bracket =
+    (fun state -> {
+      bracket_horiz = float_of_int (Random.State.int state 21 + 10);
+      bracket_vert = 70.;
+      bracket_horiz_tension = 0.01 *. float_of_int (Random.State.int state 51 + 100);
+      bracket_vert_tension = 0.01 *. float_of_int (Random.State.int state 51 + 100);
+    } );
 
 (*
   contrast = 0.1;

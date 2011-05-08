@@ -31,6 +31,13 @@ open Fontdesign
 
 module Param =
 struct
+  type bracket = {
+    bracket_horiz : float;
+    bracket_vert : float;
+    bracket_horiz_tension : float;
+    bracket_vert_tension : float;
+  }
+
   type t = {
     version : string;
 
@@ -55,13 +62,17 @@ struct
     x_height : float;
     curve_overshoot : float;
     curve_undershoot : float;
+    flag_overshoot : float;
     e_crossbar_height : float;
+    i_dot_height : float;
     ascender_height : float;
     lc_stem_width : float;
     lc_serif_height : float;
 
     corner_radius : Random.State.t -> float;
     serif_end_angle : Random.State.t -> float;
+    left_bracket: Random.State.t -> bracket;
+    right_bracket: Random.State.t -> bracket;
   }
 
   module type Tools_module =
@@ -150,6 +161,13 @@ let enum_resolve_glyphs param = map (fun glyph -> glyph param) (enum_glyphs ())
 
 let huge = 1e100 ;;
 
+let make_dot diameter =
+  Complex_point.(Metacubic.(
+    let radius = 0.5 *. diameter in
+    (up (x'(-.radius)) <@> right (y' radius)
+     <@> down (x' radius) <@> left (y'(-.radius)) |> close)
+  ))
+
 let make_end_of_left_serif height bottom_corner_radius top_corner_radius shear_angle =
   let flat_height = height -. bottom_corner_radius -. top_corner_radius in
   let shear_vector = floor ((flat_height -. 1.) *. dtan shear_angle +. 0.5) in
@@ -194,26 +212,23 @@ let make_end_of_right_serif height bottom_corner_radius top_corner_radius shear_
   Cubic.(Complex_point.(left_serif <*> rot 180. <+> y' height))
 
 let make_flag
-    ~upper_angle ~lower_angle
     ~top_corner ~right_point
     ~left_notch ~left_point
-    ~top_corner_radius ~flag_corner_radius
+    ~flag_corner
+    ~top_corner_radius ~flag_corner_radius (* Radii from corner to on-curve point. *)
     ~top_cupping =
   Complex_point.(
-    let (flag_corner, _) =
-      find_intersection_of_lines
-        (left_notch, left_notch + rot (180. -. lower_angle))
-        (top_corner, top_corner + rot upper_angle)
-    in
-    let top_point = top_corner + dpolar top_corner_radius (180. +. upper_angle) in
-    let flag_upper = flag_corner + dpolar flag_corner_radius upper_angle in
-    let flag_lower = flag_corner + dpolar flag_corner_radius (-.lower_angle) in
-    let notch_point = left_notch + dpolar 20. (180. -. lower_angle) in
-    let cupping_vector = dpolar top_cupping (upper_angle -. 90.) in
+    let lower_dir = dir (flag_corner - left_notch) in
+    let upper_dir = dir (top_corner - flag_corner) in
+    let top_point = top_corner - x' top_corner_radius * upper_dir in
+    let flag_upper = flag_corner + x' flag_corner_radius * upper_dir in
+    let flag_lower = flag_corner - x' flag_corner_radius * lower_dir in
+    let notch_point = left_notch + x' 20. * lower_dir in
+    let cupping_vector = x' top_cupping * upper_dir * rot (-.90.) in
     Metacubic.(
       point left_point
       <@> point notch_point
-      <@~.> 1.5 <.~@> along (rot (180. -. lower_angle)) flag_lower
+      <@~.> 1.5 <.~@> along lower_dir flag_lower
       <@> point ~out_control:(x' 0.35 * flag_upper + x' 0.65 * top_point + cupping_vector) flag_upper
       <@> point ~in_control:(top_point - x' (0.3 *. top_corner_radius)) top_point
       <@-> point ~in_dir:(neg i) ~out_control:(left_point - i) right_point
@@ -398,13 +413,25 @@ let letter_e_contours glyph_name p =
 
 (*.......................................................................*)
 
-(* The letter "l" *)
+(* Letters such as "dotlessi" and "l" *)
 
-let letter_l_contours glyph_name p =
+let contours_similar_to_letter_l
+    ~height
+    ~left_side_shear
+    ~right_side_shear
+    ~left_serif_width
+    ~right_serif_width
+    ~left_bracket
+    ~right_bracket
+    ~extra_stem_width
+    ~top_cupping
+    glyph_name p =
 
   let tools =
     make_tools
       ~glyph_name
+      ~height
+      ~overshoot:p.flag_overshoot
       ~param:p
       ()
   in
@@ -412,14 +439,12 @@ let letter_l_contours glyph_name p =
 
   Tools.(Cubic.(Complex_point.(
 
-    let stem_width = p.lc_stem_width +. 3. in
+    let stem_width = p.lc_stem_width +. extra_stem_width in
     let serif_height = p.lc_serif_height in
     let left_pos = (-0.5) *. stem_width in
     let right_pos = 0.5 *. stem_width in
-    let ascender_height = p.ascender_height +. 2. in
-    let serif_to_top = ascender_height -. serif_height in
-    let left_serif_width = 105. in
-    let right_serif_width = 85. in
+    let overshot_height = height +. overshoot in
+    let serif_to_top = overshot_height -. serif_height in
 
     let serif_end_angle () = p.serif_end_angle rand in
     let corner_radius () = p.corner_radius rand in
@@ -435,38 +460,54 @@ let letter_l_contours glyph_name p =
              <+> x' right_pos + x' right_serif_width - y' 3.)
                                   |> Metacubic.of_cubic |> Metacubic.set_dirs
     in
-    let top_cupping = 2. in
     let top_corner_radius = 15. in
     let flag_corner_radius = 20. in
-    let left_notch = x' left_pos + y' serif_height + (x_shear (y'(serif_to_top -. 105.)) (-0.5)) in
-    let left_point = x' left_pos + y' serif_height + (x_shear (y'(serif_to_top -. 105. -. 40.)) (-0.5)) in
-    let top_corner = x' right_pos + y' serif_height + (x_shear (y' serif_to_top) 1.2) in
-    let right_point = x' right_pos + y' serif_height + (x_shear (y'(serif_to_top -. top_corner_radius)) 1.2) in
-    let upper_angle = 20. in
-    let lower_angle = 30. in
+    let left_notch =
+      x' left_pos + y' serif_height + (x_shear (y'(serif_to_top -. 105.)) left_side_shear)
+    in
+    let left_point =
+      x' left_pos + y' serif_height + (x_shear (y'(serif_to_top -. 105. -. 40.)) left_side_shear)
+    in
+    let top_corner =
+      x' right_pos + y' serif_height + (x_shear (y' serif_to_top) right_side_shear)
+    in
+    let right_point =
+      x' right_pos + y' serif_height + (x_shear (y'(serif_to_top -. top_corner_radius)) right_side_shear)
+    in
+    let flag_corner =
+      x'(re left_notch -. 70.) + y'(im top_corner -. 58.)
+    in
     let flag =
       make_flag
-        ~upper_angle ~lower_angle
         ~top_corner ~right_point
         ~left_notch ~left_point
+        ~flag_corner
         ~top_corner_radius ~flag_corner_radius
         ~top_cupping
     in
+    let leftbrack = left_bracket rand in
+    let rightbrack = right_bracket rand in
     let left_side =
       Metacubic.(
         left zero
         <@-.> 4. <.-@> left_serif_end
-        <@-> right (x' left_pos + y' serif_height - x' 25.)
-        <@-> up (x' left_pos + y' serif_height + y' 45.)
+        <@-> right (x' left_pos + y' serif_height - x' leftbrack.bracket_horiz)
+        <@--.>
+          (leftbrack.bracket_horiz_tension,
+           leftbrack.bracket_vert_tension)
+        <.--@> up (x' left_pos + y' serif_height + y' leftbrack.bracket_vert)
         <@-> point left_point
       )
     in
-    let right_stem_point = x' right_pos + y' serif_height + y' 45. in
+    let right_stem_point = x' right_pos + y' serif_height + y' rightbrack.bracket_vert in
     let right_side =
       Metacubic.(
         point ~in_dir:(neg i) ~out_control:(right_point - y' 20.) right_point
         <@> point ~in_control:(right_stem_point + y'(0.7 *. serif_to_top)) ~out_dir:(neg i) right_stem_point
-        <@-> right (x' right_pos + y' serif_height + x' 20.)
+        <@--.>
+          (rightbrack.bracket_vert_tension,
+           rightbrack.bracket_horiz_tension)
+        <.--@> right (x' right_pos + y' serif_height + x' rightbrack.bracket_horiz)
         <@-> right_serif_end
         <@-.> 4. <.-@> left zero
       )
@@ -476,10 +517,68 @@ let letter_l_contours glyph_name p =
         to_cubic (flag <@> right_side <@> left_side)
       ) <.> round
     in
-    let (lower_left, _) = bounds contour in
-    [contour <-> x' (re lower_left)]
+    [contour]
   )))
 ;;
+
+(*.......................................................................*)
+
+(* The letter "dotlessi" *)
+
+let letter_dotlessi_contours glyph_name p =
+  contours_similar_to_letter_l
+    ~height:(p.x_height +. p.flag_overshoot)
+    ~left_side_shear:0.
+    ~right_side_shear:1.2
+    ~left_serif_width:65.
+    ~right_serif_width:60.
+    ~left_bracket:(fun state ->
+      let lbrack = p.left_bracket state in
+      { lbrack with bracket_horiz = lbrack.bracket_horiz +. 5. }
+    )
+    ~right_bracket:p.left_bracket
+    ~extra_stem_width:0.
+    ~top_cupping:4.
+    glyph_name p
+
+(*.......................................................................*)
+
+(* The letter "i" *)
+
+let letter_i_contours glyph_name p =
+
+  let tools =
+    make_tools
+      ~glyph_name
+      ~param:p
+      ()
+  in
+  let module Tools = (val tools : Tools_module) in
+
+  Tools.(Cubic.(Complex_point.(
+    let dot_contour =
+      Metacubic.to_cubic (make_dot 108.) <+> y' p.i_dot_height - x' 10.
+    in
+    letter_dotlessi_contours glyph_name p @ [dot_contour]
+  )))
+;;
+
+(*.......................................................................*)
+
+(* The letter "l" *)
+
+let letter_l_contours glyph_name p =
+  contours_similar_to_letter_l
+    ~height:(p.ascender_height +. 2.)
+    ~left_side_shear:(-0.5)
+    ~right_side_shear:1.2
+    ~left_serif_width:105.
+    ~right_serif_width:85.
+    ~left_bracket:p.left_bracket
+    ~right_bracket:p.left_bracket
+    ~extra_stem_width:3.
+    ~top_cupping:2.
+    glyph_name p
 
 (*.......................................................................*)
 
@@ -551,6 +650,26 @@ add_glyph "e"
     empty with
       name = "e";
       contours = letter_e_contours "e" p;
+      lsb = Some 0.;
+      rsb = Some 50.;
+  })
+;;
+
+add_glyph "dotlessi"
+  Glyph.(fun p -> {
+    empty with
+      name = "dotlessi";
+      contours = letter_dotlessi_contours "dotlessi" p;
+      lsb = Some 0.;
+      rsb = Some 50.;
+  })
+;;
+
+add_glyph "i"
+  Glyph.(fun p -> {
+    empty with
+      name = "i";
+      contours = letter_i_contours "i" p;
       lsb = Some 0.;
       rsb = Some 50.;
   })
