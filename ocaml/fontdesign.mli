@@ -109,6 +109,10 @@ sig
   val zero : t
   val one : t
   val i : t
+  val upward : t
+  val downward : t
+  val leftward : t
+  val rightward : t
   val re : t -> float'
   val im : t -> float'
   val neg : t -> t
@@ -444,11 +448,6 @@ sig
     ?in_dir:Complex.t -> ?out_dir:Complex.t -> ?dir:Complex.t ->
     ?in_control:Complex.t -> ?out_control:Complex.t ->
     Complex.t -> t
-  val along : Complex.t -> ?in_tension:float -> ?out_tension:float -> Complex.t -> t
-  val left : ?in_tension:float -> ?out_tension:float -> Complex.t -> t
-  val right : ?in_tension:float -> ?out_tension:float -> Complex.t -> t
-  val up : ?in_tension:float -> ?out_tension:float -> Complex.t -> t
-  val down : ?in_tension:float -> ?out_tension:float -> Complex.t -> t
 
   val ( <@> ) : t -> t -> t
 

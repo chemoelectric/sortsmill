@@ -64,6 +64,8 @@ struct
     curve_undershoot : float;
     flag_overshoot : float;
     e_crossbar_height : float;
+    t_crossbar_height : float;
+    t_top_height : float;
     i_dot_height : float;
     ascender_height : float;
     lc_stem_width : float;
@@ -164,8 +166,8 @@ let huge = 1e100 ;;
 let make_dot diameter =
   Complex_point.(Metacubic.(
     let radius = 0.5 *. diameter in
-    (up (x'(-.radius)) <@> right (y' radius)
-     <@> down (x' radius) <@> left (y'(-.radius)) |> close)
+    (point ~dir:upward (x'(-.radius)) <@> point ~dir:rightward (y' radius)
+     <@> point ~dir:downward (x' radius) <@> point ~dir:leftward (y'(-.radius)) |> close)
   ))
 
 let make_end_of_left_serif height bottom_corner_radius top_corner_radius shear_angle =
@@ -176,10 +178,10 @@ let make_end_of_left_serif height bottom_corner_radius top_corner_radius shear_a
     let point2 = Complex_point.(point1 + x' shear_vector + y' flat_height) in
     let metacubic =
       if Float.(re point2 = re point1) then
-        (left (x' bottom_corner_radius)
-         <@-> up point1
-         <@-.> huge <.-@> up point2
-         <@-> right (x' top_corner_radius + y' height))
+        (point ~dir:leftward (x' bottom_corner_radius)
+         <@-> point ~dir:upward point1
+         <@-.> huge <.-@> point ~dir:upward point2
+         <@-> point ~dir:rightward (x' top_corner_radius + y' height))
       else
         let bottom_ratio = x'(bottom_corner_radius /. flat_height) in
         let top_ratio = x'(top_corner_radius /. flat_height) in
@@ -190,15 +192,15 @@ let make_end_of_left_serif height bottom_corner_radius top_corner_radius shear_a
         let start_point = round (bottom_corner + x' bottom_corner_radius) in
         let end_point = round (top_corner + x' top_corner_radius) in
         if Float.(re point1 < re point2) then
-          (left start_point
+          (point ~dir:leftward start_point
            <@-> point ~in_dir:i ~out_control:(point1 + i) point1
            <@> point ~in_control:(point1 + i) ~out_dir:(point2 - point1 - i) point2
-           <@-> right end_point)
+           <@-> point ~dir:rightward end_point)
         else
-          (left start_point
+          (point ~dir:leftward start_point
            <@-> point ~in_dir:(point2 - i - point1) ~out_control:(point2 - i) point1
            <@> point ~in_control:(point2 - i) ~out_dir:i point2
-           <@-> right end_point)
+           <@-> point ~dir:rightward end_point)
     in
     let cubic = to_cubic metacubic in
     let offset = Float.(floor (0.5 *. (re point1 -. re point2) +. 0.5)) in
@@ -228,7 +230,7 @@ let make_flag
     Metacubic.(
       point left_point
       <@> point notch_point
-      <@~.> 1.5 <.~@> along lower_dir flag_lower
+      <@~.> 1.5 <.~@> point ~dir:lower_dir flag_lower
       <@> point ~out_control:(x' 0.35 * flag_upper + x' 0.65 * top_point + cupping_vector) flag_upper
       <@> point ~in_control:(top_point - x' (0.3 *. top_corner_radius)) top_point
       <@-> point ~in_dir:(neg i) ~out_control:(left_point - i) right_point
@@ -275,9 +277,9 @@ let letter_c_contours glyph_name p =
         Metacubic.(
           set_dirs (
             point ~out_curl:1.5 tail1                    (* tail *)
-            <@-> left (x'pos 0.56 + y'pos 0.00)          (* bottom *)
-            <@-.> 0.95 <.-@> up (x'pos 0.0 + y'pos 0.50) (* left *)
-            <@-> right (x'pos 0.62 + y'pos 1.00)         (* top *)
+            <@-> point ~dir:leftward (x'pos 0.56 + y'pos 0.00) (* bottom *)
+            <@-.> 0.95 <.-@> point ~dir:upward (x'pos 0.0 + y'pos 0.50) (* left *)
+            <@-> point ~dir:rightward (x'pos 0.62 + y'pos 1.00) (* top *)
             <@-> point ~in_curl:1.5 head1                (* head *)
           )   
         )
@@ -291,9 +293,9 @@ let letter_c_contours glyph_name p =
           set_dirs (
             point head2
             <@-.> 1000. <.-@> point partway_pt
-            <@-.> 0.75 <.-@> left top   (* inner top *)
-            <@-> down (x'pos 0.00 + x' left_breadth + y'pos 0.52) (* inner left *)
-            <@-> right (x'pos 0.64 + y'pos 0.00 + y' bottom_breadth) (* inner bottom *)
+            <@-.> 0.75 <.-@> point ~dir:leftward top   (* inner top *)
+            <@-> point ~dir:downward (x'pos 0.00 + x' left_breadth + y'pos 0.52) (* inner left *)
+            <@-> point ~dir:rightward (x'pos 0.64 + y'pos 0.00 + y' bottom_breadth) (* inner bottom *)
             <@-> point ~in_curl:1.5 tail2 (* tail *)
           )
         )
@@ -354,10 +356,10 @@ let letter_e_contours glyph_name p =
     let counter =
       Metacubic.(
         to_cubic (
-          up (crossbar_top0 + y' crossbar_fillet_size)
-          <@-> left (x'pos 0.50 + y'pos 1.00 - y' top_breadth) (* eye top *)
-          <@-> down (x'pos 0.00 + x' left_breadth + y'pos 0.52) (* inner left *)
-          <@-> right (x'pos 0.60 + y'pos 0.00 + y' bottom_breadth) (* inner bottom *)
+          point ~dir:upward (crossbar_top0 + y' crossbar_fillet_size)
+          <@-> point ~dir:leftward (x'pos 0.50 + y'pos 1.00 - y' top_breadth) (* eye top *)
+          <@-> point ~dir:downward (x'pos 0.00 + x' left_breadth + y'pos 0.52) (* inner left *)
+          <@-> point ~dir:rightward (x'pos 0.60 + y'pos 0.00 + y' bottom_breadth) (* inner bottom *)
           <@-> point ~in_curl:1.0 tail2 (* inner tail *)
         )
       )
@@ -376,12 +378,12 @@ let letter_e_contours glyph_name p =
         Metacubic.(
           to_cubic (
             point ~out_curl:1.0 tail1 (* outer tail *)
-            <@-> left (x'pos 0.54 + y'pos 0.00) (* bottom *)
-            <@-.> 0.9 <.-@> up (x'pos 0.00 + y'pos 0.51) (* left *)
-            <@-> right (x'pos 0.52 + y'pos 1.00)         (* top *)
-            <@-> down (x'pos 0.95 + y' crossbar_height + y'rel 0.02) (* right *)
-            <@-> left (x'pos 0.85 + y' crossbar_height) (* crossbar right *)
-            <@-.> huge <.-@> left (crossbar_height_point + x' crossbar_fillet_size) (* crossbar left *)
+            <@-> point ~dir:leftward (x'pos 0.54 + y'pos 0.00) (* bottom *)
+            <@-.> 0.9 <.-@> point ~dir:upward (x'pos 0.00 + y'pos 0.51) (* left *)
+            <@-> point ~dir:rightward (x'pos 0.52 + y'pos 1.00) (* top *)
+            <@-> point ~dir:downward (x'pos 0.95 + y' crossbar_height + y'rel 0.02) (* right *)
+            <@-> point ~dir:leftward (x'pos 0.85 + y' crossbar_height) (* crossbar right *)
+            <@-.> huge <.-@> point ~dir:leftward (crossbar_height_point + x' crossbar_fillet_size) (* crossbar left *)
             <@-> set_dirs (of_cubic lower) (* inner bowl *)
             |> close ~tension:2.
           )
@@ -401,8 +403,8 @@ let letter_e_contours glyph_name p =
     let eye_contour =
         Metacubic.(
           to_cubic (
-            right (crossbar_top1 + x' crossbar_fillet_size) (* crossbar top left *)
-            <@-.> huge <.-@> right (crossbar_top0 - x' crossbar_fillet_size) (* crossbar top right *)
+            point ~dir:rightward (crossbar_top1 + x' crossbar_fillet_size) (* crossbar top left *)
+            <@-.> huge <.-@> point ~dir:rightward (crossbar_top0 - x' crossbar_fillet_size) (* crossbar top right *)
             <@-> set_dirs ~guess:false (of_cubic eye_upper) |> close
           )
         ) <.> round
@@ -489,13 +491,13 @@ let contours_similar_to_letter_l
     let rightbrack = right_bracket rand in
     let left_side =
       Metacubic.(
-        left zero
+        point ~dir:leftward zero
         <@-.> 4. <.-@> left_serif_end
-        <@-> right (x' left_pos + y' serif_height - x' leftbrack.bracket_horiz)
+        <@-> point ~dir:rightward (x' left_pos + y' serif_height - x' leftbrack.bracket_horiz)
         <@--.>
           (leftbrack.bracket_horiz_tension,
            leftbrack.bracket_vert_tension)
-        <.--@> up (x' left_pos + y' serif_height + y' leftbrack.bracket_vert)
+        <.--@> point ~dir:upward (x' left_pos + y' serif_height + y' leftbrack.bracket_vert)
         <@-> point left_point
       )
     in
@@ -507,9 +509,9 @@ let contours_similar_to_letter_l
         <@--.>
           (rightbrack.bracket_vert_tension,
            rightbrack.bracket_horiz_tension)
-        <.--@> right (x' right_pos + y' serif_height + x' rightbrack.bracket_horiz)
+        <.--@> point ~dir:rightward (x' right_pos + y' serif_height + x' rightbrack.bracket_horiz)
         <@-> right_serif_end
-        <@-.> 4. <.-@> left zero
+        <@-.> 4. <.-@> point ~dir:leftward zero
       )
     in
     let contour =
@@ -627,6 +629,64 @@ let letter_o_contours glyph_name p =
 
 (*-----------------------------------------------------------------------*)
 
+(* The letter "t" *)
+
+let letter_t_contours glyph_name p =
+
+  let tools =
+    let undershoot = p.curve_undershoot +. 2. in
+    make_tools
+      ~glyph_name
+      ~width:250.
+      ~height:(p.t_top_height +. undershoot)
+      ~undershoot:undershoot
+      ~param:p
+      ()
+  in
+  let module Tools = (val tools : Tools_module) in
+
+  Tools.(Metacubic.(Complex_point.(
+
+    let stem_width = p.lc_stem_width in
+    let sheared_terminal_width = 60. in
+    let left_pos = x'(0.5 *. stem_width) in
+    let right_pos = x'(0.5 *. stem_width) in
+    let crossbar_height = p.t_crossbar_height in
+    let crossbar_breadth = 0.80 *. stem_width /. (1. +. p.contrast) in
+    let bottom_breadth = 0.60 *. stem_width /. (1. +. p.contrast) in
+    let tail_breadth = 0.40 *. stem_width /. (1. +. p.contrast) in
+    let tail_cut_angle = 100. in
+
+    let tail1 =
+      x'pos 1.00 - x'(0.5 *. stem_width +. sheared_terminal_width) +
+        y'pos 0.00 + y'(bottom_breadth +. 0.)
+    in
+    let tail2 = tail1 + x' tail_breadth * rot tail_cut_angle in
+
+    let top_right = right_pos + x' 18. + y'pos 1.00 in
+    let crossbar_bend = right_pos + y' (crossbar_height -. crossbar_breadth) in
+    let upper_bowl_width = re tail2 -. re right_pos in
+    let lower_bowl_width = re tail1 -. re left_pos in
+    let bowl_point = right_pos + x'(0.55 *. upper_bowl_width) + y'pos 0.00 + y' bottom_breadth in
+    let bottom_point = left_pos + x'(0.55 *. lower_bowl_width) + y'pos 0.00 in
+
+    let right_side =
+      point ~out_curl:1. top_right
+      <@-.> 5.0 <.-@> point ~dir:downward crossbar_bend
+      <@-> point ~dir:downward (right_pos + y'pos 0.30)
+      <@-> point ~dir:rightward bowl_point
+      <@-> point ~in_curl:1. tail2
+    in 
+    let left_side =
+      point ~out_curl:1. tail1
+      <@-> point ~dir:leftward bottom_point
+    in
+    [to_cubic (set_dirs right_side <@> set_dirs left_side)]
+  )))
+;;
+
+(*-----------------------------------------------------------------------*)
+
 add_glyph "space"
   Glyph.(fun p -> {
     empty with
@@ -690,6 +750,16 @@ add_glyph "o"
     empty with
       name = "o";
       contours = letter_o_contours "o" p;
+      lsb = Some 0.;
+      rsb = Some 50.;
+  })
+;;
+
+add_glyph "t"
+  Glyph.(fun p -> {
+    empty with
+      name = "t";
+      contours = letter_t_contours "t" p;
       lsb = Some 0.;
       rsb = Some 50.;
   })

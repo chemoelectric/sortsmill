@@ -98,6 +98,10 @@ sig
   val zero : t
   val one : t
   val i : t
+  val upward : t
+  val downward : t
+  val leftward : t
+  val rightward : t
   val re : t -> float'
   val im : t -> float'
   val neg : t -> t
@@ -168,6 +172,11 @@ struct
   type string' = String.t
 
   include Extended_complex
+
+  let upward = i
+  let downward = neg i
+  let leftward = neg one
+  let rightward = one
 
   let to_bezier_point pt = Caml2geom.Point.make pt.re pt.im
   let of_bezier_point bp = { re = Caml2geom.Point.coord bp 0;
@@ -1555,7 +1564,7 @@ struct
     let contour = if guess then guess_dirs ?tol contour else contour in
     set_outgoing_dir ?tol ?dir:out_dir (set_incoming_dir ?tol ?dir:in_dir contour)
 
-  let rec fix_endpoints ?tol contour =
+  let fix_endpoints ?tol contour =
     let n = Vect.length contour in
     let (incoming1, point1, outgoing1) = Vect.at contour 0 in
     let (incoming2, point2, outgoing2) = Vect.at contour (n - 1) in
@@ -1672,16 +1681,6 @@ struct
          ?in_dir ?out_dir ?dir
          ?in_control ?out_control
          pt)
-  let along dir ?in_tension ?out_tension point =
-    Vect.make 1 (knot ~dir ?in_tension ?out_tension point)
-  let left ?in_tension ?out_tension point =
-    Vect.make 1 (left_knot  ?in_tension ?out_tension point)
-  let right ?in_tension ?out_tension point =
-    Vect.make 1 (right_knot  ?in_tension ?out_tension point)
-  let up ?in_tension ?out_tension point =
-    Vect.make 1 (up_knot  ?in_tension ?out_tension point)
-  let down ?in_tension ?out_tension point =
-    Vect.make 1 (down_knot  ?in_tension ?out_tension point)
 
   let ( <@> ) contour1 = join contour1
   let ( <@~> ) contour1 = join ~tension:1. contour1
