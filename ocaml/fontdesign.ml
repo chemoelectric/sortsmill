@@ -1687,11 +1687,11 @@ struct
   let ( <@~> ) contour1 = join ~tension:1. contour1
   let ( <@-> ) contour1 = join ~tension:(-1.) contour1
 
-  let ( <@~~.> ) contour1 (in_tension, out_tension) contour2 =
-    join ~in_tension ~out_tension contour1 contour2
+  let ( <@~~.> ) contour1 (out_tension, in_tension) contour2 =
+    join ~out_tension ~in_tension contour1 contour2
 
-  let ( <@--.> ) contour1 (in_tension, out_tension) contour2 =
-    join ~in_tension:(-.in_tension) ~out_tension:(-.out_tension)
+  let ( <@--.> ) contour1 (out_tension, in_tension) contour2 =
+    join ~out_tension:(-.out_tension) ~in_tension:(-.in_tension)
       contour1 contour2
 
   let ( <@~.> ) contour1 tension contour2 =
@@ -1801,8 +1801,10 @@ struct
             else
               0.
           in
+
           if x_shift <> 0. then
-            Print.fprintf outp p"%s.transform(psMat.translate(%F,0))\n" glyph_variable x_shift;
+            Print.fprintf outp p"%s.foreground = %s.foreground.transform(psMat.translate(%F,0))\n"
+              glyph_variable glyph_variable x_shift;
 
           if Option.is_some glyph.rsb then
             Print.fprintf outp p"%s.width = %F\n"
