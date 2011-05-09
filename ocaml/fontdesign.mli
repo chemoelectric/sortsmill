@@ -217,6 +217,7 @@ sig
   val is_empty : t -> bool
   val is_singleton : t -> bool
   val rev : t -> t
+  val round : t -> t
   val nodewise : ('a -> 'b) -> 'a L.t -> 'b L.t
   val pointwise : ('a -> 'b) -> ('a * 'a * 'a) L.t -> ('b * 'b * 'b) L.t
   val print_point : unit IO.output -> P.t -> unit
@@ -407,6 +408,7 @@ sig
   val unclose : ?tol:float -> t -> t
   val close : ?tol:float -> ?in_tension:float -> ?out_tension:float ->
     ?tension:float -> t -> t
+  val translate : Complex.t -> t -> t
   val join : ?tol:float -> ?in_tension:float -> ?out_tension:float ->
     ?tension:float -> t -> t -> t
   val set_incoming_tension : ?tol:float -> t -> float -> t

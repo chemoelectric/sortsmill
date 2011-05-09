@@ -217,6 +217,17 @@ struct
   let nodewise = L.map
   let pointwise f = L.map (fun (ih,oc,oh) -> (f ih, f oc, f oh))
 
+  let rec round contour = (* Rounds handles relative to the on-curve point. *)
+    match contour with
+      | [] -> []
+      | (ih,oc,oh) :: remaining ->
+        let rel_inhandle = P.(round (ih - oc)) in
+        let point = P.round oc in
+        let rel_outhandle = P.(round (oh - oc)) in
+        P.(point + rel_inhandle,
+           point,
+           point + rel_outhandle) :: round remaining
+
   let make_node rel_inhandle on_curve_point rel_outhandle =
     [P.(on_curve_point + rel_inhandle,
         on_curve_point,
@@ -1183,6 +1194,24 @@ struct
   let close ?tol ?in_tension ?out_tension ?tension contour =
     join ?tol ?in_tension ?out_tension ?tension contour contour
 
+  let translate vector contour =
+    Vect.map
+      Complex_point.(fun (incoming, point, outgoing) ->
+        let new_point = point + vector in
+        let new_incoming =
+          match incoming with
+            | `Ctrl ctrl -> `Ctrl (ctrl + vector)
+            | `Dir _ | `Curl _ | `Open _ -> incoming
+        in
+        let new_outgoing =
+          match outgoing with
+            | `Ctrl ctrl -> `Ctrl (ctrl + vector)
+            | `Dir _ | `Curl _ | `Open _ -> outgoing
+        in
+        (new_incoming, new_point, new_outgoing)
+      )
+      contour
+
 (* FIXME: May need to restrict these to certain kinds of transformations.
 
   (* Knotwise mapping. *)
@@ -1522,7 +1551,9 @@ struct
   let guess_dirs ?tol contour =
     let contour = join_coincident_knots ?tol contour in
     let n = Vect.length contour in
-    if is_closed ?tol contour then
+    if n < 2 then
+      contour
+    else if is_closed ?tol contour then
       let first_bp = find_first_breakpoint contour in
       if first_bp = n then
         (* There are no breakpoints. *)
@@ -1552,17 +1583,34 @@ struct
     with Failure "knot_outgoing_dir" -> failwith "outgoing_dir"
 
   let set_incoming_dir ?tol ?(guess = true) ?dir contour =
+    let set_dir knot =
+      try
+        set_knot_incoming_dir ?tol ?dir knot
+      with
+          Failure "set_knot_incoming_dir" -> failwith "set_incoming_dir"
+    in
     let contour = if guess then guess_dirs ?tol contour else contour in
-    Vect.modify contour 0 (fun knot -> set_knot_incoming_dir ?tol ?dir knot)
+    Vect.modify contour 0 (fun knot -> set_dir knot)
 
   let set_outgoing_dir ?tol ?(guess = true) ?dir contour =
+    let set_dir knot =
+      try
+        set_knot_outgoing_dir ?tol ?dir knot
+      with
+          Failure "set_knot_outgoing_dir" -> failwith "set_outgoing_dir"
+    in
     let contour = if guess then guess_dirs ?tol contour else contour in
     let k = Vect.length contour - 1 in
-    Vect.modify contour k (fun knot -> set_knot_outgoing_dir ?tol ?dir knot)
+    Vect.modify contour k (fun knot -> set_dir knot)
 
   let set_dirs ?tol ?(guess = true) ?in_dir ?out_dir contour =
     let contour = if guess then guess_dirs ?tol contour else contour in
-    set_outgoing_dir ?tol ?dir:out_dir (set_incoming_dir ?tol ?dir:in_dir contour)
+    let contour =
+      try set_incoming_dir ?tol ?dir:in_dir contour
+      with Failure "set_incoming_dir" -> failwith "set_dirs"
+    in
+    try set_outgoing_dir ?tol ?dir:out_dir contour
+    with Failure "set_outgoing_dir" -> failwith "set_dirs"
 
   let fix_endpoints ?tol contour =
     let n = Vect.length contour in
