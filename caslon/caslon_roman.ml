@@ -313,10 +313,9 @@ let letter_c_contours glyph_name p =
       let x_time = x_times.(0) /. y_time in
       let (c2,c3) = subdivide c (float_of_int Int.(Vect.length outer - 1) +. y_time) in
       let (c1,c2) = subdivide c2 (float_of_int Int.(Vect.length outer - 1) +. x_time) in
-      let c = c1 <@> c2 <@> c3 <-@@ 1. in
-      c <.> round
+      c1 <@> c2 <@> c3 <-@@ 1.
     in
-    [contour]
+    [contour |> Cubic.round]
   )))
 ;;
 
@@ -392,7 +391,7 @@ let letter_e_contours glyph_name p =
             <@-> set_dirs (of_cubic lower) (* inner bowl *)
             |> close ~tension:2.
           )
-        ) <.> round
+        )
     in
     let crossbar_top1 =
       let time = (curve_times_at_y upper ~pos:1 crossbar_top).(0) in
@@ -412,9 +411,10 @@ let letter_e_contours glyph_name p =
             <@-.> huge <.-@> point ~dir:rightward (crossbar_top0 - x' crossbar_fillet_size) (* crossbar top right *)
             <@-> set_dirs ~guess:false (of_cubic eye_upper) |> close
           )
-        ) <.> round
+        )
     in
-    [main_contour; eye_contour]
+    [main_contour |> Cubic.round;
+     eye_contour |> Cubic.round]
   )))
 ;;
 
@@ -627,16 +627,17 @@ let letter_o_contours glyph_name p =
       <@-> make_right_node (x'pos 0.50 + y'pos 1.00) (* top *)
       <@-> make_down_node (x'pos 1.00 + y'pos 0.50)  (* right *)
       <@-> make_left_node (x'pos 0.49 + y'pos 0.00)  (* bottom *)
-      <-@@ 0.95 <.> round
+      <-@@ 0.95
     in
     let inner_contour =
       make_down_node (x'pos 0.00 + x' left_breadth + y'pos 0.52) (* left *)
       <@-.> 0.98 <.-@> make_right_node (x'pos 0.49 + y'pos 0.00 + y' bottom_breadth) (* bottom *)
       <@-> make_up_node (x'pos 1.00 - x' right_breadth + y'pos 0.48) (* right *)
       <@-> make_left_node (x'pos 0.48 + y'pos 1.00 - y' top_breadth) (* top *)
-      <-@@ 1.0 <.> round
+      <-@@ 1.0
     in
-    [outer_contour; inner_contour]
+    [outer_contour |> Cubic.round;
+     inner_contour |> Cubic.round]
   )))
 ;;
 
