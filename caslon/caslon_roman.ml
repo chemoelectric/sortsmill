@@ -196,13 +196,65 @@ let extremum_free_bend ~point1 ~point2 ~in_dir ~out_dir =
       <@-> point ~in_dir:(x' dir2x + y' dir2y) ~out_dir point2
     ))
 
+let bend_with_possible_extrema ~point1 ~point2 ~in_dir ~out_dir =
+  if Complex.(point2 - point1 = zero) then
+    Metacubic.point ~in_dir ~out_dir point1
+  else
+    Metacubic.(point ~dir:in_dir point1 <@-> point ~dir:out_dir point2)
+
+let bend_with_points_on_extrema ~point1 ~point2 ~in_dir ~out_dir =
+  if Complex.(point2 - point1 = zero) then
+    Metacubic.point ~in_dir ~out_dir point1
+  else
+    (* FIXME: Make the following leave out inflection points. *)
+    let bend = Metacubic.(point ~dir:in_dir point1 <@-> point ~dir:out_dir point2) in
+    let cubic = Metacubic.to_cubic bend in
+    let (x_times, y_times) = Cubic.curve_extrema_and_inflections cubic in
+    let times = Array.append x_times y_times in
+    let times_count = Array.length times in
+    if times_count = 0 then
+      bend
+    else
+      begin
+        Array.sort Float.compare times;
+        let cubic' =
+          fold
+            Cubic.(fun result k -> result <@> portion cubic times.(k) times.(k + 1))
+            (Cubic.portion cubic 0. times.(0))
+            (1 --^ (times_count - 1))
+        in
+        Cubic.(cubic' <@> Cubic.portion cubic times.(times_count - 1) 1.) |>
+            Metacubic.of_cubic |> Metacubic.set_dirs
+      end
+
+let make_extremum_free_bend ~corner_point ~radius ~tension ~in_dir ~out_dir =
+  let (point1, point2) = bend_points ~corner_point ~radius ~in_dir ~out_dir in
+  let bend = extremum_free_bend ~point1 ~point2 ~in_dir ~out_dir in
+  bend
+
+let make_bend_with_possible_extrema ~corner_point ~radius ~tension ~in_dir ~out_dir =
+  let (point1, point2) = bend_points ~corner_point ~radius ~in_dir ~out_dir in
+  let bend = bend_with_possible_extrema ~point1 ~point2 ~in_dir ~out_dir in
+  bend
+
+let make_bend_with_points_on_extrema ~corner_point ~radius ~tension ~in_dir ~out_dir =
+  let (point1, point2) = bend_points ~corner_point ~radius ~in_dir ~out_dir in
+  let bend = bend_with_points_on_extrema ~point1 ~point2 ~in_dir ~out_dir in
+  bend
+
 let make_flat_cut ~corner1 ~corner2 ~radius1 ~radius2 ~tension ~in_dir ~out_dir =
   let cut_dir = Complex_point.(dir (corner2 - corner1)) in
   let (p1, p2) = bend_points ~corner_point:corner1 ~radius:radius1 ~in_dir ~out_dir:cut_dir in
   let (p3, p4) = bend_points ~corner_point:corner2 ~radius:radius2 ~in_dir:cut_dir ~out_dir in
-  let bend1 = extremum_free_bend ~point1:p1 ~point2:p2 ~in_dir ~out_dir:cut_dir in
-  let bend2 = extremum_free_bend ~point1:p3 ~point2:p4 ~in_dir:cut_dir ~out_dir in
-  Metacubic.(bend1 <@-.> tension <.-@> bend2)
+  if Complex_point.(inner (p3 - p2) cut_dir) <= 0. then
+    let midpoint = Complex_point.(x' 0.5 * (p2 + p3)) in
+    let bend1 = extremum_free_bend ~point1:p1 ~point2:midpoint ~in_dir ~out_dir:cut_dir in
+    let bend2 = extremum_free_bend ~point1:midpoint ~point2:p4 ~in_dir:cut_dir ~out_dir in
+    Metacubic.(bend1 <@> bend2)
+  else
+    let bend1 = extremum_free_bend ~point1:p1 ~point2:p2 ~in_dir ~out_dir:cut_dir in
+    let bend2 = extremum_free_bend ~point1:p3 ~point2:p4 ~in_dir:cut_dir ~out_dir in
+    Metacubic.(bend1 <@-.> tension <.-@> bend2)
 
 let make_end_of_left_serif ~height ~shear_angle ~bottom_radius ~top_radius ~tension =
   let shear_offset = 0.5 *. height *. dtan shear_angle in
@@ -222,23 +274,29 @@ let make_flag
     ~top_corner ~right_point
     ~left_notch ~left_point
     ~flag_corner
-    ~top_corner_radius ~flag_corner_radius (* Radii from corner to on-curve point. *)
+    ~top_corner_radius ~flag_corner_radius
     ~top_cupping =
   Complex_point.(
     let lower_dir = dir (flag_corner - left_notch) in
     let upper_dir = dir (top_corner - flag_corner) in
-    let top_point = top_corner - x' top_corner_radius * upper_dir in
-    let flag_upper = flag_corner + x' flag_corner_radius * upper_dir in
-    let flag_lower = flag_corner - x' flag_corner_radius * lower_dir in
     let notch_point = left_notch + x' 20. * lower_dir in
     let cupping_vector = x' top_cupping * upper_dir * rot (-.90.) in
+    let flag_bend =
+      make_bend_with_points_on_extrema
+        ~corner_point:flag_corner ~radius:10.
+        ~tension:1. ~in_dir:lower_dir ~out_dir:upper_dir
+    in
+    let top_bend =
+      make_extremum_free_bend
+        ~corner_point:top_corner ~radius:10.
+        ~tension:1. ~in_dir:upper_dir ~out_dir:downward
+    in
     Metacubic.(
       point left_point
       <@> point notch_point
-      <@~.> 1.5 <.~@> point ~dir:lower_dir flag_lower
-      <@> point ~out_control:(x' 0.35 * flag_upper + x' 0.65 * top_point + cupping_vector) flag_upper
-      <@> point ~in_control:(top_point - x' (0.3 *. top_corner_radius)) top_point
-      <@-> point ~in_dir:downward ~out_control:(left_point - i) right_point
+      <@~.> 1.5 <.~@> flag_bend
+      <@--.> (huge,0.75) <.--@> point (x' 0.40 * flag_corner + x' 0.60 * top_corner + cupping_vector)
+      <@--.> (0.75,huge) <.--@> top_bend
     )
   )
 
@@ -444,7 +502,7 @@ let contours_similar_to_letter_l
   in
   let module Tools = (val tools : Tools_module) in
 
-  Tools.(Cubic.(Complex_point.(
+  Tools.(Metacubic.(Complex_point.(
 
     let stem_width = p.lc_stem_width +. extra_stem_width in
     let serif_height = p.lc_serif_height in
@@ -515,9 +573,10 @@ let contours_similar_to_letter_l
       )
     in
     let right_stem_point = x' right_pos + y' serif_height + y' rightbrack.bracket_vert in
+    let (_,flag_end,_) = Vect.at flag Int.(Vect.length flag - 1) in
     let right_side =
       Metacubic.(
-        point ~in_dir:downward ~out_control:(right_point - y' 20.) right_point
+        point ~in_dir:downward ~out_control:(right_point - y' 20.) flag_end
         <@> point ~in_control:(right_stem_point + y'(0.7 *. serif_to_top)) ~out_dir:downward right_stem_point
         <@--.>
           (rightbrack.bracket_vert_tension,
@@ -527,11 +586,7 @@ let contours_similar_to_letter_l
         <@--.> (2.,1.) <.--@> point ~dir:leftward zero
       )
     in
-    let contour =
-      Metacubic.(
-        to_cubic (flag <@> right_side <@> left_side)
-      )
-    in
+    let contour = to_cubic (flag <@> right_side <@> left_side) in
     [contour |> Cubic.round]
   )))
 ;;
