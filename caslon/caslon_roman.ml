@@ -283,12 +283,12 @@ let make_flag
     let cupping_vector = x' top_cupping * upper_dir * rot (-.90.) in
     let flag_bend =
       make_bend_with_points_on_extrema
-        ~corner_point:flag_corner ~radius:10.
+        ~corner_point:flag_corner ~radius:flag_corner_radius
         ~tension:1. ~in_dir:lower_dir ~out_dir:upper_dir
     in
     let top_bend =
       make_extremum_free_bend
-        ~corner_point:top_corner ~radius:10.
+        ~corner_point:top_corner ~radius:top_corner_radius
         ~tension:1. ~in_dir:upper_dir ~out_dir:downward
     in
     Metacubic.(
