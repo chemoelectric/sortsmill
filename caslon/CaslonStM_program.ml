@@ -57,11 +57,12 @@ let param = {
   lc_stem_width = 57.;
   lc_serif_height = 24.;
 
-  serif_end_angle = (fun state -> float_of_int (Random.State.int state 101 - 50) /. 9.);
-
   corner_radius = (fun state -> float_of_int (Random.State.int state 3 + 2));
   flag_corner_radius = (fun state -> 10.);
   flag_top_corner_radius = (fun state -> 10.);
+
+  serif_end_angle = (fun state -> float_of_int (Random.State.int state 101 - 50) /. 9.);
+  tail_end_angle = (fun state -> float_of_int (Random.State.int state 51) /. 10.);
 
   left_bracket =
     (fun state -> {
@@ -77,7 +78,6 @@ let param = {
       bracket_horiz_tension = 0.01 *. float_of_int (Random.State.int state 51 + 100);
       bracket_vert_tension = 0.01 *. float_of_int (Random.State.int state 51 + 100);
     } );
-
 (*
   contrast = 0.1;
   extension = -0.22;

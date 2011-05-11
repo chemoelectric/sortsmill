@@ -302,6 +302,8 @@ sig
 
   val curve_extrema_and_inflections : ?pos:int -> t -> float array * float array
 
+  val tangent_to_curve : ?num_derivs:int -> ?pos:int -> t -> float -> Complex.t
+
   val to_cubic_beziers : t -> Caml2geom.Cubic_bezier.t list
   (** Creates a list of bezier curves from a contour. *)
 
@@ -327,10 +329,10 @@ sig
   val join : ?tol:float -> t -> t -> t
 
   val point_at : t -> float -> Complex.t
-
+  val tangents_at : ?num_derivs:int -> t -> float -> Complex.t * Complex.t
+  val time_at_nearest_point : t -> Complex.t -> float
   val times_at_x : t -> float -> float array
   val times_at_y : t -> float -> float array
-
   val crossings : t -> t -> Crossing.t array
 
   val modify_inhandle : t -> Complex.t -> t

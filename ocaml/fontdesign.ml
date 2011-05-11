@@ -713,6 +713,11 @@ struct
     let y_times = Caml2geom.Bezier_curve.roots deriv 0. Caml2geom.Coord.Y in
     (x_times, y_times)
 
+  let tangent_to_curve ?num_derivs ?pos contour time =
+    let bez = bezier_curve ?pos contour in
+    let tangent = Caml2geom.Cubic_bezier.unit_tangent_at ?num_derivs bez time in
+    Caml2geom.Point.to_complex tangent
+
   let rec to_cubic_beziers contour =
     match contour with
       | [] | [_] -> []
@@ -815,7 +820,7 @@ struct
       else
         let (_,c1) = subdivide_curve c (t1 -. t1_floor) in
         if t2 = t2_floor then
-          let tail = L.take (t2_int - t1_int) (L.tl c) in
+          let tail = L.take (t2_int - t1_int - 1) (L.tl (L.tl c)) in
           L.append c1 tail
         else
           let (c2,_) = subdivide_curve ~pos:(t2_int - t1_int) c (t2 -. t2_floor) in
@@ -845,6 +850,33 @@ struct
   let point_at contour time =
     let pt = Caml2geom.Path.point_at (to_path contour) time in
     P.of_bezier_point pt
+
+  let tangents_at ?num_derivs contour time =
+    (* FIXME: Test all the branches. *)
+    let pos_float = floor time in
+    let pos = int_of_float pos_float in
+    let t = time -. pos_float in
+    if t = 0. then
+      if pos = 0 then
+        let tangent = tangent_to_curve ?num_derivs contour 0. in
+        (Complex.zero, tangent)
+      else if pos = List.length contour - 1 then
+        let tangent = tangent_to_curve ?num_derivs ~pos:(pos - 1) contour 1. in
+        (tangent, Complex.zero)
+      else
+        let c = L.drop (pos - 1) contour in
+        let in_tangent = tangent_to_curve ?num_derivs ~pos:0 c 1. in
+        let out_tangent = tangent_to_curve ?num_derivs ~pos:1 c 0. in
+        (in_tangent, out_tangent)
+    else
+      let tangent = tangent_to_curve ?num_derivs ~pos contour t in
+      (tangent, tangent)
+
+  let time_at_nearest_point contour point =
+    let path = to_path contour in
+    let pt = Caml2geom.Point.of_complex point in
+    let (time,_) = Caml2geom.Path.nearest_point path pt in
+    time
 
   let times_at_x contour x_coord =
     Caml2geom.Path.roots (to_path contour) x_coord Caml2geom.Coord.X
@@ -1085,6 +1117,9 @@ struct
       | `Ctrl ctrl when not (Cubic.points_coincide ?tol point ctrl) ->
         Complex_point.(dir (point - ctrl))
       | `Dir (d, _) -> Complex_point.dir d
+
+      (* FIXME: May want to infer direction using the full bezier even
+         if the control handle on this side is zero. *)
       | `Ctrl _ | `Curl _ | `Open _ -> failwith "knot_incoming_dir"
 
   let knot_outgoing_dir ?tol (_, point, outgoing) =
@@ -1092,6 +1127,9 @@ struct
       | `Ctrl ctrl when not (Cubic.points_coincide ?tol ctrl point) ->
         Complex_point.(dir (ctrl - point))
       | `Dir (d, _) -> Complex_point.dir d
+
+      (* FIXME: May want to infer direction using the full bezier even
+         if the control handle on this side is zero. *)
       | `Ctrl _ | `Curl _ | `Open _ -> failwith "knot_outgoing_dir"
 
   let set_knot_incoming_dir ?tol ?dir knot =
