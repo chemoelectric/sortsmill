@@ -62,7 +62,7 @@ let param = {
   flag_top_corner_radius = (fun state -> 10.);
 
   serif_end_angle = (fun state -> float_of_int (Random.State.int state 101 - 50) /. 9.);
-  tail_end_angle = (fun state -> float_of_int (Random.State.int state 51) /. 10.);
+  tail_end_angle = (fun state -> float_of_int (Random.State.int state 101) /. 10.);
 
   left_bracket =
     (fun state -> {

@@ -463,8 +463,14 @@ let letter_e_contours glyph_name p =
   Tools.(Complex_point.(
 
     let tail_end_angle = p.tail_end_angle rand in
-    let tail_corner_radius1 = p.corner_radius rand in
-    let tail_corner_radius2 = p.corner_radius rand in
+    let tail_corner_radius1 = p.corner_radius rand +. 1. in
+    let tail_corner_radius2 = p.corner_radius rand +. 1. in
+    let crossbar_fillet_variation1 = Random.State.float rand 0.2 +. 0.9 in
+    let crossbar_fillet_variation2 = Random.State.float rand 0.2 +. 0.9 in
+    let crossbar_fillet_variation3 = Random.State.float rand 0.2 +. 0.9 in
+    let crossbar_fillet_variation4 = Random.State.float rand 0.2 +. 0.9 in
+    let crossbar_fillet_variation5 = Random.State.float rand 0.2 +. 0.9 in
+    let crossbar_fillet_variation6 = Random.State.float rand 0.2 +. 0.9 in
 
     let top_breadth = 0.41 *. p.lc_stem_width /. (1. +. p.contrast) in
     let left_breadth = 1.01 *. p.lc_stem_width in
@@ -475,7 +481,12 @@ let letter_e_contours glyph_name p =
     let crossbar_breadth = 0.42 *. p.lc_stem_width /. (1. +. p.contrast) in
     let crossbar_height = p.e_crossbar_height in
     let crossbar_top = p.e_crossbar_height +. crossbar_breadth in
-    let crossbar_fillet_size = crossbar_breadth in
+    let crossbar_fillet_size1 = crossbar_breadth *. crossbar_fillet_variation1 in
+    let crossbar_fillet_size2 = crossbar_breadth *. crossbar_fillet_variation2 in
+    let crossbar_fillet_size3 = crossbar_breadth *. crossbar_fillet_variation3 in
+    let crossbar_fillet_size4 = crossbar_breadth *. crossbar_fillet_variation4 in
+    let crossbar_fillet_size5 = crossbar_breadth *. crossbar_fillet_variation5 in
+    let crossbar_fillet_size6 = crossbar_breadth *. crossbar_fillet_variation6 in
     let crossbar_top0 = x'pos 1.00 - x' right_breadth + y' crossbar_top in
 
     let tail1 = x'pos 1.00 + y'pos 0.26 in
@@ -491,7 +502,7 @@ let letter_e_contours glyph_name p =
     let sketch_counter tail2 =
       Metacubic.(
         to_cubic (
-          point ~dir:upward (crossbar_top0 + y' crossbar_fillet_size)
+          point ~dir:upward (crossbar_top0 + y' crossbar_fillet_size1)
           <@-> point ~dir:leftward (x'pos 0.50 + y'pos 1.00 - y' top_breadth) (* eye top *)
           <@-> point ~dir:downward (x'pos 0.00 + x' left_breadth + y'pos 0.52) (* inner left *)
           <@-> point ~dir:rightward (x'pos 0.60 + y'pos 0.00 + y' bottom_breadth) (* inner bottom *)
@@ -520,7 +531,7 @@ let letter_e_contours glyph_name p =
     in
     let (upper, lower) =
       let intersection_time =
-        (Cubic.curve_times_at_y ~pos:1 counter (crossbar_height -. crossbar_fillet_size)).(0) +. 1.
+        (Cubic.curve_times_at_y ~pos:1 counter (crossbar_height -. crossbar_fillet_size2)).(0) +. 1.
       in
       Cubic.subdivide counter intersection_time
     in
@@ -529,7 +540,7 @@ let letter_e_contours glyph_name p =
         outer_left
         <@-> point ~dir:downward (x'pos 0.95 + y' crossbar_height + y'rel 0.02) (* right *)
         <@-> point ~dir:leftward (x'pos 0.85 + y' crossbar_height) (* crossbar right *)
-        <@-.> huge <.-@> point ~dir:leftward (crossbar_height_point + x' crossbar_fillet_size) (* crossbar left *)
+        <@-.> huge <.-@> point ~dir:leftward (crossbar_height_point + x' crossbar_fillet_size3) (* crossbar left *)
                     |> to_cubic
       )
     in
@@ -539,7 +550,7 @@ let letter_e_contours glyph_name p =
         ~corner_time1:(float_of_int Int.(List.length lower - 1))
         ~corner_time2:0.
         ~radius1:tail_corner_radius1 ~radius2:tail_corner_radius2 ~tension:huge
-        ~bend_kind1:`With_extrema ~bend_kind2:`Without_extrema
+        ~bend_kind1:`With_extrema ~bend_kind2:`With_extrema
     in
     let lower' = Cubic.portion lower 0. lower_time |> Metacubic.of_cubic |> Metacubic.set_dirs in
     let outer' = Cubic.portion outer outer_time infinity |>
@@ -551,7 +562,7 @@ let letter_e_contours glyph_name p =
     in
     let eye_upper =
       let left_intersection_time =
-        (Cubic.curve_times_at_y upper ~pos:1 (crossbar_top +. crossbar_fillet_size)).(0) +. 1.
+        (Cubic.curve_times_at_y upper ~pos:1 (crossbar_top +. crossbar_fillet_size4)).(0) +. 1.
       in
       let (upper', _) = Cubic.subdivide upper left_intersection_time in
       upper'
@@ -559,8 +570,8 @@ let letter_e_contours glyph_name p =
     let eye_contour =
       Metacubic.(
         to_cubic (
-          point ~dir:rightward (crossbar_top1 + x' crossbar_fillet_size) (* crossbar top left *)
-          <@-.> huge <.-@> point ~dir:rightward (crossbar_top0 - x' crossbar_fillet_size) (* crossbar top right *)
+          point ~dir:rightward (crossbar_top1 + x' crossbar_fillet_size5) (* crossbar top left *)
+          <@-.> huge <.-@> point ~dir:rightward (crossbar_top0 - x' crossbar_fillet_size6) (* crossbar top right *)
           <@-> set_dirs ~guess:false (of_cubic eye_upper) |> close
         )
       )
