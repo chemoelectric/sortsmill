@@ -383,9 +383,13 @@ let letter_c_contours glyph_name p =
   in
   let module Tools = (val tools : Tools_module) in
   
-  Tools.(Cubic.(Complex_point.(
+  Tools.(Complex_point.(
 
     let contour =
+
+      let tail_end_angle = p.tail_end_angle rand in
+      let tail_corner_radius1 = p.corner_radius rand +. 1. in
+      let tail_corner_radius2 = p.corner_radius rand +. 1. in
 
       let left_breadth = 1.12 *. p.lc_stem_width in
       let bottom_breadth = 0.92 *. p.lc_stem_width /. (1. +. p.contrast) in
@@ -393,10 +397,7 @@ let letter_c_contours glyph_name p =
       let head_breadth = 1.15 *. p.lc_stem_width /. (1. +. 0.3 *. p.contrast) in
       let tail_breadth = 0.25 *. p.lc_stem_width in
 
-      let tail_cut_angle = -35. in
-      let tail1 = x'pos 0.98 + y'pos 0.18 in
-      let tail2 = tail1 - y_shear (x' tail_breadth) tail_cut_angle in
-
+      let tail1 = x'pos 0.98 + y'pos 0.19 in
       let head1 = x'pos 0.98 + y'pos 0.84 in
 
       let outer =
@@ -414,30 +415,56 @@ let letter_c_contours glyph_name p =
       let head2 = head1 + (x' head_breadth) * across_head_dir in
       let top = x'pos 0.60 + y'pos 1.00 - y' top_breadth in
       let partway_pt = head2 + x' 0.5 * (top - head2) + x'(0.1 *. (re head2 -. re top))  in
-      let inner =
+
+      let sketch_inner tail2 =
         Metacubic.(
-          set_dirs (
-            point head2
-            <@-.> 1000. <.-@> point partway_pt
-            <@-.> 0.75 <.-@> point ~dir:leftward top   (* inner top *)
-            <@-> point ~dir:downward (x'pos 0.00 + x' left_breadth + y'pos 0.52) (* inner left *)
-            <@-> point ~dir:rightward (x'pos 0.64 + y'pos 0.00 + y' bottom_breadth) (* inner bottom *)
-            <@-> point ~in_curl:1.5 tail2 (* tail *)
-          )
+          point head2
+          <@-.> 1000. <.-@> point partway_pt
+          <@-.> 0.75 <.-@> point ~dir:leftward top   (* inner top *)
+          <@-> point ~dir:downward (x'pos 0.00 + x' left_breadth + y'pos 0.52) (* inner left *)
+          <@-> point ~dir:rightward (x'pos 0.64 + y'pos 0.00 + y' bottom_breadth) (* inner bottom *)
+          <@-> point ~in_curl:1.5 tail2 (* tail *)
+                      |> to_cubic
         )
       in
+
+      (* Roughly locate the sketched counter. *)
+      let (_, tangent) = Cubic.tangents_at (Metacubic.to_cubic outer) 0. in
+      let tail2 = tail1 + x' tail_breadth * tangent * rot (-100.) in
+      let inner = sketch_inner tail2 in
+
+      (* Now use the rough sketch to get a better estimate of the
+         crosscut vector. *)
+      let (tangent2, _) = Cubic.tangents_at inner (float_of_int Int.(List.length inner - 1)) in
+      let crosscut_dir = dir (tangent - tangent2) * rot (-90.) in
+      let tail2' = tail1 + x' tail_breadth * crosscut_dir in
+      let shear_vector = x'(tail_breadth *. dtan tail_end_angle) * crosscut_dir * rot (-90.) in
+      let tail2 = tail2' + shear_vector in
+      let inner = sketch_inner tail2 in
+
       let outer' = Metacubic.to_cubic outer in
-      let inner' = Metacubic.to_cubic inner in
-      let c = outer' <@-> inner' in
-      let (x_times, y_times) = curve_extrema_and_inflections ~pos:Int.(Vect.length outer - 1) c in
+      let c = Cubic.(outer' <@-.> 1.2 <.-@> inner) in
+      let (x_times, y_times) =
+        Cubic.curve_extrema_and_inflections ~pos:Int.(Vect.length outer - 1) c
+      in
       let y_time = y_times.(0) in
       let x_time = x_times.(0) /. y_time in
-      let (c2,c3) = subdivide c (float_of_int Int.(Vect.length outer - 1) +. y_time) in
-      let (c1,c2) = subdivide c2 (float_of_int Int.(Vect.length outer - 1) +. x_time) in
-      c1 <@> c2 <@> c3 <-@@ 1.
+      let (c2,c3) = Cubic.subdivide c (float_of_int Int.(Vect.length outer - 1) +. y_time) in
+      let (c1,c2) = Cubic.subdivide c2 (float_of_int Int.(Vect.length outer - 1) +. x_time) in
+      let (tail_cut, inner_time, outer_time) =
+        make_flat_cut_for_contours
+          ~contour1:c3 ~contour2:c1
+          ~corner_time1:(float_of_int Int.(List.length c3 - 1))
+          ~corner_time2:0.
+          ~radius1:tail_corner_radius1 ~radius2:tail_corner_radius2 ~tension:huge
+          ~bend_kind1:`With_extrema ~bend_kind2:`With_extrema
+      in
+      let (_,c1) = Cubic.subdivide c1 outer_time in
+      let (c3,_) = Cubic.subdivide c3 inner_time in
+      Cubic.(c1 <@> c2 <@> c3 <@> Metacubic.to_cubic tail_cut)
     in
     [contour |> Cubic.round]
-  )))
+  ))
 ;;
 
 (*.......................................................................*)
@@ -499,15 +526,15 @@ let letter_e_contours glyph_name p =
         <@-> point ~dir:rightward (x'pos 0.52 + y'pos 1.00) (* top *)
       )
     in
+
     let sketch_counter tail2 =
       Metacubic.(
-        to_cubic (
-          point ~dir:upward (crossbar_top0 + y' crossbar_fillet_size1)
-          <@-> point ~dir:leftward (x'pos 0.50 + y'pos 1.00 - y' top_breadth) (* eye top *)
-          <@-> point ~dir:downward (x'pos 0.00 + x' left_breadth + y'pos 0.52) (* inner left *)
-          <@-> point ~dir:rightward (x'pos 0.60 + y'pos 0.00 + y' bottom_breadth) (* inner bottom *)
-          <@-> point ~in_curl:1.0 tail2 (* inner tail *)
-        )
+        point ~dir:upward (crossbar_top0 + y' crossbar_fillet_size1)
+        <@-> point ~dir:leftward (x'pos 0.50 + y'pos 1.00 - y' top_breadth) (* eye top *)
+        <@-> point ~dir:downward (x'pos 0.00 + x' left_breadth + y'pos 0.52) (* inner left *)
+        <@-> point ~dir:rightward (x'pos 0.60 + y'pos 0.00 + y' bottom_breadth) (* inner bottom *)
+        <@-> point ~in_curl:1.0 tail2 (* inner tail *)
+                    |> to_cubic
       )
     in
 
@@ -552,9 +579,10 @@ let letter_e_contours glyph_name p =
         ~radius1:tail_corner_radius1 ~radius2:tail_corner_radius2 ~tension:huge
         ~bend_kind1:`With_extrema ~bend_kind2:`With_extrema
     in
-    let lower' = Cubic.portion lower 0. lower_time |> Metacubic.of_cubic |> Metacubic.set_dirs in
-    let outer' = Cubic.portion outer outer_time infinity |>
-        Metacubic.of_cubic |> Metacubic.set_dirs ~out_dir:leftward in
+    let lower' = fst (Cubic.subdivide lower lower_time) |> Metacubic.of_cubic |> Metacubic.set_dirs in
+    let outer' = snd (Cubic.subdivide outer outer_time) |>
+        Metacubic.of_cubic |> Metacubic.set_dirs ~out_dir:leftward
+    in
     let main_contour = Metacubic.(lower' <@> tail_cut <@> outer' |> close ~tension:(-1.) |> to_cubic) in
     let crossbar_top1 =
       let time = (Cubic.curve_times_at_y upper ~pos:1 crossbar_top).(0) in
