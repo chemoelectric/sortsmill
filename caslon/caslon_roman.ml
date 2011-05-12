@@ -850,7 +850,7 @@ let letter_t_contours glyph_name p =
     let undershoot = p.curve_undershoot +. 2. in
     make_tools
       ~glyph_name
-      ~width:280.
+      ~width:275.
       ~height:(p.t_top_corner_height +. undershoot)
       ~undershoot:undershoot
       ~param:p
@@ -860,22 +860,24 @@ let letter_t_contours glyph_name p =
 
   Tools.(Complex_point.(
 
-    let tail_end_angle = p.tail_end_angle rand in
-    let tail_corner_radius1 = p.corner_radius rand +. 1. in
-    let tail_corner_radius2 = p.corner_radius rand +. 1. in
+    let tail_end_angle = p.tail_end_angle rand +. 5. in
+    let tail_corner_radius1 = p.corner_radius rand in
+    let tail_corner_radius2 = p.corner_radius rand in
 
     let stem_width = p.lc_stem_width in
     let left_pos = x'(-.0.5 *. stem_width) in
     let right_pos = x'(0.5 *. stem_width) in
     let crossbar_height = p.t_crossbar_height in
-    let crossbar_breadth = floor (0.83 *. stem_width /. (1. +. p.contrast) +. 0.5) in
+    let crossbar_breadth = floor (0.85 *. stem_width /. (1. +. 0.7 *. p.contrast) +. 0.5) in
     let bottom_breadth = 0.70 *. stem_width /. (1. +. p.contrast) in
     let sheared_terminal_width = 70. in
     let sheared_terminal_height = crossbar_height -. crossbar_breadth -. 3. in
-    let tail_breadth = 0.40 *. stem_width /. (1. +. p.contrast) in
+    let tail_breadth = 0.34 *. stem_width /. (1. +. p.contrast) in
     let tail_cut_angle = 100. in
 
-    let tail1 = x'(width -. 0.5 *. stem_width -. sheared_terminal_width) + y'pos 0.00 + y'(bottom_breadth +. 10.) in
+    let tail1 =
+      x'(width -. 0.5 *. stem_width -. sheared_terminal_width) + y'pos 0.00 + y'(bottom_breadth +. 10.)
+    in
     let tail2 = tail1 + x' tail_breadth * rot tail_cut_angle in
     let lower_bowl_width = re (x'pos 1.00 - x' sheared_terminal_width) in
     let upper_bowl_width = re tail2 -. re right_pos in
@@ -911,8 +913,9 @@ let letter_t_contours glyph_name p =
         point ~out_curl:1. tail1
         <@-> point ~dir:leftward bottom_point
         <@-.> 1.1 <.-@> point ~dir:upward (left_pos - x' 5. + y'pos 0.15)
-        <@-> point ~in_dir:upward ~out_dir:leftward (x' (re left_pos) + y' sheared_terminal_height)
-        <@-> left_bend
+        <@-> point ~dir:upward (x' (re left_pos) + y' sheared_terminal_height - y' 60.)
+        <@-> point ~dir:leftward (x' (re left_pos) + y' sheared_terminal_height - x' 10.)
+        <@-.> huge <.-@> left_bend
         <@-.> huge <.-@> point ~in_curl:1. top_left
                     |> to_cubic
       )
@@ -943,10 +946,15 @@ let letter_t_contours glyph_name p =
     let tail2 = tail2' + shear_vector in
     let right_side = sketch_right_side tail2 in
 
-    let crossbar_time = (Cubic.times_at_y right_side crossbar_height).(0) in
-    let (c1,_) = Cubic.subdivide right_side crossbar_time in
-    let crossbar_time = (Cubic.times_at_y right_side (crossbar_height -. crossbar_breadth)).(0) in
-    let (_,c2) = Cubic.subdivide right_side crossbar_time in
+    let crossbar_time1 = (Cubic.times_at_y right_side (crossbar_height)).(0) in
+    let pt1 = Cubic.point_at right_side crossbar_time1 + x' 10. in
+    let crossbar_time2 = (Cubic.times_at_y right_side (crossbar_height -. crossbar_breadth)).(0) in
+    let pt2 = Cubic.point_at right_side crossbar_time2 + x' 10. in
+
+    let crossbar_time3 = (Cubic.times_at_y right_side (crossbar_height +. 30.)).(0) in
+    let (c3,_) = Cubic.subdivide right_side crossbar_time3 in
+    let crossbar_time4 = (Cubic.times_at_y right_side (crossbar_height -. crossbar_breadth -. 40.)).(0) in
+    let (_,c4) = Cubic.subdivide right_side crossbar_time4 in
 
     let crossbar_end =
       make_flat_cut
@@ -959,9 +967,11 @@ let letter_t_contours glyph_name p =
 
     let right_side =
       Metacubic.(
-        set_dirs ~out_dir:rightward (of_cubic c1)
-        <@> crossbar_end
-        <@> set_dirs ~in_dir:leftward (of_cubic c2)
+        set_dirs ~out_dir:downward (of_cubic c3)
+        <@-> point pt1
+        <@-.> huge <.-@> crossbar_end
+        <@-.> huge <.-@> point pt2
+        <@-> set_dirs ~in_dir:downward (of_cubic c4)
                     |> to_cubic
       )
     in
