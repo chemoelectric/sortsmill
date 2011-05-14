@@ -34,6 +34,8 @@ val posmod : int -> int -> int
 (** [posmod n k] is similar to [k mod n] but always returns the
     positive modulus. *)
 
+val posmod_float : float -> float -> float
+
 val deg : float -> float
 (** Conversion from radians to degrees. *)
 
@@ -324,8 +326,9 @@ sig
   val subdivide : t -> float -> t * t
   (** Cut a contour in two. *)
 
+  val harmonize_cycle_handles : ?tol:float -> t -> t
   val portion : ?tol:float -> t -> float -> float -> t
-
+  val cycle_portion : ?tol:float -> t -> float -> float -> t
   val join : ?tol:float -> t -> t -> t
 
   val point_at : t -> float -> Complex.t

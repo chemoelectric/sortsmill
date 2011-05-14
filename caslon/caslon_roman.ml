@@ -267,6 +267,24 @@ let make_contour_bend ~kind ~corner_point ~radius ~tension ~in_dir ~out_dir =
     | `Without_extrema ->
       make_extremum_free_bend ~corner_point ~radius ~tension ~in_dir ~out_dir
 
+let make_bend_for_contours
+    ~kind
+    ~contour1 ~contour2
+    ~corner_time1 ~corner_time2
+    ~radius ~tension =
+  let corner_point = Cubic.point_at contour1 corner_time1 in
+  let (in_dir,_) = Cubic.tangents_at contour1 corner_time1 in
+  let (_, out_dir) = Cubic.tangents_at contour2 corner_time2 in
+  let (point1, point2) = bend_points ~corner_point ~radius ~in_dir ~out_dir in
+  let time1 = Cubic.time_at_nearest_point contour1 point1 in
+  let time2 = Cubic.time_at_nearest_point contour2 point2 in
+  let point1 = Cubic.point_at contour1 time1 in
+  let point2 = Cubic.point_at contour2 time2 in
+  let (in_dir,_) = Cubic.tangents_at contour1 time1 in
+  let (_, out_dir) = Cubic.tangents_at contour2 time2 in
+  (contour_bend ~kind ~point1 ~point2 ~tension ~in_dir ~out_dir,
+   time1, time2)
+
 let flat_cut_points ~corner1 ~corner2 ~radius1 ~radius2 ~in_dir ~out_dir =
   let cut_dir = Complex_point.(dir (corner2 - corner1)) in
   let (point1, point2) = bend_points ~corner_point:corner1 ~radius:radius1 ~in_dir ~out_dir:cut_dir in
@@ -622,6 +640,9 @@ let letter_e_contours glyph_name p =
 
 let contours_similar_to_letter_l
     ~height
+    ~flag_width
+    ~flag_drop
+    ~left_notch_drop
     ~left_side_shear
     ~right_side_shear
     ~left_serif_width
@@ -682,10 +703,10 @@ let contours_similar_to_letter_l
     in
 
     let left_notch =
-      x' left_pos + y' serif_height + (x_shear (y'(serif_to_top -. 105.)) left_side_shear)
+      x' left_pos + y' serif_height + (x_shear (y'(serif_to_top -. left_notch_drop)) left_side_shear)
     in
     let left_point =
-      x' left_pos + y' serif_height + (x_shear (y'(serif_to_top -. 105. -. 40.)) left_side_shear)
+      x' left_pos + y' serif_height + (x_shear (y'(serif_to_top -. left_notch_drop -. 40.)) left_side_shear)
     in
     let top_corner =
       x' right_pos + y' serif_height + (x_shear (y' serif_to_top) right_side_shear)
@@ -693,9 +714,7 @@ let contours_similar_to_letter_l
     let right_point =
       x' right_pos + y' serif_height + (x_shear (y'(serif_to_top -. top_corner_radius)) right_side_shear)
     in
-    let flag_corner =
-      x'(re left_notch -. 70.) + y'(im top_corner -. 58.)
-    in
+    let flag_corner = x'(re left_notch -. flag_width) + y'(im top_corner -. flag_drop) in
     let flag =
       make_flag
         ~top_corner ~right_point
@@ -721,7 +740,9 @@ let contours_similar_to_letter_l
     let right_side =
       Metacubic.(
         point ~in_dir:downward ~out_control:(right_point - y' 20.) flag_end
-        <@> point ~in_control:(right_stem_point + y'(0.7 *. serif_to_top)) ~out_dir:downward right_stem_point
+        <@> point
+          ~in_control:(right_stem_point + y'(0.7 *. (serif_to_top -. rightbrack.bracket_vert)))
+          ~out_dir:downward right_stem_point
         <@--.>
           (rightbrack.bracket_vert_tension,
            rightbrack.bracket_horiz_tension)
@@ -742,6 +763,9 @@ let contours_similar_to_letter_l
 let letter_dotlessi_contours glyph_name p =
   contours_similar_to_letter_l
     ~height:(p.x_height +. p.flag_overshoot)
+    ~flag_width:70.
+    ~flag_drop:58.
+    ~left_notch_drop:105.
     ~left_side_shear:0.
     ~right_side_shear:1.2
     ~left_serif_width:65.
@@ -750,9 +774,9 @@ let letter_dotlessi_contours glyph_name p =
       let lbrack = p.left_bracket state in
       { lbrack with bracket_horiz = lbrack.bracket_horiz +. 5. }
     )
-    ~right_bracket:p.left_bracket
+    ~right_bracket:p.right_bracket
     ~extra_stem_width:0.
-    ~top_cupping:3.
+    ~top_cupping:2.
     glyph_name p
 
 (*.......................................................................*)
@@ -784,12 +808,15 @@ let letter_i_contours glyph_name p =
 let letter_l_contours glyph_name p =
   contours_similar_to_letter_l
     ~height:(p.ascender_height +. 2.)
+    ~flag_width:70.
+    ~flag_drop:58.
+    ~left_notch_drop:105.
     ~left_side_shear:(-0.5)
     ~right_side_shear:1.2
     ~left_serif_width:105.
     ~right_serif_width:85.
     ~left_bracket:p.left_bracket
-    ~right_bracket:p.left_bracket
+    ~right_bracket:p.right_bracket
     ~extra_stem_width:3.
     ~top_cupping:2.
     glyph_name p
@@ -840,6 +867,70 @@ let letter_o_contours glyph_name p =
   )))
 ;;
 
+(*.......................................................................*)
+
+(* The letter "r" *)
+
+let letter_r_contours glyph_name p =
+  let ilike_contour_list =
+    contours_similar_to_letter_l
+      ~height:(p.x_height +. p.flag_overshoot +. 5.)
+      ~flag_width:70.
+      ~flag_drop:70.
+      ~left_notch_drop:107.
+      ~left_side_shear:0.
+      ~right_side_shear:0.2
+      ~left_serif_width:65.
+      ~right_serif_width:67.
+      ~left_bracket:p.left_bracket
+      ~right_bracket:p.right_bracket
+      ~extra_stem_width:2.
+      ~top_cupping:2.
+      glyph_name p
+  in
+  let ilike_contour = List.hd ilike_contour_list in
+  let arm =
+    Complex_point.(Metacubic.(
+      point (x'(-18.0000) + y' 280.0000)
+      <@~~.> (2.,1.) <.~~@> point ~dir:rightward (x' 135.0000 + y' 397.0000)
+      <@> point ~dir:downward (x' 207.0000 + y' 346.0000)
+      <@> point ~dir:leftward (x' 164.0000 + y' 306.0000)
+      <@> point ~dir:leftward (x' 79.0000 + y' 335.0000)
+      <@~~.> (1.,2.) <.~~@> point (x'(-17.0000) + y' 265.0000)
+                                 |> translate (x'(0.5 *. p.lc_stem_width))
+                                 |> to_cubic
+    ))
+  in
+  let xings = Cubic.crossings ilike_contour arm in
+  let (bend1, time1a, time1b) = 
+    make_bend_for_contours
+      ~kind:`With_extrema
+      ~contour1:ilike_contour ~contour2:arm
+      ~corner_time1:xings.(0).Crossing.ta
+      ~corner_time2:xings.(0).Crossing.tb
+      ~radius:5. ~tension:(-1.)
+  in
+  let (bend2, time2a, time2b) = 
+    make_bend_for_contours
+      ~kind:`With_extrema
+      ~contour1:arm ~contour2:ilike_contour
+      ~corner_time1:xings.(1).Crossing.tb
+      ~corner_time2:xings.(1).Crossing.ta
+      ~radius:70. ~tension:(-1.1)
+  in
+  let contour =
+    Cubic.(
+      cycle_portion ilike_contour time2b time1a
+      <@> Metacubic.to_cubic bend1
+      <@> portion arm time1b time2a
+      <@> Metacubic.to_cubic bend2
+    )
+  in
+  (*
+    [ilike_contour;arm]
+  *)
+  [contour]
+
 (*-----------------------------------------------------------------------*)
 
 (* The letter "t" *)
@@ -882,7 +973,7 @@ let letter_t_contours glyph_name p =
     let lower_bowl_width = re (x'pos 1.00 - x' sheared_terminal_width) in
     let upper_bowl_width = re tail2 -. re right_pos in
 
-    let top_corner = right_pos + x' 18. + y'pos 1.00 in
+    let top_corner = right_pos + x' 15. + y'pos 1.00 in
     let crossbar_bend = right_pos + y' (crossbar_height -. crossbar_breadth +. 10.) in
     let bowl_point = right_pos + x'(0.50 *. upper_bowl_width) + y'pos 0.00 + y' bottom_breadth in
     let bottom_point = left_pos + x'(0.50 *. lower_bowl_width) + y'pos 0.00 in
@@ -1060,6 +1151,16 @@ add_glyph "o"
     empty with
       name = "o";
       contours = letter_o_contours "o" p;
+      lsb = Some 0.;
+      rsb = Some 50.;
+  })
+;;
+
+add_glyph "r"
+  Glyph.(fun p -> {
+    empty with
+      name = "r";
+      contours = letter_r_contours "r" p;
       lsb = Some 0.;
       rsb = Some 50.;
   })

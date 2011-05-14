@@ -35,6 +35,13 @@ let posmod n k =
   else
     m
 
+let posmod_float n u =
+  let v = Float.modulo u n in
+  if v < 0. then
+    v +. n
+  else
+    v
+
 let deg theta = (180. /. Float.pi) *. theta
 let rad theta = (Float.pi /. 180.) *. theta
 
@@ -798,9 +805,34 @@ struct
         let (c1, c2) = subdivide_curve c time in
         (c1, c2 @ L.drop 2 c)
 
+  let join ?tol contour1 contour2 =
+    if contour1 == contour2 then
+      close ?tol contour1
+    else
+      let rev1 = L.rev contour1 in
+      let last1 = L.first rev1 in
+      let first2 = L.first contour2 in
+      let contour =
+        if _nodes_coincide ?tol last1 first2 then
+          let (ih1, oc1, _) = last1 in
+          let (_, _, oh2) = first2 in
+          let joined_node = (ih1, oc1, oh2) in
+          L.rev_append (joined_node :: L.tl rev1) (L.tl contour2)
+        else
+          L.append contour1 contour2
+      in
+      let rev_contour = L.rev (L.tl contour) in
+      let last = L.first rev_contour in
+      let first = L.first contour in
+      if _nodes_coincide ?tol last first then
+        let (ih,_,_) = last in
+        let (_, oc, oh) = first in
+        let joined_node = (ih, oc, oh) in
+        joined_node :: (L.rev (joined_node :: L.tl rev_contour))
+      else
+        contour
+
   let portion ?(tol = !basis_conversion_tolerance) contour time1 time2 =
-    (* FIXME: Either give this function the ability to handle cycles,
-       or write something cycle-handling in terms of it. *)
     let node_count = L.length contour in
     let curve_count = node_count - 1 in
     let max_time = float_of_int curve_count in
@@ -825,27 +857,45 @@ struct
         else
           let (c2,_) = subdivide_curve ~pos:(t2_int - t1_int) c (t2 -. t2_floor) in
           let c_middle = L.take (t2_int - t1_int) (L.tl c) in
-          L.append c1 (L.append (L.tl c_middle) (L.tl c2))
+          L.append c1 (join ~tol (L.tl c_middle) c2)
     in
     if reversed then
       rev part
     else
       part
 
-  let join ?tol contour1 contour2 =
-    if contour1 == contour2 then
-      close ?tol contour1
+  let harmonize_cycle_handles ?tol contour =
+    if not (is_closed ?tol contour) then
+      invalid_arg "harmonize_cycle_handles";
+    let (_,oc,oh) = L.first contour in
+    let (ih,_,_) = L.last contour in
+    let rec rebuild =
+      function
+        | [] -> assert false
+        | [(ih',oc',_)] -> [(ih',oc',oh)]
+        | node :: remaining -> node :: rebuild remaining
+    in
+    (ih,oc,oh) :: rebuild (L.tl contour)
+
+  let cycle_portion ?(tol = !basis_conversion_tolerance) contour time1 time2 =
+    if not (is_closed ~tol contour) then
+      invalid_arg "subcycle";
+    let cycle_length = float_of_int (List.length contour - 1) in
+    if time1 <= -.tol || cycle_length +. tol < time1 then
+      invalid_arg "subcycle";
+    if time2 <= -.tol || cycle_length +. tol < time2 then
+      invalid_arg "subcycle";
+(*    let contour = harmonize_cycle_handles ~tol contour in *)
+    if abs_float (time2 -. time1) < tol then
+      portion ~tol contour 0. cycle_length
+    else if time1 < time2 then
+      portion ~tol contour time1 time2
+    else if abs_float (time1 -. cycle_length) < tol then
+      portion ~tol contour 0. time2
     else
-      let rev1 = L.rev contour1 in
-      let last1 = L.first rev1 in
-      let first2 = L.first contour2 in
-      if _nodes_coincide ?tol last1 first2 then
-        let (ih1, oc1, _) = last1 in
-        let (_, _, oh2) = first2 in
-        let joined_node = (ih1, oc1, oh2) in
-        L.rev_append (joined_node :: L.tl rev1) (L.tl contour2)
-      else
-        L.append contour1 contour2
+      join ~tol
+        (portion ~tol contour time1 cycle_length)
+        (portion ~tol contour 0. time2)
 
   let point_at contour time =
     let pt = Caml2geom.Path.point_at (to_path contour) time in
@@ -879,27 +929,29 @@ struct
     time
 
   let times_at_x contour x_coord =
+    (* FIXME: Broken at spline nodes? *)
     Caml2geom.Path.roots (to_path contour) x_coord Caml2geom.Coord.X
 
   let times_at_y contour y_coord =
+    (* FIXME: Broken at spline nodes? *)
     Caml2geom.Path.roots (to_path contour) y_coord Caml2geom.Coord.Y
 
   let crossings contour1 contour2 =
     Caml2geom.Path.crossings (to_path contour1) (to_path contour2)
 
-  let modify_inhandle path vector =
+  let modify_inhandle contour vector =
     Complex_point.(
-      let (ih, oc, oh) = L.hd path in
+      let (ih, oc, oh) = L.hd contour in
       let new_ih = oc + dir (ih - oc) * vector in
-      (new_ih, oc, oh) :: L.tl path
+      (new_ih, oc, oh) :: L.tl contour
     )
 
-  let modify_outhandle path vector =
+  let modify_outhandle contour vector =
     Complex_point.(
-      let rev_path = L.rev path in
-      let (ih, oc, oh) = L.hd rev_path in
+      let rev_contour = L.rev contour in
+      let (ih, oc, oh) = L.hd rev_contour in
       let new_oh = oc + dir (oh - oc) * vector in
-      L.rev ((ih, oc, new_oh) :: L.tl rev_path)
+      L.rev ((ih, oc, new_oh) :: L.tl rev_contour)
     )
 
   let remove_inflection_from_curve ?(pos = 0) contour =
@@ -1773,17 +1825,18 @@ struct
   let ( <@-> ) contour1 = join ~tension:(-1.) contour1
 
   let ( <@~~.> ) contour1 (out_tension, in_tension) contour2 =
-    join ~out_tension ~in_tension contour1 contour2
+    join ~out_tension:(abs_float out_tension)
+      ~in_tension:(abs_float in_tension) contour1 contour2
 
   let ( <@--.> ) contour1 (out_tension, in_tension) contour2 =
-    join ~out_tension:(-.out_tension) ~in_tension:(-.in_tension)
+    join ~out_tension:(-.(abs_float out_tension)) ~in_tension:(-.(abs_float in_tension))
       contour1 contour2
 
   let ( <@~.> ) contour1 tension contour2 =
-    join ~tension contour1 contour2
+    join ~tension:(abs_float tension) contour1 contour2
 
   let ( <@-.> ) contour1 tension contour2 =
-    join ~tension:(-.tension) contour1 contour2
+    join ~tension:(-.(abs_float tension)) contour1 contour2
 
   let ( <.~~@> ) f a = f a
   let ( <.~@> ) f a = f a

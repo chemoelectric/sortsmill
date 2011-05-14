@@ -58,8 +58,8 @@ let param = {
   lc_serif_height = 24.;
 
   corner_radius = (fun state -> float_of_int (Random.State.int state 3 + 2));
-  flag_corner_radius = (fun state -> 10.);
-  flag_top_corner_radius = (fun state -> 10.);
+  flag_corner_radius = (fun state -> Random.State.float state 5. +. 5.);
+  flag_top_corner_radius = (fun state -> Random.State.float state 5. +. 5.);
 
   serif_end_angle = (fun state -> float_of_int (Random.State.int state 101 - 50) /. 9.);
   tail_end_angle = (fun state -> float_of_int (Random.State.int state 101) /. 10.);
