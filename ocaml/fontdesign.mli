@@ -350,6 +350,9 @@ sig
   val close_with_tensions : ?tol:float -> ?no_inflection:bool -> float -> float -> t -> t
   val close_with_tension : ?tol:float -> ?no_inflection:bool -> float -> t -> t
 
+  val splice_into_cycle : ?tol:float -> ?time1:float -> ?time2:float -> t -> t -> t
+  val splice_together : ?tol:float -> ?time1:float -> ?time2:float -> t -> t -> t -> t
+
   val to_point_bool_list : t -> (Complex.t * bool) list
   (** Convert a contour to list of points marked true/false =
       on-curve/off-curve. *)
@@ -406,6 +409,9 @@ sig
   val print : unit IO.output -> t -> unit
   val t_printer : bool -> unit IO.output -> t -> unit
 
+  val knot_point : knot -> Complex.t
+  val contour_point : t -> int -> Complex.t
+
   val knot_side_tension : knot_side -> float
   val set_knot_side_tension : knot_side -> float -> knot_side
 
@@ -416,8 +422,12 @@ sig
   val translate : Complex.t -> t -> t
   val join : ?tol:float -> ?in_tension:float -> ?out_tension:float ->
     ?tension:float -> t -> t -> t
+  val incoming_point : ?tol:float -> t -> Complex.t
+  val outgoing_point : ?tol:float -> t -> Complex.t
   val set_incoming_tension : ?tol:float -> t -> float -> t
   val set_outgoing_tension : ?tol:float -> t -> float -> t
+  val set_incoming_knot_side : ?tol:float -> t -> knot_side -> t
+  val set_outgoing_knot_side : ?tol:float -> t -> knot_side -> t
   val knot_incoming_dir : ?tol:float -> knot -> Complex.t
   val knot_outgoing_dir : ?tol:float -> knot -> Complex.t
   val set_knot_incoming_dir : ?tol:float -> ?dir:Complex.t -> knot -> knot
@@ -473,20 +483,14 @@ sig
   val ( <.~@> ) : ('a -> 'b) -> 'a -> 'b
   val ( <.--@> ) : ('a -> 'b) -> 'a -> 'b
   val ( <.-@> ) : ('a -> 'b) -> 'a -> 'b
-(*
-  val ( <@@ ) : t -> bool -> t
-  val ( <~~@@ ) : t -> float * float -> t
-  val ( <--@@ ) : t -> float * float -> t
-  val ( <~@@ ) : t -> float -> t
-  val ( <-@@ ) : t -> float -> t
-*)
+
 (*
   val ( <.> ) : t -> (Complex.t -> Complex.t) -> t
   val ( <*> ) : t -> Complex.t -> t
   val ( </> ) : t -> Complex.t -> t
+*)
   val ( <+> ) : t -> Complex.t -> t
   val ( <-> ) : t -> Complex.t -> t
-*)
 end
 
 (*-----------------------------------------------------------------------*)

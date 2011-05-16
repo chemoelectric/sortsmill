@@ -22,6 +22,7 @@
 
 open Batteries
 open Caslon_roman
+open Fontdesign
 open Param
 
 let param = {
@@ -54,30 +55,35 @@ let param = {
   t_top_corner_height = 560.;
   i_dot_height = 623.;
   ascender_height = 697.;
-  lc_stem_width = 57.;
-  lc_serif_height = 24.;
+  stem_width = (fun _name -> 57.);
+  serif_height = (fun _name -> 24.);
 
   corner_radius = (fun state -> float_of_int (Random.State.int state 3 + 2));
   flag_corner_radius = (fun state -> Random.State.float state 5. +. 5.);
-  flag_top_corner_radius = (fun state -> Random.State.float state 5. +. 5.);
+  flag_top_radius = (fun state -> Random.State.float state 5. +. 5.);
 
   serif_end_angle = (fun state -> float_of_int (Random.State.int state 101 - 50) /. 9.);
   tail_end_angle = (fun state -> float_of_int (Random.State.int state 101) /. 10.);
 
   left_bracket =
-    (fun state -> {
-      bracket_horiz = float_of_int (Random.State.int state 21 + 10);
-      bracket_vert = 70.;
-      bracket_horiz_tension = 0.01 *. float_of_int (Random.State.int state 51 + 100);
-      bracket_vert_tension = 0.01 *. float_of_int (Random.State.int state 51 + 100);
-    } );
+    (fun _name state ->
+      let left_pos = -. (float_of_int (Random.State.int state 11 + 15)) in
+      let horiz_tension = 0.01 *. float_of_int (Random.State.int state 51 + 100) in
+      let vert_tension = 0.01 *. float_of_int (Random.State.int state 51 + 100) in
+      Metacubic.(Complex_point.(
+        point ~dir:rightward (x' left_pos)
+        <@--.> (horiz_tension,vert_tension) <.--@> point ~dir:upward (y' 70.)
+      )));
+
   right_bracket =
-    (fun state -> {
-      bracket_horiz = float_of_int (Random.State.int state 21 + 10);
-      bracket_vert = 70.;
-      bracket_horiz_tension = 0.01 *. float_of_int (Random.State.int state 51 + 100);
-      bracket_vert_tension = 0.01 *. float_of_int (Random.State.int state 51 + 100);
-    } );
+    (fun _name state ->
+      let left_pos = (float_of_int (Random.State.int state 11 + 15)) in
+      let horiz_tension = 0.01 *. float_of_int (Random.State.int state 51 + 100) in
+      let vert_tension = 0.01 *. float_of_int (Random.State.int state 51 + 100) in
+      Metacubic.(Complex_point.(
+        point ~dir:downward (y' 70.)
+        <@--.> (vert_tension,horiz_tension) <.--@> point ~dir:rightward (x' left_pos)
+      )));
 (*
   contrast = 0.1;
   extension = -0.22;

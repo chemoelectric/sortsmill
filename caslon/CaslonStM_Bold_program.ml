@@ -22,6 +22,7 @@
 
 open Batteries
 open Caslon_roman
+open Fontdesign
 open Param
 
 let param = {
@@ -54,30 +55,40 @@ let param = {
   t_top_corner_height = 560.;
   i_dot_height = 623.;
   ascender_height = 700.;
-  lc_stem_width = 90.;
-  lc_serif_height = 30.;
+  stem_width = (fun _name -> 90.);
+  serif_height = (fun _name -> 30.);
 
   corner_radius = (fun state -> float_of_int (Random.State.int state 3 + 4));
   flag_corner_radius = (fun state -> 10.);
-  flag_top_corner_radius = (fun state -> 10.);
+  flag_top_radius = (fun state -> 10.);
 
   serif_end_angle = (fun state -> float_of_int (Random.State.int state 101 - 50) /. 9.);
   tail_end_angle = (fun state -> float_of_int (Random.State.int state 101) /. 10.);
 
   left_bracket =
-    (fun state -> {
-      bracket_horiz = 20.;
-      bracket_vert = 70.;
-      bracket_horiz_tension = 1.5;
-      bracket_vert_tension = 1.5;
-    } );
+    (fun name state ->
+      let left_pos =
+        if List.exists (( = ) name) i_letters then
+          (-23.)
+        else
+          (-20.)
+      in
+      let horiz_tension = 1.5 in
+      let vert_tension = 1.5 in
+      Metacubic.(Complex_point.(
+        point ~dir:rightward (x' left_pos)
+        <@--.> (horiz_tension,vert_tension) <.--@> point ~dir:upward (y' 70.)
+      )));
+
   right_bracket =
-    (fun state -> {
-      bracket_horiz = 20.;
-      bracket_vert = 70.;
-      bracket_horiz_tension = 1.5;
-      bracket_vert_tension = 1.5;
-    } );
+    (fun _name state ->
+      let left_pos = 20. in
+      let horiz_tension = 1.5 in
+      let vert_tension = 1.5 in
+      Metacubic.(Complex_point.(
+        point ~dir:downward (y' 70.)
+        <@--.> (vert_tension,horiz_tension) <.--@> point ~dir:rightward (x' left_pos)
+      )));
 }
 in
 run_command param

@@ -68,16 +68,16 @@ struct
     t_top_corner_height : float;
     i_dot_height : float;
     ascender_height : float;
-    lc_stem_width : float;
-    lc_serif_height : float;
+    stem_width : string -> float;
+    serif_height : string -> float;
 
     corner_radius : Random.State.t -> float;
     flag_corner_radius : Random.State.t -> float;
-    flag_top_corner_radius : Random.State.t -> float;
+    flag_top_radius : Random.State.t -> float;
     serif_end_angle : Random.State.t -> float;
     tail_end_angle : Random.State.t -> float;
-    left_bracket : Random.State.t -> bracket;
-    right_bracket : Random.State.t -> bracket;
+    left_bracket : string -> Random.State.t -> Metacubic.t;
+    right_bracket : string -> Random.State.t -> Metacubic.t;
   }
 
   module type Tools_module =
@@ -165,6 +165,8 @@ let enum_resolve_glyphs param = map (fun glyph -> glyph param) (enum_glyphs ())
 (*-----------------------------------------------------------------------*)
 
 let huge = 1e100 ;;
+
+let i_letters = ["dotlessi"; "i"] ;;
 
 type bend_kind = [ `With_extrema | `With_points_at_extrema | `Without_extrema ]
 
@@ -268,14 +270,34 @@ let make_contour_bend ~kind ~corner_point ~radius ~tension ~in_dir ~out_dir =
       make_extremum_free_bend ~corner_point ~radius ~tension ~in_dir ~out_dir
 
 let make_bend_for_contours
-    ~kind
-    ~contour1 ~contour2
-    ~corner_time1 ~corner_time2
-    ~radius ~tension =
-  let corner_point = Cubic.point_at contour1 corner_time1 in
-  let (in_dir,_) = Cubic.tangents_at contour1 corner_time1 in
-  let (_, out_dir) = Cubic.tangents_at contour2 corner_time2 in
-  let (point1, point2) = bend_points ~corner_point ~radius ~in_dir ~out_dir in
+    ?(kind = `With_extrema)
+    ?corner_point
+    ?corner_time1 ?corner_time2
+    ?(tension = (-1.))
+    ~contour1 ~contour2 ~radius () =
+  let (pt, t1, t2) =
+    match (corner_point, corner_time1, corner_time2) with
+      | (Some pt, None, None) ->
+        let t1 = Cubic.time_at_nearest_point contour1 pt in
+        let t2 = Cubic.time_at_nearest_point contour2 pt in
+        (pt, t1, t2)
+      | (None, Some t1, Some t2) ->
+        let pt = Cubic.point_at contour1 t1 in
+        (pt, t1, t2)
+      | (None, Some t1, None) ->
+        let pt = Cubic.point_at contour1 t1 in
+        let t2 = Cubic.time_at_nearest_point contour2 pt in
+        (pt, t1, t2)
+      | (None, None, Some t2) ->
+        let pt = Cubic.point_at contour2 t2 in
+        let t1 = Cubic.time_at_nearest_point contour1 pt in
+        (pt, t1, t2)
+      | (None, None, None) | (Some _, Some _, _) | (Some _, _, Some _) ->
+        invalid_arg "make_bend_for_contours"
+  in
+  let (in_dir,_) = Cubic.tangents_at contour1 t1 in
+  let (_, out_dir) = Cubic.tangents_at contour2 t2 in
+  let (point1, point2) = bend_points ~corner_point:pt ~radius ~in_dir ~out_dir in
   let time1 = Cubic.time_at_nearest_point contour1 point1 in
   let time2 = Cubic.time_at_nearest_point contour2 point2 in
   let point1 = Cubic.point_at contour1 time1 in
@@ -285,6 +307,39 @@ let make_bend_for_contours
   (contour_bend ~kind ~point1 ~point2 ~tension ~in_dir ~out_dir,
    time1, time2)
 
+let round_off_corner 
+    ?tol
+    ?kind
+    ?corner_point
+    ?corner_time1 ?corner_time2
+    ?tension
+    ~contour ~radius () =
+  let (bend, time1, time2) =
+    make_bend_for_contours
+      ?kind
+      ?corner_point
+      ?corner_time1 ?corner_time2
+      ?tension
+      ~contour1:contour ~contour2:contour
+      ~radius
+      ()
+    in
+    let contour =
+      if Cubic.is_closed ?tol contour then
+        Cubic.splice_into_cycle ~time1 ~time2 contour (Metacubic.to_cubic bend)
+      else
+        failwith "Not yet implemented"
+    in
+    contour
+
+let flat_cut_corners ~corner ~cut_length ~normal ~in_dir ~out_dir =
+  let angle1 = Complex.(arg (neg normal / in_dir)) in
+  let angle2 = Complex.(arg (out_dir / normal)) in
+  let normal_length = cut_length /. (tan angle1 +. tan angle2) in
+  let corner1 = Complex_point.(corner - x'(normal_length /. (cos angle1)) * in_dir) in
+  let corner2 = Complex_point.(corner + x'(normal_length /. (cos angle2)) * out_dir) in
+  (corner1, corner2)
+
 let flat_cut_points ~corner1 ~corner2 ~radius1 ~radius2 ~in_dir ~out_dir =
   let cut_dir = Complex_point.(dir (corner2 - corner1)) in
   let (point1, point2) = bend_points ~corner_point:corner1 ~radius:radius1 ~in_dir ~out_dir:cut_dir in
@@ -292,9 +347,9 @@ let flat_cut_points ~corner1 ~corner2 ~radius1 ~radius2 ~in_dir ~out_dir =
   (point1, point2, point3, point4, cut_dir)
 
 let flat_cut
+    ?(bend_kind1 = `With_extrema) ?(bend_kind2 = `With_extrema)
     ~point1 ~point2 ~point3 ~point4
-    ~tension ~in_dir ~cut_dir ~out_dir
-    ~bend_kind1 ~bend_kind2 =
+    ~tension ~in_dir ~cut_dir ~out_dir () =
   if Complex_point.(inner (point3 - point2) cut_dir) <= 0. then
     let midpoint = Complex_point.(x' 0.5 * (point2 + point3)) in
     let bend1 = contour_bend ~tension:(-1.) ~kind:bend_kind1 ~point1 ~point2:midpoint ~in_dir ~out_dir:cut_dir in
@@ -306,27 +361,39 @@ let flat_cut
     Metacubic.(bend1 <@-.> tension <.-@> bend2)
 
 let make_flat_cut
+    ?bend_kind1 ?bend_kind2
     ~corner1 ~corner2
     ~radius1 ~radius2 ~tension
-    ~in_dir ~out_dir
-    ~bend_kind1 ~bend_kind2 =
+    ~in_dir ~out_dir () =
   let (point1, point2, point3, point4, cut_dir) =
     flat_cut_points ~corner1 ~corner2 ~radius1 ~radius2 ~in_dir ~out_dir
   in
   flat_cut
+    ?bend_kind1 ?bend_kind2
     ~point1 ~point2 ~point3 ~point4
-    ~tension ~in_dir ~cut_dir ~out_dir
-    ~bend_kind1 ~bend_kind2
+    ~tension ~in_dir ~cut_dir ~out_dir ()
 
 let make_flat_cut_for_contours
+    ?bend_kind1 ?bend_kind2
+    ?corner_point1 ?corner_point2
+    ?corner_time1 ?corner_time2
+    ?(tension = huge)
     ~contour1 ~contour2
-    ~corner_time1 ~corner_time2
-    ~radius1 ~radius2 ~tension
-    ~bend_kind1 ~bend_kind2 =
-  let corner1 = Cubic.point_at contour1 corner_time1 in
-  let corner2 = Cubic.point_at contour2 corner_time2 in
-  let (in_dir,_) = Cubic.tangents_at contour1 corner_time1 in
-  let (_, out_dir) = Cubic.tangents_at contour2 corner_time2 in
+    ~radius1 ~radius2 () =
+  let (corner1, t1) =
+    match (corner_point1, corner_time1) with
+      | (Some pt, None) -> (pt, Cubic.time_at_nearest_point contour1 pt)
+      | (None, Some t) -> (Cubic.point_at contour1 t, t)
+      | (None, None) | (Some _, Some _) -> invalid_arg "make_flat_cut_for_contours"
+  in
+  let (corner2, t2) =
+    match (corner_point2, corner_time2) with
+      | (Some pt, None) -> (pt, Cubic.time_at_nearest_point contour2 pt)
+      | (None, Some t) -> (Cubic.point_at contour2 t, t)
+      | (None, None) | (Some _, Some _) -> invalid_arg "make_flat_cut_for_contours"
+  in
+  let (in_dir,_) = Cubic.tangents_at contour1 t1 in
+  let (_, out_dir) = Cubic.tangents_at contour2 t2 in
   let (point1, point2, point3, point4, cut_dir) =
     flat_cut_points ~corner1 ~corner2 ~radius1 ~radius2 ~in_dir ~out_dir
   in
@@ -337,55 +404,136 @@ let make_flat_cut_for_contours
   let (in_dir,_) = Cubic.tangents_at contour1 time1 in
   let (_, out_dir) = Cubic.tangents_at contour2 time2 in
   (flat_cut
+     ?bend_kind1 ?bend_kind2 
      ~point1 ~point2 ~point3 ~point4
-     ~tension ~in_dir ~cut_dir ~out_dir
-     ~bend_kind1 ~bend_kind2,
+     ~tension ~in_dir ~cut_dir ~out_dir (),
    time1, time2)
 
-let make_end_of_left_serif ~height ~shear_angle ~bottom_radius ~top_radius ~tension =
-  let shear_offset = 0.5 *. height *. dtan shear_angle in
+let make_left_serif_end
+    ~param ~rand ~glyph_name
+    ?height ?depth ?shear_angle
+    ?bottom_radius ?top_radius
+    ?(tension = huge)
+    () =
+  let end_height =
+    match height with
+      | None -> param.serif_height glyph_name +. 4.
+      | Some h -> h
+  in
+  let end_depth =
+    match depth with
+      | None -> 3.
+      | Some h -> h
+  in
+  let angle =
+    match shear_angle with
+      | None -> param.serif_end_angle rand
+      | Some a -> a
+  in
+  let radius1 =
+    match bottom_radius with
+      | None -> param.corner_radius rand
+      | Some r -> r
+  in
+  let radius2 =
+    match top_radius with
+      | None -> param.corner_radius rand
+      | Some r -> r
+  in
+  let shear_offset = 0.5 *. end_height *. dtan angle in
   let corner1 = Complex_point.(x'(-.shear_offset)) in
-  let corner2 = Complex_point.(x' shear_offset + y' height) in
-  make_flat_cut ~corner1 ~corner2 ~radius1:bottom_radius ~radius2:top_radius ~tension
-    ~in_dir:Complex_point.leftward ~out_dir:Complex_point.rightward
-    ~bend_kind1:`Without_extrema ~bend_kind2:`Without_extrema
+  let corner2 = Complex_point.(x' shear_offset + y' end_height) in
+  Metacubic.(
+    make_flat_cut ~corner1 ~corner2 ~radius1 ~radius2 ~tension
+      ~in_dir:Complex_point.leftward ~out_dir:Complex_point.rightward
+      ~bend_kind1:`Without_extrema ~bend_kind2:`Without_extrema ()
+    <+> Complex_point.y'(-.end_depth)
+  )
 
-let make_end_of_right_serif ~height ~shear_angle ~bottom_radius ~top_radius ~tension =
-  let shear_offset = 0.5 *. height *. dtan shear_angle in
-  let corner1 = Complex_point.(x' shear_offset + y' height) in
+let make_right_serif_end
+    ~param ~rand ~glyph_name
+    ?height ?depth ?shear_angle
+    ?bottom_radius ?top_radius
+    ?(tension = huge)
+    () =
+  let end_height =
+    match height with
+      | None -> param.serif_height glyph_name +. 4.
+      | Some h -> h
+  in
+  let end_depth =
+    match depth with
+      | None -> 3.
+      | Some h -> h
+  in
+  let angle =
+    match shear_angle with
+      | None -> param.serif_end_angle rand
+      | Some a -> a
+  in
+  let radius1 =
+    match top_radius with
+      | None -> param.corner_radius rand
+      | Some r -> r
+  in
+  let radius2 =
+    match bottom_radius with
+      | None -> param.corner_radius rand
+      | Some r -> r
+  in
+  let shear_offset = 0.5 *. end_height *. dtan angle in
+  let corner1 = Complex_point.(x' shear_offset + y' end_height) in
   let corner2 = Complex_point.(x'(-.shear_offset)) in
-  make_flat_cut ~corner1 ~corner2 ~radius1:top_radius ~radius2:bottom_radius ~tension
-    ~in_dir:Complex_point.rightward ~out_dir:Complex_point.leftward
-    ~bend_kind1:`Without_extrema ~bend_kind2:`Without_extrema
+  Metacubic.(
+    make_flat_cut ~corner1 ~corner2 ~radius1 ~radius2 ~tension
+      ~in_dir:Complex_point.rightward ~out_dir:Complex_point.leftward
+      ~bend_kind1:`Without_extrema ~bend_kind2:`Without_extrema ()
+    <+> Complex_point.y'(-.end_depth)
+  )
 
-let make_flag
-    ~top_corner ~right_point
-    ~left_notch ~left_point
-    ~flag_corner
-    ~top_corner_radius ~flag_corner_radius
-    ~top_cupping =
+let make_flag ~param ~rand ~left_notch ~flag_corner ~top_corner () =
+  (* FIXME: Turn the |rot 3.| into an optional call parameter. *)
   Complex_point.(
     let lower_dir = dir (flag_corner - left_notch) in
     let upper_dir = dir (top_corner - flag_corner) in
-    let notch_point = left_notch + x' 20. * lower_dir in
-    let cupping_vector = x' top_cupping * upper_dir * rot (-.90.) in
-    let flag_bend =
-      make_bend_with_points_at_extrema
-        ~corner_point:flag_corner ~radius:flag_corner_radius
-        ~tension:1. ~in_dir:lower_dir ~out_dir:upper_dir
+    let contour =
+      Metacubic.(
+        point ~in_dir:upward ~out_dir:lower_dir left_notch
+        <@> point ~in_dir:lower_dir ~out_dir:(upper_dir / rot 3.) flag_corner
+        <@> point ~in_dir:(upper_dir * rot 3.) ~out_dir:downward top_corner |> to_cubic
+      )
     in
-    let top_bend =
-      make_extremum_free_bend
-        ~corner_point:top_corner ~radius:top_corner_radius
-        ~tension:1. ~in_dir:upper_dir ~out_dir:downward
+    contour
+  )
+
+let reshape_flag ~param ~rand ~contour ~left_notch ~flag_corner ~top_corner () =
+  Complex_point.(
+    let contour = round_off_corner ~contour ~corner_point:left_notch ~radius:60. () in
+
+    let lower_dir = dir (flag_corner - left_notch) in
+    let upper_dir = dir (top_corner - flag_corner) in
+
+    let (corner_point1, corner_point2) =
+      flat_cut_corners ~corner:flag_corner ~cut_length:15.
+        ~normal:rightward ~in_dir:lower_dir ~out_dir:(upper_dir * rot 3.)
     in
-    Metacubic.(
-      point left_point
-      <@> point notch_point
-      <@~.> 1.5 <.~@> flag_bend
-      <@--.> (huge,0.75) <.--@> point (x' 0.40 * flag_corner + x' 0.60 * top_corner + cupping_vector)
-      <@--.> (0.75,huge) <.--@> top_bend
-    )
+    let (cut, time1, time2) =
+      make_flat_cut_for_contours ~corner_point1 ~corner_point2
+        ~contour1:contour ~contour2:contour ~radius1:10. ~radius2:10. ()
+    in
+    let contour = Cubic.splice_together ~time1 ~time2 contour contour (Metacubic.to_cubic cut) in
+
+    let (corner_point1, corner_point2) =
+      flat_cut_corners ~corner:top_corner ~cut_length:10.
+        ~normal:(dir (x' 0.6 * downward - x' 0.4 * upper_dir)) ~in_dir:(upper_dir * rot 3.) ~out_dir:downward
+    in
+    let (cut, time1, time2) =
+      make_flat_cut_for_contours ~bend_kind1:`Without_extrema ~corner_point1 ~corner_point2
+        ~contour1:contour ~contour2:contour ~radius1:5. ~radius2:5. ()
+    in
+    let contour = Cubic.splice_into_cycle ~time1 ~time2 contour (Metacubic.to_cubic cut) in
+
+    contour
   )
 
 (*-----------------------------------------------------------------------*)
@@ -416,11 +564,12 @@ let letter_c_contours glyph_name p =
       let tail_corner_radius1 = p.corner_radius rand +. 1. in
       let tail_corner_radius2 = p.corner_radius rand +. 1. in
 
-      let left_breadth = 1.12 *. p.lc_stem_width in
-      let bottom_breadth = 0.92 *. p.lc_stem_width /. (1. +. p.contrast) in
-      let top_breadth = 0.64 *. p.lc_stem_width /. (1. +. p.contrast) in
-      let head_breadth = 1.15 *. p.lc_stem_width /. (1. +. 0.3 *. p.contrast) in
-      let tail_breadth = 0.25 *. p.lc_stem_width in
+      let stem_width = p.stem_width glyph_name in
+      let left_breadth = 1.12 *. stem_width in
+      let bottom_breadth = 0.92 *. stem_width /. (1. +. p.contrast) in
+      let top_breadth = 0.64 *. stem_width /. (1. +. p.contrast) in
+      let head_breadth = 1.15 *. stem_width /. (1. +. 0.3 *. p.contrast) in
+      let tail_breadth = 0.25 *. stem_width in
 
       let tail1 = x'pos 0.98 + y'pos 0.19 in
       let head1 = x'pos 0.98 + y'pos 0.84 in
@@ -481,14 +630,14 @@ let letter_c_contours glyph_name p =
           ~contour1:c3 ~contour2:c1
           ~corner_time1:(float_of_int Int.(List.length c3 - 1))
           ~corner_time2:0.
-          ~radius1:tail_corner_radius1 ~radius2:tail_corner_radius2 ~tension:huge
-          ~bend_kind1:`With_extrema ~bend_kind2:`With_extrema
+          ~radius1:tail_corner_radius1 ~radius2:tail_corner_radius2
+          ()
       in
       let (_,c1) = Cubic.subdivide c1 outer_time in
       let (c3,_) = Cubic.subdivide c3 inner_time in
       Cubic.(c1 <@> c2 <@> c3 <@> Metacubic.to_cubic tail_cut)
     in
-    [contour |> Cubic.round]
+    [Cubic.round contour]
   ))
 ;;
 
@@ -515,31 +664,20 @@ let letter_e_contours glyph_name p =
   Tools.(Complex_point.(
 
     let tail_end_angle = p.tail_end_angle rand in
-    let tail_corner_radius1 = p.corner_radius rand +. 1. in
-    let tail_corner_radius2 = p.corner_radius rand +. 1. in
-    let crossbar_fillet_variation1 = Random.State.float rand 0.2 +. 0.9 in
-    let crossbar_fillet_variation2 = Random.State.float rand 0.2 +. 0.9 in
-    let crossbar_fillet_variation3 = Random.State.float rand 0.2 +. 0.9 in
-    let crossbar_fillet_variation4 = Random.State.float rand 0.2 +. 0.9 in
-    let crossbar_fillet_variation5 = Random.State.float rand 0.2 +. 0.9 in
-    let crossbar_fillet_variation6 = Random.State.float rand 0.2 +. 0.9 in
 
-    let top_breadth = 0.41 *. p.lc_stem_width /. (1. +. p.contrast) in
-    let left_breadth = 1.01 *. p.lc_stem_width in
-    let right_breadth = 1.68 *. p.lc_stem_width /. (1. +. 0.5 *. p.contrast) in
-    let bottom_breadth = 1.00 *. p.lc_stem_width /. (1. +. p.contrast) in
-    let tail_breadth = 0.34 *. p.lc_stem_width /. (1. +. p.contrast) in
+    let stem_width = p.stem_width glyph_name in
+    let top_breadth = 0.41 *. stem_width /. (1. +. p.contrast) in
+    let left_breadth = 1.01 *. stem_width in
+    let right_breadth = 1.68 *. stem_width /. (1. +. 0.5 *. p.contrast) in
+    let bottom_breadth = 1.00 *. stem_width /. (1. +. p.contrast) in
+    let tail_breadth = 0.34 *. stem_width /. (1. +. p.contrast) in
 
-    let crossbar_breadth = 0.42 *. p.lc_stem_width /. (1. +. p.contrast) in
     let crossbar_height = p.e_crossbar_height in
+    let crossbar_breadth = 0.42 *. stem_width /. (1. +. p.contrast) in
     let crossbar_top = p.e_crossbar_height +. crossbar_breadth in
-    let crossbar_fillet_size1 = crossbar_breadth *. crossbar_fillet_variation1 in
-    let crossbar_fillet_size2 = crossbar_breadth *. crossbar_fillet_variation2 in
-    let crossbar_fillet_size3 = crossbar_breadth *. crossbar_fillet_variation3 in
-    let crossbar_fillet_size4 = crossbar_breadth *. crossbar_fillet_variation4 in
-    let crossbar_fillet_size5 = crossbar_breadth *. crossbar_fillet_variation5 in
-    let crossbar_fillet_size6 = crossbar_breadth *. crossbar_fillet_variation6 in
     let crossbar_top0 = x'pos 1.00 - x' right_breadth + y' crossbar_top in
+
+    let crossbar_fillet_size () = (Random.State.float rand 0.2 +. 0.7) *. crossbar_breadth in
 
     let tail1 = x'pos 1.00 + y'pos 0.26 in
 
@@ -554,7 +692,7 @@ let letter_e_contours glyph_name p =
 
     let sketch_counter tail2 =
       Metacubic.(
-        point ~dir:upward (crossbar_top0 + y' crossbar_fillet_size1)
+        point ~dir:upward (crossbar_top0 + y'(crossbar_fillet_size ()))
         <@-> point ~dir:leftward (x'pos 0.50 + y'pos 1.00 - y' top_breadth) (* eye top *)
         <@-> point ~dir:downward (x'pos 0.00 + x' left_breadth + y'pos 0.52) (* inner left *)
         <@-> point ~dir:rightward (x'pos 0.60 + y'pos 0.00 + y' bottom_breadth) (* inner bottom *)
@@ -583,7 +721,7 @@ let letter_e_contours glyph_name p =
     in
     let (upper, lower) =
       let intersection_time =
-        (Cubic.curve_times_at_y ~pos:1 counter (crossbar_height -. crossbar_fillet_size2)).(0) +. 1.
+        (Cubic.curve_times_at_y ~pos:1 counter (crossbar_height -. (crossbar_fillet_size ()))).(0) +. 1.
       in
       Cubic.subdivide counter intersection_time
     in
@@ -592,7 +730,7 @@ let letter_e_contours glyph_name p =
         outer_left
         <@-> point ~dir:downward (x'pos 0.95 + y' crossbar_height + y'rel 0.02) (* right *)
         <@-> point ~dir:leftward (x'pos 0.85 + y' crossbar_height) (* crossbar right *)
-        <@-.> huge <.-@> point ~dir:leftward (crossbar_height_point + x' crossbar_fillet_size3) (* crossbar left *)
+        <@-.> huge <.-@> point ~dir:leftward (crossbar_height_point + x'(crossbar_fillet_size ())) (* crossbar left *)
                     |> to_cubic
       )
     in
@@ -601,8 +739,9 @@ let letter_e_contours glyph_name p =
         ~contour1:lower ~contour2:outer
         ~corner_time1:(float_of_int Int.(List.length lower - 1))
         ~corner_time2:0.
-        ~radius1:tail_corner_radius1 ~radius2:tail_corner_radius2 ~tension:huge
-        ~bend_kind1:`With_extrema ~bend_kind2:`With_extrema
+        ~radius1:(p.corner_radius rand +. 1.)
+        ~radius2:(p.corner_radius rand +. 1.)
+        ()
     in
     let lower' = fst (Cubic.subdivide lower lower_time) |> Metacubic.of_cubic |> Metacubic.set_dirs in
     let outer' = snd (Cubic.subdivide outer outer_time) |>
@@ -615,22 +754,20 @@ let letter_e_contours glyph_name p =
     in
     let eye_upper =
       let left_intersection_time =
-        (Cubic.curve_times_at_y upper ~pos:1 (crossbar_top +. crossbar_fillet_size4)).(0) +. 1.
+        (Cubic.curve_times_at_y upper ~pos:1 (crossbar_top +. (crossbar_fillet_size ()))).(0) +. 1.
       in
       let (upper', _) = Cubic.subdivide upper left_intersection_time in
       upper'
     in
     let eye_contour =
       Metacubic.(
-        to_cubic (
-          point ~dir:rightward (crossbar_top1 + x' crossbar_fillet_size5) (* crossbar top left *)
-          <@-.> huge <.-@> point ~dir:rightward (crossbar_top0 - x' crossbar_fillet_size6) (* crossbar top right *)
-          <@-> set_dirs ~guess:false (of_cubic eye_upper) |> close
-        )
+        point ~dir:rightward (crossbar_top1 + x'(crossbar_fillet_size ())) (* crossbar top left *)
+        <@-.> huge <.-@> point ~dir:rightward (crossbar_top0 - x'(crossbar_fillet_size ())) (* crossbar top right *)
+        <@-> set_dirs ~guess:false (of_cubic eye_upper) |> close |> to_cubic
       )
     in
-    [main_contour |> Cubic.round;
-     eye_contour |> Cubic.round]
+    [Cubic.round main_contour;
+     Cubic.round eye_contour]
   ))
 ;;
 
@@ -647,10 +784,7 @@ let contours_similar_to_letter_l
     ~right_side_shear
     ~left_serif_width
     ~right_serif_width
-    ~left_bracket
-    ~right_bracket
     ~extra_stem_width
-    ~top_cupping
     glyph_name p =
 
   let tools =
@@ -663,97 +797,64 @@ let contours_similar_to_letter_l
   in
   let module Tools = (val tools : Tools_module) in
 
-  Tools.(Metacubic.(Complex_point.(
+  Tools.(Complex_point.(
 
-    let left_serif_end_angle = p.serif_end_angle rand in
-    let right_serif_end_angle = p.serif_end_angle rand in
-    let left_serif_bottom_radius = p.corner_radius rand in
-    let left_serif_top_radius = p.corner_radius rand in
-    let right_serif_bottom_radius = p.corner_radius rand in
-    let right_serif_top_radius = p.corner_radius rand in
-    let top_corner_radius = p.flag_top_corner_radius rand in
-    let flag_corner_radius = p.flag_corner_radius rand in
-    let leftbrack = left_bracket rand in
-    let rightbrack = right_bracket rand in
+    let leftbrack= p.left_bracket glyph_name rand in
+    let rightbrack = p.right_bracket glyph_name rand in
     
-    let stem_width = p.lc_stem_width +. extra_stem_width in
-    let serif_height = p.lc_serif_height in
+    let stem_width = p.stem_width glyph_name +. extra_stem_width in
+    let serif_height = p.serif_height glyph_name in
+
     let left_pos = (-0.5) *. stem_width in
     let right_pos = 0.5 *. stem_width in
+    let left_base = x' left_pos + y' serif_height in
+    let right_base = x' right_pos + y' serif_height in
+    let left_serif_end =
+      Metacubic.(make_left_serif_end ~param:p ~rand ~glyph_name ()
+                 <+> x'(left_pos -. left_serif_width))
+    in
+    let right_serif_end =
+      Metacubic.(make_right_serif_end ~param:p ~rand ~glyph_name ()
+                 <+> x'(right_pos +. right_serif_width))
+    in
+
     let overshot_height = height +. overshoot in
     let serif_to_top = overshot_height -. serif_height in
 
-    let left_serif_end =
-      make_end_of_left_serif
-        ~height:(serif_height +. 4.)
-        ~shear_angle:left_serif_end_angle
-        ~bottom_radius:left_serif_bottom_radius
-        ~top_radius:left_serif_top_radius
-        ~tension:huge |>
-            (Metacubic.translate (x' left_pos - x' left_serif_width - y' 3.))
-    in
-    let right_serif_end =
-      make_end_of_right_serif
-        ~height:(serif_height +. 4.)
-        ~shear_angle:right_serif_end_angle
-        ~bottom_radius:right_serif_bottom_radius
-        ~top_radius:right_serif_top_radius
-        ~tension:huge |>
-            (Metacubic.translate (x' right_pos + x' right_serif_width - y' 3.))
-    in
+    let left_notch = left_base + (x_shear (y'(serif_to_top -. left_notch_drop)) left_side_shear) in
+    let top_corner = right_base + (x_shear (y' serif_to_top) right_side_shear) in
 
-    let left_notch =
-      x' left_pos + y' serif_height + (x_shear (y'(serif_to_top -. left_notch_drop)) left_side_shear)
-    in
-    let left_point =
-      x' left_pos + y' serif_height + (x_shear (y'(serif_to_top -. left_notch_drop -. 40.)) left_side_shear)
-    in
-    let top_corner =
-      x' right_pos + y' serif_height + (x_shear (y' serif_to_top) right_side_shear)
-    in
-    let right_point =
-      x' right_pos + y' serif_height + (x_shear (y'(serif_to_top -. top_corner_radius)) right_side_shear)
-    in
     let flag_corner = x'(re left_notch -. flag_width) + y'(im top_corner -. flag_drop) in
-    let flag =
-      make_flag
-        ~top_corner ~right_point
-        ~left_notch ~left_point
-        ~flag_corner
-        ~top_corner_radius ~flag_corner_radius
-        ~top_cupping
-    in
+    let flag = make_flag ~param:p ~rand ~left_notch ~flag_corner ~top_corner () in
+
     let left_side =
       Metacubic.(
         point ~dir:leftward zero
         <@--.> (1.,2.) <.--@> left_serif_end
-        <@--.> (2.,1.) <.--@> point ~dir:rightward (x' left_pos + y' serif_height - x' leftbrack.bracket_horiz)
-        <@--.>
-          (leftbrack.bracket_horiz_tension,
-           leftbrack.bracket_vert_tension)
-        <.--@> point ~dir:upward (x' left_pos + y' serif_height + y' leftbrack.bracket_vert)
-        <@-> point left_point
+        <@--.> (2.,1.) <.--@> (leftbrack <+> left_base)
       )
     in
-    let right_stem_point = x' right_pos + y' serif_height + y' rightbrack.bracket_vert in
-    let (_,flag_end,_) = Vect.at flag Int.(Vect.length flag - 1) in
+    let (_,flag_end,_) = List.last flag in (* FIXME: Add a function for this to the Cubic module. *)
+    let rbrack = Metacubic.(rightbrack <+> right_base) in
+    let right_side_height = 0.7 *. (overshot_height -. im (Metacubic.incoming_point rbrack)) in
     let right_side =
       Metacubic.(
-        point ~in_dir:downward ~out_control:(right_point - y' 20.) flag_end
-        <@> point
-          ~in_control:(right_stem_point + y'(0.7 *. (serif_to_top -. rightbrack.bracket_vert)))
-          ~out_dir:downward right_stem_point
-        <@--.>
-          (rightbrack.bracket_vert_tension,
-           rightbrack.bracket_horiz_tension)
-        <.--@> point ~dir:rightward (x' right_pos + y' serif_height + x' rightbrack.bracket_horiz)
+        point ~in_dir:downward ~out_control:(flag_end - y' 20.) flag_end
+        <@> Metacubic.(set_incoming_knot_side rbrack
+                         (`Ctrl (incoming_point rbrack + y' right_side_height)))
         <@--.> (1.,2.) <.--@> right_serif_end
         <@--.> (2.,1.) <.--@> point ~dir:leftward zero
       )
     in
-    let contour = to_cubic (flag <@> right_side <@> left_side) in
-    [contour |> Cubic.round]
-  )))
+
+    let contour =
+      Cubic.(Metacubic.to_cubic left_side
+             <@--.> (0.75,10.) <.--@> flag
+             <@> Metacubic.to_cubic right_side)
+    in
+    let contour = reshape_flag ~param:p ~rand ~contour ~left_notch ~flag_corner ~top_corner () in
+    [Cubic.round contour]
+  ))
 ;;
 
 (*.......................................................................*)
@@ -770,13 +871,7 @@ let letter_dotlessi_contours glyph_name p =
     ~right_side_shear:1.2
     ~left_serif_width:65.
     ~right_serif_width:60.
-    ~left_bracket:(fun state ->
-      let lbrack = p.left_bracket state in
-      { lbrack with bracket_horiz = lbrack.bracket_horiz +. 5. }
-    )
-    ~right_bracket:p.right_bracket
     ~extra_stem_width:0.
-    ~top_cupping:2.
     glyph_name p
 
 (*.......................................................................*)
@@ -815,10 +910,7 @@ let letter_l_contours glyph_name p =
     ~right_side_shear:1.2
     ~left_serif_width:105.
     ~right_serif_width:85.
-    ~left_bracket:p.left_bracket
-    ~right_bracket:p.right_bracket
     ~extra_stem_width:3.
-    ~top_cupping:2.
     glyph_name p
 
 (*.......................................................................*)
@@ -843,10 +935,11 @@ let letter_o_contours glyph_name p =
 
   Tools.(Cubic.(Complex_point.(
 
-    let left_breadth = 1.16 *. p.lc_stem_width in
-    let right_breadth = 1.16 *. p.lc_stem_width in
-    let bottom_breadth = 0.58 *. p.lc_stem_width /. (1. +. p.contrast) in
-    let top_breadth = 0.54 *. p.lc_stem_width /. (1. +. p.contrast) in
+    let stem_width = p.stem_width glyph_name in
+    let left_breadth = 1.16 *. stem_width in
+    let right_breadth = 1.16 *. stem_width in
+    let bottom_breadth = 0.58 *. stem_width /. (1. +. p.contrast) in
+    let top_breadth = 0.54 *. stem_width /. (1. +. p.contrast) in
 
     let outer_contour =
       make_up_node (x'pos 0.00 + y'pos 0.50) (* left *)
@@ -862,8 +955,8 @@ let letter_o_contours glyph_name p =
       <@-> make_left_node (x'pos 0.48 + y'pos 1.00 - y' top_breadth) (* top *)
       <-@@ 1.0
     in
-    [outer_contour |> Cubic.round;
-     inner_contour |> Cubic.round]
+    [Cubic.round outer_contour;
+     Cubic.round inner_contour]
   )))
 ;;
 
@@ -882,10 +975,7 @@ let letter_r_contours glyph_name p =
       ~right_side_shear:0.2
       ~left_serif_width:65.
       ~right_serif_width:67.
-      ~left_bracket:p.left_bracket
-      ~right_bracket:p.right_bracket
       ~extra_stem_width:2.
-      ~top_cupping:2.
       glyph_name p
   in
   let ilike_contour = List.hd ilike_contour_list in
@@ -897,7 +987,7 @@ let letter_r_contours glyph_name p =
       <@> point ~dir:leftward (x' 164.0000 + y' 306.0000)
       <@> point ~dir:leftward (x' 79.0000 + y' 335.0000)
       <@~~.> (1.,2.) <.~~@> point (x'(-17.0000) + y' 265.0000)
-                                 |> translate (x'(0.5 *. p.lc_stem_width))
+                                 |> translate (x'(0.5 *. p.stem_width glyph_name))
                                  |> to_cubic
     ))
   in
@@ -908,7 +998,7 @@ let letter_r_contours glyph_name p =
       ~contour1:ilike_contour ~contour2:arm
       ~corner_time1:xings.(0).Crossing.ta
       ~corner_time2:xings.(0).Crossing.tb
-      ~radius:5. ~tension:(-1.)
+      ~radius:5. ~tension:(-1.) ()
   in
   let (bend2, time2a, time2b) = 
     make_bend_for_contours
@@ -916,20 +1006,31 @@ let letter_r_contours glyph_name p =
       ~contour1:arm ~contour2:ilike_contour
       ~corner_time1:xings.(1).Crossing.tb
       ~corner_time2:xings.(1).Crossing.ta
-      ~radius:70. ~tension:(-1.1)
-  in
-  let contour =
-    Cubic.(
-      cycle_portion ilike_contour time2b time1a
-      <@> Metacubic.to_cubic bend1
-      <@> portion arm time1b time2a
-      <@> Metacubic.to_cubic bend2
-    )
+      ~radius:70. ~tension:(-1.1) ()
   in
   (*
-    [ilike_contour;arm]
+    let contour =
+    Cubic.(
+    cycle_portion ilike_contour time2b time1a
+    <@> Metacubic.to_cubic bend1
+    <@> portion arm time1b time2a
+    <@> Metacubic.to_cubic bend2
+    )
+    in
   *)
-  [contour]
+  let contour =
+    Cubic.(
+      cycle_portion ilike_contour (xings.(1).Crossing.ta) (xings.(0).Crossing.ta)
+      <@> portion arm (xings.(0).Crossing.tb) (xings.(1).Crossing.tb)
+    )
+  in
+  let contour = Cubic.splice_into_cycle contour (Metacubic.to_cubic bend1) in
+  let contour = Cubic.splice_into_cycle contour (Metacubic.to_cubic bend2) in
+  (*
+    let contour = Cubic.splice_together ilike_contour arm (Metacubic.to_cubic bend1) in
+    let contour = Cubic.splice_together contour ilike_contour (Metacubic.to_cubic bend2) in
+  *)
+  [Cubic.round contour]
 
 (*-----------------------------------------------------------------------*)
 
@@ -955,7 +1056,7 @@ let letter_t_contours glyph_name p =
     let tail_corner_radius1 = p.corner_radius rand in
     let tail_corner_radius2 = p.corner_radius rand in
 
-    let stem_width = p.lc_stem_width in
+    let stem_width = p.stem_width glyph_name in
     let left_pos = x'(-.0.5 *. stem_width) in
     let right_pos = x'(0.5 *. stem_width) in
     let crossbar_height = p.t_crossbar_height in
@@ -1049,11 +1150,11 @@ let letter_t_contours glyph_name p =
 
     let crossbar_end =
       make_flat_cut
+        ~bend_kind1:`Without_extrema ~bend_kind2:`Without_extrema
         ~corner1:(x'(re right_pos +. upper_bowl_width -. 8.) + y' crossbar_height)
         ~corner2:(x'(re right_pos +. upper_bowl_width -. 18.) + y'(crossbar_height -. crossbar_breadth))
         ~radius1:6. ~radius2:6. ~tension:huge
-        ~in_dir:rightward ~out_dir:leftward
-        ~bend_kind1:`Without_extrema ~bend_kind2:`Without_extrema
+        ~in_dir:rightward ~out_dir:leftward ()
     in
 
     let right_side =
@@ -1072,8 +1173,8 @@ let letter_t_contours glyph_name p =
         ~contour1:right_side ~contour2:left_side
         ~corner_time1:(float_of_int Int.(List.length right_side - 1))
         ~corner_time2:0.
-        ~radius1:tail_corner_radius1 ~radius2:tail_corner_radius2 ~tension:huge
-        ~bend_kind1:`With_extrema ~bend_kind2:`With_extrema
+        ~radius1:tail_corner_radius1 ~radius2:tail_corner_radius2
+        ()
     in
     let right_side = fst (Cubic.subdivide right_side right_time) in
     let left_side = snd (Cubic.subdivide left_side left_time) in

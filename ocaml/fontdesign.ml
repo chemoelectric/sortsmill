@@ -879,12 +879,12 @@ struct
 
   let cycle_portion ?(tol = !basis_conversion_tolerance) contour time1 time2 =
     if not (is_closed ~tol contour) then
-      invalid_arg "subcycle";
+      invalid_arg "cycle_portion";
     let cycle_length = float_of_int (List.length contour - 1) in
     if time1 <= -.tol || cycle_length +. tol < time1 then
-      invalid_arg "subcycle";
+      invalid_arg "cycle_portion";
     if time2 <= -.tol || cycle_length +. tol < time2 then
-      invalid_arg "subcycle";
+      invalid_arg "cycle_portion";
 (*    let contour = harmonize_cycle_handles ~tol contour in *)
     if abs_float (time2 -. time1) < tol then
       portion ~tol contour 0. cycle_length
@@ -1015,6 +1015,42 @@ struct
     if is_closed ?tol contour then
       invalid_arg "close_with_tension: the contour is closed already";
     close_with_tensions ?no_inflection tension tension contour
+
+  let splice_into_cycle ?tol ?time1 ?time2 cycle contour =
+    let t1 =
+      match time1 with
+        | Some t1 -> t1
+        | None ->
+          let (_,oc,_) = L.first contour in
+          time_at_nearest_point cycle oc
+    in
+    let t2 =
+      match time2 with
+        | Some t2 -> t2
+        | None ->
+          let (_,oc,_) = L.last contour in
+          time_at_nearest_point cycle oc
+    in
+    join ?tol (cycle_portion ?tol cycle t2 t1) contour
+
+  let splice_together ?tol ?time1 ?time2 contour1 contour2 splice_contour =
+    let t1 =
+      match time1 with
+        | Some t1 -> t1
+        | None ->
+          let (_,oc,_) = L.first splice_contour in
+          time_at_nearest_point contour1 oc
+    in
+    let t2 =
+      match time2 with
+        | Some t2 -> t2
+        | None ->
+          let (_,oc,_) = L.last splice_contour in
+          time_at_nearest_point contour2 oc
+    in
+    join ?tol
+      (join ?tol (portion ?tol contour1 0. t1) splice_contour)
+      (portion ?tol contour2 t2 infinity)
 
   let to_point_bool_list contour =
     let node_to_list (ih,oc,oh) = [(ih, false); (oc, true); (oh, false)] in
@@ -1212,6 +1248,9 @@ struct
     in
     (incoming, point, `Dir (outgoing_dir, tension))
 
+  let knot_point (_,point,_) = point
+  let contour_point contour k = knot_point (Vect.at contour k)
+
   let _knots_coincide ?tol (_,point1,_) (_,point2,_) =
     Cubic.points_coincide ?tol point1 point2
 
@@ -1227,6 +1266,16 @@ struct
     else
       contour
 
+  let incoming_point ?tol contour =
+    if is_closed ?tol contour then
+      failwith "incoming_point";
+    contour_point contour 0
+
+  let outgoing_point ?tol contour =
+    if is_closed ?tol contour then
+      failwith "outgoing_point";
+    contour_point contour (Vect.length contour - 1)
+
   let set_incoming_tension ?tol contour tension =
     if is_closed ?tol contour then
       failwith "set_incoming_tension";
@@ -1240,6 +1289,18 @@ struct
     Vect.modify contour (Vect.length contour - 1)
       (fun (incoming, point, outgoing) ->
         incoming, point, set_knot_side_tension outgoing tension)
+
+  let set_incoming_knot_side ?tol contour ks =
+    if is_closed ?tol contour then
+      failwith "set_incoming_control";
+    Vect.modify contour 0
+      (fun (incoming, point, outgoing) -> ks, point, outgoing)
+
+  let set_outgoing_knot_side ?tol contour ks =
+    if is_closed ?tol contour then
+      failwith "set_outgoing_control";
+    Vect.modify contour (Vect.length contour - 1)
+      (fun (incoming, point, outgoing) -> incoming, point, ks)
 
   let join ?tol ?in_tension ?out_tension ?tension contour1 contour2 =
     if (Option.is_some tension && Option.is_some in_tension) ||
@@ -1842,30 +1903,14 @@ struct
   let ( <.~@> ) f a = f a
   let ( <.--@> ) f a = f a
   let ( <.-@> ) f a = f a
-(*
-  let ( <@@ ) contour t_or_f =
-    (if t_or_f then close else unclose) contour
-
-  let ( <~~@@ ) contour (tension1, tension2) =
-    close_with_tensions tension1 tension2 contour
-
-  let ( <--@@ ) contour (tension1, tension2) =
-    close_with_tensions ~no_inflection:true tension1 tension2 contour
-
-  let ( <~@@ ) contour tension =
-    close_with_tension tension contour
-
-  let ( <-@@ ) contour tension =
-    close_with_tension ~no_inflection:true tension contour
-*)
 
 (* FIXME: These depend on how "pointwise" gets repaired.
   let ( <.> ) contour f = pointwise f contour
   let ( <*> ) contour pt = pointwise (flip Complex.mul pt) contour
   let ( </> ) contour pt = pointwise (flip Complex.div pt) contour
-  let ( <+> ) contour pt = pointwise (flip Complex.add pt) contour
-  let ( <-> ) contour pt = pointwise (flip Complex.sub pt) contour
 *)
+  let ( <+> ) contour pt = translate pt contour
+  let ( <-> ) contour pt = translate Complex.(neg pt) contour
 end
 
 (*-----------------------------------------------------------------------*)
