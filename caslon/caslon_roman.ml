@@ -236,12 +236,13 @@ let bend_with_points_at_extrema ~point1 ~point2 ~tension ~in_dir ~out_dir =
         Array.sort Float.compare times;
         let cubic' =
           fold
-            Cubic.(fun result k -> result <@> portion cubic times.(k) times.(k + 1))
+            Cubic.(fun result k -> result |> put (portion cubic times.(k) times.(k + 1)))
             (Cubic.portion cubic 0. times.(0))
             (1 --^ (times_count - 1))
         in
-        Cubic.(cubic' <@> Cubic.portion cubic times.(times_count - 1) 1.) |>
-            Metacubic.of_cubic |> Metacubic.set_dirs
+        Cubic.(cubic' |> put (Cubic.portion cubic times.(times_count - 1) 1.))
+        |> Metacubic.of_cubic
+        |> Metacubic.set_dirs
       end
 
 let contour_bend ~kind ~point1 ~point2 ~tension ~in_dir ~out_dir =
@@ -363,7 +364,7 @@ let flat_cut
   else
     let bend1 = contour_bend ~tension:(-1.) ~kind:bend_kind1 ~point1 ~point2 ~in_dir ~out_dir:cut_dir in
     let bend2 = contour_bend ~tension:(-1.) ~kind:bend_kind2 ~point1:point3 ~point2:point4 ~in_dir:cut_dir ~out_dir in
-    Metacubic.(bend1 |> putd ~tension bend2)
+    Metacubic.(bend1 |> dput ~tension bend2)
 
 let make_flat_cut
     ?bend_kind1 ?bend_kind2
@@ -577,10 +578,10 @@ let letter_c_contours glyph_name p =
         Metacubic.(
           set_dirs (
             point ~out_curl:1.5 tail1   (* tail *)
-            |> putd (point ~dir:leftward (x'pos 0.56 + y'pos 0.00)) (* bottom *)
-            |> putd ~tension:0.95 (point ~dir:upward (x'pos 0.0 + y'pos 0.50)) (* left *)
-            |> putd (point ~dir:rightward (x'pos 0.62 + y'pos 1.00)) (* top *)
-            |> putd (point ~in_curl:1.5 head1) (* head *)
+            |> dput (point ~dir:leftward (x'pos 0.56 + y'pos 0.00)) (* bottom *)
+            |> dput ~tension:0.95 (point ~dir:upward (x'pos 0.0 + y'pos 0.50)) (* left *)
+            |> dput (point ~dir:rightward (x'pos 0.62 + y'pos 1.00)) (* top *)
+            |> dput (point ~in_curl:1.5 head1) (* head *)
           )   
         )
       in
@@ -592,11 +593,11 @@ let letter_c_contours glyph_name p =
       let sketch_inner tail2 =
         Metacubic.(
           point head2
-          |> putd ~tension:1000. (point partway_pt)
-          |> putd ~tension:0.75 (point ~dir:leftward top) (* inner top *)
-          |> putd (point ~dir:downward (x'pos 0.00 + x' left_breadth + y'pos 0.52)) (* inner left *)
-          |> putd (point ~dir:rightward (x'pos 0.64 + y'pos 0.00 + y' bottom_breadth)) (* inner bottom *)
-          |> putd (point ~in_curl:1.5 tail2) (* tail *)
+          |> dput ~tension:1000. (point partway_pt)
+          |> dput ~tension:0.75 (point ~dir:leftward top) (* inner top *)
+          |> dput (point ~dir:downward (x'pos 0.00 + x' left_breadth + y'pos 0.52)) (* inner left *)
+          |> dput (point ~dir:rightward (x'pos 0.64 + y'pos 0.00 + y' bottom_breadth)) (* inner bottom *)
+          |> dput (point ~in_curl:1.5 tail2) (* tail *)
           |> to_cubic
         )
       in
@@ -616,7 +617,7 @@ let letter_c_contours glyph_name p =
       let inner = sketch_inner tail2 in
 
       let outer' = Metacubic.to_cubic outer in
-      let c = Cubic.(outer' <@-.> 1.2 <.-@> inner) in
+      let c = Cubic.(outer' |> dput ~tension:1.2 inner) in
       let (x_times, y_times) =
         Cubic.curve_extrema_and_inflections ~pos:Int.(Vect.length outer - 1) c
       in
@@ -634,7 +635,7 @@ let letter_c_contours glyph_name p =
       in
       let (_,c1) = Cubic.subdivide c1 outer_time in
       let (c3,_) = Cubic.subdivide c3 inner_time in
-      Cubic.(c1 <@> c2 <@> c3 <@> Metacubic.to_cubic tail_cut)
+      Cubic.(c1 |> put c2 |> put c3 |> put (Metacubic.to_cubic tail_cut))
     in
     [Cubic.round contour]
   ))
@@ -683,19 +684,19 @@ let letter_e_contours glyph_name p =
     let outer_left =
       Metacubic.(
         point ~out_curl:1.0 tail1       (* outer tail *)
-        |> putd (point ~dir:leftward (x'pos 0.54 + y'pos 0.00)) (* bottom *)
-        |> putd ~tension:0.9 (point ~dir:upward (x'pos 0.00 + y'pos 0.51)) (* left *)
-        |> putd (point ~dir:rightward (x'pos 0.52 + y'pos 1.00)) (* top *)
+        |> dput (point ~dir:leftward (x'pos 0.54 + y'pos 0.00)) (* bottom *)
+        |> dput ~tension:0.9 (point ~dir:upward (x'pos 0.00 + y'pos 0.51)) (* left *)
+        |> dput (point ~dir:rightward (x'pos 0.52 + y'pos 1.00)) (* top *)
       )
     in
 
     let sketch_counter tail2 =
       Metacubic.(
         point ~dir:upward (crossbar_top0 + y'(crossbar_fillet_size ()))
-        |> putd (point ~dir:leftward (x'pos 0.50 + y'pos 1.00 - y' top_breadth)) (* eye top *)
-        |> putd (point ~dir:downward (x'pos 0.00 + x' left_breadth + y'pos 0.52)) (* inner left *)
-        |> putd (point ~dir:rightward (x'pos 0.60 + y'pos 0.00 + y' bottom_breadth)) (* inner bottom *)
-        |> putd (point ~in_curl:1.0 tail2) (* inner tail *)
+        |> dput (point ~dir:leftward (x'pos 0.50 + y'pos 1.00 - y' top_breadth)) (* eye top *)
+        |> dput (point ~dir:downward (x'pos 0.00 + x' left_breadth + y'pos 0.52)) (* inner left *)
+        |> dput (point ~dir:rightward (x'pos 0.60 + y'pos 0.00 + y' bottom_breadth)) (* inner bottom *)
+        |> dput (point ~in_curl:1.0 tail2) (* inner tail *)
         |> to_cubic
       )
     in
@@ -727,9 +728,9 @@ let letter_e_contours glyph_name p =
     let outer =
       Metacubic.(
         outer_left
-        |> putd (point ~dir:downward (x'pos 0.95 + y' crossbar_height + y'rel 0.02)) (* right *)
-        |> putd (point ~dir:leftward (x'pos 0.85 + y' crossbar_height)) (* crossbar right *)
-        |> putd ~tension:huge (point ~dir:leftward (crossbar_height_point + x'(crossbar_fillet_size ()))) (* crossbar left *)
+        |> dput (point ~dir:downward (x'pos 0.95 + y' crossbar_height + y'rel 0.02)) (* right *)
+        |> dput (point ~dir:leftward (x'pos 0.85 + y' crossbar_height)) (* crossbar right *)
+        |> dput ~tension:huge (point ~dir:leftward (crossbar_height_point + x'(crossbar_fillet_size ()))) (* crossbar left *)
         |> to_cubic
       )
     in
@@ -761,8 +762,8 @@ let letter_e_contours glyph_name p =
     let eye_contour =
       Metacubic.(
         point ~dir:rightward (crossbar_top1 + x'(crossbar_fillet_size ())) (* crossbar top left *)
-        |> putd ~tension:huge (point ~dir:rightward (crossbar_top0 - x'(crossbar_fillet_size ()))) (* crossbar top right *)
-        |> putd (set_dirs ~guess:false (of_cubic eye_upper))
+        |> dput ~tension:huge (point ~dir:rightward (crossbar_top0 - x'(crossbar_fillet_size ()))) (* crossbar top right *)
+        |> dput (set_dirs ~guess:false (of_cubic eye_upper))
         |> close
         |> to_cubic
       )
@@ -836,8 +837,8 @@ let contours_similar_to_letter_l
     let left_side =
       Metacubic.(
         point ~dir:leftward zero
-        |> putd ~tensions:(1.,2.) left_serif_end
-        |> putd ~tensions:(2.,1.) lbrack
+        |> dput ~tensions:(1.,2.) left_serif_end
+        |> dput ~tensions:(2.,1.) lbrack
         |> set_outgoing_knot_side (`Ctrl left_notch)
       )
     in
@@ -848,13 +849,13 @@ let contours_similar_to_letter_l
     let right_side =
       Metacubic.(
         point ~in_dir:downward ~out_control:(flag_end - y' 20.) flag_end
-        |> putd (set_incoming_knot_side (`Ctrl (incoming_point rbrack + y' right_side_height)) rbrack)
-        |> putd ~tensions:(1.,2.) right_serif_end
-        |> putd ~tensions:(2.,1.) (point ~dir:leftward zero)
+        |> dput (set_incoming_knot_side (`Ctrl (incoming_point rbrack + y' right_side_height)) rbrack)
+        |> dput ~tensions:(1.,2.) right_serif_end
+        |> dput ~tensions:(2.,1.) (point ~dir:leftward zero)
       )
     in
 
-    let contour = Metacubic.(left_side |> putd flag |> put right_side |> to_cubic) in
+    let contour = Metacubic.(left_side |> dput flag |> put right_side |> to_cubic) in
     let contour = reshape_flag ~param:p ~rand ~contour ~left_notch ~flag_corner ~top_corner () in
     [Cubic.round contour]
   ))
@@ -946,17 +947,17 @@ let letter_o_contours glyph_name p =
 
     let outer_contour =
       make_up_node (x'pos 0.00 + y'pos 0.50) (* left *)
-      <@-> make_right_node (x'pos 0.50 + y'pos 1.00) (* top *)
-      <@-> make_down_node (x'pos 1.00 + y'pos 0.50)  (* right *)
-      <@-> make_left_node (x'pos 0.49 + y'pos 0.00)  (* bottom *)
-      <-@@ 0.95
+    |> dput ~tension:1. (make_right_node (x'pos 0.50 + y'pos 1.00)) (* top *) (*????????? FIX INDENTATION ?????????????????*)
+    |> dput ~tension:1. (make_down_node (x'pos 1.00 + y'pos 0.50))  (* right *)
+    |> dput ~tension:1. (make_left_node (x'pos 0.49 + y'pos 0.00))  (* bottom *)
+    |> dclose ~tension:0.95
     in
     let inner_contour =
       make_down_node (x'pos 0.00 + x' left_breadth + y'pos 0.52) (* left *)
-      <@-.> 0.98 <.-@> make_right_node (x'pos 0.49 + y'pos 0.00 + y' bottom_breadth) (* bottom *)
-      <@-> make_up_node (x'pos 1.00 - x' right_breadth + y'pos 0.48) (* right *)
-      <@-> make_left_node (x'pos 0.48 + y'pos 1.00 - y' top_breadth) (* top *)
-      <-@@ 1.0
+    |> dput ~tension:0.98 (make_right_node (x'pos 0.49 + y'pos 0.00 + y' bottom_breadth)) (* bottom *)
+    |> dput ~tension:1. (make_up_node (x'pos 1.00 - x' right_breadth + y'pos 0.48)) (* right *)
+    |> dput ~tension:1. (make_left_node (x'pos 0.48 + y'pos 1.00 - y' top_breadth)) (* top *)
+    |> dclose ~tension:1.
     in
     [Cubic.round outer_contour;
      Cubic.round inner_contour]
@@ -1015,16 +1016,16 @@ let letter_r_contours glyph_name p =
     let contour =
     Cubic.(
     cycle_portion ilike_contour time2b time1a
-    <@> Metacubic.to_cubic bend1
-    <@> portion arm time1b time2a
-    <@> Metacubic.to_cubic bend2
+    |> put (Metacubic.to_cubic bend1)
+    |> put (portion arm time1b time2a)
+    |> put (Metacubic.to_cubic bend2)
     )
     in
   *)
   let contour =
     Cubic.(
       cycle_portion ilike_contour (xings.(1).Crossing.ta) (xings.(0).Crossing.ta)
-      <@> portion arm (xings.(0).Crossing.tb) (xings.(1).Crossing.tb)
+      |> put (portion arm (xings.(0).Crossing.tb) (xings.(1).Crossing.tb))
     )
   in
   let contour = Cubic.splice_into_cycle contour (Metacubic.to_cubic bend1) in
@@ -1106,12 +1107,12 @@ let letter_t_contours glyph_name p =
     let left_side =
       Metacubic.(
         point ~out_curl:1. tail1
-        |> putd (point ~dir:leftward bottom_point)
-        |> putd ~tension:1.1 (point ~dir:upward (left_pos - x' 5. + y'pos 0.15))
-        |> putd (point ~dir:upward (x' (re left_pos) + y' sheared_terminal_height - y' 60.))
-        |> putd (point ~dir:leftward (x' (re left_pos) + y' sheared_terminal_height - x' 10.))
-        |> putd ~tension:huge left_bend
-        |> putd ~tension:huge (point ~in_curl:1. top_left)
+        |> dput (point ~dir:leftward bottom_point)
+        |> dput ~tension:1.1 (point ~dir:upward (left_pos - x' 5. + y'pos 0.15))
+        |> dput (point ~dir:upward (x' (re left_pos) + y' sheared_terminal_height - y' 60.))
+        |> dput (point ~dir:leftward (x' (re left_pos) + y' sheared_terminal_height - x' 10.))
+        |> dput ~tension:huge left_bend
+        |> dput ~tension:huge (point ~in_curl:1. top_left)
         |> to_cubic
       )
     in
@@ -1119,10 +1120,10 @@ let letter_t_contours glyph_name p =
     let sketch_right_side tail2 =
       Metacubic.(
         point ~out_curl:1. top_right
-        |> putd ~tension:5. (point ~dir:downward crossbar_bend)
-        |> putd (point ~dir:downward (right_pos + y'pos 0.25))
-        |> putd (point ~dir:rightward bowl_point)
-        |> putd (point ~in_curl:1. tail2)
+        |> dput ~tension:5. (point ~dir:downward crossbar_bend)
+        |> dput (point ~dir:downward (right_pos + y'pos 0.25))
+        |> dput (point ~dir:rightward bowl_point)
+        |> dput (point ~in_curl:1. tail2)
         |> to_cubic
       )
     in
@@ -1163,10 +1164,10 @@ let letter_t_contours glyph_name p =
     let right_side =
       Metacubic.(
         set_dirs ~out_dir:downward (of_cubic c3)
-        |> putd (point pt1)
-        |> putd ~tension:huge (crossbar_end)
-        |> putd ~tension:huge (point pt2)
-        |> putd (set_dirs ~in_dir:downward (of_cubic c4))
+        |> dput (point pt1)
+        |> dput ~tension:huge (crossbar_end)
+        |> dput ~tension:huge (point pt2)
+        |> dput (set_dirs ~in_dir:downward (of_cubic c4))
         |> to_cubic
       )
     in

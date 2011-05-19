@@ -74,7 +74,7 @@ let param = {
       let vert_tension = 0.01 *. float_of_int (Random.State.int state 51 + 100) in
       Metacubic.(Complex_point.(
         point ~dir:rightward (x' left_pos)
-        |> putd ~tensions:(horiz_tension, vert_tension) (point ~dir:upward (y' 70.))
+        |> dput ~tensions:(horiz_tension, vert_tension) (point ~dir:upward (y' 70.))
       )));
 
   right_bracket =
@@ -84,7 +84,7 @@ let param = {
       let vert_tension = 0.01 *. float_of_int (Random.State.int state 51 + 100) in
       Metacubic.(Complex_point.(
         point ~dir:downward (y' 70.)
-        |> putd ~tensions:(vert_tension, horiz_tension) (point ~dir:rightward (x' left_pos))
+        |> dput ~tensions:(vert_tension, horiz_tension) (point ~dir:rightward (x' left_pos))
       )));
 (*
   contrast = 0.1;

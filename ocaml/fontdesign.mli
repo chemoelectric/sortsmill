@@ -269,7 +269,8 @@ sig
   val linear_tolerance : float ref
   val points_coincide : ?tol:float -> Complex.t -> Complex.t -> bool
   val is_closed : ?tol:float -> t -> bool
-  val close : ?tol:float -> t -> t
+  val close : ?tol:float -> ?tensions:float * float -> ?tension:float -> t -> t
+  val dclose : ?tol:float -> ?tensions:float * float -> ?tension:float -> t -> t
   val unclose : ?tol:float -> t -> t
 
   val basis_conversion_tolerance : float ref
@@ -326,10 +327,12 @@ sig
   val subdivide : t -> float -> t * t
   (** Cut a contour in two. *)
 
-  val harmonize_cycle_handles : ?tol:float -> t -> t
+  (*  val harmonize_cycle_handles : ?tol:float -> t -> t *)
   val portion : ?tol:float -> t -> float -> float -> t
   val cycle_portion : ?tol:float -> t -> float -> float -> t
-  val join : ?tol:float -> t -> t -> t
+  val join : ?tol:float -> ?tensions:float * float -> ?tension:float -> t -> t -> t
+  val put : ?tol:float -> ?tensions:float * float -> ?tension:float -> t -> t -> t
+  val dput : ?tol:float -> ?tensions:float * float -> ?tension:float -> t -> t -> t
 
   val point_at : t -> float -> Complex.t
   val tangents_at : ?num_derivs:int -> t -> float -> Complex.t * Complex.t
@@ -345,10 +348,6 @@ sig
 
   val apply_tensions : ?pos:int -> ?no_inflection:bool -> t -> float -> float -> t
   val apply_tension : ?pos:int -> ?no_inflection:bool -> t -> float -> t
-  val join_with_tensions : ?no_inflection:bool -> float -> float -> t -> t -> t
-  val join_with_tension : ?no_inflection:bool -> float -> t -> t -> t
-  val close_with_tensions : ?tol:float -> ?no_inflection:bool -> float -> float -> t -> t
-  val close_with_tension : ?tol:float -> ?no_inflection:bool -> float -> t -> t
 
   val splice_into_cycle : ?tol:float -> ?time1:float -> ?time2:float -> t -> t -> t
   val splice_together : ?tol:float -> ?time1:float -> ?time2:float -> t -> t -> t -> t
@@ -359,30 +358,6 @@ sig
 
   val print_python_contour_code :
     ?variable:string -> unit IO.output -> t -> unit
-
-  val ( <@> ) : t -> t -> t
-  val ( <@@ ) : t -> bool -> t
-
-  val ( <@~~.> ) : t -> float * float -> t -> t
-  val ( <@--.> ) : t -> float * float -> t -> t
-  val ( <@~.> ) : t -> float -> t -> t
-  val ( <@-.> ) : t -> float -> t -> t
-  val ( <.~~@> ) : ('a -> 'b) -> 'a -> 'b
-  val ( <.~@> ) : ('a -> 'b) -> 'a -> 'b
-  val ( <.--@> ) : ('a -> 'b) -> 'a -> 'b
-  val ( <.-@> ) : ('a -> 'b) -> 'a -> 'b
-
-  val ( <@~> ) : t -> t -> t
-  (** Join contours, with tension 1. *)
-
-  val ( <@-> ) : t -> t -> t
-  (** Join contours, with tension "at least 1" (to suppress
-      inflection). *)
-
-  val ( <~~@@ ) : t -> float * float -> t
-  val ( <--@@ ) : t -> float * float -> t
-  val ( <~@@ ) : t -> float -> t
-  val ( <-@@ ) : t -> float -> t
 end
 
 (*-----------------------------------------------------------------------*)
@@ -425,7 +400,7 @@ sig
   val put : ?tol:float -> ?in_tension:float -> ?out_tension:float ->
     ?tensions:float * float -> ?tension:float -> ?default_tension:float -> t -> t -> t
 
-  val putd : ?tol:float -> ?in_tension:float -> ?out_tension:float ->
+  val dput : ?tol:float -> ?in_tension:float -> ?out_tension:float ->
     ?tensions:float * float -> ?tension:float -> ?default_tension:float -> t -> t -> t
   (** Like |put| except that the tension is forced deflectionless
       (negative). *)

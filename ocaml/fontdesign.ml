@@ -598,6 +598,9 @@ let bezier_curve_to_four_complexes bez =
 
 module Cubic =
 struct
+  (* FIXME: Where necessary, change argument orders for |> convenience
+     without flip. *)
+
   include Cubic_base(List)(Complex_point)
   module L = List
   module P = Complex_point
@@ -617,11 +620,89 @@ struct
     L.tl contour <> [] &&
       _nodes_coincide ?tol (L.first contour) (L.last contour)
 
-  let close ?tol contour =
+  let remove_inflection_from_curve ?(pos = 0) contour =
+    let (h, c) = L.split_at pos contour in
+    let (ih1, oc1, oh1) = L.hd c in
+    let (ih2, oc2, oh2) = L.hd (L.tl c) in
+    let (pa, pb) =
+      find_intersection_of_lines
+        ~first_is_segment:true
+        ~second_is_segment:true
+        (oc1, oh1) (oc2, ih2)
+    in
+    let new_oh1 = if Complex.norm pa < infinity then pa else oh1 in
+    let new_ih2 = if Complex.norm pb < infinity then pb else ih2 in
+    h @ [(ih1, oc1, new_oh1); (new_ih2, oc2, oh2)] @ L.tl (L.tl c)
+
+  (* You can use Metafont-style "tension" to set handle lengths. *)
+  (* FIXME: Change argument order for |> convenience. *)
+  let apply_tensions ?(pos = 0) ?(no_inflection = false) contour tension1 tension2 =
+    Complex_point.(
+      let (h, c) = L.split_at pos contour in
+      let (ih1, oc1, oh1) = L.hd c in
+      let (ih2, oc2, oh2) = L.hd (L.tl c) in
+      let chord = oc2 - oc1 in
+      let dir1 = oh1 - oc1 in
+      let dir2 = oc2 - ih2 in
+      let theta = arg (dir1 / chord) in
+      let phi = arg (chord / dir2) in
+      let new_oh1 = oc1 + (polar 1. theta) * chord * x'(f_hobby theta phi /. tension1) in
+      let new_ih2 = oc2 - (polar 1. (~-.phi)) * chord * x'(f_hobby phi theta /. tension2) in
+      let c' = [(ih1, oc1, new_oh1); (new_ih2, oc2, oh2)] @ L.tl (L.tl c) in
+      if no_inflection then
+        h @ remove_inflection_from_curve c'
+      else
+        h @ c'
+    )
+
+  (* FIXME: Change argument order for |> convenience. *)
+  let apply_tension ?pos ?no_inflection contour tension =
+    apply_tensions ?pos ?no_inflection contour tension tension
+
+  let close_with_tensions ?tol ?no_inflection tension1 tension2 contour =
     if is_closed ?tol contour then
       contour
     else
-      contour @ [L.first contour]
+      let rev_contour = L.rev contour in
+      let tensioned_nodes =
+        apply_tensions ?no_inflection [L.hd rev_contour; L.hd contour] tension1 tension2
+      in
+      let contour' = L.rev (L.tl rev_contour) @ tensioned_nodes in
+      L.hd (L.tl tensioned_nodes) :: L.tl contour'
+
+  let close ?tol ?tensions ?tension contour =
+    if (Option.is_some tension && Option.is_some tensions) then
+      invalid_arg "join";
+    if is_closed ?tol contour then
+      contour
+    else
+      let (tensions, no_inflection) =
+        if Option.is_some tension then
+          let t = Option.get tension in
+          (Some (abs_float t, abs_float t), t < 0.)
+        else if Option.is_some tensions then
+          let (t1,t2) = Option.get tensions in
+          (Some (abs_float t1, abs_float t2), t1 < 0. || t2 < 0.)
+        else
+          (None, false)
+      in
+      match tensions with
+        | None -> contour @ [L.first contour]
+        | Some (t1,t2) ->
+          close_with_tensions ~no_inflection t1 t2 contour
+
+  let dclose ?tol ?tensions ?tension contour =
+    let tension =
+      match tension with
+        | None -> None
+        | Some t -> Some (-. abs_float t)
+    in
+    let tensions =
+      match tensions with
+        | None -> None
+        | Some (out_tens, in_tens) -> Some (-. abs_float out_tens, -. abs_float in_tens)
+    in
+    close ?tol ?tensions ?tension contour
 
   let unclose ?tol contour =
     (* FIXME: There may be coincident points. Have this loop as long
@@ -805,9 +886,29 @@ struct
         let (c1, c2) = subdivide_curve c time in
         (c1, c2 @ L.drop 2 c)
 
-  let join ?tol contour1 contour2 =
+  let join_with_tensions ?no_inflection tension1 tension2 contour1 contour2 =
+    let rev1 = L.rev contour1 in
+    L.rev_append (L.tl rev1)
+      (apply_tensions ?no_inflection (L.hd rev1 :: contour2) tension1 tension2)
+
+  let join ?tol ?tensions ?tension contour1 contour2 =
+    if (Option.is_some tension && Option.is_some tensions) then
+      invalid_arg "join";
+    let (tensions, no_inflection) =
+      if Option.is_some tension then
+        let t = Option.get tension in
+        (Some (abs_float t, abs_float t), t < 0.)
+      else if Option.is_some tensions then
+        let (t1,t2) = Option.get tensions in
+        (Some (abs_float t1, abs_float t2), t1 < 0. || t2 < 0.)
+      else
+        (None, false)
+    in
     if contour1 == contour2 then
-      close ?tol contour1
+      match tensions with
+        | None -> close ?tol contour1
+        | Some (t1, t2) ->
+          close_with_tensions ~no_inflection t1 t2 contour1
     else
       let rev1 = L.rev contour1 in
       let last1 = L.first rev1 in
@@ -819,7 +920,10 @@ struct
           let joined_node = (ih1, oc1, oh2) in
           L.rev_append (joined_node :: L.tl rev1) (L.tl contour2)
         else
-          L.append contour1 contour2
+          match tensions with
+            | None -> L.append contour1 contour2
+            | Some (t1, t2) ->
+              join_with_tensions ~no_inflection t1 t2 contour1 contour2
       in
       let rev_contour = L.rev (L.tl contour) in
       let last = L.first rev_contour in
@@ -831,6 +935,22 @@ struct
         joined_node :: (L.rev (joined_node :: L.tl rev_contour))
       else
         contour
+
+  let put ?tol ?tensions ?tension contour2 contour1 =
+    join ?tol ?tensions ?tension contour1 contour2
+
+  let dput ?tol ?tensions ?tension contour2 contour1 =
+    let tension =
+      match tension with
+        | None -> None
+        | Some t -> Some (-. abs_float t)
+    in
+    let tensions =
+      match tensions with
+        | None -> None
+        | Some (out_tens, in_tens) -> Some (-. abs_float out_tens, -. abs_float in_tens)
+    in
+    join ?tol ?tensions ?tension contour1 contour2
 
   let portion ?(tol = !basis_conversion_tolerance) contour time1 time2 =
     let node_count = L.length contour in
@@ -864,6 +984,7 @@ struct
     else
       part
 
+(*
   let harmonize_cycle_handles ?tol contour =
     if not (is_closed ?tol contour) then
       invalid_arg "harmonize_cycle_handles";
@@ -876,6 +997,7 @@ struct
         | node :: remaining -> node :: rebuild remaining
     in
     (ih,oc,oh) :: rebuild (L.tl contour)
+*)
 
   let cycle_portion ?(tol = !basis_conversion_tolerance) contour time1 time2 =
     if not (is_closed ~tol contour) then
@@ -954,68 +1076,6 @@ struct
       L.rev ((ih, oc, new_oh) :: L.tl rev_contour)
     )
 
-  let remove_inflection_from_curve ?(pos = 0) contour =
-    let (h, c) = L.split_at pos contour in
-    let (ih1, oc1, oh1) = L.hd c in
-    let (ih2, oc2, oh2) = L.hd (L.tl c) in
-    let (pa, pb) =
-      find_intersection_of_lines
-        ~first_is_segment:true
-        ~second_is_segment:true
-        (oc1, oh1) (oc2, ih2)
-    in
-    let new_oh1 = if Complex.norm pa < infinity then pa else oh1 in
-    let new_ih2 = if Complex.norm pb < infinity then pb else ih2 in
-    h @ [(ih1, oc1, new_oh1); (new_ih2, oc2, oh2)] @ L.tl (L.tl c)
-
-  (* You can use Metafont-style "tension" to set handle lengths. *)
-  let apply_tensions ?(pos = 0) ?(no_inflection = false) contour tension1 tension2 =
-    Complex_point.(
-      let (h, c) = L.split_at pos contour in
-      let (ih1, oc1, oh1) = L.hd c in
-      let (ih2, oc2, oh2) = L.hd (L.tl c) in
-      let chord = oc2 - oc1 in
-      let dir1 = oh1 - oc1 in
-      let dir2 = oc2 - ih2 in
-      let theta = arg (dir1 / chord) in
-      let phi = arg (chord / dir2) in
-      let new_oh1 = oc1 + (polar 1. theta) * chord * x'(f_hobby theta phi /. tension1) in
-      let new_ih2 = oc2 - (polar 1. (~-.phi)) * chord * x'(f_hobby phi theta /. tension2) in
-      let c' = [(ih1, oc1, new_oh1); (new_ih2, oc2, oh2)] @ L.tl (L.tl c) in
-      if no_inflection then
-        h @ remove_inflection_from_curve c'
-      else
-        h @ c'
-    )
-
-  let apply_tension ?pos ?no_inflection contour tension =
-    apply_tensions ?pos ?no_inflection contour tension tension
-
-  (* FIXME: Bring these sorts of functions into harmony with their
-     Metacubic equivalents. Then remove these old versions. *)
-  let join_with_tensions ?no_inflection tension1 tension2 contour1 contour2 =
-    let rev1 = L.rev contour1 in
-    L.rev_append (L.tl rev1)
-      (apply_tensions ?no_inflection (L.hd rev1 :: contour2) tension1 tension2)
-
-  let join_with_tension ?no_inflection tension contour1 contour2 =
-    join_with_tensions ?no_inflection tension tension contour1 contour2
-
-  let close_with_tensions ?tol ?no_inflection tension1 tension2 contour =
-    if is_closed ?tol contour then
-      invalid_arg "close_with_tensions: the contour is closed already";
-    let rev_contour = L.rev contour in
-    let tensioned_nodes =
-      apply_tensions ?no_inflection [L.hd rev_contour; L.hd contour] tension1 tension2
-    in
-    let contour' = L.rev (L.tl rev_contour) @ tensioned_nodes in
-    L.hd (L.tl tensioned_nodes) :: L.tl contour'
-
-  let close_with_tension ?tol ?no_inflection tension contour =
-    if is_closed ?tol contour then
-      invalid_arg "close_with_tension: the contour is closed already";
-    close_with_tensions ?no_inflection tension tension contour
-
   let splice_into_cycle ?tol ?time1 ?time2 cycle contour =
     let t1 =
       match time1 with
@@ -1088,43 +1148,6 @@ struct
           point_list;
         Print.fprintf outp p"%s.closed = %s\n" var_name
           (if is_closed contour then "True" else "False")
-
-  let ( <@> ) contour1 = join contour1
-
-  let ( <@@ ) contour t_or_f =
-    (if t_or_f then close else unclose) contour
-
-  let ( <@~~.> ) contour1 (tension1, tension2) contour2 =
-    join_with_tensions tension1 tension2 contour1 contour2
-
-  let ( <@--.> ) contour1 (tension1, tension2) contour2 =
-    join_with_tensions ~no_inflection:true tension1 tension2 contour1 contour2
-
-  let ( <@~.> ) contour1 tension contour2 =
-    join_with_tension tension contour1 contour2
-
-  let ( <@-.> ) contour1 tension contour2 =
-    join_with_tension ~no_inflection:true tension contour1 contour2
-
-  let ( <.~~@> ) f a = f a
-  let ( <.~@> ) f a = f a
-  let ( <.--@> ) f a = f a
-  let ( <.-@> ) f a = f a
-
-  let ( <@~> ) contour1 = join_with_tension 1. contour1
-  let ( <@-> ) contour1 = join_with_tension ~no_inflection:true 1. contour1
-
-  let ( <~~@@ ) contour (tension1, tension2) =
-    close_with_tensions tension1 tension2 contour
-
-  let ( <--@@ ) contour (tension1, tension2) =
-    close_with_tensions ~no_inflection:true tension1 tension2 contour
-
-  let ( <~@@ ) contour tension =
-    close_with_tension tension contour
-
-  let ( <-@@ ) contour tension =
-    close_with_tension ~no_inflection:true tension contour
 end
 
 (*-----------------------------------------------------------------------*)
@@ -1133,6 +1156,8 @@ module Metacubic =
 struct
   (* FIXME: Subroutinize the code more, and otherwise increase its
      terseness. *)
+  (* FIXME: Where necessary, change argument orders for |> convenience
+     without flip. *)
 
   type knot_side =
     [
@@ -1352,7 +1377,7 @@ struct
   let put ?tol ?in_tension ?out_tension ?tensions ?tension ?default_tension contour2 contour1 =
     join ?tol ?in_tension ?out_tension ?tensions ?tension ?default_tension contour1 contour2
 
-  let putd ?tol ?in_tension ?out_tension ?tensions ?tension ?(default_tension = (-1.)) contour2 contour1 =
+  let dput ?tol ?in_tension ?out_tension ?tensions ?tension ?(default_tension = (-1.)) contour2 contour1 =
     let tension =
       match tension with
         | None -> None
@@ -1831,7 +1856,12 @@ struct
         contour
 
   let to_cubic ?tol contour =
-    let make_cycle = if is_closed ?tol contour then Cubic.close else Cubic.unclose in
+    let make_cycle cubic =
+      if is_closed ?tol contour then
+        Cubic.close ?tol cubic
+      else
+        Cubic.unclose ?tol cubic
+    in
     let contour = unclose ?tol (fix_endpoints ?tol (guess_dirs ?tol contour)) in
     let cubic =
       Vect.fold
