@@ -346,8 +346,8 @@ sig
 
   val remove_inflection_from_curve : ?pos:int -> t -> t
 
-  val apply_tensions : ?pos:int -> ?no_inflection:bool -> t -> float -> float -> t
-  val apply_tension : ?pos:int -> ?no_inflection:bool -> t -> float -> t
+  val apply_tensions : ?pos:int -> ?no_inflection:bool -> float -> float -> t -> t
+  val apply_tension : ?pos:int -> ?no_inflection:bool -> float -> t -> t
 
   val splice_into_cycle : ?tol:float -> ?time1:float -> ?time2:float -> t -> t -> t
   val splice_together : ?tol:float -> ?time1:float -> ?time2:float -> t -> t -> t -> t

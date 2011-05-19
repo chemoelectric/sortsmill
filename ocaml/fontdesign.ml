@@ -635,8 +635,7 @@ struct
     h @ [(ih1, oc1, new_oh1); (new_ih2, oc2, oh2)] @ L.tl (L.tl c)
 
   (* You can use Metafont-style "tension" to set handle lengths. *)
-  (* FIXME: Change argument order for |> convenience. *)
-  let apply_tensions ?(pos = 0) ?(no_inflection = false) contour tension1 tension2 =
+  let apply_tensions ?(pos = 0) ?(no_inflection = false) tension1 tension2 contour =
     Complex_point.(
       let (h, c) = L.split_at pos contour in
       let (ih1, oc1, oh1) = L.hd c in
@@ -655,9 +654,8 @@ struct
         h @ c'
     )
 
-  (* FIXME: Change argument order for |> convenience. *)
-  let apply_tension ?pos ?no_inflection contour tension =
-    apply_tensions ?pos ?no_inflection contour tension tension
+  let apply_tension ?pos ?no_inflection tension contour =
+    apply_tensions ?pos ?no_inflection tension tension contour
 
   let close_with_tensions ?tol ?no_inflection tension1 tension2 contour =
     if is_closed ?tol contour then
@@ -665,7 +663,7 @@ struct
     else
       let rev_contour = L.rev contour in
       let tensioned_nodes =
-        apply_tensions ?no_inflection [L.hd rev_contour; L.hd contour] tension1 tension2
+        apply_tensions ?no_inflection tension1 tension2 [L.hd rev_contour; L.hd contour]
       in
       let contour' = L.rev (L.tl rev_contour) @ tensioned_nodes in
       L.hd (L.tl tensioned_nodes) :: L.tl contour'
@@ -889,7 +887,7 @@ struct
   let join_with_tensions ?no_inflection tension1 tension2 contour1 contour2 =
     let rev1 = L.rev contour1 in
     L.rev_append (L.tl rev1)
-      (apply_tensions ?no_inflection (L.hd rev1 :: contour2) tension1 tension2)
+      (apply_tensions ?no_inflection tension1 tension2 (L.hd rev1 :: contour2))
 
   let join ?tol ?tensions ?tension contour1 contour2 =
     if (Option.is_some tension && Option.is_some tensions) then
