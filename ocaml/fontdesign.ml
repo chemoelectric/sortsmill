@@ -702,11 +702,9 @@ struct
     in
     close ?tol ?tensions ?tension contour
 
-  let unclose ?tol contour =
-    (* FIXME: There may be coincident points. Have this loop as long
-       as the contour remains closed. *)
+  let rec unclose ?tol contour =
     if is_closed ?tol contour then
-      L.drop (L.length contour - 1) contour
+      unclose ?tol (L.take (L.length contour - 1) contour)
     else
       contour
 
@@ -1281,11 +1279,9 @@ struct
     Vect.length contour <> 1 &&
       _knots_coincide ?tol (Vect.at contour 0) (Vect.at contour (Vect.length contour - 1))
 
-  let unclose ?tol contour =
-    (* FIXME: There may be coincident points. Have this loop as long
-       as the contour remains closed. *)
+  let rec unclose ?tol contour =
     if is_closed ?tol contour then
-      Vect.sub 0 (Vect.length contour - 1) contour
+      unclose ?tol (Vect.sub 0 (Vect.length contour - 1) contour)
     else
       contour
 
