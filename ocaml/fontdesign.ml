@@ -1276,55 +1276,62 @@ struct
       failwith "outgoing_point";
     contour_point contour (Vect.length contour - 1)
 
-  let set_incoming_tension ?tol contour tension =
+  let set_incoming_tension ?tol tension contour =
     if is_closed ?tol contour then
       failwith "set_incoming_tension";
     Vect.modify contour 0
       (fun (incoming, point, outgoing) ->
         set_knot_side_tension incoming tension, point, outgoing)
 
-  let set_outgoing_tension ?tol contour tension =
+  let set_outgoing_tension ?tol tension contour =
     if is_closed ?tol contour then
       failwith "set_outgoing_tension";
     Vect.modify contour (Vect.length contour - 1)
       (fun (incoming, point, outgoing) ->
         incoming, point, set_knot_side_tension outgoing tension)
 
-  let set_incoming_knot_side ?tol contour ks =
+  let set_incoming_knot_side ?tol ks contour =
     if is_closed ?tol contour then
       failwith "set_incoming_control";
     Vect.modify contour 0
       (fun (incoming, point, outgoing) -> ks, point, outgoing)
 
-  let set_outgoing_knot_side ?tol contour ks =
+  let set_outgoing_knot_side ?tol ks contour =
     if is_closed ?tol contour then
       failwith "set_outgoing_control";
     Vect.modify contour (Vect.length contour - 1)
       (fun (incoming, point, outgoing) -> incoming, point, ks)
 
-  let join ?tol ?in_tension ?out_tension ?tension contour1 contour2 =
+  let join ?tol ?in_tension ?out_tension ?tensions ?tension ?(default_tension = 1.) contour1 contour2 =
     if (Option.is_some tension && Option.is_some in_tension) ||
-      (Option.is_some tension && Option.is_some out_tension) then
+      (Option.is_some tension && Option.is_some out_tension) ||
+      (Option.is_some tension && Option.is_some tensions) ||
+      (Option.is_some tensions && Option.is_some in_tension) ||
+      (Option.is_some tensions && Option.is_some out_tension) then
       invalid_arg "join";
     let t1 =
       if Option.is_some tension then
-        Option.get tension
+        Option.get tension 
+      else if Option.is_some tensions then
+        fst (Option.get tensions)
       else if Option.is_some out_tension then
         Option.get out_tension
       else
-        1.
+        default_tension
     in
     let t2 =
       if Option.is_some tension then
         Option.get tension
+      else if Option.is_some tensions then
+        snd (Option.get tensions)
       else if Option.is_some in_tension then
         Option.get in_tension
       else
-        1.
+        default_tension
     in
     if contour1 == contour2 then
       if not (is_closed ?tol contour1) then
-        let contour = set_incoming_tension (set_outgoing_tension contour1 t1) t2 in
+        let contour = set_incoming_tension t2 (set_outgoing_tension t1 contour1) in
         Vect.append (Vect.at contour 0) contour
       else
         contour1
@@ -1339,8 +1346,34 @@ struct
           (Vect.sub 1 (Vect.length contour2 - 1) contour2)
       else
         Vect.concat
-          (set_outgoing_tension contour1 t1)
-          (set_incoming_tension contour2 t2)
+          (set_outgoing_tension t1 contour1)
+          (set_incoming_tension t2 contour2)
+
+  let put ?tol ?in_tension ?out_tension ?tensions ?tension ?default_tension contour2 contour1 =
+    join ?tol ?in_tension ?out_tension ?tensions ?tension ?default_tension contour1 contour2
+
+  let putd ?tol ?in_tension ?out_tension ?tensions ?tension ?(default_tension = (-1.)) contour2 contour1 =
+    let tension =
+      match tension with
+        | None -> None
+        | Some t -> Some (-. abs_float t)
+    in
+    let tensions =
+      match tensions with
+        | None -> None
+        | Some (out_tens, in_tens) -> Some (-. abs_float out_tens, -. abs_float in_tens)
+    in
+    let in_tension =
+      match in_tension with
+        | None -> None
+        | Some t -> Some (-. abs_float t)
+    in
+    let out_tension =
+      match out_tension with
+        | None -> None
+        | Some t -> Some (-. abs_float t)
+    in
+    join ?tol ?in_tension ?out_tension ?tensions ?tension ~default_tension contour1 contour2
 
   let close ?tol ?in_tension ?out_tension ?tension contour =
     join ?tol ?in_tension ?out_tension ?tension contour contour
@@ -1880,29 +1913,6 @@ struct
          ?in_dir ?out_dir ?dir
          ?in_control ?out_control
          pt)
-
-  let ( <@> ) contour1 = join contour1
-  let ( <@~> ) contour1 = join ~tension:1. contour1
-  let ( <@-> ) contour1 = join ~tension:(-1.) contour1
-
-  let ( <@~~.> ) contour1 (out_tension, in_tension) contour2 =
-    join ~out_tension:(abs_float out_tension)
-      ~in_tension:(abs_float in_tension) contour1 contour2
-
-  let ( <@--.> ) contour1 (out_tension, in_tension) contour2 =
-    join ~out_tension:(-.(abs_float out_tension)) ~in_tension:(-.(abs_float in_tension))
-      contour1 contour2
-
-  let ( <@~.> ) contour1 tension contour2 =
-    join ~tension:(abs_float tension) contour1 contour2
-
-  let ( <@-.> ) contour1 tension contour2 =
-    join ~tension:(-.(abs_float tension)) contour1 contour2
-
-  let ( <.~~@> ) f a = f a
-  let ( <.~@> ) f a = f a
-  let ( <.--@> ) f a = f a
-  let ( <.-@> ) f a = f a
 
 (* FIXME: These depend on how "pointwise" gets repaired.
   let ( <.> ) contour f = pointwise f contour

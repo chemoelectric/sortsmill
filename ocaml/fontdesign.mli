@@ -421,13 +421,21 @@ sig
     ?tension:float -> t -> t
   val translate : Complex.t -> t -> t
   val join : ?tol:float -> ?in_tension:float -> ?out_tension:float ->
-    ?tension:float -> t -> t -> t
+    ?tensions:float * float -> ?tension:float -> ?default_tension:float -> t -> t -> t
+  val put : ?tol:float -> ?in_tension:float -> ?out_tension:float ->
+    ?tensions:float * float -> ?tension:float -> ?default_tension:float -> t -> t -> t
+
+  val putd : ?tol:float -> ?in_tension:float -> ?out_tension:float ->
+    ?tensions:float * float -> ?tension:float -> ?default_tension:float -> t -> t -> t
+  (** Like |put| except that the tension is forced deflectionless
+      (negative). *)
+
   val incoming_point : ?tol:float -> t -> Complex.t
   val outgoing_point : ?tol:float -> t -> Complex.t
-  val set_incoming_tension : ?tol:float -> t -> float -> t
-  val set_outgoing_tension : ?tol:float -> t -> float -> t
-  val set_incoming_knot_side : ?tol:float -> t -> knot_side -> t
-  val set_outgoing_knot_side : ?tol:float -> t -> knot_side -> t
+  val set_incoming_tension : ?tol:float -> float -> t -> t
+  val set_outgoing_tension : ?tol:float -> float -> t -> t
+  val set_incoming_knot_side : ?tol:float -> knot_side -> t -> t
+  val set_outgoing_knot_side : ?tol:float -> knot_side -> t -> t
   val knot_incoming_dir : ?tol:float -> knot -> Complex.t
   val knot_outgoing_dir : ?tol:float -> knot -> Complex.t
   val set_knot_incoming_dir : ?tol:float -> ?dir:Complex.t -> knot -> knot
@@ -439,10 +447,10 @@ sig
   val set_outgoing_dir : ?tol:float -> ?guess:bool -> ?dir:Complex.t -> t -> t
   val set_dirs : ?tol:float -> ?guess:bool ->
     ?in_dir:Complex.t -> ?out_dir:Complex.t -> t -> t
-(*
-  val knotwise : (knot -> knot) -> t -> t
-  val pointwise : (Complex.t -> Complex.t) -> t -> t
-*)
+  (*
+    val knotwise : (knot -> knot) -> t -> t
+    val pointwise : (Complex.t -> Complex.t) -> t -> t
+  *)
   val rev : t -> t
   val join_coincident_knots : ?tol:float -> t -> t
   val to_cubic : ?tol:float -> t -> Cubic.t
@@ -465,24 +473,6 @@ sig
     ?in_dir:Complex.t -> ?out_dir:Complex.t -> ?dir:Complex.t ->
     ?in_control:Complex.t -> ?out_control:Complex.t ->
     Complex.t -> t
-
-  val ( <@> ) : t -> t -> t
-
-  val ( <@~> ) : t -> t -> t
-  (** Join contours, with tension 1. *)
-
-  val ( <@-> ) : t -> t -> t
-  (** Join contours, with tension "at least 1" (to suppress
-      inflection). *)
-
-  val ( <@~~.> ) : t -> float * float -> t -> t
-  val ( <@--.> ) : t -> float * float -> t -> t
-  val ( <@~.> ) : t -> float -> t -> t
-  val ( <@-.> ) : t -> float -> t -> t
-  val ( <.~~@> ) : ('a -> 'b) -> 'a -> 'b
-  val ( <.~@> ) : ('a -> 'b) -> 'a -> 'b
-  val ( <.--@> ) : ('a -> 'b) -> 'a -> 'b
-  val ( <.-@> ) : ('a -> 'b) -> 'a -> 'b
 
 (*
   val ( <.> ) : t -> (Complex.t -> Complex.t) -> t
