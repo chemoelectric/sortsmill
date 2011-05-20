@@ -980,20 +980,20 @@ struct
     else
       part
 
-(*
-  let harmonize_cycle_handles ?tol contour =
+  (*
+    let harmonize_cycle_handles ?tol contour =
     if not (is_closed ?tol contour) then
-      invalid_arg "harmonize_cycle_handles";
+    invalid_arg "harmonize_cycle_handles";
     let (_,oc,oh) = L.first contour in
     let (ih,_,_) = L.last contour in
     let rec rebuild =
-      function
-        | [] -> assert false
-        | [(ih',oc',_)] -> [(ih',oc',oh)]
-        | node :: remaining -> node :: rebuild remaining
+    function
+    | [] -> assert false
+    | [(ih',oc',_)] -> [(ih',oc',oh)]
+    | node :: remaining -> node :: rebuild remaining
     in
     (ih,oc,oh) :: rebuild (L.tl contour)
-*)
+  *)
 
   let cycle_portion ?(tol = !basis_conversion_tolerance) contour time1 time2 =
     if not (is_closed ~tol contour) then
@@ -1003,7 +1003,7 @@ struct
       invalid_arg "cycle_portion";
     if time2 <= -.tol || cycle_length +. tol < time2 then
       invalid_arg "cycle_portion";
-(*    let contour = harmonize_cycle_handles ~tol contour in *)
+    (*    let contour = harmonize_cycle_handles ~tol contour in *)
     if abs_float (time2 -. time1) < tol then
       portion ~tol contour 0. cycle_length
     else if time1 < time2 then
@@ -1036,9 +1036,9 @@ struct
         let in_tangent = tangent_to_curve ?num_derivs ~pos:0 c 1. in
         let out_tangent = tangent_to_curve ?num_derivs ~pos:1 c 0. in
         (in_tangent, out_tangent)
-    else
-      let tangent = tangent_to_curve ?num_derivs ~pos contour t in
-      (tangent, tangent)
+      else
+        let tangent = tangent_to_curve ?num_derivs ~pos contour t in
+        (tangent, tangent)
 
   let time_at_nearest_point contour point =
     let path = to_path contour in
@@ -1357,16 +1357,27 @@ struct
     else
       let last1 = Vect.at contour1 (Vect.length contour1 - 1) in
       let first2 = Vect.at contour2 0 in
-      if _knots_coincide ?tol last1 first2 then
-        let (incoming, point, _) = last1 in
-        let (_, _, outgoing) = first2 in
+      let contour =
+        if _knots_coincide ?tol last1 first2 then
+          let (incoming, point, _) = last1 in
+          let (_, _, outgoing) = first2 in
+          let joined_knot = (incoming, point, outgoing) in
+          Vect.concat (Vect.set contour1 (Vect.length contour1 - 1) joined_knot)
+            (Vect.sub 1 (Vect.length contour2 - 1) contour2)
+        else
+          Vect.concat
+            (set_outgoing_tension t1 contour1)
+            (set_incoming_tension t2 contour2)
+      in
+      let last_node = Vect.at contour (Vect.length contour - 1) in
+      let first_node = Vect.at contour 0 in
+      if _knots_coincide ?tol last_node first_node then
+        let (incoming, point, _) = last_node in
+        let (_, _, outgoing) = first_node in
         let joined_knot = (incoming, point, outgoing) in
-        Vect.concat (Vect.set contour1 (Vect.length contour1 - 1) joined_knot)
-          (Vect.sub 1 (Vect.length contour2 - 1) contour2)
+        Vect.set (Vect.set contour 0 joined_knot) (Vect.length contour - 1) joined_knot
       else
-        Vect.concat
-          (set_outgoing_tension t1 contour1)
-          (set_incoming_tension t2 contour2)
+        contour
 
   let put ?tol ?in_tension ?out_tension ?tensions ?tension ?default_tension contour2 contour1 =
     join ?tol ?in_tension ?out_tension ?tensions ?tension ?default_tension contour1 contour2
@@ -1393,6 +1404,17 @@ struct
         | Some t -> Some (-. abs_float t)
     in
     join ?tol ?in_tension ?out_tension ?tensions ?tension ~default_tension contour1 contour2
+
+  let cput ?tol ?controls ?control contour2 contour1 =
+    let (outgoing_ctrl, incoming_ctrl) =
+      match (controls, control) with
+        | (None, None) -> failwith "cput: you must specify either ~controls or ~control"
+        | (Some _, Some _) -> failwith "cput: you must not specify both ~controls and ~control"
+        | (Some (outgoing, incoming), _) -> (outgoing, incoming)
+        | (_, Some ctrl) -> (ctrl, ctrl)
+    in
+    join ?tol (set_outgoing_knot_side (`Ctrl outgoing_ctrl) contour1)
+      (set_incoming_knot_side (`Ctrl incoming_ctrl) contour2)
 
   let close ?tol ?in_tension ?out_tension ?tension contour =
     join ?tol ?in_tension ?out_tension ?tension contour contour
@@ -1805,6 +1827,38 @@ struct
     let contour = if guess then guess_dirs ?tol contour else contour in
     let k = Vect.length contour - 1 in
     Vect.modify contour k (fun knot -> set_dir knot)
+
+  let triput ?tol ?outgoing_pos ?incoming_pos ?positions contour2 contour1 =
+    let outgoing_pos =
+      match (outgoing_pos, positions) with
+        | (None, None) -> 1.
+        | (Some p, _) -> p
+        | (_, Some (p,_)) -> p
+        | (Some _, Some _) -> failwith "triput: you must not set with ~outgoing_pos and ~positions"
+    in
+    let incoming_pos =
+      match (incoming_pos, positions) with
+        | (None, None) -> 1.
+        | (Some p, _) -> p
+        | (_, Some (_,p)) -> p
+        | (Some _, Some _) -> failwith "triput: you must not set with ~incoming_pos and ~positions"
+    in
+    let dir1 = outgoing_dir ?tol contour1 in
+    let dir2 = incoming_dir ?tol contour2 in
+    let pt1 = outgoing_point contour1 in
+    let pt2 = incoming_point contour2 in
+    let (pt3, _) =
+      find_intersection_of_lines Complex.(pt1, pt1 + dir1) Complex.(pt2, pt2 + dir2)
+    in
+    if (classify_float pt3.Complex.re = FP_infinite ||
+        classify_float pt3.Complex.re = FP_nan ||
+        classify_float pt3.Complex.im = FP_infinite ||
+        classify_float pt3.Complex.im = FP_nan) then
+      dput ?tol contour2 contour1
+    else
+      let ctrl1 = Complex.(pt1 + of_float outgoing_pos * (pt3 - pt1)) in
+      let ctrl2 = Complex.(pt2 + of_float incoming_pos * (pt3 - pt2)) in
+      cput ?tol ~controls:(ctrl1, ctrl2) contour2 contour1
 
   let set_dirs ?tol ?(guess = true) ?in_dir ?out_dir contour =
     let contour = if guess then guess_dirs ?tol contour else contour in

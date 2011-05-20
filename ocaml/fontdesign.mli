@@ -405,6 +405,15 @@ sig
   (** Like |put| except that the tension is forced deflectionless
       (negative). *)
 
+ val cput : ?tol:float -> ?controls:Complex.t * Complex.t ->
+   ?control:Complex.t -> t -> t -> t
+  (** Like |put| but setting control points explicitly. *)
+
+  val triput : ?tol:float -> ?outgoing_pos:float -> ?incoming_pos:float ->
+    ?positions:float * float -> t -> t -> t
+  (** Like |put| but setting control points in relation to the
+      bounding triangle, if possible. *)
+
   val incoming_point : ?tol:float -> t -> Complex.t
   val outgoing_point : ?tol:float -> t -> Complex.t
   val set_incoming_tension : ?tol:float -> float -> t -> t
