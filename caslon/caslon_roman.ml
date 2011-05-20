@@ -504,7 +504,7 @@ let make_flag
     let upper_dir = dir (top_corner - flag_corner) in
     let contour =
       Metacubic.(
-        point ~in_control:left_notch ~out_dir:lower_dir (left_notch + x' 30. * lower_dir)
+        point ~dir:lower_dir (left_notch + x' 30. * lower_dir)
         |> put (point ~in_dir:lower_dir ~out_dir:(upper_dir / rot 3.) flag_corner)
         |> put (point ~in_dir:(upper_dir * rot 3.) ~out_dir:downward top_corner)
       )
@@ -828,34 +828,33 @@ let contours_similar_to_letter_l
     let flag_corner = x'(re left_notch -. flag_width) + y'(im top_corner -. flag_drop) in
 
     let lbrack = Metacubic.(leftbrack <+> left_base) in
-(*
-    let left_dir = dir (left_notch - Metacubic.outgoing_point lbrack) in
-*)
-
-    let flag = make_flag ~param:p ~rand ~left_notch ~flag_corner ~top_corner () in
-
     let left_side =
       Metacubic.(
         point ~dir:leftward zero
         |> dput ~tensions:(1.,2.) left_serif_end
         |> dput ~tensions:(2.,1.) lbrack
-        |> set_outgoing_knot_side (`Ctrl left_notch)
       )
     in
 
-    let flag_end = Metacubic.outgoing_point flag in
     let rbrack = Metacubic.(rightbrack <+> right_base) in
-    let right_side_height = 0.7 *. (overshot_height -. im (Metacubic.incoming_point rbrack)) in
     let right_side =
       Metacubic.(
-        point ~in_dir:downward ~out_control:(flag_end - y' 20.) flag_end
-        |> dput (set_incoming_knot_side (`Ctrl (incoming_point rbrack + y' right_side_height)) rbrack)
+        rbrack
         |> dput ~tensions:(1.,2.) right_serif_end
         |> dput ~tensions:(2.,1.) (point ~dir:leftward zero)
       )
     in
 
-    let contour = Metacubic.(left_side |> dput flag |> put right_side |> to_cubic) in
+    let flag = make_flag ~param:p ~rand ~left_notch ~flag_corner ~top_corner () in
+    let flag_end = Metacubic.outgoing_point flag in
+    let right_side_height = 0.7 *. (overshot_height -. im (Metacubic.incoming_point rbrack)) in
+    let contour = Metacubic.(
+      left_side
+      |> triput flag
+      |> cput ~controls:(flag_end - y' 20., incoming_point rbrack + y' right_side_height) right_side
+      |> to_cubic
+    )
+    in
     let contour = reshape_flag ~param:p ~rand ~contour ~left_notch ~flag_corner ~top_corner () in
     [Cubic.round contour]
   ))
@@ -969,7 +968,7 @@ let letter_o_contours glyph_name p =
 (* The letter "r" *)
 
 let letter_r_contours glyph_name p =
-  let ilike_contour_list =
+  let ilike_contours =
     contours_similar_to_letter_l
       ~height:(p.x_height +. p.flag_overshoot +. 5.)
       ~flag_width:70.
@@ -982,58 +981,73 @@ let letter_r_contours glyph_name p =
       ~extra_stem_width:2.
       glyph_name p
   in
-  let ilike_contour = List.hd ilike_contour_list in
+  let stem = List.hd ilike_contours in
+  let arm_top_y = 312. in
+  let arm_bottom_y = 260. in
+  let arm_top_x =
+    Array.max (Array.map (fun t -> Complex_point.re (Cubic.point_at stem t)) (Cubic.times_at_y stem arm_top_y))
+  in
+  let arm_bottom_x =
+    Array.max (Array.map (fun t -> Complex_point.re (Cubic.point_at stem t)) (Cubic.times_at_y stem arm_bottom_y))
+  in
+  let arm_top = Complex_point.(x' arm_top_x + y' arm_top_y) in
+  let arm_bottom = Complex_point.(x' arm_bottom_x + y' arm_bottom_y) in
+  let offset = Complex.of_float (-0.5 *. p.stem_width glyph_name) in
   let arm =
     Complex_point.(Metacubic.(
+      point ~out_curl:0.1 (arm_top + offset)
+      |> put (point ~dir:rightward (x' 135.0000 + y' 397.0000))
+(*
       point (x'(-18.0000) + y' 280.0000)
       |> put ~tensions:(2.,1.) (point ~dir:rightward (x' 135.0000 + y' 397.0000))
+*)
       |> put (point ~dir:downward (x' 207.0000 + y' 346.0000))
       |> put (point ~dir:leftward (x' 164.0000 + y' 306.0000))
       |> put (point ~dir:leftward (x' 79.0000 + y' 335.0000))
-      |> put ~tensions:(1.,2.) (point (x'(-17.0000) + y' 265.0000))
-      |> translate (x'(0.5 *. p.stem_width glyph_name))
+(*
+      |> put ~tensions:(1.,2.) (point (x'(-17.0000) + y' 260.0000))
+*)
+      |> put (point (arm_bottom + offset))
+      |> translate (neg offset)
       |> to_cubic
     ))
   in
-  let xings = Cubic.crossings ilike_contour arm in
-  let (bend1, time1a, time1b) = 
+  let contour = Cubic.splice_into_cycle stem arm in
+(*
+  let xings = Cubic.crossings stem arm in
+  let (bend1, _, _) =
     make_bend_for_contours
-      ~kind:`With_extrema
-      ~contour1:ilike_contour ~contour2:arm
+      ~contour1:stem ~contour2:arm
       ~corner_time1:xings.(0).Crossing.ta
       ~corner_time2:xings.(0).Crossing.tb
-      ~radius:5. ~tension:(-1.) ()
+      ~radius:2. ~tension:2. ()
   in
-  let (bend2, time2a, time2b) = 
+  let (bend2, _, _) =
     make_bend_for_contours
-      ~kind:`With_extrema
-      ~contour1:arm ~contour2:ilike_contour
+      ~contour1:arm ~contour2:stem
       ~corner_time1:xings.(1).Crossing.tb
       ~corner_time2:xings.(1).Crossing.ta
-      ~radius:70. ~tension:(-1.1) ()
+      ~radius:140. ~tension:0.75 ()
   in
-  (*
-    let contour =
-    Cubic.(
-    cycle_portion ilike_contour time2b time1a
-    |> put (Metacubic.to_cubic bend1)
-    |> put (portion arm time1b time2a)
-    |> put (Metacubic.to_cubic bend2)
-    )
-    in
-  *)
-  let contour =
-    Cubic.(
-      cycle_portion ilike_contour (xings.(1).Crossing.ta) (xings.(0).Crossing.ta)
-      |> put (portion arm (xings.(0).Crossing.tb) (xings.(1).Crossing.tb))
-    )
+  let stem' =
+    (Cubic.cycle_portion stem (xings.(1).Crossing.ta) (xings.(0).Crossing.ta)
+     |> Metacubic.of_cubic
+     |> Metacubic.set_dirs)
   in
+  let arm' =
+    (Cubic.portion arm (xings.(0).Crossing.tb) (xings.(1).Crossing.tb)
+     |> Metacubic.of_cubic
+     |> Metacubic.set_dirs)
+  in
+  let contour = Metacubic.(arm' |> put stem' |> to_cubic) in
+*)
+
+(*
   let contour = Cubic.splice_into_cycle contour (Metacubic.to_cubic bend1) in
+*)
+(*
   let contour = Cubic.splice_into_cycle contour (Metacubic.to_cubic bend2) in
-  (*
-    let contour = Cubic.splice_together ilike_contour arm (Metacubic.to_cubic bend1) in
-    let contour = Cubic.splice_together contour ilike_contour (Metacubic.to_cubic bend2) in
-  *)
+*)
   [Cubic.round contour]
 
 (*-----------------------------------------------------------------------*)
