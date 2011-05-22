@@ -337,6 +337,7 @@ sig
   val point_at : t -> float -> Complex.t
   val tangents_at : ?num_derivs:int -> t -> float -> Complex.t * Complex.t
   val time_at_nearest_point : t -> Complex.t -> float
+  val nearest_point : t -> Complex.t -> Complex.t
   val times_at_x : t -> float -> float array
   val times_at_y : t -> float -> float array
   val crossings : t -> t -> Crossing.t array

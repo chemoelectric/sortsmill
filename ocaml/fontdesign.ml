@@ -1046,6 +1046,10 @@ struct
     let (time,_) = Caml2geom.Path.nearest_point path pt in
     time
 
+  let nearest_point contour point =
+    let time = time_at_nearest_point contour point in
+    point_at contour time
+
   let times_at_x contour x_coord =
     (* FIXME: Broken at spline nodes? *)
     Caml2geom.Path.roots (to_path contour) x_coord Caml2geom.Coord.X

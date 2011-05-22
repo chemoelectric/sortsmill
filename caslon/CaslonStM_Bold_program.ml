@@ -59,10 +59,10 @@ let param = {
   serif_height = (fun _name -> 30.);
 
   corner_radius = (fun state -> float_of_int (Random.State.int state 3 + 4));
-(*
-  flag_corner_radius = (fun state -> 10.);
-  flag_top_radius = (fun state -> 10.);
-*)
+  (*
+    flag_corner_radius = (fun state -> 10.);
+    flag_top_radius = (fun state -> 10.);
+  *)
 
   serif_end_angle = (fun state -> float_of_int (Random.State.int state 101 - 50) /. 9.);
   tail_end_angle = (fun state -> float_of_int (Random.State.int state 101) /. 10.);
@@ -91,6 +91,22 @@ let param = {
         point ~dir:downward (y' 70.)
         |> dput ~tensions:(vert_tension, horiz_tension) (point ~dir:rightward (x' left_pos))
       )));
+
+  r_shoulder =
+    Complex_point.(Metacubic.(
+      fun _name _state ->
+        point ~out_curl:0.1 (y' 309.)
+        |> put (point ~dir:rightward (x' 140.0000 + y' 397.0000))
+    ));
+
+  r_arm_lower =
+    Complex_point.(Metacubic.(
+      fun _name _state ->
+        point ~dir:downward (x' 207. + y' 350.)
+        |> put (point ~dir:leftward (x' 164. + y' 306.))
+        |> put (point ~dir:leftward (x' 79. + y' 335.))
+        |> put ~tension:1.15 (point ~dir:downward (y' 260.))
+    ));
 }
 in
 run_command param
