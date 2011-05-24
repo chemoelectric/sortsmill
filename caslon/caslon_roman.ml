@@ -164,7 +164,7 @@ let enum_resolve_glyphs param = map (fun glyph -> glyph param) (enum_glyphs ())
 
 (*-----------------------------------------------------------------------*)
 
-let huge = 1e100 ;;
+let huge = 1e10 ;;
 
 let i_letters = ["dotlessi"; "i"] ;;
 
@@ -320,21 +320,19 @@ let round_off_corner
     ~contour ~radius () =
   let (bend, time1, time2) =
     make_bend_for_contours
-      ?kind
-      ?corner_point
-      ?corner_time1 ?corner_time2
-      ?tension
+      ?kind ?corner_point
+      ?corner_time1 ?corner_time2 ?tension
       ~contour1:contour ~contour2:contour
       ~radius
       ()
-    in
-    let contour =
-      if Cubic.is_closed ?tol contour then
-        Cubic.splice_into_cycle ~time1 ~time2 contour (Metacubic.to_cubic bend)
-      else
-        failwith "Not yet implemented"
-    in
-    contour
+  in
+  let contour =
+    if Cubic.is_closed ?tol contour then
+      Cubic.splice_into_cycle ~time1 ~time2 contour (Metacubic.to_cubic bend)
+    else
+      Cubic.splice_into ~time1 ~time2 contour (Metacubic.to_cubic bend)
+  in
+  contour
 
 let flat_cut_corners ~corner ~cut_length ~normal ~in_dir ~out_dir =
   let angle1 = Complex.(arg (neg normal / in_dir)) in
@@ -352,8 +350,9 @@ let flat_cut_points ~corner1 ~corner2 ~radius1 ~radius2 ~in_dir ~out_dir =
 
 let flat_cut
     ?(bend_kind1 = `With_extrema) ?(bend_kind2 = `With_extrema)
+    ?(tension = huge)
     ~point1 ~point2 ~point3 ~point4
-    ~tension ~in_dir ~cut_dir ~out_dir () =
+    ~in_dir ~cut_dir ~out_dir () =
   if Complex_point.(inner (point3 - point2) cut_dir) <= 0. then
     let midpoint = Complex_point.(x' 0.5 * (point2 + point3)) in
     let bend1 = contour_bend ~tension:(-1.) ~kind:bend_kind1 ~point1 ~point2:midpoint ~in_dir ~out_dir:cut_dir in
@@ -365,17 +364,17 @@ let flat_cut
     Metacubic.(bend1 |> dput ~tension bend2)
 
 let make_flat_cut
-    ?bend_kind1 ?bend_kind2
+    ?bend_kind1 ?bend_kind2 ?tension
     ~corner1 ~corner2
-    ~radius1 ~radius2 ~tension
+    ~radius1 ~radius2
     ~in_dir ~out_dir () =
   let (point1, point2, point3, point4, cut_dir) =
     flat_cut_points ~corner1 ~corner2 ~radius1 ~radius2 ~in_dir ~out_dir
   in
   flat_cut
-    ?bend_kind1 ?bend_kind2
+    ?bend_kind1 ?bend_kind2 ?tension
     ~point1 ~point2 ~point3 ~point4
-    ~tension ~in_dir ~cut_dir ~out_dir ()
+    ~in_dir ~cut_dir ~out_dir ()
 
 let make_flat_cut_for_contours
     ?bend_kind1 ?bend_kind2
@@ -1047,63 +1046,40 @@ let letter_t_contours glyph_name p =
     let lower_bowl_width = re (x'pos 1.00 - x' sheared_terminal_width) in
     let upper_bowl_width = re tail2 -. re right_pos in
 
-    let top_corner = right_pos + x' 15. + y'pos 1.00 in
+    let top_corner = right_pos + x' 10. + y'pos 1.00 in
     let crossbar_bend = right_pos + y' (crossbar_height -. crossbar_breadth +. 10.) in
     let bowl_point = right_pos + x'(0.50 *. upper_bowl_width) + y'pos 0.00 + y' bottom_breadth in
     let bottom_point = left_pos + x'(0.50 *. lower_bowl_width) + y'pos 0.00 in
 
     let left_corner = x' (re left_pos -. sheared_terminal_width) + y' sheared_terminal_height in
     let sheared_terminal_dir = dir (top_corner - left_corner) in
+    let sheared_terminal_dip_dir = sheared_terminal_dir / rot 5. in
+    let sheared_terminal_rise_dir = sheared_terminal_dir * rot 5. in
 
-    (*??????????????????????????????????????????
-      let (tail_cut, lower_time, outer_time) =
-      make_flat_cut_for_contours
-        ~contour1:lower ~contour2:outer
-        ~corner_time1:(float_of_int Int.(List.length lower - 1))
-        ~corner_time2:0.
-        ~radius1:(p.corner_radius rand +. 1.)
-        ~radius2:(p.corner_radius rand +. 1.)
-        ()
-      in
-    ????????????????????????????????????????????*)
-(*
-    let top_bend =
-      make_contour_bend
-        ~kind:`With_points_at_extrema
-        ~corner_point:top_corner ~radius:10. ~tension:1.3
-        ~in_dir:(sheared_terminal_dir * rot 5.)
-        ~out_dir:downward
+    let left_cut_normal = rot (Random.State.float rand 10. +. 5.) in
+    let (corner_point1, corner_point2) =
+      flat_cut_corners ~corner:left_corner ~cut_length:15.
+        ~normal:left_cut_normal ~in_dir:leftward ~out_dir:sheared_terminal_dip_dir
     in
-    let (_,top_left,_) = Vect.at top_bend 0 in
-    let (_,top_right,_) = Vect.at top_bend Int.(Vect.length top_bend - 1) in
-*)
-(*
-    let top_bend =
-      make_contour_bend
-        ~kind:`With_points_at_extrema
-        ~corner_point:top_corner ~radius:0. ~tension:1.3
-        ~in_dir:(sheared_terminal_dir * rot 5.)
-        ~out_dir:downward
+    let left_cut =
+      make_flat_cut
+        ~bend_kind2:`Without_extrema
+        ~corner1:corner_point1 ~corner2:corner_point2
+        ~radius1:(p.corner_radius rand +. 3.) ~radius2:(p.corner_radius rand +. 3.)
+        ~in_dir:leftward ~out_dir:sheared_terminal_dip_dir ()
     in
-    let (_,top_left,_) = Vect.at top_bend 0 in
-    let (_,top_right,_) = Vect.at top_bend Int.(Vect.length top_bend - 1) in
-*)
 
-(*
-    let left_bend =
-      make_contour_bend
-        ~kind:`With_points_at_extrema
-        ~corner_point:left_corner ~radius:10. ~tension:1.
-        ~in_dir:leftward
-        ~out_dir:(sheared_terminal_dir / rot 5.)
+    let top_cut_normal = rot (Random.State.float rand 5. -. 103.) in
+    let (corner_point1, corner_point2) =
+      flat_cut_corners ~corner:top_corner ~cut_length:14.
+        ~normal:top_cut_normal
+        ~in_dir:sheared_terminal_rise_dir ~out_dir:downward
     in
-*)
-    let left_bend =
-      make_contour_bend
-        ~kind:`With_points_at_extrema
-        ~corner_point:left_corner ~radius:0. ~tension:1.
-        ~in_dir:leftward
-        ~out_dir:(sheared_terminal_dir / rot 5.)
+    let top_cut =
+      make_flat_cut
+        ~corner1:corner_point1 ~corner2:corner_point2
+        ~radius1:(p.corner_radius rand +. 2.) ~radius2:(p.corner_radius rand +. 2.)
+        ~in_dir:sheared_terminal_rise_dir ~out_dir:downward ()
     in
 
     let left_side =
@@ -1112,47 +1088,38 @@ let letter_t_contours glyph_name p =
         |> dput (point ~dir:leftward bottom_point)
         |> dput ~tension:1.1 (point ~dir:upward (left_pos - x' 5. + y'pos 0.15))
         |> dput (point ~dir:upward (x' (re left_pos) + y' sheared_terminal_height - y' 60.))
-        |> dput (point ~dir:leftward (x' (re left_pos) + y' sheared_terminal_height - x' 10.))
-        |> dput ~tension:huge (point ~in_curl:1. ~out_dir:(sheared_terminal_dir / rot 5.) left_corner)
-        |> put (point ~in_dir:(sheared_terminal_dir * rot 5.) top_corner)
+        |> dput ~tension:huge (point ~in_dir:upward ~out_dir:leftward (x' (re left_pos) + y' sheared_terminal_height))
+        |> dput ~tension:huge left_cut
+        |> put top_cut
         |> to_cubic
       )
     in
 
-    let sketch_right_side tail2 =
+    let sketch_lower_right tail2 =
       Metacubic.(
-        point top_corner
-        |> dput ~tension:5. (point ~dir:downward crossbar_bend)
-        |> dput (point ~dir:downward (right_pos + y'pos 0.25))
+        point ~dir:downward (right_pos + y'pos 0.25)
         |> dput (point ~dir:rightward bowl_point)
         |> dput (point ~in_curl:1. tail2)
         |> to_cubic
       )
     in
 
-    (* Roughly locate the sketched right side. *)
+    (* Roughly locate the sketched lower-right side. *)
     let (_, tangent) = Cubic.tangents_at left_side 0. in
     let tail2 = tail1 + x' tail_breadth * tangent * rot (-100.) in
-    let right_side = sketch_right_side tail2 in
+    let lower_right = sketch_lower_right tail2 in
 
     (* Now use the rough sketch to get a better estimate of the
        crosscut vector. *)
-    let (tangent2, _) = Cubic.tangents_at right_side (float_of_int Int.(List.length right_side - 1)) in
+    let (tangent2, _) = Cubic.tangents_at lower_right (float_of_int Int.(List.length lower_right - 1)) in
     let crosscut_dir = dir (tangent - tangent2) * rot (-90.) in
     let tail2' = tail1 + x' tail_breadth * crosscut_dir in
     let shear_vector = x'(tail_breadth *. dtan tail_end_angle) * crosscut_dir * rot (-90.) in
     let tail2 = tail2' + shear_vector in
-    let right_side = sketch_right_side tail2 in
+    let lower_right = sketch_lower_right tail2 in
 
-    let crossbar_time1 = (Cubic.times_at_y right_side (crossbar_height)).(0) in
-    let pt1 = Cubic.point_at right_side crossbar_time1 + x' 10. in
-    let crossbar_time2 = (Cubic.times_at_y right_side (crossbar_height -. crossbar_breadth)).(0) in
-    let pt2 = Cubic.point_at right_side crossbar_time2 + x' 10. in
-
-    let crossbar_time3 = (Cubic.times_at_y right_side (crossbar_height +. 30.)).(0) in
-    let (c3,_) = Cubic.subdivide right_side crossbar_time3 in
-    let crossbar_time4 = (Cubic.times_at_y right_side (crossbar_height -. crossbar_breadth -. 40.)).(0) in
-    let (_,c4) = Cubic.subdivide right_side crossbar_time4 in
+    let crossbar_point1 = x'(re right_pos) + x' 5. + y' crossbar_height in
+    let crossbar_point2 = x'(re right_pos) + y'(crossbar_height -. crossbar_breadth) in
 
     let crossbar_end =
       make_flat_cut
@@ -1165,11 +1132,10 @@ let letter_t_contours glyph_name p =
 
     let right_side =
       Metacubic.(
-        set_dirs ~out_dir:downward (of_cubic c3)
-        |> dput (point pt1)
+        point crossbar_point1
         |> dput ~tension:huge (crossbar_end)
-        |> dput ~tension:huge (point pt2)
-        |> dput (set_dirs ~in_dir:downward (of_cubic c4))
+        |> dput ~tension:huge (point ~in_dir:leftward crossbar_point2)
+        |> dput (set_dirs ~in_dir:downward (of_cubic lower_right))
         |> to_cubic
       )
     in
@@ -1184,18 +1150,21 @@ let letter_t_contours glyph_name p =
     in
     let right_side = fst (Cubic.subdivide right_side right_time) in
     let left_side = snd (Cubic.subdivide left_side left_time) in
-
-(*
-    [Metacubic.(top_bend
-                |> put (of_cubic right_side)
-                |> put tail_cut
-                |> put (of_cubic left_side)
-                |> to_cubic)]
-*)
-    [Metacubic.(of_cubic right_side
-                |> put tail_cut
-                |> put (of_cubic left_side)
-                |> to_cubic)]
+    let cycle = Metacubic.(
+      of_cubic left_side
+      |> cput ~control:(crossbar_point1 + y' 40.) (of_cubic right_side)
+      |> put tail_cut
+      |> to_cubic
+    )
+    in
+    let cycle =
+      round_off_corner 
+        ~corner_point:(x'(re left_pos) + y' sheared_terminal_height)
+        ~contour:cycle ~radius:10. ()
+    in
+    let cycle = round_off_corner ~corner_point:crossbar_point1 ~contour:cycle ~radius:10. () in
+    let cycle = round_off_corner ~corner_point:crossbar_point2 ~contour:cycle ~radius:10. () in
+    [Cubic.round cycle]
   ))
 ;;
 

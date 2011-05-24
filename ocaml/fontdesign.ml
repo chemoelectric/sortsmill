@@ -723,6 +723,29 @@ struct
     let (_, oh, _, _) = bezier_curve_to_four_complexes bez2 in
     [(ih, oc, oh)]
 
+  let mixed_bezier_curve ?tol ?(pos = 0) contour =
+    let c = L.drop pos contour in
+    let (_, on_curve1, outhandle1) = L.hd c in
+    let (inhandle2, on_curve2, _) = L.hd (L.tl c) in
+    if points_coincide ?tol on_curve1 outhandle1 &&
+      points_coincide ?tol on_curve2 inhandle2 then
+      let p0 = P.to_bezier_point on_curve1 in
+      let p1 = P.to_bezier_point on_curve2 in
+      Caml2geom.Bezier_curve.of_two_points p0 p1
+    else
+      let p0 = P.to_bezier_point on_curve1 in
+      let p1 = P.to_bezier_point outhandle1 in
+      let p2 = P.to_bezier_point inhandle2 in
+      let p3 = P.to_bezier_point on_curve2 in
+      Caml2geom.Bezier_curve.of_four_points p0 p1 p2 p3
+
+  (*????????????????????????????????????????????????????????????????????????????????????????*)
+  let time_at_curve_nearest_point ?pos contour ?time1 ?time2 point =
+    let bez = mixed_bezier_curve ?pos contour in
+    let pt = Caml2geom.Point.of_complex point in
+    Caml2geom.Bezier_curve.nearest_point bez ?t1:time1 ?t2:time2 pt
+  (*????????????????????????????????????????????????????????????????????????????????????????*)
+
   let curve_bounds ?(fast = false) ?pos contour =
     let bounds_func =
       if fast then
@@ -808,6 +831,12 @@ struct
       | _ :: remaining as c ->
         bezier_curve c :: to_cubic_beziers remaining
 
+  let rec to_mixed_beziers contour =
+    match contour with
+      | [] | [_] -> []
+      | _ :: remaining as c ->
+        mixed_bezier_curve c :: to_mixed_beziers remaining
+
   let to_path contour =
     let curve_list = to_cubic_beziers contour in
     let (_, first_point, _) = L.hd contour in
@@ -817,6 +846,17 @@ struct
           Caml2geom.Cubic_bezier.to_curve)
       curve_list;
     path
+(*
+  let to_path contour =
+    let curve_list = to_mixed_beziers contour in
+    let (_, first_point, _) = L.hd contour in
+    let path = Caml2geom.Path.make (P.to_bezier_point first_point) in
+    List.iter
+      (Caml2geom.Path.append_curve ~stitch:Caml2geom.Path.NO_STITCHING path -|
+          Caml2geom.Bezier_curve.to_curve)
+      curve_list;
+    path
+*)
 
   let of_path
       ?(tol = !basis_conversion_tolerance)
@@ -1040,14 +1080,14 @@ struct
         let tangent = tangent_to_curve ?num_derivs ~pos contour t in
         (tangent, tangent)
 
-  let time_at_nearest_point contour point =
+  let time_at_nearest_point ?time1 ?time2 contour point =
     let path = to_path contour in
     let pt = Caml2geom.Point.of_complex point in
-    let (time,_) = Caml2geom.Path.nearest_point path pt in
+    let (time,_) = Caml2geom.Path.nearest_point ?from_t:time1 ?to_t:time2 path pt in
     time
 
-  let nearest_point contour point =
-    let time = time_at_nearest_point contour point in
+  let nearest_point ?time1 ?time2 contour point =
+    let time = time_at_nearest_point ?time1 ?time2 contour point in
     point_at contour time
 
   let times_at_x contour x_coord =
@@ -1111,6 +1151,26 @@ struct
     join ?tol
       (join ?tol (portion ?tol contour1 0. t1) splice_contour)
       (portion ?tol contour2 t2 infinity)
+
+  let splice_into ?tol ?time1 ?time2 contour splice_contour =
+    let t1 =
+      match time1 with
+        | Some t1 -> t1
+        | None ->
+          let (_,oc,_) = L.first splice_contour in
+          time_at_nearest_point contour oc
+    in
+    let t2 =
+      match time2 with
+        | Some t2 -> t2
+        | None ->
+          let (_,oc,_) = L.last splice_contour in
+          time_at_nearest_point contour oc
+    in
+    let (t1,t2) = if t2 < t1 then (t2,t1) else (t1,t2) in
+    let (before,_) = subdivide contour t1 in
+    let (_,after) = subdivide contour t2 in
+    join ?tol before (join ?tol splice_contour after)
 
   let to_point_bool_list contour =
     let node_to_list (ih,oc,oh) = [(ih, false); (oc, true); (oh, false)] in
@@ -1835,17 +1895,17 @@ struct
   let triput ?tol ?outgoing_pos ?incoming_pos ?positions contour2 contour1 =
     let outgoing_pos =
       match (outgoing_pos, positions) with
+        | (Some _, Some _) -> failwith "triput: you must not set with ~outgoing_pos and ~positions"
         | (None, None) -> 1.
         | (Some p, _) -> p
         | (_, Some (p,_)) -> p
-        | (Some _, Some _) -> failwith "triput: you must not set with ~outgoing_pos and ~positions"
     in
     let incoming_pos =
       match (incoming_pos, positions) with
+        | (Some _, Some _) -> failwith "triput: you must not set with ~incoming_pos and ~positions"
         | (None, None) -> 1.
         | (Some p, _) -> p
         | (_, Some (_,p)) -> p
-        | (Some _, Some _) -> failwith "triput: you must not set with ~incoming_pos and ~positions"
     in
     let dir1 = outgoing_dir ?tol contour1 in
     let dir2 = incoming_dir ?tol contour2 in

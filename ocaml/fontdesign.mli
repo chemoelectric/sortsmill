@@ -286,9 +286,14 @@ sig
   val of_bezier_curves : Caml2geom.Bezier_curve.t -> Caml2geom.Bezier_curve.t -> t
   (** From a pair of bezier curves, create a node. *)
 
+  val mixed_bezier_curve : ?tol:float -> ?pos:int -> t -> Caml2geom.Bezier_curve.t
+
   val curve_bounds : ?fast:bool -> ?pos:int -> t -> Complex.t * Complex.t
   (** Computes an xy-aligned bounding box of the bezier curve between
       two nodes. *)
+
+  val time_at_curve_nearest_point : ?pos:int -> t ->
+    ?time1:float -> ?time2:float -> Complex.t -> float
 
   val curve_point_at : ?pos:int -> t -> float -> Complex.t
 
@@ -308,6 +313,9 @@ sig
   val tangent_to_curve : ?num_derivs:int -> ?pos:int -> t -> float -> Complex.t
 
   val to_cubic_beziers : t -> Caml2geom.Cubic_bezier.t list
+  (** Creates a list of bezier curves from a contour. *)
+
+  val to_mixed_beziers : t -> Caml2geom.Bezier_curve.t list
   (** Creates a list of bezier curves from a contour. *)
 
   val to_path : t -> Caml2geom.Path.t
@@ -336,8 +344,8 @@ sig
 
   val point_at : t -> float -> Complex.t
   val tangents_at : ?num_derivs:int -> t -> float -> Complex.t * Complex.t
-  val time_at_nearest_point : t -> Complex.t -> float
-  val nearest_point : t -> Complex.t -> Complex.t
+  val time_at_nearest_point : ?time1:float -> ?time2:float -> t -> Complex.t -> float
+  val nearest_point : ?time1:float -> ?time2:float -> t -> Complex.t -> Complex.t
   val times_at_x : t -> float -> float array
   val times_at_y : t -> float -> float array
   val crossings : t -> t -> Crossing.t array
@@ -352,6 +360,7 @@ sig
 
   val splice_into_cycle : ?tol:float -> ?time1:float -> ?time2:float -> t -> t -> t
   val splice_together : ?tol:float -> ?time1:float -> ?time2:float -> t -> t -> t -> t
+  val splice_into : ?tol:float -> ?time1:float -> ?time2:float -> t -> t -> t
 
   val to_point_bool_list : t -> (Complex.t * bool) list
   (** Convert a contour to list of points marked true/false =
