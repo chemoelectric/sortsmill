@@ -781,7 +781,6 @@ let contours_similar_to_letter_l
     ~flag_width
     ~flag_drop
     ~left_notch_drop
-    ~left_side_shear
     ~right_side_shear
     ~left_serif_width
     ~right_serif_width
@@ -869,7 +868,6 @@ let letter_dotlessi_contours glyph_name p =
     ~flag_width:70.
     ~flag_drop:58.
     ~left_notch_drop:105.
-    ~left_side_shear:0.
     ~right_side_shear:1.2
     ~left_serif_width:65.
     ~right_serif_width:60.
@@ -908,7 +906,6 @@ let letter_l_contours glyph_name p =
     ~flag_width:70.
     ~flag_drop:58.
     ~left_notch_drop:105.
-    ~left_side_shear:(-0.5)
     ~right_side_shear:1.2
     ~left_serif_width:105.
     ~right_serif_width:85.
@@ -916,6 +913,90 @@ let letter_l_contours glyph_name p =
     glyph_name p |> List.map Cubic.simplify
 
 (*.......................................................................*)
+
+(* The letter "n" *)
+
+let letter_n_contours glyph_name p =
+  let tools =
+    make_tools
+      ~glyph_name
+      ~height:(p.x_height +. p.curve_overshoot)
+      ~overshoot:p.flag_overshoot
+      ~param:p
+      ()
+  in
+  let module Tools = (val tools : Tools_module) in
+
+  Tools.(Complex_point.(
+    let leftbrack= p.left_bracket glyph_name rand in
+    let rightbrack = p.right_bracket glyph_name rand in
+    
+    let stem_width = p.stem_width glyph_name in
+    let serif_height = p.serif_height glyph_name in
+
+    let left_serif_width = 60. in
+    let right_serif_width = 55. in
+    let flag_width = 60. in
+    let flag_drop = 70. in
+    let left_notch_drop = 100. in
+    let right_side_shear = 0. in
+
+    let left_pos = (-0.5) *. stem_width in
+    let right_pos = 0.5 *. stem_width in
+    let left_base = x' left_pos + y' serif_height in
+    let right_base = x' right_pos + y' serif_height in
+    let left_serif_end =
+      Metacubic.(make_left_serif_end ~param:p ~rand ~glyph_name ()
+                 <+> x'(left_pos -. left_serif_width))
+    in
+    let right_serif_end =
+      Metacubic.(make_right_serif_end ~param:p ~rand ~glyph_name ()
+                 <+> x'(right_pos +. right_serif_width))
+    in
+
+    let overshot_height = height +. overshoot in
+    let serif_to_top = overshot_height -. serif_height in
+
+    let left_notch = left_base + y'(serif_to_top -. left_notch_drop) in
+    let top_corner = right_base + (x_shear (y' serif_to_top) right_side_shear) - y' 5. in
+    let flag_corner = x'(re left_notch -. flag_width) + y'(im top_corner -. flag_drop) in
+
+    let lbrack = Metacubic.(leftbrack <+> left_base) in
+    let left_side =
+      Metacubic.(
+        point ~dir:leftward zero
+        |> dput ~tensions:(1.,2.) left_serif_end
+        |> dput ~tensions:(2.,1.) lbrack
+      )
+    in
+
+    let rbrack = Metacubic.(rightbrack <+> right_base) in
+    let right_side =
+      Metacubic.(
+        rbrack
+        |> dput ~tensions:(1.,2.) right_serif_end
+        |> dput ~tensions:(2.,1.) (point ~dir:leftward zero)
+      )
+    in
+
+    let flag = make_flag ~param:p ~rand ~left_notch ~flag_corner ~top_corner () in
+    let flag_end = Metacubic.outgoing_point flag in
+    let right_side_height = 0.7 *. (overshot_height -. im (Metacubic.incoming_point rbrack)) in
+    let contour = Metacubic.(
+      left_side
+      |> triput flag
+      |> cput ~controls:(flag_end - y' 20., incoming_point rbrack + y' right_side_height) right_side
+      |> to_cubic
+    )
+    in
+(*
+    let contour = reshape_flag ~param:p ~rand ~contour ~left_notch ~flag_corner ~top_corner () in
+*)
+    [Cubic.round contour]
+  ))
+;;
+
+(*-----------------------------------------------------------------------*)
 
 (* The letter "o" *)
 
@@ -974,7 +1055,6 @@ let letter_r_contours glyph_name p =
       ~flag_width:70.
       ~flag_drop:70.
       ~left_notch_drop:107.
-      ~left_side_shear:0.
       ~right_side_shear:0.2
       ~left_serif_width:65.
       ~right_serif_width:67.
@@ -1224,6 +1304,16 @@ add_glyph "l"
     empty with
       name = "l";
       contours = letter_l_contours "l" p;
+      lsb = Some 0.;
+      rsb = Some 50.;
+  })
+;;
+
+add_glyph "n"
+  Glyph.(fun p -> {
+    empty with
+      name = "n";
+      contours = letter_n_contours "n" p;
       lsb = Some 0.;
       rsb = Some 50.;
   })
