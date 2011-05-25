@@ -362,6 +362,9 @@ sig
   val splice_together : ?tol:float -> ?time1:float -> ?time2:float -> t -> t -> t -> t
   val splice_into : ?tol:float -> ?time1:float -> ?time2:float -> t -> t -> t
 
+  val curve_simplify : ?tol:float -> ?pos:int -> t -> t
+  val simplify : ?tol:float -> t -> t
+
   val to_point_bool_list : t -> (Complex.t * bool) list
   (** Convert a contour to list of points marked true/false =
       on-curve/off-curve. *)

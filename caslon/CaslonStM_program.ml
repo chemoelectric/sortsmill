@@ -89,11 +89,16 @@ let param = {
         |> put (point ~dir:rightward (x' 140. + y' 397.))
     ));
 
-  r_arm_lower =
+  r_arm_end =
     Complex_point.(Metacubic.(
       fun _name _state ->
         point ~dir:downward (x' 207. + y' 350.)
-        |> put (point ~dir:leftward (x' 164. + y' 306.))
+    ));
+
+  r_arm_lower =
+    Complex_point.(Metacubic.(
+      fun _name _state ->
+        point ~dir:leftward (x' 164. + y' 306.)
         |> put (point ~dir:leftward (x' 79. + y' 335.))
         |> put ~tension:1.15 (point ~dir:downward (y' 260.))
     ));

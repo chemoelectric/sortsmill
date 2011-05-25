@@ -96,17 +96,22 @@ let param = {
     Complex_point.(Metacubic.(
       fun _name _state ->
         point ~out_curl:0.1 (y' 309.)
-        |> put (point ~dir:rightward (x' 140.0000 + y' 397.0000))
+        |> put (point ~dir:rightward (x' 145. + y' 407.))
+    ));
+
+  r_arm_end =
+    Complex_point.(Metacubic.(
+      fun _name _state ->
+        point ~dir:downward (x' 212. + y' 350.)
     ));
 
   r_arm_lower =
     Complex_point.(Metacubic.(
       fun _name _state ->
-        point ~dir:downward (x' 207. + y' 350.)
-        |> put (point ~dir:leftward (x' 164. + y' 306.))
-        |> put (point ~dir:leftward (x' 79. + y' 335.))
-        |> put ~tension:1.15 (point ~dir:downward (y' 260.))
-    ));
+        point ~dir:leftward (x' 164. + y' 301.)
+        |> put (point ~dir:leftward (x' 79. + y' 330.))
+        |> put ~tension:1.15 (point ~dir:downward (y' 255.))
+   ));
 }
 in
 run_command param

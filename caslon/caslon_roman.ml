@@ -77,6 +77,7 @@ struct
     left_bracket : string -> Random.State.t -> Metacubic.t;
     right_bracket : string -> Random.State.t -> Metacubic.t;
     r_shoulder : string -> Random.State.t -> Metacubic.t;
+    r_arm_end : string -> Random.State.t -> Metacubic.t;
     r_arm_lower : string -> Random.State.t -> Metacubic.t;
   }
 
@@ -635,7 +636,7 @@ let letter_c_contours glyph_name p =
       let (c3,_) = Cubic.subdivide c3 inner_time in
       Cubic.(c1 |> put c2 |> put c3 |> put (Metacubic.to_cubic tail_cut))
     in
-    [Cubic.round contour]
+    [Cubic.round contour |> Cubic.simplify]
   ))
 ;;
 
@@ -766,8 +767,8 @@ let letter_e_contours glyph_name p =
         |> to_cubic
       )
     in
-    [Cubic.round main_contour;
-     Cubic.round eye_contour]
+    [Cubic.round main_contour |> Cubic.simplify;
+     Cubic.round eye_contour |> Cubic.simplify]
   ))
 ;;
 
@@ -873,7 +874,7 @@ let letter_dotlessi_contours glyph_name p =
     ~left_serif_width:65.
     ~right_serif_width:60.
     ~extra_stem_width:0.
-    glyph_name p
+    glyph_name p |> List.map Cubic.simplify
 
 (*.......................................................................*)
 
@@ -894,7 +895,7 @@ let letter_i_contours glyph_name p =
       Metacubic.to_cubic (make_dot 108.) <+> y' p.i_dot_height - x' 10.
     in
     letter_dotlessi_contours glyph_name p @ [dot_contour]
-  )))
+  ))) |> List.map Cubic.simplify
 ;;
 
 (*.......................................................................*)
@@ -912,7 +913,7 @@ let letter_l_contours glyph_name p =
     ~left_serif_width:105.
     ~right_serif_width:85.
     ~extra_stem_width:3.
-    glyph_name p
+    glyph_name p |> List.map Cubic.simplify
 
 (*.......................................................................*)
 
@@ -994,14 +995,16 @@ let letter_r_contours glyph_name p =
     let shoulder = Vect.modify shoulder 0 (fun (i,_,o) -> (i, arm_top_offset, o)) in
     let arm_top = Complex.(arm_top_offset - offset) in
 
+    let arm_end = p.r_arm_end glyph_name rand in
+
     let arm_lower = p.r_arm_lower glyph_name rand in
     let arm_bottom_offset = Cubic.(nearest_point stem_offset (Metacubic.outgoing_point arm_lower)) in
     let arm_lower = Vect.modify arm_lower (Vect.length arm_lower - 1) (fun (i,_,o) -> (i, arm_bottom_offset, o)) in
 
-    let arm = Metacubic.(shoulder |> put arm_lower |> to_cubic) in
+    let arm = Metacubic.(shoulder |> put arm_end |> put arm_lower |> to_cubic) in
     let contour = Cubic.(splice_into_cycle stem (arm <-> offset)) in
     let contour = round_off_corner ~contour ~corner_point:arm_top ~radius:3. () in
-    [Cubic.round contour]
+    [Cubic.round contour |> Cubic.simplify]
   )
 
 (*-----------------------------------------------------------------------*)
@@ -1047,7 +1050,6 @@ let letter_t_contours glyph_name p =
     let upper_bowl_width = re tail2 -. re right_pos in
 
     let top_corner = right_pos + x' 10. + y'pos 1.00 in
-    let crossbar_bend = right_pos + y' (crossbar_height -. crossbar_breadth +. 10.) in
     let bowl_point = right_pos + x'(0.50 *. upper_bowl_width) + y'pos 0.00 + y' bottom_breadth in
     let bottom_point = left_pos + x'(0.50 *. lower_bowl_width) + y'pos 0.00 in
 
@@ -1145,8 +1147,7 @@ let letter_t_contours glyph_name p =
         ~contour1:right_side ~contour2:left_side
         ~corner_time1:(float_of_int Int.(List.length right_side - 1))
         ~corner_time2:0.
-        ~radius1:tail_corner_radius1 ~radius2:tail_corner_radius2
-        ()
+        ~radius1:tail_corner_radius1 ~radius2:tail_corner_radius2 ()
     in
     let right_side = fst (Cubic.subdivide right_side right_time) in
     let left_side = snd (Cubic.subdivide left_side left_time) in
@@ -1164,7 +1165,7 @@ let letter_t_contours glyph_name p =
     in
     let cycle = round_off_corner ~corner_point:crossbar_point1 ~contour:cycle ~radius:10. () in
     let cycle = round_off_corner ~corner_point:crossbar_point2 ~contour:cycle ~radius:10. () in
-    [Cubic.round cycle]
+    [Cubic.round cycle |> Cubic.simplify]
   ))
 ;;
 

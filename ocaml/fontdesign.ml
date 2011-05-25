@@ -1172,6 +1172,38 @@ struct
     let (_,after) = subdivide contour t2 in
     join ?tol before (join ?tol splice_contour after)
 
+  let curve_simplify ?tol ?(pos = 0) contour =
+    Complex_point.(
+      let c = L.drop pos contour in
+      let node1 = L.hd c in
+      let node2 = L.hd (L.tl c) in
+      let (ih1, oc1, oh1) = node1 in
+      let (ih2, oc2, oh2) = node2 in
+      let v = oc2 - oc1 in
+      let h1 = oh1 - oc1 in
+      let h1_proj = proj h1 v in
+      if points_coincide ?tol h1_proj h1 then
+        let h2 = oh2 - oc2 in
+        let h2_proj = proj h2 (neg v) in
+        if points_coincide ?tol h2_proj h2 then
+          [(ih1, oc1, oc1); (oc2, oc2, oh2)]
+        else
+          [node1; node2]
+      else
+        [node1; node2]
+    )
+
+  let simplify ?tol contour =
+    let rec construct result contour' =
+      match contour' with
+        | [] -> result
+        | [node] -> node :: result
+        | _ ->
+          let new_curve = curve_simplify ?tol contour' in
+          construct (L.hd new_curve :: result) (L.tl new_curve @ L.tl (L.tl contour'))
+    in
+    L.rev (construct [] contour)
+
   let to_point_bool_list contour =
     let node_to_list (ih,oc,oh) = [(ih, false); (oc, true); (oh, false)] in
     L.flatten (L.map node_to_list contour)
