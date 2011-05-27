@@ -31,55 +31,49 @@ open Fontdesign
 
 module Param =
 struct
-  type bracket = {
-    bracket_horiz : float;
-    bracket_vert : float;
-    bracket_horiz_tension : float;
-    bracket_vert_tension : float;
-  }
+  type parameter =
+    [
+    | `Int of unit -> int option
+    | `Float of unit -> float option
+    | `String of unit -> string option
+    | `Metacubic of unit -> Metacubic.t option
+    ]
 
-  type t = {
-    version : string;
+  type t = parameter StringMap.t
 
-    fontname : string;
-    familyname : string;
-    fullname : string;
-    weight : string;
+  let no_parameters = StringMap.empty
 
-    family : string;
-    subfamily : string;
-    preferred_family : string option;
-    preferred_subfamily : string option;
-    wws_family : string option;
-    wws_subfamily : string option;
+  let put_parameter params name func = StringMap.add name func params
+  let put_int_func params name ifunc = put_parameter params name (`Int ifunc)
+  let put_float_func params name ffunc = put_parameter params name (`Float ffunc)
+  let put_string_func params name sfunc = put_parameter params name (`String sfunc)
+  let put_metacubic_func params name mfunc = put_parameter params name (`Metacubic mfunc)
+  let put_int params name i = put_int_func params name (fun () -> Some i)
+  let put_float params name v =  put_float_func params name (fun () -> Some v)
+  let put_string params name s = put_string_func params name (fun () -> Some s)
+  let put_metacubic params name m = put_string_func params name (fun () -> Some m)
 
-    os2_weight : int;
+  let parameter params name = StringMap.find name params
 
-    contrast : float;                   (* 0. = "normal" contrast. *)
-    extension : float;                  (* 0. = normal. *)
-    design_size : float;
-    space_width : float;
-    x_height : float;
-    curve_overshoot : float;
-    curve_undershoot : float;
-    flag_overshoot : float;
-    e_crossbar_height : float;
-    t_crossbar_height : float;
-    t_top_corner_height : float;
-    i_dot_height : float;
-    ascender_height : float;
-    stem_width : string -> float;
-    serif_height : string -> float;
+  let int params name =
+    match parameter params name with
+      | `Int ifunc -> Option.get (ifunc ())
+      | _ -> failwith "Param.int"
 
-    corner_radius : Random.State.t -> float;
-    serif_end_angle : Random.State.t -> float;
-    tail_end_angle : Random.State.t -> float;
-    left_bracket : string -> Random.State.t -> Metacubic.t;
-    right_bracket : string -> Random.State.t -> Metacubic.t;
-    r_shoulder : string -> Random.State.t -> Metacubic.t;
-    r_arm_end : string -> Random.State.t -> Metacubic.t;
-    r_arm_lower : string -> Random.State.t -> Metacubic.t;
-  }
+  let float params name =
+    match parameter params name with
+      | `Float ffunc -> Option.get (ffunc ())
+      | _ -> failwith "Param.float"
+
+  let string params name =
+    match parameter params name with
+      | `String sfunc -> Option.get (sfunc ())
+      | _ -> failwith "Param.string"
+
+  let metacubic params name =
+    match parameter params name with
+      | `Metacubic mfunc -> Option.get (mfunc ())
+      | _ -> failwith "Param.metacubic"
 
   module type Tools_module =
   sig
@@ -113,10 +107,12 @@ struct
       let p = param in
       let rand =
         Random.State.make
-          (Array.of_list (int_of_float p.design_size :: p.os2_weight ::
-                            List.map Char.code (String.explode glyph_name)))
+          (Array.of_list
+             (int_of_float (float p "design_size") ::
+                int p "os2_weight" ::
+                List.map Char.code (String.explode glyph_name)))
       in
-      let extended_width = width *. (1. +. p.extension) in
+      let extended_width = width *. (1. +. float p "extension") in
       let xrel v = v *. extended_width in
       let yrel v = v *. height in
       let xpos v = xrel v -. left_overlap in
@@ -158,9 +154,9 @@ let glyph_table : (Param.t -> (float, Cubic.t) Glyph.t) StringMap.t ref =
 let add_glyph glyph_name glyph = glyph_table := Glyph.(StringMap.add glyph_name glyph !glyph_table)
 let have_glyph name = StringMap.mem name !glyph_table
 let get_glyph name = StringMap.find name !glyph_table
-let enum_glyphs () = map snd (StringMap.enum !glyph_table)
+let enum_glyphs () = StringMap.enum !glyph_table
 let get_resolve_glyph name param = (get_glyph name) param
-let enum_resolve_glyphs param = map (fun glyph -> glyph param) (enum_glyphs ())
+let enum_resolve_glyphs params = map (fun (glyph_name, glyph) -> glyph (params ~glyph_name)) (enum_glyphs ())
 ;;
 
 (*-----------------------------------------------------------------------*)
@@ -414,14 +410,15 @@ let make_flat_cut_for_contours
    time1, time2)
 
 let make_left_serif_end
-    ~param ~rand ~glyph_name
+    ~param
     ?height ?depth ?shear_angle
     ?bottom_radius ?top_radius
     ?(tension = huge)
     () =
+  let p = param in
   let end_height =
     match height with
-      | None -> param.serif_height glyph_name +. 4.
+      | None -> Param.float p "serif_height" +. 4.
       | Some h -> h
   in
   let end_depth =
@@ -431,17 +428,17 @@ let make_left_serif_end
   in
   let angle =
     match shear_angle with
-      | None -> param.serif_end_angle rand
+      | None -> Param.float p "serif_end_angle"
       | Some a -> a
   in
   let radius1 =
     match bottom_radius with
-      | None -> param.corner_radius rand
+      | None -> Param.float p "corner_radius"
       | Some r -> r
   in
   let radius2 =
     match top_radius with
-      | None -> param.corner_radius rand
+      | None -> Param.float p "corner_radius"
       | Some r -> r
   in
   let shear_offset = 0.5 *. end_height *. dtan angle in
@@ -455,14 +452,15 @@ let make_left_serif_end
   )
 
 let make_right_serif_end
-    ~param ~rand ~glyph_name
+    ~param
     ?height ?depth ?shear_angle
     ?bottom_radius ?top_radius
     ?(tension = huge)
     () =
+  let p = param in
   let end_height =
     match height with
-      | None -> param.serif_height glyph_name +. 4.
+      | None -> Param.float p "serif_height" +. 4.
       | Some h -> h
   in
   let end_depth =
@@ -472,17 +470,17 @@ let make_right_serif_end
   in
   let angle =
     match shear_angle with
-      | None -> param.serif_end_angle rand
+      | None -> Param.float p "serif_end_angle"
       | Some a -> a
   in
   let radius1 =
     match top_radius with
-      | None -> param.corner_radius rand
+      | None -> Param.float p "corner_radius"
       | Some r -> r
   in
   let radius2 =
     match bottom_radius with
-      | None -> param.corner_radius rand
+      | None -> Param.float p "corner_radius"
       | Some r -> r
   in
   let shear_offset = 0.5 *. end_height *. dtan angle in
@@ -512,6 +510,7 @@ let make_flag
 
 let reshape_flag ~param ~rand ~contour ~left_notch ~flag_corner ~top_corner () =
   Complex_point.(
+    let p = param in
 
     let lower_dir = dir (flag_corner - left_notch) in
     let upper_dir = dir (top_corner - flag_corner) in
@@ -523,7 +522,7 @@ let reshape_flag ~param ~rand ~contour ~left_notch ~flag_corner ~top_corner () =
     let (cut, time1, time2) =
       make_flat_cut_for_contours ~corner_point1 ~corner_point2
         ~contour1:contour ~contour2:contour
-        ~radius1:(param.corner_radius rand +. 2.) ~radius2:(param.corner_radius rand +. 2.) ()
+        ~radius1:(Param.float p "corner_radius" +. 2.) ~radius2:(Param.float p "corner_radius" +. 2.) ()
     in
     let contour = Cubic.splice_together ~time1 ~time2 contour contour (Metacubic.to_cubic cut) in
 
@@ -542,12 +541,12 @@ let reshape_flag ~param ~rand ~contour ~left_notch ~flag_corner ~top_corner () =
 let letter_c_contours glyph_name p =
 
   let tools =
-    let overshoot = p.curve_overshoot +. 3. in
-    let undershoot = p.curve_undershoot +. 3. in
+    let overshoot = Param.float p "curve_overshoot" +. 3. in
+    let undershoot = Param.float p "curve_undershoot" +. 3. in
     make_tools
       ~glyph_name
       ~width:320.
-      ~height:(p.x_height +. undershoot +. overshoot)
+      ~height:(Param.float p "x_height" +. undershoot +. overshoot)
       ~undershoot:undershoot
       ~overshoot:overshoot
       ~param:p
@@ -559,15 +558,15 @@ let letter_c_contours glyph_name p =
 
     let contour =
 
-      let tail_end_angle = p.tail_end_angle rand in
-      let tail_corner_radius1 = p.corner_radius rand +. 1. in
-      let tail_corner_radius2 = p.corner_radius rand +. 1. in
+      let tail_end_angle = Param.float p "tail_end_angle" in
+      let tail_corner_radius1 = Param.float p "corner_radius" +. 1. in
+      let tail_corner_radius2 = Param.float p "corner_radius" +. 1. in
 
-      let stem_width = p.stem_width glyph_name in
+      let stem_width = Param.float p "stem_width" in
       let left_breadth = 1.12 *. stem_width in
-      let bottom_breadth = 0.92 *. stem_width /. (1. +. p.contrast) in
-      let top_breadth = 0.64 *. stem_width /. (1. +. p.contrast) in
-      let head_breadth = 1.15 *. stem_width /. (1. +. 0.3 *. p.contrast) in
+      let bottom_breadth = 0.92 *. stem_width /. (1. +. Param.float p "contrast") in
+      let top_breadth = 0.64 *. stem_width /. (1. +. Param.float p "contrast") in
+      let head_breadth = 1.15 *. stem_width /. (1. +. 0.3 *. Param.float p "contrast") in
       let tail_breadth = 0.25 *. stem_width in
 
       let tail1 = x'pos 0.98 + y'pos 0.19 in
@@ -647,14 +646,14 @@ let letter_c_contours glyph_name p =
 let letter_e_contours glyph_name p =
 
   let tools =
-    let overshoot = p.curve_overshoot +. 2. in
-    let undershoot = p.curve_undershoot +. 2. in
+    let overshoot = Param.float p "curve_overshoot" +. 2. in
+    let undershoot = Param.float p "curve_undershoot" +. 2. in
     make_tools
       ~glyph_name
       ~width:354.
-      ~height:(p.x_height +. undershoot +. overshoot)
-      ~undershoot:p.curve_undershoot
-      ~overshoot:p.curve_overshoot
+      ~height:(Param.float p "x_height" +. undershoot +. overshoot)
+      ~undershoot:(Param.float p "curve_undershoot")
+      ~overshoot:(Param.float p "curve_overshoot")
       ~param:p
       ()
   in
@@ -662,18 +661,18 @@ let letter_e_contours glyph_name p =
 
   Tools.(Complex_point.(
 
-    let tail_end_angle = p.tail_end_angle rand in
+    let tail_end_angle = Param.float p "tail_end_angle" in
 
-    let stem_width = p.stem_width glyph_name in
-    let top_breadth = 0.41 *. stem_width /. (1. +. p.contrast) in
+    let stem_width = Param.float p "stem_width" in
+    let top_breadth = 0.41 *. stem_width /. (1. +. (Param.float p "contrast")) in
     let left_breadth = 1.01 *. stem_width in
-    let right_breadth = 1.68 *. stem_width /. (1. +. 0.5 *. p.contrast) in
-    let bottom_breadth = 1.00 *. stem_width /. (1. +. p.contrast) in
-    let tail_breadth = 0.34 *. stem_width /. (1. +. p.contrast) in
+    let right_breadth = 1.68 *. stem_width /. (1. +. 0.5 *. (Param.float p "contrast")) in
+    let bottom_breadth = 1.00 *. stem_width /. (1. +. (Param.float p "contrast")) in
+    let tail_breadth = 0.34 *. stem_width /. (1. +. (Param.float p "contrast")) in
 
-    let crossbar_height = p.e_crossbar_height in
-    let crossbar_breadth = 0.42 *. stem_width /. (1. +. p.contrast) in
-    let crossbar_top = p.e_crossbar_height +. crossbar_breadth in
+    let crossbar_height = Param.float p "e_crossbar_height" in
+    let crossbar_breadth = 0.42 *. stem_width /. (1. +. (Param.float p "contrast")) in
+    let crossbar_top = Param.float p "e_crossbar_height" +. crossbar_breadth in
     let crossbar_top0 = x'pos 1.00 - x' right_breadth + y' crossbar_top in
 
     let crossbar_fillet_size () = (Random.State.float rand 0.2 +. 0.7) *. crossbar_breadth in
@@ -738,8 +737,8 @@ let letter_e_contours glyph_name p =
         ~contour1:lower ~contour2:outer
         ~corner_time1:(float_of_int Int.(List.length lower - 1))
         ~corner_time2:0.
-        ~radius1:(p.corner_radius rand +. 1.)
-        ~radius2:(p.corner_radius rand +. 1.)
+        ~radius1:(Param.float p "corner_radius" +. 1.)
+        ~radius2:(Param.float p "corner_radius" +. 1.)
         ()
     in
     let lower' = fst (Cubic.subdivide lower lower_time) |> Metacubic.of_cubic |> Metacubic.set_dirs in
@@ -791,7 +790,7 @@ let contours_similar_to_letter_l
     make_tools
       ~glyph_name
       ~height
-      ~overshoot:p.flag_overshoot
+      ~overshoot:(Param.float p "flag_overshoot")
       ~param:p
       ()
   in
@@ -799,22 +798,22 @@ let contours_similar_to_letter_l
 
   Tools.(Complex_point.(
 
-    let leftbrack= p.left_bracket glyph_name rand in
-    let rightbrack = p.right_bracket glyph_name rand in
+    let leftbrack= Param.metacubic p "left_bracket" in
+    let rightbrack = Param.metacubic p "right_bracket" in
     
-    let stem_width = p.stem_width glyph_name +. extra_stem_width in
-    let serif_height = p.serif_height glyph_name in
+    let stem_width = Param.float p "stem_width" +. extra_stem_width in
+    let serif_height = Param.float p "serif_height" in
 
     let left_pos = (-0.5) *. stem_width in
     let right_pos = 0.5 *. stem_width in
     let left_base = x' left_pos + y' serif_height in
     let right_base = x' right_pos + y' serif_height in
     let left_serif_end =
-      Metacubic.(make_left_serif_end ~param:p ~rand ~glyph_name ()
+      Metacubic.(make_left_serif_end ~param:p ()
                  <+> x'(left_pos -. left_serif_width))
     in
     let right_serif_end =
-      Metacubic.(make_right_serif_end ~param:p ~rand ~glyph_name ()
+      Metacubic.(make_right_serif_end ~param:p ()
                  <+> x'(right_pos +. right_serif_width))
     in
 
@@ -864,7 +863,7 @@ let contours_similar_to_letter_l
 
 let letter_dotlessi_contours glyph_name p =
   contours_similar_to_letter_l
-    ~height:(p.x_height +. p.flag_overshoot)
+    ~height:(Param.float p "x_height" +. Param.float p "flag_overshoot")
     ~flag_width:70.
     ~flag_drop:58.
     ~left_notch_drop:105.
@@ -890,7 +889,7 @@ let letter_i_contours glyph_name p =
 
   Tools.(Cubic.(Complex_point.(
     let dot_contour =
-      Metacubic.to_cubic (make_dot 108.) <+> y' p.i_dot_height - x' 10.
+      Metacubic.to_cubic (make_dot 108.) <+> y' (Param.float p "i_dot_height") - x' 10.
     in
     letter_dotlessi_contours glyph_name p @ [dot_contour]
   ))) |> List.map Cubic.simplify
@@ -902,7 +901,7 @@ let letter_i_contours glyph_name p =
 
 let letter_l_contours glyph_name p =
   contours_similar_to_letter_l
-    ~height:(p.ascender_height +. 2.)
+    ~height:(Param.float p "ascender_height" +. 2.)
     ~flag_width:70.
     ~flag_drop:58.
     ~left_notch_drop:105.
@@ -914,6 +913,7 @@ let letter_l_contours glyph_name p =
 
 (*.......................................................................*)
 
+(*
 (* The letter "n" *)
 
 let letter_n_contours glyph_name p =
@@ -995,6 +995,7 @@ let letter_n_contours glyph_name p =
     [Cubic.round contour]
   ))
 ;;
+*)
 
 (*-----------------------------------------------------------------------*)
 
@@ -1003,12 +1004,12 @@ let letter_n_contours glyph_name p =
 let letter_o_contours glyph_name p =
 
   let tools =
-    let overshoot = p.curve_overshoot in
-    let undershoot = p.curve_undershoot in
+    let overshoot = Param.float p "curve_overshoot" in
+    let undershoot = Param.float p "curve_undershoot" in
     make_tools
       ~glyph_name
       ~width:383.
-      ~height:(p.x_height +. undershoot +. overshoot)
+      ~height:(Param.float p "x_height" +. undershoot +. overshoot)
       ~undershoot:undershoot
       ~overshoot:overshoot
       ~param:p
@@ -1018,11 +1019,11 @@ let letter_o_contours glyph_name p =
 
   Tools.(Cubic.(Complex_point.(
 
-    let stem_width = p.stem_width glyph_name in
+    let stem_width = Param.float p "stem_width" in
     let left_breadth = 1.16 *. stem_width in
     let right_breadth = 1.16 *. stem_width in
-    let bottom_breadth = 0.58 *. stem_width /. (1. +. p.contrast) in
-    let top_breadth = 0.54 *. stem_width /. (1. +. p.contrast) in
+    let bottom_breadth = 0.58 *. stem_width /. (1. +. Param.float p "contrast") in
+    let top_breadth = 0.54 *. stem_width /. (1. +. Param.float p "contrast") in
 
     let outer_contour =
       (make_up_node (x'pos 0.00 + y'pos 0.50) (* left *)
@@ -1048,7 +1049,7 @@ let letter_o_contours glyph_name p =
 (* The letter "r" *)
 
 let letter_r_contours glyph_name p =
-  let height = p.x_height +. p.flag_overshoot +. 5. in
+  let height = Param.float p "x_height" +. Param.float p "flag_overshoot" +. 5. in
   let ilike_contours =
     contours_similar_to_letter_l
       ~height
@@ -1066,18 +1067,18 @@ let letter_r_contours glyph_name p =
   let module Tools = (val tools : Tools_module) in
 
   Tools.(
-    let offset = Complex.of_float (-0.5 *. p.stem_width glyph_name) in
+    let offset = Complex.of_float (-0.5 *. Param.float p "stem_width") in
     let stem = List.hd ilike_contours in
     let stem_offset = Cubic.(stem <+> offset) in
 
-    let shoulder = p.r_shoulder glyph_name rand in
+    let shoulder = Param.metacubic p "r_shoulder" in
     let arm_top_offset = Cubic.(nearest_point stem_offset (Metacubic.incoming_point shoulder)) in
     let shoulder = Vect.modify shoulder 0 (fun (i,_,o) -> (i, arm_top_offset, o)) in
     let arm_top = Complex.(arm_top_offset - offset) in
 
-    let arm_end = p.r_arm_end glyph_name rand in
+    let arm_end = Param.metacubic p "r_arm_end" in
 
-    let arm_lower = p.r_arm_lower glyph_name rand in
+    let arm_lower = Param.metacubic p "r_arm_lower" in
     let arm_bottom_offset = Cubic.(nearest_point stem_offset (Metacubic.outgoing_point arm_lower)) in
     let arm_lower = Vect.modify arm_lower (Vect.length arm_lower - 1) (fun (i,_,o) -> (i, arm_bottom_offset, o)) in
 
@@ -1086,6 +1087,7 @@ let letter_r_contours glyph_name p =
     let contour = round_off_corner ~contour ~corner_point:arm_top ~radius:3. () in
     [Cubic.round contour |> Cubic.simplify]
   )
+;;
 
 (*-----------------------------------------------------------------------*)
 
@@ -1094,11 +1096,11 @@ let letter_r_contours glyph_name p =
 let letter_t_contours glyph_name p =
 
   let tools =
-    let undershoot = p.curve_undershoot +. 2. in
+    let undershoot = Param.float p "curve_undershoot" +. 2. in
     make_tools
       ~glyph_name
       ~width:275.
-      ~height:(p.t_top_corner_height +. undershoot)
+      ~height:(Param.float p "t_top_corner_height" +. undershoot)
       ~undershoot:undershoot
       ~param:p
       ()
@@ -1107,19 +1109,19 @@ let letter_t_contours glyph_name p =
 
   Tools.(Complex_point.(
 
-    let tail_end_angle = p.tail_end_angle rand +. 5. in
-    let tail_corner_radius1 = p.corner_radius rand in
-    let tail_corner_radius2 = p.corner_radius rand in
+    let tail_end_angle = Param.float p "tail_end_angle" +. 5. in
+    let tail_corner_radius1 = Param.float p "corner_radius" in
+    let tail_corner_radius2 = Param.float p "corner_radius" in
 
-    let stem_width = p.stem_width glyph_name in
+    let stem_width = Param.float p "stem_width" in
     let left_pos = x'(-.0.5 *. stem_width) in
     let right_pos = x'(0.5 *. stem_width) in
-    let crossbar_height = p.t_crossbar_height in
-    let crossbar_breadth = floor (0.85 *. stem_width /. (1. +. 0.7 *. p.contrast) +. 0.5) in
-    let bottom_breadth = 0.70 *. stem_width /. (1. +. p.contrast) in
+    let crossbar_height = Param.float p "t_crossbar_height" in
+    let crossbar_breadth = floor (0.85 *. stem_width /. (1. +. 0.7 *. (Param.float p "contrast")) +. 0.5) in
+    let bottom_breadth = 0.70 *. stem_width /. (1. +. (Param.float p "contrast")) in
     let sheared_terminal_width = 70. in
     let sheared_terminal_height = crossbar_height -. crossbar_breadth -. 3. in
-    let tail_breadth = 0.34 *. stem_width /. (1. +. p.contrast) in
+    let tail_breadth = 0.34 *. stem_width /. (1. +. (Param.float p "contrast")) in
     let tail_cut_angle = 100. in
 
     let tail1 =
@@ -1147,7 +1149,7 @@ let letter_t_contours glyph_name p =
       make_flat_cut
         ~bend_kind2:`Without_extrema
         ~corner1:corner_point1 ~corner2:corner_point2
-        ~radius1:(p.corner_radius rand +. 3.) ~radius2:(p.corner_radius rand +. 3.)
+        ~radius1:(Param.float p "corner_radius" +. 3.) ~radius2:(Param.float p "corner_radius" +. 3.)
         ~in_dir:leftward ~out_dir:sheared_terminal_dip_dir ()
     in
 
@@ -1160,7 +1162,7 @@ let letter_t_contours glyph_name p =
     let top_cut =
       make_flat_cut
         ~corner1:corner_point1 ~corner2:corner_point2
-        ~radius1:(p.corner_radius rand +. 2.) ~radius2:(p.corner_radius rand +. 2.)
+        ~radius1:(Param.float p "corner_radius" +. 2.) ~radius2:(Param.float p "corner_radius" +. 2.)
         ~in_dir:sheared_terminal_rise_dir ~out_dir:downward ()
     in
 
@@ -1186,13 +1188,13 @@ let letter_t_contours glyph_name p =
       )
     in
 
-    (* Roughly locate the sketched lower-right side. *)
+  (* Roughly locate the sketched lower-right side. *)
     let (_, tangent) = Cubic.tangents_at left_side 0. in
     let tail2 = tail1 + x' tail_breadth * tangent * rot (-100.) in
     let lower_right = sketch_lower_right tail2 in
 
-    (* Now use the rough sketch to get a better estimate of the
-       crosscut vector. *)
+  (* Now use the rough sketch to get a better estimate of the
+     crosscut vector. *)
     let (tangent2, _) = Cubic.tangents_at lower_right (float_of_int Int.(List.length lower_right - 1)) in
     let crosscut_dir = dir (tangent - tangent2) * rot (-90.) in
     let tail2' = tail1 + x' tail_breadth * crosscut_dir in
@@ -1255,7 +1257,7 @@ add_glyph "space"
   Glyph.(fun p -> {
     empty with
       name = "space";
-      rsb = Some p.space_width;
+      rsb = Some (Param.float p "space_width");
   })
 ;;
 
@@ -1309,6 +1311,7 @@ add_glyph "l"
   })
 ;;
 
+(*
 add_glyph "n"
   Glyph.(fun p -> {
     empty with
@@ -1318,6 +1321,7 @@ add_glyph "n"
       rsb = Some 50.;
   })
 ;;
+*)
 
 add_glyph "o"
   Glyph.(fun p -> {
@@ -1351,7 +1355,8 @@ add_glyph "t"
 
 (*-----------------------------------------------------------------------*)
 
-let run_command ?(outp = stdout) param =
+let run_command ?(outp = stdout) params =
+  let p = params ~glyph_name:"" in
   let glyph_opt = StdOpt.str_option () in
   let font_opt = StdOpt.str_option () in
   let font_flags_opt = StdOpt.str_option () in
@@ -1372,29 +1377,31 @@ let run_command ?(outp = stdout) param =
       output_string outp "\n";
       output_string outp "my_font = fontforge.font()\n";
       output_string outp "\n";
-      Print.printf p"my_font.version = '%s'\n" param.version;
-      Print.printf p"my_font.fontname = '%s'\n" param.fontname;
-      Print.printf p"my_font.familyname = '%s'\n" param.familyname;
-      Print.printf p"my_font.fullname = '%s'\n" param.fullname;
-      Print.printf p"my_font.weight = '%s'\n" param.weight;
-      Print.printf p"my_font.appendSFNTName('English (US)', 'Family', '%s')\n" param.family;
-      Print.printf p"my_font.appendSFNTName('English (US)', 'SubFamily', '%s')\n" param.subfamily;
-      if Option.is_some param.preferred_family then
+      Print.printf p"my_font.version = '%s'\n" (Param.string p "version");
+      Print.printf p"my_font.fontname = '%s'\n" (Param.string p "fontname");
+      Print.printf p"my_font.familyname = '%s'\n" (Param.string p "familyname");
+      Print.printf p"my_font.fullname = '%s'\n" (Param.string p "fullname");
+      Print.printf p"my_font.weight = '%s'\n" (Param.string p "weight");
+      Print.printf p"my_font.appendSFNTName('English (US)', 'Family', '%s')\n" (Param.string p "family");
+      Print.printf p"my_font.appendSFNTName('English (US)', 'SubFamily', '%s')\n" (Param.string p "subfamily");
+(*
+      if Option.is_some p "preferred_family" then
         Print.printf p"my_font.appendSFNTName('English (US)', 'Preferred Family', '%s')\n"
-          (Option.get param.preferred_family);
-      if Option.is_some param.preferred_subfamily then
+          (Option.get p "preferred_family");
+      if Option.is_some p "preferred_subfamily" then
         Print.printf p"my_font.appendSFNTName('English (US)', 'Preferred Styles', '%s')\n"
-          (Option.get param.preferred_subfamily);
-      if Option.is_some param.wws_family then
+          (Option.get p "preferred_subfamily");
+      if Option.is_some p "wws_family" then
         Print.printf p"my_font.appendSFNTName('English (US)', 'WWS Family', '%s')\n"
-          (Option.get param.wws_family);
-      if Option.is_some param.wws_subfamily then
+          (Option.get p "wws_family");
+      if Option.is_some p "wws_subfamily" then
         Print.printf p"my_font.appendSFNTName('English (US)', 'WWS Subfamily', '%s')\n"
-          (Option.get param.wws_subfamily);
+          (Option.get p "wws_subfamily");
+*)
       output_string outp "\n";
-      Print.printf p"my_font.size_feature = (%F,)\n" param.design_size;
+      Print.printf p"my_font.size_feature = (%F,)\n" (Param.float p "design_size");
       output_string outp "\n";
-      Print.printf p"my_font.os2_weight = %i\n" param.os2_weight;
+      Print.printf p"my_font.os2_weight = %i\n" (Param.int p "os2_weight");
       output_string outp "\n";
       output_string outp "def preferred_unicode(glyphname):\n";
       output_string outp "    if '_' in glyphname:\n";
@@ -1406,7 +1413,7 @@ let run_command ?(outp = stdout) param =
 
       iter
         (Cubic_glyph.print_python_glyph_code outp)
-        (enum_resolve_glyphs param);
+        (enum_resolve_glyphs params);
 
       output_string outp "\n";
       output_string outp "my_font.encoding = 'UnicodeBMP'\n";
@@ -1424,7 +1431,7 @@ let run_command ?(outp = stdout) param =
 
     | Some glyph_name ->
       if have_glyph glyph_name then
-        let glyph = get_resolve_glyph glyph_name param in
+        let glyph = get_resolve_glyph glyph_name (params ~glyph_name) in
         Cubic_glyph.print_python_glyph_update_module outp glyph
 
 (*-----------------------------------------------------------------------*)

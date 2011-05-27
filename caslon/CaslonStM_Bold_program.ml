@@ -25,93 +25,112 @@ open Caslon_roman
 open Fontdesign
 open Param
 
-let param = {
-  version = "0.1";
+let params ~glyph_name =
 
-  fontname = "CaslonStM-Bold";
-  familyname = "Sorts Mill Caslon";
-  fullname = "Sorts Mill Caslon Bold";
-  weight = "Regular";
+  let p_ref : Param.t ref = ref no_parameters in
 
-  family = "Sorts Mill Caslon";
-  subfamily = "Regular";
-  preferred_family = None;
-  preferred_subfamily = None;
-  wws_family = None;
-  wws_subfamily = None;
+  let pi_func name ifunc = p_ref := put_int_func !p_ref name ifunc in
+  let pf_func name ffunc = p_ref := put_float_func !p_ref name ffunc in
+  let ps_func name sfunc = p_ref := put_string_func !p_ref name sfunc in
+  let pm_func name mfunc = p_ref := put_metacubic_func !p_ref name mfunc in
+  let pi name i = p_ref := put_int !p_ref name i in
+  let pf name v = p_ref := put_float !p_ref name v in
+  let ps name s = p_ref := put_string !p_ref name s in
+  let pm name m = p_ref := put_metacubic !p_ref name m in
+  let null = (fun () -> None) in
 
-  os2_weight = 700;
-  design_size = 12.;
+  ps "version" "0.1";
 
-  contrast = 0.5;
-  extension = 0.1;
-  space_width = 200.;
-  x_height = 399.;
-  curve_overshoot = 10.;
-  curve_undershoot = 10.;
-  flag_overshoot = 10.;
-  e_crossbar_height = 258.;
-  t_crossbar_height = 402.;
-  t_top_corner_height = 550.;
-  i_dot_height = 623.;
-  ascender_height = 700.;
-  stem_width = (fun _name -> 90.);
-  serif_height = (fun _name -> 30.);
+  pi "os2_weight" 700;
+  pf "design_size" 12.;
 
-  corner_radius = (fun state -> float_of_int (Random.State.int state 3 + 4));
-  (*
-    flag_corner_radius = (fun state -> 10.);
-    flag_top_radius = (fun state -> 10.);
-  *)
+  let state =
+    Random.State.make
+      (Array.of_list
+         (int_of_float (float !p_ref "design_size") ::
+            int !p_ref "os2_weight" ::
+            List.map Char.code (String.explode glyph_name)))
+  in
 
-  serif_end_angle = (fun state -> float_of_int (Random.State.int state 101 - 50) /. 9.);
-  tail_end_angle = (fun state -> float_of_int (Random.State.int state 101) /. 10.);
+  ps "fontname" "CaslonStM-Bold";
+  ps "familyname" "Sorts Mill Caslon";
+  ps "fullname" "Sorts Mill Caslon Bold";
+  ps "weight" "Regular";
 
-  left_bracket =
-    (fun name state ->
+  ps "family" "Sorts Mill Caslon";
+  ps "subfamily" "Regular";
+  ps_func "preferred_family" null;
+  ps_func "preferred_subfamily" null;
+  ps_func "wws_family" null;
+  ps_func "wws_subfamily" null;
+
+  pf "contrast" 0.5;
+  pf "extension" 0.1;
+  pf "space_width" 200.;
+  pf "x_height" 399.;
+  pf "curve_overshoot" 10.;
+  pf "curve_undershoot" 10.;
+  pf "flag_overshoot" 10.;
+  pf "e_crossbar_height" 258.;
+  pf "t_crossbar_height" 402.;
+  pf "t_top_corner_height" 550.;
+  pf "i_dot_height" 623.;
+  pf "ascender_height" 700.;
+  pf "stem_width" 90.;
+  pf "serif_height" 30.;
+
+  pf_func "corner_radius" (fun () -> Some (float_of_int (Random.State.int state 3 + 4)));
+
+  pf_func "serif_end_angle" (fun () -> Some (float_of_int (Random.State.int state 101 - 50) /. 9.));
+  pf_func "tail_end_angle" (fun () -> Some (float_of_int (Random.State.int state 101) /. 10.));
+
+  pm_func "left_bracket"
+    (fun () ->
       let left_pos =
-        if List.exists (( = ) name) i_letters then
+        if List.exists (( = ) glyph_name) i_letters then
           (-23.)
         else
           (-20.)
       in
       let horiz_tension = 1.5 in
       let vert_tension = 1.5 in
-      Metacubic.(Complex_point.(
+      Some (Metacubic.(Complex_point.(
         point ~dir:rightward (x' left_pos)
         |> dput ~tensions:(horiz_tension, vert_tension) (point ~dir:upward (y' 70.))
-      )));
+      ))));
 
-  right_bracket =
-    (fun _name state ->
+  pm_func "right_bracket"
+    (fun () ->
       let left_pos = 20. in
       let horiz_tension = 1.5 in
       let vert_tension = 1.5 in
-      Metacubic.(Complex_point.(
+      Some (Metacubic.(Complex_point.(
         point ~dir:downward (y' 70.)
         |> dput ~tensions:(vert_tension, horiz_tension) (point ~dir:rightward (x' left_pos))
-      )));
+      ))));
 
-  r_shoulder =
-    Complex_point.(Metacubic.(
-      fun _name _state ->
+  pm_func "r_shoulder"
+    (fun () ->
+      Some (Complex_point.(Metacubic.(
         point ~out_curl:0.1 (y' 309.)
         |> put (point ~dir:rightward (x' 145. + y' 407.))
-    ));
+      ))));
 
-  r_arm_end =
-    Complex_point.(Metacubic.(
-      fun _name _state ->
+  pm_func "r_arm_end"
+    (fun () -> 
+      Some (Complex_point.(Metacubic.(
         point ~dir:downward (x' 212. + y' 350.)
-    ));
+      ))));
 
-  r_arm_lower =
-    Complex_point.(Metacubic.(
-      fun _name _state ->
+  pm_func "r_arm_lower"
+    (fun () ->
+      Some (Complex_point.(Metacubic.(
         point ~dir:leftward (x' 164. + y' 301.)
         |> put (point ~dir:leftward (x' 79. + y' 330.))
         |> put ~tension:1.15 (point ~dir:downward (y' 255.))
-   ));
-}
+      ))));
+
+  !p_ref
+
 in
-run_command param
+run_command params
