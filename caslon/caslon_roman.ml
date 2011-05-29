@@ -28,6 +28,7 @@ module StringMap = Map.StringMap
 
 module Complex = Fontdesign.Extended_complex
 open Fontdesign
+module Cpx = Complex_point
 
 module Param =
 struct
@@ -37,6 +38,7 @@ struct
     | `Float of unit -> float option
     | `String of unit -> string option
     | `Metacubic of unit -> Metacubic.t option
+    | `Random_state of unit -> Random.State.t option
     ]
 
   type t = parameter StringMap.t
@@ -48,10 +50,12 @@ struct
   let put_float_func params name ffunc = put_parameter params name (`Float ffunc)
   let put_string_func params name sfunc = put_parameter params name (`String sfunc)
   let put_metacubic_func params name mfunc = put_parameter params name (`Metacubic mfunc)
+  let put_random_state_func params name rsfunc = put_parameter params name (`Random_state rsfunc)
   let put_int params name i = put_int_func params name (fun () -> Some i)
   let put_float params name v =  put_float_func params name (fun () -> Some v)
   let put_string params name s = put_string_func params name (fun () -> Some s)
-  let put_metacubic params name m = put_string_func params name (fun () -> Some m)
+  let put_metacubic params name m = put_metacubic_func params name (fun () -> Some m)
+  let put_random_state params name rs = put_random_state_func params name (fun () -> Some rs)
 
   let parameter params name = StringMap.find name params
 
@@ -75,9 +79,33 @@ struct
       | `Metacubic mfunc -> Option.get (mfunc ())
       | _ -> failwith "Param.metacubic"
 
+  let random_state params name =
+    match parameter params name with
+      | `Random_state rsfunc -> Option.get (rsfunc ())
+      | _ -> failwith "Param.random_state"
+
   module type Tools_module =
   sig
-    val rand : Random.State.t
+    val p_ref : t ref
+
+    val null_func : unit -> 'a option
+    val set_pi_func : string -> (unit -> int option) -> unit
+    val set_pf_func : string -> (unit -> float option) -> unit
+    val set_ps_func : string -> (unit -> string option) -> unit
+    val set_pm_func : string -> (unit -> Metacubic.t option) -> unit
+    val set_prs_func : string -> (unit -> Random.State.t option) -> unit
+    val set_pi : string -> int -> unit
+    val set_pf : string -> float -> unit
+    val set_ps : string -> string -> unit
+    val set_pm : string -> Metacubic.t -> unit
+    val set_prs : string -> Random.State.t -> unit
+
+    val pi : string -> int
+    val pf : string -> float
+    val ps : string -> string
+    val pm : string -> Metacubic.t
+    val prs : string -> Random.State.t
+
     val width : float
     val height : float
     val left_overlap : float
@@ -94,37 +122,64 @@ struct
   end
 
   let make_tools
-      ~glyph_name
+      ?(glyph_name = "")
+      ?(p_ref = ref no_parameters)
       ?(width = nan)
       ?(height = nan)
       ?(left_overlap = 0.)
       ?(overshoot = 0.)
       ?(undershoot = 0.)
-      ~param
+      ?param
       () =
 
-    Complex_point.(
-      let p = param in
-      let rand =
-        Random.State.make
-          (Array.of_list
-             (int_of_float (float p "design_size") ::
-                int p "os2_weight" ::
-                List.map Char.code (String.explode glyph_name)))
-      in
-      let extended_width = width *. (1. +. float p "extension") in
-      let xrel v = v *. extended_width in
-      let yrel v = v *. height in
-      let xpos v = xrel v -. left_overlap in
-      let ypos v = yrel v -. undershoot in
-      let x'rel = x' -| xrel in
-      let y'rel = y' -| yrel in
-      let x'pos = x' -| xpos in
-      let y'pos = y' -| ypos in
+    begin
+      match param with
+        | Some p' -> p_ref := p'
+        | None -> ()
+    end;
+    begin
+      try
+        ignore (random_state !p_ref "state")
+      with Not_found | Option.No_value ->
+        p_ref := put_random_state !p_ref "state" (Random.State.make [||])
+    end;
+    let extended_width =
+      try
+        width *. (1. +. float !p_ref "extension")
+      with
+        | Not_found | Option.No_value -> width
+    in
+    let xrel v = v *. extended_width in
+    let yrel v = v *. height in
+    let xpos v = xrel v -. left_overlap in
+    let ypos v = yrel v -. undershoot in
+    let x'rel = Cpx.x' -| xrel in
+    let y'rel = Cpx.y' -| yrel in
+    let x'pos = Cpx.x' -| xpos in
+    let y'pos = Cpx.y' -| ypos in
 
-      let module Tools =
-          struct
-            let rand = rand
+    let module Tools =
+        struct
+            let p_ref = p_ref
+
+            let null_func = (fun () -> None)
+            let set_pi_func key ifunc = p_ref := put_int_func !p_ref key ifunc
+            let set_pf_func key ffunc = p_ref := put_float_func !p_ref key ffunc
+            let set_ps_func key sfunc = p_ref := put_string_func !p_ref key sfunc
+            let set_pm_func key mfunc = p_ref := put_metacubic_func !p_ref key mfunc
+            let set_prs_func key rsfunc = p_ref := put_random_state_func !p_ref key rsfunc
+            let set_pi key i = p_ref := put_int !p_ref key i
+            let set_pf key v = p_ref := put_float !p_ref key v
+            let set_ps key s = p_ref := put_string !p_ref key s
+            let set_pm key m = p_ref := put_metacubic !p_ref key m
+            let set_prs key rs = p_ref := put_random_state !p_ref key rs
+
+            let pi key = int !p_ref key
+            let pf key = float !p_ref key
+            let ps key = string !p_ref key
+            let pm key = metacubic !p_ref key
+            let prs key = random_state !p_ref key
+
             let width = extended_width
             let height = height
             let left_overlap = left_overlap
@@ -141,7 +196,6 @@ struct
           end
       in
       (module Tools : Tools_module)
-    )
 end
 
 open Param
@@ -494,7 +548,7 @@ let make_right_serif_end
   )
 
 let make_flag
-    ~param ~rand ~left_notch ~flag_corner ~top_corner () =
+    ~param ~left_notch ~flag_corner ~top_corner () =
   Complex_point.(
     let lower_dir = dir (flag_corner - left_notch) in
     let upper_dir = dir (top_corner - flag_corner) in
@@ -508,31 +562,32 @@ let make_flag
     contour
   )
 
-let reshape_flag ~param ~rand ~contour ~left_notch ~flag_corner ~top_corner () =
-  Complex_point.(
-    let p = param in
+let reshape_flag ~param ~contour ~left_notch ~flag_corner ~top_corner () =
+  let p = param in
+  let rand = random_state p "state" in
 
-    let lower_dir = dir (flag_corner - left_notch) in
-    let upper_dir = dir (top_corner - flag_corner) in
+  let lower_dir = Cpx.(dir (flag_corner - left_notch)) in
+  let upper_dir = Cpx.(dir (top_corner - flag_corner)) in
 
-    let (corner_point1, corner_point2) =
-      flat_cut_corners ~corner:flag_corner ~cut_length:15.
-        ~normal:(rot (Random.State.float rand 10. -. 5.)) ~in_dir:lower_dir ~out_dir:(upper_dir / rot 3.)
-    in
-    let (cut, time1, time2) =
-      make_flat_cut_for_contours ~corner_point1 ~corner_point2
-        ~contour1:contour ~contour2:contour
-        ~radius1:(Param.float p "corner_radius" +. 2.) ~radius2:(Param.float p "corner_radius" +. 2.) ()
-    in
-    let contour = Cubic.splice_together ~time1 ~time2 contour contour (Metacubic.to_cubic cut) in
+  let (corner_point1, corner_point2) =
+    flat_cut_corners ~corner:flag_corner ~cut_length:15.
+      ~normal:Cpx.(rot (Random.State.float rand 10. -. 5.))
+      ~in_dir:lower_dir ~out_dir:Cpx.(upper_dir / rot 3.)
+  in
+  let (cut, time1, time2) =
+    make_flat_cut_for_contours ~corner_point1 ~corner_point2
+      ~contour1:contour ~contour2:contour
+      ~radius1:(Param.float p "corner_radius" +. 2.)
+      ~radius2:(Param.float p "corner_radius" +. 2.) ()
+  in
+  let contour = Cubic.splice_together ~time1 ~time2 contour contour (Metacubic.to_cubic cut) in
 
-    let contour =
-      round_off_corner ~contour ~corner_point:top_corner
-        ~kind:`Without_extrema ~tension:2. ~radius:8. ()
-    in
+  let contour =
+    round_off_corner ~contour ~corner_point:top_corner
+      ~kind:`Without_extrema ~tension:2. ~radius:8. ()
+  in
 
-    contour
-  )
+  contour
 
 (*-----------------------------------------------------------------------*)
 
@@ -553,90 +608,88 @@ let letter_c_contours glyph_name p =
       ()
   in
   let module Tools = (val tools : Tools_module) in
-  
-  Tools.(Complex_point.(
+  let open Tools in
 
-    let contour =
+      let contour =
 
-      let tail_end_angle = Param.float p "tail_end_angle" in
-      let tail_corner_radius1 = Param.float p "corner_radius" +. 1. in
-      let tail_corner_radius2 = Param.float p "corner_radius" +. 1. in
+        let tail_end_angle = pf "tail_end_angle" in
+        let tail_corner_radius1 = pf "corner_radius" +. 1. in
+        let tail_corner_radius2 = pf "corner_radius" +. 1. in
 
-      let stem_width = Param.float p "stem_width" in
-      let left_breadth = 1.12 *. stem_width in
-      let bottom_breadth = 0.92 *. stem_width /. (1. +. Param.float p "contrast") in
-      let top_breadth = 0.64 *. stem_width /. (1. +. Param.float p "contrast") in
-      let head_breadth = 1.15 *. stem_width /. (1. +. 0.3 *. Param.float p "contrast") in
-      let tail_breadth = 0.25 *. stem_width in
+        let stem_width = pf "stem_width" in
+        let left_breadth = 1.12 *. stem_width in
+        let bottom_breadth = 0.92 *. stem_width /. (1. +. pf "contrast") in
+        let top_breadth = 0.64 *. stem_width /. (1. +. pf "contrast") in
+        let head_breadth = 1.15 *. stem_width /. (1. +. 0.3 *. pf "contrast") in
+        let tail_breadth = 0.25 *. stem_width in
 
-      let tail1 = x'pos 0.98 + y'pos 0.19 in
-      let head1 = x'pos 0.98 + y'pos 0.84 in
+        let tail1 = Cpx.(x'pos 0.98 + y'pos 0.19) in
+        let head1 = Cpx.(x'pos 0.98 + y'pos 0.84) in
 
-      let outer =
-        Metacubic.(
-          set_dirs (
-            point ~out_curl:1.5 tail1   (* tail *)
-            |> dput (point ~dir:leftward (x'pos 0.56 + y'pos 0.00)) (* bottom *)
-            |> dput ~tension:0.95 (point ~dir:upward (x'pos 0.0 + y'pos 0.50)) (* left *)
-            |> dput (point ~dir:rightward (x'pos 0.62 + y'pos 1.00)) (* top *)
-            |> dput (point ~in_curl:1.5 head1) (* head *)
-          )   
-        )
-      in
-      let across_head_dir = Metacubic.outgoing_dir outer / rot 90. in
-      let head2 = head1 + (x' head_breadth) * across_head_dir in
-      let top = x'pos 0.60 + y'pos 1.00 - y' top_breadth in
-      let partway_pt = head2 + x' 0.5 * (top - head2) + x'(0.1 *. (re head2 -. re top))  in
+        let outer =
+          Metacubic.(
+            set_dirs (
+              point ~out_curl:1.5 tail1   (* tail *)
+              |> dput Cpx.(point ~dir:leftward (x'pos 0.56 + y'pos 0.00)) (* bottom *)
+              |> dput ~tension:0.95 Cpx.(point ~dir:upward (x'pos 0.0 + y'pos 0.50)) (* left *)
+              |> dput Cpx.(point ~dir:rightward (x'pos 0.62 + y'pos 1.00)) (* top *)
+              |> dput (point ~in_curl:1.5 head1) (* head *)
+            )   
+          )
+        in
+        let across_head_dir = Cpx.(Metacubic.outgoing_dir outer / rot 90.) in
+        let head2 = Cpx.(head1 + (x' head_breadth) * across_head_dir) in
+        let top = Cpx.(x'pos 0.60 + y'pos 1.00 - y' top_breadth) in
+        let partway_pt = Cpx.(head2 + x' 0.5 * (top - head2) + x'(0.1 *. (re head2 -. re top)))  in
 
-      let sketch_inner tail2 =
-        Metacubic.(
-          point head2
-          |> dput ~tension:1000. (point partway_pt)
-          |> dput ~tension:0.75 (point ~dir:leftward top) (* inner top *)
-          |> dput (point ~dir:downward (x'pos 0.00 + x' left_breadth + y'pos 0.52)) (* inner left *)
-          |> dput (point ~dir:rightward (x'pos 0.64 + y'pos 0.00 + y' bottom_breadth)) (* inner bottom *)
-          |> dput (point ~in_curl:1.5 tail2) (* tail *)
-          |> to_cubic
-        )
-      in
+        let sketch_inner tail2 =
+          Metacubic.(
+            point head2
+            |> dput ~tension:1000. (point partway_pt)
+            |> dput ~tension:0.75 Cpx.(point ~dir:leftward top) (* inner top *)
+            |> dput Cpx.(point ~dir:downward (x'pos 0.00 + x' left_breadth + y'pos 0.52)) (* inner left *)
+            |> dput Cpx.(point ~dir:rightward (x'pos 0.64 + y'pos 0.00 + y' bottom_breadth)) (* inner bottom *)
+            |> dput (point ~in_curl:1.5 tail2) (* tail *)
+            |> to_cubic
+          )
+        in
 
       (* Roughly locate the sketched counter. *)
-      let (_, tangent) = Cubic.tangents_at (Metacubic.to_cubic outer) 0. in
-      let tail2 = tail1 + x' tail_breadth * tangent * rot (-100.) in
-      let inner = sketch_inner tail2 in
+        let (_, tangent) = Cubic.tangents_at (Metacubic.to_cubic outer) 0. in
+        let tail2 = Cpx.(tail1 + x' tail_breadth * tangent * rot (-100.)) in
+        let inner = sketch_inner tail2 in
 
       (* Now use the rough sketch to get a better estimate of the
          crosscut vector. *)
-      let (tangent2, _) = Cubic.tangents_at inner (float_of_int Int.(List.length inner - 1)) in
-      let crosscut_dir = dir (tangent - tangent2) * rot (-90.) in
-      let tail2' = tail1 + x' tail_breadth * crosscut_dir in
-      let shear_vector = x'(tail_breadth *. dtan tail_end_angle) * crosscut_dir * rot (-90.) in
-      let tail2 = tail2' + shear_vector in
-      let inner = sketch_inner tail2 in
+        let (tangent2, _) = Cubic.tangents_at inner (float_of_int Int.(List.length inner - 1)) in
+        let crosscut_dir = Cpx.(dir (tangent - tangent2) * rot (-90.)) in
+        let tail2' = Cpx.(tail1 + x' tail_breadth * crosscut_dir) in
+        let shear_vector = Cpx.(x'(tail_breadth *. dtan tail_end_angle) * crosscut_dir * rot (-90.)) in
+        let tail2 = Cpx.(tail2' + shear_vector) in
+        let inner = sketch_inner tail2 in
 
-      let outer' = Metacubic.to_cubic outer in
-      let c = Cubic.(outer' |> dput ~tension:1.2 inner) in
-      let (x_times, y_times) =
-        Cubic.curve_extrema_and_inflections ~pos:Int.(Vect.length outer - 1) c
+        let outer' = Metacubic.to_cubic outer in
+        let c = Cubic.(outer' |> dput ~tension:1.2 inner) in
+        let (x_times, y_times) =
+          Cubic.curve_extrema_and_inflections ~pos:Int.(Vect.length outer - 1) c
+        in
+        let y_time = y_times.(0) in
+        let x_time = x_times.(0) /. y_time in
+        let (c2,c3) = Cubic.subdivide c (float_of_int Int.(Vect.length outer - 1) +. y_time) in
+        let (c1,c2) = Cubic.subdivide c2 (float_of_int Int.(Vect.length outer - 1) +. x_time) in
+        let (tail_cut, inner_time, outer_time) =
+          make_flat_cut_for_contours
+            ~contour1:c3 ~contour2:c1
+            ~corner_time1:(float_of_int Int.(List.length c3 - 1))
+            ~corner_time2:0.
+            ~radius1:tail_corner_radius1 ~radius2:tail_corner_radius2
+            ()
+        in
+        let (_,c1) = Cubic.subdivide c1 outer_time in
+        let (c3,_) = Cubic.subdivide c3 inner_time in
+        Cubic.(c1 |> put c2 |> put c3 |> put (Metacubic.to_cubic tail_cut))
       in
-      let y_time = y_times.(0) in
-      let x_time = x_times.(0) /. y_time in
-      let (c2,c3) = Cubic.subdivide c (float_of_int Int.(Vect.length outer - 1) +. y_time) in
-      let (c1,c2) = Cubic.subdivide c2 (float_of_int Int.(Vect.length outer - 1) +. x_time) in
-      let (tail_cut, inner_time, outer_time) =
-        make_flat_cut_for_contours
-          ~contour1:c3 ~contour2:c1
-          ~corner_time1:(float_of_int Int.(List.length c3 - 1))
-          ~corner_time2:0.
-          ~radius1:tail_corner_radius1 ~radius2:tail_corner_radius2
-          ()
-      in
-      let (_,c1) = Cubic.subdivide c1 outer_time in
-      let (c3,_) = Cubic.subdivide c3 inner_time in
-      Cubic.(c1 |> put c2 |> put c3 |> put (Metacubic.to_cubic tail_cut))
-    in
-    [Cubic.round contour |> Cubic.simplify]
-  ))
+      [Cubic.round contour |> Cubic.simplify]
 ;;
 
 (*.......................................................................*)
@@ -658,117 +711,117 @@ let letter_e_contours glyph_name p =
       ()
   in
   let module Tools = (val tools : Tools_module) in
+  let open Tools in
 
-  Tools.(Complex_point.(
+      let tail_end_angle = pf "tail_end_angle" in
 
-    let tail_end_angle = Param.float p "tail_end_angle" in
+      let stem_width = pf "stem_width" in
+      let top_breadth = 0.41 *. stem_width /. (1. +. pf "contrast") in
+      let left_breadth = 1.01 *. stem_width in
+      let right_breadth = 1.68 *. stem_width /. (1. +. 0.5 *. pf "contrast") in
+      let bottom_breadth = 1.00 *. stem_width /. (1. +. pf "contrast") in
+      let tail_breadth = 0.34 *. stem_width /. (1. +. pf "contrast") in
 
-    let stem_width = Param.float p "stem_width" in
-    let top_breadth = 0.41 *. stem_width /. (1. +. (Param.float p "contrast")) in
-    let left_breadth = 1.01 *. stem_width in
-    let right_breadth = 1.68 *. stem_width /. (1. +. 0.5 *. (Param.float p "contrast")) in
-    let bottom_breadth = 1.00 *. stem_width /. (1. +. (Param.float p "contrast")) in
-    let tail_breadth = 0.34 *. stem_width /. (1. +. (Param.float p "contrast")) in
+      let crossbar_height = pf "e_crossbar_height" in
+      let crossbar_breadth = 0.42 *. stem_width /. (1. +. pf "contrast") in
+      let crossbar_top = pf "e_crossbar_height" +. crossbar_breadth in
+      let crossbar_top0 = Cpx.(x'pos 1.00 - x' right_breadth + y' crossbar_top) in
 
-    let crossbar_height = Param.float p "e_crossbar_height" in
-    let crossbar_breadth = 0.42 *. stem_width /. (1. +. (Param.float p "contrast")) in
-    let crossbar_top = Param.float p "e_crossbar_height" +. crossbar_breadth in
-    let crossbar_top0 = x'pos 1.00 - x' right_breadth + y' crossbar_top in
+      let crossbar_fillet_size () = (Random.State.float (prs "state") 0.2 +. 0.7) *. crossbar_breadth in
 
-    let crossbar_fillet_size () = (Random.State.float rand 0.2 +. 0.7) *. crossbar_breadth in
+      let tail1 = Cpx.(x'pos 1.00 + y'pos 0.26) in
 
-    let tail1 = x'pos 1.00 + y'pos 0.26 in
+      let outer_left =
+        Metacubic.(
+          point ~out_curl:1.0 tail1       (* outer tail *)
+          |> dput Cpx.(point ~dir:leftward (x'pos 0.54 + y'pos 0.00)) (* bottom *)
+          |> dput ~tension:0.9 Cpx.(point ~dir:upward (x'pos 0.00 + y'pos 0.51)) (* left *)
+          |> dput Cpx.(point ~dir:rightward (x'pos 0.52 + y'pos 1.00)) (* top *)
+        )
+      in
 
-    let outer_left =
-      Metacubic.(
-        point ~out_curl:1.0 tail1       (* outer tail *)
-        |> dput (point ~dir:leftward (x'pos 0.54 + y'pos 0.00)) (* bottom *)
-        |> dput ~tension:0.9 (point ~dir:upward (x'pos 0.00 + y'pos 0.51)) (* left *)
-        |> dput (point ~dir:rightward (x'pos 0.52 + y'pos 1.00)) (* top *)
-      )
-    in
-
-    let sketch_counter tail2 =
-      Metacubic.(
-        point ~dir:upward (crossbar_top0 + y'(crossbar_fillet_size ()))
-        |> dput (point ~dir:leftward (x'pos 0.50 + y'pos 1.00 - y' top_breadth)) (* eye top *)
-        |> dput (point ~dir:downward (x'pos 0.00 + x' left_breadth + y'pos 0.52)) (* inner left *)
-        |> dput (point ~dir:rightward (x'pos 0.60 + y'pos 0.00 + y' bottom_breadth)) (* inner bottom *)
-        |> dput (point ~in_curl:1.0 tail2) (* inner tail *)
-        |> to_cubic
-      )
-    in
+      let sketch_counter tail2 =
+        Metacubic.(
+          Cpx.(point ~dir:upward (crossbar_top0 + y'(crossbar_fillet_size ())))
+          |> dput Cpx.(point ~dir:leftward (x'pos 0.50 + y'pos 1.00 - y' top_breadth)) (* eye top *)
+          |> dput Cpx.(point ~dir:downward (x'pos 0.00 + x' left_breadth + y'pos 0.52)) (* inner left *)
+          |> dput Cpx.(point ~dir:rightward (x'pos 0.60 + y'pos 0.00 + y' bottom_breadth)) (* inner bottom *)
+          |> dput (point ~in_curl:1.0 tail2) (* inner tail *)
+          |> to_cubic
+        )
+      in
 
     (* Roughly locate the sketched counter. *)
-    let (_, tangent) = Cubic.tangents_at (Metacubic.to_cubic outer_left) 0. in
-    let tail2 = tail1 + x' tail_breadth * tangent * rot (-95.) in
-    let counter = sketch_counter tail2 in
+      let (_, tangent) = Cubic.tangents_at (Metacubic.to_cubic outer_left) 0. in
+      let tail2 = Cpx.(tail1 + x' tail_breadth * tangent * rot (-95.)) in
+      let counter = sketch_counter tail2 in
 
     (* Now use the rough sketch to get a better estimate of the
        crosscut vector. *)
-    let (tangent2, _) = Cubic.tangents_at counter (float_of_int Int.(List.length counter - 1)) in
-    let crosscut_dir = dir (tangent - tangent2) * rot (-90.) in
-    let tail2' = tail1 + x' tail_breadth * crosscut_dir in
-    let shear_vector = x'(tail_breadth *. dtan tail_end_angle) * crosscut_dir * rot (-90.) in
-    let tail2 = tail2' + shear_vector in
-    let counter = sketch_counter tail2 in
+      let (tangent2, _) = Cubic.tangents_at counter (float_of_int Int.(List.length counter - 1)) in
+      let crosscut_dir = Cpx.(dir (tangent - tangent2) * rot (-90.)) in
+      let tail2' = Cpx.(tail1 + x' tail_breadth * crosscut_dir) in
+      let shear_vector = Cpx.(x'(tail_breadth *. dtan tail_end_angle) * crosscut_dir * rot (-90.)) in
+      let tail2 = Cpx.(tail2' + shear_vector) in
+      let counter = sketch_counter tail2 in
 
-    let crossbar_height_point =
-      let time = (Cubic.curve_times_at_y counter ~pos:1 crossbar_height).(0) in
-      Cubic.curve_point_at counter ~pos:1 time
-    in
-    let (upper, lower) =
-      let intersection_time =
-        (Cubic.curve_times_at_y ~pos:1 counter (crossbar_height -. (crossbar_fillet_size ()))).(0) +. 1.
+      let crossbar_height_point =
+        let time = (Cubic.curve_times_at_y counter ~pos:1 crossbar_height).(0) in
+        Cubic.curve_point_at counter ~pos:1 time
       in
-      Cubic.subdivide counter intersection_time
-    in
-    let outer =
-      Metacubic.(
-        outer_left
-        |> dput (point ~dir:downward (x'pos 0.95 + y' crossbar_height + y'rel 0.02)) (* right *)
-        |> dput (point ~dir:leftward (x'pos 0.85 + y' crossbar_height)) (* crossbar right *)
-        |> dput ~tension:huge (point ~dir:leftward (crossbar_height_point + x'(crossbar_fillet_size ()))) (* crossbar left *)
-        |> to_cubic
-      )
-    in
-    let (tail_cut, lower_time, outer_time) =
-      make_flat_cut_for_contours
-        ~contour1:lower ~contour2:outer
-        ~corner_time1:(float_of_int Int.(List.length lower - 1))
-        ~corner_time2:0.
-        ~radius1:(Param.float p "corner_radius" +. 1.)
-        ~radius2:(Param.float p "corner_radius" +. 1.)
-        ()
-    in
-    let lower' = fst (Cubic.subdivide lower lower_time) |> Metacubic.of_cubic |> Metacubic.set_dirs in
-    let outer' = snd (Cubic.subdivide outer outer_time) |>
-        Metacubic.of_cubic |> Metacubic.set_dirs ~out_dir:leftward
-    in
-    let main_contour = Metacubic.(lower' |> put tail_cut |> put outer' |> close ~tension:(-1.) |> to_cubic) in
-    let crossbar_top1 =
-      let time = (Cubic.curve_times_at_y upper ~pos:1 crossbar_top).(0) in
-      Cubic.curve_point_at upper ~pos:1 time
-    in
-    let eye_upper =
-      let left_intersection_time =
-        (Cubic.curve_times_at_y upper ~pos:1 (crossbar_top +. (crossbar_fillet_size ()))).(0) +. 1.
+      let (upper, lower) =
+        let intersection_time =
+          (Cubic.curve_times_at_y ~pos:1 counter (crossbar_height -. (crossbar_fillet_size ()))).(0) +. 1.
+        in
+        Cubic.subdivide counter intersection_time
       in
-      let (upper', _) = Cubic.subdivide upper left_intersection_time in
-      upper'
-    in
-    let eye_contour =
-      Metacubic.(
-        point ~dir:rightward (crossbar_top1 + x'(crossbar_fillet_size ())) (* crossbar top left *)
-        |> dput ~tension:huge (point ~dir:rightward (crossbar_top0 - x'(crossbar_fillet_size ()))) (* crossbar top right *)
-        |> dput (set_dirs ~guess:false (of_cubic eye_upper))
-        |> close
-        |> to_cubic
-      )
-    in
-    [Cubic.round main_contour |> Cubic.simplify;
-     Cubic.round eye_contour |> Cubic.simplify]
-  ))
+      let outer =
+        Metacubic.(
+          outer_left
+          |> dput Cpx.(point ~dir:downward (x'pos 0.95 + y' crossbar_height + y'rel 0.02)) (* right *)
+          |> dput Cpx.(point ~dir:leftward (x'pos 0.85 + y' crossbar_height)) (* crossbar right *)
+          |> dput ~tension:huge Cpx.(point ~dir:leftward
+                                       (crossbar_height_point + x'(crossbar_fillet_size ()))) (* crossbar left *)
+          |> to_cubic
+        )
+      in
+      let (tail_cut, lower_time, outer_time) =
+        make_flat_cut_for_contours
+          ~contour1:lower ~contour2:outer
+          ~corner_time1:(float_of_int Int.(List.length lower - 1))
+          ~corner_time2:0.
+          ~radius1:(pf "corner_radius" +. 1.)
+          ~radius2:(pf "corner_radius" +. 1.)
+          ()
+      in
+      let lower' = fst (Cubic.subdivide lower lower_time) |> Metacubic.of_cubic |> Metacubic.set_dirs in
+      let outer' = snd (Cubic.subdivide outer outer_time) |>
+          Metacubic.of_cubic |> Metacubic.set_dirs ~out_dir:Cpx.leftward
+      in
+      let main_contour = Metacubic.(lower' |> put tail_cut |> put outer' |> close ~tension:(-1.) |> to_cubic) in
+      let crossbar_top1 =
+        let time = (Cubic.curve_times_at_y upper ~pos:1 crossbar_top).(0) in
+        Cubic.curve_point_at upper ~pos:1 time
+      in
+      let eye_upper =
+        let left_intersection_time =
+          (Cubic.curve_times_at_y upper ~pos:1 (crossbar_top +. (crossbar_fillet_size ()))).(0) +. 1.
+        in
+        let (upper', _) = Cubic.subdivide upper left_intersection_time in
+        upper'
+      in
+      let eye_contour =
+        Metacubic.(
+          Cpx.(point ~dir:rightward (crossbar_top1 + x'(crossbar_fillet_size ()))) (* crossbar top left *)
+          |> dput ~tension:huge Cpx.(point ~dir:rightward
+                                       (crossbar_top0 - x'(crossbar_fillet_size ()))) (* crossbar top right *)
+          |> dput (set_dirs ~guess:false (of_cubic eye_upper))
+          |> close
+          |> to_cubic
+        )
+      in
+      [Cubic.round main_contour |> Cubic.simplify;
+       Cubic.round eye_contour |> Cubic.simplify]
 ;;
 
 (*.......................................................................*)
@@ -795,66 +848,64 @@ let contours_similar_to_letter_l
       ()
   in
   let module Tools = (val tools : Tools_module) in
+  let open Tools in
 
-  Tools.(Complex_point.(
+      let leftbrack = pm "left_bracket" in
+      let rightbrack = pm "right_bracket" in
+      
+      let stem_width = pf "stem_width" +. extra_stem_width in
+      let serif_height = pf "serif_height" in
 
-    let leftbrack= Param.metacubic p "left_bracket" in
-    let rightbrack = Param.metacubic p "right_bracket" in
-    
-    let stem_width = Param.float p "stem_width" +. extra_stem_width in
-    let serif_height = Param.float p "serif_height" in
+      let left_pos = (-0.5) *. stem_width in
+      let right_pos = 0.5 *. stem_width in
+      let left_base = Cpx.(x' left_pos + y' serif_height) in
+      let right_base = Cpx.(x' right_pos + y' serif_height) in
+      let left_serif_end =
+        Metacubic.(make_left_serif_end ~param:p ()
+                   <+> Cpx.x'(left_pos -. left_serif_width))
+      in
+      let right_serif_end =
+        Metacubic.(make_right_serif_end ~param:p ()
+                   <+> Cpx.x'(right_pos +. right_serif_width))
+      in
 
-    let left_pos = (-0.5) *. stem_width in
-    let right_pos = 0.5 *. stem_width in
-    let left_base = x' left_pos + y' serif_height in
-    let right_base = x' right_pos + y' serif_height in
-    let left_serif_end =
-      Metacubic.(make_left_serif_end ~param:p ()
-                 <+> x'(left_pos -. left_serif_width))
-    in
-    let right_serif_end =
-      Metacubic.(make_right_serif_end ~param:p ()
-                 <+> x'(right_pos +. right_serif_width))
-    in
+      let overshot_height = height +. overshoot in
+      let serif_to_top = overshot_height -. serif_height in
 
-    let overshot_height = height +. overshoot in
-    let serif_to_top = overshot_height -. serif_height in
+      let left_notch = Cpx.(left_base + y'(serif_to_top -. left_notch_drop)) in
+      let top_corner = Cpx.(right_base + (x_shear (y' serif_to_top) right_side_shear)) in
+      let flag_corner = Cpx.(x'(re left_notch -. flag_width) + y'(im top_corner -. flag_drop)) in
 
-    let left_notch = left_base + y'(serif_to_top -. left_notch_drop) in
-    let top_corner = right_base + (x_shear (y' serif_to_top) right_side_shear) in
-    let flag_corner = x'(re left_notch -. flag_width) + y'(im top_corner -. flag_drop) in
+      let lbrack = Metacubic.(leftbrack <+> left_base) in
+      let left_side =
+        Metacubic.(
+          Cpx.(point ~dir:leftward zero)
+          |> dput ~tensions:(1.,2.) left_serif_end
+          |> dput ~tensions:(2.,1.) lbrack
+        )
+      in
 
-    let lbrack = Metacubic.(leftbrack <+> left_base) in
-    let left_side =
-      Metacubic.(
-        point ~dir:leftward zero
-        |> dput ~tensions:(1.,2.) left_serif_end
-        |> dput ~tensions:(2.,1.) lbrack
+      let rbrack = Metacubic.(rightbrack <+> right_base) in
+      let right_side =
+        Metacubic.(
+          rbrack
+          |> dput ~tensions:(1.,2.) right_serif_end
+          |> dput ~tensions:(2.,1.) Cpx.(point ~dir:leftward zero)
+        )
+      in
+
+      let flag = make_flag ~param:p ~left_notch ~flag_corner ~top_corner () in
+      let flag_end = Metacubic.outgoing_point flag in
+      let right_side_height = 0.7 *. (overshot_height -. Cpx.im (Metacubic.incoming_point rbrack)) in
+      let contour = Metacubic.(
+        left_side
+        |> triput flag
+        |> cput ~controls:Cpx.(flag_end - y' 20., incoming_point rbrack + y' right_side_height) right_side
+        |> to_cubic
       )
-    in
-
-    let rbrack = Metacubic.(rightbrack <+> right_base) in
-    let right_side =
-      Metacubic.(
-        rbrack
-        |> dput ~tensions:(1.,2.) right_serif_end
-        |> dput ~tensions:(2.,1.) (point ~dir:leftward zero)
-      )
-    in
-
-    let flag = make_flag ~param:p ~rand ~left_notch ~flag_corner ~top_corner () in
-    let flag_end = Metacubic.outgoing_point flag in
-    let right_side_height = 0.7 *. (overshot_height -. im (Metacubic.incoming_point rbrack)) in
-    let contour = Metacubic.(
-      left_side
-      |> triput flag
-      |> cput ~controls:(flag_end - y' 20., incoming_point rbrack + y' right_side_height) right_side
-      |> to_cubic
-    )
-    in
-    let contour = reshape_flag ~param:p ~rand ~contour ~left_notch ~flag_corner ~top_corner () in
-    [Cubic.round contour]
-  ))
+      in
+      let contour = reshape_flag ~param:p ~contour ~left_notch ~flag_corner ~top_corner () in
+      [Cubic.round contour]
 ;;
 
 (*.......................................................................*)
@@ -886,13 +937,13 @@ let letter_i_contours glyph_name p =
       ()
   in
   let module Tools = (val tools : Tools_module) in
-
-  Tools.(Cubic.(Complex_point.(
-    let dot_contour =
-      Metacubic.to_cubic (make_dot 108.) <+> y' (Param.float p "i_dot_height") - x' 10.
-    in
-    letter_dotlessi_contours glyph_name p @ [dot_contour]
-  ))) |> List.map Cubic.simplify
+  let open Tools in
+      let dot_contour =
+        Cubic.(Metacubic.to_cubic (make_dot 108.) <+>
+                 Cpx.(y' (pf "i_dot_height") - x' 10.))
+      in
+      (letter_dotlessi_contours glyph_name p @ [dot_contour]
+       |> List.map Cubic.simplify)
 ;;
 
 (*.......................................................................*)
@@ -979,7 +1030,7 @@ let letter_n_contours glyph_name p =
       )
     in
 
-    let flag = make_flag ~param:p ~rand ~left_notch ~flag_corner ~top_corner () in
+    let flag = make_flag ~param:p ~left_notch ~flag_corner ~top_corner () in
     let flag_end = Metacubic.outgoing_point flag in
     let right_side_height = 0.7 *. (overshot_height -. im (Metacubic.incoming_point rbrack)) in
     let contour = Metacubic.(
@@ -990,7 +1041,7 @@ let letter_n_contours glyph_name p =
     )
     in
 (*
-    let contour = reshape_flag ~param:p ~rand ~contour ~left_notch ~flag_corner ~top_corner () in
+    let contour = reshape_flag ~param:p ~contour ~left_notch ~flag_corner ~top_corner () in
 *)
     [Cubic.round contour]
   ))
@@ -1016,32 +1067,33 @@ let letter_o_contours glyph_name p =
       ()
   in
   let module Tools = (val tools : Tools_module) in
+  let open Tools in
+      let stem_width = pf "stem_width" in
+      let left_breadth = 1.16 *. stem_width in
+      let right_breadth = 1.16 *. stem_width in
+      let bottom_breadth = 0.58 *. stem_width /. (1. +. pf "contrast") in
+      let top_breadth = 0.54 *. stem_width /. (1. +. pf "contrast") in
 
-  Tools.(Cubic.(Complex_point.(
-
-    let stem_width = Param.float p "stem_width" in
-    let left_breadth = 1.16 *. stem_width in
-    let right_breadth = 1.16 *. stem_width in
-    let bottom_breadth = 0.58 *. stem_width /. (1. +. Param.float p "contrast") in
-    let top_breadth = 0.54 *. stem_width /. (1. +. Param.float p "contrast") in
-
-    let outer_contour =
-      (make_up_node (x'pos 0.00 + y'pos 0.50) (* left *)
-       |> dput ~tension:1. (make_right_node (x'pos 0.50 + y'pos 1.00)) (* top *)
-       |> dput ~tension:1. (make_down_node (x'pos 1.00 + y'pos 0.50))  (* right *)
-       |> dput ~tension:1. (make_left_node (x'pos 0.49 + y'pos 0.00))  (* bottom *)
-       |> dclose ~tension:0.95)
-    in
-    let inner_contour =
-      (make_down_node (x'pos 0.00 + x' left_breadth + y'pos 0.52) (* left *)
-       |> dput ~tension:0.98 (make_right_node (x'pos 0.49 + y'pos 0.00 + y' bottom_breadth)) (* bottom *)
-       |> dput ~tension:1. (make_up_node (x'pos 1.00 - x' right_breadth + y'pos 0.48)) (* right *)
-       |> dput ~tension:1. (make_left_node (x'pos 0.48 + y'pos 1.00 - y' top_breadth)) (* top *)
-       |> dclose ~tension:1.)
-    in
-    [Cubic.round outer_contour;
-     Cubic.round inner_contour]
-  )))
+      let outer_contour =
+        Cubic.(Cpx.(
+          make_up_node (x'pos 0.00 + y'pos 0.50) (* left *)
+          |> dput ~tension:1. (make_right_node (x'pos 0.50 + y'pos 1.00)) (* top *)
+          |> dput ~tension:1. (make_down_node (x'pos 1.00 + y'pos 0.50))  (* right *)
+          |> dput ~tension:1. (make_left_node (x'pos 0.49 + y'pos 0.00))  (* bottom *)
+          |> dclose ~tension:0.95
+        ))
+      in
+      let inner_contour =
+        Cubic.(Cpx.(
+          make_down_node (x'pos 0.00 + x' left_breadth + y'pos 0.52) (* left *)
+          |> dput ~tension:0.98 (make_right_node (x'pos 0.49 + y'pos 0.00 + y' bottom_breadth)) (* bottom *)
+          |> dput ~tension:1. (make_up_node (x'pos 1.00 - x' right_breadth + y'pos 0.48)) (* right *)
+          |> dput ~tension:1. (make_left_node (x'pos 0.48 + y'pos 1.00 - y' top_breadth)) (* top *)
+          |> dclose ~tension:1.
+        ))
+      in
+      [Cubic.round outer_contour;
+       Cubic.round inner_contour]
 ;;
 
 (*.......................................................................*)
@@ -1065,28 +1117,26 @@ let letter_r_contours glyph_name p =
 
   let tools = make_tools ~glyph_name ~param:p () in
   let module Tools = (val tools : Tools_module) in
+  let open Tools in
+      let offset = Complex.of_float (-0.5 *. pf "stem_width") in
+      let stem = List.hd ilike_contours in
+      let stem_offset = Cubic.(stem <+> offset) in
 
-  Tools.(
-    let offset = Complex.of_float (-0.5 *. Param.float p "stem_width") in
-    let stem = List.hd ilike_contours in
-    let stem_offset = Cubic.(stem <+> offset) in
+      let shoulder = pm "r_shoulder" in
+      let arm_top_offset = Cubic.(nearest_point stem_offset (Metacubic.incoming_point shoulder)) in
+      let shoulder = Vect.modify shoulder 0 (fun (i,_,o) -> (i, arm_top_offset, o)) in
+      let arm_top = Complex.(arm_top_offset - offset) in
 
-    let shoulder = Param.metacubic p "r_shoulder" in
-    let arm_top_offset = Cubic.(nearest_point stem_offset (Metacubic.incoming_point shoulder)) in
-    let shoulder = Vect.modify shoulder 0 (fun (i,_,o) -> (i, arm_top_offset, o)) in
-    let arm_top = Complex.(arm_top_offset - offset) in
+      let arm_end = pm "r_arm_end" in
 
-    let arm_end = Param.metacubic p "r_arm_end" in
+      let arm_lower = pm "r_arm_lower" in
+      let arm_bottom_offset = Cubic.(nearest_point stem_offset (Metacubic.outgoing_point arm_lower)) in
+      let arm_lower = Vect.modify arm_lower (Vect.length arm_lower - 1) (fun (i,_,o) -> (i, arm_bottom_offset, o)) in
 
-    let arm_lower = Param.metacubic p "r_arm_lower" in
-    let arm_bottom_offset = Cubic.(nearest_point stem_offset (Metacubic.outgoing_point arm_lower)) in
-    let arm_lower = Vect.modify arm_lower (Vect.length arm_lower - 1) (fun (i,_,o) -> (i, arm_bottom_offset, o)) in
-
-    let arm = Metacubic.(shoulder |> put arm_end |> put arm_lower |> to_cubic) in
-    let contour = Cubic.(splice_into_cycle stem (arm <-> offset)) in
-    let contour = round_off_corner ~contour ~corner_point:arm_top ~radius:3. () in
-    [Cubic.round contour |> Cubic.simplify]
-  )
+      let arm = Metacubic.(shoulder |> put arm_end |> put arm_lower |> to_cubic) in
+      let contour = Cubic.(splice_into_cycle stem (arm <-> offset)) in
+      let contour = round_off_corner ~contour ~corner_point:arm_top ~radius:3. () in
+      [Cubic.round contour |> Cubic.simplify]
 ;;
 
 (*-----------------------------------------------------------------------*)
@@ -1106,149 +1156,149 @@ let letter_t_contours glyph_name p =
       ()
   in
   let module Tools = (val tools : Tools_module) in
+  let open Tools in
+      let rand = prs "state" in
 
-  Tools.(Complex_point.(
+      let tail_end_angle = pf "tail_end_angle" +. 5. in
+      let tail_corner_radius1 = pf "corner_radius" in
+      let tail_corner_radius2 = pf "corner_radius" in
 
-    let tail_end_angle = Param.float p "tail_end_angle" +. 5. in
-    let tail_corner_radius1 = Param.float p "corner_radius" in
-    let tail_corner_radius2 = Param.float p "corner_radius" in
+      let stem_width = pf "stem_width" in
+      let left_pos = Cpx.x'(-.0.5 *. stem_width) in
+      let right_pos = Cpx.x'(0.5 *. stem_width) in
+      let crossbar_height = pf "t_crossbar_height" in
+      let crossbar_breadth = floor (0.85 *. stem_width /. (1. +. 0.7 *. pf "contrast") +. 0.5) in
+      let bottom_breadth = 0.70 *. stem_width /. (1. +. pf "contrast") in
+      let sheared_terminal_width = 70. in
+      let sheared_terminal_height = crossbar_height -. crossbar_breadth -. 3. in
+      let tail_breadth = 0.34 *. stem_width /. (1. +. pf "contrast") in
+      let tail_cut_angle = 100. in
 
-    let stem_width = Param.float p "stem_width" in
-    let left_pos = x'(-.0.5 *. stem_width) in
-    let right_pos = x'(0.5 *. stem_width) in
-    let crossbar_height = Param.float p "t_crossbar_height" in
-    let crossbar_breadth = floor (0.85 *. stem_width /. (1. +. 0.7 *. (Param.float p "contrast")) +. 0.5) in
-    let bottom_breadth = 0.70 *. stem_width /. (1. +. (Param.float p "contrast")) in
-    let sheared_terminal_width = 70. in
-    let sheared_terminal_height = crossbar_height -. crossbar_breadth -. 3. in
-    let tail_breadth = 0.34 *. stem_width /. (1. +. (Param.float p "contrast")) in
-    let tail_cut_angle = 100. in
+      let tail1 =
+        Cpx.(x'(width -. 0.5 *. stem_width -. sheared_terminal_width) + y'pos 0.00 + y'(bottom_breadth +. 10.))
+      in
+      let tail2 = Cpx.(tail1 + x' tail_breadth * rot tail_cut_angle) in
+      let lower_bowl_width = Cpx.(re (x'pos 1.00 - x' sheared_terminal_width)) in
+      let upper_bowl_width = Cpx.(re tail2 -. re right_pos) in
 
-    let tail1 =
-      x'(width -. 0.5 *. stem_width -. sheared_terminal_width) + y'pos 0.00 + y'(bottom_breadth +. 10.)
-    in
-    let tail2 = tail1 + x' tail_breadth * rot tail_cut_angle in
-    let lower_bowl_width = re (x'pos 1.00 - x' sheared_terminal_width) in
-    let upper_bowl_width = re tail2 -. re right_pos in
+      let top_corner = Cpx.(right_pos + x' 10. + y'pos 1.00) in
+      let bowl_point = Cpx.(right_pos + x'(0.50 *. upper_bowl_width) + y'pos 0.00 + y' bottom_breadth) in
+      let bottom_point = Cpx.(left_pos + x'(0.50 *. lower_bowl_width) + y'pos 0.00) in
 
-    let top_corner = right_pos + x' 10. + y'pos 1.00 in
-    let bowl_point = right_pos + x'(0.50 *. upper_bowl_width) + y'pos 0.00 + y' bottom_breadth in
-    let bottom_point = left_pos + x'(0.50 *. lower_bowl_width) + y'pos 0.00 in
+      let left_corner = Cpx.(x' (re left_pos -. sheared_terminal_width) + y' sheared_terminal_height) in
+      let sheared_terminal_dir = Cpx.(dir (top_corner - left_corner)) in
+      let sheared_terminal_dip_dir = Cpx.(sheared_terminal_dir / rot 5.) in
+      let sheared_terminal_rise_dir = Cpx.(sheared_terminal_dir * rot 5.) in
 
-    let left_corner = x' (re left_pos -. sheared_terminal_width) + y' sheared_terminal_height in
-    let sheared_terminal_dir = dir (top_corner - left_corner) in
-    let sheared_terminal_dip_dir = sheared_terminal_dir / rot 5. in
-    let sheared_terminal_rise_dir = sheared_terminal_dir * rot 5. in
+      let left_cut_normal = Cpx.(rot (Random.State.float rand 10. +. 5.)) in
+      let (corner_point1, corner_point2) =
+        flat_cut_corners ~corner:left_corner ~cut_length:15.
+          ~normal:left_cut_normal ~in_dir:Cpx.leftward ~out_dir:sheared_terminal_dip_dir
+      in
+      let left_cut =
+        make_flat_cut
+          ~bend_kind2:`Without_extrema
+          ~corner1:corner_point1 ~corner2:corner_point2
+          ~radius1:(pf "corner_radius" +. 3.) ~radius2:(pf "corner_radius" +. 3.)
+          ~in_dir:Cpx.leftward ~out_dir:sheared_terminal_dip_dir ()
+      in
 
-    let left_cut_normal = rot (Random.State.float rand 10. +. 5.) in
-    let (corner_point1, corner_point2) =
-      flat_cut_corners ~corner:left_corner ~cut_length:15.
-        ~normal:left_cut_normal ~in_dir:leftward ~out_dir:sheared_terminal_dip_dir
-    in
-    let left_cut =
-      make_flat_cut
-        ~bend_kind2:`Without_extrema
-        ~corner1:corner_point1 ~corner2:corner_point2
-        ~radius1:(Param.float p "corner_radius" +. 3.) ~radius2:(Param.float p "corner_radius" +. 3.)
-        ~in_dir:leftward ~out_dir:sheared_terminal_dip_dir ()
-    in
+      let top_cut_normal = Cpx.(rot (Random.State.float rand 5. -. 103.)) in
+      let (corner_point1, corner_point2) =
+        flat_cut_corners ~corner:top_corner ~cut_length:14.
+          ~normal:top_cut_normal
+          ~in_dir:sheared_terminal_rise_dir ~out_dir:Cpx.downward
+      in
+      let top_cut =
+        make_flat_cut
+          ~corner1:corner_point1 ~corner2:corner_point2
+          ~radius1:(pf "corner_radius" +. 2.) ~radius2:(pf "corner_radius" +. 2.)
+          ~in_dir:sheared_terminal_rise_dir ~out_dir:Cpx.downward ()
+      in
 
-    let top_cut_normal = rot (Random.State.float rand 5. -. 103.) in
-    let (corner_point1, corner_point2) =
-      flat_cut_corners ~corner:top_corner ~cut_length:14.
-        ~normal:top_cut_normal
-        ~in_dir:sheared_terminal_rise_dir ~out_dir:downward
-    in
-    let top_cut =
-      make_flat_cut
-        ~corner1:corner_point1 ~corner2:corner_point2
-        ~radius1:(Param.float p "corner_radius" +. 2.) ~radius2:(Param.float p "corner_radius" +. 2.)
-        ~in_dir:sheared_terminal_rise_dir ~out_dir:downward ()
-    in
+      let left_side =
+        Metacubic.(
+          point ~out_curl:1. tail1
+          |> dput Cpx.(point ~dir:leftward bottom_point)
+          |> dput ~tension:1.1 Cpx.(point ~dir:upward (left_pos - x' 5. + y'pos 0.15))
+          |> dput Cpx.(point ~dir:upward (x' (re left_pos) + y' sheared_terminal_height - y' 60.))
+          |> dput ~tension:huge Cpx.(point ~in_dir:upward ~out_dir:leftward
+                                       (x' (re left_pos) + y' sheared_terminal_height))
+          |> dput ~tension:huge left_cut
+          |> put top_cut
+          |> to_cubic
+        )
+      in
 
-    let left_side =
-      Metacubic.(
-        point ~out_curl:1. tail1
-        |> dput (point ~dir:leftward bottom_point)
-        |> dput ~tension:1.1 (point ~dir:upward (left_pos - x' 5. + y'pos 0.15))
-        |> dput (point ~dir:upward (x' (re left_pos) + y' sheared_terminal_height - y' 60.))
-        |> dput ~tension:huge (point ~in_dir:upward ~out_dir:leftward (x' (re left_pos) + y' sheared_terminal_height))
-        |> dput ~tension:huge left_cut
-        |> put top_cut
+      let sketch_lower_right tail2 =
+        Metacubic.(
+          Cpx.(point ~dir:downward (right_pos + y'pos 0.25))
+          |> dput Cpx.(point ~dir:rightward bowl_point)
+          |> dput (point ~in_curl:1. tail2)
+          |> to_cubic
+        )
+      in
+
+      (* Roughly locate the sketched lower-right side. *)
+      let (_, tangent) = Cubic.tangents_at left_side 0. in
+      let tail2 = Cpx.(tail1 + x' tail_breadth * tangent * rot (-100.)) in
+      let lower_right = sketch_lower_right tail2 in
+
+      (* Now use the rough sketch to get a better estimate of the
+         crosscut vector. *)
+      let (tangent2, _) = Cubic.tangents_at lower_right (float_of_int Int.(List.length lower_right - 1)) in
+      let crosscut_dir = Cpx.(dir (tangent - tangent2) * rot (-90.)) in
+      let tail2' = Cpx.(tail1 + x' tail_breadth * crosscut_dir) in
+      let shear_vector = Cpx.(x'(tail_breadth *. dtan tail_end_angle) * crosscut_dir * rot (-90.)) in
+      let tail2 = Cpx.(tail2' + shear_vector) in
+      let lower_right = sketch_lower_right tail2 in
+
+      let crossbar_point1 = Cpx.(x'(re right_pos) + x' 5. + y' crossbar_height) in
+      let crossbar_point2 = Cpx.(x'(re right_pos) + y'(crossbar_height -. crossbar_breadth)) in
+
+      let crossbar_end =
+        make_flat_cut
+          ~bend_kind1:`Without_extrema ~bend_kind2:`Without_extrema
+          ~corner1:Cpx.(x'(re right_pos +. upper_bowl_width -. 8.) + y' crossbar_height)
+          ~corner2:Cpx.(x'(re right_pos +. upper_bowl_width -. 18.) + y'(crossbar_height -. crossbar_breadth))
+          ~radius1:6. ~radius2:6. ~tension:huge
+          ~in_dir:Cpx.rightward ~out_dir:Cpx.leftward ()
+      in
+
+      let right_side =
+        Metacubic.(
+          point crossbar_point1
+          |> dput ~tension:huge (crossbar_end)
+          |> dput ~tension:huge Cpx.(point ~in_dir:leftward crossbar_point2)
+          |> dput (set_dirs ~in_dir:Cpx.downward (of_cubic lower_right))
+          |> to_cubic
+        )
+      in
+
+      let (tail_cut, right_time, left_time) =
+        make_flat_cut_for_contours
+          ~contour1:right_side ~contour2:left_side
+          ~corner_time1:(float_of_int Int.(List.length right_side - 1))
+          ~corner_time2:0.
+          ~radius1:tail_corner_radius1 ~radius2:tail_corner_radius2 ()
+      in
+      let right_side = fst (Cubic.subdivide right_side right_time) in
+      let left_side = snd (Cubic.subdivide left_side left_time) in
+      let cycle = Metacubic.(
+        of_cubic left_side
+        |> cput ~control:Cpx.(crossbar_point1 + y' 40.) (of_cubic right_side)
+        |> put tail_cut
         |> to_cubic
       )
-    in
-
-    let sketch_lower_right tail2 =
-      Metacubic.(
-        point ~dir:downward (right_pos + y'pos 0.25)
-        |> dput (point ~dir:rightward bowl_point)
-        |> dput (point ~in_curl:1. tail2)
-        |> to_cubic
-      )
-    in
-
-  (* Roughly locate the sketched lower-right side. *)
-    let (_, tangent) = Cubic.tangents_at left_side 0. in
-    let tail2 = tail1 + x' tail_breadth * tangent * rot (-100.) in
-    let lower_right = sketch_lower_right tail2 in
-
-  (* Now use the rough sketch to get a better estimate of the
-     crosscut vector. *)
-    let (tangent2, _) = Cubic.tangents_at lower_right (float_of_int Int.(List.length lower_right - 1)) in
-    let crosscut_dir = dir (tangent - tangent2) * rot (-90.) in
-    let tail2' = tail1 + x' tail_breadth * crosscut_dir in
-    let shear_vector = x'(tail_breadth *. dtan tail_end_angle) * crosscut_dir * rot (-90.) in
-    let tail2 = tail2' + shear_vector in
-    let lower_right = sketch_lower_right tail2 in
-
-    let crossbar_point1 = x'(re right_pos) + x' 5. + y' crossbar_height in
-    let crossbar_point2 = x'(re right_pos) + y'(crossbar_height -. crossbar_breadth) in
-
-    let crossbar_end =
-      make_flat_cut
-        ~bend_kind1:`Without_extrema ~bend_kind2:`Without_extrema
-        ~corner1:(x'(re right_pos +. upper_bowl_width -. 8.) + y' crossbar_height)
-        ~corner2:(x'(re right_pos +. upper_bowl_width -. 18.) + y'(crossbar_height -. crossbar_breadth))
-        ~radius1:6. ~radius2:6. ~tension:huge
-        ~in_dir:rightward ~out_dir:leftward ()
-    in
-
-    let right_side =
-      Metacubic.(
-        point crossbar_point1
-        |> dput ~tension:huge (crossbar_end)
-        |> dput ~tension:huge (point ~in_dir:leftward crossbar_point2)
-        |> dput (set_dirs ~in_dir:downward (of_cubic lower_right))
-        |> to_cubic
-      )
-    in
-
-    let (tail_cut, right_time, left_time) =
-      make_flat_cut_for_contours
-        ~contour1:right_side ~contour2:left_side
-        ~corner_time1:(float_of_int Int.(List.length right_side - 1))
-        ~corner_time2:0.
-        ~radius1:tail_corner_radius1 ~radius2:tail_corner_radius2 ()
-    in
-    let right_side = fst (Cubic.subdivide right_side right_time) in
-    let left_side = snd (Cubic.subdivide left_side left_time) in
-    let cycle = Metacubic.(
-      of_cubic left_side
-      |> cput ~control:(crossbar_point1 + y' 40.) (of_cubic right_side)
-      |> put tail_cut
-      |> to_cubic
-    )
-    in
-    let cycle =
-      round_off_corner 
-        ~corner_point:(x'(re left_pos) + y' sheared_terminal_height)
-        ~contour:cycle ~radius:10. ()
-    in
-    let cycle = round_off_corner ~corner_point:crossbar_point1 ~contour:cycle ~radius:10. () in
-    let cycle = round_off_corner ~corner_point:crossbar_point2 ~contour:cycle ~radius:10. () in
-    [Cubic.round cycle |> Cubic.simplify]
-  ))
+      in
+      let cycle =
+        round_off_corner 
+          ~corner_point:Cpx.(x'(re left_pos) + y' sheared_terminal_height)
+          ~contour:cycle ~radius:10. ()
+      in
+      let cycle = round_off_corner ~corner_point:crossbar_point1 ~contour:cycle ~radius:10. () in
+      let cycle = round_off_corner ~corner_point:crossbar_point2 ~contour:cycle ~radius:10. () in
+      [Cubic.round cycle |> Cubic.simplify]
 ;;
 
 (*-----------------------------------------------------------------------*)
@@ -1356,82 +1406,98 @@ add_glyph "t"
 (*-----------------------------------------------------------------------*)
 
 let run_command ?(outp = stdout) params =
-  let p = params ~glyph_name:"" in
-  let glyph_opt = StdOpt.str_option () in
-  let font_opt = StdOpt.str_option () in
-  let font_flags_opt = StdOpt.str_option () in
-  let sfd_opt = StdOpt.str_option () in
-  let opt_parser = OptParser.make () in
-  OptParser.add ~short_name:'g' ~long_name:"glyph" opt_parser glyph_opt;
-  OptParser.add ~short_name:'f' ~long_name:"font" opt_parser font_opt;
-  OptParser.add ~short_name:'l' ~long_name:"flags" opt_parser font_flags_opt;
-  OptParser.add ~short_name:'s' ~long_name:"sfd" opt_parser sfd_opt;
-  let _args = OptParser.parse_argv opt_parser in
-  match Opt.opt glyph_opt with
+  let tools = make_tools ~param:(params ~glyph_name:"") () in
+  let module Tools = (val tools : Tools_module) in
+  let open Tools in
+      let glyph_opt = StdOpt.str_option () in
+      let font_opt = StdOpt.str_option () in
+      let font_flags_opt = StdOpt.str_option () in
+      let sfd_opt = StdOpt.str_option () in
+      let opt_parser = OptParser.make () in
+      OptParser.add ~short_name:'g' ~long_name:"glyph" opt_parser glyph_opt;
+      OptParser.add ~short_name:'f' ~long_name:"font" opt_parser font_opt;
+      OptParser.add ~short_name:'l' ~long_name:"flags" opt_parser font_flags_opt;
+      OptParser.add ~short_name:'s' ~long_name:"sfd" opt_parser sfd_opt;
+      let _args = OptParser.parse_argv opt_parser in
+      match Opt.opt glyph_opt with
 
-    | None ->
-      output_string outp "#!/usr/bin/env python\n";
-      output_string outp "\n";
-      output_string outp "import fontforge\n";
-      output_string outp "import psMat\n";
-      output_string outp "\n";
-      output_string outp "my_font = fontforge.font()\n";
-      output_string outp "\n";
-      Print.printf p"my_font.version = '%s'\n" (Param.string p "version");
-      Print.printf p"my_font.fontname = '%s'\n" (Param.string p "fontname");
-      Print.printf p"my_font.familyname = '%s'\n" (Param.string p "familyname");
-      Print.printf p"my_font.fullname = '%s'\n" (Param.string p "fullname");
-      Print.printf p"my_font.weight = '%s'\n" (Param.string p "weight");
-      Print.printf p"my_font.appendSFNTName('English (US)', 'Family', '%s')\n" (Param.string p "family");
-      Print.printf p"my_font.appendSFNTName('English (US)', 'SubFamily', '%s')\n" (Param.string p "subfamily");
-(*
-      if Option.is_some p "preferred_family" then
-        Print.printf p"my_font.appendSFNTName('English (US)', 'Preferred Family', '%s')\n"
-          (Option.get p "preferred_family");
-      if Option.is_some p "preferred_subfamily" then
-        Print.printf p"my_font.appendSFNTName('English (US)', 'Preferred Styles', '%s')\n"
-          (Option.get p "preferred_subfamily");
-      if Option.is_some p "wws_family" then
-        Print.printf p"my_font.appendSFNTName('English (US)', 'WWS Family', '%s')\n"
-          (Option.get p "wws_family");
-      if Option.is_some p "wws_subfamily" then
-        Print.printf p"my_font.appendSFNTName('English (US)', 'WWS Subfamily', '%s')\n"
-          (Option.get p "wws_subfamily");
-*)
-      output_string outp "\n";
-      Print.printf p"my_font.size_feature = (%F,)\n" (Param.float p "design_size");
-      output_string outp "\n";
-      Print.printf p"my_font.os2_weight = %i\n" (Param.int p "os2_weight");
-      output_string outp "\n";
-      output_string outp "def preferred_unicode(glyphname):\n";
-      output_string outp "    if '_' in glyphname:\n";
-      output_string outp "        uni = -1\n";
-      output_string outp "    else:\n";
-      output_string outp "        uni = fontforge.unicodeFromName(glyphname)\n";
-      output_string outp "    return uni\n";
-      output_string outp "\n";
+        | None ->
+          output_string outp "#!/usr/bin/env python\n";
+          output_string outp "\n";
+          output_string outp "import fontforge\n";
+          output_string outp "import psMat\n";
+          output_string outp "\n";
+          output_string outp "my_font = fontforge.font()\n";
+          output_string outp "\n";
+          Print.printf p"my_font.version = '%s'\n" (ps "version");
+          Print.printf p"my_font.fontname = '%s'\n" (ps "fontname");
+          Print.printf p"my_font.familyname = '%s'\n" (ps "familyname");
+          Print.printf p"my_font.fullname = '%s'\n" (ps "fullname");
+          Print.printf p"my_font.weight = '%s'\n" (ps "weight");
+          Print.printf p"my_font.appendSFNTName('English (US)', 'Family', '%s')\n" (ps "family");
+          Print.printf p"my_font.appendSFNTName('English (US)', 'SubFamily', '%s')\n" (ps "subfamily");
+          begin
+            try
+              Print.printf
+                p"my_font.appendSFNTName('English (US)', 'Preferred Family', '%s')\n"
+                (ps "preferred_family")
+            with Not_found | Option.No_value -> ()
+          end;
+          begin
+            try
+              Print.printf
+                p"my_font.appendSFNTName('English (US)', 'Preferred Styles', '%s')\n"
+                (ps "preferred_subfamily")
+            with Not_found | Option.No_value -> ()
+          end;
+          begin
+            try
+              Print.printf
+                p"my_font.appendSFNTName('English (US)', 'WWS Family', '%s')\n"
+                (ps "wws_family")
+            with Not_found | Option.No_value -> ()
+          end;
+          begin
+            try
+              Print.printf
+                p"my_font.appendSFNTName('English (US)', 'WWS Subfamily', '%s')\n"
+                (ps "wws_subfamily")
+            with Not_found | Option.No_value -> ()
+          end;
+          output_string outp "\n";
+          Print.printf p"my_font.size_feature = (%F,)\n" (pf "design_size");
+          output_string outp "\n";
+          Print.printf p"my_font.os2_weight = %i\n" (pi "os2_weight");
+          output_string outp "\n";
+          output_string outp "def preferred_unicode(glyphname):\n";
+          output_string outp "    if '_' in glyphname:\n";
+          output_string outp "        uni = -1\n";
+          output_string outp "    else:\n";
+          output_string outp "        uni = fontforge.unicodeFromName(glyphname)\n";
+          output_string outp "    return uni\n";
+          output_string outp "\n";
 
-      iter
-        (Cubic_glyph.print_python_glyph_code outp)
-        (enum_resolve_glyphs params);
+          iter
+            (Cubic_glyph.print_python_glyph_code outp)
+            (enum_resolve_glyphs params);
 
-      output_string outp "\n";
-      output_string outp "my_font.encoding = 'UnicodeBMP'\n";
-      output_string outp "\n";
-      if Option.is_some (Opt.opt sfd_opt) then
-        Print.printf p"my_font.save('%s')\n" (Option.get (Opt.opt sfd_opt));
-      if Option.is_some (Opt.opt font_opt) then
-        if Option.is_some (Opt.opt font_flags_opt) then
-          Print.printf p"my_font.generate('%s', flags=[%s])\n"
-            (Option.get (Opt.opt font_opt))
-            (Option.get (Opt.opt font_flags_opt))
-        else
-          Print.printf p"my_font.generate('%s', flags=['opentype',])\n"
-            (Option.get (Opt.opt font_opt))
+          output_string outp "\n";
+          output_string outp "my_font.encoding = 'UnicodeBMP'\n";
+          output_string outp "\n";
+          if Option.is_some (Opt.opt sfd_opt) then
+            Print.printf p"my_font.save('%s')\n" (Option.get (Opt.opt sfd_opt));
+          if Option.is_some (Opt.opt font_opt) then
+            if Option.is_some (Opt.opt font_flags_opt) then
+              Print.printf p"my_font.generate('%s', flags=[%s])\n"
+                (Option.get (Opt.opt font_opt))
+                (Option.get (Opt.opt font_flags_opt))
+            else
+              Print.printf p"my_font.generate('%s', flags=['opentype',])\n"
+                (Option.get (Opt.opt font_opt))
 
-    | Some glyph_name ->
-      if have_glyph glyph_name then
-        let glyph = get_resolve_glyph glyph_name (params ~glyph_name) in
-        Cubic_glyph.print_python_glyph_update_module outp glyph
+        | Some glyph_name ->
+          if have_glyph glyph_name then
+            let glyph = get_resolve_glyph glyph_name (params ~glyph_name) in
+            Cubic_glyph.print_python_glyph_update_module outp glyph
 
 (*-----------------------------------------------------------------------*)
