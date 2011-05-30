@@ -27,115 +27,124 @@ open Param
 
 let params ~glyph_name =
 
-  let p_ref : Param.t ref = ref no_parameters in
+  let tools = make_tools ~glyph_name () in
+  let module Tools = (val tools : Tools_module) in
+  let open Tools in
+      set_ps "version" "0.1";
 
-  let _set_pi_func name ifunc = p_ref := put_int_func !p_ref name ifunc in
-  let set_pf_func name ffunc = p_ref := put_float_func !p_ref name ffunc in
-  let set_ps_func name sfunc = p_ref := put_string_func !p_ref name sfunc in
-  let set_pm_func name mfunc = p_ref := put_metacubic_func !p_ref name mfunc in
-  let _set_prs_func name rsfunc = p_ref := put_random_state_func !p_ref name rsfunc in
-  let set_pi name i = p_ref := put_int !p_ref name i in
-  let set_pf name v = p_ref := put_float !p_ref name v in
-  let set_ps name s = p_ref := put_string !p_ref name s in
-  let set_pm name m = p_ref := put_metacubic !p_ref name m in
-  let set_prs name rs = p_ref := put_random_state !p_ref name rs in
-  let null = (fun () -> None) in
+      set_pi "os2_weight" 700;
+      set_pf "design_size" 12.;
+      initialize_state "state";
 
-  set_ps "version" "0.1";
+      set_ps "fontname" "CaslonStM-Bold";
+      set_ps "familyname" "Sorts Mill Caslon";
+      set_ps "fullname" "Sorts Mill Caslon Bold";
+      set_ps "weight" "Regular";
 
-  set_pi "os2_weight" 700;
-  set_pf "design_size" 12.;
+      set_ps "family" "Sorts Mill Caslon";
+      set_ps "subfamily" "Regular";
+      set_ps_func "preferred_family" null_func;
+      set_ps_func "preferred_subfamily" null_func;
+      set_ps_func "wws_family" null_func;
+      set_ps_func "wws_subfamily" null_func;
 
-  let state =
-    Random.State.make
-      (Array.of_list
-         (int_of_float (float !p_ref "design_size") ::
-            int !p_ref "os2_weight" ::
-            List.map Char.code (String.explode glyph_name)))
+      set_pf "space_width" 200.;
+
+      (* ?????????????????????????????????????????????????????????????????????????????????????*)
+      set_pf "contrast" 0.5;
+      set_pf "extension" 0.1;
+      (* ?????????????????????????????????????????????????????????????????????????????????????*)
+
+      set_pf "stem_width" 90.;
+      set_pf "serif_height" 30.;
+
+      set_pf_func "corner_radius" (fun () -> Some (float_of_int (Random.State.int (prs "state") 3 + 4)));
+
+      set_pf_func "serif_end_angle" (fun () -> Some (float_of_int (Random.State.int (prs "state") 101 - 50) /. 9.));
+      set_pf_func "tail_end_angle" (fun () -> Some (float_of_int (Random.State.int (prs "state") 101) /. 10.));
+
+      set_pm_func "left_bracket"
+        (fun () ->
+          let left_pos =
+            if Set.mem glyph_name i_letters then
+              (-23.)
+            else
+              (-20.)
+          in
+          let horiz_tension = 1.5 in
+          let vert_tension = 1.5 in
+          Some (Metacubic.(
+            Cpx.(point ~dir:rightward (x' left_pos))
+            |> dput ~tensions:(horiz_tension, vert_tension) Cpx.(point ~dir:upward (y' 70.))
+          )));
+
+      set_pm_func "right_bracket"
+        (fun () ->
+          let left_pos = 20. in
+          let horiz_tension = 1.5 in
+          let vert_tension = 1.5 in
+          Some (Metacubic.(
+            Cpx.(point ~dir:downward (y' 70.))
+            |> dput ~tensions:(vert_tension, horiz_tension) Cpx.(point ~dir:rightward (x' left_pos))
+          )));
+
+      if Set.mem glyph_name c_letters then (
+        set_pf "width" 352.;
+        set_pf "height" 425.;
+        set_pf "bottom_overlap" 13.;
+      );
+
+      if Set.mem glyph_name e_letters then (
+        set_pf "width" 389.;
+        set_pf "height" 423.;
+        set_pf "bottom_overlap" 10.;
+        set_pf "crossbar_height" 258.;
+      );
+
+      if Set.mem glyph_name i_letters then (
+        set_pf "height" 415.;
+        set_pf "dot_height" 623.;
+      );
+
+      if Set.mem glyph_name l_letters then (
+        set_pf "height" 707.;
+      );
+
+      if Set.mem glyph_name o_letters then (
+        set_pf "width" 421.;
+        set_pf "height" 419.;
+        set_pf "bottom_overlap" 10.;
+      );
+
+      if Set.mem glyph_name r_letters then (
+        set_pf "height" 420.;
+        set_pm "shoulder"
+          Metacubic.(
+            Cpx.(point ~out_curl:0.1 (y' 309.))
+            |> put Cpx.(point ~dir:rightward (x' 145. + y' 407.))
+          );
+        set_pm "arm_end"
+          Metacubic.(
+            Cpx.(point ~dir:downward (x' 212. + y' 350.))
+          );
+        set_pm_func "arm_lower"
+          (fun () ->
+            Some (Metacubic.(
+              Cpx.(point ~dir:leftward (x' 164. + y' 301.))
+              |> put Cpx.(point ~dir:leftward (x' 79. + y' 330.))
+              |> put ~tension:1.15 Cpx.(point ~dir:downward (y' 255.))
+            )));
+      );
+
+      if Set.mem glyph_name t_letters then (
+        set_pf "width" 303.;
+        set_pf "height" 562.;
+        set_pf "bottom_overlap" 12.;
+        set_pf "crossbar_height" 402.;
+        set_pf "top_corner_height" 550.;
+      );
+
+      !p_ref
+
   in
-  set_prs "state" state;
-
-  set_ps "fontname" "CaslonStM-Bold";
-  set_ps "familyname" "Sorts Mill Caslon";
-  set_ps "fullname" "Sorts Mill Caslon Bold";
-  set_ps "weight" "Regular";
-
-  set_ps "family" "Sorts Mill Caslon";
-  set_ps "subfamily" "Regular";
-  set_ps_func "preferred_family" null;
-  set_ps_func "preferred_subfamily" null;
-  set_ps_func "wws_family" null;
-  set_ps_func "wws_subfamily" null;
-
-  set_pf "space_width" 200.;
-
-  (* ?????????????????????????????????????????????????????????????????????????????????????*)
-  set_pf "contrast" 0.5;
-  set_pf "extension" 0.1;
-  (* ?????????????????????????????????????????????????????????????????????????????????????*)
-
-  set_pf "x_height" 399.;
-  set_pf "curve_overshoot" 10.;
-  set_pf "curve_undershoot" 10.;
-  set_pf "flag_overshoot" 10.;
-  set_pf "e_crossbar_height" 258.;
-  set_pf "t_crossbar_height" 402.;
-  set_pf "t_top_corner_height" 550.;
-  set_pf "i_dot_height" 623.;
-  set_pf "ascender_height" 700.;
-  set_pf "stem_width" 90.;
-  set_pf "serif_height" 30.;
-
-  set_pf_func "corner_radius" (fun () -> Some (float_of_int (Random.State.int state 3 + 4)));
-
-  set_pf_func "serif_end_angle" (fun () -> Some (float_of_int (Random.State.int state 101 - 50) /. 9.));
-  set_pf_func "tail_end_angle" (fun () -> Some (float_of_int (Random.State.int state 101) /. 10.));
-
-  set_pm_func "left_bracket"
-    (fun () ->
-      let left_pos =
-        if List.exists (( = ) glyph_name) i_letters then
-          (-23.)
-        else
-          (-20.)
-      in
-      let horiz_tension = 1.5 in
-      let vert_tension = 1.5 in
-      Some (Metacubic.(Complex_point.(
-        point ~dir:rightward (x' left_pos)
-        |> dput ~tensions:(horiz_tension, vert_tension) (point ~dir:upward (y' 70.))
-      ))));
-
-  set_pm_func "right_bracket"
-    (fun () ->
-      let left_pos = 20. in
-      let horiz_tension = 1.5 in
-      let vert_tension = 1.5 in
-      Some (Metacubic.(Complex_point.(
-        point ~dir:downward (y' 70.)
-        |> dput ~tensions:(vert_tension, horiz_tension) (point ~dir:rightward (x' left_pos))
-      ))));
-
-  set_pm "r_shoulder"
-    (Complex_point.(Metacubic.(
-      point ~out_curl:0.1 (y' 309.)
-      |> put (point ~dir:rightward (x' 145. + y' 407.))
-     )));
-
-  set_pm "r_arm_end"
-    (Complex_point.(Metacubic.(
-      point ~dir:downward (x' 212. + y' 350.)
-     )));
-
-  set_pm_func "r_arm_lower"
-    (fun () ->
-      Some (Complex_point.(Metacubic.(
-        point ~dir:leftward (x' 164. + y' 301.)
-        |> put (point ~dir:leftward (x' 79. + y' 330.))
-        |> put ~tension:1.15 (point ~dir:downward (y' 255.))
-      ))));
-
-  !p_ref
-
-in
-run_command params
+  run_command params

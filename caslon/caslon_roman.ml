@@ -59,30 +59,60 @@ struct
 
   let parameter params name = StringMap.find name params
 
-  let int params name =
-    match parameter params name with
-      | `Int ifunc -> Option.get (ifunc ())
-      | _ -> failwith "Param.int"
+  let int params ?default name =
+    try
+      match parameter params name with
+        | `Int ifunc -> Option.get (ifunc ())
+        | _ -> failwith "Param.int"
+    with
+      | Not_found | Option.No_value as e ->
+        match default with
+          | Some i -> i
+          | None -> raise e
 
-  let float params name =
-    match parameter params name with
-      | `Float ffunc -> Option.get (ffunc ())
-      | _ -> failwith "Param.float"
+  let float params ?default name =
+    try
+      match parameter params name with
+        | `Float ffunc -> Option.get (ffunc ())
+        | _ -> failwith "Param.float"
+    with
+      | Not_found | Option.No_value as e ->
+        match default with
+          | Some v -> v
+          | None -> raise e
 
-  let string params name =
-    match parameter params name with
-      | `String sfunc -> Option.get (sfunc ())
-      | _ -> failwith "Param.string"
+  let string params ?default name =
+    try
+      match parameter params name with
+        | `String sfunc -> Option.get (sfunc ())
+        | _ -> failwith "Param.string"
+    with
+      | Not_found | Option.No_value as e ->
+        match default with
+          | Some s -> s
+          | None -> raise e
 
-  let metacubic params name =
-    match parameter params name with
-      | `Metacubic mfunc -> Option.get (mfunc ())
-      | _ -> failwith "Param.metacubic"
+  let metacubic params ?default name =
+    try
+      match parameter params name with
+        | `Metacubic mfunc -> Option.get (mfunc ())
+        | _ -> failwith "Param.metacubic"
+    with
+      | Not_found | Option.No_value as e ->
+        match default with
+          | Some m -> m
+          | None -> raise e
 
-  let random_state params name =
-    match parameter params name with
-      | `Random_state rsfunc -> Option.get (rsfunc ())
-      | _ -> failwith "Param.random_state"
+  let random_state params ?default name =
+    try
+      match parameter params name with
+        | `Random_state rsfunc -> Option.get (rsfunc ())
+        | _ -> failwith "Param.random_state"
+    with
+      | Not_found | Option.No_value as e ->
+        match default with
+          | Some rs -> rs
+          | None -> raise e
 
   module type Tools_module =
   sig
@@ -100,17 +130,14 @@ struct
     val set_pm : string -> Metacubic.t -> unit
     val set_prs : string -> Random.State.t -> unit
 
-    val pi : string -> int
+    val pi : ?default:int -> string -> int
     val pf : string -> float
     val ps : string -> string
     val pm : string -> Metacubic.t
     val prs : string -> Random.State.t
 
-    val width : float
-    val height : float
-    val left_overlap : float
-    val overshoot : float
-    val undershoot : float
+    val initialize_state : string -> unit
+
     val xrel : float -> float
     val yrel : float -> float
     val xpos : float -> float
@@ -121,17 +148,7 @@ struct
     val y'pos : float -> Complex.t
   end
 
-  let make_tools
-      ?(glyph_name = "")
-      ?(p_ref = ref no_parameters)
-      ?(width = nan)
-      ?(height = nan)
-      ?(left_overlap = 0.)
-      ?(overshoot = 0.)
-      ?(undershoot = 0.)
-      ?param
-      () =
-
+  let make_tools ~glyph_name ?(p_ref = ref no_parameters) ?param () =
     begin
       match param with
         | Some p' -> p_ref := p'
@@ -143,16 +160,10 @@ struct
       with Not_found | Option.No_value ->
         p_ref := put_random_state !p_ref "state" (Random.State.make [||])
     end;
-    let extended_width =
-      try
-        width *. (1. +. float !p_ref "extension")
-      with
-        | Not_found | Option.No_value -> width
-    in
-    let xrel v = v *. extended_width in
-    let yrel v = v *. height in
-    let xpos v = xrel v -. left_overlap in
-    let ypos v = yrel v -. undershoot in
+    let xrel v = v *. float !p_ref "width" in
+    let yrel v = v *. float !p_ref "height" in
+    let xpos v = xrel v -. float !p_ref ~default:0. "left_overlap" in
+    let ypos v = yrel v -. float !p_ref ~default:0. "bottom_overlap" in
     let x'rel = Cpx.x' -| xrel in
     let y'rel = Cpx.y' -| yrel in
     let x'pos = Cpx.x' -| xpos in
@@ -174,17 +185,22 @@ struct
             let set_pm key m = p_ref := put_metacubic !p_ref key m
             let set_prs key rs = p_ref := put_random_state !p_ref key rs
 
-            let pi key = int !p_ref key
+            let pi ?default key = int !p_ref ?default key
             let pf key = float !p_ref key
             let ps key = string !p_ref key
             let pm key = metacubic !p_ref key
             let prs key = random_state !p_ref key
 
-            let width = extended_width
-            let height = height
-            let left_overlap = left_overlap
-            let overshoot = overshoot
-            let undershoot = undershoot
+            let initialize_state key =
+              let state =
+                Random.State.make
+                  (Array.of_list
+                     (int_of_float (pf "design_size") ::
+                        pi "os2_weight" ::
+                        List.map Char.code (String.explode glyph_name)))
+              in
+              set_prs key state
+
             let xrel = xrel
             let yrel = yrel
             let xpos = xpos
@@ -217,7 +233,14 @@ let enum_resolve_glyphs params = map (fun (glyph_name, glyph) -> glyph (params ~
 
 let huge = 1e10 ;;
 
-let i_letters = ["dotlessi"; "i"] ;;
+let c_letters = Set.of_list ["c"] ;;
+let e_letters = Set.of_list ["e"] ;;
+let i_letters = Set.of_list ["dotlessi"; "i"] ;;
+let o_letters = Set.of_list ["o"] ;;
+let l_letters = Set.of_list ["l"] ;;
+let n_letters = Set.of_list ["n"] ;;
+let r_letters = Set.of_list ["r"] ;;
+let t_letters = Set.of_list ["t"] ;;
 
 type bend_kind = [ `With_extrema | `With_points_at_extrema | `Without_extrema ]
 
@@ -595,18 +618,7 @@ let reshape_flag ~param ~contour ~left_notch ~flag_corner ~top_corner () =
 
 let letter_c_contours glyph_name p =
 
-  let tools =
-    let overshoot = Param.float p "curve_overshoot" +. 3. in
-    let undershoot = Param.float p "curve_undershoot" +. 3. in
-    make_tools
-      ~glyph_name
-      ~width:320.
-      ~height:(Param.float p "x_height" +. undershoot +. overshoot)
-      ~undershoot:undershoot
-      ~overshoot:overshoot
-      ~param:p
-      ()
-  in
+  let tools = make_tools ~glyph_name ~param:p () in
   let module Tools = (val tools : Tools_module) in
   let open Tools in
 
@@ -698,18 +710,7 @@ let letter_c_contours glyph_name p =
 
 let letter_e_contours glyph_name p =
 
-  let tools =
-    let overshoot = Param.float p "curve_overshoot" +. 2. in
-    let undershoot = Param.float p "curve_undershoot" +. 2. in
-    make_tools
-      ~glyph_name
-      ~width:354.
-      ~height:(Param.float p "x_height" +. undershoot +. overshoot)
-      ~undershoot:(Param.float p "curve_undershoot")
-      ~overshoot:(Param.float p "curve_overshoot")
-      ~param:p
-      ()
-  in
+  let tools = make_tools ~glyph_name ~param:p () in
   let module Tools = (val tools : Tools_module) in
   let open Tools in
 
@@ -722,9 +723,9 @@ let letter_e_contours glyph_name p =
       let bottom_breadth = 1.00 *. stem_width /. (1. +. pf "contrast") in
       let tail_breadth = 0.34 *. stem_width /. (1. +. pf "contrast") in
 
-      let crossbar_height = pf "e_crossbar_height" in
+      let crossbar_height = pf "crossbar_height" in
       let crossbar_breadth = 0.42 *. stem_width /. (1. +. pf "contrast") in
-      let crossbar_top = pf "e_crossbar_height" +. crossbar_breadth in
+      let crossbar_top = pf "crossbar_height" +. crossbar_breadth in
       let crossbar_top0 = Cpx.(x'pos 1.00 - x' right_breadth + y' crossbar_top) in
 
       let crossbar_fillet_size () = (Random.State.float (prs "state") 0.2 +. 0.7) *. crossbar_breadth in
@@ -829,7 +830,6 @@ let letter_e_contours glyph_name p =
 (* Letters such as "dotlessi" and "l" *)
 
 let contours_similar_to_letter_l
-    ~height
     ~flag_width
     ~flag_drop
     ~left_notch_drop
@@ -839,17 +839,9 @@ let contours_similar_to_letter_l
     ~extra_stem_width
     glyph_name p =
 
-  let tools =
-    make_tools
-      ~glyph_name
-      ~height
-      ~overshoot:(Param.float p "flag_overshoot")
-      ~param:p
-      ()
-  in
+  let tools = make_tools ~glyph_name ~param:p () in
   let module Tools = (val tools : Tools_module) in
   let open Tools in
-
       let leftbrack = pm "left_bracket" in
       let rightbrack = pm "right_bracket" in
       
@@ -869,8 +861,7 @@ let contours_similar_to_letter_l
                    <+> Cpx.x'(right_pos +. right_serif_width))
       in
 
-      let overshot_height = height +. overshoot in
-      let serif_to_top = overshot_height -. serif_height in
+      let serif_to_top = pf "height" -. serif_height in
 
       let left_notch = Cpx.(left_base + y'(serif_to_top -. left_notch_drop)) in
       let top_corner = Cpx.(right_base + (x_shear (y' serif_to_top) right_side_shear)) in
@@ -896,7 +887,7 @@ let contours_similar_to_letter_l
 
       let flag = make_flag ~param:p ~left_notch ~flag_corner ~top_corner () in
       let flag_end = Metacubic.outgoing_point flag in
-      let right_side_height = 0.7 *. (overshot_height -. Cpx.im (Metacubic.incoming_point rbrack)) in
+      let right_side_height = 0.7 *. (pf "height" -. Cpx.im (Metacubic.incoming_point rbrack)) in
       let contour = Metacubic.(
         left_side
         |> triput flag
@@ -914,7 +905,6 @@ let contours_similar_to_letter_l
 
 let letter_dotlessi_contours glyph_name p =
   contours_similar_to_letter_l
-    ~height:(Param.float p "x_height" +. Param.float p "flag_overshoot")
     ~flag_width:70.
     ~flag_drop:58.
     ~left_notch_drop:105.
@@ -930,17 +920,12 @@ let letter_dotlessi_contours glyph_name p =
 
 let letter_i_contours glyph_name p =
 
-  let tools =
-    make_tools
-      ~glyph_name
-      ~param:p
-      ()
-  in
+  let tools = make_tools ~glyph_name ~param:p () in
   let module Tools = (val tools : Tools_module) in
   let open Tools in
       let dot_contour =
         Cubic.(Metacubic.to_cubic (make_dot 108.) <+>
-                 Cpx.(y' (pf "i_dot_height") - x' 10.))
+                 Cpx.(y' (pf "dot_height") - x' 10.))
       in
       (letter_dotlessi_contours glyph_name p @ [dot_contour]
        |> List.map Cubic.simplify)
@@ -952,7 +937,6 @@ let letter_i_contours glyph_name p =
 
 let letter_l_contours glyph_name p =
   contours_similar_to_letter_l
-    ~height:(Param.float p "ascender_height" +. 2.)
     ~flag_width:70.
     ~flag_drop:58.
     ~left_notch_drop:105.
@@ -1054,18 +1038,7 @@ let letter_n_contours glyph_name p =
 
 let letter_o_contours glyph_name p =
 
-  let tools =
-    let overshoot = Param.float p "curve_overshoot" in
-    let undershoot = Param.float p "curve_undershoot" in
-    make_tools
-      ~glyph_name
-      ~width:383.
-      ~height:(Param.float p "x_height" +. undershoot +. overshoot)
-      ~undershoot:undershoot
-      ~overshoot:overshoot
-      ~param:p
-      ()
-  in
+  let tools = make_tools ~glyph_name ~param:p () in
   let module Tools = (val tools : Tools_module) in
   let open Tools in
       let stem_width = pf "stem_width" in
@@ -1101,10 +1074,8 @@ let letter_o_contours glyph_name p =
 (* The letter "r" *)
 
 let letter_r_contours glyph_name p =
-  let height = Param.float p "x_height" +. Param.float p "flag_overshoot" +. 5. in
   let ilike_contours =
     contours_similar_to_letter_l
-      ~height
       ~flag_width:70.
       ~flag_drop:70.
       ~left_notch_drop:107.
@@ -1122,14 +1093,14 @@ let letter_r_contours glyph_name p =
       let stem = List.hd ilike_contours in
       let stem_offset = Cubic.(stem <+> offset) in
 
-      let shoulder = pm "r_shoulder" in
+      let shoulder = pm "shoulder" in
       let arm_top_offset = Cubic.(nearest_point stem_offset (Metacubic.incoming_point shoulder)) in
       let shoulder = Vect.modify shoulder 0 (fun (i,_,o) -> (i, arm_top_offset, o)) in
       let arm_top = Complex.(arm_top_offset - offset) in
 
-      let arm_end = pm "r_arm_end" in
+      let arm_end = pm "arm_end" in
 
-      let arm_lower = pm "r_arm_lower" in
+      let arm_lower = pm "arm_lower" in
       let arm_bottom_offset = Cubic.(nearest_point stem_offset (Metacubic.outgoing_point arm_lower)) in
       let arm_lower = Vect.modify arm_lower (Vect.length arm_lower - 1) (fun (i,_,o) -> (i, arm_bottom_offset, o)) in
 
@@ -1145,16 +1116,7 @@ let letter_r_contours glyph_name p =
 
 let letter_t_contours glyph_name p =
 
-  let tools =
-    let undershoot = Param.float p "curve_undershoot" +. 2. in
-    make_tools
-      ~glyph_name
-      ~width:275.
-      ~height:(Param.float p "t_top_corner_height" +. undershoot)
-      ~undershoot:undershoot
-      ~param:p
-      ()
-  in
+  let tools = make_tools ~glyph_name ~param:p () in
   let module Tools = (val tools : Tools_module) in
   let open Tools in
       let rand = prs "state" in
@@ -1166,7 +1128,7 @@ let letter_t_contours glyph_name p =
       let stem_width = pf "stem_width" in
       let left_pos = Cpx.x'(-.0.5 *. stem_width) in
       let right_pos = Cpx.x'(0.5 *. stem_width) in
-      let crossbar_height = pf "t_crossbar_height" in
+      let crossbar_height = pf "crossbar_height" in
       let crossbar_breadth = floor (0.85 *. stem_width /. (1. +. 0.7 *. pf "contrast") +. 0.5) in
       let bottom_breadth = 0.70 *. stem_width /. (1. +. pf "contrast") in
       let sheared_terminal_width = 70. in
@@ -1175,7 +1137,7 @@ let letter_t_contours glyph_name p =
       let tail_cut_angle = 100. in
 
       let tail1 =
-        Cpx.(x'(width -. 0.5 *. stem_width -. sheared_terminal_width) + y'pos 0.00 + y'(bottom_breadth +. 10.))
+        Cpx.(x'(pf "width" -. 0.5 *. stem_width -. sheared_terminal_width) + y'pos 0.00 + y'(bottom_breadth +. 10.))
       in
       let tail2 = Cpx.(tail1 + x' tail_breadth * rot tail_cut_angle) in
       let lower_bowl_width = Cpx.(re (x'pos 1.00 - x' sheared_terminal_width)) in
@@ -1406,7 +1368,7 @@ add_glyph "t"
 (*-----------------------------------------------------------------------*)
 
 let run_command ?(outp = stdout) params =
-  let tools = make_tools ~param:(params ~glyph_name:"") () in
+  let tools = make_tools ~glyph_name:"" ~param:(params ~glyph_name:"") () in
   let module Tools = (val tools : Tools_module) in
   let open Tools in
       let glyph_opt = StdOpt.str_option () in
