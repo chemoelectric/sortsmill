@@ -36,6 +36,7 @@ struct
     [
     | `Int of unit -> int option
     | `Float of unit -> float option
+    | `Complex of unit -> Cpx.t option
     | `String of unit -> string option
     | `Metacubic of unit -> Metacubic.t option
     | `Random_state of unit -> Random.State.t option
@@ -48,11 +49,13 @@ struct
   let put_parameter params name func = StringMap.add name func params
   let put_int_func params name ifunc = put_parameter params name (`Int ifunc)
   let put_float_func params name ffunc = put_parameter params name (`Float ffunc)
+  let put_complex_func params name cfunc = put_parameter params name (`Complex cfunc)
   let put_string_func params name sfunc = put_parameter params name (`String sfunc)
   let put_metacubic_func params name mfunc = put_parameter params name (`Metacubic mfunc)
   let put_random_state_func params name rsfunc = put_parameter params name (`Random_state rsfunc)
   let put_int params name i = put_int_func params name (fun () -> Some i)
   let put_float params name v =  put_float_func params name (fun () -> Some v)
+  let put_complex params name c =  put_complex_func params name (fun () -> Some c)
   let put_string params name s = put_string_func params name (fun () -> Some s)
   let put_metacubic params name m = put_metacubic_func params name (fun () -> Some m)
   let put_random_state params name rs = put_random_state_func params name (fun () -> Some rs)
@@ -79,6 +82,17 @@ struct
       | Not_found | Option.No_value as e ->
         match default with
           | Some v -> v
+          | None -> raise e
+
+  let complex params ?default name =
+    try
+      match parameter params name with
+        | `Complex cfunc -> Option.get (cfunc ())
+        | _ -> failwith "Param.float"
+    with
+      | Not_found | Option.No_value as e ->
+        match default with
+          | Some c -> c
           | None -> raise e
 
   let string params ?default name =
@@ -121,17 +135,20 @@ struct
     val null_func : unit -> 'a option
     val set_pi_func : string -> (unit -> int option) -> unit
     val set_pf_func : string -> (unit -> float option) -> unit
+    val set_pc_func : string -> (unit -> Cpx.t option) -> unit
     val set_ps_func : string -> (unit -> string option) -> unit
     val set_pm_func : string -> (unit -> Metacubic.t option) -> unit
     val set_prs_func : string -> (unit -> Random.State.t option) -> unit
     val set_pi : string -> int -> unit
     val set_pf : string -> float -> unit
+    val set_pc : string -> Cpx.t -> unit
     val set_ps : string -> string -> unit
     val set_pm : string -> Metacubic.t -> unit
     val set_prs : string -> Random.State.t -> unit
 
     val pi : ?default:int -> string -> int
     val pf : string -> float
+    val pc : string -> Cpx.t
     val ps : string -> string
     val pm : string -> Metacubic.t
     val prs : string -> Random.State.t
@@ -176,17 +193,20 @@ struct
             let null_func = (fun () -> None)
             let set_pi_func key ifunc = p_ref := put_int_func !p_ref key ifunc
             let set_pf_func key ffunc = p_ref := put_float_func !p_ref key ffunc
+            let set_pc_func key cfunc = p_ref := put_complex_func !p_ref key cfunc
             let set_ps_func key sfunc = p_ref := put_string_func !p_ref key sfunc
             let set_pm_func key mfunc = p_ref := put_metacubic_func !p_ref key mfunc
             let set_prs_func key rsfunc = p_ref := put_random_state_func !p_ref key rsfunc
             let set_pi key i = p_ref := put_int !p_ref key i
             let set_pf key v = p_ref := put_float !p_ref key v
+            let set_pc key c = p_ref := put_complex !p_ref key c
             let set_ps key s = p_ref := put_string !p_ref key s
             let set_pm key m = p_ref := put_metacubic !p_ref key m
             let set_prs key rs = p_ref := put_random_state !p_ref key rs
 
             let pi ?default key = int !p_ref ?default key
             let pf key = float !p_ref key
+            let pc key = complex !p_ref key
             let ps key = string !p_ref key
             let pm key = metacubic !p_ref key
             let prs key = random_state !p_ref key
@@ -243,16 +263,6 @@ let r_letters = Set.of_list ["r"] ;;
 let t_letters = Set.of_list ["t"] ;;
 
 type bend_kind = [ `With_extrema | `With_points_at_extrema | `Without_extrema ]
-
-let make_dot diameter =
-    let radius = 0.5 *. diameter in
-    Complex_point.(Metacubic.(
-      point ~dir:upward (x'(-.radius))
-      |> put (point ~dir:rightward (y' radius))
-      |> put (point ~dir:downward (x' radius))
-      |> put (point ~dir:leftward (y'(-.radius)))
-      |> close
-    ))
 
 let bend_points ~corner_point ~radius ~in_dir ~out_dir =
   let theta = Complex.(arg (out_dir / in_dir)) in
@@ -570,20 +580,17 @@ let make_right_serif_end
     <+> Complex_point.y'(-.end_depth)
   )
 
-let make_flag
-    ~param ~left_notch ~flag_corner ~top_corner () =
-  Complex_point.(
-    let lower_dir = dir (flag_corner - left_notch) in
-    let upper_dir = dir (top_corner - flag_corner) in
-    let contour =
-      Metacubic.(
-        point ~dir:lower_dir (left_notch + x' 30. * lower_dir)
-        |> put (point ~in_dir:lower_dir ~out_dir:(upper_dir / rot 3.) flag_corner)
-        |> put (point ~in_dir:(upper_dir * rot 3.) ~out_dir:downward top_corner)
+let make_flag ~left_notch ~flag_corner ~top_corner =
+  let lower_dir = Cpx.(dir (flag_corner - left_notch)) in
+  let upper_dir = Cpx.(dir (top_corner - flag_corner)) in
+  let contour =
+    Metacubic.(
+      Cpx.(point ~dir:lower_dir (left_notch + x' 30. * lower_dir))
+      |> put Cpx.(point ~in_dir:lower_dir ~out_dir:(upper_dir / rot 3.) flag_corner)
+      |> put Cpx.(point ~in_dir:(upper_dir * rot 3.) ~out_dir:downward top_corner)
       )
-    in
-    contour
-  )
+  in
+  contour
 
 let reshape_flag ~param ~contour ~left_notch ~flag_corner ~top_corner () =
   let p = param in
@@ -624,34 +631,20 @@ let letter_c_contours glyph_name p =
 
       let contour =
 
-        let tail_end_angle = pf "tail_end_angle" in
-        let tail_corner_radius1 = pf "corner_radius" +. 1. in
-        let tail_corner_radius2 = pf "corner_radius" +. 1. in
-
-        let stem_width = pf "stem_width" in
-        let left_breadth = 1.12 *. stem_width in
-        let bottom_breadth = 0.92 *. stem_width /. (1. +. pf "contrast") in
-        let top_breadth = 0.64 *. stem_width /. (1. +. pf "contrast") in
-        let head_breadth = 1.15 *. stem_width /. (1. +. 0.3 *. pf "contrast") in
-        let tail_breadth = 0.25 *. stem_width in
-
-        let tail1 = Cpx.(x'pos 0.98 + y'pos 0.19) in
-        let head1 = Cpx.(x'pos 0.98 + y'pos 0.84) in
-
         let outer =
           Metacubic.(
             set_dirs (
-              point ~out_curl:1.5 tail1   (* tail *)
+              point ~out_curl:1.5 (pc "tail1") (* tail *)
               |> dput Cpx.(point ~dir:leftward (x'pos 0.56 + y'pos 0.00)) (* bottom *)
               |> dput ~tension:0.95 Cpx.(point ~dir:upward (x'pos 0.0 + y'pos 0.50)) (* left *)
               |> dput Cpx.(point ~dir:rightward (x'pos 0.62 + y'pos 1.00)) (* top *)
-              |> dput (point ~in_curl:1.5 head1) (* head *)
+              |> dput (point ~in_curl:1.5 (pc "head1")) (* head *)
             )   
           )
         in
         let across_head_dir = Cpx.(Metacubic.outgoing_dir outer / rot 90.) in
-        let head2 = Cpx.(head1 + (x' head_breadth) * across_head_dir) in
-        let top = Cpx.(x'pos 0.60 + y'pos 1.00 - y' top_breadth) in
+        let head2 = Cpx.(pc "head1" + (x'(pf "head_breadth")) * across_head_dir) in
+        let top = Cpx.(x'pos 0.60 + y'pos 1.00 - y'(pf "top_breadth")) in
         let partway_pt = Cpx.(head2 + x' 0.5 * (top - head2) + x'(0.1 *. (re head2 -. re top)))  in
 
         let sketch_inner tail2 =
@@ -659,24 +652,24 @@ let letter_c_contours glyph_name p =
             point head2
             |> dput ~tension:1000. (point partway_pt)
             |> dput ~tension:0.75 Cpx.(point ~dir:leftward top) (* inner top *)
-            |> dput Cpx.(point ~dir:downward (x'pos 0.00 + x' left_breadth + y'pos 0.52)) (* inner left *)
-            |> dput Cpx.(point ~dir:rightward (x'pos 0.64 + y'pos 0.00 + y' bottom_breadth)) (* inner bottom *)
+            |> dput Cpx.(point ~dir:downward (x'pos 0.00 + x'(pf "left_breadth") + y'pos 0.52)) (* inner left *)
+            |> dput Cpx.(point ~dir:rightward (x'pos 0.64 + y'pos 0.00 + y'(pf "bottom_breadth"))) (* inner bottom *)
             |> dput (point ~in_curl:1.5 tail2) (* tail *)
             |> to_cubic
           )
         in
 
-      (* Roughly locate the sketched counter. *)
+        (* Roughly locate the sketched counter. *)
         let (_, tangent) = Cubic.tangents_at (Metacubic.to_cubic outer) 0. in
-        let tail2 = Cpx.(tail1 + x' tail_breadth * tangent * rot (-100.)) in
+        let tail2 = Cpx.(pc "tail1" + x'(pf "tail_breadth") * tangent * rot (-100.)) in
         let inner = sketch_inner tail2 in
 
-      (* Now use the rough sketch to get a better estimate of the
-         crosscut vector. *)
+        (* Now use the rough sketch to get a better estimate of the
+           crosscut vector. *)
         let (tangent2, _) = Cubic.tangents_at inner (float_of_int Int.(List.length inner - 1)) in
         let crosscut_dir = Cpx.(dir (tangent - tangent2) * rot (-90.)) in
-        let tail2' = Cpx.(tail1 + x' tail_breadth * crosscut_dir) in
-        let shear_vector = Cpx.(x'(tail_breadth *. dtan tail_end_angle) * crosscut_dir * rot (-90.)) in
+        let tail2' = Cpx.(pc "tail1" + x'(pf "tail_breadth") * crosscut_dir) in
+        let shear_vector = Cpx.(x'(pf "tail_breadth" *. dtan (pf "tail_end_angle")) * crosscut_dir * rot (-90.)) in
         let tail2 = Cpx.(tail2' + shear_vector) in
         let inner = sketch_inner tail2 in
 
@@ -694,7 +687,8 @@ let letter_c_contours glyph_name p =
             ~contour1:c3 ~contour2:c1
             ~corner_time1:(float_of_int Int.(List.length c3 - 1))
             ~corner_time2:0.
-            ~radius1:tail_corner_radius1 ~radius2:tail_corner_radius2
+            ~radius1:(pf "corner_radius" +. 1.)
+            ~radius2:(pf "corner_radius" +. 1.)
             ()
         in
         let (_,c1) = Cubic.subdivide c1 outer_time in
@@ -714,27 +708,12 @@ let letter_e_contours glyph_name p =
   let module Tools = (val tools : Tools_module) in
   let open Tools in
 
-      let tail_end_angle = pf "tail_end_angle" in
-
-      let stem_width = pf "stem_width" in
-      let top_breadth = 0.41 *. stem_width /. (1. +. pf "contrast") in
-      let left_breadth = 1.01 *. stem_width in
-      let right_breadth = 1.68 *. stem_width /. (1. +. 0.5 *. pf "contrast") in
-      let bottom_breadth = 1.00 *. stem_width /. (1. +. pf "contrast") in
-      let tail_breadth = 0.34 *. stem_width /. (1. +. pf "contrast") in
-
-      let crossbar_height = pf "crossbar_height" in
-      let crossbar_breadth = 0.42 *. stem_width /. (1. +. pf "contrast") in
-      let crossbar_top = pf "crossbar_height" +. crossbar_breadth in
-      let crossbar_top0 = Cpx.(x'pos 1.00 - x' right_breadth + y' crossbar_top) in
-
-      let crossbar_fillet_size () = (Random.State.float (prs "state") 0.2 +. 0.7) *. crossbar_breadth in
-
-      let tail1 = Cpx.(x'pos 1.00 + y'pos 0.26) in
+      let crossbar_top = pf "crossbar_height" +. pf "crossbar_breadth" in
+      let crossbar_top0 = Cpx.(x'pos 1.00 - x'(pf "right_breadth") + y' crossbar_top) in
 
       let outer_left =
         Metacubic.(
-          point ~out_curl:1.0 tail1       (* outer tail *)
+          point ~out_curl:1.0 (pc "tail1") (* outer tail *)
           |> dput Cpx.(point ~dir:leftward (x'pos 0.54 + y'pos 0.00)) (* bottom *)
           |> dput ~tension:0.9 Cpx.(point ~dir:upward (x'pos 0.00 + y'pos 0.51)) (* left *)
           |> dput Cpx.(point ~dir:rightward (x'pos 0.52 + y'pos 1.00)) (* top *)
@@ -743,46 +722,46 @@ let letter_e_contours glyph_name p =
 
       let sketch_counter tail2 =
         Metacubic.(
-          Cpx.(point ~dir:upward (crossbar_top0 + y'(crossbar_fillet_size ())))
-          |> dput Cpx.(point ~dir:leftward (x'pos 0.50 + y'pos 1.00 - y' top_breadth)) (* eye top *)
-          |> dput Cpx.(point ~dir:downward (x'pos 0.00 + x' left_breadth + y'pos 0.52)) (* inner left *)
-          |> dput Cpx.(point ~dir:rightward (x'pos 0.60 + y'pos 0.00 + y' bottom_breadth)) (* inner bottom *)
+          Cpx.(point ~dir:upward (crossbar_top0 + y'(pf "crossbar_fillet_size")))
+          |> dput Cpx.(point ~dir:leftward (x'pos 0.50 + y'pos 1.00 - y'(pf "top_breadth"))) (* eye top *)
+          |> dput Cpx.(point ~dir:downward (x'pos 0.00 + x'(pf "left_breadth") + y'pos 0.52)) (* inner left *)
+          |> dput Cpx.(point ~dir:rightward (x'pos 0.60 + y'pos 0.00 + y'(pf "bottom_breadth"))) (* inner bottom *)
           |> dput (point ~in_curl:1.0 tail2) (* inner tail *)
           |> to_cubic
         )
       in
 
-    (* Roughly locate the sketched counter. *)
+      (* Roughly locate the sketched counter. *)
       let (_, tangent) = Cubic.tangents_at (Metacubic.to_cubic outer_left) 0. in
-      let tail2 = Cpx.(tail1 + x' tail_breadth * tangent * rot (-95.)) in
+      let tail2 = Cpx.(pc "tail1" + x'(pf "tail_breadth") * tangent * rot (-95.)) in
       let counter = sketch_counter tail2 in
 
-    (* Now use the rough sketch to get a better estimate of the
-       crosscut vector. *)
+      (* Now use the rough sketch to get a better estimate of the
+         crosscut vector. *)
       let (tangent2, _) = Cubic.tangents_at counter (float_of_int Int.(List.length counter - 1)) in
       let crosscut_dir = Cpx.(dir (tangent - tangent2) * rot (-90.)) in
-      let tail2' = Cpx.(tail1 + x' tail_breadth * crosscut_dir) in
-      let shear_vector = Cpx.(x'(tail_breadth *. dtan tail_end_angle) * crosscut_dir * rot (-90.)) in
+      let tail2' = Cpx.(pc "tail1" + x'(pf "tail_breadth") * crosscut_dir) in
+      let shear_vector = Cpx.(x'(pf "tail_breadth" *. dtan (pf "tail_end_angle")) * crosscut_dir * rot (-90.)) in
       let tail2 = Cpx.(tail2' + shear_vector) in
       let counter = sketch_counter tail2 in
 
       let crossbar_height_point =
-        let time = (Cubic.curve_times_at_y counter ~pos:1 crossbar_height).(0) in
+        let time = (Cubic.curve_times_at_y counter ~pos:1 (pf "crossbar_height")).(0) in
         Cubic.curve_point_at counter ~pos:1 time
       in
       let (upper, lower) =
         let intersection_time =
-          (Cubic.curve_times_at_y ~pos:1 counter (crossbar_height -. (crossbar_fillet_size ()))).(0) +. 1.
+          (Cubic.curve_times_at_y ~pos:1 counter (pf "crossbar_height" -. (pf "crossbar_fillet_size"))).(0) +. 1.
         in
         Cubic.subdivide counter intersection_time
       in
       let outer =
         Metacubic.(
           outer_left
-          |> dput Cpx.(point ~dir:downward (x'pos 0.95 + y' crossbar_height + y'rel 0.02)) (* right *)
-          |> dput Cpx.(point ~dir:leftward (x'pos 0.85 + y' crossbar_height)) (* crossbar right *)
-          |> dput ~tension:huge Cpx.(point ~dir:leftward
-                                       (crossbar_height_point + x'(crossbar_fillet_size ()))) (* crossbar left *)
+          |> dput Cpx.(point ~dir:downward (x'pos 0.95 + y'(pf "crossbar_height") + y'rel 0.02)) (* right *)
+          |> dput Cpx.(point ~dir:leftward (x'pos 0.85 + y'(pf "crossbar_height"))) (* crossbar right *)
+          |> dput ~tension:huge
+              Cpx.(point ~dir:leftward (crossbar_height_point + x'(pf "crossbar_fillet_size"))) (* crossbar left *)
           |> to_cubic
         )
       in
@@ -806,16 +785,16 @@ let letter_e_contours glyph_name p =
       in
       let eye_upper =
         let left_intersection_time =
-          (Cubic.curve_times_at_y upper ~pos:1 (crossbar_top +. (crossbar_fillet_size ()))).(0) +. 1.
+          (Cubic.curve_times_at_y upper ~pos:1 (crossbar_top +. (pf "crossbar_fillet_size"))).(0) +. 1.
         in
         let (upper', _) = Cubic.subdivide upper left_intersection_time in
         upper'
       in
       let eye_contour =
         Metacubic.(
-          Cpx.(point ~dir:rightward (crossbar_top1 + x'(crossbar_fillet_size ()))) (* crossbar top left *)
+          Cpx.(point ~dir:rightward (crossbar_top1 + x'(pf "crossbar_fillet_size"))) (* crossbar top left *)
           |> dput ~tension:huge Cpx.(point ~dir:rightward
-                                       (crossbar_top0 - x'(crossbar_fillet_size ()))) (* crossbar top right *)
+                                       (crossbar_top0 - x'(pf "crossbar_fillet_size"))) (* crossbar top right *)
           |> dput (set_dirs ~guess:false (of_cubic eye_upper))
           |> close
           |> to_cubic
@@ -829,45 +808,31 @@ let letter_e_contours glyph_name p =
 
 (* Letters such as "dotlessi" and "l" *)
 
-let contours_similar_to_letter_l
-    ~flag_width
-    ~flag_drop
-    ~left_notch_drop
-    ~right_side_shear
-    ~left_serif_width
-    ~right_serif_width
-    ~extra_stem_width
-    glyph_name p =
+let contours_similar_to_letter_l glyph_name p =
 
   let tools = make_tools ~glyph_name ~param:p () in
   let module Tools = (val tools : Tools_module) in
   let open Tools in
-      let leftbrack = pm "left_bracket" in
-      let rightbrack = pm "right_bracket" in
-      
-      let stem_width = pf "stem_width" +. extra_stem_width in
-      let serif_height = pf "serif_height" in
+      let left_pos = (-0.5) *. pf "stem_width" in
+      let right_pos = 0.5 *. pf "stem_width" in
 
-      let left_pos = (-0.5) *. stem_width in
-      let right_pos = 0.5 *. stem_width in
-      let left_base = Cpx.(x' left_pos + y' serif_height) in
-      let right_base = Cpx.(x' right_pos + y' serif_height) in
+      let left_base = Cpx.(x' left_pos + y'(pf "serif_height")) in
+      let right_base = Cpx.(x' right_pos + y'(pf "serif_height")) in
+
       let left_serif_end =
-        Metacubic.(make_left_serif_end ~param:p ()
-                   <+> Cpx.x'(left_pos -. left_serif_width))
+        Metacubic.(make_left_serif_end ~param:p () <+> Cpx.x'(left_pos -. pf "left_serif_width"))
       in
       let right_serif_end =
-        Metacubic.(make_right_serif_end ~param:p ()
-                   <+> Cpx.x'(right_pos +. right_serif_width))
+        Metacubic.(make_right_serif_end ~param:p () <+> Cpx.x'(right_pos +. pf "right_serif_width"))
       in
 
-      let serif_to_top = pf "height" -. serif_height in
+      let serif_to_top = pf "height" -. pf "serif_height" in
 
-      let left_notch = Cpx.(left_base + y'(serif_to_top -. left_notch_drop)) in
-      let top_corner = Cpx.(right_base + (x_shear (y' serif_to_top) right_side_shear)) in
-      let flag_corner = Cpx.(x'(re left_notch -. flag_width) + y'(im top_corner -. flag_drop)) in
+      let left_notch = Cpx.(left_base + y' serif_to_top + pc "left_notch_drop") in
+      let top_corner = Cpx.(right_base + (x_shear (y' serif_to_top) (pf "right_side_shear"))) in
+      let flag_corner = Cpx.(x'(re left_notch -. pf "flag_width") + y'(im top_corner -. pf "flag_drop")) in
 
-      let lbrack = Metacubic.(leftbrack <+> left_base) in
+      let lbrack = Metacubic.(pm "left_bracket" <+> left_base) in
       let left_side =
         Metacubic.(
           Cpx.(point ~dir:leftward zero)
@@ -876,7 +841,7 @@ let contours_similar_to_letter_l
         )
       in
 
-      let rbrack = Metacubic.(rightbrack <+> right_base) in
+      let rbrack = Metacubic.(pm "right_bracket" <+> right_base) in
       let right_side =
         Metacubic.(
           rbrack
@@ -885,7 +850,7 @@ let contours_similar_to_letter_l
         )
       in
 
-      let flag = make_flag ~param:p ~left_notch ~flag_corner ~top_corner () in
+      let flag = make_flag ~left_notch ~flag_corner ~top_corner in
       let flag_end = Metacubic.outgoing_point flag in
       let right_side_height = 0.7 *. (pf "height" -. Cpx.im (Metacubic.incoming_point rbrack)) in
       let contour = Metacubic.(
@@ -904,31 +869,18 @@ let contours_similar_to_letter_l
 (* The letter "dotlessi" *)
 
 let letter_dotlessi_contours glyph_name p =
-  contours_similar_to_letter_l
-    ~flag_width:70.
-    ~flag_drop:58.
-    ~left_notch_drop:105.
-    ~right_side_shear:1.2
-    ~left_serif_width:65.
-    ~right_serif_width:60.
-    ~extra_stem_width:0.
-    glyph_name p |> List.map Cubic.simplify
+  contours_similar_to_letter_l glyph_name p |> List.map Cubic.simplify
 
 (*.......................................................................*)
 
 (* The letter "i" *)
 
 let letter_i_contours glyph_name p =
-
   let tools = make_tools ~glyph_name ~param:p () in
   let module Tools = (val tools : Tools_module) in
   let open Tools in
-      let dot_contour =
-        Cubic.(Metacubic.to_cubic (make_dot 108.) <+>
-                 Cpx.(y' (pf "dot_height") - x' 10.))
-      in
-      (letter_dotlessi_contours glyph_name p @ [dot_contour]
-       |> List.map Cubic.simplify)
+      let dot_contour = Cubic.(Metacubic.to_cubic (pm "dot") <+> pc "dot_point") in
+      (letter_dotlessi_contours glyph_name p @ [dot_contour] |> List.map Cubic.simplify)
 ;;
 
 (*.......................................................................*)
@@ -936,15 +888,7 @@ let letter_i_contours glyph_name p =
 (* The letter "l" *)
 
 let letter_l_contours glyph_name p =
-  contours_similar_to_letter_l
-    ~flag_width:70.
-    ~flag_drop:58.
-    ~left_notch_drop:105.
-    ~right_side_shear:1.2
-    ~left_serif_width:105.
-    ~right_serif_width:85.
-    ~extra_stem_width:3.
-    glyph_name p |> List.map Cubic.simplify
+  contours_similar_to_letter_l glyph_name p |> List.map Cubic.simplify
 
 (*.......................................................................*)
 
@@ -1014,7 +958,7 @@ let letter_n_contours glyph_name p =
       )
     in
 
-    let flag = make_flag ~param:p ~left_notch ~flag_corner ~top_corner () in
+    let flag = make_flag ~left_notch ~flag_corner ~top_corner in
     let flag_end = Metacubic.outgoing_point flag in
     let right_side_height = 0.7 *. (overshot_height -. im (Metacubic.incoming_point rbrack)) in
     let contour = Metacubic.(
@@ -1041,12 +985,6 @@ let letter_o_contours glyph_name p =
   let tools = make_tools ~glyph_name ~param:p () in
   let module Tools = (val tools : Tools_module) in
   let open Tools in
-      let stem_width = pf "stem_width" in
-      let left_breadth = 1.16 *. stem_width in
-      let right_breadth = 1.16 *. stem_width in
-      let bottom_breadth = 0.58 *. stem_width /. (1. +. pf "contrast") in
-      let top_breadth = 0.54 *. stem_width /. (1. +. pf "contrast") in
-
       let outer_contour =
         Cubic.(Cpx.(
           make_up_node (x'pos 0.00 + y'pos 0.50) (* left *)
@@ -1058,10 +996,10 @@ let letter_o_contours glyph_name p =
       in
       let inner_contour =
         Cubic.(Cpx.(
-          make_down_node (x'pos 0.00 + x' left_breadth + y'pos 0.52) (* left *)
-          |> dput ~tension:0.98 (make_right_node (x'pos 0.49 + y'pos 0.00 + y' bottom_breadth)) (* bottom *)
-          |> dput ~tension:1. (make_up_node (x'pos 1.00 - x' right_breadth + y'pos 0.48)) (* right *)
-          |> dput ~tension:1. (make_left_node (x'pos 0.48 + y'pos 1.00 - y' top_breadth)) (* top *)
+          make_down_node (x'pos 0.00 + x'(pf "left_breadth") + y'pos 0.52) (* left *)
+          |> dput ~tension:0.98 (make_right_node (x'pos 0.49 + y'pos 0.00 + y'(pf "bottom_breadth"))) (* bottom *)
+          |> dput ~tension:1. (make_up_node (x'pos 1.00 - x'(pf "right_breadth") + y'pos 0.48)) (* right *)
+          |> dput ~tension:1. (make_left_node (x'pos 0.48 + y'pos 1.00 - y'(pf "top_breadth"))) (* top *)
           |> dclose ~tension:1.
         ))
       in
@@ -1074,18 +1012,7 @@ let letter_o_contours glyph_name p =
 (* The letter "r" *)
 
 let letter_r_contours glyph_name p =
-  let ilike_contours =
-    contours_similar_to_letter_l
-      ~flag_width:70.
-      ~flag_drop:70.
-      ~left_notch_drop:107.
-      ~right_side_shear:0.2
-      ~left_serif_width:65.
-      ~right_serif_width:67.
-      ~extra_stem_width:2.
-      (glyph_name ^ "_stem") p
-  in
-
+  let ilike_contours = contours_similar_to_letter_l glyph_name p in
   let tools = make_tools ~glyph_name ~param:p () in
   let module Tools = (val tools : Tools_module) in
   let open Tools in
@@ -1119,25 +1046,18 @@ let letter_t_contours glyph_name p =
   let tools = make_tools ~glyph_name ~param:p () in
   let module Tools = (val tools : Tools_module) in
   let open Tools in
-      let rand = prs "state" in
-
-      let tail_end_angle = pf "tail_end_angle" +. 5. in
-      let tail_corner_radius1 = pf "corner_radius" in
-      let tail_corner_radius2 = pf "corner_radius" in
-
-      let stem_width = pf "stem_width" in
-      let left_pos = Cpx.x'(-.0.5 *. stem_width) in
-      let right_pos = Cpx.x'(0.5 *. stem_width) in
+      let left_pos = Cpx.x'(-.0.5 *. pf "stem_width") in
+      let right_pos = Cpx.x'(0.5 *. pf "stem_width") in
       let crossbar_height = pf "crossbar_height" in
-      let crossbar_breadth = floor (0.85 *. stem_width /. (1. +. 0.7 *. pf "contrast") +. 0.5) in
-      let bottom_breadth = 0.70 *. stem_width /. (1. +. pf "contrast") in
+      let crossbar_breadth = floor (0.85 *. pf "stem_width" /. (1. +. 0.7 *. pf "contrast") +. 0.5) in
+      let bottom_breadth = 0.70 *. pf "stem_width" /. (1. +. pf "contrast") in
       let sheared_terminal_width = 70. in
       let sheared_terminal_height = crossbar_height -. crossbar_breadth -. 3. in
-      let tail_breadth = 0.34 *. stem_width /. (1. +. pf "contrast") in
+      let tail_breadth = 0.34 *. pf "stem_width" /. (1. +. pf "contrast") in
       let tail_cut_angle = 100. in
 
       let tail1 =
-        Cpx.(x'(pf "width" -. 0.5 *. stem_width -. sheared_terminal_width) + y'pos 0.00 + y'(bottom_breadth +. 10.))
+        Cpx.(x'(pf "width" -. 0.5 *. pf "stem_width" -. sheared_terminal_width) + y'pos 0.00 + y'(bottom_breadth +. 10.))
       in
       let tail2 = Cpx.(tail1 + x' tail_breadth * rot tail_cut_angle) in
       let lower_bowl_width = Cpx.(re (x'pos 1.00 - x' sheared_terminal_width)) in
@@ -1152,7 +1072,7 @@ let letter_t_contours glyph_name p =
       let sheared_terminal_dip_dir = Cpx.(sheared_terminal_dir / rot 5.) in
       let sheared_terminal_rise_dir = Cpx.(sheared_terminal_dir * rot 5.) in
 
-      let left_cut_normal = Cpx.(rot (Random.State.float rand 10. +. 5.)) in
+      let left_cut_normal = Cpx.(rot (Random.State.float (prs "state") 10. +. 5.)) in
       let (corner_point1, corner_point2) =
         flat_cut_corners ~corner:left_corner ~cut_length:15.
           ~normal:left_cut_normal ~in_dir:Cpx.leftward ~out_dir:sheared_terminal_dip_dir
@@ -1165,7 +1085,7 @@ let letter_t_contours glyph_name p =
           ~in_dir:Cpx.leftward ~out_dir:sheared_terminal_dip_dir ()
       in
 
-      let top_cut_normal = Cpx.(rot (Random.State.float rand 5. -. 103.)) in
+      let top_cut_normal = Cpx.(rot (Random.State.float (prs "state") 5. -. 103.)) in
       let (corner_point1, corner_point2) =
         flat_cut_corners ~corner:top_corner ~cut_length:14.
           ~normal:top_cut_normal
@@ -1211,7 +1131,7 @@ let letter_t_contours glyph_name p =
       let (tangent2, _) = Cubic.tangents_at lower_right (float_of_int Int.(List.length lower_right - 1)) in
       let crosscut_dir = Cpx.(dir (tangent - tangent2) * rot (-90.)) in
       let tail2' = Cpx.(tail1 + x' tail_breadth * crosscut_dir) in
-      let shear_vector = Cpx.(x'(tail_breadth *. dtan tail_end_angle) * crosscut_dir * rot (-90.)) in
+      let shear_vector = Cpx.(x'(tail_breadth *. dtan (pf "tail_end_angle")) * crosscut_dir * rot (-90.)) in
       let tail2 = Cpx.(tail2' + shear_vector) in
       let lower_right = sketch_lower_right tail2 in
 
@@ -1242,7 +1162,8 @@ let letter_t_contours glyph_name p =
           ~contour1:right_side ~contour2:left_side
           ~corner_time1:(float_of_int Int.(List.length right_side - 1))
           ~corner_time2:0.
-          ~radius1:tail_corner_radius1 ~radius2:tail_corner_radius2 ()
+          ~radius1:(pf "corner_radius")
+          ~radius2:(pf "corner_radius") ()
       in
       let right_side = fst (Cubic.subdivide right_side right_time) in
       let left_side = snd (Cubic.subdivide left_side left_time) in
