@@ -40,7 +40,6 @@ struct
     | `Hash of unit -> int32 option
     | `String of unit -> string option
     | `Metacubic of unit -> Metacubic.t option
-    | `Random_state of unit -> Random.State.t option
     ]
 
   type t = parameter StringMap.t
@@ -54,14 +53,12 @@ struct
   let put_hash_func params name hfunc = put_parameter params name (`Hash hfunc)
   let put_string_func params name sfunc = put_parameter params name (`String sfunc)
   let put_metacubic_func params name mfunc = put_parameter params name (`Metacubic mfunc)
-  let put_random_state_func params name rsfunc = put_parameter params name (`Random_state rsfunc)
   let put_int params name i = put_int_func params name (fun () -> Some i)
   let put_float params name v =  put_float_func params name (fun () -> Some v)
   let put_complex params name c =  put_complex_func params name (fun () -> Some c)
   let put_hash params name h = put_hash_func params name (fun () -> Some h)
   let put_string params name s = put_string_func params name (fun () -> Some s)
   let put_metacubic params name m = put_metacubic_func params name (fun () -> Some m)
-  let put_random_state params name rs = put_random_state_func params name (fun () -> Some rs)
 
   let parameter params name = StringMap.find name params
 
@@ -131,17 +128,6 @@ struct
           | Some m -> m
           | None -> raise e
 
-  let random_state params ?default name =
-    try
-      match parameter params name with
-        | `Random_state rsfunc -> Option.get (rsfunc ())
-        | _ -> failwith "Param.random_state"
-    with
-      | Not_found | Option.No_value as e ->
-        match default with
-          | Some rs -> rs
-          | None -> raise e
-
   module type Tools_module =
   sig
     val p_ref : t ref
@@ -153,14 +139,12 @@ struct
     val set_ph_func : string -> (unit -> int32 option) -> unit
     val set_ps_func : string -> (unit -> string option) -> unit
     val set_pm_func : string -> (unit -> Metacubic.t option) -> unit
-    val set_prs_func : string -> (unit -> Random.State.t option) -> unit
     val set_pi : string -> int -> unit
     val set_pf : string -> float -> unit
     val set_pc : string -> Cpx.t -> unit
     val set_ph : string -> int32 -> unit
     val set_ps : string -> string -> unit
     val set_pm : string -> Metacubic.t -> unit
-    val set_prs : string -> Random.State.t -> unit
 
     val pi : ?default:int -> string -> int
     val pf : string -> float
@@ -168,9 +152,7 @@ struct
     val ph : string -> int32
     val ps : string -> string
     val pm : string -> Metacubic.t
-    val prs : string -> Random.State.t
 
-    val initialize_state : string -> unit
     val initialize_hash : string -> unit
     val float_hash : string -> float -> float -> float
 
@@ -189,12 +171,6 @@ struct
       match param with
         | Some p' -> p_ref := p'
         | None -> ()
-    end;
-    begin
-      try
-        ignore (random_state !p_ref "state")
-      with Not_found | Option.No_value ->
-        p_ref := put_random_state !p_ref "state" (Random.State.make [||])
     end;
     let xrel v = v *. float !p_ref "width" in
     let yrel v = v *. float !p_ref "height" in
@@ -216,14 +192,12 @@ struct
             let set_ph_func key hfunc = p_ref := put_hash_func !p_ref key hfunc
             let set_ps_func key sfunc = p_ref := put_string_func !p_ref key sfunc
             let set_pm_func key mfunc = p_ref := put_metacubic_func !p_ref key mfunc
-            let set_prs_func key rsfunc = p_ref := put_random_state_func !p_ref key rsfunc
             let set_pi key i = p_ref := put_int !p_ref key i
             let set_pf key v = p_ref := put_float !p_ref key v
             let set_pc key c = p_ref := put_complex !p_ref key c
             let set_ph key h = p_ref := put_hash !p_ref key h
             let set_ps key s = p_ref := put_string !p_ref key s
             let set_pm key m = p_ref := put_metacubic !p_ref key m
-            let set_prs key rs = p_ref := put_random_state !p_ref key rs
 
             let pi ?default key = int !p_ref ?default key
             let pf key = float !p_ref key
@@ -231,19 +205,6 @@ struct
             let ph key = hash !p_ref key
             let ps key = string !p_ref key
             let pm key = metacubic !p_ref key
-            let prs key = random_state !p_ref key
-
-            (* ??????????????????????????????????????????????????????????????????????????????? *)
-            let initialize_state key =
-              let state =
-                Random.State.make
-                  (Array.of_list
-                     (int_of_float (pf "design_size") ::
-                        pi "os2_weight" ::
-                        List.map Char.code (String.explode glyph_name)))
-              in
-              set_prs key state
-            (* ??????????????????????????????????????????????????????????????????????????????? *)
 
             let initialize_hash key =
               let data =
@@ -626,32 +587,31 @@ let make_flag ~left_notch ~flag_corner ~top_corner =
   in
   contour
 
-let reshape_flag ~param ~contour ~left_notch ~flag_corner ~top_corner () =
-  let p = param in
-  let rand = random_state p "state" in
+let reshape_flag (* ~param *) ~tools ~contour ~left_notch ~flag_corner ~top_corner () =
+  let module Tools = (val tools : Tools_module) in
+  let open Tools in
+      let lower_dir = Cpx.(dir (flag_corner - left_notch)) in
+      let upper_dir = Cpx.(dir (top_corner - flag_corner)) in
 
-  let lower_dir = Cpx.(dir (flag_corner - left_notch)) in
-  let upper_dir = Cpx.(dir (top_corner - flag_corner)) in
+      let (corner_point1, corner_point2) =
+        flat_cut_corners ~corner:flag_corner ~cut_length:15.
+          ~normal:Cpx.(rot (float_hash "34643" 5. 15.))
+          ~in_dir:lower_dir ~out_dir:Cpx.(upper_dir / rot 3.)
+      in
+      let (cut, time1, time2) =
+        make_flat_cut_for_contours ~corner_point1 ~corner_point2
+          ~contour1:contour ~contour2:contour
+          ~radius1:(pf "corner_radius" +. 2.)
+          ~radius2:(pf "corner_radius" +. 2.) ()
+      in
+      let contour = Cubic.splice_together ~time1 ~time2 contour contour (Metacubic.to_cubic cut) in
 
-  let (corner_point1, corner_point2) =
-    flat_cut_corners ~corner:flag_corner ~cut_length:15.
-      ~normal:Cpx.(rot (Random.State.float rand 10. -. 5.))
-      ~in_dir:lower_dir ~out_dir:Cpx.(upper_dir / rot 3.)
-  in
-  let (cut, time1, time2) =
-    make_flat_cut_for_contours ~corner_point1 ~corner_point2
-      ~contour1:contour ~contour2:contour
-      ~radius1:(Param.float p "corner_radius" +. 2.)
-      ~radius2:(Param.float p "corner_radius" +. 2.) ()
-  in
-  let contour = Cubic.splice_together ~time1 ~time2 contour contour (Metacubic.to_cubic cut) in
+      let contour =
+        round_off_corner ~contour ~corner_point:top_corner
+          ~kind:`Without_extrema ~tension:2. ~radius:8. ()
+      in
 
-  let contour =
-    round_off_corner ~contour ~corner_point:top_corner
-      ~kind:`Without_extrema ~tension:2. ~radius:8. ()
-  in
-
-  contour
+      contour
 
 (*-----------------------------------------------------------------------*)
 
@@ -894,7 +854,7 @@ let contours_similar_to_letter_l glyph_name p =
         |> to_cubic
       )
       in
-      let contour = reshape_flag ~param:p ~contour ~left_notch ~flag_corner ~top_corner () in
+      let contour = reshape_flag (* ~param:p *) ~tools ~contour ~left_notch ~flag_corner ~top_corner () in
       [Cubic.round contour]
 ;;
 
@@ -1106,7 +1066,7 @@ let letter_t_contours glyph_name p =
       let sheared_terminal_dip_dir = Cpx.(sheared_terminal_dir / rot 5.) in
       let sheared_terminal_rise_dir = Cpx.(sheared_terminal_dir * rot 5.) in
 
-      let left_cut_normal = Cpx.(rot (Random.State.float (prs "state") 10. +. 5.)) in
+      let left_cut_normal = Cpx.(rot (float_hash "61244" 5. 15.)) in
       let (corner_point1, corner_point2) =
         flat_cut_corners ~corner:left_corner ~cut_length:15.
           ~normal:left_cut_normal ~in_dir:Cpx.leftward ~out_dir:sheared_terminal_dip_dir
@@ -1119,7 +1079,7 @@ let letter_t_contours glyph_name p =
           ~in_dir:Cpx.leftward ~out_dir:sheared_terminal_dip_dir ()
       in
 
-      let top_cut_normal = Cpx.(rot (Random.State.float (prs "state") 5. -. 103.)) in
+      let top_cut_normal = Cpx.(rot (float_hash "62312" (-103.) (-98.))) in
       let (corner_point1, corner_point2) =
         flat_cut_corners ~corner:top_corner ~cut_length:14.
           ~normal:top_cut_normal

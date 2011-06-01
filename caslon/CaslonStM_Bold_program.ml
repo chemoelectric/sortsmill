@@ -34,7 +34,6 @@ let params ~glyph_name =
 
       set_pi "os2_weight" 700;
       set_pf "design_size" 12.;
-      initialize_state "state";
       initialize_hash "hash";
 
       set_ps "fontname" "CaslonStM-Bold";
@@ -57,9 +56,9 @@ let params ~glyph_name =
       set_pf "stem_width" 90.;
       set_pf "serif_height" 30.;
 
-      set_pf_func "corner_radius" (fun () -> Some (Random.State.float (prs "state") 2. +. 4.));
-      set_pf_func "serif_end_angle" (fun () -> Some ((Random.State.float (prs "state") 100. -. 50.) /. 9.));
-      set_pf_func "tail_end_angle" (fun () -> Some (Random.State.float (prs "state") 10.));
+      set_pf_func "corner_radius" (fun () -> Some (float_hash "34612" 3.6 5.4));
+      set_pf_func "serif_end_angle" (fun () -> Some (float_hash "63555" (-5.5) 5.5));
+      set_pf_func "tail_end_angle" (fun () -> Some (float_hash "63421" 0. 10.));
 
       set_pm_func "left_bracket"
         (fun () ->
@@ -112,7 +111,7 @@ let params ~glyph_name =
         set_pf "crossbar_height" (pf "crossbar_height");
         set_pf "crossbar_breadth" (0.42 *. pf "stem_width" /. (1. +. pf "contrast"));
         set_pf_func "crossbar_fillet_size"
-          (fun () -> Some ((Random.State.float (prs "state") 0.2 +. 0.7) *. pf "crossbar_breadth"));
+          (fun () -> Some (float_hash "31315" 0.7 0.9 *. pf "crossbar_breadth"));
         set_pc "tail1" Cpx.(x'pos 1.00 + y'pos 0.26);
       );
 
@@ -191,7 +190,7 @@ let params ~glyph_name =
         set_pf "bottom_overlap" 12.;
         set_pf "crossbar_height" 402.;
         set_pf "top_corner_height" 550.;
-        set_pf_func "tail_end_angle" (fun () -> Some (float_of_int (Random.State.int (prs "state") 101) /. 10. +. 5.));
+        set_pf_func "tail_end_angle" (fun () -> Some (float_hash "25413" 10. 15.));
       );
 
       !p_ref
