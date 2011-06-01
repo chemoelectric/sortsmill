@@ -37,6 +37,7 @@ struct
     | `Int of unit -> int option
     | `Float of unit -> float option
     | `Complex of unit -> Cpx.t option
+    | `Hash of unit -> int32 option
     | `String of unit -> string option
     | `Metacubic of unit -> Metacubic.t option
     | `Random_state of unit -> Random.State.t option
@@ -50,12 +51,14 @@ struct
   let put_int_func params name ifunc = put_parameter params name (`Int ifunc)
   let put_float_func params name ffunc = put_parameter params name (`Float ffunc)
   let put_complex_func params name cfunc = put_parameter params name (`Complex cfunc)
+  let put_hash_func params name hfunc = put_parameter params name (`Hash hfunc)
   let put_string_func params name sfunc = put_parameter params name (`String sfunc)
   let put_metacubic_func params name mfunc = put_parameter params name (`Metacubic mfunc)
   let put_random_state_func params name rsfunc = put_parameter params name (`Random_state rsfunc)
   let put_int params name i = put_int_func params name (fun () -> Some i)
   let put_float params name v =  put_float_func params name (fun () -> Some v)
   let put_complex params name c =  put_complex_func params name (fun () -> Some c)
+  let put_hash params name h = put_hash_func params name (fun () -> Some h)
   let put_string params name s = put_string_func params name (fun () -> Some s)
   let put_metacubic params name m = put_metacubic_func params name (fun () -> Some m)
   let put_random_state params name rs = put_random_state_func params name (fun () -> Some rs)
@@ -88,11 +91,22 @@ struct
     try
       match parameter params name with
         | `Complex cfunc -> Option.get (cfunc ())
-        | _ -> failwith "Param.float"
+        | _ -> failwith "Param.complex"
     with
       | Not_found | Option.No_value as e ->
         match default with
           | Some c -> c
+          | None -> raise e
+
+  let hash params ?default name =
+    try
+      match parameter params name with
+        | `Hash hfunc -> Option.get (hfunc ())
+        | _ -> failwith "Param.hash"
+    with
+      | Not_found | Option.No_value as e ->
+        match default with
+          | Some h -> h
           | None -> raise e
 
   let string params ?default name =
@@ -136,12 +150,14 @@ struct
     val set_pi_func : string -> (unit -> int option) -> unit
     val set_pf_func : string -> (unit -> float option) -> unit
     val set_pc_func : string -> (unit -> Cpx.t option) -> unit
+    val set_ph_func : string -> (unit -> int32 option) -> unit
     val set_ps_func : string -> (unit -> string option) -> unit
     val set_pm_func : string -> (unit -> Metacubic.t option) -> unit
     val set_prs_func : string -> (unit -> Random.State.t option) -> unit
     val set_pi : string -> int -> unit
     val set_pf : string -> float -> unit
     val set_pc : string -> Cpx.t -> unit
+    val set_ph : string -> int32 -> unit
     val set_ps : string -> string -> unit
     val set_pm : string -> Metacubic.t -> unit
     val set_prs : string -> Random.State.t -> unit
@@ -149,11 +165,14 @@ struct
     val pi : ?default:int -> string -> int
     val pf : string -> float
     val pc : string -> Cpx.t
+    val ph : string -> int32
     val ps : string -> string
     val pm : string -> Metacubic.t
     val prs : string -> Random.State.t
 
     val initialize_state : string -> unit
+    val initialize_hash : string -> unit
+    val float_hash : string -> float -> float -> float
 
     val xrel : float -> float
     val yrel : float -> float
@@ -194,12 +213,14 @@ struct
             let set_pi_func key ifunc = p_ref := put_int_func !p_ref key ifunc
             let set_pf_func key ffunc = p_ref := put_float_func !p_ref key ffunc
             let set_pc_func key cfunc = p_ref := put_complex_func !p_ref key cfunc
+            let set_ph_func key hfunc = p_ref := put_hash_func !p_ref key hfunc
             let set_ps_func key sfunc = p_ref := put_string_func !p_ref key sfunc
             let set_pm_func key mfunc = p_ref := put_metacubic_func !p_ref key mfunc
             let set_prs_func key rsfunc = p_ref := put_random_state_func !p_ref key rsfunc
             let set_pi key i = p_ref := put_int !p_ref key i
             let set_pf key v = p_ref := put_float !p_ref key v
             let set_pc key c = p_ref := put_complex !p_ref key c
+            let set_ph key h = p_ref := put_hash !p_ref key h
             let set_ps key s = p_ref := put_string !p_ref key s
             let set_pm key m = p_ref := put_metacubic !p_ref key m
             let set_prs key rs = p_ref := put_random_state !p_ref key rs
@@ -207,10 +228,12 @@ struct
             let pi ?default key = int !p_ref ?default key
             let pf key = float !p_ref key
             let pc key = complex !p_ref key
+            let ph key = hash !p_ref key
             let ps key = string !p_ref key
             let pm key = metacubic !p_ref key
             let prs key = random_state !p_ref key
 
+            (* ??????????????????????????????????????????????????????????????????????????????? *)
             let initialize_state key =
               let state =
                 Random.State.make
@@ -220,6 +243,17 @@ struct
                         List.map Char.code (String.explode glyph_name)))
               in
               set_prs key state
+            (* ??????????????????????????????????????????????????????????????????????????????? *)
+
+            let initialize_hash key =
+              let data =
+                Print.sprintf p"%F;%d;%s" (pf "design_size") (pi "os2_weight") glyph_name
+              in
+              let hash_val = fnv_32a data in
+              set_ph key hash_val
+
+            let float_hash data a b =
+              fnv_32a_float_hash ~hash_val:(ph "hash") data a b
 
             let xrel = xrel
             let yrel = yrel
@@ -269,7 +303,7 @@ let bend_points ~corner_point ~radius ~in_dir ~out_dir =
   let tangent_distance = Complex.of_float (abs_float (radius *. tan (0.5 *. theta))) in
   let point1 = Complex.(corner_point - tangent_distance * in_dir) in
   let point2 = Complex.(corner_point + tangent_distance * out_dir) in
-  (point1, point2)
+  (Cpx.round point1, Cpx.round point2)
   
 let extremum_free_bend ~point1 ~point2 ~tension ~in_dir ~out_dir =
   let v12 = Complex.(point2 - point1) in

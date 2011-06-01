@@ -56,6 +56,22 @@ let adtan2 x y = deg (atan2 x y)
 
 (*-----------------------------------------------------------------------*)
 
+(* Hashing *)
+
+(* 32-bit FNV-1a. See http://isthe.com/chongo/tech/comp/fnv/ *)
+let fnv_32a ?(hash_val = 0x811c9dc5l) data =
+  String.fold_left
+    (fun hash byte -> Int32.mul (Int32.logxor hash (Int32.of_byte byte)) 0x01000193l)
+    hash_val
+    data
+
+let fnv_32a_float_hash ?hash_val data a b =
+  let (a, b) = if a <= b then (a, b) else (b, a) in
+  let fraction = ((Int32.to_float (fnv_32a ?hash_val data) +. (2. ** 31.))) /. (2. ** 32.) in
+  a +. fraction *. (b -. a)
+
+(*-----------------------------------------------------------------------*)
+
 module Extended_complex =
 (* Extensions for the Complex module. *)
 struct

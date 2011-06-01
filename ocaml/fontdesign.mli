@@ -53,6 +53,9 @@ val adtan : float -> float
 val adtan2 : float -> float -> float
 (** Inverse trigonometric functions returning values in degrees. *)
 
+val fnv_32a : ?hash_val:int32 -> string -> int32
+val fnv_32a_float_hash : ?hash_val:int32 -> string -> float -> float -> float
+
 (*-----------------------------------------------------------------------*)
 
 module Extended_complex :

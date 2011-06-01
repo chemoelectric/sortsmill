@@ -35,6 +35,7 @@ let params ~glyph_name =
       set_pi "os2_weight" 700;
       set_pf "design_size" 12.;
       initialize_state "state";
+      initialize_hash "hash";
 
       set_ps "fontname" "CaslonStM-Bold";
       set_ps "familyname" "Sorts Mill Caslon";
@@ -56,10 +57,9 @@ let params ~glyph_name =
       set_pf "stem_width" 90.;
       set_pf "serif_height" 30.;
 
-      set_pf_func "corner_radius" (fun () -> Some (float_of_int (Random.State.int (prs "state") 3 + 4)));
-
-      set_pf_func "serif_end_angle" (fun () -> Some (float_of_int (Random.State.int (prs "state") 101 - 50) /. 9.));
-      set_pf_func "tail_end_angle" (fun () -> Some (float_of_int (Random.State.int (prs "state") 101) /. 10.));
+      set_pf_func "corner_radius" (fun () -> Some (Random.State.float (prs "state") 2. +. 4.));
+      set_pf_func "serif_end_angle" (fun () -> Some ((Random.State.float (prs "state") 100. -. 50.) /. 9.));
+      set_pf_func "tail_end_angle" (fun () -> Some (Random.State.float (prs "state") 10.));
 
       set_pm_func "left_bracket"
         (fun () ->
