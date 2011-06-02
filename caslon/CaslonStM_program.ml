@@ -60,6 +60,14 @@ let params ~glyph_name =
       set_pf_func "serif_end_angle" (fun () -> Some (float_hash "63555" (-5.5) 5.5));
       set_pf_func "tail_end_angle" (fun () -> Some (float_hash "63421" 0. 10.));
 
+      set_pf_func "flag_corner_angle" (fun () -> Some (float_hash "34643" (-5.) 5.));
+      set_pf "flag_corner_cut_length" 15.;
+      set_pf_func "flag_corner_corner_radius" (fun () -> Some (pf "corner_radius" +. 2.));
+      set_pf "flag_top_radius" 8.;
+      set_pf "flag_top_tension" 2.;
+      set_pf "flag_cupping_angle1" 3.;
+      set_pf "flag_cupping_angle2" 3.;
+
       set_pm_func "left_bracket"
         (fun () ->
           let left_pos = -.(float_hash "44646" 20. 25.) in
@@ -183,9 +191,15 @@ let params ~glyph_name =
         set_pf "width" 275.;
         set_pf "height" 562.;
         set_pf "bottom_overlap" 12.;
+        set_pf "bottom_breadth" (0.70 *. pf "stem_width" /. (1. +. pf "contrast"));
         set_pf "crossbar_height" 402.;
+        set_pf "crossbar_breadth" (floor (0.85 *. pf "stem_width" /. (1. +. 0.7 *. pf "contrast") +. 0.5));
+        set_pf "sheared_terminal_width" 70.;
         set_pf "top_corner_height" 550.;
+        set_pf "tail_breadth" (0.34 *. pf "stem_width" /. (1. +. pf "contrast"));
+        set_pf "sheared_terminal_drop" (-3.);
         set_pf_func "tail_end_angle" (fun () -> Some (float_hash "25413" 10. 15.));
+        set_pf "tail_cut_angle" 100.;
       );
 
       !p_ref

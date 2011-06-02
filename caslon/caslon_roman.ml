@@ -575,40 +575,48 @@ let make_right_serif_end
     <+> Complex_point.y'(-.end_depth)
   )
 
-let make_flag ~left_notch ~flag_corner ~top_corner =
-  let lower_dir = Cpx.(dir (flag_corner - left_notch)) in
-  let upper_dir = Cpx.(dir (top_corner - flag_corner)) in
-  let contour =
-    Metacubic.(
-      Cpx.(point ~dir:lower_dir (left_notch + x' 30. * lower_dir))
-      |> put Cpx.(point ~in_dir:lower_dir ~out_dir:(upper_dir / rot 3.) flag_corner)
-      |> put Cpx.(point ~in_dir:(upper_dir * rot 3.) ~out_dir:downward top_corner)
-      )
-  in
-  contour
+let make_flag ~tools ~left_notch ~flag_corner ~top_corner =
+  let module Tools = (val tools : Tools_module) in
+  let open Tools in
+      let lower_dir = Cpx.(dir (flag_corner - left_notch)) in
+      let upper_dir = Cpx.(dir (top_corner - flag_corner)) in
+      let contour =
+        Metacubic.(
+          Cpx.(point ~dir:lower_dir (left_notch + x' 30. * lower_dir))
+          |> put Cpx.(point ~in_dir:lower_dir ~out_dir:(upper_dir / rot (pf "flag_cupping_angle1")) flag_corner)
+          |> put Cpx.(point ~in_dir:(upper_dir * rot (pf "flag_cupping_angle2")) ~out_dir:downward top_corner)
+        )
+      in
+      contour
 
-let reshape_flag (* ~param *) ~tools ~contour ~left_notch ~flag_corner ~top_corner () =
+let reshape_flag ~tools ~contour ~left_notch ~flag_corner ~top_corner () =
   let module Tools = (val tools : Tools_module) in
   let open Tools in
       let lower_dir = Cpx.(dir (flag_corner - left_notch)) in
       let upper_dir = Cpx.(dir (top_corner - flag_corner)) in
 
       let (corner_point1, corner_point2) =
-        flat_cut_corners ~corner:flag_corner ~cut_length:15.
-          ~normal:Cpx.(rot (float_hash "34643" 5. 15.))
-          ~in_dir:lower_dir ~out_dir:Cpx.(upper_dir / rot 3.)
+        flat_cut_corners
+          ~corner:flag_corner
+          ~cut_length:(pf "flag_corner_cut_length")
+          ~normal:Cpx.(rot (pf "flag_corner_angle"))
+          ~in_dir:lower_dir
+          ~out_dir:Cpx.(upper_dir / rot (pf "flag_cupping_angle1"))
       in
       let (cut, time1, time2) =
         make_flat_cut_for_contours ~corner_point1 ~corner_point2
           ~contour1:contour ~contour2:contour
-          ~radius1:(pf "corner_radius" +. 2.)
-          ~radius2:(pf "corner_radius" +. 2.) ()
+          ~radius1:(pf "flag_corner_corner_radius")
+          ~radius2:(pf "flag_corner_corner_radius") ()
       in
       let contour = Cubic.splice_together ~time1 ~time2 contour contour (Metacubic.to_cubic cut) in
 
       let contour =
-        round_off_corner ~contour ~corner_point:top_corner
-          ~kind:`Without_extrema ~tension:2. ~radius:8. ()
+        round_off_corner ~contour
+          ~corner_point:top_corner
+          ~kind:`Without_extrema
+          ~tension:(pf "flag_top_tension")
+          ~radius:(pf "flag_top_radius") ()
       in
 
       contour
@@ -844,7 +852,7 @@ let contours_similar_to_letter_l glyph_name p =
         )
       in
 
-      let flag = make_flag ~left_notch ~flag_corner ~top_corner in
+      let flag = make_flag ~tools ~left_notch ~flag_corner ~top_corner in
       let flag_end = Metacubic.outgoing_point flag in
       let right_side_height = 0.7 *. (pf "height" -. Cpx.im (Metacubic.incoming_point rbrack)) in
       let contour = Metacubic.(
@@ -854,7 +862,7 @@ let contours_similar_to_letter_l glyph_name p =
         |> to_cubic
       )
       in
-      let contour = reshape_flag (* ~param:p *) ~tools ~contour ~left_notch ~flag_corner ~top_corner () in
+      let contour = reshape_flag ~tools ~contour ~left_notch ~flag_corner ~top_corner () in
       [Cubic.round contour]
 ;;
 
@@ -1042,26 +1050,21 @@ let letter_t_contours glyph_name p =
   let open Tools in
       let left_pos = Cpx.x'(-.0.5 *. pf "stem_width") in
       let right_pos = Cpx.x'(0.5 *. pf "stem_width") in
-      let crossbar_height = pf "crossbar_height" in
-      let crossbar_breadth = floor (0.85 *. pf "stem_width" /. (1. +. 0.7 *. pf "contrast") +. 0.5) in
-      let bottom_breadth = 0.70 *. pf "stem_width" /. (1. +. pf "contrast") in
-      let sheared_terminal_width = 70. in
-      let sheared_terminal_height = crossbar_height -. crossbar_breadth -. 3. in
-      let tail_breadth = 0.34 *. pf "stem_width" /. (1. +. pf "contrast") in
-      let tail_cut_angle = 100. in
+      let sheared_terminal_height = pf "crossbar_height" -. pf "crossbar_breadth" +. pf "sheared_terminal_drop" in
 
       let tail1 =
-        Cpx.(x'(pf "width" -. 0.5 *. pf "stem_width" -. sheared_terminal_width) + y'pos 0.00 + y'(bottom_breadth +. 10.))
+        Cpx.(x'(pf "width" -. 0.5 *. pf "stem_width" -. pf "sheared_terminal_width") +
+               y'pos 0.00 + y'(pf "bottom_breadth" +. 10.))
       in
-      let tail2 = Cpx.(tail1 + x' tail_breadth * rot tail_cut_angle) in
-      let lower_bowl_width = Cpx.(re (x'pos 1.00 - x' sheared_terminal_width)) in
+      let tail2 = Cpx.(tail1 + x'(pf "tail_breadth") * rot(pf "tail_cut_angle")) in
+      let lower_bowl_width = Cpx.(re (x'pos 1.00 - x'(pf "sheared_terminal_width"))) in
       let upper_bowl_width = Cpx.(re tail2 -. re right_pos) in
 
       let top_corner = Cpx.(right_pos + x' 10. + y'pos 1.00) in
-      let bowl_point = Cpx.(right_pos + x'(0.50 *. upper_bowl_width) + y'pos 0.00 + y' bottom_breadth) in
+      let bowl_point = Cpx.(right_pos + x'(0.50 *. upper_bowl_width) + y'pos 0.00 + y'(pf "bottom_breadth")) in
       let bottom_point = Cpx.(left_pos + x'(0.50 *. lower_bowl_width) + y'pos 0.00) in
 
-      let left_corner = Cpx.(x' (re left_pos -. sheared_terminal_width) + y' sheared_terminal_height) in
+      let left_corner = Cpx.(x' (re left_pos -. pf "sheared_terminal_width") + y' sheared_terminal_height) in
       let sheared_terminal_dir = Cpx.(dir (top_corner - left_corner)) in
       let sheared_terminal_dip_dir = Cpx.(sheared_terminal_dir / rot 5.) in
       let sheared_terminal_rise_dir = Cpx.(sheared_terminal_dir * rot 5.) in
@@ -1117,26 +1120,26 @@ let letter_t_contours glyph_name p =
 
       (* Roughly locate the sketched lower-right side. *)
       let (_, tangent) = Cubic.tangents_at left_side 0. in
-      let tail2 = Cpx.(tail1 + x' tail_breadth * tangent * rot (-100.)) in
+      let tail2 = Cpx.(tail1 + x'(pf "tail_breadth") * tangent * rot (-100.)) in
       let lower_right = sketch_lower_right tail2 in
 
       (* Now use the rough sketch to get a better estimate of the
          crosscut vector. *)
       let (tangent2, _) = Cubic.tangents_at lower_right (float_of_int Int.(List.length lower_right - 1)) in
       let crosscut_dir = Cpx.(dir (tangent - tangent2) * rot (-90.)) in
-      let tail2' = Cpx.(tail1 + x' tail_breadth * crosscut_dir) in
-      let shear_vector = Cpx.(x'(tail_breadth *. dtan (pf "tail_end_angle")) * crosscut_dir * rot (-90.)) in
+      let tail2' = Cpx.(tail1 + x'(pf "tail_breadth") * crosscut_dir) in
+      let shear_vector = Cpx.(x'(pf "tail_breadth" *. dtan (pf "tail_end_angle")) * crosscut_dir * rot (-90.)) in
       let tail2 = Cpx.(tail2' + shear_vector) in
       let lower_right = sketch_lower_right tail2 in
 
-      let crossbar_point1 = Cpx.(x'(re right_pos) + x' 5. + y' crossbar_height) in
-      let crossbar_point2 = Cpx.(x'(re right_pos) + y'(crossbar_height -. crossbar_breadth)) in
+      let crossbar_point1 = Cpx.(x'(re right_pos) + x' 5. + y'(pf "crossbar_height")) in
+      let crossbar_point2 = Cpx.(x'(re right_pos) + y'(pf "crossbar_height" -. pf "crossbar_breadth")) in
 
       let crossbar_end =
         make_flat_cut
           ~bend_kind1:`Without_extrema ~bend_kind2:`Without_extrema
-          ~corner1:Cpx.(x'(re right_pos +. upper_bowl_width -. 8.) + y' crossbar_height)
-          ~corner2:Cpx.(x'(re right_pos +. upper_bowl_width -. 18.) + y'(crossbar_height -. crossbar_breadth))
+          ~corner1:Cpx.(x'(re right_pos +. upper_bowl_width -. 8.) + y'(pf "crossbar_height"))
+          ~corner2:Cpx.(x'(re right_pos +. upper_bowl_width -. 18.) + y'(pf "crossbar_height" -. pf "crossbar_breadth"))
           ~radius1:6. ~radius2:6. ~tension:huge
           ~in_dir:Cpx.rightward ~out_dir:Cpx.leftward ()
       in
