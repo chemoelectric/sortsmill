@@ -97,7 +97,7 @@ def caml_path(contour):
     s = ""
     i = 0
     while i < len(plist2):
-        join = "<@> " if i != 0 else ""
+        join = "|> put " if i != 0 else ""
 
         inhandle_x = plist2[i].x - plist2[i + 1].x
         inhandle_y = plist2[i].y - plist2[i + 1].y
@@ -110,13 +110,13 @@ def caml_path(contour):
         c_oncurve = complex(oncurve_x, oncurve_y)
         c_outhandle = complex(outhandle_x, outhandle_y)
 
-        s += ("  " + join + "make_node (" +
+        s += (join + "(make_node (" +
               caml_complex(c_inhandle) + ") (" +
               caml_complex(c_oncurve) + ") (" +
-              caml_complex(c_outhandle) + ")\n")
+              caml_complex(c_outhandle) + "))\n")
         i += 3
 
-    s += " <@@ " + ("true" if contour.closed else "false")
+    s += "|> close"
 
     return s
 
