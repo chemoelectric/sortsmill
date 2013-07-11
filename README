@@ -1,6 +1,33 @@
-To build Sorts Mill fonts from Mercurial or Git sources, first go into
-the 'tools' directory and install the Sorts Mill Tools, using
-something like
+---------------------------------------------------------------------
+
+Currently, to build Sorts Mill fonts using Sorts Mill Tools 2.x.x, you
+must use a ‘recent enough’ commit of Sorts Mill Tools and configure it
+with the --enable-legacy-sortsmill-tools configure flag.
+
+Use the source tarballs:
+https://bitbucket.org/sortsmill/sortsmill-fonts/downloads/sortsmill-fanwood-1.1.tar.bz2
+https://bitbucket.org/sortsmill/sortsmill-fonts/downloads/sortsmill-lindenhill-1.2.tar.bz2
+https://bitbucket.org/sortsmill/sortsmill-fonts/downloads/sortsmill-gb1911-2010.07.03.tar.bz2
+https://bitbucket.org/sortsmill/sortsmill-fonts/downloads/sortsmill-goudy-3.1.tar.bz2
+https://bitbucket.org/sortsmill/sortsmill-fonts/downloads/sortsmill-prociono-2.3.tar.bz2
+
+You should apply the patches in
+https://bitbucket.org/sortsmill/sortsmill-fonts/downloads/patches-to-build-fonts-with-sortsmill-tools-2.x.x.tar.bz2
+using commands like ‘bzip2 -d < path/to/patch-file.patch.bz2 | patch -Np1’.
+
+Then do the usual GNU Autotools stuff, such as:
+
+./configure --enable-truetype
+make -j9
+
+---------------------------------------------------------------------
+
+* What follows are old instructions, for building fonts with George *
+* Williams’ ‘FontForge’ program. Follow them at your own risk.      *
+
+To build Sorts Mill fonts from Mercurial or Git sources, using the
+original FontForge, first go into the 'tools' directory and install
+the Sorts Mill Tools 0.4, using something like
 
     autoreconf --install
     make
@@ -15,3 +42,5 @@ into the appropriate directory and once again do something like
 
 If the desired fonts are not that far along, then I don't know what
 you should do. :)
+
+---------------------------------------------------------------------
